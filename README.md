@@ -1,5 +1,7 @@
 # Tooling Project Assets
 
+[![Check License status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-license.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-license.yml)
+
 The [Arduino](https://www.arduino.cc/) Tooling Team's collection of reusable project infrastructure assets.
 
 ## GitHub Actions workflow templates
