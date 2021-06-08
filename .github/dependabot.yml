@@ -1,0 +1,28 @@
+# See: https://docs.github.com/en/github/administering-a-repository/configuration-options-for-dependency-updates#about-the-dependabotyml-file
+version: 2
+
+updates:
+  # Configure check for outdated GitHub Actions actions in workflows.
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/dependabot/README.md
+  # See: https://docs.github.com/en/github/administering-a-repository/keeping-your-actions-up-to-date-with-dependabot
+  - package-ecosystem: github-actions
+    directory: / # Check the repository's workflows under /.github/workflows/
+    schedule:
+      interval: daily
+    labels:
+      - "topic: infrastructure"
+    assignees:
+      - per1234
+
+  # Configure check for outdated GitHub Actions actions in workflow templates.
+  - package-ecosystem: github-actions
+    # The workflows under the .github/workflows/ subfolder of this path will be checked.
+    directory: /workflow-templates/dependabot/workflow-template-copies/
+    schedule:
+      interval: daily
+    commit-message:
+      prefix: (DO NOT MERGE)
+    labels:
+      - "topic: infrastructure"
+    assignees:
+      - per1234
