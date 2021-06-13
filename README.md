@@ -1,5 +1,6 @@
 # Tooling Project Assets
 
+[![Check Configuration Files status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-configuration-files.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-configuration-files.yml)
 [![Check License status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-license.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-license.yml)
 [![Check File Duplicates Sync status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-sync.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-sync.yml)
 
