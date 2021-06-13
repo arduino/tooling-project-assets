@@ -4,7 +4,7 @@
 # - Assets for the workflow templates used in this repository.
 #
 # This workflow checks that the copies are in sync.
-# If the workflow fails, run workflow-templates/etc/sync.sh and commit.
+# If the workflow fails, run `task dependabot:sync` and commit.
 
 name: Check File Duplicates Sync
 
@@ -16,16 +16,26 @@ jobs:
   check-sync:
     runs-on: ubuntu-latest
 
+    env:
+      SYNC_COMMAND: task dependabot:sync
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Install Task
+        uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          version: 3.x
+
+      - name: Sync files
+        run: ${{ env.SYNC_COMMAND }} --silent
+
       - name: Check file duplicates sync
         run: |
-          SYNC_SCRIPT_PATH="etc/sync.sh"
-          "${{ github.workspace }}/$SYNC_SCRIPT_PATH"
           git add .
           if ! git diff --color --exit-code HEAD; then
-            echo "::error::File duplicates are out of sync. Please run $SYNC_SCRIPT_PATH"
+            echo "::error::File duplicates are out of sync. Please run \"${{ env.SYNC_COMMAND }}\""
             exit 1
           fi
