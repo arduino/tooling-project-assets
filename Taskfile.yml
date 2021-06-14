@@ -1,0 +1,21 @@
+version: "3"
+
+tasks:
+  check:
+    desc: Check for problems with the project
+    deps:
+      - task: config:validate
+
+  config:validate:
+    desc: Validate configuration files against their JSON schema
+    vars:
+      # Last version with support for draft-04, used by Dependabot schema
+      AJV_CLI_VERSION: 3.3.0
+      # Source: https://github.com/SchemaStore/schemastore/blob/master/src/schemas/json/dependabot-2.0.json
+      DEPENDABOT_SCHEMA_URL: https://json.schemastore.org/dependabot-2.0
+      DEPENDABOT_SCHEMA_PATH:
+        sh: mktemp -t dependabot-schema-XXXXXXXXXX.json
+      DEPENDABOT_DATA_PATH: "**/dependabot.yml"
+    cmds:
+      - wget --quiet --output-document="{{.DEPENDABOT_SCHEMA_PATH}}" {{.DEPENDABOT_SCHEMA_URL}}
+      - npx ajv-cli@{{.AJV_CLI_VERSION}} validate -s "{{.DEPENDABOT_SCHEMA_PATH}}" -d "{{.DEPENDABOT_DATA_PATH}}"
