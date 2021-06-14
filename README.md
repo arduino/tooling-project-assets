@@ -1,6 +1,7 @@
 # Tooling Project Assets
 
 [![Check License status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-license.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-license.yml)
+[![Check File Duplicates Sync status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-sync.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-sync.yml)
 
 The [Arduino](https://www.arduino.cc/) Tooling Team's collection of reusable project infrastructure assets.
 
