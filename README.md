@@ -1,8 +1,11 @@
 # Tooling Project Assets
 
 [![Check Configuration Files status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-configuration-files.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-configuration-files.yml)
+[![Check General Formatting status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-general-formatting-task.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-general-formatting-task.yml)
 [![Check License status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-license.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-license.yml)
 [![Check Workflow Duplicates Sync status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-dependabot-sync.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-dependabot-sync.yml)
+[![Check CI Workflows Sync status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-ci-sync.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-ci-sync.yml)
+[![Check Configuration Files Sync status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-config-sync.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-config-sync.yml)
 
 The [Arduino](https://www.arduino.cc/) Tooling Team's collection of reusable project infrastructure assets.
 

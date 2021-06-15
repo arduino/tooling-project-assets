@@ -1,0 +1,47 @@
+# This repository contains intentionally duplicated copies of template workflows under .github/workflows used for this
+# repository's own CI system.
+#
+# This workflow checks that the copies are in sync.
+# If the workflow fails, run `task fix` and commit.
+
+name: Check CI Workflows Sync
+
+# See: https://docs.github.com/en/actions/reference/events-that-trigger-workflows
+on:
+  push:
+    paths:
+      - ".github/workflows/*.ya?ml"
+      - "Taskfile.ya?ml"
+      - "workflow-templates/*.ya?ml"
+  pull_request:
+    paths:
+      - ".github/workflows/*.ya?ml"
+      - "Taskfile.ya?ml"
+      - "workflow-templates/*.ya?ml"
+  workflow_dispatch:
+  repository_dispatch:
+
+jobs:
+  check-sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Task
+        uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          version: 3.x
+
+      - name: Sync files
+        run: task --silent ci:sync
+
+      - name: Check file duplicates sync
+        run: |
+          git add .
+          if ! git diff --color --exit-code HEAD; then
+            echo "::error::File duplicates are out of sync. Please run \"task fix\""
+            exit 1
+          fi

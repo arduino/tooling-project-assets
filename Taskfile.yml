@@ -4,12 +4,47 @@ tasks:
   fix:
     desc: Make automated corrections to the project's files
     deps:
+      - task: ci:sync
+      - task: config:sync
       - task: dependabot:sync
 
   check:
     desc: Check for problems with the project
     deps:
+      - task: general:check-formatting
       - task: config:validate
+
+  general:check-formatting:
+    desc: Check basic formatting style of all files
+    cmds:
+      - |
+        if ! which ec &>/dev/null; then
+          echo "ec not found or not in PATH. Please install: https://github.com/editorconfig-checker/editorconfig-checker#installation"
+          exit 1
+        fi
+      - ec
+
+  ci:sync:
+    desc: Sync CI workflows from templates
+    vars:
+      WORKFLOWS_PATH: "./.github/workflows"
+      WORKFLOW_TEMPLATES_PATH: "./workflow-templates"
+    cmds:
+      - |
+        cp \
+          "{{.WORKFLOW_TEMPLATES_PATH}}/check-general-formatting-task.yml" \
+          "{{.WORKFLOWS_PATH}}"
+
+  config:sync:
+    desc: Sync configuration files from templates
+    vars:
+      REPOSITORY_ROOT_PATH: "./"
+      WORKFLOW_TEMPLATE_ASSETS_PATH: "./workflow-templates/assets"
+    cmds:
+      - |
+        cp \
+          "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/shared/.editorconfig" \
+          "{{.REPOSITORY_ROOT_PATH}}"
 
   dependabot:sync:
     desc: Sync workflow duplicates for dependabot checks
