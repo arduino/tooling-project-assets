@@ -9,12 +9,14 @@ tasks:
       - task: dependabot:sync
       - task: markdown:fix
       - task: general:format-prettier
+      - task: general:correct-spelling
 
   check:
     desc: Check for problems with the project
     deps:
       - task: general:check-formatting
       - task: ci:validate
+      - task: general:check-spelling
       - task: config:validate
       - task: markdown:lint
       - task: markdown:check-links
@@ -37,6 +39,22 @@ tasks:
         fi
       - ec
 
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/spell-check-task/Taskfile.yml
+  general:check-spelling:
+    desc: Check for commonly misspelled words
+    deps:
+      - task: poetry:install-deps
+    cmds:
+      - poetry run codespell
+
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/spell-check-task/Taskfile.yml
+  general:correct-spelling:
+    desc: Correct commonly misspelled words where possible
+    deps:
+      - task: poetry:install-deps
+    cmds:
+      - poetry run codespell --write-changes
+
   ci:sync:
     desc: Sync CI workflows from templates
     vars:
@@ -51,6 +69,7 @@ tasks:
           "{{.WORKFLOW_TEMPLATES_PATH}}/check-taskfiles.yml" \
           "{{.WORKFLOW_TEMPLATES_PATH}}/check-yaml-task.yml" \
           "{{.WORKFLOW_TEMPLATES_PATH}}/sync-labels.yml" \
+          "{{.WORKFLOW_TEMPLATES_PATH}}/spell-check-task.yml" \
           "{{.WORKFLOWS_PATH}}"
 
   config:sync:
