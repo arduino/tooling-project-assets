@@ -7,6 +7,7 @@
 [![Check CI Workflows Sync status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-ci-sync.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-ci-sync.yml)
 [![Check Configuration Files Sync status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-config-sync.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-config-sync.yml)
 [![Check Markdown status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-markdown-task.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-markdown-task.yml)
+[![Check Prettier Formatting status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-prettier-formatting-task.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-prettier-formatting-task.yml)
 
 The [Arduino](https://www.arduino.cc/) Tooling Team's collection of reusable project infrastructure assets.
 

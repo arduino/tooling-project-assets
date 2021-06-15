@@ -8,6 +8,7 @@ tasks:
       - task: config:sync
       - task: dependabot:sync
       - task: markdown:fix
+      - task: general:format-prettier
 
   check:
     desc: Check for problems with the project
@@ -16,6 +17,12 @@ tasks:
       - task: config:validate
       - task: markdown:lint
       - task: markdown:check-links
+
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-prettier-formatting-task/Taskfile.yml
+  general:format-prettier:
+    desc: Format all supported files with Prettier
+    cmds:
+      - npx prettier --write .
 
   general:check-formatting:
     desc: Check basic formatting style of all files
@@ -37,6 +44,7 @@ tasks:
         cp \
           "{{.WORKFLOW_TEMPLATES_PATH}}/check-general-formatting-task.yml" \
           "{{.WORKFLOW_TEMPLATES_PATH}}/check-markdown-task.yml" \
+          "{{.WORKFLOW_TEMPLATES_PATH}}/check-prettier-formatting-task.yml" \
           "{{.WORKFLOWS_PATH}}"
 
   config:sync:
