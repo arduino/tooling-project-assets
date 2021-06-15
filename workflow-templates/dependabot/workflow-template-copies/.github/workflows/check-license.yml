@@ -5,7 +5,8 @@ env:
   # TODO: Define the project's license file name here:
   EXPECTED_LICENSE_FILENAME: LICENSE.txt
   # SPDX identifier: https://spdx.org/licenses/
-  EXPECTED_LICENSE_TYPE: CC0-1.0
+  # TODO: Define the project's license type here
+  EXPECTED_LICENSE_TYPE: AGPL-3.0
 
 # See: https://docs.github.com/en/actions/reference/events-that-trigger-workflows
 on:
