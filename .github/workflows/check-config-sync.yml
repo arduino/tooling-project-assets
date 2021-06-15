@@ -1,0 +1,39 @@
+# This repository contains intentionally duplicated copies of template configuration files in use for this repository's
+# own purposes
+#
+# This workflow checks that the copies are in sync.
+# If the workflow fails, run `task fix` and commit.
+
+name: Check Configuration Files Sync
+
+# See: https://docs.github.com/en/actions/reference/events-that-trigger-workflows
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  repository_dispatch:
+
+jobs:
+  check-sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Task
+        uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          version: 3.x
+
+      - name: Sync files
+        run: task --silent config:sync
+
+      - name: Check file duplicates sync
+        run: |
+          git add .
+          if ! git diff --color --exit-code HEAD; then
+            echo "::error::File duplicates are out of sync. Please run \"task fix\""
+            exit 1
+          fi

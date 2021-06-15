@@ -1,0 +1,65 @@
+# Source: https://github.com/arduino/tooling-project-assets/blob/master/workflow-templates/check-general-formatting-task.md
+name: Check General Formatting
+
+# See: https://docs.github.com/en/actions/reference/events-that-trigger-workflows
+on:
+  push:
+  pull_request:
+  schedule:
+    # Run every Tuesday at 8 AM UTC to catch breakage caused by changes to tools.
+    - cron: "0 8 * * TUE"
+  workflow_dispatch:
+  repository_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set environment variables
+        run: |
+          # See: https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-environment-variable
+          echo "EC_INSTALL_PATH=${{ runner.temp }}/editorconfig-checker" >> "$GITHUB_ENV"
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Task
+        uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          version: 3.x
+
+      - name: Get data for latest editorconfig-checker release
+        id: get-release-data
+        uses: octokit/request-action@v2.x
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          # Pre-releases are ignored
+          route: GET /repos/:owner/:repo/releases/latest
+          # The following inputs result in "Unexpected input" warnings on the workflow run log and summary page,
+          # but they are correct
+          owner: editorconfig-checker
+          repo: editorconfig-checker
+
+      - name: Download release binary
+        id: download-release
+        uses: carlosperate/download-file-action@v1.0.3
+        with:
+          # See: https://github.com/editorconfig-checker/editorconfig-checker/releases
+          file-url: https://github.com/editorconfig-checker/editorconfig-checker/releases/download/${{ fromJson(steps.get-release-data.outputs.data).tag_name }}/ec-linux-amd64.tar.gz
+          location: ${{ env.EC_INSTALL_PATH }}
+
+      - name: Install editorconfig-checker
+        run: |
+          cd "${{ env.EC_INSTALL_PATH }}"
+          tar --extract --file="${{ steps.download-release.outputs.file-path }}"
+          # Give the binary a standard name
+          mv "${{ env.EC_INSTALL_PATH }}/bin/ec-linux-amd64" "${{ env.EC_INSTALL_PATH }}/bin/ec"
+          # Add installation to PATH:
+          # See: https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#adding-a-system-path
+          echo "${{ env.EC_INSTALL_PATH }}/bin" >> "$GITHUB_PATH"
+
+      - name: Check formatting
+        run: task --silent general:check-formatting
