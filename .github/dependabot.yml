@@ -26,3 +26,12 @@ updates:
       - "topic: infrastructure"
     assignees:
       - per1234
+
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: daily
+    labels:
+      - "topic: infrastructure"
+    assignees:
+      - per1234

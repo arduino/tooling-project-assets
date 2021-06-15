@@ -17,6 +17,7 @@ tasks:
       - task: config:validate
       - task: markdown:lint
       - task: markdown:check-links
+      - task: yaml:lint
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-prettier-formatting-task/Taskfile.yml
   general:format-prettier:
@@ -46,6 +47,7 @@ tasks:
           "{{.WORKFLOW_TEMPLATES_PATH}}/check-markdown-task.yml" \
           "{{.WORKFLOW_TEMPLATES_PATH}}/check-prettier-formatting-task.yml" \
           "{{.WORKFLOW_TEMPLATES_PATH}}/check-taskfiles.yml" \
+          "{{.WORKFLOW_TEMPLATES_PATH}}/check-yaml-task.yml" \
           "{{.WORKFLOWS_PATH}}"
 
   config:sync:
@@ -59,6 +61,7 @@ tasks:
           "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/shared/.editorconfig" \
           "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/check-markdown/.markdown-link-check.json" \
           "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/check-markdown/.markdownlint.yml" \
+          "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/check-yaml/.yamllint.yml" \
           "{{.REPOSITORY_ROOT_PATH}}"
 
   dependabot:sync:
@@ -137,3 +140,23 @@ tasks:
             exit $STATUS
           '
         fi
+
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/shared/Taskfile.yml
+  poetry:install-deps:
+    desc: Install dependencies managed by Poetry
+    cmds:
+      - poetry install --no-root
+
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/shared/Taskfile.yml
+  poetry:update-deps:
+    desc: Update all dependencies managed by Poetry to their newest versions
+    cmds:
+      - poetry update
+
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-yaml-task/Taskfile.yml
+  yaml:lint:
+    desc: Check for problems with YAML files
+    deps:
+      - task: poetry:install-deps
+    cmds:
+      - poetry run yamllint --format {{default "colored" .YAMLLINT_FORMAT}} .
