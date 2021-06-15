@@ -45,6 +45,7 @@ tasks:
           "{{.WORKFLOW_TEMPLATES_PATH}}/check-general-formatting-task.yml" \
           "{{.WORKFLOW_TEMPLATES_PATH}}/check-markdown-task.yml" \
           "{{.WORKFLOW_TEMPLATES_PATH}}/check-prettier-formatting-task.yml" \
+          "{{.WORKFLOW_TEMPLATES_PATH}}/check-taskfiles.yml" \
           "{{.WORKFLOWS_PATH}}"
 
   config:sync:
