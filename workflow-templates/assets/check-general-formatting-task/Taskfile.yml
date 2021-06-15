@@ -1,4 +1,4 @@
-# Source: https://github.com/arduino/tooling-project-assets/blob/master/workflow-templates/assets/check-general-formatting-task/Taskfile.yml
+# Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-general-formatting-task/Taskfile.yml
 # See: https://taskfile.dev/#/usage
 version: "3"
 
