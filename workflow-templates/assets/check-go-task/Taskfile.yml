@@ -1,0 +1,48 @@
+# See: https://taskfile.dev/#/usage
+version: "3"
+
+vars:
+  DEFAULT_GO_PACKAGES:
+    sh: echo $(go list ./... | tr '\n' ' ')
+
+tasks:
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-go-task/Taskfile.yml
+  go:check:
+    desc: Check for problems with Go code
+    deps:
+      - task: go:vet
+      - task: go:lint
+
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-go-task/Taskfile.yml
+  go:vet:
+    desc: Check for errors in Go code
+    cmds:
+      - go vet {{default .DEFAULT_GO_PACKAGES .GO_PACKAGES}}
+
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-go-task/Taskfile.yml
+  go:fix:
+    desc: Modernize usages of outdated APIs
+    cmds:
+      - go fix {{default .DEFAULT_GO_PACKAGES .GO_PACKAGES}}
+
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-go-task/Taskfile.yml
+  go:lint:
+    desc: Lint Go code
+    cmds:
+      - |
+        PROJECT_PATH="$PWD"
+        # `go get` and `go list` commands must be run from a temporary folder to avoid polluting go.mod
+        cd "$(mktemp -d "${TMPDIR-${TMP-/tmp}}/task-temporary-XXXXX")"
+        go get golang.org/x/lint/golint
+        GOLINT_PATH="$(go list -f '{{"{{"}}.Target{{"}}"}}' golang.org/x/lint/golint || echo "false")"
+        # `golint` must be run from the module folder
+        cd "$PROJECT_PATH"
+        "$GOLINT_PATH" \
+          {{default "-min_confidence 0.8 -set_exit_status" .GO_LINT_FLAGS}} \
+          {{default .DEFAULT_GO_PACKAGES .GO_PACKAGES}}
+
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-go-task/Taskfile.yml
+  go:format:
+    desc: Format Go code
+    cmds:
+      - go fmt {{default .DEFAULT_GO_PACKAGES .GO_PACKAGES}}
