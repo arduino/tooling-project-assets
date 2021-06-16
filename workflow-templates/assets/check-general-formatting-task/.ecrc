@@ -1,3 +1,6 @@
 {
-  "Exclude": ["LICENSE.txt"]
+  "Exclude": [
+    "LICENSE.txt",
+    "poetry.lock"
+  ]
 }

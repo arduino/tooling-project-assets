@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "tooling-project-assets"
+version = "0.0.0"
+description = ""
+authors = ["Arduino <info@arduino.cc>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+yamllint = "^v1.26.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
