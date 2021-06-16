@@ -1,0 +1,12 @@
+# See: https://taskfile.dev/#/usage
+version: "3"
+
+vars:
+  LDFLAGS:
+
+tasks:
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/shared/go/Taskfile.yml
+  go:build:
+    desc: Build the Go code
+    cmds:
+      - go build -v {{.LDFLAGS}}
