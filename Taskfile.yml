@@ -94,10 +94,19 @@ tasks:
       DEPENDABOT_DATA_PATH: "**/dependabot.yml"
       LABEL_CONFIG_SCHEMA_PATH: workflow-templates/assets/sync-labels/arduino-tooling-gh-label-configuration-schema.json
       LABEL_CONFIG_DATA_PATH: "workflow-templates/assets/sync-labels/*.{yml,yaml}"
+      # Source: https://github.com/DavidAnson/markdownlint/blob/main/schema/markdownlint-config-schema.json
+      # Note: temporarily using schema from `next` branch due to bug in the one on `main`.
+      # (https://github.com/DavidAnson/markdownlint/pull/406).
+      MARKDOWNLINT_SCHEMA_URL: https://raw.githubusercontent.com/DavidAnson/markdownlint/next/schema/markdownlint-config-schema.json
+      MARKDOWNLINT_SCHEMA_PATH:
+        sh: mktemp -t markdownlint-schema-XXXXXXXXXX.json
+      MARKDOWNLINT_DATA_PATH: "**/.markdownlint.{yml,yaml}"
     cmds:
       - wget --quiet --output-document="{{.DEPENDABOT_SCHEMA_PATH}}" {{.DEPENDABOT_SCHEMA_URL}}
       - npx ajv-cli@{{.AJV_CLI_VERSION}} validate -s "{{.DEPENDABOT_SCHEMA_PATH}}" -d "{{.DEPENDABOT_DATA_PATH}}"
       - npx ajv-cli validate -s "{{.LABEL_CONFIG_SCHEMA_PATH}}" -d "{{.LABEL_CONFIG_DATA_PATH}}"
+      - wget --quiet --output-document="{{.MARKDOWNLINT_SCHEMA_PATH}}" {{.MARKDOWNLINT_SCHEMA_URL}}
+      - npx ajv-cli validate --allow-union-types -s "{{.MARKDOWNLINT_SCHEMA_PATH}}" -d "{{.MARKDOWNLINT_DATA_PATH}}"
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-markdown-task/Taskfile.yml
   markdown:lint:
