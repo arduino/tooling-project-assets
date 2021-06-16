@@ -1,0 +1,48 @@
+# Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/check-mkdocs-task.md
+name: Check Website
+
+# See: https://docs.github.com/en/actions/reference/events-that-trigger-workflows
+on:
+  push:
+    paths:
+      - ".github/workflows/check-mkdocs-task.ya?ml"
+      - "Taskfile.ya?ml"
+      - "mkdocs.ya?ml"
+      - "poetry.lock"
+      - "pyproject.toml"
+      - "docs/**"
+  pull_request:
+    paths:
+      - ".github/workflows/check-mkdocs-task.ya?ml"
+      - "Taskfile.ya?ml"
+      - "mkdocs.ya?ml"
+      - "poetry.lock"
+      - "pyproject.toml"
+      - "docs/**"
+  workflow_dispatch:
+  repository_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
+
+      - name: Install Poetry
+        run: pip install poetry
+
+      - name: Install Task
+        uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          version: 3.x
+
+      - name: Build website
+        run: task website:check

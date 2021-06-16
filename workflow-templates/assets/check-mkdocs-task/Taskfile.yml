@@ -1,0 +1,11 @@
+# See: https://taskfile.dev/#/usage
+version: "3"
+
+tasks:
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-mkdocs-task/Taskfile.yml
+  website:check:
+    desc: Check whether the MkDocs-based website will build
+    deps:
+      - task: poetry:install-deps
+    cmds:
+      - poetry run mkdocs build --strict

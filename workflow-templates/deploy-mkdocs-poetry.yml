@@ -1,0 +1,39 @@
+# Source: https://github.com/arduino/.github/blob/master/workflow-templates/deploy-mkdocs-poetry.md
+name: Deploy Website
+
+# See: https://docs.github.com/en/actions/reference/events-that-trigger-workflows
+on:
+  push:
+    branches:
+      # TODO: Replace "main" below with default branch name if different.
+      - main
+    paths:
+      - ".github/workflows/deploy-mkdocs-poetry.ya?ml"
+      - "mkdocs.ya?ml"
+      - "poetry.lock"
+      - "pyproject.toml"
+      - "docs/**"
+  workflow_dispatch:
+  repository_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
+
+      - name: Install Poetry
+        run: pip install poetry
+
+      - name: Install Dependencies
+        run: poetry install --no-root
+
+      - name: Deploy website
+        run: poetry run mkdocs gh-deploy
