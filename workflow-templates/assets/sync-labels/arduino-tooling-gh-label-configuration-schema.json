@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/arduino/tooling-project-assets/main/workflow-templates/assets/sync-labels/arduino-tooling-gh-label-configuration-schema.json",
+  "title": "Arduino tooling repository label configuration file JSON schema",
+  "description": "Required structure of the configuration file used to define GitHub issue/PR labels, as well as the standardized format for Arduino's tooling labels. See: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/sync-labels.md",
+  "type": "array",
+  "uniqueItems": true,
+  "items": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "maxLength": 50,
+        "anyOf": [
+          {
+            "$comment": "Standardized label format",
+            "pattern": "^.+: .+$"
+          },
+          {
+            "$comment": "Allowed exceptions to the standardized format",
+            "enum": ["help wanted"]
+          }
+        ]
+      },
+      "color": {
+        "enum": [
+          "940404",
+          "ff0000",
+          "ffa200",
+          "ffff00",
+          "00ff00",
+          "92a600",
+          "008000",
+          "00ba9e",
+          "00ffff",
+          "0000ff",
+          "800080",
+          "d876e3",
+          "ff00ff",
+          "c0c0c0"
+        ]
+      },
+      "description": {
+        "type": "string",
+        "maxLength": 100
+      },
+      "aliases": {
+        "type": "array"
+      },
+      "notes": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "additionalProperties": false,
+    "required": ["name", "color", "description"]
+  }
+}

@@ -1,0 +1,21 @@
+# Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/sync-labels/tooling.yml
+# See: https://github.com/Financial-Times/github-label-sync#label-config-file
+
+- name: "os: windows"
+  color: "800080"
+  description: Specific to Windows operating system
+- name: "os: linux"
+  color: "800080"
+  description: Specific to Linux operating system
+- name: "os: macos"
+  color: "800080"
+  description: Specific to macOS operating system
+- name: "architecture: arm"
+  color: ff00ff
+  description: Specific to ARM host architecture
+- name: "topic: security"
+  color: ff0000
+  description: Related to the protection of user data
+  notes: |
+    Vulnerability disclosures are made following the procedure at:
+    https://github.com/arduino/.github/blob/master/SECURITY.md
