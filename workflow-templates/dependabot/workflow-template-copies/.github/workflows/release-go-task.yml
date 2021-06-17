@@ -1,5 +1,5 @@
 # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/release-go-task.md
-name: release
+name: Release
 
 on:
   push:
