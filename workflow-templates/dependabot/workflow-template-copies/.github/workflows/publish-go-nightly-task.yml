@@ -1,3 +1,4 @@
+# Source: https://github.com/arduino/.github/blob/master/workflow-templates/publish-go-nightly-task.md
 name: nightly
 
 on:

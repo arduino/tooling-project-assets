@@ -4,6 +4,7 @@ includes:
   dist: ./DistTasks.yml
 
 vars:
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/release-go-task/Taskfile.yml
   PROJECT_NAME: "arduino-cli"
   DIST_DIR: "dist"
   # build vars
