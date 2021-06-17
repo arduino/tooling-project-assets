@@ -108,7 +108,7 @@ jobs:
           # to ensure compatibility with v1
           path: dist
 
-      - name: upload
+      - name: Upload release files on Arduino downloads servers
         uses: docker://plugins/s3
         env:
           PLUGIN_SOURCE: "dist/*"
