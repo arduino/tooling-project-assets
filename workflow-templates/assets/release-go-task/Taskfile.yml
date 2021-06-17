@@ -6,7 +6,7 @@ includes:
 
 vars:
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/release-go-task/Taskfile.yml
-  PROJECT_NAME: "arduino-cli"
+  PROJECT_NAME: TODO
   DIST_DIR: "dist"
   # build vars
   COMMIT:
@@ -18,12 +18,13 @@ vars:
   TAG:
     sh: echo "`git tag --points-at=HEAD 2> /dev/null | head -n1`"
   VERSION: "{{ if .NIGHTLY }}nightly-{{ .TIMESTAMP_SHORT }}{{ else if .TAG }}{{ .TAG }}{{ else }}{{ .PACKAGE_NAME_PREFIX }}git-snapshot{{ end }}"
+  CONFIGURATION_PACKAGE: TODO
   LDFLAGS: >-
     -ldflags
     '
-    -X github.com/arduino/arduino-cli/version.versionString={{.VERSION}}
-    -X github.com/arduino/arduino-cli/version.commit={{ .COMMIT }}
-    -X github.com/arduino/arduino-cli/version.date={{.TIMESTAMP}}
+    -X {{ .CONFIGURATION_PACKAGE }}.version={{.VERSION}}
+    -X {{ .CONFIGURATION_PACKAGE }}.commit={{.COMMIT}}
+    -X {{ .CONFIGURATION_PACKAGE }}.buildTimestamp={{.TIMESTAMP}}
     '
 
 tasks: {}
