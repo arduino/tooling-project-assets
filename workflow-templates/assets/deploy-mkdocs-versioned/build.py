@@ -149,7 +149,7 @@ def main(test, dry, remote):
 # Usage:
 #
 #     To run the tests:
-#         $python build.py test
+#         $python build.py --test
 #
 #     To run the script (must be run from within the repo tree):
 #         $python build.py
