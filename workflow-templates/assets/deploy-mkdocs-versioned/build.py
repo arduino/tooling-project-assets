@@ -1,3 +1,5 @@
+# Source:
+# https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/deploy-mkdocs-versioned/build.py
 # This file is part of Arduino Lint.
 
 # Copyright 2020 ARDUINO SA (http://www.arduino.cc/)

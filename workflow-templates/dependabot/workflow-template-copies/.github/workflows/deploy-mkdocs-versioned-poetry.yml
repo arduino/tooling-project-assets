@@ -1,3 +1,4 @@
+# Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/deploy-mkdocs-versioned-poetry.md
 name: Publish documentation
 
 on:

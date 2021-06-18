@@ -6,6 +6,7 @@ vars:
   DOCS_REMOTE: "origin"
 
 tasks:
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/deploy-mkdocs-versioned/Taskfile.yml
   docs:publish:
     desc: Use Mike to build and push versioned docs
     cmds:
