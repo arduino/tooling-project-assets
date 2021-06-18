@@ -25,9 +25,7 @@ test_data_path = pathlib.Path(__file__).resolve().parent.joinpath("testdata")
 
 
 @pytest.fixture(scope="function")
-def run_command(
-    pytestconfig, working_dir
-) -> typing.Callable[..., invoke.runners.Result]:
+def run_command(pytestconfig, working_dir) -> typing.Callable[..., invoke.runners.Result]:
     """Provide a wrapper around invoke's `run` API so that every test will work in the same temporary folder.
 
     Useful reference:

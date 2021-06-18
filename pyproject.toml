@@ -1,3 +1,6 @@
+[tool.black]
+line-length = 120
+
 [tool.poetry]
 name = "tooling-project-assets"
 version = "0.0.0"
@@ -10,6 +13,9 @@ python = "^3.9"
 [tool.poetry.dev-dependencies]
 yamllint = "^v1.26.1"
 codespell = "^2.1.0"
+black = "^21.5b0"
+flake8 = "^3.9.2"
+pep8-naming = "^0.11.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
