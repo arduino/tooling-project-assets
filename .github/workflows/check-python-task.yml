@@ -1,0 +1,79 @@
+# Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/check-python-task.md
+name: Check Python
+
+# See: https://docs.github.com/en/actions/reference/events-that-trigger-workflows
+on:
+  push:
+    paths:
+      - ".github/workflows/check-python-task.ya?ml"
+      - "**/.flake8"
+      - "**/poetry.lock"
+      - "**/pyproject.toml"
+      - "**/setup.cfg"
+      - "Taskfile.ya?ml"
+      - "**/tox.ini"
+      - "**.py"
+  pull_request:
+    paths:
+      - ".github/workflows/check-python-task.ya?ml"
+      - "**/.flake8"
+      - "**/poetry.lock"
+      - "**/pyproject.toml"
+      - "**/setup.cfg"
+      - "Taskfile.ya?ml"
+      - "**/tox.ini"
+      - "**.py"
+  workflow_dispatch:
+  repository_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
+
+      - name: Install Poetry
+        run: pip install poetry
+
+      - name: Install Task
+        uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          version: 3.x
+
+      - name: Run flake8
+        run: task python:lint
+
+  formatting:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
+
+      - name: Install Poetry
+        run: pip install poetry
+
+      - name: Install Task
+        uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          version: 3.x
+
+      - name: Format Python code
+        run: task python:format
+
+      - name: Check formatting
+        run: git diff --color --exit-code

@@ -13,6 +13,7 @@
 [![Sync Labels status](https://github.com/arduino/tooling-project-assets/actions/workflows/sync-labels.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/sync-labels.yml)
 [![Check Workflows status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-workflows-task.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-workflows-task.yml)
 [![Spell Check status](https://github.com/arduino/tooling-project-assets/actions/workflows/spell-check-task.yml/badge.svg)](https:/github.com/arduino/tooling-project-assets/actions/workflows/spell-check-task.yml)
+[![Check Python status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-python-task.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-python-task.yml)
 
 The [Arduino](https://www.arduino.cc/) Tooling Team's collection of reusable project infrastructure assets.
 
