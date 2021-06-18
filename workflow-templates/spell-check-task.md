@@ -32,9 +32,9 @@ Make sure to commit the resulting `pyproject.toml` and `poetry.lock` files.
 
 - [.codespellrc](assets/spell-check/.codespellrc) - codespell configuration file.
   - Install to: repository root
-- [`Taskfile.yml`](assets/spell-check-task/Taskfile.yml] - spell check and spelling correction tasks.
+- [`Taskfile.yml`](assets/spell-check-task/Taskfile.yml) - spell check and spelling correction tasks.
   - Install to: repository root (or add the `general:general:check-spelling` and `general:correct-spelling` tasks into the existing `Taskfile.yml`)
-- [`Taskfile.yml`](assets/shared/Taskfile.yml] - Installation task.
+- [`Taskfile.yml`](assets/shared/Taskfile.yml) - Installation task.
   - Add the `poetry:install-deps` task into the existing `Taskfile.yml`
 
 ## Readme badge

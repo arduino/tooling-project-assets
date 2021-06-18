@@ -34,9 +34,9 @@ Make sure to commit the resulting `pyproject.toml` and `poetry.lock` files.
 
 - [.yamllint.yml](assets/check-yaml/.yamllint.yml) - `yamllint` [configuration file](https://yamllint.readthedocs.io/en/stable/configuration.html).
   - Install to: repository root
-- [`Taskfile.yml`](assets/check-yaml-task/Taskfile.yml] - Linting task.
+- [`Taskfile.yml`](assets/check-yaml-task/Taskfile.yml) - Linting task.
   - Install to: repository root (or add the `yaml:lint` task into the existing `Taskfile.yml`)
-- [`Taskfile.yml`](assets/shared/Taskfile.yml] - Installation task.
+- [`Taskfile.yml`](assets/shared/Taskfile.yml) - Installation task.
   - Add the `poetry:install-deps` task into the existing `Taskfile.yml`
 
 The code style defined in this file is the official standardized style to be used in all Arduino projects and should not be modified.

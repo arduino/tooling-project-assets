@@ -10,7 +10,7 @@ This is the version of the workflow for projects using the [Task](https://taskfi
 
 ## Assets
 
-- [`Taskfile.yml`](assets/check-toc-task/Taskfile.yml] - Formatting task.
+- [`Taskfile.yml`](assets/check-toc-task/Taskfile.yml) - Formatting task.
   - Install to: repository root (or add the `markdown:toc` task into the existing `Taskfile.yml`)
 
 ## Readme badge

@@ -49,9 +49,9 @@ line-length = 120
 
 - [`.flake8`](assets/check-python/.flake8) - flake8 configuration file.
   - Install to: repository root
-- [`Taskfile.yml`](assets/check-python-task/Taskfile.yml] - Python linting and formatting tasks.
+- [`Taskfile.yml`](assets/check-python-task/Taskfile.yml) - Python linting and formatting tasks.
   - Install to: repository root (or add the tasks into the existing `Taskfile.yml`)
-- [`Taskfile.yml`](assets/shared/Taskfile.yml] - Installation task.
+- [`Taskfile.yml`](assets/shared/Taskfile.yml) - Installation task.
   - Add the `poetry:install-deps` task into the existing `Taskfile.yml`
 
 The code style defined in `pyproject.toml` and `.flake8` is the official standardized style to be used in all Arduino tooling projects and should not be modified.

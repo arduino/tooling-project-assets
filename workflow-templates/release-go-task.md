@@ -8,11 +8,11 @@ This is the version of the workflow for projects using the [Task](https://taskfi
 
 ## Assets
 
-- [`Taskfile.yml`](assets/release-go-task/Taskfile.yml] - [variables](https://taskfile.dev/#/usage?id=variables) providing project-specific data to the build system.
+- [`Taskfile.yml`](assets/release-go-task/Taskfile.yml) - [variables](https://taskfile.dev/#/usage?id=variables) providing project-specific data to the build system.
   - Install to: repository root (or merge into the existing `Taskfile.yml`)
-- [`DistTasks.yml`](assets/release-go-task/DistTasks.yml] - general purpose tasks for making production builds of Go projects.
+- [`DistTasks.yml`](assets/release-go-task/DistTasks.yml) - general purpose tasks for making production builds of Go projects.
   - Install to: repository root
-- [`gon.config.hcl`](assets/shared/gon.config.hcl] - [gon](https://github.com/mitchellh/gon) configuration file for macOS signing and notarization.
+- [`gon.config.hcl`](assets/shared/gon.config.hcl) - [gon](https://github.com/mitchellh/gon) configuration file for macOS signing and notarization.
   - Install to: repository root
 
 ## Configuration
