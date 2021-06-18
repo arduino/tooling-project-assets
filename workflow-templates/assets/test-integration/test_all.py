@@ -32,7 +32,8 @@ def run_command(pytestconfig, working_dir) -> typing.Callable[..., invoke.runner
         http://docs.pyinvoke.org/en/1.4/api/runners.html#invoke.runners.Result
     """
 
-    arduino_lint_path = pathlib.Path(pytestconfig.rootdir).parent / "arduino-lint"
+    # TODO: define project's executable name here:
+    executable_path = pathlib.Path(pytestconfig.rootdir).parent / "TODO"
 
     def _run(
         cmd: list,
@@ -46,7 +47,7 @@ def run_command(pytestconfig, working_dir) -> typing.Callable[..., invoke.runner
         quoted_cmd = []
         for token in cmd:
             quoted_cmd.append(f'"{token}"')
-        cli_full_line = '"{}" {}'.format(arduino_lint_path, " ".join(quoted_cmd))
+        cli_full_line = '"{}" {}'.format(executable_path, " ".join(quoted_cmd))
         run_context = invoke.context.Context()
         # It might happen that we need to change directories between drives on Windows,
         # in that case the "/d" flag must be used otherwise directory wouldn't change
