@@ -10,6 +10,7 @@ tasks:
       - task: markdown:fix
       - task: general:format-prettier
       - task: general:correct-spelling
+      - task: python:format
 
   check:
     desc: Check for problems with the project
@@ -20,6 +21,7 @@ tasks:
       - task: config:validate
       - task: markdown:lint
       - task: markdown:check-links
+      - task: python:lint
       - task: yaml:lint
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-prettier-formatting-task/Taskfile.yml
