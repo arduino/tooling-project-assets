@@ -55,7 +55,7 @@ from git import Repo
 # version that happens on the landing page should be updated or not.
 
 
-DEV_BRANCHES = ["main"]
+DEV_BRANCHES = ["main"]  # Name of the branch used for the "dev" website source content
 
 
 class TestScript(unittest.TestCase):
