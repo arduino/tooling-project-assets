@@ -10,5 +10,4 @@ tasks:
   docs:publish:
     desc: Use Mike to build and push versioned docs
     cmds:
-      - task: docs:gen
       - poetry run mike deploy --update-aliases --push --remote {{.DOCS_REMOTE}} {{.DOCS_VERSION}} {{.DOCS_ALIAS}}

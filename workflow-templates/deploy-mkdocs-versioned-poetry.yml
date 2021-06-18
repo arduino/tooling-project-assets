@@ -9,8 +9,6 @@ on:
       - "[0-9]+.[0-9]+.x"
     paths:
       - "docs/**"
-      - "docsgen/**"
-      - "cli/**"
       - ".github/workflows/deploy-mkdocs-versioned-poetry.ya?ml"
   # Run on branch or tag creation (will be filtered by the publish-determination job).
   create:
@@ -47,11 +45,6 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           version: 3.x
-
-      - name: Install Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: "1.14"
 
       - name: Install Python
         uses: actions/setup-python@v2
