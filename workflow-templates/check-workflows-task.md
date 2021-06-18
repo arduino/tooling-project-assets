@@ -8,7 +8,7 @@ This is the version of the workflow for projects using the [Task](https://taskfi
 
 ## Assets
 
-- [`Taskfile.yml`](assets/check-workflows-task/Taskfile.yml] - workflow validation task.
+- [`Taskfile.yml`](assets/check-workflows-task/Taskfile.yml) - workflow validation task.
   - Install to: repository root (or add the `ci:validate` task into the existing `Taskfile.yml`)
 
 ## Readme badge

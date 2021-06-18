@@ -8,7 +8,7 @@ Use [editorconfig-checker](https://github.com/editorconfig-checker/editorconfig-
 
 - [`.editorconfig`](assets/shared/.editorconfig)
   - Install to: repository root
-- [`Taskfile.yml`](assets/check-general-formatting-task/Taskfile.yml] - formatting check [task](https://taskfile.dev/).
+- [`Taskfile.yml`](assets/check-general-formatting-task/Taskfile.yml) - formatting check [task](https://taskfile.dev/).
   - Install to: repository root (or add the `general:check-formatting` task into the existing `Taskfile.yml`)
 - [`.ecrc`](assets/check-general-formatting-task/.ecrc) - editorconfig-checker configuration file.
 
