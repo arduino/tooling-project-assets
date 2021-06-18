@@ -9,3 +9,11 @@ tasks:
       - task: poetry:install-deps
     cmds:
       - poetry run mkdocs build --strict
+
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-mkdocs-task/Taskfile.yml
+  website:serve:
+    desc: Run website locally
+    deps:
+      - task: poetry:install-deps
+    cmds:
+      - poetry run mkdocs serve
