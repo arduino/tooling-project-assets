@@ -11,7 +11,7 @@ on:
       - "docs/**"
       - "docsgen/**"
       - "cli/**"
-      - ".github/workflows/publish-docs.yml"
+      - ".github/workflows/deploy-mkdocs-versioned-poetry.ya?ml"
   # Run on branch or tag creation (will be filtered by the publish-determination job).
   create:
 
