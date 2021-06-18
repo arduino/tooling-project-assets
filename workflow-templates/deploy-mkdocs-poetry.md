@@ -71,8 +71,4 @@ On every push to the repository's default branch, deploy the repository's [MkDoc
 
 ## Related
 
-- ["Check MkDocs Website" workflow](check-mkdocs.md)
-- ["Check Markdown" workflow](check-markdown.md)
-- ["Check Prettier Formatting" workflow](check-prettier-formatting.md)
-- ["Spell Check" workflow](spell-check.md)
-- ["Check YAML" workflow](check-yaml.md)
+- ["Check Website" workflow](check-mkdocs-task.md)
