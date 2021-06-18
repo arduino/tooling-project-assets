@@ -1,0 +1,48 @@
+# Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/test-python-poetry-task.md
+name: Test Python
+
+# See: https://docs.github.com/en/free-pro-team@latest/actions/reference/events-that-trigger-workflows
+on:
+  push:
+    paths:
+      - ".github/workflows/test-python-poetry-task.ya?ml"
+      - "Taskfile.ya?ml"
+      - "poetry.lock"
+      - "pyproject.toml"
+      - "tests/**"
+      - "**.py"
+  pull_request:
+    paths:
+      - ".github/workflows/test-python-poetry-task.ya?ml"
+      - "Taskfile.ya?ml"
+      - "poetry.lock"
+      - "pyproject.toml"
+      - "tests/**"
+      - "**.py"
+  workflow_dispatch:
+  repository_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
+
+      - name: Install Poetry
+        run: pip install poetry
+
+      - name: Install Taskfile
+        uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          version: 3.x
+
+      - name: Run tests
+        run: task python:test
