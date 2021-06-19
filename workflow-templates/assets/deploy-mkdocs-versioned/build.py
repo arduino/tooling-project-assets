@@ -25,28 +25,10 @@ from git import Repo
 # which version of the documentation website should be displayed. Unfortunately this feature isn't provided by GitHub
 # pages or MkDocs, so we had to implement it on top of the generation process.
 #
-# Before delving into the details of the generation process, here follow some requirements that were established to
-# provide versioned documentation:
-#
 # - A special version of the documentation called `dev` is provided to reflect the status of the project on the
 #   default branch - this includes unreleased features and bugfixes.
 # - Docs are versioned after the minor version of a release. For example, release version `0.99.1` and
 #   `0.99.2` will be both covered by documentation version `0.99`.
-# - The landing page of the documentation website will automatically redirect visitors to the documentation of the most
-#   recently released version.
-#
-# To implement the requirements above, the execution of MkDocs is wrapped using a CLI tool called Mike
-# (https://github.com/jimporter/mike) that does a few things for us:
-#
-# - It runs MkDocs targeting subfolders named after the release version, e.g. documentation for version `0.10.1` can be
-#   found under the folder `0.10`.
-# - It injects an HTML control into the documentation website that lets visitors choose which version of the docs to
-#   browse from a dropdown list.
-# - It provides a redirect to a version we decide when visitors hit the landing page of the documentation website.
-# - It pushes generated contents to the `gh-pages` branch.
-#
-# In order to avoid unwanted changes to the public website hosting the documentation, only Mike is allowed to push
-# changes to the `gh-pages` branch, and this only happens from within the CI, in the "Deploy Website" workflow.
 #
 # The CI is responsible for guessing which version of the project we're building docs for, so that generated content
 # will be stored in the appropriate section of the documentation website. Because this guessing might be fairly complex,
