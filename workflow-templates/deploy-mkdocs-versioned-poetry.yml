@@ -11,6 +11,10 @@ on:
     paths:
       - "docs/**"
       - ".github/workflows/deploy-mkdocs-versioned-poetry.ya?ml"
+      - "Taskfile.ya?ml"
+      - "mkdocs.ya?ml"
+      - "poetry.lock"
+      - "pyproject.toml"
   # Run on branch or tag creation (will be filtered by the publish-determination job).
   create:
 
