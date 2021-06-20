@@ -15,9 +15,9 @@ Multiple labels data files can be merged to form the list of labels for the repo
 The configuration file structure is documented here: https://github.com/Financial-Times/github-label-sync#label-config-file
 
 Configuration files for labels that are applicable to multiple projects are hosted [here](assets/sync-labels).
-Add the file name to the `jobs.download.strategy.matrix.filename[]` in the workflow.
+Add the file name to the `jobs.download.strategy.matrix.filename[]` array in the workflow.
 
-The configuration file for labels that only apply to the specific project should be located at `.github/label-configuration-files/local.yml`
+The configuration file for labels that only apply to the specific project should be located in `.github/label-configuration-files/`
 
 ### Maximum string lengths
 
