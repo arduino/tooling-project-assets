@@ -1,4 +1,4 @@
-# Source: https://github.com/arduino/.github/blob/master/workflow-templates/deploy-mkdocs-poetry.md
+# Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/deploy-mkdocs-poetry.md
 name: Deploy Website
 
 # See: https://docs.github.com/en/actions/reference/events-that-trigger-workflows
