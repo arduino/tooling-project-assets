@@ -54,7 +54,14 @@ jobs:
           name: BINARY_NAME
 
   test:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        operating-system:
+          - ubuntu-latest
+          - windows-latest
+          - macOS-latest
+
+    runs-on: ${{ matrix.operating-system }}
 
     steps:
       - name: Checkout repository
