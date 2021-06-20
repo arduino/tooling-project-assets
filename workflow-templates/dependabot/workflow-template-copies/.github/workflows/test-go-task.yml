@@ -23,36 +23,6 @@ on:
   repository_dispatch:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Install Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: "1.14"
-
-      - name: Install Task
-        uses: arduino/setup-task@v1
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          version: 3.x
-
-      - name: Build application
-        run: task go:build
-
-      # Allow interested parties to easily try the build
-      - name: Save binary as workflow artifact
-        uses: actions/upload-artifact@v2
-        with:
-          if-no-files-found: error
-          # TODO: specify binary name here:
-          path: BINARY_NAME
-          name: BINARY_NAME
-
   test:
     runs-on: ubuntu-latest
 
