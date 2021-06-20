@@ -34,7 +34,7 @@ Define the `{repository-owner}` and `{repository-name}` attributes and use them 
 ```
 Add CI workflow to lint and check formatting of Go code
 
-On every push and pull request that affects relevant files, and periodically, check the Go module for:
+On every push and pull request that affects relevant files, check the Go module for:
 
 - Common detectable errors in the code.
 - Use of outdated APIs
@@ -46,7 +46,7 @@ On every push and pull request that affects relevant files, and periodically, ch
 ## PR message
 
 ```markdown
-On every push and pull request that affects relevant files, and periodically, check the repository's [Go](https://golang.org/) module for:
+On every push and pull request that affects relevant files, check the repository's [Go](https://golang.org/) module for:
 
 - Common detectable errors in the code.
 - Use of outdated APIs

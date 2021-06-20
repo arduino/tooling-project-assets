@@ -57,12 +57,12 @@ Define the `{repository-owner}` and `{repository-name}` attributes and use them 
 ```
 Add CI workflow to check for Prettier formatting compliance
 
-On every push and pull request that affects relevant files, and periodically, check whether the formatting of supported
+On every push and pull request that affects relevant files, check whether the formatting of supported
 files is compliant with the Prettier style.
 ```
 
 ## PR message
 
 ```markdown
-On every push and pull request that affects relevant files, and periodically, check whether the formatting of supported files is compliant with the [Prettier](https://prettier.io/docs/en/index.html) style.
+On every push and pull request that affects relevant files, check whether the formatting of supported files is compliant with the [Prettier](https://prettier.io/docs/en/index.html) style.
 ```
