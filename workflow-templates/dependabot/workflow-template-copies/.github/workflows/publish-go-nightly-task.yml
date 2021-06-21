@@ -34,6 +34,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
+          if-no-files-found: error
           name: dist
           path: dist
 
@@ -95,6 +96,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
+          if-no-files-found: error
           name: dist
           path: dist
 
