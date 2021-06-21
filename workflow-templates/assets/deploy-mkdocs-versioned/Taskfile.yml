@@ -1,0 +1,13 @@
+version: "3"
+
+vars:
+  DOCS_VERSION: dev
+  DOCS_ALIAS: ""
+  DOCS_REMOTE: "origin"
+
+tasks:
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/deploy-mkdocs-versioned/Taskfile.yml
+  docs:publish:
+    desc: Use Mike to build and push versioned docs
+    cmds:
+      - poetry run mike deploy --update-aliases --push --remote {{.DOCS_REMOTE}} {{.DOCS_VERSION}} {{.DOCS_ALIAS}}
