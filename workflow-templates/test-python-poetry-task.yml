@@ -45,4 +45,7 @@ jobs:
           version: 3.x
 
       - name: Run tests
-        run: task python:test
+        uses: liskin/gh-problem-matcher-wrap@v1
+        with:
+          linters: pytest
+          run: task python:test
