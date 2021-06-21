@@ -1,10 +1,13 @@
 # Source: https://github.com/arduino/.github/blob/master/workflow-templates/publish-go-nightly-task.md
 name: Publish Nightly Build
 
+# See: https://docs.github.com/en/actions/reference/events-that-trigger-workflows
 on:
   schedule:
     # run every day at 1AM
     - cron: "0 1 * * *"
+  workflow_dispatch:
+  repository_dispatch:
 
 env:
   # As defined by the Taskfile's PROJECT_NAME variable
