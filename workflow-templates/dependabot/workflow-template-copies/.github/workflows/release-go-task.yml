@@ -6,6 +6,12 @@ on:
     tags:
       - "[0-9]+.[0-9]+.[0-9]+*"
 
+env:
+  # As defined by the Taskfile's PROJECT_NAME variable
+  PROJECT_NAME: TODO
+  # The project's folder on Arduino's download server for uploading builds
+  AWS_PLUGIN_TARGET: TODO
+
 jobs:
   create-release-artifacts:
     runs-on: ubuntu-latest
@@ -86,13 +92,13 @@ jobs:
         run: |
           # GitHub's upload/download-artifact@v2 actions don't preserve file permissions,
           # so we need to add execution permission back until the action is made to do this.
-          chmod +x dist/arduino-cli_osx_darwin_amd64/arduino-cli
+          chmod +x dist/${{ env.PROJECT_NAME }}_osx_darwin_amd64/${{ env.PROJECT_NAME }}
           TAG="${GITHUB_REF/refs\/tags\//}"
-          tar -czvf "dist/arduino-cli_${TAG}_macOS_64bit.tar.gz" \
-          -C dist/arduino-cli_osx_darwin_amd64/  arduino-cli   \
+          tar -czvf "dist/${{ env.PROJECT_NAME }}_${TAG}_macOS_64bit.tar.gz" \
+          -C dist/${{ env.PROJECT_NAME }}_osx_darwin_amd64/  ${{ env.PROJECT_NAME }}   \
           -C ../../ LICENSE.txt
-          CHECKSUM="$(shasum -a 256 dist/arduino-cli_${TAG}_macOS_64bit.tar.gz | cut -d " " -f 1)"
-          perl -pi -w -e "s/.*arduino-cli_${TAG}_macOS_64bit.tar.gz/${CHECKSUM}  arduino-cli_${TAG}_macOS_64bit.tar.gz/g;" dist/*-checksums.txt
+          CHECKSUM="$(shasum -a 256 dist/${{ env.PROJECT_NAME }}_${TAG}_macOS_64bit.tar.gz | cut -d " " -f 1)"
+          perl -pi -w -e "s/.*${{ env.PROJECT_NAME }}_${TAG}_macOS_64bit.tar.gz/${CHECKSUM}  ${{ env.PROJECT_NAME }}_${TAG}_macOS_64bit.tar.gz/g;" dist/*-checksums.txt
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
@@ -158,7 +164,7 @@ jobs:
         uses: docker://plugins/s3
         env:
           PLUGIN_SOURCE: "dist/*"
-          PLUGIN_TARGET: "/arduino-cli/"
+          PLUGIN_TARGET: ${{ env.AWS_PLUGIN_TARGET }}
           PLUGIN_STRIP_PREFIX: "dist/"
           PLUGIN_BUCKET: ${{ secrets.DOWNLOADS_BUCKET }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
