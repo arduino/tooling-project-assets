@@ -77,7 +77,3 @@ On every push of a tag named with a version format:
   - If the tag has [a pre-release version suffix](https://semver.org/), the GitHub release will be marked as a pre-release.
 - Upload the builds to Arduino's downloads server.
 ```
-
-## Related
-
-- ["Publish Nightly Build" workflow (Go, Task)](publish-go-nightly-task.md)

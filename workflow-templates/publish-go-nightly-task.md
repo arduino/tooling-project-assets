@@ -63,7 +63,3 @@ On a daily schedule:
 
 This will enable everyone to participate in the project's development via beta testing.
 ```
-
-## Related
-
-- ["Release" workflow (Go, Task)](release-go-task.md)

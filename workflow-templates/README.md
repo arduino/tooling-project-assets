@@ -10,7 +10,6 @@ While some workflows can be added to any repository without any modification, ot
 - List of asset files which must be added to the repository along with the workflow
 - Markup for status badges that can be added to the readme
 - Stock commit messages
-- Links to related workflows
 
 ## Workflow template strategy
 

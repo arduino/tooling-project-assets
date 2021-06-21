@@ -68,7 +68,3 @@ On every push to the repository's default branch, deploy the repository's MkDocs
 ```markdown
 On every push to the repository's default branch, deploy the repository's [MkDocs](https://www.mkdocs.org/)-based static website to [GitHub Pages](https://pages.github.com/).
 ```
-
-## Related
-
-- ["Check Website" workflow](check-mkdocs-task.md)
