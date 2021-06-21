@@ -179,6 +179,9 @@ tasks:
             echo "markdown-link-check not found or not in PATH. Please install: https://github.com/tcort/markdown-link-check#readme"
             exit 1
           fi
+          # Default behavior of the task on Windows is to exit the task when the first broken link causes a non-zero
+          # exit status, but it's better to check all links before exiting.
+          set +o errexit
           STATUS=0
           for file in $(find -name "*.md"); do
             markdown-link-check \
