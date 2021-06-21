@@ -26,6 +26,9 @@ tasks:
             echo "markdown-link-check not found or not in PATH. Please install: https://github.com/tcort/markdown-link-check#readme"
             exit 1
           fi
+          # Default behavior of the task on Windows is to exit the task when the first broken link causes a non-zero
+          # exit status, but it's better to check all links before exiting.
+          set +o errexit
           STATUS=0
           # Using -regex instead of -name to avoid Task's behavior of globbing even when quoted on Windows
           # The odd method for escaping . in the regex is required for windows compatibility because mvdan.cc/sh gives
