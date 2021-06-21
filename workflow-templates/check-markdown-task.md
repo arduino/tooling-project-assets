@@ -32,7 +32,7 @@ https://github.com/igorshubovych/markdownlint-cli#ignoring-files
 ### markdown-link-check
 
 Advanced configuration of `markdown-link-check` can be done via the [`.markdown-link-check.json`](assets/check-markdown/.markdown-link-check.json) configuration file:
-https://github.com/gaurav-nelson/github-action-markdown-link-check#user-content-custom-variables:~:text=Specify%20a%20custom%20configuration%20file
+https://github.com/tcort/markdown-link-check#config-file-format
 
 ## Readme badge
 

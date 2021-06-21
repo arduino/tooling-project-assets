@@ -66,7 +66,7 @@ Define the `{repository-owner}` and `{repository-name}` attributes and use them 
 ```
 Add CI workflow to lint YAML files
 
-On every push and pull request that affects relevant files, and periodically, run yamllint to check the YAML files of
+On every push and pull request that affects relevant files, run yamllint to check the YAML files of
 the repository for issues.
 
 The .yamllint.yml file is used to configure yamllint:
@@ -76,7 +76,7 @@ https://yamllint.readthedocs.io/en/stable/configuration.html
 ## PR message
 
 ```markdown
-On every push and pull request that affects relevant files, and periodically, run [`yamllint`](https://github.com/adrienverge/yamllint) to check the YAML files of the repository for issues.
+On every push and pull request that affects relevant files, run [`yamllint`](https://github.com/adrienverge/yamllint) to check the YAML files of the repository for issues.
 
 The `.yamllint.yml` file is used to configure `yamllint`:
 https://yamllint.readthedocs.io/en/stable/configuration.html

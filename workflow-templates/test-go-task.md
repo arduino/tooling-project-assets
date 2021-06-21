@@ -2,7 +2,7 @@
 
 Workflow file: [test-go-task.yml](test-go-task.yml)
 
-Lint and check formatting of a [Go](https://golang.org/) module.
+Run the [Go](https://golang.org/) module's tests.
 
 This is the version of the workflow for projects using the [Task](https://taskfile.dev/#/) task runner tool.
 
@@ -44,5 +44,5 @@ On every push and pull request that affects relevant files, run the project's Go
 ## PR message
 
 ```markdown
-On every push and pull request that affects relevant files, run the project's [Golang](https://golang.org/) code tests.
+On every push and pull request that affects relevant files, run the project's [Go](https://golang.org/) code tests.
 ```

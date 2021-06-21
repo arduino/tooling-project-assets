@@ -62,7 +62,7 @@ Define the `{repository-owner}` and `{repository-name}` attributes and use them 
 ```
 Add CI workflow to check for commonly misspelled words
 
-On every push, pull request, and periodically, use the codespell to check for commonly
+On every push, pull request, and periodically, use codespell to check for commonly
 misspelled words.
 
 In the event of a false positive, the problematic word should be added, in all lowercase, to the ignore-words-list field

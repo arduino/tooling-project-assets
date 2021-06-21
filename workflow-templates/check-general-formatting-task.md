@@ -2,7 +2,7 @@
 
 Workflow file: [check-general-formatting-task.yml](check-general-formatting-task.yml)
 
-Use [editorconfig-checker](https://github.com/editorconfig-checker/editorconfig-checker) to check if the formatting of the repository's files match the [`.editorconfig`](https://editorconfig.org/).
+Use [editorconfig-checker](https://github.com/editorconfig-checker/editorconfig-checker) to check if the formatting of the repository's files matches the [`.editorconfig`](https://editorconfig.org/).
 
 ## Assets
 

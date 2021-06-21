@@ -9,13 +9,13 @@ Check code signing certificates for problems or pending expiration.
 1. Open https://arduino.slack.com/apps/A0F7XDUAZ-incoming-webhooks
 1. Click the "Add to Slack" button
 1. From the "Post to Channel" menu, select the appropriate channel.
-1. Click the "Add Incoming WebHooks integration"
+1. Click the "Add Incoming WebHooks integration" button
 1. From the "Customize Icon" section, click the "Choose an emoji" button
 1. Enter `:warning:`
 1. Click the "Save Settings" button
 1. Copy the text in the "Webhook URL" field
 1. Save the webhook URL to a [repository secret](https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository) named `SLACK_WEBHOOK`
-   - Make sure there is no newline at the end of the secret, otherwise the slack post process will fail.
+   - Make sure there is no newline at the end of the secret, otherwise the Slack post process will fail.
 
 ## Readme badge
 

@@ -81,7 +81,7 @@ Define the `{repository-owner}` and `{repository-name}` attributes and use them 
 ```
 Add CI workflow to lint and check formatting of Python files
 
-On every push and pull request that affects relevant files, and periodically, run flake8 to check the Python files of
+On every push and pull request that affects relevant files, run flake8 to check the Python files of
 the repository for issues and black to check formatting.
 
 The .flake8 file is used to configure flake8:
@@ -91,7 +91,7 @@ https://flake8.pycqa.org/en/latest/user/configuration.html
 ## PR message
 
 ```markdown
-On every push and pull request that affects relevant files, and periodically, run [`flake8`](https://flake8.pycqa.org/) to check the Python files of the repository for issues and [black](https://github.com/psf/black) to check formatting.
+On every push and pull request that affects relevant files, run [`flake8`](https://flake8.pycqa.org/) to check the Python files of the repository for issues and [black](https://github.com/psf/black) to check formatting.
 
 The `.flake8` file is used to configure `flake8`:
 https://flake8.pycqa.org/en/latest/user/configuration.html
