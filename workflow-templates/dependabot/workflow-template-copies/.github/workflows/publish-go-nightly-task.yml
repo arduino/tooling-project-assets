@@ -149,7 +149,7 @@ jobs:
         with:
           api-key: ${{ secrets.DD_API_KEY }}
           events: |
-            - title: "Arduino CLI nightly build failed"
+            - title: "${{ env.PROJECT_NAME }} nightly build failed"
               text: "Nightly build workflow has failed"
               alert_type: "error"
               host: ${{ github.repository }}
