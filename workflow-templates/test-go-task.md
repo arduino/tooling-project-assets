@@ -38,21 +38,11 @@ Define the `{repository-owner}` and `{repository-name}` attributes and use them 
 ```
 Add CI workflow to test Go code
 
-On every push and pull request that affects relevant files:
-
-- Build the project.
-- Upload the binary as a workflow artifact to allow interested parties to try it out without needing to build it
-  themselves.
-- Run the project's Go code tests.
+On every push and pull request that affects relevant files, run the project's Go code tests.
 ```
 
 ## PR message
 
 ```markdown
-On every push and pull request that affects relevant files:
-
-- Build the project.
-- Upload the binary as a workflow artifact to allow interested parties to try it out without needing to build it
-  themselves.
-- Run the project's [Golang](https://golang.org/) code tests.
+On every push and pull request that affects relevant files, run the project's [Golang](https://golang.org/) code tests.
 ```
