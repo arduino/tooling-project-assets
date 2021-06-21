@@ -56,7 +56,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: ${{ env.ARTIFACT_NAME }}
-          # to ensure compatibility with v1
           path: ${{ env.DIST_DIR }}
 
       - name: Import Code-Signing Certificates
@@ -125,7 +124,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: ${{ env.ARTIFACT_NAME }}
-          # to ensure compatibility with v1
           path: ${{ env.DIST_DIR }}
 
       - name: Upload release files on Arduino downloads servers
