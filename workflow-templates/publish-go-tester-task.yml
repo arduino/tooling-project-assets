@@ -21,6 +21,8 @@ on:
   repository_dispatch:
 
 env:
+  # As defined by the Taskfile's DIST_DIR variable
+  DIST_DIR: dist
   BUILDS_ARTIFACT: build-artifacts
 
 jobs:
@@ -53,7 +55,7 @@ jobs:
       - name: Upload combined builds artifact
         uses: actions/upload-artifact@v2
         with:
-          path: dist/
+          path: ${{ env.DIST_DIR }}
           name: ${{ env.BUILDS_ARTIFACT }}
 
   artifacts:
