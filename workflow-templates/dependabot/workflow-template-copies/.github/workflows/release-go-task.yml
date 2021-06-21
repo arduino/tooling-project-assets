@@ -58,7 +58,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: dist
-          # to ensure compatibility with v1
           path: dist
 
       - name: Import Code-Signing Certificates
@@ -120,7 +119,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: dist
-          # to ensure compatibility with v1
           path: dist
 
       - name: Read CHANGELOG
