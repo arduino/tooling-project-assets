@@ -1,4 +1,4 @@
-# Source: https://github.com/arduino/.github/blob/master/workflow-templates/check-toc-task.md
+# Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/check-toc-task.md
 name: Check ToC
 
 # See: https://docs.github.com/en/actions/reference/events-that-trigger-workflows
