@@ -1,5 +1,5 @@
 # Source:
-# https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/deploy-mkdocs-versioned/build.py
+# https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/deploy-mkdocs-versioned/build/build.py
 
 # Copyright 2020 ARDUINO SA (http://www.arduino.cc/)
 
@@ -15,7 +15,6 @@
 import os
 import sys
 import re
-import unittest
 import subprocess
 
 import click
@@ -38,25 +37,6 @@ from git import Repo
 
 
 DEV_BRANCHES = ["main"]  # Name of the branch used for the "dev" website source content
-
-
-class TestScript(unittest.TestCase):
-    def test_get_docs_version(self):
-        ver, alias = get_docs_version("main", [])
-        self.assertEqual(ver, "dev")
-        self.assertEqual(alias, "")
-
-        release_names = ["1.4.x", "0.13.x"]
-        ver, alias = get_docs_version("0.13.x", release_names)
-        self.assertEqual(ver, "0.13")
-        self.assertEqual(alias, "")
-        ver, alias = get_docs_version("1.4.x", release_names)
-        self.assertEqual(ver, "1.4")
-        self.assertEqual(alias, "latest")
-
-        ver, alias = get_docs_version("0.1.x", [])
-        self.assertIsNone(ver)
-        self.assertIsNone(alias)
 
 
 def get_docs_version(ref_name, release_branches):
@@ -92,18 +72,12 @@ def get_rel_branch_names(blist):
 
 
 @click.command()
-@click.option("--test", is_flag=True)
 @click.option("--dry", is_flag=True)
 @click.option("--remote", default="origin", help="The git remote where to push.")
-def main(test, dry, remote):
-    # Run tests if requested
-    if test:
-        unittest.main(argv=[""], exit=False)
-        sys.exit(0)
-
+def main(dry, remote):
     # Detect repo root folder
     here = os.path.dirname(os.path.realpath(__file__))
-    repo_dir = os.path.join(here, "..")
+    repo_dir = os.path.join(here, "..", "..")
 
     # Get current repo
     repo = Repo(repo_dir)
@@ -129,10 +103,6 @@ def main(test, dry, remote):
 
 
 # Usage:
-#
-#     To run the tests:
-#         $python build.py --test
-#
 #     To run the script (must be run from within the repo tree):
 #         $python build.py
 #
