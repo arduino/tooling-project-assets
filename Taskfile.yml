@@ -22,6 +22,7 @@ tasks:
       - task: markdown:lint
       - task: markdown:check-links
       - task: python:lint
+      - task: python:test
       - task: yaml:lint
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-prettier-formatting-task/Taskfile.yml
@@ -73,6 +74,7 @@ tasks:
           "{{.WORKFLOW_TEMPLATES_PATH}}/check-yaml-task.yml" \
           "{{.WORKFLOW_TEMPLATES_PATH}}/sync-labels.yml" \
           "{{.WORKFLOW_TEMPLATES_PATH}}/spell-check-task.yml" \
+          "{{.WORKFLOW_TEMPLATES_PATH}}/test-python-poetry-task.yml" \
           "{{.WORKFLOWS_PATH}}"
 
   config:sync:
@@ -223,6 +225,13 @@ tasks:
     desc: Update all dependencies managed by Poetry to their newest versions
     cmds:
       - poetry update
+
+  python:test:
+    desc: Run Python tests
+    deps:
+      - task: poetry:install-deps
+    cmds:
+      - poetry run pytest workflow-templates/assets/deploy-mkdocs-versioned/build/tests
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-python-task/Taskfile.yml
   python:lint:

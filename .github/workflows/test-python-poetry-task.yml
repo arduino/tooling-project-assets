@@ -1,0 +1,55 @@
+# Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/test-python-poetry-task.md
+name: Test Python
+
+env:
+  # See: https://github.com/actions/setup-python/tree/v2#available-versions-of-python
+  PYTHON_VERSION: "3.9"
+
+# See: https://docs.github.com/en/free-pro-team@latest/actions/reference/events-that-trigger-workflows
+on:
+  push:
+    paths:
+      - ".github/workflows/test-python-poetry-task.ya?ml"
+      - "Taskfile.ya?ml"
+      - "poetry.lock"
+      - "pyproject.toml"
+      - "tests/**"
+      - "**.py"
+  pull_request:
+    paths:
+      - ".github/workflows/test-python-poetry-task.ya?ml"
+      - "Taskfile.ya?ml"
+      - "poetry.lock"
+      - "pyproject.toml"
+      - "tests/**"
+      - "**.py"
+  workflow_dispatch:
+  repository_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install Poetry
+        run: pip install poetry
+
+      - name: Install Taskfile
+        uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          version: 3.x
+
+      - name: Run tests
+        uses: liskin/gh-problem-matcher-wrap@v1
+        with:
+          linters: pytest
+          run: task python:test
