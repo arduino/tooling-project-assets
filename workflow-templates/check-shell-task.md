@@ -15,7 +15,7 @@ This is the version of the workflow for projects using the [Task](https://taskfi
 - [`.editorconfig`](assets/shared/.editorconfig) - `shfmt` will use this [configuration file](https://editorconfig.org/).
   - Install to: repository root
 - [`Taskfile.yml`](assets/check-prettier-formatting-task/Taskfile.yml] - Tasks for checking shell scripts.
-  - Install to: repository root (or add the tasks into the existing `Taskfile.yml`)
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
 
 The formatting style defined in `.editorconfig` is the official standardized style to be used in all Arduino tooling projects and should not be modified.
 

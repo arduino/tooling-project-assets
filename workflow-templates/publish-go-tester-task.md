@@ -11,7 +11,7 @@ This is the version of the workflow for projects using the [Task](https://taskfi
 ## Assets
 
 - [`Taskfile.yml`](assets/release-go-task/Taskfile.yml) - [variables](https://taskfile.dev/#/usage?id=variables) providing project-specific data to the build system.
-  - Install to: repository root (or merge into the existing `Taskfile.yml`)
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`DistTasks.yml`](assets/release-go-task/DistTasks.yml) - general purpose tasks for making production builds of Go projects.
   - Install to: repository root
 

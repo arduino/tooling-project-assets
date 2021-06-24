@@ -31,9 +31,9 @@ Make sure to commit the resulting `pyproject.toml` and `poetry.lock` files.
 ## Assets
 
 - [`Taskfile.yml`](assets/test-go-integration-task/Taskfile.yml) - Test runner task.
-  - Install to: repository root (or add the `go:test-integration` task into the existing `Taskfile.yml`)
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`Taskfile.yml`](assets/shared/go/Taskfile.yml) - Build task.
-  - Merge the `go:build` task into the existing `Taskfile.yml`.
+  - Merge into `Taskfile.yml`.
 - [`__init__.py`](assets/test-python/__init__.py) - Template for Python integration tests.
   - Install to: `tests/`
 - [`test_all.py`](assets/test-integration/test_all.py) - Template for Python integration tests.

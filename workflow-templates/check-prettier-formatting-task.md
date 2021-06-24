@@ -17,7 +17,7 @@ This is the version of the workflow for projects using the [Task](https://taskfi
 ## Assets
 
 - [`Taskfile.yml`](assets/check-prettier-formatting-task/Taskfile.yml) - Formatting task.
-  - Install to: repository root (or add the `general:format-prettier` task into the existing `Taskfile.yml`)
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
 
 ## Configuration
 

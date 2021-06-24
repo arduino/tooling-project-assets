@@ -18,7 +18,7 @@ This is the version of the workflow for projects using the [Task](https://taskfi
 - [`.markdownlint.yml`](assets/check-markdown/.markdownlint.yml) - markdownlint configuration file.
   - Install to: repository root
 - [`Taskfile.yml`](assets/check-markdown-task/Taskfile.yml) - Markdown tasks.
-  - Install to: repository root (or add the `markdown:fix`, `markdown:lint`, and `markdown:check-links` tasks into the existing `Taskfile.yml`)
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
 
 The code style defined in `.markdownlint.yml` is the official standardized style to be used in all Arduino tooling projects and should not be modified.
 
