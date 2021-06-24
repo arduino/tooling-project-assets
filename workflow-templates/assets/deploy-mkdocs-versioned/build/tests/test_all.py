@@ -16,18 +16,18 @@ import build
 
 
 def test_get_docs_version():
-    ver, alias = build.get_docs_version("main", [])
-    assert ver == "dev"
-    assert alias == ""
+    data = build.get_docs_version("main", [])
+    assert data["version"] == "dev"
+    assert data["alias"] == ""
 
     release_names = ["1.4.x", "0.13.x"]
-    ver, alias = build.get_docs_version("0.13.x", release_names)
-    assert ver == "0.13"
-    assert alias == ""
-    ver, alias = build.get_docs_version("1.4.x", release_names)
-    assert ver == "1.4"
-    assert alias == "latest"
+    data = build.get_docs_version("0.13.x", release_names)
+    assert data["version"] == "0.13"
+    assert data["alias"] == ""
+    data = build.get_docs_version("1.4.x", release_names)
+    assert data["version"] == "1.4"
+    assert data["alias"] == "latest"
 
-    ver, alias = build.get_docs_version("0.1.x", [])
-    assert ver is None
-    assert alias is None
+    data = build.get_docs_version("0.1.x", [])
+    assert data["version"] is None
+    assert data["alias"] is None

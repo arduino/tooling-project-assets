@@ -64,11 +64,18 @@ jobs:
       - name: Install Python dependencies
         run: poetry install --no-root
 
+      - name: Determine versioning parameters
+        id: determine-versioning
+        run: echo "::set-output name=data::$(poetry run python docs/build/build.py)"
+
       - name: Publish documentation
-        # Determine docs version for the commit pushed and publish accordingly using Mike.
-        # Publishing implies creating a git commit on the gh-pages branch, we let @ArduinoBot own these commits.
+        if: fromJson(steps.determine-versioning.outputs.data).version != null
         run: |
+          # Publishing implies creating a git commit on the gh-pages branch, we let @ArduinoBot own these commits.
           git config --global user.email "bot@arduino.cc"
           git config --global user.name "ArduinoBot"
           git fetch --no-tags --prune --depth=1 origin +refs/heads/gh-pages:refs/remotes/origin/gh-pages
-          poetry run python docs/build/build.py
+          task docs:publish \
+            DOCS_REMOTE=origin \
+            DOCS_VERSION=${{ fromJson(steps.determine-versioning.outputs.data).version }} \
+            DOCS_ALIAS=${{ fromJson(steps.determine-versioning.outputs.data).alias }}
