@@ -7,6 +7,7 @@ tasks:
       - task: ci:sync
       - task: config:sync
       - task: dependabot:sync
+      - task: github:sync
       - task: markdown:fix
       - task: general:format-prettier
       - task: general:correct-spelling
@@ -107,6 +108,18 @@ tasks:
           -type f \
           -regex '.*\.ya?ml' \
           -exec cp '{}' "{{.WORKFLOW_TEMPLATE_COPIES_PATH}}" \;
+
+  github:sync:
+    desc: Sync GitHub community health files
+    vars:
+      ISSUE_TEMPLATES_INSTALLATION_PATH: "./.github/ISSUE_TEMPLATE"
+      ISSUE_TEMPLATES_PATH: "./issue-templates"
+    cmds:
+      - |
+        cp \
+          "{{.ISSUE_TEMPLATES_PATH}}/minimal/bug-report.md" \
+          "{{.ISSUE_TEMPLATES_PATH}}/minimal/feature-request.md" \
+          "{{.ISSUE_TEMPLATES_INSTALLATION_PATH}}"
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-workflows-task/Taskfile.yml
   ci:validate:
