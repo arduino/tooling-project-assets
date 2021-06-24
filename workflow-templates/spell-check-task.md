@@ -1,6 +1,6 @@
 # "Spell Check" workflow (Task)
 
-Workflow file: [spell-check-task.yml](spell-check-task.yml)
+Workflow file: [`spell-check-task.yml`](spell-check-task.yml)
 
 Use [codespell](https://github.com/codespell-project/codespell) to check for commonly misspelled words in the repository files.
 
@@ -30,7 +30,7 @@ Make sure to commit the resulting `pyproject.toml` and `poetry.lock` files.
 
 ## Assets
 
-- [.codespellrc](assets/spell-check/.codespellrc) - codespell configuration file.
+- [`.codespellrc`](assets/spell-check/.codespellrc) - codespell configuration file.
   - Install to: repository root
 - [`Taskfile.yml`](assets/spell-check-task/Taskfile.yml) - spell check and spelling correction tasks.
   - Install to: repository root (or add the `general:general:check-spelling` and `general:correct-spelling` tasks into the existing `Taskfile.yml`)

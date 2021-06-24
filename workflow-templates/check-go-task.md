@@ -1,6 +1,6 @@
 # "Check Go" workflow (Task)
 
-Workflow file: [check-go-task.yml](check-go-task.yml)
+Workflow file: [`check-go-task.yml`](check-go-task.yml)
 
 Lint and check formatting of a [Go](https://golang.org/) module.
 

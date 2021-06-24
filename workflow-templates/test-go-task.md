@@ -1,6 +1,6 @@
 # "Test Go" workflow (Task)
 
-Workflow file: [test-go-task.yml](test-go-task.yml)
+Workflow file: [`test-go-task.yml`](test-go-task.yml)
 
 Run the [Go](https://golang.org/) module's tests.
 

@@ -1,6 +1,6 @@
 # "Check Taskfiles" workflow
 
-Workflow file: [check-taskfiles.yml](check-taskfiles.yml)
+Workflow file: [`check-taskfiles.yml`](check-taskfiles.yml)
 
 Validate the repository's [Taskfiles](https://taskfile.dev/#/usage) against the JSON schema.
 

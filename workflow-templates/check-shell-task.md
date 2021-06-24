@@ -1,6 +1,6 @@
 # "Check Shell Scripts" workflow (Task)
 
-Workflow file: [check-shell-task.yml](check-shell-task.yml)
+Workflow file: [`check-shell-task.yml`](check-shell-task.yml)
 
 Check the repository's shell scripts for problems:
 

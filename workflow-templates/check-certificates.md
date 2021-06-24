@@ -1,6 +1,6 @@
 # "Check Certificates" workflow
 
-Workflow file: [check-certificates.yml](check-certificates.yml)
+Workflow file: [`check-certificates.yml`](check-certificates.yml)
 
 Check code signing certificates for problems or pending expiration.
 

@@ -1,6 +1,6 @@
 # "Publish Tester Build" workflow (Go, Task)
 
-Workflow file: [publish-go-tester-task.yml](publish-go-tester-task.yml)
+Workflow file: [`publish-go-tester-task.yml`](publish-go-tester-task.yml)
 
 Publish tester builds of a [Go](https://golang.org/) project as [GitHub Actions workflow artifacts](https://docs.github.com/en/actions/guides/storing-workflow-data-as-artifacts) for every commit to a pull request or the repository.
 

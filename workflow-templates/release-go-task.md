@@ -1,6 +1,6 @@
 # "Release" workflow (Go, Task)
 
-Workflow file: [release-go-task.yml](release-go-task.yml)
+Workflow file: [`release-go-task.yml`](release-go-task.yml)
 
 Make a production release of the [Go](https://golang.org/) project.
 

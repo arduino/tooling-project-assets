@@ -1,6 +1,6 @@
 # "Check Python" workflow (Task)
 
-Workflow file: [check-python-task.yml](check-python-task.yml)
+Workflow file: [`check-python-task.yml`](check-python-task.yml)
 
 Run [flake8](https://flake8.pycqa.org/) and [black](https://github.com/psf/black) on the Python files of the repository.
 

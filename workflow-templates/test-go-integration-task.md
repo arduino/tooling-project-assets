@@ -1,6 +1,6 @@
 # "Test Integration" workflow (Go, Task)
 
-Workflow file: [test-go-integration-task.yml](test-go-integration-task.yml)
+Workflow file: [`test-go-integration-task.yml`](test-go-integration-task.yml)
 
 Run Python integration tests for a [Go](https://golang.org/) module.
 

@@ -1,6 +1,6 @@
 # "Test Python" workflow (Poetry, Task)
 
-Workflow file: [test-python-poetry-task.yml](test-python-poetry-task.yml)
+Workflow file: [`test-python-poetry-task.yml`](test-python-poetry-task.yml)
 
 Run [pytest](https://pytest.org)-based Python tests.
 
