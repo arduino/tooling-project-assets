@@ -11,7 +11,6 @@ on:
     paths:
       - "docs/**"
       - ".github/workflows/deploy-mkdocs-versioned-poetry.ya?ml"
-      - "Taskfile.ya?ml"
       - "mkdocs.ya?ml"
       - "poetry.lock"
       - "pyproject.toml"
@@ -45,12 +44,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install Taskfile
-        uses: arduino/setup-task@v1
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          version: 3.x
-
       - name: Install Python
         uses: actions/setup-python@v2
         with:
@@ -75,7 +68,9 @@ jobs:
           git config --global user.email "bot@arduino.cc"
           git config --global user.name "ArduinoBot"
           git fetch --no-tags --prune --depth=1 origin +refs/heads/gh-pages:refs/remotes/origin/gh-pages
-          task docs:publish \
-            DOCS_REMOTE=origin \
-            DOCS_VERSION=${{ fromJson(steps.determine-versioning.outputs.data).version }} \
-            DOCS_ALIAS=${{ fromJson(steps.determine-versioning.outputs.data).alias }}
+          poetry run mike deploy \
+            --update-aliases \
+            --push \
+            --remote origin \
+            ${{ fromJson(steps.determine-versioning.outputs.data).version }} \
+            ${{ fromJson(steps.determine-versioning.outputs.data).alias }}

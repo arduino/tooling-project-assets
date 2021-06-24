@@ -22,8 +22,6 @@ The website version is selectable via a menu on the website as well as the URL o
 - Base assets - See the ["Deploy Website" workflow (MkDocs, Poetry) documentation](deploy-mkdocs-poetry.md#assets)
 - [siteversion](assets/deploy-mkdocs-versioned/siteversion/) - versioning helper script.
   - Install to: `docs/siteversion/`
-- [`Taskfile.yml`](assets/deploy-mkdocs-versioned/Taskfile.yml) - website deployment task
-  - Install to: repository root (or merge into the existing `Taskfile.yml`)
 
 <a id="configuration"></a>
 
