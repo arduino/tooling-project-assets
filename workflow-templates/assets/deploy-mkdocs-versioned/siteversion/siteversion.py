@@ -1,5 +1,5 @@
 # Source:
-# https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/deploy-mkdocs-versioned/build/build.py
+# https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/deploy-mkdocs-versioned/siteversion/siteversion.py
 
 # Copyright 2020 ARDUINO SA (http://www.arduino.cc/)
 
@@ -89,7 +89,7 @@ def main():
 
 # Usage:
 #     To run the script (must be run from within the repo tree):
-#         $python build.py
+#         $python siteversion.py
 #
 if __name__ == "__main__":
     main()

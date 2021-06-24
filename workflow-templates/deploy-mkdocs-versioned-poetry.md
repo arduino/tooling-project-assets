@@ -20,8 +20,8 @@ The website version is selectable via a menu on the website as well as the URL o
 - [deploy-mkdocs-versioned-poetry.yml](deploy-mkdocs-versioned-poetry.yml) - GitHub Actions workflow
   - Install to: `.github/workflows/`
 - Base assets - See the ["Deploy Website" workflow (MkDocs, Poetry) documentation](deploy-mkdocs-poetry.md#assets)
-- [build](assets/deploy-mkdocs-versioned/build/) - versioning helper script.
-  - Install to: `docs/build/`
+- [siteversion](assets/deploy-mkdocs-versioned/siteversion/) - versioning helper script.
+  - Install to: `docs/siteversion/`
 - [`Taskfile.yml`](assets/deploy-mkdocs-versioned/Taskfile.yml) - website deployment task
   - Install to: repository root (or merge into the existing `Taskfile.yml`)
 
@@ -38,7 +38,7 @@ See the ["Deploy Website" workflow (MkDocs, Poetry) documentation](deploy-mkdocs
 The system is configured for the repository branch used as the source for the "dev" website version having the name `main`. If the project's development branch has another name, then configure it:
 
 - `on.push.branches[0]` in `deploy-mkdocs-versioned-poetry.yml`
-- `DEV_BRANCHES` in [`build/build.py`](assets/deploy-mkdocs-versioned/build/build.py)
+- `DEV_BRANCHES` in [`siteversion/siteversion.py`](assets/deploy-mkdocs-versioned/siteversion/siteversion.py)
 
 #### Configure Material theme for versioning
 

@@ -4,7 +4,7 @@ name: Deploy Website
 on:
   push:
     branches:
-      # Branch to base "dev" website on. Set in build.py also.
+      # Branch to base "dev" website on. Set in siteversion.py also.
       - main
       # Release branches have names like 0.8.x, 0.9.x, ...
       - "[0-9]+.[0-9]+.x"
@@ -66,7 +66,7 @@ jobs:
 
       - name: Determine versioning parameters
         id: determine-versioning
-        run: echo "::set-output name=data::$(poetry run python docs/build/build.py)"
+        run: echo "::set-output name=data::$(poetry run python docs/siteversion/siteversion.py)"
 
       - name: Publish documentation
         if: fromJson(steps.determine-versioning.outputs.data).version != null
