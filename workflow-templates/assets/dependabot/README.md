@@ -6,7 +6,7 @@ https://docs.github.com/en/github/administering-a-repository/keeping-your-action
 
 ## Instructions
 
-Just copy [this `dependabot.yml` file](dependabot.yml) to the `.github/` folder of the target repository (or add the entry if the repository already has a `/.github/dependabot.yml`) and everything else is handled automatically.
+Just copy [this `dependabot.yml` file](dependabot.yml) to the `.github/` folder of the target repository (or add the entry if the repository already has a `.github/dependabot.yml`) and everything else is handled automatically.
 
 ### Note
 

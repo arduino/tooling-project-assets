@@ -65,9 +65,9 @@ Add CI workflow to check for commonly misspelled words
 On every push, pull request, and periodically, use codespell to check for commonly
 misspelled words.
 
-In the event of a false positive, the problematic word should be added, in all lowercase, to the ignore-words-list field
-of ./.codespellrc. Regardless of the case of the word in the false positive, it must be in all lowercase in the ignore
-list. The ignore list is comma-separated with no spaces.
+In the event of a false positive, the problematic word should be added, in all lowercase, to the `ignore-words-list`
+field of `.codespellrc`. Regardless of the case of the word in the false positive, it must be in all lowercase in the
+ignore list. The ignore list is comma-separated with no spaces.
 ```
 
 ## PR message
@@ -75,5 +75,5 @@ list. The ignore list is comma-separated with no spaces.
 ```markdown
 On every push, pull request, and periodically, use [codespell](https://github.com/codespell-project/codespell) to check for commonly misspelled words.
 
-In the event of a false positive, the problematic word should be added, in all lowercase, to the `ignore-words-list` field of `./.codespellrc`. Regardless of the case of the word in the false positive, it must be in all lowercase in the ignore list. The ignore list is comma-separated with no spaces.
+In the event of a false positive, the problematic word should be added, in all lowercase, to the `ignore-words-list` field of `.codespellrc`. Regardless of the case of the word in the false positive, it must be in all lowercase in the ignore list. The ignore list is comma-separated with no spaces.
 ```
