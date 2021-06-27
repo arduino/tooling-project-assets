@@ -5,6 +5,9 @@
   "ignorePatterns": [
     {
       "pattern": "^CONTRIBUTING\\.md#building-the-source-code$"
+    },
+    {
+      "pattern": "/REPO_NAME/"
     }
   ]
 }
