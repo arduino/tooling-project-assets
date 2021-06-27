@@ -28,7 +28,7 @@ jobs:
     env:
       PROJECT_OWNER_PLACEHOLDER: arduino # Placeholder value of the PROJECT_OWNER variable in the template script
       PROJECT_OWNER: arduino # Replacement value used for the tests
-      PROJECT_NAME_PLACEHOLDER: arduino-lint # Placeholder value of the PROJECT_NAME variable in the template script
+      PROJECT_NAME_PLACEHOLDER: TODO # Placeholder value of the PROJECT_NAME variable in the template script
       PROJECT_NAME: arduino-lint # Replacement value used for the tests
       SCRIPT_FOLDER: other/installation-script
 
