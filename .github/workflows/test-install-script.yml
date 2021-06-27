@@ -3,12 +3,12 @@ name: Test install script
 on:
   push:
     paths:
-      - ".github/workflows/test-install.yml"
-      - "etc/install.sh"
+      - ".github/workflows/test-install-script.yml"
+      - "other/installation-script/install.sh"
   pull_request:
     paths:
-      - ".github/workflows/test-install.yml"
-      - "etc/install.sh"
+      - ".github/workflows/test-install-script.yml"
+      - "other/installation-script/install.sh"
   schedule:
     # Run every day at 03:00 UTC to catch breakage caused by external events
     - cron: "0 3 * * *"
@@ -17,6 +17,7 @@ on:
   workflow_dispatch:
 
 env:
+  SCRIPT_PATH: other/installation-script/install.sh
   TOOL_NAME: arduino-lint # The executable's file name
 
 jobs:
@@ -39,7 +40,7 @@ jobs:
       - name: Run script with defaults
         shell: sh
         run: |
-          "${{ github.workspace }}/etc/install.sh"
+          "${{ github.workspace }}/${{ env.SCRIPT_PATH }}"
 
       - name: Verify installation
         shell: bash
@@ -72,7 +73,7 @@ jobs:
         shell: sh
         run: |
           mkdir -p "${{ env.BINDIR }}"
-          "${{ github.workspace }}/etc/install.sh"
+          "${{ github.workspace }}/${{ env.SCRIPT_PATH }}"
 
       - name: Verify installation
         shell: bash
@@ -101,7 +102,7 @@ jobs:
       - name: Run script with version argument
         shell: sh
         run: |
-          "${{ github.workspace }}/etc/install.sh" "${{ env.VERSION }}"
+          "${{ github.workspace }}/${{ env.SCRIPT_PATH }}" "${{ env.VERSION }}"
 
       - name: Verify installation
         shell: bash
@@ -127,7 +128,7 @@ jobs:
       - name: Run script with nightly build version argument
         shell: sh
         run: |
-          "${{ github.workspace }}/etc/install.sh" "nightly-latest"
+          "${{ github.workspace }}/${{ env.SCRIPT_PATH }}" "nightly-latest"
 
       - name: Verify installation
         shell: bash
