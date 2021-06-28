@@ -14,6 +14,7 @@ This is the version of the workflow for projects using the [Task](https://taskfi
   - Install to: repository root
 - [`gon.config.hcl`](assets/shared/gon.config.hcl) - [gon](https://github.com/mitchellh/gon) configuration file for macOS signing and notarization.
   - Install to: repository root
+- [Installation script and documentation](../other/installation-script/README.md)
 
 ## Configuration
 
