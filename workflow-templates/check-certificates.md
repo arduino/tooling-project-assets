@@ -1,10 +1,18 @@
 # "Check Certificates" workflow
 
-Workflow file: [`check-certificates.yml`](check-certificates.yml)
-
 Check code signing certificates for problems or pending expiration.
 
-## Setting up Slack webhook
+## Installation
+
+### Workflow
+
+Install the [`check-certificates.yml`](check-certificates.yml) GitHub Actions workflow to `.github/workflows/`
+
+### Configuration
+
+Replace `REPO_OWNER/REPO_NAME` with the repository's name in the `jobs.check-certificates.if` field of `check-certificates.yml`.
+
+#### Set up Slack webhook
 
 1. Open https://arduino.slack.com/apps/A0F7XDUAZ-incoming-webhooks
 1. Click the "Add to Slack" button
@@ -17,7 +25,7 @@ Check code signing certificates for problems or pending expiration.
 1. Save the webhook URL to a [repository secret](https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository) named `SLACK_WEBHOOK`
    - Make sure there is no newline at the end of the secret, otherwise the Slack post process will fail.
 
-## Readme badge
+### Readme badge
 
 Markdown badge:
 

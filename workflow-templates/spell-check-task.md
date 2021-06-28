@@ -1,12 +1,25 @@
 # "Spell Check" workflow (Task)
 
-Workflow file: [`spell-check-task.yml`](spell-check-task.yml)
-
 Use [codespell](https://github.com/codespell-project/codespell) to check for commonly misspelled words in the repository files.
 
 This is the version of the workflow for projects using the [Task](https://taskfile.dev/#/) task runner tool.
 
 ## Installation
+
+### Workflow
+
+Install the [spell-check-task.yml](spell-check-task.yml) GitHub Actions workflow to `.github/workflows/`
+
+## Assets
+
+- [.codespellrc](assets/spell-check/.codespellrc) - codespell configuration file.
+  - Install to: repository root
+- [`Taskfile.yml`](assets/spell-check-task/Taskfile.yml) - spell check and spelling correction tasks.
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
+- [`Taskfile.yml`](assets/shared/Taskfile.yml) - Installation task.
+  - Merge into `Taskfile.yml`
+
+### Dependencies
 
 The `codespell` tool dependency is managed by [Poetry](https://python-poetry.org/).
 
@@ -26,18 +39,18 @@ If already using Poetry, add the tool using this command:
 poetry add --dev "codespell@^2.1.0"
 ```
 
-Make sure to commit the resulting `pyproject.toml` and `poetry.lock` files.
+Commit the resulting `pyproject.toml` and `poetry.lock` files.
 
-## Assets
+### Configuration
 
-- [`.codespellrc`](assets/spell-check/.codespellrc) - codespell configuration file.
-  - Install to: repository root
-- [`Taskfile.yml`](assets/spell-check-task/Taskfile.yml) - spell check and spelling correction tasks.
-  - Install to: repository root (or merge into the existing `Taskfile.yml`).
-- [`Taskfile.yml`](assets/shared/Taskfile.yml) - Installation task.
-  - Merge into `Taskfile.yml`
+If the repository contains generated or vendored files, they can be excluded from the check by adding them to the `skip` field in the `.codespellrc` configuration file.
 
-## Readme badge
+In the event of a false positive, the problematic word should be added, in all lowercase, to the `ignore-words-list` field of `./.codespellrc`. Regardless of the case of the word in the false positive, it must be in all lowercase in the ignore list. The ignore list is comma-separated with no spaces.
+
+Reference:
+https://github.com/codespell-project/codespell#using-a-config-file
+
+### Readme badge
 
 Markdown badge:
 

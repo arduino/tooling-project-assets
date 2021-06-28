@@ -1,27 +1,32 @@
 # "Check General Formatting" workflow (task)
 
-Workflow file: [`check-general-formatting-task.yml`](check-general-formatting-task.yml)
-
 Use [editorconfig-checker](https://github.com/editorconfig-checker/editorconfig-checker) to check if the formatting of the repository's files matches the [`.editorconfig`](https://editorconfig.org/).
 
-## Assets
+## Installation
+
+### Workflow
+
+Install the [`check-general-formatting-task.yml`](check-general-formatting-task.yml) GitHub Actions workflow to `.github/workflows/`
+
+### Assets
 
 - [`.editorconfig`](assets/shared/.editorconfig)
   - Install to: repository root
 - [`Taskfile.yml`](assets/check-general-formatting-task/Taskfile.yml) - formatting check [task](https://taskfile.dev/).
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`.ecrc`](assets/check-general-formatting-task/.ecrc) - editorconfig-checker configuration file.
+  - Install to: repository root
 
 The formatting style defined in `.editorconfig` is the official standardized style to be used in all Arduino tooling projects and should not be modified.
 
-## Configuration
+### Configuration
 
-General formatting settings are configured in the [`.editorconfig` file](https://editorconfig.org/). [The standardized `.editorconfig`](assets/shared/.editorconfig) should be used in all Arduino Tooling repositories.
+If the repository contains generated or vendored files, they can be excluded from the check by adding them to the `Exclude` array in the `.ecrc` configuration file.
 
-editorconfig-checker can be configured via an `.ecrc` file:
+Reference:
 https://github.com/editorconfig-checker/editorconfig-checker#configuration
 
-## Readme badge
+### Readme badge
 
 Markdown badge:
 

@@ -1,12 +1,23 @@
 # "Deploy Website" workflow (MkDocs, Poetry)
 
-Workflow file: [`deploy-mkdocs-poetry.yml`](deploy-mkdocs-poetry.yml)
-
 Deploy a [MkDocs](https://www.mkdocs.org/)-based static website to [GitHub Pages](https://pages.github.com/).
 
 This is the version of the workflow for projects using the [Poetry](https://python-poetry.org/) dependency management tool.
 
 ## Installation
+
+### Workflow
+
+Install the [`deploy-mkdocs-poetry.yml`](deploy-mkdocs-poetry.yml) GitHub Actions workflow to `.github/workflows/`
+
+### Assets
+
+- [`mkdocs.yml`](assets/mkdocs/mkdocs.yml) - base MkDocs configuration file.
+  - Install to: repository root
+- [`icon_mac_light.png`](assets/mkdocs/icon_mac_light.png) - Arduino logo for the website. **NOTE**: only for use in official Arduino projects. Community projects should use [the Community Logo](https://www.arduino.cc/en/Trademark/CommunityLogo).
+  - Install to: `docs/img/`
+
+### Dependencies
 
 The website build dependencies are managed by [Poetry](https://python-poetry.org/).
 
@@ -26,16 +37,23 @@ If already using Poetry, add the tool using this command:
 poetry add --dev "mkdocs@^1.2.1" "mkdocs-material@^7.1.8" "mdx_truly_sane_lists@^1.2"
 ```
 
-Make sure to commit the resulting `pyproject.toml` and `poetry.lock` files.
+Commit the resulting `pyproject.toml` and `poetry.lock` files.
 
-## Assets
+### Configuration
 
-- [`mkdocs.yml`](assets/mkdocs/mkdocs.yml) - base MkDocs configuration file.
-  - Install to: repository root
-- [`icon_mac_light.png`](assets/mkdocs/icon_mac_light.png) - Arduino logo for the website. **NOTE**: only for use in official Arduino projects. Community projects should use [the Community Logo](https://www.arduino.cc/en/Trademark/CommunityLogo).
-  - Install to: `docs/img/`
+#### Workflow
 
-## Readme badge
+The workflow is configured for repositories that host the website source content in a branch named `main`. If the project uses a different branch, adjust the `on.push.branches[]` value in `check-workflows-task.yml`.
+
+#### MkDocs
+
+Fill in all blank field in `mkdocs.yml` with the project-specific information.
+
+Add entries for each website source file to the `nav` array in `mkdocs.yml`, or remove `nav` to have MkDocs auto-generate the navigation panel.
+
+Reference: https://www.mkdocs.org/user-guide/configuration/
+
+### Readme badge
 
 Markdown badge:
 

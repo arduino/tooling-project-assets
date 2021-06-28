@@ -1,20 +1,27 @@
 # "Check Python" workflow (Task)
 
-Workflow file: [`check-python-task.yml`](check-python-task.yml)
-
 Run [flake8](https://flake8.pycqa.org/) and [black](https://github.com/psf/black) on the Python files of the repository.
 
 This is the version of the workflow for projects using the [Task](https://taskfile.dev/#/) task runner tool.
 
 ## Installation
 
-### 1. Add configuration files
+### Workflow
 
-Copy the configuration files listed in the [**Assets**](#assets) section below into the project's repository.
+Install the [`check-python-task.yml`](check-python-task.yml) GitHub Actions workflow to `.github/workflows/`
 
-If the project already contains a [`pyproject.toml`](https://www.python.org/dev/peps/pep-0518/) file, then merge them.
+### Assets
 
-### 2. Install tool dependencies
+- [`.flake8`](assets/check-python/.flake8) - flake8 configuration file.
+  - Install to: repository root
+- [`Taskfile.yml`](assets/check-python-task/Taskfile.yml) - Python linting and formatting tasks.
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
+- [`Taskfile.yml`](assets/shared/Taskfile.yml) - Installation task.
+  - Merge into `Taskfile.yml`
+
+The code style defined in `pyproject.toml` and `.flake8` is the official standardized style to be used in all Arduino tooling projects and should not be modified.
+
+### Dependencies
 
 The tool dependencies of this workflow are managed by [Poetry](https://python-poetry.org/).
 
@@ -34,9 +41,15 @@ If already using Poetry, add the tool using this command:
 poetry add --dev "black@^21.5b0" "flake8@^3.9.2" "pep8-naming@^0.11.1"
 ```
 
-Make sure to commit the resulting `pyproject.toml` and `poetry.lock` files.
+Commit the resulting `pyproject.toml` and `poetry.lock` files.
 
-### 3. Configuration
+### Configuration
+
+#### Workflow
+
+Set the version of Python used by the project in the `env.PYTHON_VERSION` field of `check-python-task.yml`.
+
+#### black
 
 Add the following to `pyproject.toml`:
 
@@ -45,18 +58,9 @@ Add the following to `pyproject.toml`:
 line-length = 120
 ```
 
-## Assets
+The `black` configuration is the official standardized style to be used in all Arduino tooling projects and should not be modified.
 
-- [`.flake8`](assets/check-python/.flake8) - flake8 configuration file.
-  - Install to: repository root
-- [`Taskfile.yml`](assets/check-python-task/Taskfile.yml) - Python linting and formatting tasks.
-  - Install to: repository root (or merge into the existing `Taskfile.yml`).
-- [`Taskfile.yml`](assets/shared/Taskfile.yml) - Installation task.
-  - Merge into `Taskfile.yml`
-
-The code style defined in `pyproject.toml` and `.flake8` is the official standardized style to be used in all Arduino tooling projects and should not be modified.
-
-## Readme badge
+### Readme badge
 
 Markdown badge:
 

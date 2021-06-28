@@ -1,15 +1,23 @@
 # "Check Go" workflow (Task)
 
-Workflow file: [`check-go-task.yml`](check-go-task.yml)
-
 Lint and check formatting of a [Go](https://golang.org/) module.
 
-## Assets
+## Installation
+
+### Workflow
+
+Install the [`check-go-task.yml`](check-go-task.yml) GitHub Actions workflow to `.github/workflows/`
+
+### Assets
 
 - [`Taskfile.yml`](assets/check-go-task/Taskfile.yml) - Linting and formatting [tasks](https://taskfile.dev/).
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 
-## Readme badge
+### Configuration
+
+Configure the version of Go used for development of the project in the `env.GO_VERSION` field of `check-go-task.yml`.
+
+### Readme badge
 
 Markdown badge:
 

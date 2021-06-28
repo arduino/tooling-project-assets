@@ -1,12 +1,29 @@
 # "Test Integration" workflow (Go, Task)
 
-Workflow file: [`test-go-integration-task.yml`](test-go-integration-task.yml)
-
 Run Python integration tests for a [Go](https://golang.org/) module.
 
 This is the version of the workflow for projects using the [Task](https://taskfile.dev/#/) task runner tool.
 
 ## Installation
+
+### Workflow
+
+Install the [`test-go-integration-task.yml`](test-go-integration-task.yml) GitHub Actions workflow to `.github/workflows/`
+
+## Assets
+
+- [`Taskfile.yml`](assets/test-go-integration-task/Taskfile.yml) - Test runner task.
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
+- [`Taskfile.yml`](assets/shared/go/Taskfile.yml) - Build task.
+  - Merge into `Taskfile.yml`.
+- [`__init__.py`](assets/test-python/__init__.py) - Template for Python integration tests.
+  - Install to: `tests/`
+- [`test_all.py`](assets/test-integration/test_all.py) - Template for Python integration tests.
+  - Install to: `tests/`
+- [`pytest.ini`](assets/test-python/pytest.ini) - [pytest](https://pytest.org) configuration file.
+  - Install to: `tests/`
+
+### Dependencies
 
 The Python dependencies are managed by [Poetry](https://python-poetry.org/).
 
@@ -26,22 +43,21 @@ If already using Poetry, add the tool using this command:
 poetry add --dev "pytest@^6.2.4" "invoke@^1.5.0"
 ```
 
-Make sure to commit the resulting `pyproject.toml` and `poetry.lock` files.
+Commit the resulting `pyproject.toml` and `poetry.lock` files.
 
-## Assets
+### Configuration
 
-- [`Taskfile.yml`](assets/test-go-integration-task/Taskfile.yml) - Test runner task.
-  - Install to: repository root (or merge into the existing `Taskfile.yml`).
-- [`Taskfile.yml`](assets/shared/go/Taskfile.yml) - Build task.
-  - Merge into `Taskfile.yml`.
-- [`__init__.py`](assets/test-python/__init__.py) - Template for Python integration tests.
-  - Install to: `tests/`
-- [`test_all.py`](assets/test-integration/test_all.py) - Template for Python integration tests.
-  - Install to: `tests/`
-- [`pytest.ini`](assets/test-python/pytest.ini) - [pytest](https://pytest.org) configuration file.
-  - Install to: `tests/`
+#### Workflow
 
-## Readme badge
+Configure the version of Go used for development of the project in the `env.GO_VERSION` field of `test-go-integration-task.yml`.
+
+Configure the version of Python used for development of the project in the `env.PYTHON_VERSION` field of `test-go-integration-task.yml`.
+
+#### Test helpers
+
+Define the project's executable filename in the `executable_path` variable in `test_all.py`.
+
+### Readme badge
 
 Markdown badge:
 

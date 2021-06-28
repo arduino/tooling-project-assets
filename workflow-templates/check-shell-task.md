@@ -1,7 +1,5 @@
 # "Check Shell Scripts" workflow (Task)
 
-Workflow file: [`check-shell-task.yml`](check-shell-task.yml)
-
 Check the repository's shell scripts for problems:
 
 - Static analysis using [ShellCheck](https://github.com/koalaman/shellcheck).
@@ -10,7 +8,13 @@ Check the repository's shell scripts for problems:
 
 This is the version of the workflow for projects using the [Task](https://taskfile.dev/#/) task runner tool.
 
-## Assets
+## Installation
+
+### Workflow
+
+Install the [`check-shell-task.yml`](check-shell-task.yml) GitHub Actions workflow to `.github/workflows/`
+
+### Assets
 
 - [`.editorconfig`](assets/shared/.editorconfig) - `shfmt` will use this [configuration file](https://editorconfig.org/).
   - Install to: repository root
@@ -19,7 +23,7 @@ This is the version of the workflow for projects using the [Task](https://taskfi
 
 The formatting style defined in `.editorconfig` is the official standardized style to be used in all Arduino tooling projects and should not be modified.
 
-## Readme badge
+### Readme badge
 
 Markdown badge:
 

@@ -1,19 +1,27 @@
 # "Test Go" workflow (Task)
 
-Workflow file: [`test-go-task.yml`](test-go-task.yml)
-
 Run the [Go](https://golang.org/) module's tests.
 
 This is the version of the workflow for projects using the [Task](https://taskfile.dev/#/) task runner tool.
 
-## Assets
+## Installation
+
+### Workflow
+
+Install the [`test-go-task.yml`](test-go-task.yml) GitHub Actions workflow to `.github/workflows/`
+
+### Assets
 
 - [`Taskfile.yml`](assets/test-go-task/Taskfile.yml]
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`Taskfile.yml`](assets/shared/go/Taskfile.yml] - Build task.
   - Merge into `Taskfile.yml`.
 
-## Readme badge
+### Configuration
+
+Configure the version of Go used for development of the project in the `env.GO_VERSION` field of `test-go-task.yml`.
+
+### Readme badge
 
 Markdown badge:
 
