@@ -231,7 +231,7 @@ tasks:
     deps:
       - task: poetry:install-deps
     cmds:
-      - poetry run pytest workflow-templates/assets/deploy-mkdocs-versioned/build/tests
+      - poetry run pytest workflow-templates/assets/deploy-mkdocs-versioned/siteversion/tests
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-python-task/Taskfile.yml
   python:lint:

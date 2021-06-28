@@ -4,14 +4,13 @@ name: Deploy Website
 on:
   push:
     branches:
-      # Branch to base "dev" website on. Set in build.py also.
+      # Branch to base "dev" website on. Set in siteversion.py also.
       - main
       # Release branches have names like 0.8.x, 0.9.x, ...
       - "[0-9]+.[0-9]+.x"
     paths:
       - "docs/**"
       - ".github/workflows/deploy-mkdocs-versioned-poetry.ya?ml"
-      - "Taskfile.ya?ml"
       - "mkdocs.ya?ml"
       - "poetry.lock"
       - "pyproject.toml"
@@ -45,12 +44,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install Taskfile
-        uses: arduino/setup-task@v1
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          version: 3.x
-
       - name: Install Python
         uses: actions/setup-python@v2
         with:
@@ -64,11 +57,20 @@ jobs:
       - name: Install Python dependencies
         run: poetry install --no-root
 
+      - name: Determine versioning parameters
+        id: determine-versioning
+        run: echo "::set-output name=data::$(poetry run python docs/siteversion/siteversion.py)"
+
       - name: Publish documentation
-        # Determine docs version for the commit pushed and publish accordingly using Mike.
-        # Publishing implies creating a git commit on the gh-pages branch, we let @ArduinoBot own these commits.
+        if: fromJson(steps.determine-versioning.outputs.data).version != null
         run: |
+          # Publishing implies creating a git commit on the gh-pages branch, we let @ArduinoBot own these commits.
           git config --global user.email "bot@arduino.cc"
           git config --global user.name "ArduinoBot"
           git fetch --no-tags --prune --depth=1 origin +refs/heads/gh-pages:refs/remotes/origin/gh-pages
-          poetry run python docs/build/build.py
+          poetry run mike deploy \
+            --update-aliases \
+            --push \
+            --remote origin \
+            ${{ fromJson(steps.determine-versioning.outputs.data).version }} \
+            ${{ fromJson(steps.determine-versioning.outputs.data).alias }}
