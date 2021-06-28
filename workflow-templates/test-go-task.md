@@ -9,9 +9,9 @@ This is the version of the workflow for projects using the [Task](https://taskfi
 ## Assets
 
 - [`Taskfile.yml`](assets/test-go-task/Taskfile.yml]
-  - Install to: repository root (or add the `go:test` task into the existing `Taskfile.yml`)
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`Taskfile.yml`](assets/shared/go/Taskfile.yml] - Build task.
-  - Merge the `go:build` task into the existing `Taskfile.yml`.
+  - Merge into `Taskfile.yml`.
 
 ## Readme badge
 

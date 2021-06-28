@@ -9,7 +9,7 @@ Use [editorconfig-checker](https://github.com/editorconfig-checker/editorconfig-
 - [`.editorconfig`](assets/shared/.editorconfig)
   - Install to: repository root
 - [`Taskfile.yml`](assets/check-general-formatting-task/Taskfile.yml) - formatting check [task](https://taskfile.dev/).
-  - Install to: repository root (or add the `general:check-formatting` task into the existing `Taskfile.yml`)
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`.ecrc`](assets/check-general-formatting-task/.ecrc) - editorconfig-checker configuration file.
 
 The formatting style defined in `.editorconfig` is the official standardized style to be used in all Arduino tooling projects and should not be modified.

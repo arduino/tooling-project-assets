@@ -31,9 +31,9 @@ Make sure to commit the resulting `pyproject.toml` and `poetry.lock` files.
 ## Assets
 
 - [`Taskfile.yml`](assets/test-python-poetry-task/Taskfile.yml) - Test runner task.
-  - Install to: repository root (or add the `python:test` task into the existing `Taskfile.yml`)
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`Taskfile.yml`](assets/shared/Taskfile.yml) - Installation task.
-  - Add the `poetry:install-deps` task into the existing `Taskfile.yml`
+  - Merge into `Taskfile.yml`
 - [`__init__.py`](assets/test-python/__init__.py) - Python module file.
   - Install to: `tests/`
 - [`pytest.ini`](assets/test-python/pytest.ini) - [pytest](https://pytest.org) configuration file.

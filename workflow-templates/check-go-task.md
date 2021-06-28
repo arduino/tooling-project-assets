@@ -7,7 +7,7 @@ Lint and check formatting of a [Go](https://golang.org/) module.
 ## Assets
 
 - [`Taskfile.yml`](assets/check-go-task/Taskfile.yml) - Linting and formatting [tasks](https://taskfile.dev/).
-  - Install to: repository root (or add the tasks into the existing `Taskfile.yml`)
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
 
 ## Readme badge
 

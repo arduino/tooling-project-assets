@@ -13,9 +13,9 @@ See [the "Deploy Website" (MkDocs, Poetry) workflow documentation](deploy-mkdocs
 ## Assets
 
 - [`Taskfile.yml`](assets/check-yaml-task/Taskfile.yml) - Build task.
-  - Install to: repository root (or add the `website:build` task into the existing `Taskfile.yml`)
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`Taskfile.yml`](assets/shared/Taskfile.yml) - Installation task.
-  - Add the `poetry:install-deps` task into the existing `Taskfile.yml`
+  - Merge into `Taskfile.yml`
 - Website assets - See [the "Deploy Website" (MkDocs, Poetry) workflow documentation](deploy-mkdocs-poetry.md#assets).
 
 ## Readme badge
