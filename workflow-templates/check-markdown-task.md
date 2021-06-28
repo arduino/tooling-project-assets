@@ -1,6 +1,6 @@
 # "Check Markdown" workflow (Task)
 
-Workflow file: [check-markdown-task.yml](check-markdown-task.yml)
+Workflow file: [`check-markdown-task.yml`](check-markdown-task.yml)
 
 Check the repository's Markdown files for problems:
 

@@ -1,6 +1,6 @@
 # "Test Integration" workflow (Go, Task)
 
-Workflow file: [test-go-integration-task.yml](test-go-integration-task.yml)
+Workflow file: [`test-go-integration-task.yml`](test-go-integration-task.yml)
 
 Run Python integration tests for a [Go](https://golang.org/) module.
 
@@ -35,11 +35,11 @@ Make sure to commit the resulting `pyproject.toml` and `poetry.lock` files.
 - [`Taskfile.yml`](assets/shared/go/Taskfile.yml) - Build task.
   - Merge the `go:build` task into the existing `Taskfile.yml`.
 - [`__init__.py`](assets/test-python/__init__.py) - Template for Python integration tests.
-  - Install to: `/tests/`
+  - Install to: `tests/`
 - [`test_all.py`](assets/test-integration/test_all.py) - Template for Python integration tests.
-  - Install to: `/tests/`
+  - Install to: `tests/`
 - [`pytest.ini`](assets/test-python/pytest.ini) - [pytest](https://pytest.org) configuration file.
-  - Install to: `/tests/`
+  - Install to: `tests/`
 
 ## Readme badge
 

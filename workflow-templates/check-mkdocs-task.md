@@ -1,6 +1,6 @@
 # "Check Website" workflow (MkDocs, Task)
 
-Workflow file: [check-mkdocs-task.yml](check-mkdocs-task.yml)
+Workflow file: [`check-mkdocs-task.yml`](check-mkdocs-task.yml)
 
 Check for problems with a [MkDocs](https://www.mkdocs.org/)-based static website.
 

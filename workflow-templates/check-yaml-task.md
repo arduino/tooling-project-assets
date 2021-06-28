@@ -1,6 +1,6 @@
 # "Check YAML" workflow (Task)
 
-Workflow file: [check-yaml-task.yml](check-yaml-task.yml)
+Workflow file: [`check-yaml-task.yml`](check-yaml-task.yml)
 
 Run [yamllint](https://github.com/adrienverge/yamllint) on the YAML files of the repository.
 
@@ -32,7 +32,7 @@ Make sure to commit the resulting `pyproject.toml` and `poetry.lock` files.
 
 ## Assets
 
-- [.yamllint.yml](assets/check-yaml/.yamllint.yml) - `yamllint` [configuration file](https://yamllint.readthedocs.io/en/stable/configuration.html).
+- [`.yamllint.yml`](assets/check-yaml/.yamllint.yml) - `yamllint` [configuration file](https://yamllint.readthedocs.io/en/stable/configuration.html).
   - Install to: repository root
 - [`Taskfile.yml`](assets/check-yaml-task/Taskfile.yml) - Linting task.
   - Install to: repository root (or add the `yaml:lint` task into the existing `Taskfile.yml`)

@@ -17,10 +17,10 @@ The website version is selectable via a menu on the website as well as the URL o
 
 ### 1. Install workflow and assets
 
-- [deploy-mkdocs-versioned-poetry.yml](deploy-mkdocs-versioned-poetry.yml) - GitHub Actions workflow
+- [`deploy-mkdocs-versioned-poetry.yml`](deploy-mkdocs-versioned-poetry.yml) - GitHub Actions workflow
   - Install to: `.github/workflows/`
 - Base assets - See the ["Deploy Website" workflow (MkDocs, Poetry) documentation](deploy-mkdocs-poetry.md#assets)
-- [siteversion](assets/deploy-mkdocs-versioned/siteversion/) - versioning helper script.
+- [`siteversion`](assets/deploy-mkdocs-versioned/siteversion/) - versioning helper script.
   - Install to: `docs/siteversion/`
 
 <a id="configuration"></a>

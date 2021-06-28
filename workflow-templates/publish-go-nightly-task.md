@@ -1,6 +1,6 @@
 # "Publish Nightly Build" workflow (Go, Task)
 
-Workflow file: [publish-go-nightly-task.yml](publish-go-nightly-task.yml)
+Workflow file: [`publish-go-nightly-task.yml`](publish-go-nightly-task.yml)
 
 Publish nightly builds of a [Go](https://golang.org/) project.
 

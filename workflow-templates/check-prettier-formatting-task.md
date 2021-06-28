@@ -1,6 +1,6 @@
 # "Check Prettier Formatting" workflow (Task)
 
-Workflow file: [check-prettier-formatting-task.yml](check-prettier-formatting-task.yml)
+Workflow file: [`check-prettier-formatting-task.yml`](check-prettier-formatting-task.yml)
 
 Use [Prettier](https://prettier.io/docs/en/index.html) to check formatting. Supported languages include:
 

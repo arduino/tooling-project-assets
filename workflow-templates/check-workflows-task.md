@@ -1,6 +1,6 @@
 # "Check Workflows" workflow (Task)
 
-Workflow file: [check-workflows-task.yml](check-workflows-task.yml)
+Workflow file: [`check-workflows-task.yml`](check-workflows-task.yml)
 
 Validate the repository's GitHub Actions workflows against the JSON schema.
 

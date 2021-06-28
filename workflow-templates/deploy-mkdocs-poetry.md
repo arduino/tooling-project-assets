@@ -1,6 +1,6 @@
 # "Deploy Website" workflow (MkDocs, Poetry)
 
-Workflow file: [deploy-mkdocs-poetry.yml](deploy-mkdocs-poetry.yml)
+Workflow file: [`deploy-mkdocs-poetry.yml`](deploy-mkdocs-poetry.yml)
 
 Deploy a [MkDocs](https://www.mkdocs.org/)-based static website to [GitHub Pages](https://pages.github.com/).
 
@@ -30,9 +30,9 @@ Make sure to commit the resulting `pyproject.toml` and `poetry.lock` files.
 
 ## Assets
 
-- [mkdocs.yml](assets/mkdocs/mkdocs.yml) - base MkDocs configuration file.
+- [`mkdocs.yml`](assets/mkdocs/mkdocs.yml) - base MkDocs configuration file.
   - Install to: repository root
-- [icon_mac_light.png](assets/mkdocs/icon_mac_light.png) - Arduino logo for the website. **NOTE**: only for use in official Arduino projects. Community projects should use [the Community Logo](https://www.arduino.cc/en/Trademark/CommunityLogo).
+- [`icon_mac_light.png`](assets/mkdocs/icon_mac_light.png) - Arduino logo for the website. **NOTE**: only for use in official Arduino projects. Community projects should use [the Community Logo](https://www.arduino.cc/en/Trademark/CommunityLogo).
   - Install to: `docs/img/`
 
 ## Readme badge

@@ -1,6 +1,6 @@
 # "Test Python" workflow (Poetry, Task)
 
-Workflow file: [test-python-poetry-task.yml](test-python-poetry-task.yml)
+Workflow file: [`test-python-poetry-task.yml`](test-python-poetry-task.yml)
 
 Run [pytest](https://pytest.org)-based Python tests.
 
@@ -35,9 +35,9 @@ Make sure to commit the resulting `pyproject.toml` and `poetry.lock` files.
 - [`Taskfile.yml`](assets/shared/Taskfile.yml) - Installation task.
   - Add the `poetry:install-deps` task into the existing `Taskfile.yml`
 - [`__init__.py`](assets/test-python/__init__.py) - Python module file.
-  - Install to: `/tests/`
+  - Install to: `tests/`
 - [`pytest.ini`](assets/test-python/pytest.ini) - [pytest](https://pytest.org) configuration file.
-  - Install to: `/tests/`
+  - Install to: `tests/`
 
 ## Readme badge
 

@@ -1,6 +1,6 @@
 # "Spell Check" workflow (Task)
 
-Workflow file: [spell-check-task.yml](spell-check-task.yml)
+Workflow file: [`spell-check-task.yml`](spell-check-task.yml)
 
 Use [codespell](https://github.com/codespell-project/codespell) to check for commonly misspelled words in the repository files.
 
@@ -30,7 +30,7 @@ Make sure to commit the resulting `pyproject.toml` and `poetry.lock` files.
 
 ## Assets
 
-- [.codespellrc](assets/spell-check/.codespellrc) - codespell configuration file.
+- [`.codespellrc`](assets/spell-check/.codespellrc) - codespell configuration file.
   - Install to: repository root
 - [`Taskfile.yml`](assets/spell-check-task/Taskfile.yml) - spell check and spelling correction tasks.
   - Install to: repository root (or add the `general:general:check-spelling` and `general:correct-spelling` tasks into the existing `Taskfile.yml`)
@@ -65,9 +65,9 @@ Add CI workflow to check for commonly misspelled words
 On every push, pull request, and periodically, use codespell to check for commonly
 misspelled words.
 
-In the event of a false positive, the problematic word should be added, in all lowercase, to the ignore-words-list field
-of ./.codespellrc. Regardless of the case of the word in the false positive, it must be in all lowercase in the ignore
-list. The ignore list is comma-separated with no spaces.
+In the event of a false positive, the problematic word should be added, in all lowercase, to the `ignore-words-list`
+field of `.codespellrc`. Regardless of the case of the word in the false positive, it must be in all lowercase in the
+ignore list. The ignore list is comma-separated with no spaces.
 ```
 
 ## PR message
@@ -75,5 +75,5 @@ list. The ignore list is comma-separated with no spaces.
 ```markdown
 On every push, pull request, and periodically, use [codespell](https://github.com/codespell-project/codespell) to check for commonly misspelled words.
 
-In the event of a false positive, the problematic word should be added, in all lowercase, to the `ignore-words-list` field of `./.codespellrc`. Regardless of the case of the word in the false positive, it must be in all lowercase in the ignore list. The ignore list is comma-separated with no spaces.
+In the event of a false positive, the problematic word should be added, in all lowercase, to the `ignore-words-list` field of `.codespellrc`. Regardless of the case of the word in the false positive, it must be in all lowercase in the ignore list. The ignore list is comma-separated with no spaces.
 ```

@@ -1,6 +1,6 @@
 # "Check General Formatting" workflow (task)
 
-Workflow file: [check-general-formatting-task.yml](check-general-formatting-task.yml)
+Workflow file: [`check-general-formatting-task.yml`](check-general-formatting-task.yml)
 
 Use [editorconfig-checker](https://github.com/editorconfig-checker/editorconfig-checker) to check if the formatting of the repository's files matches the [`.editorconfig`](https://editorconfig.org/).
 

@@ -1,6 +1,6 @@
 # "Check ToC" workflow (Task)
 
-Workflow file: [check-toc-task.yml](check-toc-task.yml)
+Workflow file: [`check-toc-task.yml`](check-toc-task.yml)
 
 Check whether the generated table of contents in Markdown files matches their heading structure.
 
@@ -45,5 +45,5 @@ content.
 ## PR message
 
 ```markdown
-On every push or pull request that affects the repository's README.md, use [markdown-toc](https://github.com/jonschlinkert/markdown-toc) to check whether the table of contents matches the content.
+On every push or pull request that affects the repository's `README.md`, use [markdown-toc](https://github.com/jonschlinkert/markdown-toc) to check whether the table of contents matches the content.
 ```
