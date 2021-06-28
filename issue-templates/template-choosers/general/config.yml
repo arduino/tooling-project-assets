@@ -1,0 +1,13 @@
+# Source:
+# https://github.com/arduino/tooling-project-assets/blob/main/issue-templates/template-choosers/general/config.yml
+contact_links:
+  - name: Learn about using this project
+    # TODO: Replace REPO_OWNER/REPO_NAME with the repository owner and name
+    url: https://github.com/REPO_OWNER/REPO_NAME#readme
+    about: Detailed usage documentation is available here.
+  - name: Support request
+    url: https://forum.arduino.cc/
+    about: We can help you out on the Arduino Forum!
+  - name: Discuss development work on the project
+    url: https://groups.google.com/a/arduino.cc/g/developers
+    about: Arduino Developers Mailing List

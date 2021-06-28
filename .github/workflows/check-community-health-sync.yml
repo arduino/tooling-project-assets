@@ -1,0 +1,49 @@
+# This repository contains intentionally duplicated copies of GitHub community health files in use for this repository's
+# own purposes
+#
+# This workflow checks that the copies are in sync.
+# If the workflow fails, run `task fix` and commit.
+
+name: Check Community Health Files Sync
+
+# See: https://docs.github.com/en/actions/reference/events-that-trigger-workflows
+on:
+  push:
+    paths:
+      - ".github/workflows/check-community-health-sync.ya?ml"
+      - "Taskfile.ya?ml"
+      - ".github/ISSUE_TEMPLATE/**"
+      - "issue-templates/**"
+  pull_request:
+    paths:
+      - ".github/workflows/check-community-health-sync.ya?ml"
+      - "Taskfile.ya?ml"
+      - ".github/ISSUE_TEMPLATE/**"
+      - "issue-templates/**"
+  workflow_dispatch:
+  repository_dispatch:
+
+jobs:
+  check-sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Task
+        uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          version: 3.x
+
+      - name: Sync files
+        run: task --silent github:sync
+
+      - name: Check file duplicates sync
+        run: |
+          git add .
+          if ! git diff --color --exit-code HEAD; then
+            echo "::error::File duplicates are out of sync. Please run \"task fix\""
+            exit 1
+          fi
