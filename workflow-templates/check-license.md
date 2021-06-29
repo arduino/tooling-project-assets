@@ -1,12 +1,21 @@
 # "Check License" workflow
 
-Workflow file: [`check-license.yml`](check-license.yml)
-
 Check whether the repository's license file is recognizable by GitHub's [automated license detection system](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository#detecting-a-license) and whether it is recognized as the correct type. In order to be detected (and to ensure it remains a valid legal instrument), the license text must not be modified. GitHub supports multiple license filenames, so it's also possible that the license type could be inadvertently changed by the addition of a file to the repository.
 
 Please always use the exact license text from the links at https://choosealicense.com/appendix/
 
-## Readme badge
+## Installation
+
+### Workflow
+
+Install the [`check-license.yml`](check-license.yml) GitHub Actions workflow to `.github/workflows/`
+
+### Configuration
+
+- Configure the license filename in the `env.EXPECTED_LICENSE_FILENAME` field of `check-license.yml`.
+- Configure the license type in the `env.EXPECTED_LICENSE_TYPE` field of `check-license.yml`.
+
+### Readme badge
 
 Markdown badge:
 

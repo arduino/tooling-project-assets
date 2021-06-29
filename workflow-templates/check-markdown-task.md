@@ -1,7 +1,5 @@
 # "Check Markdown" workflow (Task)
 
-Workflow file: [`check-markdown-task.yml`](check-markdown-task.yml)
-
 Check the repository's Markdown files for problems:
 
 - Use [markdownlint-cli](https://github.com/igorshubovych/markdownlint-cli) to check for common problems and formatting.
@@ -11,7 +9,13 @@ NOTE: This workflow is focused on linting. Formatting checks for Markdown are pr
 
 This is the version of the workflow for projects using the [Task](https://taskfile.dev/#/) task runner tool.
 
-## Assets
+## Installation
+
+### Workflow
+
+Install the [`check-markdown-task.yml`](check-markdown-task.yml) GitHub Actions workflow to `.github/workflows/`
+
+### Assets
 
 - [`.markdown-link-check.json`](assets/check-markdown/.markdown-link-check.json) - markdown-link-check configuration file.
   - Install to: repository root
@@ -22,19 +26,19 @@ This is the version of the workflow for projects using the [Task](https://taskfi
 
 The code style defined in `.markdownlint.yml` is the official standardized style to be used in all Arduino tooling projects and should not be modified.
 
-## Configuration
+### Configuration
 
-### markdownlint
+#### markdownlint
 
 In the event the repository contains externally maintained Markdown files, `markdownlint` can be configured to ignore them via a `.markdownlintignore` file:
 https://github.com/igorshubovych/markdownlint-cli#ignoring-files
 
-### markdown-link-check
+#### markdown-link-check
 
 Advanced configuration of `markdown-link-check` can be done via the [`.markdown-link-check.json`](assets/check-markdown/.markdown-link-check.json) configuration file:
 https://github.com/tcort/markdown-link-check#config-file-format
 
-## Readme badge
+### Readme badge
 
 Markdown badge:
 

@@ -1,12 +1,27 @@
 # "Test Python" workflow (Poetry, Task)
 
-Workflow file: [`test-python-poetry-task.yml`](test-python-poetry-task.yml)
-
 Run [pytest](https://pytest.org)-based Python tests.
 
 This is the version of the workflow for projects using the [Task](https://taskfile.dev/#/) task runner tool.
 
 ## Installation
+
+### Workflow
+
+Install the [`test-python-poetry-task.yml`](test-python-poetry-task.yml) GitHub Actions workflow to `.github/workflows/`
+
+### Assets
+
+- [`Taskfile.yml`](assets/test-python-poetry-task/Taskfile.yml) - Test runner task.
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
+- [`Taskfile.yml`](assets/shared/Taskfile.yml) - Installation task.
+  - Merge into `Taskfile.yml`
+- [`__init__.py`](assets/test-python/__init__.py) - Python module file.
+  - Install to: `tests/`
+- [`pytest.ini`](assets/test-python/pytest.ini) - [pytest](https://pytest.org) configuration file.
+  - Install to: `tests/`
+
+### Dependencies
 
 The Python dependencies are managed by [Poetry](https://python-poetry.org/).
 
@@ -26,20 +41,13 @@ If already using Poetry, add the tool using this command:
 poetry add --dev "pytest@^6.2.4"
 ```
 
-Make sure to commit the resulting `pyproject.toml` and `poetry.lock` files.
+Commit the resulting `pyproject.toml` and `poetry.lock` files.
 
-## Assets
+### Configuration
 
-- [`Taskfile.yml`](assets/test-python-poetry-task/Taskfile.yml) - Test runner task.
-  - Install to: repository root (or merge into the existing `Taskfile.yml`).
-- [`Taskfile.yml`](assets/shared/Taskfile.yml) - Installation task.
-  - Merge into `Taskfile.yml`
-- [`__init__.py`](assets/test-python/__init__.py) - Python module file.
-  - Install to: `tests/`
-- [`pytest.ini`](assets/test-python/pytest.ini) - [pytest](https://pytest.org) configuration file.
-  - Install to: `tests/`
+Configure the version of Python used for development of the project in the `env.PYTHON_VERSION` field of `test-go-integration-task.yml`.
 
-## Readme badge
+### Readme badge
 
 Markdown badge:
 

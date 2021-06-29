@@ -1,19 +1,31 @@
 # "Check ToC" workflow (Task)
 
-Workflow file: [`check-toc-task.yml`](check-toc-task.yml)
-
 Check whether the generated table of contents in Markdown files matches their heading structure.
 
 This should be used in repositories that generate the table of contents with [markdown-toc](https://github.com/jonschlinkert/markdown-toc).
 
 This is the version of the workflow for projects using the [Task](https://taskfile.dev/#/) task runner tool.
 
-## Assets
+## Installation
+
+### Workflow
+
+Install the [`check-toc-task.yml`](check-toc-task.yml) GitHub Actions workflow to `.github/workflows/`
+
+### Assets
 
 - [`Taskfile.yml`](assets/check-toc-task/Taskfile.yml) - Table of contents generation task.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 
-## Readme badge
+### Configuration
+
+The workflow is configured to check a table of contents in `README.md`. If other files have a table of contents, adjust the following fields in `check-toc-task.yml`:
+
+- `on.push.paths`
+- `on.pull_request.paths`
+- `jobs.check.strategy.matrix.file[]`
+
+### Readme badge
 
 Markdown badge:
 

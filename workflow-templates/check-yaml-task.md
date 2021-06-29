@@ -1,7 +1,5 @@
 # "Check YAML" workflow (Task)
 
-Workflow file: [`check-yaml-task.yml`](check-yaml-task.yml)
-
 Run [yamllint](https://github.com/adrienverge/yamllint) on the YAML files of the repository.
 
 NOTE: This workflow is focused on linting. Formatting checks for YAML are provided by the ["Check Prettier Formatting" workflow](check-prettier-formatting-task.md), so both should be used.
@@ -9,6 +7,23 @@ NOTE: This workflow is focused on linting. Formatting checks for YAML are provid
 This is the version of the workflow for projects using the [Task](https://taskfile.dev/#/) task runner tool.
 
 ## Installation
+
+### Workflow
+
+Install the [check-yaml-task.yml](check-yaml-task.yml) GitHub Actions workflow to `.github/workflows/`
+
+## Assets
+
+- [`.yamllint.yml`](assets/check-yaml/.yamllint.yml) - `yamllint` configuration file.
+  - Install to: repository root
+- [`Taskfile.yml`](assets/check-yaml-task/Taskfile.yml) - Linting task.
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
+- [`Taskfile.yml`](assets/shared/Taskfile.yml) - Installation task.
+  - Merge into `Taskfile.yml`
+
+The code style defined in this file is the official standardized style to be used in all Arduino tooling projects and should not be modified.
+
+### Dependencies
 
 The `yamllint` tool dependency is managed by [Poetry](https://python-poetry.org/).
 
@@ -28,20 +43,16 @@ If already using Poetry, add the tool using this command:
 poetry add --dev "yamllint@^1.26.1"
 ```
 
-Make sure to commit the resulting `pyproject.toml` and `poetry.lock` files.
+Commit the resulting `pyproject.toml` and `poetry.lock` files.
 
-## Assets
+### Configuration
 
-- [`.yamllint.yml`](assets/check-yaml/.yamllint.yml) - `yamllint` [configuration file](https://yamllint.readthedocs.io/en/stable/configuration.html).
-  - Install to: repository root
-- [`Taskfile.yml`](assets/check-yaml-task/Taskfile.yml) - Linting task.
-  - Install to: repository root (or merge into the existing `Taskfile.yml`).
-- [`Taskfile.yml`](assets/shared/Taskfile.yml) - Installation task.
-  - Merge into `Taskfile.yml`
+If the repository contains generated or vendored files, they can be excluded from the check by adding them to the `ignore` field in the `.yamllint.yml` configuration file.
 
-The code style defined in this file is the official standardized style to be used in all Arduino projects and should not be modified.
+Reference:
+https://yamllint.readthedocs.io/en/stable/configuration.html
 
-## Readme badge
+### Readme badge
 
 Markdown badge:
 

@@ -1,7 +1,5 @@
 # "Check Prettier Formatting" workflow (Task)
 
-Workflow file: [`check-prettier-formatting-task.yml`](check-prettier-formatting-task.yml)
-
 Use [Prettier](https://prettier.io/docs/en/index.html) to check formatting. Supported languages include:
 
 - JavaScript
@@ -14,12 +12,18 @@ Use [Prettier](https://prettier.io/docs/en/index.html) to check formatting. Supp
 
 This is the version of the workflow for projects using the [Task](https://taskfile.dev/#/) task runner tool.
 
-## Assets
+## Installation
+
+### Workflow
+
+Install the [`check-prettier-formatting-task.yml`](check-prettier-formatting-task.yml) GitHub Actions workflow to `.github/workflows/`
+
+### Assets
 
 - [`Taskfile.yml`](assets/check-prettier-formatting-task/Taskfile.yml) - Formatting task.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 
-## Configuration
+### Configuration
 
 Prettier should be configured via a `.prettierignore` file to ignore any externally maintained files contained in the repository:
 https://prettier.io/docs/en/ignore.html
@@ -32,7 +36,7 @@ https://prettier.io/docs/en/configuration.html#setting-the-parserdocsenoptionsht
 
 The default Prettier code style is the official standardized style to be used in all Arduino tooling projects and should not be modified.
 
-## Readme badge
+### Readme badge
 
 Markdown badge:
 

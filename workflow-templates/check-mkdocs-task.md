@@ -1,16 +1,16 @@
 # "Check Website" workflow (MkDocs, Task)
 
-Workflow file: [`check-mkdocs-task.yml`](check-mkdocs-task.yml)
-
 Check for problems with a [MkDocs](https://www.mkdocs.org/)-based static website.
 
 This is the version of the workflow for projects using the [Task](https://taskfile.dev/#/) task runner tool.
 
 ## Installation
 
-See [the "Deploy Website" (MkDocs, Poetry) workflow documentation](deploy-mkdocs-poetry.md#installation)
+### Workflow
 
-## Assets
+Install the [`check-mkdocs-task.yml`](check-mkdocs-task.yml) GitHub Actions workflow to `.github/workflows/`
+
+### Assets
 
 - [`Taskfile.yml`](assets/check-yaml-task/Taskfile.yml) - Build task.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
@@ -18,7 +18,15 @@ See [the "Deploy Website" (MkDocs, Poetry) workflow documentation](deploy-mkdocs
   - Merge into `Taskfile.yml`
 - Website assets - See [the "Deploy Website" (MkDocs, Poetry) workflow documentation](deploy-mkdocs-poetry.md#assets).
 
-## Readme badge
+### Dependencies
+
+See [the "Deploy Website" (MkDocs, Poetry) workflow documentation](deploy-mkdocs-poetry.md#dependencies)
+
+### Configuration
+
+See [the "Deploy Website" (MkDocs, Poetry) workflow documentation](deploy-mkdocs-poetry.md#configuration)
+
+### Readme badge
 
 Markdown badge:
 

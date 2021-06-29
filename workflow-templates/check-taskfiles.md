@@ -1,10 +1,22 @@
 # "Check Taskfiles" workflow
 
-Workflow file: [`check-taskfiles.yml`](check-taskfiles.yml)
-
 Validate the repository's [Taskfiles](https://taskfile.dev/#/usage) against the JSON schema.
 
-## Readme badge
+## Installation
+
+### Workflow
+
+Install the [`check-taskfiles.yml`](check-taskfiles.yml) GitHub Actions workflow to `.github/workflows/`
+
+### Configuration
+
+The workflow is configured to check all files named `Taskfile.yml` in the repository. If there are additional taskfiles, add them to the following fields in `check-taskfiles.yml`:
+
+- `on.push.paths`
+- `on.pull_request.paths`
+- `jobs.validate.strategy.matrix.file[]`
+
+### Readme badge
 
 Markdown badge:
 

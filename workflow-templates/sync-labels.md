@@ -1,25 +1,24 @@
 # "Sync Labels" workflow
 
-Workflow file: [`sync-labels.yml`](sync-labels.yml)
-
 Use [github-label-sync](https://github.com/Financial-Times/github-label-sync) to configure the repository's [issue/pull request labels](https://docs.github.com/en/github/managing-your-work-on-github/managing-labels) according to the universal, shared, and local label configuration files.
 
 Use of consistent labels across repositories makes repository maintenance and searching of issue and pull request trackers easier.
 
 Some label definitions in the configuration file contain a `notes` field. This provides additional information about the proper usage of the label when this might not be clear from the label name and description. The `notes` field is purely for documentation purposes and has no effect on the repository labels.
 
-## Non-universal labels
+## Installation
+
+### Workflow
+
+Install the [`sync-labels.yml`](sync-labels.yml) GitHub Actions workflow to `.github/workflows/`
+
+### Configuration
 
 Multiple labels data files can be merged to form the list of labels for the repository. The [universal labels](assets/sync-labels/universal.yml) must be used in all repositories, but some projects will benefit from the addition of other domain-specific labels.
 
 The configuration file structure is documented here: https://github.com/Financial-Times/github-label-sync#label-config-file
 
-Configuration files for labels that are applicable to multiple projects are hosted [here](assets/sync-labels).
-Add the file name to the `jobs.download.strategy.matrix.filename[]` array in the workflow.
-
-The configuration file for labels that only apply to the specific project should be located in `.github/label-configuration-files/`
-
-### Maximum string lengths
+#### Maximum string lengths
 
 Label sync will fail with a `422: Validation Failed` error if a label configuration string exceeds the maximum length.
 
@@ -27,7 +26,7 @@ Label sync will fail with a `422: Validation Failed` error if a label configurat
 - `description`: 100
   - Note: `description` is truncated at ~45 (depending on width) characters in the labeling menu, so make sure the meaning of the label is clear to the maintainer from the visible subset of the description.
 
-### Standardized label colors
+#### Standardized label colors
 
 These colors have good contrast. When possible, follow the conventions established in the universal labels for the general meaning associated the colors.
 
@@ -46,12 +45,22 @@ These colors have good contrast. When possible, follow the conventions establish
 - `#ff00ff`
 - `#c0c0c0`
 
-#### Notes
+##### Notes
 
 - Remove the `#` from the hex color code before adding it to the `color` field of the labels definition file.
 - Black and white should not be used due to lacking contrast with the GitHub page background colors (light and dark themes).
 
-## Readme badge
+#### Shared labels
+
+Configuration files for labels that are applicable to multiple projects are hosted [here](assets/sync-labels).
+
+Add the file name to the `jobs.download.strategy.matrix.filename[]` array in the workflow.
+
+#### Project-specific labels
+
+The configuration file for labels that only apply to the specific project should be located in `.github/label-configuration-files/`
+
+### Readme badge
 
 Markdown badge:
 

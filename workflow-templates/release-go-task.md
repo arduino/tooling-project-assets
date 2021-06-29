@@ -1,12 +1,16 @@
 # "Release" workflow (Go, Task)
 
-Workflow file: [`release-go-task.yml`](release-go-task.yml)
-
 Make a production release of the [Go](https://golang.org/) project.
 
 This is the version of the workflow for projects using the [Task](https://taskfile.dev/#/) task runner tool.
 
-## Assets
+## Installation
+
+### Workflow
+
+Install the [`release-go-task.yml`](release-go-task.yml) GitHub Actions workflow to `.github/workflows/`
+
+### Assets
 
 - [`Taskfile.yml`](assets/release-go-task/Taskfile.yml) - [variables](https://taskfile.dev/#/usage?id=variables) providing project-specific data to the build system.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
@@ -16,7 +20,29 @@ This is the version of the workflow for projects using the [Task](https://taskfi
   - Install to: repository root
 - [Installation script and documentation](../other/installation-script/README.md)
 
-## Configuration
+### Configuration
+
+#### Taskfile
+
+The following project-specific variables must be set in `Taskfile.yml`:
+
+- `env.PROJECT_NAME`
+- `env.AWS_PLUGIN_TARGET`
+
+#### Workflow
+
+The following project-specific variables must be set in `release-go-task.yml`:
+
+- `PROJECT_NAME`
+
+#### gon
+
+The following project-specific variables must be set in `gon.config.hcl`:
+
+- `source`
+- `bundle_id`
+
+#### Repository secrets
 
 The following [repository secrets](https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository) must be defined:
 
@@ -29,7 +55,7 @@ The following [repository secrets](https://docs.github.com/en/actions/reference/
 - `AWS_ACCESS_KEY_ID` - [AWS access key ID](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) for the downloads server.
 - `AWS_SECRET_ACCESS_KEY` - [AWS secret access key](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) for the downloads server.
 
-## Readme badge
+### Readme badge
 
 Markdown badge:
 

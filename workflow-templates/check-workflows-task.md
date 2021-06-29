@@ -1,17 +1,21 @@
 # "Check Workflows" workflow (Task)
 
-Workflow file: [`check-workflows-task.yml`](check-workflows-task.yml)
-
 Validate the repository's GitHub Actions workflows against the JSON schema.
 
 This is the version of the workflow for projects using the [Task](https://taskfile.dev/#/) task runner tool.
 
-## Assets
+## Installation
+
+### Workflow
+
+Install the [`check-workflows-task.yml`](check-workflows-task.yml) GitHub Actions workflow to `.github/workflows/`
+
+### Assets
 
 - [`Taskfile.yml`](assets/check-workflows-task/Taskfile.yml) - workflow validation task.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 
-## Readme badge
+### Readme badge
 
 Markdown badge:
 

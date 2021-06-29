@@ -1,21 +1,25 @@
 # "Publish Tester Build" workflow (Go, Task)
 
-Workflow file: [`publish-go-tester-task.yml`](publish-go-tester-task.yml)
-
 Publish tester builds of a [Go](https://golang.org/) project as [GitHub Actions workflow artifacts](https://docs.github.com/en/actions/guides/storing-workflow-data-as-artifacts) for every commit to a pull request or the repository.
 
 This makes it possible for any interested party to participate in beta testing without setting up a build system locally.
 
 This is the version of the workflow for projects using the [Task](https://taskfile.dev/#/) task runner tool.
 
-## Assets
+## Installation
+
+### Workflow
+
+Install the [`publish-go-tester-task.yml`](publish-go-tester-task.yml) GitHub Actions workflow to `.github/workflows/`
+
+### Assets
 
 - [`Taskfile.yml`](assets/release-go-task/Taskfile.yml) - [variables](https://taskfile.dev/#/usage?id=variables) providing project-specific data to the build system.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`DistTasks.yml`](assets/release-go-task/DistTasks.yml) - general purpose tasks for making production builds of Go projects.
   - Install to: repository root
 
-## Readme badge
+### Readme badge
 
 Markdown badge:
 
