@@ -20,7 +20,7 @@ Install the [`deploy-mkdocs-versioned-poetry.yml`](deploy-mkdocs-versioned-poetr
 ### Assets
 
 - Base assets - See the ["Deploy Website" workflow (MkDocs, Poetry) documentation](deploy-mkdocs-poetry.md#assets)
-- [`siteversion`](assets/deploy-mkdocs-versioned/siteversion/) - versioning helper script.
+- [`siteversion.py`](assets/deploy-mkdocs-versioned/siteversion/siteversion.py) - versioning helper script.
   - Install to: `docs/siteversion/`
 
 ### Dependencies
