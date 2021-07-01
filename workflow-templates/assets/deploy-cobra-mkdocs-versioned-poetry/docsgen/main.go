@@ -1,4 +1,4 @@
-// This file is part of arduino-cli.
+// Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/deploy-cobra-mkdocs-versioned-poetry/docsgen/main.go
 //
 // Copyright 2020 ARDUINO SA (http://www.arduino.cc/)
 //

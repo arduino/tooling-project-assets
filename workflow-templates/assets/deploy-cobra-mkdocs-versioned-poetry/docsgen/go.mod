@@ -1,3 +1,4 @@
+// Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/deploy-cobra-mkdocs-versioned-poetry/docsgen/go.mod
 module github.com/arduino/arduino-lint/docsgen
 
 go 1.14
