@@ -1,0 +1,14 @@
+version: "3"
+
+tasks:
+  docs:gen:
+    desc: Generate command reference
+    dir: ./docsgen
+    cmds:
+      # docs will generate examples using os.Args[0] so we need to call
+      # the generator `arduino-lint`
+      - go build -o arduino-lint{{exeExt}}
+      # we invoke `arduino-lint` like this instead of `./arduino-lint` to remove
+      # the `./` chars from the examples
+      - PATH=. arduino-lint ../docs/commands
+      - task: docs:format
