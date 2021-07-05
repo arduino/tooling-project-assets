@@ -25,7 +25,7 @@ indent_style = space
 indent_size = 2
 indent_style = space
 
-[*.go]
+[*.{go,mod}]
 indent_style = tab
 
 [*.java]

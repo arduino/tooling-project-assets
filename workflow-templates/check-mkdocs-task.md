@@ -24,6 +24,12 @@ See [the "Deploy Website" (MkDocs, Poetry) workflow documentation](deploy-mkdocs
 
 ### Configuration
 
+#### Taskfile
+
+Add any documentation generation processes to the `docs:generate` umbrella task.
+
+#### MkDocs
+
 See [the "Deploy Website" (MkDocs, Poetry) workflow documentation](deploy-mkdocs-poetry.md#configuration)
 
 ### Readme badge
