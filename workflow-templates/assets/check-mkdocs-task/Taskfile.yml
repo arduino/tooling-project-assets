@@ -2,10 +2,16 @@
 version: "3"
 
 tasks:
+  docs:generate:
+    desc: Create all generated documentation content
+    # This is an "umbrella" task used to call any documentation generation processes the project has.
+    # It can be left empty if there are none.
+
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-mkdocs-task/Taskfile.yml
   website:check:
     desc: Check whether the MkDocs-based website will build
     deps:
+      - task: docs:generate
       - task: poetry:install-deps
     cmds:
       - poetry run mkdocs build --strict
@@ -14,6 +20,7 @@ tasks:
   website:serve:
     desc: Run website locally
     deps:
+      - task: docs:generate
       - task: poetry:install-deps
     cmds:
       - poetry run mkdocs serve

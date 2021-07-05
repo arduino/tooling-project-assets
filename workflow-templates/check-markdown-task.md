@@ -28,6 +28,10 @@ The code style defined in `.markdownlint.yml` is the official standardized style
 
 ### Configuration
 
+#### Taskfile
+
+Add any documentation generation processes to the `docs:generate` umbrella task.
+
 #### markdownlint
 
 In the event the repository contains externally maintained Markdown files, `markdownlint` can be configured to ignore them via a `.markdownlintignore` file:
