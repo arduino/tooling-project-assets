@@ -1,11 +1,12 @@
 // Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/deploy-cobra-mkdocs-versioned-poetry/docsgen/go.mod
-module github.com/arduino/arduino-lint/docsgen
+// TODO: replace MODULE_NAME with the project's module name
+module MODULE_NAME/docsgen
 
 go 1.14
 
-replace github.com/arduino/arduino-lint => ../
+replace MODULE_NAME => ../
 
 require (
-	github.com/arduino/arduino-lint v0.0.0
+	MODULE_NAME v0.0.0
 	github.com/spf13/cobra v1.1.1
 )

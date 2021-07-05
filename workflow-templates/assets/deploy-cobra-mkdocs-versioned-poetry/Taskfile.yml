@@ -1,15 +1,16 @@
 version: "3"
 
+vars:
+  PROJECT_NAME: TODO
+
 tasks:
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/deploy-cobra-mkdocs-versioned-poetry/Taskfile.yml
   docs:gen:
     desc: Generate command reference
     dir: ./docsgen
     cmds:
-      # docs will generate examples using os.Args[0] so we need to call
-      # the generator `arduino-lint`
-      - go build -o arduino-lint{{exeExt}}
-      # we invoke `arduino-lint` like this instead of `./arduino-lint` to remove
-      # the `./` chars from the examples
-      - PATH=. arduino-lint ../docs/commands
+      # Command examples use os.Args[0] so the docs generation binary must have the same filename as the project
+      - go build -o {{.PROJECT_NAME}}{{exeExt}}
+      # The binary is invoked like this instead of `./{{.PROJECT_NAME}}` to remove the `./` chars from the examples
+      - PATH=. {{.PROJECT_NAME}} ../docs/commands
       - task: docs:format
