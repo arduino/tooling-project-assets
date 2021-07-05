@@ -27,7 +27,7 @@ Install the [`deploy-mkdocs-versioned-poetry.yml`](deploy-mkdocs-versioned-poetr
 
 ### Define base dependencies
 
-See the ["Deploy Website" workflow (MkDocs, Poetry) documentation](deploy-mkdocs-poetry.md#installation) for the instructions to install the base dependencies
+See the ["Deploy Website" workflow (MkDocs, Poetry) documentation](deploy-mkdocs-poetry.md#dependencies) for the instructions to install the base dependencies
 
 ### Define additional dependencies
 
