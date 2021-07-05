@@ -12,7 +12,7 @@ Install the [`check-mkdocs-task.yml`](check-mkdocs-task.yml) GitHub Actions work
 
 ### Assets
 
-- [`Taskfile.yml`](assets/check-yaml-task/Taskfile.yml) - Build task.
+- [`Taskfile.yml`](assets/check-mkdocs-task/Taskfile.yml) - Build task.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`Taskfile.yml`](assets/shared/Taskfile.yml) - Installation task.
   - Merge into `Taskfile.yml`
