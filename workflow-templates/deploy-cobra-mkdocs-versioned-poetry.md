@@ -27,7 +27,7 @@ Install the [`deploy-cobra-mkdocs-versioned-poetry.yml`](deploy-cobra-mkdocs-ver
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`Taskfile.yml`](assets/check-prettier-formatting/Taskfile.yml) - documentation formatting task.
   - Merge into `Taskfile.yml`
-- [`docsgen`](assets/deploy-cobra-mkdocs-versioned-poetry/docsgen) - command line reference generator.
+- [`docsgen`](assets/cobra/docsgen) - command line reference generator.
   - Install to: `docsgen/`
 
 ### Dependencies
@@ -44,8 +44,8 @@ If there are any additional documentation generation tasks, add them to the `doc
 
 #### `docsgen`
 
-- [`go.mod`](assets/deploy-cobra-mkdocs-versioned-poetry/docsgen/go.mod) - replace `MODULE_NAME` with the project's module name.
-- [`main.go`](assets/deploy-cobra-mkdocs-versioned-poetry/docsgen/main.go) - replace `CLI_PACKAGE_NAME` with the project's Cobra CLI package name
+- [`go.mod`](assets/cobra/docsgen/go.mod) - replace `MODULE_NAME` with the project's module name.
+- [`main.go`](assets/cobra/docsgen/main.go) - replace `CLI_PACKAGE_NAME` with the project's Cobra CLI package name
 
 Run the following command from the `docsgen/` folder:
 

@@ -14,7 +14,7 @@ Install the [`test-python-poetry-task.yml`](test-python-poetry-task.yml) GitHub 
 
 - [`Taskfile.yml`](assets/test-python-poetry-task/Taskfile.yml) - Test runner task.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
-- [`Taskfile.yml`](assets/shared/Taskfile.yml) - Installation task.
+- [`Taskfile.yml`](assets/poetry-task/Taskfile.yml) - Installation task.
   - Merge into `Taskfile.yml`
 - [`__init__.py`](assets/test-python/__init__.py) - Python module file.
   - Install to: `tests/`

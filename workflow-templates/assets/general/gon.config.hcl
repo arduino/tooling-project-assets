@@ -1,4 +1,4 @@
-# Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/release-go-task/gon.config.hcl
+# Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/general/gon.config.hcl
 # See: https://github.com/mitchellh/gon#configuration-file
 source = [TODO]
 bundle_id = TODO

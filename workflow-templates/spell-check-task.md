@@ -16,7 +16,7 @@ Install the [spell-check-task.yml](spell-check-task.yml) GitHub Actions workflow
   - Install to: repository root
 - [`Taskfile.yml`](assets/spell-check-task/Taskfile.yml) - spell check and spelling correction tasks.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
-- [`Taskfile.yml`](assets/shared/Taskfile.yml) - Installation task.
+- [`Taskfile.yml`](assets/poetry-task/Taskfile.yml) - Installation task.
   - Merge into `Taskfile.yml`
 
 ### Dependencies
