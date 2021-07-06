@@ -10,11 +10,11 @@ Install the [`check-general-formatting-task.yml`](check-general-formatting-task.
 
 ### Assets
 
-- [`.editorconfig`](assets/shared/.editorconfig)
+- [`.editorconfig`](assets/general/.editorconfig)
   - Install to: repository root
 - [`Taskfile.yml`](assets/check-general-formatting-task/Taskfile.yml) - formatting check [task](https://taskfile.dev/).
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
-- [`.ecrc`](assets/check-general-formatting-task/.ecrc) - editorconfig-checker configuration file.
+- [`.ecrc`](assets/check-general-formatting/.ecrc) - editorconfig-checker configuration file.
   - Install to: repository root
 
 The formatting style defined in `.editorconfig` is the official standardized style to be used in all Arduino tooling projects and should not be modified.

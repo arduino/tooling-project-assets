@@ -16,7 +16,7 @@ Install the [`check-shell-task.yml`](check-shell-task.yml) GitHub Actions workfl
 
 ### Assets
 
-- [`.editorconfig`](assets/shared/.editorconfig) - `shfmt` will use this [configuration file](https://editorconfig.org/).
+- [`.editorconfig`](assets/general/.editorconfig) - `shfmt` will use this [configuration file](https://editorconfig.org/).
   - Install to: repository root
 - [`Taskfile.yml`](assets/check-prettier-formatting-task/Taskfile.yml] - Tasks for checking shell scripts.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).

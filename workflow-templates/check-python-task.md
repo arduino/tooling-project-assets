@@ -16,7 +16,7 @@ Install the [`check-python-task.yml`](check-python-task.yml) GitHub Actions work
   - Install to: repository root
 - [`Taskfile.yml`](assets/check-python-task/Taskfile.yml) - Python linting and formatting tasks.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
-- [`Taskfile.yml`](assets/shared/Taskfile.yml) - Installation task.
+- [`Taskfile.yml`](assets/poetry-task/Taskfile.yml) - Installation task.
   - Merge into `Taskfile.yml`
 
 The code style defined in `pyproject.toml` and `.flake8` is the official standardized style to be used in all Arduino tooling projects and should not be modified.

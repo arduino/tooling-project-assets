@@ -2,13 +2,13 @@
 version: "3"
 
 tasks:
-  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/shared/Taskfile.yml
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/poetry-task/Taskfile.yml
   poetry:install-deps:
     desc: Install dependencies managed by Poetry
     cmds:
       - poetry install --no-root
 
-  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/shared/Taskfile.yml
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/poetry-task/Taskfile.yml
   poetry:update-deps:
     desc: Update all dependencies managed by Poetry to their newest versions
     cmds:

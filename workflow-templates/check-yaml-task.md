@@ -18,7 +18,7 @@ Install the [check-yaml-task.yml](check-yaml-task.yml) GitHub Actions workflow t
   - Install to: repository root
 - [`Taskfile.yml`](assets/check-yaml-task/Taskfile.yml) - Linting task.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
-- [`Taskfile.yml`](assets/shared/Taskfile.yml) - Installation task.
+- [`Taskfile.yml`](assets/poetry-task/Taskfile.yml) - Installation task.
   - Merge into `Taskfile.yml`
 
 The code style defined in this file is the official standardized style to be used in all Arduino tooling projects and should not be modified.

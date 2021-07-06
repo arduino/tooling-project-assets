@@ -16,7 +16,7 @@ Install the [`release-go-task.yml`](release-go-task.yml) GitHub Actions workflow
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`DistTasks.yml`](assets/release-go-task/DistTasks.yml) - general purpose tasks for making production builds of Go projects.
   - Install to: repository root
-- [`gon.config.hcl`](assets/shared/gon.config.hcl) - [gon](https://github.com/mitchellh/gon) configuration file for macOS signing and notarization.
+- [`gon.config.hcl`](assets/general/gon.config.hcl) - [gon](https://github.com/mitchellh/gon) configuration file for macOS signing and notarization.
   - Install to: repository root
 - [Installation script and documentation](../other/installation-script/README.md)
 

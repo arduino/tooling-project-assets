@@ -14,7 +14,7 @@ Install the [`test-go-integration-task.yml`](test-go-integration-task.yml) GitHu
 
 - [`Taskfile.yml`](assets/test-go-integration-task/Taskfile.yml) - Test runner task.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
-- [`Taskfile.yml`](assets/shared/go/Taskfile.yml) - Build task.
+- [`Taskfile.yml`](assets/go-task/Taskfile.yml) - Build task.
   - Merge into `Taskfile.yml`.
 - [`__init__.py`](assets/test-python/__init__.py) - Template for Python integration tests.
   - Install to: `tests/`

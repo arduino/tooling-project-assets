@@ -1,4 +1,4 @@
-# Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/shared/.editorconfig
+# Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/general/.editorconfig
 # See: https://editorconfig.org/
 # The formatting style defined in this file is the official standardized style to be used in all Arduino Tooling
 # projects and should not be modified.
