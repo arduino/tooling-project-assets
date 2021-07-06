@@ -18,8 +18,12 @@ tasks:
           --output-document="{{.WORKFLOW_SCHEMA_PATH}}" \
           {{.WORKFLOW_SCHEMA_URL}}
       - |
-        npx ajv-cli validate \
-          --all-errors \
-          --strict=false \
-          -s "{{.WORKFLOW_SCHEMA_PATH}}" \
-          -d "{{.WORKFLOWS_DATA_PATH}}"
+        npx \
+          --package=ajv-cli \
+          --package=ajv-formats \
+          ajv validate \
+            --all-errors \
+            --strict=false \
+            -c ajv-formats \
+            -s "{{.WORKFLOW_SCHEMA_PATH}}" \
+            -d "{{.WORKFLOWS_DATA_PATH}}"
