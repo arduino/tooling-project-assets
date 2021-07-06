@@ -43,6 +43,7 @@ jobs:
         run: |
           # See: https://github.com/ajv-validator/ajv-cli#readme
           ajv validate \
+            --all-errors \
             -s "${{ steps.download-schema.outputs.file-path }}" \
             -d "${{ env.CONFIGURATIONS_FOLDER }}/*.{yml,yaml}"
 
