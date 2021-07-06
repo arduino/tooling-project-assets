@@ -29,8 +29,6 @@ Install the [`deploy-cobra-mkdocs-versioned-poetry.yml`](deploy-cobra-mkdocs-ver
   - Merge into `Taskfile.yml`
 - [`docsgen`](assets/deploy-cobra-mkdocs-versioned-poetry/docsgen) - command line reference generator.
   - Install to: `docsgen/`
-- [`.gitkeep`](assets/deploy-cobra-mkdocs-versioned-poetry/.gitkeep) - empty placeholder file to preserve the generated documentation's target folder in the repository.
-  - Install to: `docs/commands/`
 
 ### Dependencies
 
