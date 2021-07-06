@@ -25,7 +25,7 @@ Install the [`deploy-cobra-mkdocs-versioned-poetry.yml`](deploy-cobra-mkdocs-ver
 - Base assets - See the ["Deploy Website" workflow (versioned, MkDocs, Poetry) documentation](deploy-mkdocs-versioned-poetry.md#assets)
 - [`Taskfile.yml`](assets/deploy-cobra-mkdocs-versioned-poetry/Taskfile.yml) - documentation generation tasks.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
-- [`Taskfile.yml`](assets/check-prettier-formatting/Taskfile.yml) - documentation formatting task.
+- [`Taskfile.yml`](assets/check-prettier-formatting-task/Taskfile.yml) - documentation formatting task.
   - Merge into `Taskfile.yml`
 - [`docsgen`](assets/deploy-cobra-mkdocs-versioned-poetry/docsgen) - command line reference generator.
   - Install to: `docsgen/`
