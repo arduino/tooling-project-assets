@@ -48,14 +48,14 @@ Define the `{repository-owner}` and `{repository-name}` attributes and use them 
 ## Commit message
 
 ```
-Add CI workflow to check for missed updates to readme ToC
+Add CI workflow to check for missed updates to generated ToC
 
-On every push or pull request that affects the repository's README.md, check whether the table of contents matches the
-content.
+On every push or pull request that affects the repository's Markdown files that contain a generated table of contents,
+check whether the table of contents matches the file structure.
 ```
 
 ## PR message
 
 ```markdown
-On every push or pull request that affects the repository's `README.md`, use [markdown-toc](https://github.com/jonschlinkert/markdown-toc) to check whether the table of contents matches the content.
+On every push or pull request that affects the repository's Markdown files that contain a generated table of contents, use [markdown-toc](https://github.com/jonschlinkert/markdown-toc) to check whether the table of contents matches the file structure.
 ```
