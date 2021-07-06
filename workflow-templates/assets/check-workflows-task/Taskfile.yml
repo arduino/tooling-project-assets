@@ -19,6 +19,7 @@ tasks:
           {{.WORKFLOW_SCHEMA_URL}}
       - |
         npx ajv-cli validate \
+          --all-errors \
           --strict=false \
           -s "{{.WORKFLOW_SCHEMA_PATH}}" \
           -d "{{.WORKFLOWS_DATA_PATH}}"

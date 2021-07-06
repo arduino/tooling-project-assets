@@ -142,11 +142,13 @@ tasks:
           {{.WORKFLOW_SCHEMA_URL}}
       - |
         npx ajv-cli validate \
+          --all-errors \
           --strict=false \
           -s "{{.WORKFLOW_SCHEMA_PATH}}" \
           -d "{{.WORKFLOWS_DATA_PATH}}"
       - |
         npx ajv-cli validate \
+          --all-errors \
           --strict=false \
           -s "{{.WORKFLOW_SCHEMA_PATH}}" \
           -d "{{.TEMPLATE_WORKFLOWS_DATA_PATH}}"
@@ -172,10 +174,23 @@ tasks:
       MARKDOWNLINT_DATA_PATH: "**/.markdownlint.{yml,yaml}"
     cmds:
       - wget --quiet --output-document="{{.DEPENDABOT_SCHEMA_PATH}}" {{.DEPENDABOT_SCHEMA_URL}}
-      - npx ajv-cli@{{.AJV_CLI_VERSION}} validate -s "{{.DEPENDABOT_SCHEMA_PATH}}" -d "{{.DEPENDABOT_DATA_PATH}}"
-      - npx ajv-cli validate -s "{{.LABEL_CONFIG_SCHEMA_PATH}}" -d "{{.LABEL_CONFIG_DATA_PATH}}"
+      - |
+        npx ajv-cli@{{.AJV_CLI_VERSION}} validate \
+          --all-errors \
+          -s "{{.DEPENDABOT_SCHEMA_PATH}}" \
+          -d "{{.DEPENDABOT_DATA_PATH}}"
+      - |
+        npx ajv-cli validate \
+          --all-errors \
+          -s "{{.LABEL_CONFIG_SCHEMA_PATH}}" \
+          -d "{{.LABEL_CONFIG_DATA_PATH}}"
       - wget --quiet --output-document="{{.MARKDOWNLINT_SCHEMA_PATH}}" {{.MARKDOWNLINT_SCHEMA_URL}}
-      - npx ajv-cli validate --allow-union-types -s "{{.MARKDOWNLINT_SCHEMA_PATH}}" -d "{{.MARKDOWNLINT_DATA_PATH}}"
+      - |
+        npx ajv-cli validate \
+          --all-errors \
+          --allow-union-types \
+          -s "{{.MARKDOWNLINT_SCHEMA_PATH}}" \
+          -d "{{.MARKDOWNLINT_DATA_PATH}}"
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-markdown-task/Taskfile.yml
   markdown:lint:

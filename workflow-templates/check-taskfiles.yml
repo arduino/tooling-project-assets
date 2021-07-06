@@ -49,6 +49,7 @@ jobs:
         run: |
           # See: https://github.com/ajv-validator/ajv-cli#readme
           ajv validate \
+            --all-errors \
             --strict=false \
             -s "${{ steps.download-schema.outputs.file-path }}" \
             -d "${{ matrix.file }}"
