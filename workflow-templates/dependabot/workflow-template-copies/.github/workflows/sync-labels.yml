@@ -37,13 +37,18 @@ jobs:
           location: ${{ runner.temp }}/label-configuration-schema
 
       - name: Install JSON schema validator
-        run: sudo npm install --global ajv-cli
+        run: |
+          sudo npm install \
+            --global \
+            ajv-cli \
+            ajv-formats
 
       - name: Validate local labels configuration
         run: |
           # See: https://github.com/ajv-validator/ajv-cli#readme
           ajv validate \
             --all-errors \
+            -c ajv-formats \
             -s "${{ steps.download-schema.outputs.file-path }}" \
             -d "${{ env.CONFIGURATIONS_FOLDER }}/*.{yml,yaml}"
 

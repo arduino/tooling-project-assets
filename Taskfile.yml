@@ -141,17 +141,25 @@ tasks:
           --output-document="{{.WORKFLOW_SCHEMA_PATH}}" \
           {{.WORKFLOW_SCHEMA_URL}}
       - |
-        npx ajv-cli validate \
-          --all-errors \
-          --strict=false \
-          -s "{{.WORKFLOW_SCHEMA_PATH}}" \
-          -d "{{.WORKFLOWS_DATA_PATH}}"
+        npx \
+          --package=ajv-cli \
+          --package=ajv-formats \
+          ajv validate \
+            --all-errors \
+            --strict=false \
+            -c ajv-formats \
+            -s "{{.WORKFLOW_SCHEMA_PATH}}" \
+            -d "{{.WORKFLOWS_DATA_PATH}}"
       - |
-        npx ajv-cli validate \
-          --all-errors \
-          --strict=false \
-          -s "{{.WORKFLOW_SCHEMA_PATH}}" \
-          -d "{{.TEMPLATE_WORKFLOWS_DATA_PATH}}"
+        npx \
+          --package=ajv-cli \
+          --package=ajv-formats \
+          ajv validate \
+            --all-errors \
+            --strict=false \
+            -c ajv-formats \
+            -s "{{.WORKFLOW_SCHEMA_PATH}}" \
+            -d "{{.TEMPLATE_WORKFLOWS_DATA_PATH}}"
 
   config:validate:
     desc: Validate configuration files against their JSON schema
@@ -180,17 +188,27 @@ tasks:
           -s "{{.DEPENDABOT_SCHEMA_PATH}}" \
           -d "{{.DEPENDABOT_DATA_PATH}}"
       - |
-        npx ajv-cli validate \
-          --all-errors \
-          -s "{{.LABEL_CONFIG_SCHEMA_PATH}}" \
-          -d "{{.LABEL_CONFIG_DATA_PATH}}"
+        npx \
+          --package=ajv-cli \
+          --package=ajv-formats \
+          ajv validate \
+            --all-errors \
+            --strict=false \
+            -c ajv-formats \
+            -s "{{.LABEL_CONFIG_SCHEMA_PATH}}" \
+            -d "{{.LABEL_CONFIG_DATA_PATH}}"
       - wget --quiet --output-document="{{.MARKDOWNLINT_SCHEMA_PATH}}" {{.MARKDOWNLINT_SCHEMA_URL}}
       - |
-        npx ajv-cli validate \
-          --all-errors \
-          --allow-union-types \
-          -s "{{.MARKDOWNLINT_SCHEMA_PATH}}" \
-          -d "{{.MARKDOWNLINT_DATA_PATH}}"
+        npx \
+          --package=ajv-cli \
+          --package=ajv-formats \
+          ajv validate \
+            --all-errors \
+            --strict=false \
+            --allow-union-types \
+            -c ajv-formats \
+            -s "{{.MARKDOWNLINT_SCHEMA_PATH}}" \
+            -d "{{.MARKDOWNLINT_DATA_PATH}}"
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-markdown-task/Taskfile.yml
   markdown:lint:
