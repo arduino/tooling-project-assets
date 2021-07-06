@@ -80,7 +80,8 @@ jobs:
           # See: https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#adding-a-system-path
           echo "${{ env.INSTALL_PATH }}/$EXTRACTION_FOLDER" >> "$GITHUB_PATH"
 
-      - uses: liskin/gh-problem-matcher-wrap@v1
+      - name: Run ShellCheck
+        uses: liskin/gh-problem-matcher-wrap@v1
         continue-on-error: ${{ matrix.configuration.continue-on-error }}
         with:
           linters: gcc
