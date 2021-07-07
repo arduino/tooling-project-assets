@@ -72,7 +72,9 @@ jobs:
       - name: Pass configuration files to next job via workflow artifact
         uses: actions/upload-artifact@v2
         with:
-          path: "*.ya?ml"
+          path: |
+            *.yaml
+            *.yml
           if-no-files-found: error
           name: ${{ env.CONFIGURATIONS_ARTIFACT }}
 
