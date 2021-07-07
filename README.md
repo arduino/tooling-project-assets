@@ -5,6 +5,7 @@
 [![Check License status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-license.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-license.yml)
 [![Check Workflow Duplicates Sync status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-dependabot-sync.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-dependabot-sync.yml)
 [![Check CI Workflows Sync status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-ci-sync.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-ci-sync.yml)
+[![Check Community Health Files Sync status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-community-health-sync.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-community-health-sync.yml)
 [![Check Configuration Files Sync status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-config-sync.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-config-sync.yml)
 [![Check Markdown status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-markdown-task.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-markdown-task.yml)
 [![Check Prettier Formatting status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-prettier-formatting-task.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-prettier-formatting-task.yml)
@@ -14,6 +15,9 @@
 [![Check Workflows status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-workflows-task.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-workflows-task.yml)
 [![Spell Check status](https://github.com/arduino/tooling-project-assets/actions/workflows/spell-check-task.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/spell-check-task.yml)
 [![Check Python status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-python-task.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-python-task.yml)
+[![Test Python status](https://github.com/arduino/tooling-project-assets/actions/workflows/test-python-poetry-task.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/test-python-poetry-task.yml)
+[![Check Shell Scripts status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-shell-task.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-shell-task.yml)
+[![Test install script status](https://github.com/arduino/tooling-project-assets/actions/workflows/test-install-script.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/test-install-script.yml)
 
 The [Arduino](https://www.arduino.cc/) Tooling Team's collection of reusable project infrastructure assets.
 
