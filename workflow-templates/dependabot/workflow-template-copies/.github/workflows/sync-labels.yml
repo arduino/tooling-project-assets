@@ -115,7 +115,8 @@ jobs:
       - name: Merge label configuration files
         run: |
           # Merge all configuration files
-          cat "${{ env.CONFIGURATIONS_FOLDER }}"/*.{yml,yaml} > "${{ env.MERGED_CONFIGURATION_PATH }}"
+          shopt -s extglob
+          cat "${{ env.CONFIGURATIONS_FOLDER }}"/*.@(yml|yaml) > "${{ env.MERGED_CONFIGURATION_PATH }}"
 
       - name: Install github-label-sync
         run: sudo npm install --global github-label-sync
