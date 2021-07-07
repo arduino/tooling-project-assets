@@ -1,6 +1,6 @@
 # Tooling Project Assets
 
-[![Check Configuration Files status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-configuration-files.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-configuration-files.yml)
+[![Check Configuration Files status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-configs.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-configs.yml)
 [![Check General Formatting status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-general-formatting-task.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-general-formatting-task.yml)
 [![Check License status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-license.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-license.yml)
 [![Check Workflow Duplicates Sync status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-dependabot-sync.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-dependabot-sync.yml)
