@@ -20,6 +20,8 @@ Install the [`test-python-poetry-task.yml`](test-python-poetry-task.yml) GitHub 
   - Install to: `tests/`
 - [`pytest.ini`](assets/test-python/pytest.ini) - [pytest](https://pytest.org) configuration file.
   - Install to: `tests/`
+- [`.gitignore`](assets/python/.gitignore)
+  - Install to: repository root (or merge into the existing `.gitignore`).
 
 ### Dependencies
 

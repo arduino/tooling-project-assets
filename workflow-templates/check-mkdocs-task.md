@@ -16,6 +16,8 @@ Install the [`check-mkdocs-task.yml`](check-mkdocs-task.yml) GitHub Actions work
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`Taskfile.yml`](assets/poetry-task/Taskfile.yml) - Installation task.
   - Merge into `Taskfile.yml`
+- [`.gitignore`](assets/check-mkdocs-task/.gitignore)
+  - Install to: repository root (or merge into the existing `.gitignore`).
 - Website assets - See [the "Deploy Website" (MkDocs, Poetry) workflow documentation](deploy-mkdocs-poetry.md#assets).
 
 ### Dependencies

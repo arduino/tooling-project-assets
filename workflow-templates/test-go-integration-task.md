@@ -57,6 +57,18 @@ Configure the version of Python used for development of the project in the `env.
 
 Define the project's executable filename in the `executable_path` variable in `test_all.py`.
 
+#### `.gitignore`
+
+Add the following to `.gitignore`:
+
+```
+__pycache__/
+<application executable>
+<application executable>.exe
+```
+
+(where "`<application executable>`" is the filename of the Go application's executable)
+
 ### Readme badge
 
 Markdown badge:
