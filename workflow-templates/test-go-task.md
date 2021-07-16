@@ -19,7 +19,20 @@ Install the [`test-go-task.yml`](test-go-task.yml) GitHub Actions workflow to `.
 
 ### Configuration
 
+#### Workflow
+
 Configure the version of Go used for development of the project in the `env.GO_VERSION` field of `test-go-task.yml`.
+
+#### `.gitignore`
+
+Add the following to `.gitignore`:
+
+```
+<application executable>
+<application executable>.exe
+```
+
+(where "`<application executable>`" is the filename of the Go application's executable)
 
 ### Readme badge
 
