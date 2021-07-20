@@ -29,7 +29,7 @@ The following project-specific variables must be set in `Taskfile.yml`:
 - `PROJECT_NAME`
 - `CONFIGURATION_PACKAGE`
 
-`CONFIGURATION_PACKAGE` must be set to the golang module contatining the version metadata for the project. For example for the following file: https://github.com/arduino/mdns-discovery/blob/master/version/version.go the `CONFIGURATION_PACKAGE` field must be set to the value: `github.com/arduino/mdns-discovery/version`.
+`CONFIGURATION_PACKAGE` must be set to the golang package containing the version metadata for the project. For example for the following file: https://github.com/arduino/mdns-discovery/blob/master/version/version.go the `CONFIGURATION_PACKAGE` field must be set to the value: `github.com/arduino/mdns-discovery/version`.
 
 #### Workflow
 
