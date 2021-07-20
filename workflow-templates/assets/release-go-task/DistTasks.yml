@@ -251,4 +251,3 @@ tasks:
       CONTAINER_TAG: "{{.GO_VERSION}}-darwin-debian10"
       PACKAGE_PLATFORM: "macOS_64bit"
       PACKAGE_NAME: "{{.PROJECT_NAME}}_{{.VERSION}}_{{.PACKAGE_PLATFORM}}.tar.gz"
-
