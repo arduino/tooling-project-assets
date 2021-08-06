@@ -33,7 +33,7 @@ jobs:
       SCRIPT_FOLDER: other/installation-script
 
     steps:
-      - name: Checkout local repository
+      - name: Checkout repository
         uses: actions/checkout@v2
 
       - name: Configure script for testing
