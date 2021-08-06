@@ -116,7 +116,16 @@ jobs:
         run: git diff --color --exit-code
 
   check-config:
+    name: check-config (${{ matrix.module.path }})
     runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+
+      matrix:
+        module:
+          # TODO: add paths of all Go modules here
+          - path: ./
 
     steps:
       - name: Checkout repository
@@ -128,6 +137,7 @@ jobs:
           go-version: ${{ env.GO_VERSION }}
 
       - name: Run go mod tidy
+        working-directory: ${{ matrix.module.path }}
         run: go mod tidy
 
       - name: Check whether any tidying was needed
