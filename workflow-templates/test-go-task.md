@@ -40,9 +40,11 @@ Markdown badge:
 
 ```markdown
 [![Test Go status](https://github.com/REPO_OWNER/REPO_NAME/actions/workflows/test-go-task.yml/badge.svg)](https://github.com/REPO_OWNER/REPO_NAME/actions/workflows/test-go-task.yml)
+[![Codecov](https://codecov.io/gh/REPO_OWNER/REPO_NAME/branch/main/graph/badge.svg)](https://codecov.io/gh/REPO_OWNER/REPO_NAME)
 ```
 
-Replace the `REPO_OWNER` and `REPO_NAME` placeholders in the URLs with the final repository owner and name ([example](https://raw.githubusercontent.com/arduino-libraries/ArduinoIoTCloud/master/README.md)).
+- Replace the `REPO_OWNER` and `REPO_NAME` placeholders in the URLs with the final repository owner and name ([example](https://raw.githubusercontent.com/arduino-libraries/ArduinoIoTCloud/master/README.md)).
+- If the coverage badge should reflect the coverage for a branch named something other than `main`, adjust the badge URL accordingly.
 
 ---
 
@@ -50,9 +52,11 @@ Asciidoc badge:
 
 ```adoc
 image:https://github.com/{repository-owner}/{repository-name}/actions/workflows/test-go-task.yml/badge.svg["Test Go status", link="https://github.com/{repository-owner}/{repository-name}/actions/workflows/test-go-task.yml"]
+image:https://codecov.io/gh/{repository-owner}/{repository-name}/branch/main/graph/badge.svg["Codecov", link="https://codecov.io/gh/{repository-owner}/{repository-name}"]
 ```
 
-Define the `{repository-owner}` and `{repository-name}` attributes and use them throughout the readme ([example](https://raw.githubusercontent.com/arduino-libraries/WiFiNINA/master/README.adoc)).
+- Define the `{repository-owner}` and `{repository-name}` attributes and use them throughout the readme ([example](https://raw.githubusercontent.com/arduino-libraries/WiFiNINA/master/README.adoc)).
+- If the coverage badge should reflect the coverage for a branch named something other than `main`, adjust the badge URL accordingly.
 
 ## Commit message
 
