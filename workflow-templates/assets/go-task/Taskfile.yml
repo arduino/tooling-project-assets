@@ -2,6 +2,8 @@
 version: "3"
 
 vars:
+  DEFAULT_GO_PACKAGES:
+    sh: echo $(go list ./... | tr '\n' ' ')
   LDFLAGS:
 
 tasks:

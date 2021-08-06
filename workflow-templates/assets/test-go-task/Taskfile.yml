@@ -1,10 +1,6 @@
 # See: https://taskfile.dev/#/usage
 version: "3"
 
-vars:
-  DEFAULT_GO_PACKAGES:
-    sh: echo $(go list ./... | tr '\n' ' ')
-
 tasks:
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/test-go-task/Taskfile.yml
   go:test:
