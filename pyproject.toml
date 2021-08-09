@@ -15,7 +15,7 @@ yamllint = "^v1.26.2"
 codespell = "^2.1.0"
 black = "^21.7b0"
 flake8 = "^3.9.2"
-pep8-naming = "^0.12.0"
+pep8-naming = "^0.12.1"
 pytest = "^6.2.4"
 GitPython = "^3.1.20"
 
