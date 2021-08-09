@@ -9,6 +9,7 @@ tasks:
     desc: Create all generated documentation content
     deps:
       - task: go:cli-docs
+    cmds:
       # Make the formatting consistent with the non-generated Markdown
       - task: general:format-prettier
 
