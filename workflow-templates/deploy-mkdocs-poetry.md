@@ -43,7 +43,7 @@ Commit the resulting `pyproject.toml` and `poetry.lock` files.
 
 #### Workflow
 
-The workflow is configured for repositories that host the website source content in a branch named `main`. If the project uses a different branch, adjust the `on.push.branches[]` value in `check-workflows-task.yml`.
+The workflow is configured for repositories that host the website source content in a branch named `main`. If the project uses a different branch, adjust the `on.push.branches[]` value in `deploy-mkdocs-poetry.yml`.
 
 #### MkDocs
 
