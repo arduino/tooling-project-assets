@@ -11,8 +11,8 @@ on:
     paths:
       - ".github/workflows/test-go-task.ya?ml"
       - "codecov.ya?ml"
-      - "go.mod"
-      - "go.sum"
+      - "**/go.mod"
+      - "**/go.sum"
       - "Taskfile.ya?ml"
       - "**.go"
       - "**/testdata/**"
@@ -20,8 +20,8 @@ on:
     paths:
       - ".github/workflows/test-go-task.ya?ml"
       - "codecov.ya?ml"
-      - "go.mod"
-      - "go.sum"
+      - "**/go.mod"
+      - "**/go.sum"
       - "Taskfile.ya?ml"
       - "**.go"
       - "**/testdata/**"
@@ -30,12 +30,20 @@ on:
 
 jobs:
   test:
+    name: test (${{ matrix.module.path }} - ${{ matrix.operating-system }})
+
     strategy:
+      fail-fast: false
+
       matrix:
         operating-system:
           - ubuntu-latest
           - windows-latest
           - macos-latest
+        module:
+          # TODO: add paths of all Go modules here
+          - path: ./
+            codecov-flags: unit
 
     runs-on: ${{ matrix.operating-system }}
 
@@ -55,12 +63,14 @@ jobs:
           version: 3.x
 
       - name: Run tests
+        env:
+          GO_MODULE_PATH: ${{ matrix.module.path }}
         run: task go:test
 
       - name: Send unit tests coverage to Codecov
         if: matrix.operating-system == 'ubuntu-latest'
         uses: codecov/codecov-action@v2
         with:
-          file: ./coverage_unit.txt
-          flags: unit
+          file: ${{ matrix.module.path }}coverage_unit.txt
+          flags: ${{ matrix.module.codecov-flags }}
           fail_ci_if_error: true

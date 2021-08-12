@@ -11,22 +11,31 @@ on:
     paths:
       - ".github/workflows/check-go-task.ya?ml"
       - "Taskfile.ya?ml"
-      - "go.mod"
-      - "go.sum"
+      - "**/go.mod"
+      - "**/go.sum"
       - "**.go"
   pull_request:
     paths:
       - ".github/workflows/check-go-task.ya?ml"
       - "Taskfile.ya?ml"
-      - "go.mod"
-      - "go.sum"
+      - "**/go.mod"
+      - "**/go.sum"
       - "**.go"
   workflow_dispatch:
   repository_dispatch:
 
 jobs:
   check-errors:
+    name: check-errors (${{ matrix.module.path }})
     runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+
+      matrix:
+        module:
+          # TODO: add paths of all Go modules here
+          - path: ./
 
     steps:
       - name: Checkout repository
@@ -44,10 +53,21 @@ jobs:
           version: 3.x
 
       - name: Check for errors
+        env:
+          GO_MODULE_PATH: ${{ matrix.module.path }}
         run: task go:vet
 
   check-outdated:
+    name: check-outdated (${{ matrix.module.path }})
     runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+
+      matrix:
+        module:
+          # TODO: add paths of all Go modules here
+          - path: ./
 
     steps:
       - name: Checkout repository
@@ -65,13 +85,24 @@ jobs:
           version: 3.x
 
       - name: Modernize usages of outdated APIs
+        env:
+          GO_MODULE_PATH: ${{ matrix.module.path }}
         run: task go:fix
 
       - name: Check if any fixes were needed
         run: git diff --color --exit-code
 
   check-style:
+    name: check-style (${{ matrix.module.path }})
     runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+
+      matrix:
+        module:
+          # TODO: add paths of all Go modules here
+          - path: ./
 
     steps:
       - name: Checkout repository
@@ -92,10 +123,21 @@ jobs:
         run: go install golang.org/x/lint/golint@latest
 
       - name: Check style
+        env:
+          GO_MODULE_PATH: ${{ matrix.module.path }}
         run: task --silent go:lint
 
   check-formatting:
+    name: check-formatting (${{ matrix.module.path }})
     runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+
+      matrix:
+        module:
+          # TODO: add paths of all Go modules here
+          - path: ./
 
     steps:
       - name: Checkout repository
@@ -113,6 +155,8 @@ jobs:
           version: 3.x
 
       - name: Format code
+        env:
+          GO_MODULE_PATH: ${{ matrix.module.path }}
         run: task go:format
 
       - name: Check formatting
