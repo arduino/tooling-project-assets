@@ -19,6 +19,14 @@ Install the [`check-go-task.yml`](check-go-task.yml) GitHub Actions workflow to 
 
 Configure the version of Go used for development of the project in the `env.GO_VERSION` field of `check-go-task.yml`.
 
+If the project contains Go modules in paths other than the root of the repository, add their paths to the [job matrices](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix) of `check-go-task.yml` at:
+
+- `jobs.check-errors.strategy.matrix.module[].path`
+- `jobs.check-outdated.strategy.matrix.module[].path`
+- `jobs.check-style.strategy.matrix.module[].path`
+- `jobs.check-formatting.strategy.matrix.module[].path`
+- `jobs.check-config.strategy.matrix.module[].path`
+
 ### Readme badge
 
 Markdown badge:

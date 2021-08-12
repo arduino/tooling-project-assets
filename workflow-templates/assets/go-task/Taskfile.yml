@@ -3,7 +3,8 @@ version: "3"
 
 vars:
   DEFAULT_GO_PACKAGES:
-    sh: echo $(go list ./... | tr '\n' ' ')
+    sh: |
+      echo $(cd {{default "./" .GO_MODULE_PATH}} && go list ./... | tr '\n' ' ' || echo '"ERROR: Unable to discover Go packages"')
   LDFLAGS:
 
 tasks:
