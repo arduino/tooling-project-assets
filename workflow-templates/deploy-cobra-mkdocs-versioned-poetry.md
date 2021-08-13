@@ -64,7 +64,7 @@ See the ["Deploy Website" workflow (versioned, MkDocs, Poetry) documentation](de
 The system is configured for the repository branch used as the source for the "dev" website version having the name `main`. If the project's development branch has another name, then configure it:
 
 - `on.push.branches[0]` in `deploy-cobra-mkdocs-versioned-poetry.yml`
-- `DEV_BRANCHES` in [`siteversion/siteversion.py`](assets/deploy-mkdocs-versioned/siteversion/siteversion.py)
+- `DEV_BRANCHES` in [`docs/siteversion/siteversion.py`](assets/deploy-mkdocs-versioned/siteversion/siteversion.py)
 
 #### Configure `.gitignore`
 
