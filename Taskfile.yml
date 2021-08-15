@@ -90,6 +90,7 @@ tasks:
     cmds:
       - |
         cp \
+          "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/check-general-formatting/.ecrc" \
           "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/general/.editorconfig" \
           "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/check-python/.flake8" \
           "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/check-markdown/.markdownlint.yml" \
