@@ -12,7 +12,7 @@ Install the [`check-go-task.yml`](check-go-task.yml) GitHub Actions workflow to 
 
 - [`Taskfile.yml`](assets/check-go-task/Taskfile.yml) - Linting and formatting [tasks](https://taskfile.dev/).
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
-- [`Taskfile.yml`](assets/go-task/Taskfile.yml) - `DEFAULT_GO_PACKAGES` variable
+- [`Taskfile.yml`](assets/go-task/Taskfile.yml) - `DEFAULT_GO_MODULE_PATH` and `DEFAULT_GO_PACKAGES` variables
   - Merge into `Taskfile.yml`
 
 ### Configuration

@@ -14,7 +14,7 @@ Install the [`test-go-task.yml`](test-go-task.yml) GitHub Actions workflow to `.
 
 - [`Taskfile.yml`](assets/test-go-task/Taskfile.yml)
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
-- [`Taskfile.yml`](assets/go-task/Taskfile.yml) - `DEFAULT_GO_PACKAGES` variable
+- [`Taskfile.yml`](assets/go-task/Taskfile.yml) - `DEFAULT_GO_MODULE_PATH` and `DEFAULT_GO_PACKAGES` variables
   - Merge into `Taskfile.yml`
 
 ### Configuration
