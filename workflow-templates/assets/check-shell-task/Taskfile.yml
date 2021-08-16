@@ -3,17 +3,6 @@ version: "3"
 
 tasks:
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-shell-task/Taskfile.yml
-  shell:format:
-    desc: Format shell script files
-    cmds:
-      - |
-        if ! which shfmt &>/dev/null; then
-          echo "shfmt not installed or not in PATH. Please install: https://github.com/mvdan/sh#shfmt"
-          exit 1
-        fi
-      - shfmt -w .
-
-  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-shell-task/Taskfile.yml
   shell:check:
     desc: Check for problems with shell scripts
     cmds:
@@ -69,3 +58,14 @@ tasks:
             \)
         )"
         exit $EXIT_STATUS
+
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-shell-task/Taskfile.yml
+  shell:format:
+    desc: Format shell script files
+    cmds:
+      - |
+        if ! which shfmt &>/dev/null; then
+          echo "shfmt not installed or not in PATH. Please install: https://github.com/mvdan/sh#shfmt"
+          exit 1
+        fi
+      - shfmt -w .
