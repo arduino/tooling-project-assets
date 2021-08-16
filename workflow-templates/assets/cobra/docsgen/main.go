@@ -31,6 +31,7 @@ func main() {
 
 	os.MkdirAll(os.Args[1], 0755) // Create the output folder if it doesn't already exist
 
+	// TODO: Replace `cli.NewCommand()` with the project's Cobra CLI package function for command root
 	cli := cli.NewCommand()
 	cli.DisableAutoGenTag = true // Disable addition of auto-generated date stamp
 	err := doc.GenMarkdownTree(cli, os.Args[1])

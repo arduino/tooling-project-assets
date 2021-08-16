@@ -45,7 +45,9 @@ If there are any additional documentation generation tasks, add them to the `doc
 #### `docsgen`
 
 - [`go.mod`](assets/cobra/docsgen/go.mod) - replace `MODULE_NAME` with the project's module name.
-- [`main.go`](assets/cobra/docsgen/main.go) - replace `CLI_PACKAGE_NAME` with the project's Cobra CLI package name
+- [`main.go`](assets/cobra/docsgen/main.go)
+  - replace `CLI_PACKAGE_NAME` with the project's Cobra CLI package name
+  - replace `cli.NewCommand()` with the project's Cobra CLI package function for [command root](https://github.com/spf13/cobra/blob/master/user_guide.md#create-rootcmd) generation
 
 Run the following command from the `docsgen/` folder:
 
