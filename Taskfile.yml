@@ -1,66 +1,33 @@
 version: "3"
 
 tasks:
-  fix:
-    desc: Make automated corrections to the project's files
-    deps:
-      - task: ci:sync
-      - task: config:sync
-      - task: dependabot:sync
-      - task: github:sync
-      - task: markdown:fix
-      - task: general:format-prettier
-      - task: general:correct-spelling
-      - task: python:format
-      - task: shell:format
-
   check:
     desc: Check for problems with the project
     deps:
-      - task: general:check-formatting
       - task: ci:validate
-      - task: general:check-spelling
       - task: config:validate
-      - task: markdown:lint
+      - task: general:check-formatting
+      - task: general:check-spelling
       - task: markdown:check-links
+      - task: markdown:lint
       - task: python:lint
       - task: python:test
       - task: shell:check
       - task: shell:check-mode
       - task: yaml:lint
 
-  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-prettier-formatting-task/Taskfile.yml
-  general:format-prettier:
-    desc: Format all supported files with Prettier
-    cmds:
-      - npx prettier --write .
-
-  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-general-formatting-task/Taskfile.yml
-  general:check-formatting:
-    desc: Check basic formatting style of all files
-    cmds:
-      - |
-        if ! which ec &>/dev/null; then
-          echo "ec not found or not in PATH. Please install: https://github.com/editorconfig-checker/editorconfig-checker#installation"
-          exit 1
-        fi
-      - ec
-
-  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/spell-check-task/Taskfile.yml
-  general:check-spelling:
-    desc: Check for commonly misspelled words
+  fix:
+    desc: Make automated corrections to the project's files
     deps:
-      - task: poetry:install-deps
-    cmds:
-      - poetry run codespell
-
-  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/spell-check-task/Taskfile.yml
-  general:correct-spelling:
-    desc: Correct commonly misspelled words where possible
-    deps:
-      - task: poetry:install-deps
-    cmds:
-      - poetry run codespell --write-changes
+      - task: ci:sync
+      - task: config:sync
+      - task: dependabot:sync
+      - task: general:correct-spelling
+      - task: general:format-prettier
+      - task: github:sync
+      - task: markdown:fix
+      - task: python:format
+      - task: shell:format
 
   ci:sync:
     desc: Sync CI workflows from templates
@@ -81,49 +48,6 @@ tasks:
           "{{.WORKFLOW_TEMPLATES_PATH}}/spell-check-task.yml" \
           "{{.WORKFLOW_TEMPLATES_PATH}}/test-python-poetry-task.yml" \
           "{{.WORKFLOWS_PATH}}"
-
-  config:sync:
-    desc: Sync configuration files from templates
-    vars:
-      REPOSITORY_ROOT_PATH: "./"
-      WORKFLOW_TEMPLATE_ASSETS_PATH: "./workflow-templates/assets"
-    cmds:
-      - |
-        cp \
-          "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/check-general-formatting/.ecrc" \
-          "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/general/.editorconfig" \
-          "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/check-python/.flake8" \
-          "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/check-markdown/.markdownlint.yml" \
-          "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/check-yaml/.yamllint.yml" \
-          "{{.REPOSITORY_ROOT_PATH}}"
-
-  dependabot:sync:
-    desc: Sync workflow duplicates for dependabot checks
-    vars:
-      WORKFLOW_TEMPLATES_PATH: "./workflow-templates"
-      WORKFLOW_TEMPLATE_COPIES_PATH: "./workflow-templates/dependabot/workflow-template-copies/.github/workflows"
-    cmds:
-      # Sync workflow templates with the copies in the folder where Dependabot can check them for updates.
-      - mkdir --parents "{{.WORKFLOW_TEMPLATE_COPIES_PATH}}"
-      - rm --force "{{.WORKFLOW_TEMPLATE_COPIES_PATH}}"/*
-      - |
-        find "{{.WORKFLOW_TEMPLATES_PATH}}" \
-          -maxdepth 1 \
-          -type f \
-          -regex '.*\.ya?ml' \
-          -exec cp '{}' "{{.WORKFLOW_TEMPLATE_COPIES_PATH}}" \;
-
-  github:sync:
-    desc: Sync GitHub community health files
-    vars:
-      ISSUE_TEMPLATES_INSTALLATION_PATH: "./.github/ISSUE_TEMPLATE"
-      ISSUE_TEMPLATES_PATH: "./issue-templates"
-    cmds:
-      - |
-        cp \
-          "{{.ISSUE_TEMPLATES_PATH}}/minimal/bug-report.md" \
-          "{{.ISSUE_TEMPLATES_PATH}}/minimal/feature-request.md" \
-          "{{.ISSUE_TEMPLATES_INSTALLATION_PATH}}"
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-workflows-task/Taskfile.yml
   ci:validate:
@@ -161,6 +85,21 @@ tasks:
             -c ajv-formats \
             -s "{{.WORKFLOW_SCHEMA_PATH}}" \
             -d "{{.TEMPLATE_WORKFLOWS_DATA_PATH}}"
+
+  config:sync:
+    desc: Sync configuration files from templates
+    vars:
+      REPOSITORY_ROOT_PATH: "./"
+      WORKFLOW_TEMPLATE_ASSETS_PATH: "./workflow-templates/assets"
+    cmds:
+      - |
+        cp \
+          "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/check-general-formatting/.ecrc" \
+          "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/general/.editorconfig" \
+          "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/check-python/.flake8" \
+          "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/check-markdown/.markdownlint.yml" \
+          "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/check-yaml/.yamllint.yml" \
+          "{{.REPOSITORY_ROOT_PATH}}"
 
   config:validate:
     desc: Validate configuration files against their JSON schema
@@ -211,17 +150,66 @@ tasks:
             -s "{{.MARKDOWNLINT_SCHEMA_PATH}}" \
             -d "{{.MARKDOWNLINT_DATA_PATH}}"
 
-  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-markdown-task/Taskfile.yml
-  markdown:lint:
-    desc: Check for problems in Markdown files
+  dependabot:sync:
+    desc: Sync workflow duplicates for dependabot checks
+    vars:
+      WORKFLOW_TEMPLATES_PATH: "./workflow-templates"
+      WORKFLOW_TEMPLATE_COPIES_PATH: "./workflow-templates/dependabot/workflow-template-copies/.github/workflows"
     cmds:
-      - npx markdownlint-cli "**/*.md"
+      # Sync workflow templates with the copies in the folder where Dependabot can check them for updates.
+      - mkdir --parents "{{.WORKFLOW_TEMPLATE_COPIES_PATH}}"
+      - rm --force "{{.WORKFLOW_TEMPLATE_COPIES_PATH}}"/*
+      - |
+        find "{{.WORKFLOW_TEMPLATES_PATH}}" \
+          -maxdepth 1 \
+          -type f \
+          -regex '.*\.ya?ml' \
+          -exec cp '{}' "{{.WORKFLOW_TEMPLATE_COPIES_PATH}}" \;
 
-  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-markdown-task/Taskfile.yml
-  markdown:fix:
-    desc: Automatically correct linting violations in Markdown files where possible
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-general-formatting-task/Taskfile.yml
+  general:check-formatting:
+    desc: Check basic formatting style of all files
     cmds:
-      - npx markdownlint-cli --fix "**/*.md"
+      - |
+        if ! which ec &>/dev/null; then
+          echo "ec not found or not in PATH. Please install: https://github.com/editorconfig-checker/editorconfig-checker#installation"
+          exit 1
+        fi
+      - ec
+
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/spell-check-task/Taskfile.yml
+  general:check-spelling:
+    desc: Check for commonly misspelled words
+    deps:
+      - task: poetry:install-deps
+    cmds:
+      - poetry run codespell
+
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/spell-check-task/Taskfile.yml
+  general:correct-spelling:
+    desc: Correct commonly misspelled words where possible
+    deps:
+      - task: poetry:install-deps
+    cmds:
+      - poetry run codespell --write-changes
+
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-prettier-formatting-task/Taskfile.yml
+  general:format-prettier:
+    desc: Format all supported files with Prettier
+    cmds:
+      - npx prettier --write .
+
+  github:sync:
+    desc: Sync GitHub community health files
+    vars:
+      ISSUE_TEMPLATES_INSTALLATION_PATH: "./.github/ISSUE_TEMPLATE"
+      ISSUE_TEMPLATES_PATH: "./issue-templates"
+    cmds:
+      - |
+        cp \
+          "{{.ISSUE_TEMPLATES_PATH}}/minimal/bug-report.md" \
+          "{{.ISSUE_TEMPLATES_PATH}}/minimal/feature-request.md" \
+          "{{.ISSUE_TEMPLATES_INSTALLATION_PATH}}"
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-markdown-task/Taskfile.yml
   markdown:check-links:
@@ -264,6 +252,18 @@ tasks:
           '
         fi
 
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-markdown-task/Taskfile.yml
+  markdown:fix:
+    desc: Automatically correct linting violations in Markdown files where possible
+    cmds:
+      - npx markdownlint-cli --fix "**/*.md"
+
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-markdown-task/Taskfile.yml
+  markdown:lint:
+    desc: Check for problems in Markdown files
+    cmds:
+      - npx markdownlint-cli "**/*.md"
+
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/poetry-task/Taskfile.yml
   poetry:install-deps:
     desc: Install dependencies managed by Poetry
@@ -276,12 +276,13 @@ tasks:
     cmds:
       - poetry update
 
-  python:test:
-    desc: Run Python tests
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-python-task/Taskfile.yml
+  python:format:
+    desc: Format Python files
     deps:
       - task: poetry:install-deps
     cmds:
-      - poetry run pytest workflow-templates/assets/deploy-mkdocs-versioned/siteversion/tests
+      - poetry run black .
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-python-task/Taskfile.yml
   python:lint:
@@ -291,24 +292,12 @@ tasks:
     cmds:
       - poetry run flake8 --show-source
 
-  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-python-task/Taskfile.yml
-  python:format:
-    desc: Format Python files
+  python:test:
+    desc: Run Python tests
     deps:
       - task: poetry:install-deps
     cmds:
-      - poetry run black .
-
-  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-shell-task/Taskfile.yml
-  shell:format:
-    desc: Format shell script files
-    cmds:
-      - |
-        if ! which shfmt &>/dev/null; then
-          echo "shfmt not installed or not in PATH. Please install: https://github.com/mvdan/sh#shfmt"
-          exit 1
-        fi
-      - shfmt -w .
+      - poetry run pytest workflow-templates/assets/deploy-mkdocs-versioned/siteversion/tests
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-shell-task/Taskfile.yml
   shell:check:
@@ -366,6 +355,17 @@ tasks:
             \)
         )"
         exit $EXIT_STATUS
+
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-shell-task/Taskfile.yml
+  shell:format:
+    desc: Format shell script files
+    cmds:
+      - |
+        if ! which shfmt &>/dev/null; then
+          echo "shfmt not installed or not in PATH. Please install: https://github.com/mvdan/sh#shfmt"
+          exit 1
+        fi
+      - shfmt -w .
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-yaml-task/Taskfile.yml
   yaml:lint:
