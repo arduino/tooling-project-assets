@@ -18,8 +18,8 @@ package main
 import (
 	"os"
 
-	// TODO: Replace CLI_PACKAGE_NAME with the project's Cobra CLI package name
-	"CLI_PACKAGE_NAME"
+	// TODO: Replace CLI_PACKAGE_NAME with the project's Cobra CLI package import path
+	cli "CLI_PACKAGE_NAME"
 	"github.com/spf13/cobra/doc"
 )
 
@@ -31,7 +31,8 @@ func main() {
 
 	os.MkdirAll(os.Args[1], 0755) // Create the output folder if it doesn't already exist
 
-	cli := cli.Root()
+	// TODO: Replace `cli.NewCommand()` with the project's Cobra CLI package function for command root
+	cli := cli.NewCommand()
 	cli.DisableAutoGenTag = true // Disable addition of auto-generated date stamp
 	err := doc.GenMarkdownTree(cli, os.Args[1])
 	if err != nil {
