@@ -1,0 +1,64 @@
+# Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/release-tag.md
+name: Release
+
+on:
+  push:
+    tags:
+      - "v?[0-9]+.[0-9]+.[0-9]+*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    env:
+      # See: https://github.com/fsaintjacques/semver-tool/releases
+      SEMVER_TOOL_VERSION: 3.2.0
+
+    steps:
+      - name: Set environment variables
+        run: |
+          # See: https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-environment-variable
+          echo "CHANGELOG_PATH=${{ runner.temp }}/CHANGELOG.md" >> "$GITHUB_ENV"
+          echo "SEMVER_TOOL_PATH=${{ runner.temp }}/semver" >> "$GITHUB_ENV"
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Create changelog
+        uses: arduino/create-changelog@v1
+        with:
+          tag-regex: '^v?[0-9]+\.[0-9]+\.[0-9]+.*$'
+          filter-regex: '^\[(skip|changelog)[ ,-](skip|changelog)\].*'
+          case-insensitive-regex: true
+          changelog-file-path: ${{ env.CHANGELOG_PATH }}
+
+      - name: Download semver tool
+        id: download-semver-tool
+        uses: carlosperate/download-file-action@v1.0.3
+        with:
+          file-url: https://github.com/fsaintjacques/semver-tool/archive/${{ env.SEMVER_TOOL_VERSION }}.zip
+          location: ${{ runner.temp }}/semver-tool
+
+      - name: Install semver tool
+        run: |
+          unzip \
+            -p \
+            "${{ steps.download-semver-tool.outputs.file-path }}" \
+            semver-tool-${{ env.SEMVER_TOOL_VERSION }}/src/semver > \
+              "${{ env.SEMVER_TOOL_PATH }}"
+          chmod +x "${{ env.SEMVER_TOOL_PATH }}"
+
+      - name: Identify Prerelease
+        id: prerelease
+        run: |
+          if [[ "$("${{ env.SEMVER_TOOL_PATH }}" get prerel "${GITHUB_REF/refs\/tags\//}")" ]]; then echo "::set-output name=IS_PRE::true"; fi
+
+      - name: Create Github release
+        uses: ncipollo/release-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          bodyFile: ${{ env.CHANGELOG_PATH }}
+          draft: false
+          prerelease: ${{ steps.prerelease.outputs.IS_PRE }}
