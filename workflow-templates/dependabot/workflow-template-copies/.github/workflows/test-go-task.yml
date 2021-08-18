@@ -68,7 +68,7 @@ jobs:
         run: task go:test
 
       - name: Send unit tests coverage to Codecov
-        if: matrix.operating-system == 'ubuntu-latest'
+        if: runner.os == 'Linux'
         uses: codecov/codecov-action@v2
         with:
           file: ${{ matrix.module.path }}coverage_unit.txt
