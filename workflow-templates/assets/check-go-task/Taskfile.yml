@@ -3,13 +3,6 @@ version: "3"
 
 tasks:
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-go-task/Taskfile.yml
-  go:check:
-    desc: Check for problems with Go code
-    deps:
-      - task: go:vet
-      - task: go:lint
-
-  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-go-task/Taskfile.yml
   go:fix:
     desc: Modernize usages of outdated APIs
     dir: "{{default .DEFAULT_GO_MODULE_PATH .GO_MODULE_PATH}}"
