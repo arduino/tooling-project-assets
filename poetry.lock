@@ -297,7 +297,7 @@ python-versions = "*"
 
 [[package]]
 name = "yamllint"
-version = "1.26.2"
+version = "1.26.3"
 description = "A linter for YAML files."
 category = "dev"
 optional = false
@@ -310,7 +310,7 @@ pyyaml = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "0f6cdc1637ea91cc19e813426f24e4508189d9aa9aa2d4e7918582925443a808"
+content-hash = "1de955c726d6abd7113620fbf7e0b524f48d077d8cab4683f699eaa3132fb802"
 
 [metadata.files]
 appdirs = [
@@ -497,5 +497,5 @@ typing-extensions = [
     {file = "typing_extensions-3.10.0.0.tar.gz", hash = "sha256:50b6f157849174217d0656f99dc82fe932884fb250826c18350e159ec6cdf342"},
 ]
 yamllint = [
-    {file = "yamllint-1.26.2.tar.gz", hash = "sha256:0b08a96750248fdf21f1e8193cb7787554ef75ed57b27f621cd6b3bf09af11a1"},
+    {file = "yamllint-1.26.3.tar.gz", hash = "sha256:3934dcde484374596d6b52d8db412929a169f6d9e52e20f9ade5bf3523d9b96e"},
 ]
