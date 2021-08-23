@@ -33,14 +33,14 @@ https://python-poetry.org/docs/#installation
 If your project does not already use Poetry, you can initialize the [`pyproject.toml`](https://python-poetry.org/docs/pyproject/) file using these commands:
 
 ```
-poetry init --python="^3.9" --dev-dependency="yamllint@^1.26.2"
+poetry init --python="^3.9" --dev-dependency="yamllint@^1.26.3"
 poetry install
 ```
 
 If already using Poetry, add the tool using this command:
 
 ```
-poetry add --dev "yamllint@^1.26.2"
+poetry add --dev "yamllint@^1.26.3"
 ```
 
 Commit the resulting `pyproject.toml` and `poetry.lock` files.
