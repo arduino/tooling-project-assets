@@ -7,6 +7,8 @@ vars:
   DEFAULT_GO_PACKAGES:
     sh: |
       echo $(cd {{default .DEFAULT_GO_MODULE_PATH .GO_MODULE_PATH}} && go list ./... | tr '\n' ' ' || echo '"ERROR: Unable to discover Go packages"')
+  # `-ldflags` flag to use for `go build` command
+  # TODO: define flag if required by the project, or leave empty if not needed.
   LDFLAGS:
 
 tasks:
