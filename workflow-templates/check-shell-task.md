@@ -18,7 +18,7 @@ Install the [`check-shell-task.yml`](check-shell-task.yml) GitHub Actions workfl
 
 - [`.editorconfig`](assets/general/.editorconfig) - `shfmt` will use this [configuration file](https://editorconfig.org/).
   - Install to: repository root
-- [`Taskfile.yml`](assets/check-shell-task/Taskfile.yml] - Tasks for checking shell scripts.
+- [`Taskfile.yml`](assets/check-shell-task/Taskfile.yml) - Tasks for checking shell scripts.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 
 The formatting style defined in `.editorconfig` is the official standardized style to be used in all Arduino tooling projects and should not be modified.
