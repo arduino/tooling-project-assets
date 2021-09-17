@@ -1,0 +1,38 @@
+# See: https://github.com/github/licensed/blob/master/docs/configuration.md
+
+# Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-dependencies/LGPL-2.1/.licensed.yml
+allowed:
+  # The following are based on: https://www.gnu.org/licenses/quick-guide-gplv3.html#new-compatible-licenses
+  - zlib
+  - mit
+  - bsd-3-clause
+  - isc
+  - cc0-1.0
+  - cc-pddc
+  - unlicense
+  - x11
+  - lgpl-2.0-or-later
+  - lgpl-2.0+ # Deprecated ID for `lgpl-2.0-or-later`
+  - lgpl-2.1-only
+  - lgpl-2.1 # Deprecated ID for `lgpl-2.1-only`
+  - lgpl-2.1-or-later
+  - lgpl-2.1+ # Deprecated ID for `lgpl-2.1-or-later`
+  - lgpl-3.0-only
+  - lgpl-3.0 # Deprecated ID for `lgpl-3.0-only`
+  - lgpl-3.0-or-later
+  - lgpl-3.0+ # Deprecated ID for `lgpl-3.0-or-later`
+  # The following are based on: https://www.gnu.org/licenses/license-list.html#GPLCompatibleLicenses
+  - fsfap
+  - artistic-2.0
+  - bsd-2-clause # Subsumed by `bsd-2-clause-views`
+  - bsd-2-clause-netbsd # Deprecated ID for `bsd-2-clause`
+  - bsd-2-clause-views # This is the version linked from https://www.gnu.org/licenses/license-list.html#FreeBSD
+  - bsd-2-clause-freebsd # Deprecated ID for `bsd-2-clause-views`
+  - mpl-2.0
+  - sgi-b-2.0
+  - wtfpl
+  - lgpl-2.0-or-later with wxwindows-exception-3.1
+  - wxwindows # Deprecated ID for `lgpl-2.0-or-later with wxwindows-exception-3.1`
+  # The following are based on individual license text
+  - eupl-1.2
+  - liliq-r-1.1
