@@ -77,7 +77,7 @@
   description: Assistance from the community is especially welcome
 - name: "topic: infrastructure"
   color: "00ffff"
-  description: Related to repository infrastructure
+  description: Related to project infrastructure
   aliases:
     - dependencies
 - name: "topic: code"
