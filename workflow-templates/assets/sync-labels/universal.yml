@@ -78,6 +78,8 @@
 - name: "topic: infrastructure"
   color: "00ffff"
   description: Related to repository infrastructure
+  aliases:
+    - dependencies
 - name: "topic: code"
   color: "00ffff"
   description: Related to content of the project itself
