@@ -52,7 +52,7 @@ GitHub's license detection system uses the popular licensee tool, so this file a
 for any other usages of licensee, as well as to human readers of the file.
 
 For this reason, and to ensure it remains a valid legal instrument, it's important that there be no non-standard
-modifications to the license file or collisions with other supported licence files. This workflow ensures that any
+modifications to the license file or collisions with other supported license files. This workflow ensures that any
 changes which would change the license type or which license file is used by the detection are caught automatically.
 ```
 
@@ -65,5 +65,5 @@ GitHub has a useful [automated license detection system](https://docs.github.com
 
 GitHub's license detection system uses the popular licensee tool, so this file also serves to define the license type for any other usages of licensee, as well as to human readers of the file.
 
-For this reason, and to ensure it remains a valid legal instrument, it's important that there be no non-standard modifications to the license file or collisions with other supported licence files. This workflow ensures that any changes which would change the license type or which license file is used by the detection are caught automatically.
+For this reason, and to ensure it remains a valid legal instrument, it's important that there be no non-standard modifications to the license file or collisions with other supported license files. This workflow ensures that any changes which would change the license type or which license file is used by the detection are caught automatically.
 ```
