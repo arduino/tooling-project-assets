@@ -10,6 +10,12 @@
 - name: "os: macos"
   color: "800080"
   description: Specific to macOS operating system
+- name: "phase: design"
+  color: d876e3
+  description: Work is in the design phase
+- name: "phase: implementation"
+  color: d876e3
+  description: Work is in the implementation phase
 - name: "architecture: arm"
   color: ff00ff
   description: Specific to ARM host architecture
