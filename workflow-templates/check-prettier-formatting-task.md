@@ -22,6 +22,8 @@ Install the [`check-prettier-formatting-task.yml`](check-prettier-formatting-tas
 
 - [`Taskfile.yml`](assets/check-prettier-formatting-task/Taskfile.yml) - Formatting task.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
+- [`.prettierignore`](assets/check-prettier-formatting/.prettierignore) - ignore paths configuration file.
+  - Install to: repository root.
 
 ### Configuration
 
