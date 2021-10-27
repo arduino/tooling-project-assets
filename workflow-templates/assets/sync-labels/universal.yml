@@ -31,9 +31,23 @@
 - name: "conclusion: resolved"
   color: "00ff00"
   description: Issue was resolved
+- name: "criticality: highest"
+  color: "ff0000"
+  description: Of highest impact
+- name: "criticality: high"
+  color: "ffa200"
+  description: Of high impact
+- name: "criticality: medium"
+  color: "ffff00"
+  description: Of moderate impact
+- name: "criticality: low"
+  color: "c0c0c0"
+  description: Of low impact
 - name: "priority: high"
   color: "ffa200"
   description: Resolution is a high priority
+  notes: |
+    Distinct from the criticality labels in that priority is assigned based on estimated effort in addition to impact.
 - name: "priority: medium"
   color: "ffff00"
   description: Resolution is a medium priority
