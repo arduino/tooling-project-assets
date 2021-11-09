@@ -21,7 +21,8 @@ curl -fsSL https://raw.githubusercontent.com/arduino/REPO_NAME/main/etc/install.
 ```
 
 If you would like to use the `REPO_NAME` command from any location, install PRODUCT_NAME to a directory already in
-your `PATH` or add the PRODUCT_NAME installation path to your `PATH` environment variable.
+your [`PATH`](https://en.wikipedia.org/wiki/PATH%5F%28variable%29) or add the PRODUCT_NAME installation path to your
+`PATH` environment variable.
 
 If you want to download a specific PRODUCT_NAME version, for example `0.9.0` or `nightly-latest`, pass the version
 number as a parameter like this:
