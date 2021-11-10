@@ -1,9 +1,12 @@
 <!-- Source: https://github.com/arduino/tooling-project-assets/blob/main/other/installation-script/installation.md -->
 
+Several options are available for installation of this tool. Instructions for each are provided below:
+
 ## Use the install script
 
-The script requires `sh`, which is always available on Linux and macOS. `sh` is not available by default on Windows. The
-script can be run on Windows by installing [Git for Windows](https://gitforwindows.org/), then running it from Git Bash.
+The script requires `sh`, which is always available on Linux and macOS. `sh` is not available by default on Windows,
+though it is available as part of [Git for Windows](https://gitforwindows.org/) (Git Bash). If you don't have `sh`
+available, use the ["Download" installation option](#download).
 
 This script will install the latest version of PRODUCT_NAME to `$PWD/bin`:
 
@@ -18,7 +21,8 @@ curl -fsSL https://raw.githubusercontent.com/arduino/REPO_NAME/main/etc/install.
 ```
 
 If you would like to use the `REPO_NAME` command from any location, install PRODUCT_NAME to a directory already in
-your `PATH` or add the PRODUCT_NAME installation path to your `PATH` environment variable.
+your [`PATH`](https://en.wikipedia.org/wiki/PATH%5F%28variable%29) or add the PRODUCT_NAME installation path to your
+`PATH` environment variable.
 
 If you want to download a specific PRODUCT_NAME version, for example `0.9.0` or `nightly-latest`, pass the version
 number as a parameter like this:
