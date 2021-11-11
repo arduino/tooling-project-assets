@@ -1,6 +1,6 @@
 <!-- Source: https://github.com/arduino/tooling-project-assets/blob/main/other/installation-script/installation.md -->
 
-Several options are available for installation of this tool. Instructions for each are provided below:
+Several options are available for installation of PRODUCT_NAME. Instructions for each are provided below:
 
 ## Use the install script
 
