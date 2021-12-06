@@ -1,6 +1,6 @@
 {
   "Exclude": [
-    "^\\.licenses/",
+    "^\\.licenses[/\\\\]",
     "^LICENSE\\.txt$",
     "^poetry\\.lock$"
   ]
