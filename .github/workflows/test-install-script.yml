@@ -191,3 +191,78 @@ jobs:
         shell: bash
         run: |
           "${PWD}/bin/${{ env.TOOL_NAME }}" --version | grep "^nightly-"
+
+  path-suggestions:
+    needs: configure
+    strategy:
+      fail-fast: false
+
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Set install path environment variables
+        shell: bash
+        run: |
+          # See: https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-commands-for-github-actions#setting-an-environment-variable
+          FIRST_INSTALLATION_FOLDER="first-installation-folder"
+          echo "FIRST_INSTALLATION_FOLDER=${FIRST_INSTALLATION_FOLDER}" >> "$GITHUB_ENV"
+          echo "FIRST_BINDIR=${{ runner.temp }}/${FIRST_INSTALLATION_FOLDER}" >> "$GITHUB_ENV"
+          SECOND_INSTALLATION_FOLDER="second-installation-folder"
+          echo "SECOND_INSTALLATION_FOLDER=${SECOND_INSTALLATION_FOLDER}" >> "$GITHUB_ENV"
+          echo "SECOND_BINDIR=${{ runner.temp }}/${SECOND_INSTALLATION_FOLDER}" >> "$GITHUB_ENV"
+
+      - name: Download script artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: ${{ env.SCRIPT_ARTIFACT_NAME }}
+
+      - name: Make script executable
+        run: chmod u+x "${{ github.workspace }}/${{ env.SCRIPT_NAME }}"
+
+      - name: Check script output without previous installation in PATH
+        shell: sh
+        env:
+          BINDIR: ${{ env.FIRST_BINDIR }}
+        run: |
+          mkdir -p "${{ env.BINDIR }}"
+          "${{ github.workspace }}/${{ env.SCRIPT_NAME }}" | \
+            grep \
+              -F \
+              '${{ env.TOOL_NAME }} not found. You might want to add "${{ env.FIRST_BINDIR }}" to your $PATH'
+
+      - name: Add first installation to PATH
+        shell: bash
+        run: |
+          # See: https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#adding-a-system-path
+          echo "${{ env.FIRST_BINDIR }}" >> "$GITHUB_PATH"
+
+      - name: Check script output with previous installation in PATH (non-Windows)
+        if: runner.os != 'Windows'
+        shell: sh
+        env:
+          BINDIR: ${{ env.SECOND_BINDIR }}
+        run: |
+          mkdir -p "${{ env.BINDIR }}"
+          "${{ github.workspace }}/${{ env.SCRIPT_NAME }}" | \
+            grep \
+              -F \
+              '${{ env.TOOL_NAME }} was found at ${{ env.FIRST_BINDIR }}/${{ env.TOOL_NAME }}. Please prepend "${{ env.BINDIR }}" to your $PATH'
+
+      # ${{ runner.temp }} is a Windows style path on the windows runner, but the script output uses the equivalent POSIX style path.
+      # So a regex is used for the output check on Windows.
+      - name: Check script output with previous installation in PATH (Windows)
+        if: runner.os == 'Windows'
+        shell: sh
+        env:
+          BINDIR: ${{ env.SECOND_BINDIR }}
+        run: |
+          mkdir -p "${{ env.BINDIR }}"
+          "${{ github.workspace }}/${{ env.SCRIPT_NAME }}" | \
+            grep \
+              '${{ env.TOOL_NAME }} was found at .*/${{ env.FIRST_INSTALLATION_FOLDER }}/${{ env.TOOL_NAME }}\. Please prepend ".*/${{ env.SECOND_INSTALLATION_FOLDER }}" to your \$PATH'
