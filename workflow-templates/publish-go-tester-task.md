@@ -16,7 +16,7 @@ Install the [`publish-go-tester-task.yml`](publish-go-tester-task.yml) GitHub Ac
 
 - [`Taskfile.yml`](assets/release-go-task/Taskfile.yml) - [variables](https://taskfile.dev/#/usage?id=variables) providing project-specific data to the build system.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
-- [`DistTasks.yml`](assets/release-go-task/DistTasks.yml) - general purpose tasks for making production builds of Go projects.
+- [`DistTasks.yml`](assets/release-go-task/DistTasks.yml) - general purpose tasks for making production builds of Go projects using cgo and [elastic docker containers](https://github.com/elastic/golang-crossbuild).
   - Install to: repository root
 
 ### Readme badge
