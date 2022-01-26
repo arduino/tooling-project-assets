@@ -1,4 +1,4 @@
-# "Release" workflow (Go, Task)
+# "Release" workflow (Go, Task, CGO)
 
 Make a production release of the [Go](https://golang.org/) with [CGO](https://go.dev/blog/cgo) enabled, using [elastic docker containers](https://github.com/elastic/golang-crossbuild).
 

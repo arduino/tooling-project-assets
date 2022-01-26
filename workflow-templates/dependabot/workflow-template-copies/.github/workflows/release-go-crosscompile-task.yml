@@ -1,4 +1,4 @@
-# Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/release-go-task.md
+# Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/release-go-crosscompile-task.md
 name: Release
 
 env:

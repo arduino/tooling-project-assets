@@ -1,4 +1,4 @@
-# "Release" workflow (Go, Task)
+# "Release" workflow (Go, Task, Crosscompile)
 
 Make a production release of the [Go](https://golang.org/) project using [Golang crosscompile feature](https://go.dev/doc/install/source#introduction).
 
