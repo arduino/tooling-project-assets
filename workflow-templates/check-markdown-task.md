@@ -21,7 +21,7 @@ Install the [`check-markdown-task.yml`](check-markdown-task.yml) GitHub Actions 
   - Install to: repository root
 - [`.markdownlint.yml`](assets/check-markdown/.markdownlint.yml) - markdownlint configuration file.
   - Install to: repository root
-- [`.markdownlintignore`](assets/check-markdown/.markdownlint.yml) - markdownlint configuration file.
+- [`.markdownlintignore`](assets/check-markdown/.markdownlintignore) - markdownlint configuration file.
   - Install to: repository root
 - [`Taskfile.yml`](assets/check-markdown-task/Taskfile.yml) - Markdown tasks.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
