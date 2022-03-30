@@ -7,18 +7,12 @@
 - name: "conclusion: declined"
   color: "940404"
   description: Will not be worked on
-  aliases:
-    - wontfix
 - name: "conclusion: duplicate"
   color: "ff0000"
   description: Has already been submitted
-  aliases:
-    - duplicate
 - name: "conclusion: invalid"
   color: "ff0000"
   description: Issue/PR not valid
-  aliases:
-    - invalid
 - name: "conclusion: off topic"
   color: "ff0000"
   description: Off topic for this repository
@@ -65,9 +59,6 @@
   description: Do not proceed at this time
 - name: "status: waiting for information"
   color: "ffff00"
-  aliases:
-    - Waiting for feedback
-    - waiting for feedback
   description: More information must be provided before work can proceed
 - name: "status: blocked"
   color: "940404"
@@ -87,24 +78,16 @@
 - name: "topic: documentation"
   color: "00ffff"
   description: Related to documentation for the project
-  aliases:
-    - documentation
 - name: "type: imperfection"
   color: "ff0000"
   description: Perceived defect in any part of project
-  aliases:
-    - bug
   notes: This includes bugs, but avoids confusion for use in non-code contexts.
 - name: "type: enhancement"
   color: "008000"
   description: Proposed improvement
-  aliases:
-    - enhancement
 - name: "type: support"
   color: "ff0000"
   description: "OT: Request for help using the project"
-  aliases:
-    - question
   notes: |
     All support request issues must be closed as "conclusion: invalid", redirecting the user to the Arduino forum, but
     it's still useful to label the closed issues and this type doesn't fit into the imperfection/enhancement dichotomy.
