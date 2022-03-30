@@ -9,16 +9,21 @@
     "type": "object",
     "properties": {
       "name": {
-        "type": "string",
-        "maxLength": 50,
-        "anyOf": [
+        "allOf": [
           {
-            "$comment": "Standardized label format",
-            "pattern": "^.+: .+$"
+            "$ref": "#/$defs/name_base"
           },
           {
-            "$comment": "Allowed exceptions to the standardized format",
-            "enum": ["help wanted"]
+            "anyOf": [
+              {
+                "$comment": "Standardized label format",
+                "pattern": "^.+: .+$"
+              },
+              {
+                "$comment": "Allowed exceptions to the standardized format",
+                "enum": ["help wanted"]
+              }
+            ]
           }
         ]
       },
@@ -45,14 +50,20 @@
         "maxLength": 100
       },
       "aliases": {
-        "type": "array"
-      },
-      "notes": {
-        "type": "string",
-        "minLength": 1
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/name_base"
+        }
       }
     },
     "additionalProperties": false,
     "required": ["name", "color", "description"]
+  },
+  "$defs": {
+    "name_base": {
+      "$comment": "Fundamental requirements",
+      "type": "string",
+      "maxLength": 50
+    }
   }
 }
