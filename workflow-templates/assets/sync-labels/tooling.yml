@@ -19,9 +19,8 @@
 - name: "architecture: arm"
   color: ff00ff
   description: Specific to ARM host architecture
+# Vulnerability disclosures are made following the procedure at:
+# https://github.com/arduino/.github/blob/master/SECURITY.md
 - name: "topic: security"
   color: ff0000
   description: Related to the protection of user data
-  notes: |
-    Vulnerability disclosures are made following the procedure at:
-    https://github.com/arduino/.github/blob/master/SECURITY.md

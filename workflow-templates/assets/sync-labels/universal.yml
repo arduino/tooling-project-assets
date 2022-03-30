@@ -22,12 +22,11 @@
 - name: "conclusion: off topic"
   color: "ff0000"
   description: Off topic for this repository
+# For use when it's not possible to do a true transfer
+# (PRs, different organizations, or maintainer doesn't have write permissions in target repo).
 - name: "conclusion: moved"
   color: "940404"
   description: Issue/PR moved to another repository
-  notes: |
-    For use when it's not possible to do a true transfer
-    (PRs, different organizations, or maintainer doesn't have write permissions in target repo).
 - name: "conclusion: resolved"
   color: "00ff00"
   description: Issue was resolved
@@ -43,11 +42,10 @@
 - name: "criticality: low"
   color: "c0c0c0"
   description: Of low impact
+# Distinct from the criticality labels in that priority is assigned based on estimated effort in addition to impact.
 - name: "priority: high"
   color: "ffa200"
   description: Resolution is a high priority
-  notes: |
-    Distinct from the criticality labels in that priority is assigned based on estimated effort in addition to impact.
 - name: "priority: medium"
   color: "ffff00"
   description: Resolution is a medium priority
@@ -72,12 +70,11 @@
 - name: "status: blocked"
   color: "940404"
   description: Progress on this prevented by an external cause
+# Ideally this would be "status: help wanted", but GitHub gives this label special treatment so it's best to leave it
+# stock.
 - name: help wanted
   color: "ffa200"
   description: Assistance from the community is especially welcome
-  notes: |
-    Ideally this would be "status: help wanted", but GitHub gives this label special treatment so it's best to leave it
-    stock.
 - name: "topic: infrastructure"
   color: "00ffff"
   description: Related to repository infrastructure
@@ -89,22 +86,21 @@
   description: Related to documentation for the project
   aliases:
     - documentation
+# This includes bugs, but avoids confusion for use in non-code contexts.
 - name: "type: imperfection"
   color: "ff0000"
   description: Perceived defect in any part of project
   aliases:
     - bug
-  notes: This includes bugs, but avoids confusion for use in non-code contexts.
 - name: "type: enhancement"
   color: "008000"
   description: Proposed improvement
   aliases:
     - enhancement
+# All support request issues must be closed as "conclusion: invalid", redirecting the user to the Arduino forum, but
+# it's still useful to label the closed issues and this type doesn't fit into the imperfection/enhancement dichotomy.
 - name: "type: support"
   color: "ff0000"
   description: "OT: Request for help using the project"
   aliases:
     - question
-  notes: |
-    All support request issues must be closed as "conclusion: invalid", redirecting the user to the Arduino forum, but
-    it's still useful to label the closed issues and this type doesn't fit into the imperfection/enhancement dichotomy.
