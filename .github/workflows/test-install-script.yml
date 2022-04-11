@@ -69,7 +69,7 @@ jobs:
 
     steps:
       - name: Download script artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: ${{ env.SCRIPT_ARTIFACT_NAME }}
 
@@ -107,7 +107,7 @@ jobs:
           echo "BINDIR=${{ runner.temp }}/custom-installation-folder" >> "$GITHUB_ENV"
 
       - name: Download script artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: ${{ env.SCRIPT_ARTIFACT_NAME }}
 
@@ -143,7 +143,7 @@ jobs:
 
     steps:
       - name: Download script artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: ${{ env.SCRIPT_ARTIFACT_NAME }}
 
@@ -175,7 +175,7 @@ jobs:
 
     steps:
       - name: Download script artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: ${{ env.SCRIPT_ARTIFACT_NAME }}
 
@@ -218,7 +218,7 @@ jobs:
           echo "SECOND_BINDIR=${{ runner.temp }}/${SECOND_INSTALLATION_FOLDER}" >> "$GITHUB_ENV"
 
       - name: Download script artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: ${{ env.SCRIPT_ARTIFACT_NAME }}
 
