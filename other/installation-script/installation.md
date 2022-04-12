@@ -21,7 +21,7 @@ curl -fsSL https://raw.githubusercontent.com/arduino/REPO_NAME/main/etc/install.
 ```
 
 If you would like to use the `REPO_NAME` command from any location, install PRODUCT_NAME to a directory already in
-your [`PATH`](https://en.wikipedia.org/wiki/PATH%5F%28variable%29) or add the PRODUCT_NAME installation path to your
+your [`PATH`](https://wikipedia.org/wiki/PATH%5F%28variable%29) or add the PRODUCT_NAME installation path to your
 `PATH` environment variable.
 
 If you want to download a specific PRODUCT_NAME version, for example `0.9.0` or `nightly-latest`, pass the version
@@ -36,7 +36,7 @@ curl -fsSL https://raw.githubusercontent.com/arduino/REPO_NAME/main/etc/install.
 Pre-built binaries for all the supported platforms are available for download from the links below.
 
 If you would like to use the `REPO_NAME` command from any location, extract the downloaded file to a directory already
-in your [`PATH`](https://en.wikipedia.org/wiki/PATH%5F%28variable%29) or add the PRODUCT_NAME installation path to your
+in your [`PATH`](https://wikipedia.org/wiki/PATH%5F%28variable%29) or add the PRODUCT_NAME installation path to your
 `PATH` environment variable.
 
 ### Latest release

@@ -22,7 +22,7 @@ Replace `REPO_OWNER/REPO_NAME` with the repository's name in the `jobs.check-cer
 1. Enter `:warning:`
 1. Click the "Save Settings" button
 1. Copy the text in the "Webhook URL" field
-1. Save the webhook URL to a [repository secret](https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository) named `SLACK_WEBHOOK`
+1. Save the webhook URL to a [repository secret](https://docs.github.com/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository) named `SLACK_WEBHOOK`
    - Make sure there is no newline at the end of the secret, otherwise the Slack post process will fail.
 
 ### Readme badge

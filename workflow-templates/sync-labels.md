@@ -1,6 +1,6 @@
 # "Sync Labels" workflow
 
-Use [github-label-sync](https://github.com/Financial-Times/github-label-sync) to configure the repository's [issue/pull request labels](https://docs.github.com/en/github/managing-your-work-on-github/managing-labels) according to the universal, shared, and local label configuration files.
+Use [github-label-sync](https://github.com/Financial-Times/github-label-sync) to configure the repository's [issue/pull request labels](https://docs.github.com/github/managing-your-work-on-github/managing-labels) according to the universal, shared, and local label configuration files.
 
 Use of consistent labels across repositories makes repository maintenance and searching of issue and pull request trackers easier.
 

@@ -41,7 +41,7 @@ jobs:
     steps:
       - name: Set certificate path environment variable
         run: |
-          # See: https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-environment-variable
+          # See: https://docs.github.com/actions/reference/workflow-commands-for-github-actions#setting-an-environment-variable
           echo "CERTIFICATE_PATH=${{ runner.temp }}/certificate.p12" >> "$GITHUB_ENV"
 
       - name: Decode certificate

@@ -18,7 +18,7 @@ See [the "Release" workflow (Go, Task) documentation](release-go-task.md#assets)
 
 See [the "Release" workflow (Go, Task) documentation](release-go-task.md#configuration)
 
-In addition, the following [repository secret](https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository) must be defined:
+In addition, the following [repository secret](https://docs.github.com/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository) must be defined:
 
 - `DD_API_KEY` - [Datadog](https://www.datadoghq.com/) API key.
 

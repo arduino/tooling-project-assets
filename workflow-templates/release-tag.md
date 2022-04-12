@@ -1,6 +1,6 @@
 # "Release" workflow
 
-Make a [GitHub release](https://docs.github.com/en/github/administering-a-repository/releasing-projects-on-github/about-releases) with changelog on release [tag](https://git-scm.com/book/en/v2/Git-Basics-Tagging) push.
+Make a [GitHub release](https://docs.github.com/github/administering-a-repository/releasing-projects-on-github/about-releases) with changelog on release [tag](https://git-scm.com/book/en/v2/Git-Basics-Tagging) push.
 
 ## Installation
 
@@ -42,7 +42,7 @@ Tags that contain a pre-release version will cause the GitHub release to be mark
 ## PR message
 
 ```markdown
-On every push of a release tag (e.g., `1.2.3` or `v1.2.3`) to the repository, create a [GitHub release](https://docs.github.com/en/github/administering-a-repository/releasing-projects-on-github/about-releases) with a raw [changelog generated](https://github.com/arduino/create-changelog) from the commit history since the last release tag.
+On every push of a release tag (e.g., `1.2.3` or `v1.2.3`) to the repository, create a [GitHub release](https://docs.github.com/github/administering-a-repository/releasing-projects-on-github/about-releases) with a raw [changelog generated](https://github.com/arduino/create-changelog) from the commit history since the last release tag.
 
 Tags that contain a [pre-release version](https://semver.org/#spec-item-9) will cause the GitHub release to be marked as a pre-release.
 ```
