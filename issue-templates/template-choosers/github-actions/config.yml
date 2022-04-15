@@ -6,7 +6,7 @@ contact_links:
     url: https://github.com/REPO_OWNER/REPO_NAME#readme
     about: Detailed usage documentation is available here.
   - name: Learn about GitHub Actions
-    url: https://docs.github.com/en/actions
+    url: https://docs.github.com/actions
     about: Everything you need to know to get started with GitHub Actions.
   - name: Support request
     url: https://forum.arduino.cc/

@@ -5,10 +5,10 @@ contact_links:
     url: https://github.com/arduino/tooling-project-assets#readme
     about: Detailed usage documentation is available here.
   - name: Learn about GitHub Actions
-    url: https://docs.github.com/en/actions
+    url: https://docs.github.com/actions
     about: Everything you need to know to get started with GitHub Actions.
   - name: Learn about GitHub issue templates
-    url: https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests
+    url: https://docs.github.com/communities/using-templates-to-encourage-useful-issues-and-pull-requests
     about: Information about GitHub's issue template feature.
   - name: Support request
     url: https://forum.arduino.cc/

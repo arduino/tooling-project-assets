@@ -8,7 +8,7 @@ env:
   # TODO: Define the project's license type here
   EXPECTED_LICENSE_TYPE: AGPL-3.0
 
-# See: https://docs.github.com/en/actions/reference/events-that-trigger-workflows
+# See: https://docs.github.com/actions/using-workflows/events-that-trigger-workflows
 on:
   push:
     paths:

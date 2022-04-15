@@ -1,6 +1,6 @@
 # GitHub Actions workflow templates
 
-A collection of reusable [GitHub Actions workflows](https://docs.github.com/en/actions/quickstart#creating-your-first-workflow).
+A collection of reusable [GitHub Actions workflows](https://docs.github.com/actions/quickstart#creating-your-first-workflow).
 
 ## Documentation
 

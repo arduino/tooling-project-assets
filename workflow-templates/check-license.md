@@ -1,6 +1,6 @@
 # "Check License" workflow
 
-Check whether the repository's license file is recognizable by GitHub's [automated license detection system](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository#detecting-a-license) and whether it is recognized as the correct type. In order to be detected (and to ensure it remains a valid legal instrument), the license text must not be modified. GitHub supports multiple license filenames, so it's also possible that the license type could be inadvertently changed by the addition of a file to the repository.
+Check whether the repository's license file is recognizable by GitHub's [automated license detection system](https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository#detecting-a-license) and whether it is recognized as the correct type. In order to be detected (and to ensure it remains a valid legal instrument), the license text must not be modified. GitHub supports multiple license filenames, so it's also possible that the license type could be inadvertently changed by the addition of a file to the repository.
 
 Please always use the exact license text from the links at https://choosealicense.com/appendix/
 
@@ -61,7 +61,7 @@ changes which would change the license type or which license file is used by the
 ```markdown
 Whenever one of the recognized license file names are modified in the repository, the workflow runs [licensee](https://github.com/licensee/licensee) to check whether the license can be recognized and whether it is of the expected type.
 
-GitHub has a useful [automated license detection system](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository#detecting-a-license) that determines the license type used by a repository, and surfaces that information in the repository home page, the search web interface, and the GitHub API. This license detection system requires that the license be defined by a dedicated file with one of several standardized filenames and paths.
+GitHub has a useful [automated license detection system](https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository#detecting-a-license) that determines the license type used by a repository, and surfaces that information in the repository home page, the search web interface, and the GitHub API. This license detection system requires that the license be defined by a dedicated file with one of several standardized filenames and paths.
 
 GitHub's license detection system uses the popular licensee tool, so this file also serves to define the license type for any other usages of licensee, as well as to human readers of the file.
 

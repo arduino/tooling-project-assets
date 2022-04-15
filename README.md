@@ -23,7 +23,7 @@ The [Arduino](https://www.arduino.cc/) Tooling Team's collection of reusable pro
 
 ## GitHub Actions workflow templates
 
-The [`workflow-templates` folder](workflow-templates) contains a collection of [GitHub Actions workflows](https://docs.github.com/en/actions/quickstart#creating-your-first-workflow) which can be used in any applicable repository either as-is or with minor project-specific configuration.
+The [`workflow-templates` folder](workflow-templates) contains a collection of [GitHub Actions workflows](https://docs.github.com/actions/quickstart#creating-your-first-workflow) which can be used in any applicable repository either as-is or with minor project-specific configuration.
 
 More information available [here](workflow-templates#readme).
 
