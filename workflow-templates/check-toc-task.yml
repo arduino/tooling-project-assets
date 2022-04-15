@@ -13,6 +13,9 @@ on:
       - ".github/workflows/check-toc-task.ya?ml"
       # TODO: Update this if ToC of any other files should be checked.
       - "README.md"
+  schedule:
+    # Run periodically to catch breakage caused by external changes.
+    - cron: "0 3 * * WED"
   workflow_dispatch:
   repository_dispatch:
 

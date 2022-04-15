@@ -18,6 +18,9 @@ on:
       - ".github/workflows/*.ya?ml"
       - "Taskfile.ya?ml"
       - "workflow-templates/*.ya?ml"
+  schedule:
+    # Run periodically to catch breakage caused by external changes.
+    - cron: "0 13 * * WED"
   workflow_dispatch:
   repository_dispatch:
 

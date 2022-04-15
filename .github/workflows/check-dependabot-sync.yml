@@ -19,6 +19,9 @@ on:
       - "Taskfile.yml"
       - "workflow-templates/*.ya?ml"
       - "workflow-templates/dependabot/workflow-template-copies/.github/workflows/*"
+  schedule:
+    # Run periodically to catch breakage caused by external changes.
+    - cron: "0 16 * * WED"
 
 jobs:
   check-sync:
