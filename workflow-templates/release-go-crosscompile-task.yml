@@ -10,7 +10,7 @@ env:
   AWS_PLUGIN_TARGET: TODO
   ARTIFACT_NAME: dist
   # See: https://github.com/actions/setup-go/tree/v2#readme
-  GO_VERSION: 1.16
+  GO_VERSION: "1.17"
 
 on:
   push:
