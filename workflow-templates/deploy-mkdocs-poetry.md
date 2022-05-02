@@ -27,14 +27,14 @@ https://python-poetry.org/docs/#installation
 If your project does not already use Poetry, you can initialize the [`pyproject.toml`](https://python-poetry.org/docs/pyproject/) file using these commands:
 
 ```
-poetry init --python="^3.9" --dev-dependency="mkdocs@^1.2.3" --dev-dependency="mkdocs-material@^8.1.5" --dev-dependency="mdx_truly_sane_lists@^1.2"
+poetry init --python="^3.9" --dev-dependency="mkdocs@^1.3.0" --dev-dependency="mkdocs-material@^8.2.11" --dev-dependency="mdx_truly_sane_lists@^1.2"
 poetry install
 ```
 
 If already using Poetry, add the tool using this command:
 
 ```
-poetry add --dev "mkdocs@^1.2.3" "mkdocs-material@^8.1.5" "mdx_truly_sane_lists@^1.2"
+poetry add --dev "mkdocs@^1.3.0" "mkdocs-material@^8.2.11" "mdx_truly_sane_lists@^1.2"
 ```
 
 Commit the resulting `pyproject.toml` and `poetry.lock` files.
