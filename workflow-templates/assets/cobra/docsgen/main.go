@@ -18,8 +18,9 @@ package main
 import (
 	"os"
 
-	// TODO: Replace CLI_PACKAGE_NAME with the project's Cobra CLI package import path
-	cli "CLI_PACKAGE_NAME"
+	// TODO: Replace TODO_CLI_PACKAGE_NAME with the project's Cobra CLI package import path
+	cli "TODO_CLI_PACKAGE_NAME"
+
 	"github.com/spf13/cobra/doc"
 )
 

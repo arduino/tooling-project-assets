@@ -26,9 +26,9 @@ This shell script does the following:
 
 Set the `PROJECT_NAME` variable in `install.sh` to the project's repository name (e.g., "arduino-cli").
 
-Replace all occurrences of `PRODUCT_NAME` in `installation.md` with the project's product name (e.g., "Arduino CLI").
+Replace all occurrences of `TODO_PRODUCT_NAME` in `installation.md` with the project's product name (e.g., "Arduino CLI").
 
-Replace all occurrences of `REPO_NAME` in `installation.md` with the project's repository name (e.g., "arduino-cli").
+Replace all occurrences of `TODO_REPO_NAME` in `installation.md` with the project's repository name (e.g., "arduino-cli").
 
 ## Commit message
 

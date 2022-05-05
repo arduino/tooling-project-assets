@@ -1,13 +1,13 @@
 # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/mkdocs/mkdocs.yml
 # See: https://www.mkdocs.org/user-guide/configuration/
 
-# TODO: Fill in all blank fields below.
-site_name:
-site_description:
-site_url:
+# TODO: Replace all "TODO_*" placeholders with the project information.
+site_name: TODO_SITE_NAME
+site_description: TODO_SITE_DESCRIPTION
+site_url: TODO_SITE_URL
 
-repo_name:
-repo_url:
+repo_name: TODO_REPO_NAME
+repo_url: TODO_REPO_URL
 edit_uri: blob/main/docs/
 
 copyright: Copyright 2021 ARDUINO SA (http://www.arduino.cc/)
@@ -34,7 +34,7 @@ markdown_extensions:
       emoji_generator: !!python/name:pymdownx.emoji.to_svg
       emoji_index: !!python/name:pymdownx.emoji.twemoji
   - pymdownx.magiclink:
-      repo:
+      repo: TODO_REPO_NAME
       repo_url_shorthand: true
       user: arduino
   - pymdownx.superfences

@@ -21,7 +21,7 @@ This is the minimal issue template, applicable to any Arduino tooling project, i
 
 ### Configuration
 
-Replace `REPO_OWNER/REPO_NAME` in the `contact_links[0].url` field of `config.yml`.
+Replace `TODO_REPO_OWNER/TODO_REPO_NAME` in the `contact_links[0].url` field of `config.yml`.
 
 Add links for any additional relevant resources to the `contact_links[]` field of `config.yml`.
 

@@ -25,7 +25,7 @@ Configure the version of Go used for development of the project in the `env.GO_V
 
 If the project contains Go modules in paths other than the root of the repository, add their paths to the [job matrix](https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix) in `check-go-task.yml` at `jobs.test.strategy.matrix.module[].path` and the [Codecov flag](https://docs.codecov.com/docs/flags) to group their data under at `jobs.test.strategy.matrix.module[].codecov-flags`
 
-Replace `REPO_OWNER/REPO_NAME` with the repository's name (e.g., `arduino/arduino-cli`) in the `codecov/codecov-action` action's `fail_ci_if_error` input in `test-go-task.yml`.
+Replace `TODO_REPO_OWNER/TODO_REPO_NAME` with the repository's name (e.g., `arduino/arduino-cli`) in the `codecov/codecov-action` action's `fail_ci_if_error` input in `test-go-task.yml`.
 
 #### `.gitignore`
 
@@ -43,11 +43,11 @@ Add the following to `.gitignore`:
 Markdown badge:
 
 ```markdown
-[![Test Go status](https://github.com/REPO_OWNER/REPO_NAME/actions/workflows/test-go-task.yml/badge.svg)](https://github.com/REPO_OWNER/REPO_NAME/actions/workflows/test-go-task.yml)
-[![Codecov](https://codecov.io/gh/REPO_OWNER/REPO_NAME/branch/main/graph/badge.svg)](https://codecov.io/gh/REPO_OWNER/REPO_NAME)
+[![Test Go status](https://github.com/TODO_REPO_OWNER/TODO_REPO_NAME/actions/workflows/test-go-task.yml/badge.svg)](https://github.com/TODO_REPO_OWNER/TODO_REPO_NAME/actions/workflows/test-go-task.yml)
+[![Codecov](https://codecov.io/gh/TODO_REPO_OWNER/TODO_REPO_NAME/branch/main/graph/badge.svg)](https://codecov.io/gh/TODO_REPO_OWNER/TODO_REPO_NAME)
 ```
 
-- Replace the `REPO_OWNER` and `REPO_NAME` placeholders in the URLs with the final repository owner and name ([example](https://raw.githubusercontent.com/arduino-libraries/ArduinoIoTCloud/master/README.md)).
+- Replace the `TODO_REPO_OWNER` and `TODO_REPO_NAME` placeholders in the URLs with the final repository owner and name ([example](https://raw.githubusercontent.com/arduino-libraries/ArduinoIoTCloud/master/README.md)).
 - If the coverage badge should reflect the coverage for a branch named something other than `main`, adjust the badge URL accordingly.
 
 ---
