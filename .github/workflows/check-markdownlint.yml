@@ -1,0 +1,36 @@
+name: Check markdownlint Configuration
+
+# See: https://docs.github.com/actions/using-workflows/events-that-trigger-workflows
+on:
+  push:
+    paths:
+      - ".github/workflows/check-markdownlint.yml"
+      - "Taskfile.ya?ml"
+      - "**/.markdownlint*"
+  pull_request:
+    paths:
+      - ".github/workflows/check-markdownlint.yml"
+      - "Taskfile.ya?ml"
+      - "**/.markdownlint*"
+  schedule:
+    # Run periodically to catch breakage caused by external changes.
+    - cron: "0 19 * * WED"
+  workflow_dispatch:
+  repository_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Task
+        uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          version: 3.x
+
+      - name: Validate markdownlint configuration files
+        run: task markdownlint:validate

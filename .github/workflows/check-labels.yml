@@ -1,24 +1,22 @@
-name: Check Configuration Files
+name: Check Label Configuration
 
 # See: https://docs.github.com/actions/using-workflows/events-that-trigger-workflows
 on:
   push:
     paths:
-      - ".github/workflows/check-configs.yml"
-      - "Taskfile.ya?ml"
-      - "**/dependabot.ya?ml"
+      - ".github/workflows/check-labels.yml"
       - "workflow-templates/assets/sync-labels/arduino-tooling-gh-label-configuration-schema.json"
       - "workflow-templates/assets/sync-labels/*.ya?ml"
+      - "Taskfile.ya?ml"
   pull_request:
     paths:
-      - ".github/workflows/check-configs.yml"
-      - "Taskfile.ya?ml"
-      - "**/dependabot.ya?ml"
+      - ".github/workflows/check-labels.yml"
       - "workflow-templates/assets/sync-labels/arduino-tooling-gh-label-configuration-schema.json"
       - "workflow-templates/assets/sync-labels/*.ya?ml"
+      - "Taskfile.ya?ml"
   schedule:
-    # Run every Tuesday at 8 AM UTC to catch breakage resulting from changes to the JSON schema.
-    - cron: "0 8 * * TUE"
+    # Run periodically to catch breakage caused by external changes.
+    - cron: "0 18 * * WED"
   workflow_dispatch:
   repository_dispatch:
 
@@ -36,5 +34,5 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           version: 3.x
 
-      - name: Validate configuration files
-        run: task config:validate
+      - name: Validate repository label configuration files
+        run: task labels:validate

@@ -1,0 +1,36 @@
+name: Check Dependabot Configuration
+
+# See: https://docs.github.com/actions/using-workflows/events-that-trigger-workflows
+on:
+  push:
+    paths:
+      - ".github/workflows/check-dependabot.yml"
+      - "Taskfile.ya?ml"
+      - "**/dependabot.ya?ml"
+  pull_request:
+    paths:
+      - ".github/workflows/check-dependabot.yml"
+      - "Taskfile.ya?ml"
+      - "**/dependabot.ya?ml"
+  schedule:
+    # Run periodically to catch breakage caused by external changes.
+    - cron: "0 17 * * WED"
+  workflow_dispatch:
+  repository_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Task
+        uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          version: 3.x
+
+      - name: Validate Dependabot configuration files
+        run: task dependabot:validate
