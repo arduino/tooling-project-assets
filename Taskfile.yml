@@ -277,9 +277,7 @@ tasks:
     desc: Validate markdownlint configuration files against their JSON schema
     vars:
       # Source: https://github.com/DavidAnson/markdownlint/blob/main/schema/markdownlint-config-schema.json
-      # Note: temporarily using schema from `next` branch due to bug in the one on `main`.
-      # (https://github.com/DavidAnson/markdownlint/pull/406).
-      SCHEMA_URL: https://raw.githubusercontent.com/DavidAnson/markdownlint/next/schema/markdownlint-config-schema.json
+      SCHEMA_URL: https://raw.githubusercontent.com/DavidAnson/markdownlint/main/schema/markdownlint-config-schema.json
       SCHEMA_PATH:
         sh: mktemp -t markdownlint-schema-XXXXXXXXXX.json
       DATA_PATH: "**/.markdownlint.{yml,yaml}"
