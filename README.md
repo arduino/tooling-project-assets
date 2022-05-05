@@ -1,6 +1,8 @@
 # Tooling Project Assets
 
-[![Check Configuration Files status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-configs.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-configs.yml)
+[![Check Dependabot Configuration status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-dependabot.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-dependabot.yml)
+[![Check Label Configuration status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-labels.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-labels.yml)
+[![Check markdownlint Configuration status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-markdownlint.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-markdownlint.yml)
 [![Check General Formatting status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-general-formatting-task.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-general-formatting-task.yml)
 [![Check License status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-license.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-license.yml)
 [![Check Workflow Duplicates Sync status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-dependabot-sync.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-dependabot-sync.yml)
