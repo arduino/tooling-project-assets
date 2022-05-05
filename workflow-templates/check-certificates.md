@@ -10,7 +10,7 @@ Install the [`check-certificates.yml`](check-certificates.yml) GitHub Actions wo
 
 ### Configuration
 
-Replace `REPO_OWNER/REPO_NAME` with the repository's name in the `jobs.check-certificates.if` field of `check-certificates.yml`.
+Replace `TODO_REPO_OWNER/TODO_REPO_NAME` with the repository's name in the `jobs.check-certificates.if` field of `check-certificates.yml`.
 
 #### Set up Slack webhook
 
@@ -30,10 +30,10 @@ Replace `REPO_OWNER/REPO_NAME` with the repository's name in the `jobs.check-cer
 Markdown badge:
 
 ```markdown
-[![Check Certificates status](https://github.com/REPO_OWNER/REPO_NAME/actions/workflows/check-certificates.yml/badge.svg)](https://github.com/REPO_OWNER/REPO_NAME/actions/workflows/check-certificates.yml)
+[![Check Certificates status](https://github.com/TODO_REPO_OWNER/TODO_REPO_NAME/actions/workflows/check-certificates.yml/badge.svg)](https://github.com/TODO_REPO_OWNER/TODO_REPO_NAME/actions/workflows/check-certificates.yml)
 ```
 
-Replace the `REPO_OWNER` and `REPO_NAME` placeholders in the URLs with the final repository owner and name ([example](https://raw.githubusercontent.com/arduino-libraries/ArduinoIoTCloud/master/README.md)).
+Replace the `TODO_REPO_OWNER` and `TODO_REPO_NAME` placeholders in the URLs with the final repository owner and name ([example](https://raw.githubusercontent.com/arduino-libraries/ArduinoIoTCloud/master/README.md)).
 
 ---
 

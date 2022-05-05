@@ -31,7 +31,7 @@ jobs:
         run: |
           RELEASE_BRANCH_REGEX="refs/heads/[0-9]+.[0-9]+.x"
           # TODO: Update repository name.
-          REPO_SLUG="REPO_OWNER/REPO_NAME"
+          REPO_SLUG="TODO_REPO_OWNER/TODO_REPO_NAME"
           if [[
             (
               # Only run on branch creation when it is a release branch.

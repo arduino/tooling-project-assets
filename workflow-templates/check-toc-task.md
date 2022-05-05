@@ -30,10 +30,10 @@ The workflow is configured to check a table of contents in `README.md`. If other
 Markdown badge:
 
 ```markdown
-[![Check ToC status](https://github.com/REPO_OWNER/REPO_NAME/actions/workflows/check-toc-task.yml/badge.svg)](https://github.com/REPO_OWNER/REPO_NAME/actions/workflows/check-toc-task.yml)
+[![Check ToC status](https://github.com/TODO_REPO_OWNER/TODO_REPO_NAME/actions/workflows/check-toc-task.yml/badge.svg)](https://github.com/TODO_REPO_OWNER/TODO_REPO_NAME/actions/workflows/check-toc-task.yml)
 ```
 
-Replace the `REPO_OWNER` and `REPO_NAME` placeholders in the URLs with the final repository owner and name ([example](https://raw.githubusercontent.com/arduino-libraries/ArduinoIoTCloud/master/README.md)).
+Replace the `TODO_REPO_OWNER` and `TODO_REPO_NAME` placeholders in the URLs with the final repository owner and name ([example](https://raw.githubusercontent.com/arduino-libraries/ArduinoIoTCloud/master/README.md)).
 
 ---
 

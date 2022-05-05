@@ -65,10 +65,10 @@ The configuration file for labels that only apply to the specific project should
 Markdown badge:
 
 ```markdown
-[![Sync Labels status](https://github.com/REPO_OWNER/REPO_NAME/actions/workflows/sync-labels.yml/badge.svg)](https://github.com/REPO_OWNER/REPO_NAME/actions/workflows/sync-labels.yml)
+[![Sync Labels status](https://github.com/TODO_REPO_OWNER/TODO_REPO_NAME/actions/workflows/sync-labels.yml/badge.svg)](https://github.com/TODO_REPO_OWNER/TODO_REPO_NAME/actions/workflows/sync-labels.yml)
 ```
 
-Replace the `REPO_OWNER` and `REPO_NAME` placeholders in the URLs with the final repository owner and name ([example](https://raw.githubusercontent.com/arduino-libraries/ArduinoIoTCloud/master/README.md)).
+Replace the `TODO_REPO_OWNER` and `TODO_REPO_NAME` placeholders in the URLs with the final repository owner and name ([example](https://raw.githubusercontent.com/arduino-libraries/ArduinoIoTCloud/master/README.md)).
 
 ---
 

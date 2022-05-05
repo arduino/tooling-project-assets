@@ -47,7 +47,7 @@ The workflow is configured for repositories that host the website source content
 
 #### MkDocs
 
-Fill in all blank field in `mkdocs.yml` with the project-specific information.
+Replace all `TODO_*` placeholders in `mkdocs.yml` with the project-specific information.
 
 Add entries for each website source file to the `nav` array in `mkdocs.yml`, or remove `nav` to have MkDocs auto-generate the navigation panel.
 
@@ -58,10 +58,10 @@ Reference: https://www.mkdocs.org/user-guide/configuration/
 Markdown badge:
 
 ```markdown
-[![Deploy Website status](https://github.com/REPO_OWNER/REPO_NAME/actions/workflows/deploy-mkdocs-poetry.yml/badge.svg)](https://github.com/REPO_OWNER/REPO_NAME/actions/workflows/deploy-mkdocs-poetry.yml)
+[![Deploy Website status](https://github.com/TODO_REPO_OWNER/TODO_REPO_NAME/actions/workflows/deploy-mkdocs-poetry.yml/badge.svg)](https://github.com/TODO_REPO_OWNER/TODO_REPO_NAME/actions/workflows/deploy-mkdocs-poetry.yml)
 ```
 
-Replace the `REPO_OWNER` and `REPO_NAME` placeholders in the URLs with the final repository owner and name ([example](https://raw.githubusercontent.com/arduino-libraries/ArduinoIoTCloud/master/README.md)).
+Replace the `TODO_REPO_OWNER` and `TODO_REPO_NAME` placeholders in the URLs with the final repository owner and name ([example](https://raw.githubusercontent.com/arduino-libraries/ArduinoIoTCloud/master/README.md)).
 
 ---
 

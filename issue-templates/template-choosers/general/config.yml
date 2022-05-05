@@ -2,8 +2,8 @@
 # https://github.com/arduino/tooling-project-assets/blob/main/issue-templates/template-choosers/general/config.yml
 contact_links:
   - name: Learn about using this project
-    # TODO: Replace REPO_OWNER/REPO_NAME with the repository owner and name
-    url: https://github.com/REPO_OWNER/REPO_NAME#readme
+    # TODO: Replace TODO_REPO_OWNER/TODO_REPO_NAME with the repository owner and name
+    url: https://github.com/TODO_REPO_OWNER/TODO_REPO_NAME#readme
     about: Detailed usage documentation is available here.
   - name: Support request
     url: https://forum.arduino.cc/

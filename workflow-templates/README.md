@@ -4,7 +4,7 @@ A collection of reusable [GitHub Actions workflows](https://docs.github.com/acti
 
 ## Documentation
 
-While some workflows can be added to any repository without any modification, others need to be configured for each project. "TODO" comments in the workflow explain what needs to be done. Documentation for each workflow is provided by the .md file of the same name, including:
+While some workflows can be added to any repository without any modification, others need to be configured for each project. "TODO" comments in the workflow explain what needs to be done and `TODO_*` placeholders indicate where project-specific information needs to be filled in. Documentation for each workflow is provided by the .md file of the same name, including:
 
 - Instructions
 - List of asset files which must be added to the repository along with the workflow

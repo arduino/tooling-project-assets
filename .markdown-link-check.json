@@ -7,7 +7,7 @@
       "pattern": "^CONTRIBUTING\\.md#building-the-source-code$"
     },
     {
-      "pattern": "/REPO_NAME/"
+      "pattern": "/TODO_REPO_NAME/"
     }
   ]
 }

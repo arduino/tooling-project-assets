@@ -32,7 +32,7 @@ def run_command(pytestconfig, working_dir) -> typing.Callable[..., invoke.runner
     """
 
     # TODO: define project's executable name here:
-    executable_path = pathlib.Path(pytestconfig.rootdir).parent / "TODO"
+    executable_path = pathlib.Path(pytestconfig.rootdir).parent / "TODO_EXECUTABLE_NAME"
 
     def _run(
         cmd: list,
