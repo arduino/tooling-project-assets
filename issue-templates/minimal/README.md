@@ -16,16 +16,7 @@ This is the minimal issue template, applicable to any Arduino tooling project, i
   - Install to: `.github/ISSUE_TEMPLATE/`
 - [`feature-request.md`](feature-request.md) - feature request issue template
   - Install to: `.github/ISSUE_TEMPLATE/`
-- Template chooser - select the appropriate `config.yml` template chooser configuration file for the project type from the [`template-choosers` folder](../template-choosers).
-  - Install to: `.github/ISSUE_TEMPLATE/`
-
-### Configuration
-
-Replace `TODO_REPO_OWNER/TODO_REPO_NAME` in the `contact_links[0].url` field of `config.yml`.
-
-Add links for any additional relevant resources to the `contact_links[]` field of `config.yml`.
-
-Reference: https://docs.github.com/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository#configuring-the-template-chooser
+- Template chooser - select the appropriate template chooser configuration for the project type from the [`template-choosers` folder](../template-choosers) and follow the installation instructions provided there.
 
 ## Commit message
 
