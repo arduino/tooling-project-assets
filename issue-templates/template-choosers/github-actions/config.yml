@@ -1,5 +1,8 @@
 # Source:
 # https://github.com/arduino/tooling-project-assets/blob/main/issue-templates/template-choosers/github-actions/config.yml
+# See:
+# https://docs.github.com/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository#configuring-the-template-chooser
+
 contact_links:
   - name: Learn about using this project
     # TODO: Replace TODO_REPO_OWNER/TODO_REPO_NAME with the repository owner and name
