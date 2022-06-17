@@ -11,8 +11,8 @@ on:
     paths:
       - ".github/workflows/check-certificates.ya?ml"
   schedule:
-    # Run every 10 hours.
-    - cron: "0 */10 * * *"
+    # Run every 24 hours.
+    - cron: "0 */24 * * *"
   workflow_dispatch:
   repository_dispatch:
 
