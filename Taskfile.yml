@@ -48,7 +48,7 @@ tasks:
           "{{.WORKFLOW_TEMPLATES_PATH}}/check-shell-task.yml" \
           "{{.WORKFLOW_TEMPLATES_PATH}}/check-taskfiles.yml" \
           "{{.WORKFLOW_TEMPLATES_PATH}}/check-yaml-task.yml" \
-          "{{.WORKFLOW_TEMPLATES_PATH}}/sync-labels.yml" \
+          "{{.WORKFLOW_TEMPLATES_PATH}}/sync-labels-npm.yml" \
           "{{.WORKFLOW_TEMPLATES_PATH}}/spell-check-task.yml" \
           "{{.WORKFLOW_TEMPLATES_PATH}}/test-python-poetry-task.yml" \
           "{{.WORKFLOWS_PATH}}"

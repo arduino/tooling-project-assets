@@ -15,7 +15,7 @@
 [![Check Prettier Formatting status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-prettier-formatting-task.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-prettier-formatting-task.yml)
 [![Check Taskfiles status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-taskfiles.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-taskfiles.yml)
 [![Check YAML status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-yaml-task.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-yaml-task.yml)
-[![Sync Labels status](https://github.com/arduino/tooling-project-assets/actions/workflows/sync-labels.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/sync-labels.yml)
+[![Sync Labels status](https://github.com/arduino/tooling-project-assets/actions/workflows/sync-labels-npm.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/sync-labels-npm.yml)
 [![Check Workflows status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-workflows-task.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-workflows-task.yml)
 [![Spell Check status](https://github.com/arduino/tooling-project-assets/actions/workflows/spell-check-task.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/spell-check-task.yml)
 [![Check Python status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-python-task.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-python-task.yml)
