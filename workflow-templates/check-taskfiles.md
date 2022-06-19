@@ -8,13 +8,37 @@ Validate the repository's [Taskfiles](https://taskfile.dev/#/usage) against the 
 
 Install the [`check-taskfiles.yml`](check-taskfiles.yml) GitHub Actions workflow to `.github/workflows/`
 
+### Dependencies
+
+The tool dependencies of this workflow are managed by [npm](https://www.npmjs.com/).
+
+Add the dependencies by running this command:
+
+```text
+npm install --save-dev ajv-cli@^5.0.0 ajv-formats@^2.1.1
+```
+
+Commit the resulting changes to the `package.json` and `package-lock.json` files.
+
 ### Configuration
+
+#### Workflow
 
 The workflow is configured to check all files named `Taskfile.yml` in the repository. If there are additional taskfiles, add them to the following fields in `check-taskfiles.yml`:
 
 - `on.push.paths`
 - `on.pull_request.paths`
 - `jobs.validate.strategy.matrix.file[]`
+
+Configure the version of Node.js used for development of the project in the `env.NODE_VERSION` field of `check-taskfiles.yml`.
+
+#### `.gitignore`
+
+Add the following to [`/.gitignore`](https://git-scm.com/docs/gitignore):
+
+```
+/node_modules/
+```
 
 ### Readme badge
 

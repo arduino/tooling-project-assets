@@ -1,16 +1,24 @@
 # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/check-toc-task.md
 name: Check ToC
 
+env:
+  # See: https://github.com/actions/setup-node/#readme
+  NODE_VERSION: 16.x
+
 # See: https://docs.github.com/actions/using-workflows/events-that-trigger-workflows
 on:
   push:
     paths:
       - ".github/workflows/check-toc-task.ya?ml"
+      - "package.json"
+      - "package-lock.json"
       # TODO: Update this if ToC of any other files should be checked.
       - "README.md"
   pull_request:
     paths:
       - ".github/workflows/check-toc-task.ya?ml"
+      - "package.json"
+      - "package-lock.json"
       # TODO: Update this if ToC of any other files should be checked.
       - "README.md"
   schedule:
@@ -37,6 +45,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Install Task
         uses: arduino/setup-task@v1

@@ -14,6 +14,34 @@ Install the [`check-workflows-task.yml`](check-workflows-task.yml) GitHub Action
 
 - [`Taskfile.yml`](assets/check-workflows-task/Taskfile.yml) - workflow validation task.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
+- [`Taskfile.yml`](assets/npm-task/Taskfile.yml) - npm tasks.
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
+
+### Dependencies
+
+The tool dependencies of this workflow are managed by [npm](https://www.npmjs.com/).
+
+Add the dependencies by running this command:
+
+```text
+npm install --save-dev ajv-cli@^5.0.0 ajv-formats@^2.1.1
+```
+
+Commit the resulting changes to the `package.json` and `package-lock.json` files.
+
+### Configuration
+
+#### Workflow
+
+Configure the version of Node.js used for development of the project in the `env.NODE_VERSION` field of `check-workflows-task.yml`.
+
+#### `.gitignore`
+
+Add the following to [`/.gitignore`](https://git-scm.com/docs/gitignore):
+
+```
+/node_modules/
+```
 
 ### Readme badge
 
