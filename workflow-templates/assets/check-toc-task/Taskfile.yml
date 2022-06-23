@@ -5,6 +5,8 @@ tasks:
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-toc-task/Taskfile.yml
   markdown:toc:
     desc: Update the table of contents
+    deps:
+      - task: npm:install-deps
     cmds:
       - |
         npx markdown-toc \

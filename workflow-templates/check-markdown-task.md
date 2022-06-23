@@ -25,10 +25,28 @@ Install the [`check-markdown-task.yml`](check-markdown-task.yml) GitHub Actions 
   - Install to: repository root
 - [`Taskfile.yml`](assets/check-markdown-task/Taskfile.yml) - Markdown tasks.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
+- [`Taskfile.yml`](assets/npm-task/Taskfile.yml) - npm tasks.
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
 
 The code style defined in `.markdownlint.yml` is the official standardized style to be used in all Arduino tooling projects and should not be modified.
 
+### Dependencies
+
+The tool dependencies of this workflow are managed by [npm](https://www.npmjs.com/).
+
+Add the dependencies by running this command:
+
+```text
+npm install --save-dev markdown-link-check@^3.10.2 markdownlint-cli@^0.31.1
+```
+
+Commit the resulting changes to the `package.json` and `package-lock.json` files.
+
 ### Configuration
+
+#### Workflow
+
+Configure the version of Node.js used for development of the project in the `env.NODE_VERSION` field of `check-markdown-task.yml`.
 
 #### Taskfile
 
@@ -43,6 +61,14 @@ https://github.com/igorshubovych/markdownlint-cli#ignoring-files
 
 Advanced configuration of `markdown-link-check` can be done via the [`.markdown-link-check.json`](assets/check-markdown/.markdown-link-check.json) configuration file:
 https://github.com/tcort/markdown-link-check#config-file-format
+
+#### `.gitignore`
+
+Add the following to [`/.gitignore`](https://git-scm.com/docs/gitignore):
+
+```
+/node_modules/
+```
 
 ### Readme badge
 

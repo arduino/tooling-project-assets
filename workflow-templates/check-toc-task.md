@@ -16,14 +16,40 @@ Install the [`check-toc-task.yml`](check-toc-task.yml) GitHub Actions workflow t
 
 - [`Taskfile.yml`](assets/check-toc-task/Taskfile.yml) - Table of contents generation task.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
+- [`Taskfile.yml`](assets/npm-task/Taskfile.yml) - npm tasks.
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
+
+### Dependencies
+
+The tool dependencies of this workflow are managed by [npm](https://www.npmjs.com/).
+
+Add the dependencies by running this command:
+
+```text
+npm install --save-dev markdown-toc@^1.2.0
+```
+
+Commit the resulting changes to the `package.json` and `package-lock.json` files.
 
 ### Configuration
+
+#### Workflow
 
 The workflow is configured to check a table of contents in `README.md`. If other files have a table of contents, adjust the following fields in `check-toc-task.yml`:
 
 - `on.push.paths`
 - `on.pull_request.paths`
 - `jobs.check.strategy.matrix.file[]`
+
+Configure the version of Node.js used for development of the project in the `env.NODE_VERSION` field of `check-toc-task.yml`.
+
+#### `.gitignore`
+
+Add the following to [`/.gitignore`](https://git-scm.com/docs/gitignore):
+
+```
+/node_modules/
+```
 
 ### Readme badge
 

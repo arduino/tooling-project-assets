@@ -22,10 +22,30 @@ Install the [`check-prettier-formatting-task.yml`](check-prettier-formatting-tas
 
 - [`Taskfile.yml`](assets/check-prettier-formatting-task/Taskfile.yml) - Formatting task.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
+- [`Taskfile.yml`](assets/npm-task/Taskfile.yml) - npm tasks.
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`.prettierignore`](assets/check-prettier-formatting/.prettierignore) - ignore paths configuration file.
   - Install to: repository root.
 
+### Dependencies
+
+The tool dependencies of this workflow are managed by [npm](https://www.npmjs.com/).
+
+Add the dependencies by running this command:
+
+```text
+npm install --save-dev prettier@^2.7.1
+```
+
+Commit the resulting changes to the `package.json` and `package-lock.json` files.
+
 ### Configuration
+
+#### Workflow
+
+Configure the version of Node.js used for development of the project in the `env.NODE_VERSION` field of `check-prettier-formatting-task.yml`.
+
+#### Prettier
 
 Prettier should be configured via a `.prettierignore` file to ignore any externally maintained files contained in the repository:
 https://prettier.io/docs/en/ignore.html
@@ -37,6 +57,14 @@ Prettier automatically determines the language based on file name. In cases wher
 https://prettier.io/docs/en/configuration.html#setting-the-parserdocsenoptionshtmlparser-option
 
 The default Prettier code style is the official standardized style to be used in all Arduino tooling projects and should not be modified.
+
+#### `.gitignore`
+
+Add the following to [`/.gitignore`](https://git-scm.com/docs/gitignore):
+
+```
+/node_modules/
+```
 
 ### Readme badge
 
