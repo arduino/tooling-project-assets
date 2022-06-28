@@ -50,7 +50,7 @@ Add CI workflow to publish nightly builds
 On a daily schedule:
 
 - Build the project for all supported platforms.
-- Sign and notarize the macOS build.
+- Sign and notarize the macOS builds.
 - Upload the builds to Arduino's downloads server.
 
 This will enable everyone to participate in the project's development via beta testing.
@@ -62,7 +62,7 @@ This will enable everyone to participate in the project's development via beta t
 On a daily schedule:
 
 - Build the project for all supported platforms.
-- Use [gon](https://github.com/mitchellh/gon) to sign and notarize the macOS build.
+- Use [gon](https://github.com/mitchellh/gon) to sign and notarize the macOS builds.
 - Upload the builds to Arduino's downloads server.
 
 This will enable everyone to participate in the project's development via beta testing.
