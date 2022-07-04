@@ -119,13 +119,18 @@ tasks:
       SCHEMA_PATH:
         sh: task utility:mktemp-file TEMPLATE="dependabot-schema-XXXXXXXXXX.json"
       DATA_PATH: "**/dependabot.yml"
+      PROJECT_FOLDER:
+        sh: pwd
+      WORKING_FOLDER:
+        sh: task utility:mktemp-folder TEMPLATE="dependabot-validate-XXXXXXXXXX"
     cmds:
       - wget --quiet --output-document="{{.SCHEMA_PATH}}" {{.SCHEMA_URL}}
       - |
+        cd "{{.WORKING_FOLDER}}"  # Workaround for https://github.com/npm/cli/issues/3210
         npx ajv-cli@{{.SCHEMA_DRAFT_4_AJV_CLI_VERSION}} validate \
           --all-errors \
           -s "{{.SCHEMA_PATH}}" \
-          -d "{{.DATA_PATH}}"
+          -d "{{.PROJECT_FOLDER}}/{{.DATA_PATH}}"
 
   dependabot:sync:
     desc: Sync workflow duplicates for dependabot checks
@@ -373,6 +378,10 @@ tasks:
       STYLELINTRC_SCHEMA_PATH:
         sh: task utility:mktemp-file TEMPLATE="stylelintrc-schema-XXXXXXXXXX.json"
       INSTANCE_PATH: "**/package.json"
+      PROJECT_FOLDER:
+        sh: pwd
+      WORKING_FOLDER:
+        sh: task utility:mktemp-folder TEMPLATE="dependabot-validate-XXXXXXXXXX"
     cmds:
       - wget --quiet --output-document="{{.SCHEMA_PATH}}" {{.SCHEMA_URL}}
       - wget --quiet --output-document="{{.AVA_SCHEMA_PATH}}" {{.AVA_SCHEMA_URL}}
@@ -382,6 +391,7 @@ tasks:
       - wget --quiet --output-document="{{.SEMANTIC_RELEASE_SCHEMA_PATH}}" {{.SEMANTIC_RELEASE_SCHEMA_URL}}
       - wget --quiet --output-document="{{.STYLELINTRC_SCHEMA_PATH}}" {{.STYLELINTRC_SCHEMA_URL}}
       - |
+        cd "{{.WORKING_FOLDER}}"  # Workaround for https://github.com/npm/cli/issues/3210
         npx ajv-cli@{{.SCHEMA_DRAFT_4_AJV_CLI_VERSION}} validate \
           --all-errors \
           -s "{{.SCHEMA_PATH}}" \
@@ -391,7 +401,7 @@ tasks:
           -r "{{.PRETTIERRC_SCHEMA_PATH}}" \
           -r "{{.SEMANTIC_RELEASE_SCHEMA_PATH}}" \
           -r "{{.STYLELINTRC_SCHEMA_PATH}}" \
-          -d "{{.INSTANCE_PATH}}"
+          -d "{{.PROJECT_FOLDER}}/{{.INSTANCE_PATH}}"
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/poetry-task/Taskfile.yml
   poetry:install-deps:
@@ -509,6 +519,17 @@ tasks:
     vars:
       RAW_PATH:
         sh: mktemp --tmpdir "{{.TEMPLATE}}"
+    cmds:
+      - task: utility:normalize-path
+        vars:
+          RAW_PATH: "{{.RAW_PATH}}"
+
+  # Make a temporary folder named according to the passed TEMPLATE variable and print the path passed to stdout
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/windows-task/Taskfile.yml
+  utility:mktemp-folder:
+    vars:
+      RAW_PATH:
+        sh: mktemp --directory --tmpdir "{{.TEMPLATE}}"
     cmds:
       - task: utility:normalize-path
         vars:
