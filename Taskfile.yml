@@ -17,6 +17,7 @@ tasks:
       - task: general:check-formatting
       - task: general:check-spelling
       - task: issue-form:validate
+      - task: js:lint
       - task: labels:validate
       - task: markdown:check-links
       - task: markdown:lint
@@ -36,6 +37,7 @@ tasks:
       - task: general:correct-spelling
       - task: general:format-prettier
       - task: github:sync
+      - task: js:fix
       - task: markdown:fix
       - task: python:format
       - task: shell:format
@@ -49,6 +51,7 @@ tasks:
       - |
         cp \
           "{{.WORKFLOW_TEMPLATES_PATH}}/check-general-formatting-task.yml" \
+          "{{.WORKFLOW_TEMPLATES_PATH}}/check-javascript-task.yml" \
           "{{.WORKFLOW_TEMPLATES_PATH}}/check-markdown-task.yml" \
           "{{.WORKFLOW_TEMPLATES_PATH}}/check-npm-task.yml" \
           "{{.WORKFLOW_TEMPLATES_PATH}}/check-prettier-formatting-task.yml" \
@@ -295,6 +298,20 @@ tasks:
             -c ajv-formats \
             -s "{{.SCHEMA_PATH}}" \
             -d "{{.DATA_PATH}}"
+
+  js:fix:
+    desc: Fix JavaScript code linting violations
+    deps:
+      - task: npm:install-deps
+    cmds:
+      - npx eslint --ext .js,.jsx --fix .
+
+  js:lint:
+    desc: Lint JavaScript code
+    deps:
+      - task: npm:install-deps
+    cmds:
+      - npx eslint --ext .js,.jsx .
 
   labels:validate:
     desc: Validate GitHub repository label configuration files against their JSON schema

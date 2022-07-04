@@ -1,0 +1,54 @@
+# Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/check-javascript-task.md
+name: Check JavaScript
+
+env:
+  # See: https://github.com/actions/setup-node/#readme
+  NODE_VERSION: 16.x
+
+# See: https://docs.github.com/actions/using-workflows/events-that-trigger-workflows
+on:
+  push:
+    paths:
+      - ".github/workflows/check-javascript-task.ya?ml"
+      - ".eslintignore"
+      - "**/.eslintrc*"
+      - "package.json"
+      - "package-lock.json"
+      - "Taskfile.ya?ml"
+      - "**.jsx?"
+  pull_request:
+    paths:
+      - ".github/workflows/check-javascript-task.ya?ml"
+      - ".eslintignore"
+      - "**/.eslintrc*"
+      - "package.json"
+      - "package-lock.json"
+      - "Taskfile.ya?ml"
+      - "**.jsx?"
+  workflow_dispatch:
+  repository_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install Task
+        uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          version: 3.x
+
+      - name: Lint
+        run: task js:lint
