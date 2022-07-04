@@ -16,6 +16,8 @@ Install the [`check-workflows-task.yml`](check-workflows-task.yml) GitHub Action
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`Taskfile.yml`](assets/npm-task/Taskfile.yml) - npm tasks.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
+- [`Taskfile.yml`](assets/windows-task/Taskfile.yml) - Utility tasks.
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
 
 ### Dependencies
 

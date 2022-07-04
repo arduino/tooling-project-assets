@@ -16,6 +16,8 @@ Install the [check-npm-task.yml](check-npm-task.yml) GitHub Actions workflow to 
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`Taskfile.yml`](assets/check-npm-task/Taskfile.yml) - Validation task.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
+- [`Taskfile.yml`](assets/windows-task/Taskfile.yml) - Utility tasks.
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
 
 ### Configuration
 

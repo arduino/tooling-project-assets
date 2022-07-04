@@ -1,0 +1,27 @@
+# See: https://taskfile.dev/#/usage
+version: "3"
+
+tasks:
+  # Make a temporary file named according to the passed TEMPLATE variable and print the path passed to stdout
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/windows-task/Taskfile.yml
+  utility:mktemp-file:
+    vars:
+      RAW_PATH:
+        sh: mktemp --tmpdir "{{.TEMPLATE}}"
+    cmds:
+      - task: utility:normalize-path
+        vars:
+          RAW_PATH: "{{.RAW_PATH}}"
+
+  # Print a normalized version of the path passed via the RAW_PATH variable to stdout
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/windows-task/Taskfile.yml
+  utility:normalize-path:
+    cmds:
+      - |
+        if [[ "{{.OS}}" == "Windows_NT" ]] && which cygpath &>/dev/null; then
+            # Even though the shell handles POSIX format absolute paths as expected, external applications do not.
+            # So paths passed to such applications must first be converted to Windows format.
+            cygpath -w "{{.RAW_PATH}}"
+        else
+          echo "{{.RAW_PATH}}"
+        fi
