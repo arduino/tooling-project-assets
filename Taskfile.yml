@@ -100,6 +100,25 @@ tasks:
             -s "{{.WORKFLOW_SCHEMA_PATH}}" \
             -d "{{.TEMPLATE_WORKFLOWS_DATA_PATH}}"
 
+  clang-format:convert:
+    desc: Convert the ClangFormat configuration file into the JavaScript object used by Arduino IDE 2.x
+    vars:
+      OUTPUT_PATH:
+        sh: |
+          if [[ "{{.OUTPUT_PATH}}" == "" ]]; then
+            task utility:mktemp-file TEMPLATE="clang-format-js-object-XXXXXXXXXX.txt"
+          else
+            echo "{{.OUTPUT_PATH}}"
+          fi
+    deps:
+      - task: npm:install-deps
+    cmds:
+      - |
+        node \
+          "{{.CLANG_FORMAT_CONFIGURATION_FOLDER}}/scripts/convert-clang-format-configuration.js" \
+          "{{.CLANG_FORMAT_CONFIGURATION_PATH}}" \
+          "{{.OUTPUT_PATH}}"
+
   clang-format:validate:
     desc: Validate ClangFormat configuration file against its JSON schema
     vars:

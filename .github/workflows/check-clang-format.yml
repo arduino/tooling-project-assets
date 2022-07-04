@@ -9,6 +9,7 @@ on:
   push:
     paths:
       - ".github/workflows/check-clang-format.yml"
+      - "other/clang-format-configuration/scripts/convert-clang-format-configuration.js"
       - "other/clang-format-configuration/.clang-format"
       - "package.json"
       - "package-lock.json"
@@ -16,6 +17,7 @@ on:
   pull_request:
     paths:
       - ".github/workflows/check-clang-format.yml"
+      - "other/clang-format-configuration/scripts/convert-clang-format-configuration.js"
       - "other/clang-format-configuration/.clang-format"
       - "package.json"
       - "package-lock.json"
@@ -48,3 +50,40 @@ jobs:
       - name: Validate ClangFormat configuration files
         run: task --silent clang-format:validate
 
+
+  convert:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set environment variables
+        run: |
+          # See: https://docs.github.com/actions/using-workflows/workflow-commands-for-github-actions#setting-an-environment-variable
+          echo "CONVERSION_OUTPUT_PATH=${{ runner.temp }}/clang-format-js-object.txt" >> "$GITHUB_ENV"
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install Task
+        uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          version: 3.x
+
+      - name: Convert the ClangFormat configuration
+        run: |
+          task \
+            --silent \
+            clang-format:convert \
+            OUTPUT_PATH="${{ env.CONVERSION_OUTPUT_PATH }}"
+
+      - name: Save conversion to a workflow artifact
+        uses: actions/upload-artifact@v3
+        with:
+          path: ${{ env.CONVERSION_OUTPUT_PATH }}
+          if-no-files-found: error
+          name: javascript-configuration-object
