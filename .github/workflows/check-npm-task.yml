@@ -48,7 +48,7 @@ jobs:
           version: 3.x
 
       - name: Validate package.json
-        run: task npm:validate
+        run: task --silent npm:validate
 
   check-sync:
     runs-on: ubuntu-latest
