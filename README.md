@@ -1,5 +1,6 @@
 # Tooling Project Assets
 
+[![Check ClangFormat Configuration status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-clang-format.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-clang-format.yml)
 [![Check Dependabot Configuration status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-dependabot.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-dependabot.yml)
 [![Check Issue Templates status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-issue-templates.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-issue-templates.yml)
 [![Check Label Configuration status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-labels.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-labels.yml)

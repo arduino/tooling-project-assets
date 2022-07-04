@@ -1,6 +1,8 @@
 version: "3"
 
 vars:
+  CLANG_FORMAT_CONFIGURATION_FOLDER: other/clang-format-configuration
+  CLANG_FORMAT_CONFIGURATION_PATH: "{{.CLANG_FORMAT_CONFIGURATION_FOLDER}}/.clang-format"
   # Last version of ajv-cli with support for the JSON schema "Draft 4" specification
   SCHEMA_DRAFT_4_AJV_CLI_VERSION: 3.3.0
 
@@ -9,6 +11,7 @@ tasks:
     desc: Check for problems with the project
     deps:
       - task: ci:validate
+      - task: clang-format:validate
       - task: dependabot:validate
       - task: general:check-formatting
       - task: general:check-spelling
@@ -95,6 +98,33 @@ tasks:
             -c ajv-formats \
             -s "{{.WORKFLOW_SCHEMA_PATH}}" \
             -d "{{.TEMPLATE_WORKFLOWS_DATA_PATH}}"
+
+  clang-format:validate:
+    desc: Validate ClangFormat configuration file against its JSON schema
+    vars:
+      # Source: https://github.com/SchemaStore/schemastore/blob/master/src/schemas/json/clang-format.json
+      SCHEMA_URL: https://json.schemastore.org/clang-format.json
+      SCHEMA_PATH:
+        sh: task utility:mktemp-file TEMPLATE="clang-format-configuration-schema-XXXXXXXXXX.json"
+      DATA_SOURCE_PATH: "{{.CLANG_FORMAT_CONFIGURATION_PATH}}"
+      # ajv-cli identifies YAML-format data files by their file extension, so renaming is required:
+      # https://github.com/ajv-validator/ajv-cli/issues/117
+      DATA_PATH:
+        sh: task utility:mktemp-file TEMPLATE=".clang-format-XXXXXXXXXX.yml"
+    deps:
+      - task: npm:install-deps
+    cmds:
+      - wget --quiet --output-document="{{.SCHEMA_PATH}}" {{.SCHEMA_URL}}
+      - cp "{{.DATA_SOURCE_PATH}}" "{{.DATA_PATH}}"
+      - |
+        npx \
+          --package=ajv-cli \
+          --package=ajv-formats \
+          ajv validate \
+            --all-errors \
+            -c ajv-formats \
+            -s "{{.SCHEMA_PATH}}" \
+            -d "{{.DATA_PATH}}"
 
   config:sync:
     desc: Sync configuration files from templates

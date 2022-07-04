@@ -1,0 +1,50 @@
+name: Check ClangFormat Configuration
+
+env:
+  # See: https://github.com/actions/setup-node/#readme
+  NODE_VERSION: 16.x
+
+# See: https://docs.github.com/actions/using-workflows/events-that-trigger-workflows
+on:
+  push:
+    paths:
+      - ".github/workflows/check-clang-format.yml"
+      - "other/clang-format-configuration/.clang-format"
+      - "package.json"
+      - "package-lock.json"
+      - "Taskfile.ya?ml"
+  pull_request:
+    paths:
+      - ".github/workflows/check-clang-format.yml"
+      - "other/clang-format-configuration/.clang-format"
+      - "package.json"
+      - "package-lock.json"
+      - "Taskfile.ya?ml"
+  schedule:
+    # Run periodically to catch breakage caused by external changes.
+    - cron: "0 17 * * WED"
+  workflow_dispatch:
+  repository_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install Task
+        uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          version: 3.x
+
+      - name: Validate ClangFormat configuration files
+        run: task --silent clang-format:validate
+
