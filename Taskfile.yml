@@ -17,6 +17,7 @@ tasks:
     desc: Check for problems with the project
     deps:
       - task: ci:validate
+      - task: clang-format:check-config
       - task: clang-format:check-output
       - task: clang-format:check-testdata
       - task: clang-format:validate
@@ -111,6 +112,32 @@ tasks:
             -s "{{.WORKFLOW_SCHEMA_PATH}}" \
             -d "{{.TEMPLATE_WORKFLOWS_DATA_PATH}}"
 
+  clang-format:check-config:
+    desc: Check that ClangFormat configuration file matches effective tool configuration
+    vars:
+      WORKING_FOLDER:
+        sh: |
+          if [[ "{{.WORKING_FOLDER}}" == "" ]]; then
+            # Generate a path
+            task utility:mktemp-folder TEMPLATE="clang-format-check-config-XXXXXXXXXX"
+          else
+            # A path was specified via the command line
+            echo "{{.WORKING_FOLDER}}"
+          fi
+      ACTUAL_CONFIGURATION_PATH: "{{.WORKING_FOLDER}}/actual/.clang-format"
+      EXPECTED_CONFIGURATION_PATH: "{{.WORKING_FOLDER}}/expected/.clang-format"
+    cmds:
+      - |
+        mkdir "{{.WORKING_FOLDER}}/actual"
+        mkdir "{{.WORKING_FOLDER}}/expected"
+        cp "{{.CLANG_FORMAT_CONFIGURATION_PATH}}" "{{.WORKING_FOLDER}}/actual/"
+      - task: clang-format:dump-config
+        vars:
+          TARGET_PATH: "{{.WORKING_FOLDER}}/expected/.clang-format"
+      - |
+        cd "{{.WORKING_FOLDER}}"
+        diff --color=always --unified "actual/.clang-format" "expected/.clang-format"
+
   # Check if ClangFormat is installed and the expected version
   clang-format:check-installed:
     vars:
@@ -198,6 +225,23 @@ tasks:
           "{{.CLANG_FORMAT_CONFIGURATION_PATH}}" \
           "{{.OUTPUT_PATH}}"
 
+  # Write the effective ClangFormat configuration to the path specified by the TARGET_PATH variable
+  clang-format:dump-config:
+    deps:
+      - task: clang-format:check-installed
+    cmds:
+      - |
+        # Add source comment
+        echo \
+          "# Source: https://github.com/arduino/tooling-project-assets/tree/main/other/clang-format-configuration" > \
+            "{{.TARGET_PATH}}"
+
+        # Dump the effective configuration to the target file
+        clang-format \
+          --dump-config \
+          --style=file:"{{.CLANG_FORMAT_CONFIGURATION_PATH}}" >> \
+            "{{.TARGET_PATH}}"
+
   # Use ClangFormat to format the files under the path specified by TARGET_FOLDER recursively
   clang-format:format:
     cmds:
@@ -225,6 +269,13 @@ tasks:
   clang-format:get-version:
     cmds:
       - echo "{{.DEFAULT_CLANG_FORMAT_VERSION}}"
+
+  clang-format:update-config:
+    desc: Update ClangFormat configuration file to match effective tool configuration
+    cmds:
+      - task: clang-format:dump-config
+        vars:
+          TARGET_PATH: "{{.CLANG_FORMAT_CONFIGURATION_PATH}}"
 
   clang-format:update-golden:
     desc: Update golden master test data for current configuration
@@ -276,7 +327,6 @@ tasks:
           "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/general/.editorconfig" \
           "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/check-python/.flake8" \
           "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/check-markdown/.markdownlint.yml" \
-          "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/check-yaml/.yamllint.yml" \
           "{{.REPOSITORY_ROOT_PATH}}"
 
   dependabot:validate:

@@ -79,6 +79,26 @@ As an alternative to running the update command locally, you can download the fi
 
 Save the contents of the downloaded ZIP file to [the `testdata/golden/` folder](testdata/golden/).
 
+### Updating the configuration file
+
+In order to detect added keys, removed keys, or changes to the type of existing keys resulting from a **ClangFormat** version update, the configuration file is used as a "golden master" which the output of `clang-format --dump-config` is compared against.
+
+At the conclusion of the investigation of any output, the configuration file may need to be updated to match the new output:
+
+#### Via local operation
+
+Run the following command
+
+```text
+task clang-format:update-config
+```
+
+#### Via GitHub Actions
+
+As an alternative to running the update command locally, you can download the files from a workflow artifact named "**config-output**" which is available in the "**Summary**" page of each workflow run where the `check-config` job of the "**Check ClangFormat Configuration**" workflow failed due to the current configuration file not matching the `--dump-config` output.
+
+Replace [`.clang-format`](.clang-format) with the one from the downloaded ZIP file.
+
 ## Configuration notes
 
 Notes about the **ClangFormat** configuration are recorded [here](notes.md).

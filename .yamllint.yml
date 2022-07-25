@@ -72,5 +72,6 @@ yaml-files:
 
 ignore: |
   /.git/
+  /other/clang-format-configuration/.clang-format
   __pycache__/
   node_modules/
