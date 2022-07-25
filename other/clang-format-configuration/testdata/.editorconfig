@@ -1,0 +1,7 @@
+[*.cpp]
+end_of_line = unset
+indent_size = unset
+indent_style = unset
+# insert_final_newline must be unset to avoid general:check-formatting failure on files w/ CRLF EOL.
+# (A bug in editorconfig-checker?)
+insert_final_newline = unset

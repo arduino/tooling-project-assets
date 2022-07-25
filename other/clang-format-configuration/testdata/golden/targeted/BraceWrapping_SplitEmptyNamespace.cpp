@@ -1,0 +1,9 @@
+namespace {
+}
+
+namespace {
+}
+
+namespace {}
+
+namespace {}

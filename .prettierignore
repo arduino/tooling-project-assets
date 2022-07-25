@@ -2,3 +2,4 @@
 __pycache__/
 node_modules/
 /other/clang-format-configuration/testdata/golden/samples/
+/other/clang-format-configuration/testdata/input/samples/
