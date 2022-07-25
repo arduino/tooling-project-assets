@@ -7,6 +7,8 @@ vars:
   CLANG_FORMAT_INPUT_TEST_DATA_FOLDER: "{{.CLANG_FORMAT_TEST_DATA_FOLDER}}/input"
   CLANG_FORMAT_TARGETED_INPUT_TEST_DATA_FOLDER: "{{.CLANG_FORMAT_INPUT_TEST_DATA_FOLDER}}/targeted"
   CLANG_FORMAT_GOLDEN_TEST_DATA_FOLDER: "{{.CLANG_FORMAT_TEST_DATA_FOLDER}}/golden"
+  # See: https://github.com/arduino/arduino-ide/blob/main/arduino-ide-extension/package.json
+  DEFAULT_CLANG_FORMAT_VERSION: 14.0.0
   # Last version of ajv-cli with support for the JSON schema "Draft 4" specification
   SCHEMA_DRAFT_4_AJV_CLI_VERSION: 3.3.0
 
@@ -15,6 +17,8 @@ tasks:
     desc: Check for problems with the project
     deps:
       - task: ci:validate
+      - task: clang-format:check-output
+      - task: clang-format:check-testdata
       - task: clang-format:validate
       - task: dependabot:validate
       - task: eslint:validate
@@ -107,6 +111,74 @@ tasks:
             -s "{{.WORKFLOW_SCHEMA_PATH}}" \
             -d "{{.TEMPLATE_WORKFLOWS_DATA_PATH}}"
 
+  # Check if ClangFormat is installed and the expected version
+  clang-format:check-installed:
+    vars:
+      EXPECTED_CLANG_FORMAT_VERSION: "{{default .DEFAULT_CLANG_FORMAT_VERSION .CLANG_FORMAT_VERSION}}"
+    cmds:
+      - |
+        if ! which clang-format &>/dev/null; then
+          echo "clang-format not found or not in PATH. Please install: https://github.com/arduino/clang-static-binaries/releases"
+          exit 1
+        fi
+      - |
+        INSTALLED_CLANG_FORMAT_VERSION_ARRAY=($(clang-format --version))
+        INSTALLED_CLANG_FORMAT_VERSION="${INSTALLED_CLANG_FORMAT_VERSION_ARRAY[${#INSTALLED_CLANG_FORMAT_VERSION_ARRAY[@]}-1]}"
+        if [[ "$INSTALLED_CLANG_FORMAT_VERSION" != "{{.EXPECTED_CLANG_FORMAT_VERSION}}" ]]; then
+          echo "Installed version of clang-format $INSTALLED_CLANG_FORMAT_VERSION (at $(which clang-format)) does not match expected {{.EXPECTED_CLANG_FORMAT_VERSION}}"
+          exit 1
+        fi
+
+  clang-format:check-output:
+    desc: Compare actual vs expected output of ClangFormat
+    vars:
+      WORKING_FOLDER:
+        sh: |
+          if [[ "{{.WORKING_FOLDER}}" == "" ]]; then
+            # Generate a path
+            task utility:mktemp-folder TEMPLATE="clang-format-check-XXXXXXXXXX"
+          else
+            # A path was specified via the command line
+            echo "{{.WORKING_FOLDER}}"
+          fi
+    deps:
+      - task: clang-format:check-installed
+    cmds:
+      - |
+        cp \
+          --recursive \
+          --target-directory="{{.WORKING_FOLDER}}" \
+          "{{.CLANG_FORMAT_GOLDEN_TEST_DATA_FOLDER}}" \
+          "{{.CLANG_FORMAT_INPUT_TEST_DATA_FOLDER}}"
+      - task: clang-format:format
+        vars:
+          TARGET_FOLDER: "{{.WORKING_FOLDER}}/input/"
+      - |
+        # Give the folder an appropriate name to make the diff easier to understand
+        mv "{{.WORKING_FOLDER}}/input/" "{{.WORKING_FOLDER}}/output/"
+      - |
+        cd "{{.WORKING_FOLDER}}"
+        diff --color=always --recursive --unified "golden/" "output/"
+
+  clang-format:check-testdata:
+    desc: Check whether the targeted test data C++ code for the ClangFormat configuration is valid and correct
+    cmds:
+      - |
+        if ! which g++ &>/dev/null; then
+          echo "GCC not found or not in PATH."
+          exit 1
+        fi
+      - |
+        # Only the "targeted" test data is checked because the "samples" test data is not maintained in this repo.
+        g++ \
+          -fconcepts \
+          -fsyntax-only \
+          -I "{{.CLANG_FORMAT_TARGETED_INPUT_TEST_DATA_FOLDER}}/include" \
+          -Wall \
+          -Werror \
+          -Wextra \
+          "{{.CLANG_FORMAT_TARGETED_INPUT_TEST_DATA_FOLDER}}"/*.cpp
+
   clang-format:convert:
     desc: Convert the ClangFormat configuration file into the JavaScript object used by Arduino IDE 2.x
     vars:
@@ -125,6 +197,45 @@ tasks:
           "{{.CLANG_FORMAT_CONFIGURATION_FOLDER}}/scripts/convert-clang-format-configuration.js" \
           "{{.CLANG_FORMAT_CONFIGURATION_PATH}}" \
           "{{.OUTPUT_PATH}}"
+
+  # Use ClangFormat to format the files under the path specified by TARGET_FOLDER recursively
+  clang-format:format:
+    cmds:
+      - |
+        find \
+          "{{.TARGET_FOLDER}}" \
+          \( \
+            -name '*.c' -or \
+            -name '*.cpp' -or \
+            -name '*.h' -or \
+            -name '*.ino' -or \
+            -name '*.inot' -or \
+            -name '*.ipp' -or \
+            -name '*.tpp' -and \
+            -type f \
+          \) \
+          -exec \
+            clang-format \
+              --assume-filename=foo.cpp \
+              -i \
+              --style=file:"{{.CLANG_FORMAT_CONFIGURATION_PATH}}" \
+              {} \;
+
+  # Print the standard version of ClangFormat for current use
+  clang-format:get-version:
+    cmds:
+      - echo "{{.DEFAULT_CLANG_FORMAT_VERSION}}"
+
+  clang-format:update-golden:
+    desc: Update golden master test data for current configuration
+    deps:
+      - task: clang-format:check-installed
+    cmds:
+      - rm --recursive "{{.CLANG_FORMAT_GOLDEN_TEST_DATA_FOLDER}}/"
+      - cp --recursive "{{.CLANG_FORMAT_INPUT_TEST_DATA_FOLDER}}/" "{{.CLANG_FORMAT_GOLDEN_TEST_DATA_FOLDER}}/"
+      - task: clang-format:format
+        vars:
+          TARGET_FOLDER: "{{.CLANG_FORMAT_GOLDEN_TEST_DATA_FOLDER}}/"
 
   clang-format:validate:
     desc: Validate ClangFormat configuration file against its JSON schema
