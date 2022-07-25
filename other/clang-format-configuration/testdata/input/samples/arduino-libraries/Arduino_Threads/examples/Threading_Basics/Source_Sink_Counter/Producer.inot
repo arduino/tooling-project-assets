@@ -1,0 +1,14 @@
+/* Define a data source named 'counter' of type 'int'. */
+SOURCE(counter, int);
+
+void setup()
+{
+
+}
+
+void loop()
+{
+  static int i = 0;
+  counter.push(i);
+  i++;
+}

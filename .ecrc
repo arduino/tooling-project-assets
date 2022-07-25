@@ -4,6 +4,7 @@
     "^\\.licenses[/\\\\]",
     "__pycache__[/\\\\]",
     "node_modules[/\\\\]",
+    "^other[/\\\\]clang-format-configuration[/\\\\]testdata[/\\\\]",
     "^LICENSE\\.txt$",
     "^poetry\\.lock$"
   ]

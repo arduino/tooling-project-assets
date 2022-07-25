@@ -2,3 +2,4 @@
 .licenses/
 __pycache__/
 node_modules/
+/other/clang-format-configuration/testdata/golden/samples/

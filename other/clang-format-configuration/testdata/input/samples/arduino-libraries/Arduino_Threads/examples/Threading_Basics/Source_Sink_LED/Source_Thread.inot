@@ -1,0 +1,15 @@
+/* Define a data source named 'led' of type 'bool'. */
+SOURCE(led, bool);
+
+void setup()
+{
+
+}
+
+void loop()
+{
+  led.push(true);
+  delay(100);
+  led.push(false);
+  delay(100);
+}

@@ -3,6 +3,10 @@ version: "3"
 vars:
   CLANG_FORMAT_CONFIGURATION_FOLDER: other/clang-format-configuration
   CLANG_FORMAT_CONFIGURATION_PATH: "{{.CLANG_FORMAT_CONFIGURATION_FOLDER}}/.clang-format"
+  CLANG_FORMAT_TEST_DATA_FOLDER: "{{.CLANG_FORMAT_CONFIGURATION_FOLDER}}/testdata"
+  CLANG_FORMAT_INPUT_TEST_DATA_FOLDER: "{{.CLANG_FORMAT_TEST_DATA_FOLDER}}/input"
+  CLANG_FORMAT_TARGETED_INPUT_TEST_DATA_FOLDER: "{{.CLANG_FORMAT_INPUT_TEST_DATA_FOLDER}}/targeted"
+  CLANG_FORMAT_GOLDEN_TEST_DATA_FOLDER: "{{.CLANG_FORMAT_TEST_DATA_FOLDER}}/golden"
   # Last version of ajv-cli with support for the JSON schema "Draft 4" specification
   SCHEMA_DRAFT_4_AJV_CLI_VERSION: 3.3.0
 
@@ -157,7 +161,6 @@ tasks:
     cmds:
       - |
         cp \
-          "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/check-general-formatting/.ecrc" \
           "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/check-javascript/.eslintrc.yml" \
           "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/general/.editorconfig" \
           "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/check-python/.flake8" \
@@ -360,6 +363,8 @@ tasks:
               -type d -name '.licenses' -prune -o \
               -type d -name '__pycache__' -prune -o \
               -type d -name 'node_modules' -prune -o \
+              -path './{{.CLANG_FORMAT_GOLDEN_TEST_DATA_FOLDER}}/samples' -prune -o \
+              -path './{{.CLANG_FORMAT_INPUT_TEST_DATA_FOLDER}}/samples' -prune -o \
               -regex ".*[.]md" -print
           ); do
             markdown-link-check \
@@ -378,6 +383,8 @@ tasks:
                 -type d -name '.licenses' -prune -o \
                 -type d -name '__pycache__' -prune -o \
                 -type d -name 'node_modules' -prune -o \
+                -path './{{.CLANG_FORMAT_GOLDEN_TEST_DATA_FOLDER}}/samples' -prune -o \
+                -path './{{.CLANG_FORMAT_INPUT_TEST_DATA_FOLDER}}/samples' -prune -o \
                 -regex ".*[.]md" -print
             ); do
               markdown-link-check \
