@@ -78,3 +78,7 @@ task clang-format:update-golden
 As an alternative to running the update command locally, you can download the files from a workflow artifact named "**testdata-output**" which is available in the "**Summary**" page of each workflow run where the `check-output` job of the "**Check ClangFormat Configuration**" workflow failed due to the current golden masters not matching the output.
 
 Save the contents of the downloaded ZIP file to [the `testdata/golden/` folder](testdata/golden/).
+
+## Configuration notes
+
+Notes about the **ClangFormat** configuration are recorded [here](notes.md).

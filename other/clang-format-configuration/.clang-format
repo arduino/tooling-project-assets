@@ -1,7 +1,6 @@
-# See: https://releases.llvm.org/11.0.1/tools/clang/docs/ClangFormatStyleOptions.html
+# Source: https://github.com/arduino/tooling-project-assets/tree/main/other/clang-format-configuration
 ---
 Language: Cpp
-# LLVM is the default style setting, used when a configuration option is not set here
 BasedOnStyle: LLVM
 AccessModifierOffset: -2
 AlignAfterOpenBracket: Align
@@ -28,7 +27,6 @@ AlwaysBreakBeforeMultilineStrings: false
 AlwaysBreakTemplateDeclarations: No
 BinPackArguments: true
 BinPackParameters: true
-# Only used when "BreakBeforeBraces" set to "Custom"
 BraceWrapping:
   AfterCaseLabel: false
   AfterClass: false
@@ -48,7 +46,6 @@ BraceWrapping:
   SplitEmptyFunction: false
   SplitEmptyRecord: false
   SplitEmptyNamespace: false
-# Java-specific
 #BreakAfterJavaFieldAnnotations:
 BreakBeforeBinaryOperators: NonAssignment
 BreakBeforeBraces: Attach
@@ -57,7 +54,6 @@ BreakConstructorInitializers: BeforeColon
 BreakInheritanceList: BeforeColon
 BreakStringLiterals: false
 ColumnLimit: 0
-# "" matches none
 CommentPragmas: ""
 CompactNamespaces: false
 ConstructorInitializerAllOnOneLineOrOnePerLine: true
@@ -67,13 +63,11 @@ Cpp11BracedListStyle: false
 DeriveLineEnding: true
 DerivePointerAlignment: true
 DisableFormat: false
-# Docs say "Do not use this in config files". The default (LLVM 11.0.1) is "false".
 #ExperimentalAutoDetectBinPacking:
 FixNamespaceComments: false
 ForEachMacros: []
 IncludeBlocks: Preserve
 IncludeCategories: []
-# "" matches none
 IncludeIsMainRegex: ""
 IncludeIsMainSourceRegex: ""
 IndentCaseBlocks: true
@@ -84,24 +78,20 @@ IndentPPDirectives: None
 IndentWidth: 2
 IndentWrappedFunctionNames: false
 InsertTrailingCommas: None
-# Java-specific
 #JavaImportGroups:
-# JavaScript-specific
 #JavaScriptQuotes:
-#JavaScriptWrapImports
+#JavaScriptWrapImports:
 KeepEmptyLinesAtTheStartOfBlocks: true
 MacroBlockBegin: ""
 MacroBlockEnd: ""
-# Set to a large number to effectively disable
 MaxEmptyLinesToKeep: 100000
 NamespaceIndentation: None
 NamespaceMacros: []
-# Objective C-specific
 #ObjCBinPackProtocolList:
 #ObjCBlockIndentWidth:
 #ObjCBreakBeforeNestedBlockParam:
 #ObjCSpaceAfterProperty:
-#ObjCSpaceBeforeProtocolList
+#ObjCSpaceBeforeProtocolList:
 PenaltyBreakAssignment: 1
 PenaltyBreakBeforeFirstCallParameter: 1
 PenaltyBreakComment: 1
@@ -110,7 +100,6 @@ PenaltyBreakString: 1
 PenaltyBreakTemplateDeclaration: 1
 PenaltyExcessCharacter: 1
 PenaltyReturnTypeOnItsOwnLine: 1
-# Used as a fallback if alignment style can't be detected from code (DerivePointerAlignment: true)
 PointerAlignment: Right
 RawStringFormats: []
 ReflowComments: false
@@ -139,7 +128,6 @@ Standard: Auto
 StatementMacros: []
 TabWidth: 2
 TypenameMacros: []
-# Default to LF if line endings can't be detected from the content (DeriveLineEnding).
 UseCRLF: false
 UseTab: Never
 WhitespaceSensitiveMacros: []
