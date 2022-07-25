@@ -11,12 +11,12 @@ const int VERSION = 0x00000001;
 
 //#define DEBUG 0
 
-BLEService                     service                    (SCIENCE_KIT_UUID("0000"));
-BLEUnsignedIntCharacteristic   versionCharacteristic      (SCIENCE_KIT_UUID("0001"), BLERead);
-BLECharacteristic              accelerationCharacteristic (SCIENCE_KIT_UUID("0011"), BLENotify, 3 * sizeof(float));
-BLECharacteristic              gyroscopeCharacteristic    (SCIENCE_KIT_UUID("0012"), BLENotify, 3 * sizeof(float));
+BLEService service(SCIENCE_KIT_UUID("0000"));
+BLEUnsignedIntCharacteristic versionCharacteristic(SCIENCE_KIT_UUID("0001"), BLERead);
+BLECharacteristic accelerationCharacteristic(SCIENCE_KIT_UUID("0011"), BLENotify, 3 * sizeof(float));
+BLECharacteristic gyroscopeCharacteristic(SCIENCE_KIT_UUID("0012"), BLENotify, 3 * sizeof(float));
 BLEUnsignedShortCharacteristic soundPressureCharacteristic(SCIENCE_KIT_UUID("0019"), BLENotify);
-BLEFloatCharacteristic         resistanceCharacteristic   (SCIENCE_KIT_UUID("0020"), BLENotify);
+BLEFloatCharacteristic resistanceCharacteristic(SCIENCE_KIT_UUID("0020"), BLENotify);
 
 byte voltageBufferIndex = 0;
 bool voltageBufferFilled = false;
@@ -60,7 +60,7 @@ uint16_t getVoltageAverage() {
 String name;
 unsigned long lastNotify = 0;
 
-void printSerialMsg(const char * msg) {
+void printSerialMsg(const char* msg) {
 #ifdef DEBUG
   if (Serial) {
     Serial.println(msg);
@@ -80,13 +80,14 @@ void blinkLoop() {
 void setup() {
 #ifdef DEBUG
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
   Serial.println("Started");
 #endif
 
   delay(2000);
 
-  pinMode(RESISTANCE_PIN, INPUT); // Used for reading resistance
+  pinMode(RESISTANCE_PIN, INPUT);  // Used for reading resistance
 
   if (!IMU.begin()) {
     printSerialMsg("Failed to initialize IMU!");

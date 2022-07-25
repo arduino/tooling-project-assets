@@ -18,19 +18,21 @@
   by Sandeep Mistry
 */
 
-#include <ArduinoRS485.h> // ArduinoModbus depends on the ArduinoRS485 library
+#include <ArduinoRS485.h>  // ArduinoModbus depends on the ArduinoRS485 library
 #include <ArduinoModbus.h>
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   Serial.println("Modbus RTU Client Toggle");
 
   // start the Modbus RTU client
   if (!ModbusRTUClient.begin(9600)) {
     Serial.println("Failed to start Modbus RTU Client!");
-    while (1);
+    while (1)
+      ;
   }
 }
 

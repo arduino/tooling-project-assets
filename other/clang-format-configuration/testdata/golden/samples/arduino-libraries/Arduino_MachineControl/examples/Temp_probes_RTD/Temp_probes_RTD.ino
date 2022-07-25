@@ -19,10 +19,10 @@
 using namespace machinecontrol;
 
 // The value of the Rref resistor. Use 430.0 for PT100 and 4300.0 for PT1000
-#define RREF      400.0
+#define RREF 400.0
 // The 'nominal' 0-degrees-C resistance of the sensor
 // 100.0 for PT100, 1000.0 for PT1000
-#define RNOMINAL  100.0
+#define RNOMINAL 100.0
 
 void setup() {
   Serial.begin(9600);
@@ -41,7 +41,8 @@ void loop() {
   // Check and print any faults
   uint8_t fault = temp_probes.rtd.readFault();
   if (fault) {
-    Serial.print("Fault 0x"); Serial.println(fault, HEX);
+    Serial.print("Fault 0x");
+    Serial.println(fault, HEX);
     if (temp_probes.rtd.getHighThresholdFault(fault)) {
       Serial.println("RTD High Threshold");
     }
@@ -62,10 +63,14 @@ void loop() {
     }
     temp_probes.rtd.clearFault();
   } else {
-    Serial.print("RTD value: "); Serial.println(rtd);
-    Serial.print("Ratio = "); Serial.println(ratio, 8);
-    Serial.print("Resistance = "); Serial.println(RREF * ratio, 8);
-    Serial.print("Temperature = "); Serial.println(temp_probes.rtd.readTemperature(RNOMINAL, RREF));
+    Serial.print("RTD value: ");
+    Serial.println(rtd);
+    Serial.print("Ratio = ");
+    Serial.println(ratio, 8);
+    Serial.print("Resistance = ");
+    Serial.println(RREF * ratio, 8);
+    Serial.print("Temperature = ");
+    Serial.println(temp_probes.rtd.readTemperature(RNOMINAL, RREF));
   }
   Serial.println();
   delay(100);
@@ -79,7 +84,8 @@ void loop() {
   // Check and print any faults
   fault = temp_probes.rtd.readFault();
   if (fault) {
-    Serial.print("Fault 0x"); Serial.println(fault, HEX);
+    Serial.print("Fault 0x");
+    Serial.println(fault, HEX);
     if (temp_probes.rtd.getHighThresholdFault(fault)) {
       Serial.println("RTD High Threshold");
     }
@@ -100,10 +106,14 @@ void loop() {
     }
     temp_probes.rtd.clearFault();
   } else {
-    Serial.print("RTD value: "); Serial.println(rtd);
-    Serial.print("Ratio = "); Serial.println(ratio, 8);
-    Serial.print("Resistance = "); Serial.println(RREF * ratio, 8);
-    Serial.print("Temperature = "); Serial.println(temp_probes.rtd.readTemperature(RNOMINAL, RREF));
+    Serial.print("RTD value: ");
+    Serial.println(rtd);
+    Serial.print("Ratio = ");
+    Serial.println(ratio, 8);
+    Serial.print("Resistance = ");
+    Serial.println(RREF * ratio, 8);
+    Serial.print("Temperature = ");
+    Serial.println(temp_probes.rtd.readTemperature(RNOMINAL, RREF));
   }
   Serial.println();
   delay(100);
@@ -117,7 +127,8 @@ void loop() {
   // Check and print any faults
   fault = temp_probes.rtd.readFault();
   if (fault) {
-    Serial.print("Fault 0x"); Serial.println(fault, HEX);
+    Serial.print("Fault 0x");
+    Serial.println(fault, HEX);
     if (temp_probes.rtd.getHighThresholdFault(fault)) {
       Serial.println("RTD High Threshold");
     }
@@ -138,10 +149,14 @@ void loop() {
     }
     temp_probes.rtd.clearFault();
   } else {
-    Serial.print("RTD value: "); Serial.println(rtd);
-    Serial.print("Ratio = "); Serial.println(ratio, 8);
-    Serial.print("Resistance = "); Serial.println(RREF * ratio, 8);
-    Serial.print("Temperature = "); Serial.println(temp_probes.rtd.readTemperature(RNOMINAL, RREF));
+    Serial.print("RTD value: ");
+    Serial.println(rtd);
+    Serial.print("Ratio = ");
+    Serial.println(ratio, 8);
+    Serial.print("Resistance = ");
+    Serial.println(RREF * ratio, 8);
+    Serial.print("Temperature = ");
+    Serial.println(temp_probes.rtd.readTemperature(RNOMINAL, RREF));
   }
   Serial.println();
   delay(1000);

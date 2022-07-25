@@ -25,8 +25,7 @@ int32_t TotalNumberOfLine;
 void INT1Event_cb();
 void printMLCStatus(uint8_t status);
 
-void setup()
-{
+void setup() {
   // Led.
   pinMode(LEDB, OUTPUT);
   pinMode(LEDG, OUTPUT);
@@ -76,8 +75,7 @@ void setup()
   attachInterrupt(INT_1, INT1Event_cb, RISING);
 }
 
-void loop()
-{
+void loop() {
   if (mems_event) {
     mems_event = 0;
     LSM6DSOX_MLC_Status_t status;
@@ -90,13 +88,11 @@ void loop()
   }
 }
 
-void INT1Event_cb()
-{
+void INT1Event_cb() {
   mems_event = 1;
 }
 
-void printMLCStatus(uint8_t status)
-{
+void printMLCStatus(uint8_t status) {
   switch (status) {
     case 1:
       // Reset leds status

@@ -1,5 +1,5 @@
 /*
-  CTC GO! CORE MODULE
+  CTC GO! CORE MODULE 
   LESSON 06 - Sending Data to the Board
 
   This sketch is written to accompany Activity 2 in Lesson 06 of the CTC GO! core module
@@ -13,62 +13,48 @@ int i = 0;
 int redLED = 13;
 int greenLED = 12;
 
-void setup()
-{
+void setup() {
   pinMode(redLED, OUTPUT);
   pinMode(greenLED, OUTPUT);
   Serial.begin(9600);
 }
 
-void loop()
-{
+void loop() {
   // send data only when you receive data:
-  if (Serial.available() > 0)
-  {
+  if (Serial.available() > 0) {
     incomingWord[i] = Serial.read();
 
-    if (incomingWord[i] == 'a')
-    {
+    if (incomingWord[i] == 'a') {
       digitalWrite(greenLED, HIGH);
       delay(500);
       digitalWrite(greenLED, LOW);
       delay(500);
       counter += 1;
-    }
-    else if (incomingWord[i] == 'e')
-    {
+    } else if (incomingWord[i] == 'e') {
       digitalWrite(greenLED, HIGH);
       delay(500);
       digitalWrite(greenLED, LOW);
       delay(500);
       counter += 1;
-    }
-    else if (incomingWord[i] == 'i')
-    {
+    } else if (incomingWord[i] == 'i') {
       digitalWrite(greenLED, HIGH);
       delay(500);
       digitalWrite(greenLED, LOW);
       delay(500);
       counter += 1;
-    }
-    else if (incomingWord[i] == 'o')
-    {
+    } else if (incomingWord[i] == 'o') {
       digitalWrite(greenLED, HIGH);
       delay(500);
       digitalWrite(greenLED, LOW);
       delay(500);
       counter += 1;
-    }
-    else if (incomingWord[i] == 'u')
-    {
+    } else if (incomingWord[i] == 'u') {
       digitalWrite(greenLED, HIGH);
       delay(500);
       digitalWrite(greenLED, LOW);
       delay(500);
       counter += 1;
-    }
-    else
-    {
+    } else {
       digitalWrite(redLED, HIGH);
       delay(500);
       digitalWrite(redLED, LOW);
@@ -76,23 +62,19 @@ void loop()
     }
 
     i += 1;
-  }
-  else
-  {
+  } else {
     Serial.print("The word introduced is: ");
-    for (int i = 0; i < 10; i++)
-    {
+    for (int i = 0; i < 10; i++) {
       Serial.print(incomingWord[i]);
     }
     Serial.println("");
     Serial.print("It has: ");
-    Serial.print (counter);
+    Serial.print(counter);
     Serial.println(" Vowels");
     delay(5000);
     counter = 0;
     i = 0;
-    for (int i = 0; i < 10; i++)
-    {
+    for (int i = 0; i < 10; i++) {
       incomingWord[i] = 0;
     }
   }

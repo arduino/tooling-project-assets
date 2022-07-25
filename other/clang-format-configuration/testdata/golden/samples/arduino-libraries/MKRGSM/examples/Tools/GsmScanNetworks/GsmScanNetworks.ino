@@ -1,21 +1,21 @@
 /*
 
-  GSM Scan Networks
+ GSM Scan Networks
 
-  This example prints out the IMEI number of the modem,
-  then checks to see if it's connected to a carrier. If so,
-  it prints the phone number associated with the card.
-  Then it scans for nearby networks and prints out their signal strengths.
+ This example prints out the IMEI number of the modem,
+ then checks to see if it's connected to a carrier. If so,
+ it prints the phone number associated with the card.
+ Then it scans for nearby networks and prints out their signal strengths.
 
-  Circuit:
-   MKR GSM 1400 board
-   Antenna
-   SIM card
+ Circuit:
+ * MKR GSM 1400 board
+ * Antenna
+ * SIM card
 
-  Created 8 Mar 2012
-  by Tom Igoe, implemented by Javier Carazo
-  Modified 4 Feb 2013
-  by Scott Fitzgerald
+ Created 8 Mar 2012
+ by Tom Igoe, implemented by Javier Carazo
+ Modified 4 Feb 2013
+ by Scott Fitzgerald
 */
 
 // libraries
@@ -27,7 +27,7 @@
 const char PINNUMBER[] = SECRET_PINNUMBER;
 
 // initialize the library instance
-GSM gsmAccess;     // include a 'true' parameter to enable debugging
+GSM gsmAccess;  // include a 'true' parameter to enable debugging
 GSMScanner scannerNetworks;
 GSMModem modemTest;
 
@@ -41,7 +41,7 @@ void setup() {
   // initialize serial communications and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   Serial.println("GSM networks scanner");
@@ -86,5 +86,4 @@ void loop() {
   Serial.print("Signal Strength: ");
   Serial.print(scannerNetworks.getSignalStrength());
   Serial.println(" [0-31]");
-
 }

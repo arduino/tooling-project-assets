@@ -1,11 +1,11 @@
 /*
-   ZazzTheAlien
-
-  It is a lot of responsibility, but now you will have to take care of the alien baby. This particular
-  alien baby communicates with Bluetooth. You need to make sure it has proper exercises, gets
-  enough food and sleep.
-
-  (c) 2013-2016 Arduino LLC.
+*  ZazzTheAlien
+* 
+* It is a lot of responsibility, but now you will have to take care of the alien baby. This particular
+* alien baby communicates with Bluetooth. You need to make sure it has proper exercises, gets
+* enough food and sleep.
+*
+* (c) 2013-2016 Arduino LLC.
 */
 
 #include <EducationShield.h>
@@ -18,7 +18,7 @@ LightSensor sleepSensor(A1);
 
 Button foodButton(9);
 
-int exerciseLv, foodLv, sleepLv; // the saved stats that will go down over time
+int exerciseLv, foodLv, sleepLv;  // the saved stats that will go down over time
 
 long sleepTimer;
 long updateTimer;
@@ -50,14 +50,14 @@ void setup() {
 
 void loop() {
 
-  updateStatus(); // used to update the stats values
+  updateStatus();  // used to update the stats values
 
   // if a central is connected to peripheral:
   if (ble.searchCentral()) {
     Serial.println("Connected to central ");
     // while the central is still connected to peripheral:
     while (ble.connected()) {
-      updateStatus();// used to update the stats values
+      updateStatus();  // used to update the stats values
       Serial.println("Sending data");
       ble.addValue(exerciseLv);
       ble.addValue(foodLv);
@@ -66,9 +66,7 @@ void loop() {
     }
     // when the central disconnects, print it out:
     Serial.println(F("Disconnected from central "));
-
   }
-
 }
 
 void updateStatus() {

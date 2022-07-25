@@ -1,12 +1,12 @@
 /*
-   EEPROM Clear
-
-   Sets all of the bytes of the EEPROM to 0.
-   Please see eeprom_iteration for a more in depth
-   look at how to traverse the EEPROM.
-
-   This example code is in the public domain.
-*/
+ * EEPROM Clear
+ *
+ * Sets all of the bytes of the EEPROM to 0.
+ * Please see eeprom_iteration for a more in depth
+ * look at how to traverse the EEPROM.
+ *
+ * This example code is in the public domain.
+ */
 
 #include <EEPROM.h>
 
@@ -26,7 +26,7 @@ void setup() {
     This will make your code portable to all AVR processors.
   ***/
 
-  for (int i = 0 ; i < EEPROM.length() ; i++) {
+  for (int i = 0; i < EEPROM.length(); i++) {
     EEPROM.write(i, 0);
   }
 

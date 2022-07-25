@@ -33,7 +33,8 @@ void setup() {
   Wire.setClock(1000000);
 
   Serial.begin(115200);
-  while (!Serial);
+  while (!Serial)
+    ;
   pinMode(6, OUTPUT);
   digitalWrite(6, HIGH);
 
@@ -59,7 +60,6 @@ void setup() {
     delay(10);
   } else {
     // TODO: on NanoMotorCarrier we have the change to forcefully reset the D11; do it now if it is unresponsive
-
   }
 
   // reset running D11
@@ -127,5 +127,4 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-
 }

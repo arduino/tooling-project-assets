@@ -17,7 +17,8 @@ MD5Class MD5;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   // expect 9e107d9d372bb6826bd81d3542a419d6
   printMD5("The quick brown fox jumps over the lazy dog");
@@ -55,8 +56,7 @@ void printHMACMD5(const char* secret, const char* str) {
   printResult();
 }
 
-void printResult()
-{
+void printResult() {
   while (MD5.available()) {
     byte b = MD5.read();
 

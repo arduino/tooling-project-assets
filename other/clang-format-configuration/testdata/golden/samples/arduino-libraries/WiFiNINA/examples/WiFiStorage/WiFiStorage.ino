@@ -8,13 +8,15 @@
 void setup() {
 
   Serial.begin(115200);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   // check for the presence of the shield:
   if (WiFi.status() == WL_NO_SHIELD) {
     Serial.println("WiFi shield not present");
     // don't continue:
-    while (true);
+    while (true)
+      ;
   }
 
   WiFiStorageFile file = WiFiStorage.open("/fs/testfile");
@@ -38,5 +40,4 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-
 }

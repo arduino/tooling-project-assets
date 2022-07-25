@@ -19,9 +19,9 @@ RTCZero rtc;
 void setup() {
   Serial.begin(9600);
 
-  rtc.begin(); // initialize RTC
+  rtc.begin();  // initialize RTC
 
-  rtc.setEpoch(1451606400); // Jan 1, 2016
+  rtc.setEpoch(1451606400);  // Jan 1, 2016
 }
 
 void loop() {

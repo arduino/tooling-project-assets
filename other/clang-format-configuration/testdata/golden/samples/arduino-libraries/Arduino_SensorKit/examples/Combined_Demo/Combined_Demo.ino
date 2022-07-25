@@ -6,7 +6,7 @@
 #include "Arduino_SensorKit.h"
 
 #define BUZZER 5
-#define BUTTON  4
+#define BUTTON 4
 #define LED 6
 #define POT A0
 #define MIC A2
@@ -20,9 +20,9 @@ int light_value;
 void setup() {
   Serial.begin(9600);
 
-  pinMode(MIC , INPUT);
-  pinMode(LIGHT , INPUT);
-  pinMode(BUTTON , INPUT);
+  pinMode(MIC, INPUT);
+  pinMode(LIGHT, INPUT);
+  pinMode(BUTTON, INPUT);
 
   pinMode(LED, OUTPUT);
   digitalWrite(LED, LOW);

@@ -1,13 +1,13 @@
 /*
-  Fencing
-
-    Test your reaction time against an opponent!
-
-  In this game, two players will hold tilt switch swords.
-  When the green LED randomly lights up, the first person
-  to swing their sword wins.
-
-  (c) 2013-2016 Arduino LLC.
+* Fencing
+* 
+*   Test your reaction time against an opponent!
+* 
+* In this game, two players will hold tilt switch swords. 
+* When the green LED randomly lights up, the first person 
+* to swing their sword wins. 
+*
+* (c) 2013-2016 Arduino LLC.
 */
 
 
@@ -21,7 +21,7 @@
 #define YELLOW_LED_2 3
 
 //An array stores which pins the VU-meter is connected
-int ledPins[] = {2, 3, 4, 5};
+int ledPins[] = { 2, 3, 4, 5 };
 //How many pins are used by VU-meter
 int pinCount = 4;
 VUMeter lights;

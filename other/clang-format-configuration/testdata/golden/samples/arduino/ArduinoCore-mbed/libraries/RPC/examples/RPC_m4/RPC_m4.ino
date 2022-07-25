@@ -6,8 +6,8 @@ using namespace rtos;
 Thread subtractThread;
 
 /**
-   Returns the CPU that's currently running the sketch (M7 or M4)
-   Note that the sketch has to be uploaded to both cores.
+ * Returns the CPU that's currently running the sketch (M7 or M4)
+ * Note that the sketch has to be uploaded to both cores. 
  **/
 String currentCPU() {
   if (HAL_GetCurrentCPUID() == CM7_CPUID) {
@@ -18,28 +18,28 @@ String currentCPU() {
 }
 
 /**
-   Adds two numbers and returns the sum
+ * Adds two numbers and returns the sum
  **/
 int addOnM7(int a, int b) {
   Serial.println(currentCPU() + ": executing add with " + String(a) + " and " + String(b));
-  delay(700); // Simulate work
+  delay(700);  // Simulate work
   return a + b;
 }
 
 /**
-   Subtracts two numbers and returns the difference
+ * Subtracts two numbers and returns the difference
  **/
 int subtractOnM7(int a, int b) {
   Serial.println(currentCPU() + ": executing subtract with " + String(a) + " and " + String(b));
-  delay(700); // Simulate work
+  delay(700);  // Simulate work
   return a - b;
 }
 
 void callSubstractFromM4() {
   while (true) {
-    delay(700); // Wait 700ms with the next calculation
-    int a = random(100); // Generate a random number
-    int b = random(100); // Generate a random number
+    delay(700);           // Wait 700ms with the next calculation
+    int a = random(100);  // Generate a random number
+    int b = random(100);  // Generate a random number
     RPC.println(currentCPU() + ": calling subtract with " + String(a) + " and " + String(b));
 
     auto result = RPC.call("remoteSubtract", a, b).as<int>();
@@ -58,7 +58,7 @@ void setup() {
   //while (!Serial) {} // Uncomment this to wait until the Serial connection is ready
 
   // Both CPUs will execute this instruction, just at different times
-  randomSeed(analogRead(A0)); // Initializes the pseudo-random number generator
+  randomSeed(analogRead(A0));  // Initializes the pseudo-random number generator
 
   if (currentCPU() == "M7") {
     // M7 CPU becomes the server, so it makes two functions available under the defined names
@@ -99,12 +99,11 @@ void loop() {
     // Buffer it, otherwise all characters will be interleaved by other prints
     String buffer = "";
     while (RPC.available()) {
-      buffer += (char)RPC.read(); // Fill the buffer with characters
+      buffer += (char)RPC.read();  // Fill the buffer with characters
     }
 
     if (buffer.length() > 0) {
       Serial.print(buffer);
     }
   }
-
 }

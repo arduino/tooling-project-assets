@@ -1,6 +1,6 @@
 
 /*
-  CTC GO! CORE MODULE
+  CTC GO! CORE MODULE 
   LESSON 08 - Analog Outputs
 
   This sketch is written to accompany Activity 2 in Lesson 08 of the CTC GO! core module
@@ -19,33 +19,23 @@ int B_note = 493;
 int buttAvalue = 0;
 int buttBvalue = 0;
 
-void setup()
-{
+void setup() {
   pinMode(buttonA, INPUT);
   pinMode(buttonB, INPUT);
   pinMode(piezo, OUTPUT);
 }
 
-void loop()
-{
+void loop() {
   //reading the buttons states
   buttAvalue = digitalRead(buttonA);
   buttBvalue = digitalRead(buttonB);
 
   // play a note, based on the button pressed
-  if (buttAvalue == HIGH)
-  {
-    tone (piezo, A_note);
-  }
-  else if (buttBvalue == HIGH)
-  {
-    tone (piezo, B_note);
-  }
-  else
-  {
+  if (buttAvalue == HIGH) {
+    tone(piezo, A_note);
+  } else if (buttBvalue == HIGH) {
+    tone(piezo, B_note);
+  } else {
     noTone(piezo);
   }
 }
-
-
-

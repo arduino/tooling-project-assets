@@ -18,7 +18,7 @@
   by Sandeep Mistry
 */
 
-#include <ArduinoRS485.h> // ArduinoModbus depends on the ArduinoRS485 library
+#include <ArduinoRS485.h>  // ArduinoModbus depends on the ArduinoRS485 library
 #include <ArduinoModbus.h>
 
 const int numCoils = 10;
@@ -28,14 +28,16 @@ const int numInputRegisters = 10;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   Serial.println("Modbus RTU Server Kitchen Sink");
 
   // start the Modbus RTU server, with (slave) id 42
   if (!ModbusRTUServer.begin(42, 9600)) {
     Serial.println("Failed to start Modbus RTU Server!");
-    while (1);
+    while (1)
+      ;
   }
 
   // configure coils at address 0x00

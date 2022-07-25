@@ -1,23 +1,23 @@
 /*
-  Advanced Chat Server
+ Advanced Chat Server
 
-  A more advanced server that distributes any incoming messages
-  to all connected clients but the client the message comes from.
-  To use, telnet to your device's IP address and type.
-  You can see the client's input in the serial monitor as well.
-  Using an Arduino Wiznet Ethernet shield.
+ A more advanced server that distributes any incoming messages
+ to all connected clients but the client the message comes from.
+ To use, telnet to your device's IP address and type.
+ You can see the client's input in the serial monitor as well.
+ Using an Arduino Wiznet Ethernet shield.
 
-  Circuit:
-   Ethernet shield attached to pins 10, 11, 12, 13
+ Circuit:
+ * Ethernet shield attached to pins 10, 11, 12, 13
 
-  created 18 Dec 2009
-  by David A. Mellis
-  modified 9 Apr 2012
-  by Tom Igoe
-  redesigned to make use of operator== 25 Nov 2013
-  by Norbert Truchsess
+ created 18 Dec 2009
+ by David A. Mellis
+ modified 9 Apr 2012
+ by Tom Igoe
+ redesigned to make use of operator== 25 Nov 2013
+ by Norbert Truchsess
 
-*/
+ */
 
 #include <SPI.h>
 #include <PortentaEthernet.h>
@@ -44,14 +44,14 @@ void setup() {
   // Open serial communications and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   // Check for Ethernet hardware present
   if (Ethernet.hardwareStatus() == EthernetNoHardware) {
     Serial.println("Ethernet shield was not found.  Sorry, can't run without hardware. :(");
     while (true) {
-      delay(1); // do nothing, no point running without Ethernet hardware
+      delay(1);  // do nothing, no point running without Ethernet hardware
     }
   }
   if (Ethernet.linkStatus() == LinkOFF) {

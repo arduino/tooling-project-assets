@@ -1,12 +1,12 @@
 /*
-   MotorKnob
-
-   A stepper motor follows the turns of a potentiometer
-   (or other sensor) on analog input 0.
-
-   https://docs.arduino.cc/learn/electronics/stepper-motors
-   This example code is in the public domain.
-*/
+ * MotorKnob
+ *
+ * A stepper motor follows the turns of a potentiometer
+ * (or other sensor) on analog input 0.
+ *
+ * https://docs.arduino.cc/learn/electronics/stepper-motors
+ * This example code is in the public domain.
+ */
 
 #include <Stepper.h>
 

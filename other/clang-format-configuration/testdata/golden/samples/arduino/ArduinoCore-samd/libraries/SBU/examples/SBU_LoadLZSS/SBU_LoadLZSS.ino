@@ -3,34 +3,31 @@
 
 #include "lzssEncode.h"
 
-static char const BINARY[] =
-{
+static char const BINARY[] = {
 #include "Binary.h"
 };
 
-static char const CHECK_FILE[] =
-{
+static char const CHECK_FILE[] = {
   "OK"
 };
 
 static constexpr char CHECK_FILE_NAME[] = "UPDATE.OK";
-const char * UPDATE_FILE_NAME_LZSS = "UPDATE.BIN.LZSS";
+const char* UPDATE_FILE_NAME_LZSS = "UPDATE.BIN.LZSS";
 
 NBFileUtils fileUtils;
 bool update_available = false;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial) { }
+  while (!Serial) {}
 
   unsigned long const start = millis();
-  for (unsigned long now = millis(); !Serial && ((now - start) < 5000); now = millis()) { };
+  for (unsigned long now = millis(); !Serial && ((now - start) < 5000); now = millis()) {};
 
   Serial.print("Accessing SARA Filesystem... ");
   if (!fileUtils.begin(false)) {
     Serial.println("failed.");
     return;
-
   }
   Serial.println("OK");
 

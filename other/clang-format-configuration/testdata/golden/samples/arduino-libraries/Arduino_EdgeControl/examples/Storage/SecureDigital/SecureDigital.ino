@@ -4,16 +4,16 @@
 
     If your are looking for how to use the classic Arduino "SD" library with
     the Arduino Edge Control, check the CardInfo example.
-
+    
     Please, look at Mbed OS documentation for details
-          https://os.mbed.com/docs/mbed-os/v6.7/apis/sdblockdevice.html
-          https://os.mbed.com/docs/mbed-os/v6.7/apis/fatfilesystem.html
+        * https://os.mbed.com/docs/mbed-os/v6.7/apis/sdblockdevice.html
+        * https://os.mbed.com/docs/mbed-os/v6.7/apis/fatfilesystem.html
 
-
+    
     Ported from mbed-os-example-filesystem
 
-      Arduino Edge Control
-      MicroSD Memory Card
+    * Arduino Edge Control
+    * MicroSD Memory Card
 */
 
 #include <Arduino_EdgeControl.h>
@@ -28,8 +28,7 @@ SDBlockDevice bd(SD_MOSI, SD_MISO, SD_CLK, SD_CS);
 // where the root of the filesystem on the SD will be available at.
 FATFileSystem fat("fat");
 
-void setup()
-{
+void setup() {
   EdgeControl.begin();
   Power.on(PWR_3V3);
 
@@ -45,7 +44,8 @@ void setup()
   if (err != 0) {
     Serial.print(" FAIL!");
     Serial.print("Please, check your SD Card.");
-    while (true);
+    while (true)
+      ;
   }
   Serial.println(" SUCCESS!");
   Serial.print("SD size: ");
@@ -207,13 +207,11 @@ void setup()
   Serial.println("Mbed OS filesystem example done!");
 }
 
-void loop()
-{
+void loop() {
   // put your main code here, to run repeatedly:
 }
 
-void Error()
-{
+void Error() {
   Serial.print("ERRNO: ");
   Serial.print(errno);
   Serial.print("(");

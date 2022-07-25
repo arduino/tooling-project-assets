@@ -7,23 +7,21 @@ static int batteryVoltage;
 //Variable to change the motor speed and direction
 static int duty = 0;
 
-void setup()
-{
+void setup() {
   //Establishing the communication with the Motor Carrier
-  if (controller.begin())
-  {
+  if (controller.begin()) {
     Serial.print("Motor Carrier connected, firmware version ");
     Serial.println(controller.getFWVersion());
-  }
-  else
-  {
+  } else {
     Serial.println("Couldn't connect! Is the red LED blinking? You may need to update the firmware with FWUpdater sketch");
-    while (1);
+    while (1)
+      ;
   }
 
   //Serial port initialization
   Serial.begin(115200);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   // Reboot the motor controller; brings every value back to default
   Serial.println("reboot");

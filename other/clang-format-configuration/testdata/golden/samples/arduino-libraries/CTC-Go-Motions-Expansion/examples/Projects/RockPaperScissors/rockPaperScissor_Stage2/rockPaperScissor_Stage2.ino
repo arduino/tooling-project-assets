@@ -1,5 +1,5 @@
 /*
-  CTC GO! MOTION
+  CTC GO! MOTION 
   PROJECT - ROCK PAPER SCISSOR
 
   This sketch is written to accompany Stage 2 of the ROCK PAPER SCISSOR project
@@ -31,8 +31,8 @@ void loop() {
 
   if (distance < 400) {
     /*tone(piezo, 500);
-      delay(100);
-      noTone(piezo);*/
+    delay(100);
+    noTone(piezo);*/
 
     ______++;
     delay(400);

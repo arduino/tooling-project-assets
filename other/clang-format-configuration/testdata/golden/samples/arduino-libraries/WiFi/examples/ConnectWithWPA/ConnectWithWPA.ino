@@ -1,17 +1,17 @@
 /*
 
-  This example connects to an unencrypted WiFi network.
-  Then it prints the MAC address of the WiFi shield,
-  the IP address obtained, and other network details.
+ This example connects to an unencrypted WiFi network.
+ Then it prints the MAC address of the WiFi shield,
+ the IP address obtained, and other network details.
 
-  Circuit:
-   WiFi shield attached
+ Circuit:
+ * WiFi shield attached
 
-  created 13 July 2010
-  by dlf (Metodo2 srl)
-  modified 31 May 2012
-  by Tom Igoe
-*/
+ created 13 July 2010
+ by dlf (Metodo2 srl)
+ modified 31 May 2012
+ by Tom Igoe
+ */
 #include <SPI.h>
 #include <WiFi.h>
 
@@ -23,14 +23,15 @@ void setup() {
   //Initialize serial and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   // check for the presence of the shield:
   if (WiFi.status() == WL_NO_SHIELD) {
     Serial.println("WiFi shield not present");
     // don't continue:
-    while (true);
+    while (true)
+      ;
   }
 
   String fv = WiFi.firmwareVersion();
@@ -53,7 +54,6 @@ void setup() {
   Serial.print("You're connected to the network");
   printCurrentNet();
   printWifiData();
-
 }
 
 void loop() {
@@ -84,7 +84,6 @@ void printWifiData() {
   Serial.print(mac[1], HEX);
   Serial.print(":");
   Serial.println(mac[0], HEX);
-
 }
 
 void printCurrentNet() {

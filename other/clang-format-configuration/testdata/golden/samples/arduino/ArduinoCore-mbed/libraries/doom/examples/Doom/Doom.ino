@@ -21,10 +21,10 @@ mbed::MBRBlockDevice fs_data(&block_device, 2);
 static mbed::FATFileSystem fs("fs");
 
 extern "C" int main_wrapper(int argc, char **argv);
-char*argv[] = {"/fs/doom", "-iwad", "/fs/DOOM1.WAD"};
+char *argv[] = { "/fs/doom", "-iwad", "/fs/DOOM1.WAD" };
 
 void setup() {
-  int err =  fs.mount(&fs_data);
+  int err = fs.mount(&fs_data);
   if (err) {
     printf("No filesystem found, please run AccessFlashAsUSBDisk sketch and copy DOOM1.WAD in the big partition");
     pinMode(LEDB, OUTPUT);
@@ -40,18 +40,17 @@ void setup() {
   printf("try to open dir\n");
   if ((dir = opendir("/fs")) != NULL) {
     /* print all the files and directories within directory */
-    while ((ent = readdir (dir)) != NULL) {
-      printf ("%s\n", ent->d_name);
+    while ((ent = readdir(dir)) != NULL) {
+      printf("%s\n", ent->d_name);
     }
-    closedir (dir);
+    closedir(dir);
   } else {
     /* could not open directory */
-    printf ("error\n");
+    printf("error\n");
   }
   main_wrapper(3, argv);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-
 }

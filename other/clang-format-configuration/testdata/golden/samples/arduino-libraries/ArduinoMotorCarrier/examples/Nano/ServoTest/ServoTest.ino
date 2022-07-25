@@ -5,22 +5,19 @@
 #define INTERRUPT_PIN 6
 
 
-void setup()
-{
+void setup() {
   //Serial port initialization
   Serial.begin(115200);
   //while (!Serial);
 
   //Establishing the communication with the Motor Carrier
-  if (controller.begin())
-  {
+  if (controller.begin()) {
     Serial.print("Motor Carrier connected, firmware version ");
     Serial.println(controller.getFWVersion());
-  }
-  else
-  {
+  } else {
     Serial.println("Couldn't connect! Is the red LED blinking? You may need to update the firmware with FWUpdater sketch");
-    while (1);
+    while (1)
+      ;
   }
 
   // Reboot the motor controller; brings every value back to default
@@ -41,8 +38,7 @@ void setup()
 void loop() {
 
   //Servo sweep from 0 position to 180
-  for (int i = 0; i < 180; i += 1)
-  {
+  for (int i = 0; i < 180; i += 1) {
     //Choose which of the servo connectors you want to use: servo1(default), servo2, servo3 or servo4
     servo1.setAngle(i);
     servo2.setAngle(i);
@@ -56,8 +52,7 @@ void loop() {
   delay(200);
 
   //Servo sweep from 180 position to 0
-  for (int i = 180; i > 0; i -= 1)
-  {
+  for (int i = 180; i > 0; i -= 1) {
     //Choose which of the servo connectors you want to use: servo1(default), servo2, servo3 or servo4
     servo1.setAngle(i);
     servo2.setAngle(i);

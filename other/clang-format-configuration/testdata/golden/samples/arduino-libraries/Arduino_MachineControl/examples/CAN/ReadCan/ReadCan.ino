@@ -14,16 +14,16 @@
 
 using namespace machinecontrol;
 
-#define DATARATE_2MB     2000000
-#define DATARATE_1_5MB   1500000
-#define DATARATE_1MB     1000000
-#define DATARATE_800KB   800000
+#define DATARATE_2MB 2000000
+#define DATARATE_1_5MB 1500000
+#define DATARATE_1MB 1000000
+#define DATARATE_800KB 800000
 
 
 void setup() {
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect.
+    ;  // wait for serial port to connect.
   }
 
   Serial.println("Start CAN initialization");
@@ -44,7 +44,6 @@ void loop() {
     // Print the first Payload Byte
     Serial.print("Message received:");
     Serial.println(msg.data[0], DEC);
-
   }
 
   delay(100);

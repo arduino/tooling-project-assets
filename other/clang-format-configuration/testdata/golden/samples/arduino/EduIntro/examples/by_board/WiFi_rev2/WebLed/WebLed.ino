@@ -21,9 +21,9 @@
 #include <EduIntro.h>
 
 // network related info
-const char ssid[] = "ArduinoWiFi";   // your network SSID (name). Must have 8 or more characters.
-const char pass[] = "";       // your network password (use for WPA, or use as key for WEP). optional, but if set, must have 8 or more characters.
-int keyIndex = 0;       // your network key Index number (needed only for WEP)
+const char ssid[] = "ArduinoWiFi";  // your network SSID (name). Must have 8 or more characters.
+const char pass[] = "";             // your network password (use for WPA, or use as key for WEP). optional, but if set, must have 8 or more characters.
+int keyIndex = 0;                   // your network key Index number (needed only for WEP)
 
 // misc variables
 WiFiComm MyWiFi;
@@ -61,17 +61,17 @@ void loop() {
     }
   }
 
-  WiFiClient client = MyWiFi.getClient();   // listen for incoming clients
+  WiFiClient client = MyWiFi.getClient();  // listen for incoming clients
 
-  if (client) {                             // if you get a client,
+  if (client) {  // if you get a client,
     firstTime = false;
-    Serial.println("new client");           // print a message out the serial port
-    String currentLine = "";                // make a String to hold incoming data from the client
-    while (client.connected()) {            // loop while the client's connected
-      if (client.available()) {             // if there's bytes to read from the client,
-        char c = client.read();             // read a byte, then
-        Serial.write(c);                    // print it out the serial monitor
-        if (c == '\n') {                    // if the byte is a newline character
+    Serial.println("new client");  // print a message out the serial port
+    String currentLine = "";       // make a String to hold incoming data from the client
+    while (client.connected()) {   // loop while the client's connected
+      if (client.available()) {    // if there's bytes to read from the client,
+        char c = client.read();    // read a byte, then
+        Serial.write(c);           // print it out the serial monitor
+        if (c == '\n') {           // if the byte is a newline character
 
           // if the current line is blank, you got two newline characters in a row.
           // that's the end of the client HTTP request, so send a response:
@@ -90,21 +90,19 @@ void loop() {
             client.println();
             // break out of the while loop:
             break;
-          }
-          else {      // if you got a newline, then clear currentLine:
+          } else {  // if you got a newline, then clear currentLine:
             currentLine = "";
           }
-        }
-        else if (c != '\r') {    // if you got anything else but a carriage return character,
+        } else if (c != '\r') {  // if you got anything else but a carriage return character,
           currentLine += c;      // add it to the end of the currentLine
         }
 
         // Check to see if the client request was "GET /H" or "GET /L":
         if (currentLine.endsWith("GET /H")) {
-          digitalWrite(led, HIGH);               // GET /H turns the LED on
+          digitalWrite(led, HIGH);  // GET /H turns the LED on
         }
         if (currentLine.endsWith("GET /L")) {
-          digitalWrite(led, LOW);                // GET /L turns the LED off
+          digitalWrite(led, LOW);  // GET /L turns the LED off
         }
       }
     }
@@ -112,7 +110,6 @@ void loop() {
     client.stop();
     Serial.println("client disconnected");
   }
-
 }
 
 

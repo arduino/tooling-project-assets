@@ -19,7 +19,8 @@ uint16_t readings = 0;
 void setup() {
   Serial.begin(9600);
   //The loop starts only when the Serial Monitor is opened.
-  while (!Serial);
+  while (!Serial)
+    ;
   Wire.begin();
 
   if (!digital_inputs.init()) {

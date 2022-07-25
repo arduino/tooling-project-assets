@@ -16,7 +16,8 @@ MKRIoTCarrier carrier;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   carrier.noCase();
   if (!carrier.begin()) {

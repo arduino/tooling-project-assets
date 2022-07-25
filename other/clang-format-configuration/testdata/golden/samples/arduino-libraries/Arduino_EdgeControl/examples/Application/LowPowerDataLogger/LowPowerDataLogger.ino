@@ -10,25 +10,25 @@
     FAT-formatted SD Card.
 
     Features:
-      Low Power Ticker for managing recurring task
+    * Low Power Ticker for managing recurring task
       https://os.mbed.com/docs/mbed-os/v6.7/apis/lowpowerticker.html
-      EventQueue for managing scheduled tasks in IRQ-friendly contexts
+    * EventQueue for managing scheduled tasks in IRQ-friendly contexts
       https://os.mbed.com/docs/mbed-os/v6.7/apis/eventqueue.html
-      Mutex for coordinating R/W access to SPIF and Power management
+    * Mutex for coordinating R/W access to SPIF and Power management
       https://os.mbed.com/docs/mbed-os/v6.7/apis/mutex.html
-      TDBStore for keyvalue datastore
+    * TDBStore for keyvalue datastore
       https://os.mbed.com/docs/mbed-os/v6.7/apis/kvstore.html
-
+    
     Requirements:
-      Arduino Edge Control
-      SD Card
-      Momentary button
-
+    * Arduino Edge Control
+    * SD Card
+    * Momentary button
+    
     Circuit:
-      Insert the SD Card
-      Connect the button pins to GND and POWER_ON on the LCD header
-      Connect a 12V Power Supply to GND/S pins
-
+    * Insert the SD Card
+    * Connect the button pins to GND and POWER_ON on the LCD header
+    * Connect a 12V Power Supply to GND/S pins
+    
 
     Created by Giampaolo Mancini
 */
@@ -43,7 +43,7 @@
 /*
     To enable debugging print on Serial Monitor define DEBUG on "DebugMode.h" or
     compile the sketch with the CLI using the '--build-property' parameter, eg.
-
+    
     arduino-cli compile -b arduino:mbed:edge_control --build-property 'compiler.cpp.extra_flags="-DDEBUG=1"'
 */
 #include "DebugMode.h"
@@ -63,7 +63,7 @@ EventQueue queue(32 * EVENTS_EVENT_SIZE);
 Thread t;
 
 // Serial Flash management
-constexpr uint32_t SPIF_FREQ { 32000000 };
+constexpr uint32_t SPIF_FREQ{ 32000000 };
 SPIFBlockDevice bd(SPI_MOSI, SPI_MISO, SPI_SCK, SPI_SS, SPIF_FREQ);
 TDBStore tdb_store(&bd);
 
@@ -80,17 +80,11 @@ enum ButtonStatus : byte {
 };
 
 // ISR: count the button taps
-volatile byte taps {
-  0
-};
+volatile byte taps{ 0 };
 // ISR: keep elapsed timings
-volatile unsigned long previousPress {
-  0
-};
+volatile unsigned long previousPress{ 0 };
 // ISR: Final button status
-volatile ButtonStatus buttonStatus {
-  ZERO_TAP
-};
+volatile ButtonStatus buttonStatus{ ZERO_TAP };
 
 // Struct for data storage
 struct Data {
@@ -98,11 +92,10 @@ struct Data {
   uint32_t moist;
 };
 
-void setup()
-{
+void setup() {
   if constexpr (debugMode) {
     Serial.begin(115200);
-    const uint32_t startNow { millis() + 2500 };
+    const uint32_t startNow{ millis() + 2500 };
     while (!Serial && millis() < startNow)
       ;
     delay(500);
@@ -132,7 +125,8 @@ void setup()
   if (ret != MBED_SUCCESS) {
     DebugSerial.println(": Error");
     DebugSerial.println("Please, check your SD Card.");
-    while (true);
+    while (true)
+      ;
   }
   DebugSerial.println(": Ok");
   fat.unmount();
@@ -145,29 +139,32 @@ void setup()
   meter.attach(readSensorsISR, 10s);
 }
 
-void loop()
-{
+void loop() {
   // Use loop() just to manage UI
 
   detectTaps();
 
   switch (buttonStatus) {
-    case ZERO_TAP: {
+    case ZERO_TAP:
+      {
         break;
       }
-    case SINGLE_TAP: {
+    case SINGLE_TAP:
+      {
         DebugSerial.println("Single Tap");
         printStats();
         buttonStatus = ZERO_TAP;
         break;
       }
-    case DOUBLE_TAP: {
+    case DOUBLE_TAP:
+      {
         DebugSerial.println("Double Tap");
         storeData();
         buttonStatus = ZERO_TAP;
         break;
       }
-    default: {
+    default:
+      {
         DebugSerial.println("Too Many Taps");
         buttonStatus = ZERO_TAP;
         break;
@@ -178,8 +175,7 @@ void loop()
   delay(100);
 }
 
-void buttonPress()
-{
+void buttonPress() {
   const auto now = millis();
   // Poor-man debouncing
   if (now - previousPress > 100)
@@ -188,10 +184,9 @@ void buttonPress()
   previousPress = now;
 }
 
-void detectTaps()
-{
+void detectTaps() {
   // Timeout to validate the button taps counter
-  constexpr unsigned int buttonTapsTimeout { 300 };
+  constexpr unsigned int buttonTapsTimeout{ 300 };
 
   // Set the button status and reset the taps counter when button has been
   // pressed at least once and button taps validation timeout has been reached.
@@ -201,8 +196,7 @@ void detectTaps()
   }
 }
 
-void printStatsISR()
-{
+void printStatsISR() {
   // Do something IRQ-safe here...
   // irqSafeCall();
 
@@ -211,8 +205,7 @@ void printStatsISR()
 }
 
 // Print current stored measures
-void printStats()
-{
+void printStats() {
   powerOn();
 
   Expander.pinMode(EXP_LED1, OUTPUT);
@@ -242,8 +235,8 @@ void printStats()
     return;
   }
 
-  char key[128] { 0 };
-  unsigned int counter { 0 };
+  char key[128]{ 0 };
+  unsigned int counter{ 0 };
   while (tdb_store.iterator_next(it, key, sizeof(key)) != MBED_ERROR_ITEM_NOT_FOUND) {
     // Get info about the key and its contents
     tdb_store.get_info(key, &info);
@@ -282,8 +275,7 @@ void printStats()
   powerOff();
 }
 
-void readSensorsISR()
-{
+void readSensorsISR() {
   // Do something IRQ-safe here...
   // irqSafeCall();
 
@@ -293,8 +285,7 @@ void readSensorsISR()
 
 
 // Read measures from sensors and store on SPIF
-void readSensors()
-{
+void readSensors() {
   powerOn();
 
   DebugSerial.begin(115200);
@@ -311,7 +302,7 @@ void readSensors()
   auto ts = time(nullptr);
   key += static_cast<uint32_t>(ts);
 
-  Data data { ts, value };
+  Data data{ ts, value };
   spifMutex.lock();
   auto res = tdb_store.set(key.c_str(), reinterpret_cast<void*>(&data), sizeof(data), 0);
   spifMutex.unlock();
@@ -324,8 +315,7 @@ void readSensors()
 }
 
 // Move data from SPIF to SD
-void storeData()
-{
+void storeData() {
   powerOn();
 
   DebugSerial.begin(115200);
@@ -360,9 +350,9 @@ void storeData()
     return;
   }
 
-  unsigned int counter { 0 };
+  unsigned int counter{ 0 };
   TDBStore::info_t info;
-  char key[128] { 0 };
+  char key[128]{ 0 };
   while (tdb_store.iterator_next(it, key, sizeof(key)) != MBED_ERROR_ITEM_NOT_FOUND) {
     DebugSerial.print("Saving ");
     DebugSerial.print(key);

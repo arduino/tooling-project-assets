@@ -16,11 +16,13 @@ MKRIoTCarrier carrier;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
   // Qtouch initialization
   if (!carrier.begin()) {
     Serial.println("Error in sensors initialization!");
-    while (1);
+    while (1)
+      ;
   }
   Serial.println("Touch initialization Done!");
 }
@@ -45,5 +47,4 @@ void loop() {
   if (carrier.Buttons.getTouch(TOUCH4)) {
     Serial.println("Touching Button 4");
   }
-
 }

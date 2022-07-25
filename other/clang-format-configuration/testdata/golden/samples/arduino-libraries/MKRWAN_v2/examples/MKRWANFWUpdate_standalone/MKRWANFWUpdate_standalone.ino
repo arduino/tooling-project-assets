@@ -1,14 +1,14 @@
-/*
-    STANDALONE FIRMWARE UPDATE FOR MKR WAN 1300/1310
-    This sketch implements STM32 bootloader protocol
-    It is based on stm32flash (mirrored here git@github.com:facchinm/stm32flash.git)
-    with as little modifications as possible.
-
-    To generate it after a firmware update, execute
-
-    echo -n "const " > fw.h && xxd -i mlm32l07x01.bin >> fw.h
-
-*/
+/* 
+ *  STANDALONE FIRMWARE UPDATE FOR MKR WAN 1300/1310
+ *  This sketch implements STM32 bootloader protocol
+ *  It is based on stm32flash (mirrored here git@github.com:facchinm/stm32flash.git) 
+ *  with as little modifications as possible.
+ *  
+ *  To generate it after a firmware update, execute
+ *  
+ *  echo -n "const " > fw.h && xxd -i mlm32l07x01.bin >> fw.h
+ *  
+ */
 
 
 #include "fw.h"
@@ -17,8 +17,8 @@
 #include <MKRWAN_v2.h>
 
 /* device globals */
-stm32_t    *stm    = NULL;
-void       *p_st   = NULL;
+stm32_t *stm = NULL;
+void *p_st = NULL;
 
 int ret = -1;
 
@@ -26,17 +26,18 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
 
-  while (!Serial);
+  while (!Serial)
+    ;
 
   struct port_interface port;
   struct port_options port_opts = {
-    .baudRate       = 115200,
-    .serial_mode    = SERIAL_8E1
+    .baudRate = 115200,
+    .serial_mode = SERIAL_8E1
   };
 
-  port.flags =  PORT_CMD_INIT | PORT_GVR_ETX | PORT_BYTE | PORT_RETRY;
-  port.dev   =  &SerialLoRa;
-  port.ops   =  &port_opts;
+  port.flags = PORT_CMD_INIT | PORT_GVR_ETX | PORT_BYTE | PORT_RETRY;
+  port.dev = &SerialLoRa;
+  port.ops = &port_opts;
 
   assignCallbacks(&port);
 
@@ -64,15 +65,15 @@ void setup() {
   }
   fprintf(diag, "Device ID    : 0x%04x (%s)\n", stm->pid, stm->dev->name);
   fprintf(diag, "- RAM        : Up to %dKiB  (%db reserved by bootloader)\n", (stm->dev->ram_end - 0x20000000) / 1024, stm->dev->ram_start - 0x20000000);
-  fprintf(diag, "- Flash      : Up to %dKiB (size first sector: %dx%d)\n", (stm->dev->fl_end - stm->dev->fl_start ) / 1024, stm->dev->fl_pps, stm->dev->fl_ps[0]);
+  fprintf(diag, "- Flash      : Up to %dKiB (size first sector: %dx%d)\n", (stm->dev->fl_end - stm->dev->fl_start) / 1024, stm->dev->fl_pps, stm->dev->fl_ps[0]);
   fprintf(diag, "- Option RAM : %db\n", stm->dev->opt_end - stm->dev->opt_start + 1);
   fprintf(diag, "- System RAM : %dKiB\n", (stm->dev->mem_end - stm->dev->mem_start) / 1024);
 
-  uint8_t   buffer[256];
-  uint32_t  addr, start, end;
-  unsigned int  len;
-  int   failed = 0;
-  int   first_page, num_pages;
+  uint8_t buffer[256];
+  uint32_t addr, start, end;
+  unsigned int len;
+  int failed = 0;
+  int first_page, num_pages;
 
   int npages = mlm32l07x01_bin_len / 128 + 1;
   int spage = 0;
@@ -144,16 +145,16 @@ void setup() {
 
   fprintf(diag, "Write to memory\n");
 
-  off_t   offset = 0;
+  off_t offset = 0;
   ssize_t r;
   unsigned int size;
   unsigned int max_wlen, max_rlen;
 
-#define STM32_MAX_RX_FRAME  256 /* cmd read memory */
-#define STM32_MAX_TX_FRAME  (1 + 256 + 1) /* cmd write memory */
+#define STM32_MAX_RX_FRAME 256           /* cmd read memory */
+#define STM32_MAX_TX_FRAME (1 + 256 + 1) /* cmd write memory */
 
-  max_wlen = STM32_MAX_TX_FRAME - 2;  /* skip len and crc */
-  max_wlen &= ~3; /* 32 bit aligned */
+  max_wlen = STM32_MAX_TX_FRAME - 2; /* skip len and crc */
+  max_wlen &= ~3;                    /* 32 bit aligned */
 
   max_rlen = STM32_MAX_RX_FRAME;
   max_rlen = max_rlen < max_wlen ? max_rlen : max_wlen;
@@ -183,8 +184,8 @@ void setup() {
   addr = start;
   while (addr < end && offset < size) {
     uint32_t left = end - addr;
-    len   = max_wlen > left ? left : max_wlen;
-    len   = len > size - offset ? size - offset : len;
+    len = max_wlen > left ? left : max_wlen;
+    len = len > size - offset ? size - offset : len;
 
     memcpy(buffer, &mlm32l07x01_bin[offset], len);
 
@@ -224,9 +225,8 @@ again:
           if (failed == retry) {
             fprintf(stderr, "Failed to verify at address 0x%08x, expected 0x%02x and found 0x%02x\n",
                     (uint32_t)(addr + r),
-                    buffer [r],
-                    compare[r]
-                   );
+                    buffer[r],
+                    compare[r]);
             ret = -1;
             return;
           }
@@ -237,16 +237,14 @@ again:
       failed = 0;
     }
 
-    addr  += len;
-    offset  += len;
+    addr += len;
+    offset += len;
 
     fprintf(diag,
             "Wrote %saddress 0x%08x (%d%%)\n ",
             verify ? "and verified " : "",
             addr,
-            100 * offset / size
-           );
-
+            100 * offset / size);
   }
 
   fprintf(diag, "Done.\n");
@@ -283,37 +281,33 @@ void loop() {
   if (ret == 0) {
     Serial.println("Flashing ok :)");
     SerialLoRa.end();
-    LoRaModem* modem = new LoRaModem();
+    LoRaModem *modem = new LoRaModem();
     modem->begin(EU868);
     Serial.println(modem->version());
   }
-  while (1);
+  while (1)
+    ;
 }
 
-static int is_addr_in_ram(uint32_t addr)
-{
+static int is_addr_in_ram(uint32_t addr) {
   return addr >= stm->dev->ram_start && addr < stm->dev->ram_end;
 }
 
-static int is_addr_in_flash(uint32_t addr)
-{
+static int is_addr_in_flash(uint32_t addr) {
   return addr >= stm->dev->fl_start && addr < stm->dev->fl_end;
 }
 
-static int is_addr_in_opt_bytes(uint32_t addr)
-{
+static int is_addr_in_opt_bytes(uint32_t addr) {
   /* option bytes upper range is inclusive in our device table */
   return addr >= stm->dev->opt_start && addr <= stm->dev->opt_end;
 }
 
-static int is_addr_in_sysmem(uint32_t addr)
-{
+static int is_addr_in_sysmem(uint32_t addr) {
   return addr >= stm->dev->mem_start && addr < stm->dev->mem_end;
 }
 
 /* returns the page that contains address "addr" */
-static int flash_addr_to_page_floor(uint32_t addr)
-{
+static int flash_addr_to_page_floor(uint32_t addr) {
   int page;
   uint32_t *psize;
 
@@ -335,8 +329,7 @@ static int flash_addr_to_page_floor(uint32_t addr)
 }
 
 /* returns the first page whose start addr is >= "addr" */
-int flash_addr_to_page_ceil(uint32_t addr)
-{
+int flash_addr_to_page_ceil(uint32_t addr) {
   int page;
   uint32_t *psize;
 
@@ -358,8 +351,7 @@ int flash_addr_to_page_ceil(uint32_t addr)
 }
 
 /* returns the lower address of flash page "page" */
-static uint32_t flash_page_to_addr(int page)
-{
+static uint32_t flash_page_to_addr(int page) {
   int i;
   uint32_t addr, *psize;
 

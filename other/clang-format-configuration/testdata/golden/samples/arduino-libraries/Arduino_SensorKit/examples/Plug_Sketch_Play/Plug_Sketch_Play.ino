@@ -6,9 +6,10 @@ int LED = 6;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
-  pinMode(button , INPUT);
+  pinMode(button, INPUT);
   pinMode(LED, OUTPUT);
 
   digitalWrite(LED, LOW);

@@ -12,8 +12,7 @@
 */
 #include "Arduino_MCHPTouch.h"
 
-void setup()
-{
+void setup() {
   Serial.begin(9600);
   while (!Serial)
     ;
@@ -21,8 +20,7 @@ void setup()
   //TOUCH.setSensorsSensitivity(*newSensitivity*, channel);
   TOUCH.setSensorsSensitivity(98, 0);
   // QTouch initialization
-  if (!TOUCH.begin())
-  {
+  if (!TOUCH.begin()) {
     Serial.println("Error in sensors initialization!");
     while (1)
       ;
@@ -30,14 +28,12 @@ void setup()
   Serial.println("Touch initialization Done!");
 }
 
-void loop()
-{
+void loop() {
   // polling the sensor for new measure
   TOUCH.poll();
 
   // Checks if new data are available
-  if (TOUCH.available())
-  {
+  if (TOUCH.available()) {
     //reads sensors
 
     Serial.print("Sensor 1 status: ");

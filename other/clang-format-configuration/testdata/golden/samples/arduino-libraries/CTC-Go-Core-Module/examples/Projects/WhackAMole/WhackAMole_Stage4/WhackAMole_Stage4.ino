@@ -1,5 +1,5 @@
 /*
-  CTC GO! CORE MODULE
+  CTC GO! CORE MODULE 
   PROJECT 1 - WHACK A MOLE
 
   This sketch is written to accompany Stage 4 in Whack-a-mole of the CTC GO! core module
@@ -17,8 +17,7 @@ int button_3 = 7;
 int startLevel = 500;
 int gameStarted = 0;
 
-void setup()
-{
+void setup() {
   pinMode(loseLED, OUTPUT);
   pinMode(winLED, OUTPUT);
   pinMode(yellowLED_1, OUTPUT);
@@ -29,10 +28,8 @@ void setup()
   pinMode(button_3, INPUT);
 }
 
-void loop()
-{
-  if (gameStarted == 0)
-  {
+void loop() {
+  if (gameStarted == 0) {
     digitalWrite(loseLED, HIGH);
     digitalWrite(winLED, HIGH);
     digitalWrite(yellowLED_1, HIGH);
@@ -46,8 +43,7 @@ void loop()
     digitalWrite(yellowLED_3, LOW);
     delay(startLevel);
 
-    if (digitalRead(button_1) == _____ || digitalRead(button_2) == HIGH _____ digitalRead(button_3) == _____ )
-    {
+    if (digitalRead(button_1) == _____ || digitalRead(button_2) == HIGH _____ digitalRead(button_3) == _____) {
       digitalWrite(loseLED, _____);
       digitalWrite(winLED, _____);
       gameStarted = 1;
@@ -55,23 +51,14 @@ void loop()
       digitalWrite(loseLED, _____);
       digitalWrite(winLED, _____);
     }
-  }
-  else if (gameStarted == 1)
-  {
-    if (digitalRead(button_1) == HIGH)
-    {
+  } else if (gameStarted == 1) {
+    if (digitalRead(button_1) == HIGH) {
       digitalWrite(yellowLED_1, HIGH);
-    }
-    else if (digitalRead(button_2) == HIGH)
-    {
+    } else if (digitalRead(button_2) == HIGH) {
       digitalWrite(yellowLED_2, HIGH);
-    }
-    else if (digitalRead(button_3) == HIGH)
-    {
+    } else if (digitalRead(button_3) == HIGH) {
       digitalWrite(yellowLED_3, HIGH);
-    }
-    else
-    {
+    } else {
       digitalWrite(loseLED, LOW);
       digitalWrite(winLED, LOW);
       digitalWrite(yellowLED_1, LOW);

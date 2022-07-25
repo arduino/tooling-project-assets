@@ -25,7 +25,7 @@ bool alarm_flag = false;
 void setup() {
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect.
+    ;  // wait for serial port to connect.
   }
   Serial.println("Initialization");
 
@@ -76,6 +76,6 @@ void loop() {
   delay(1000);
 }
 
-void callback_alarm () {
+void callback_alarm() {
   alarm_flag = true;
 }

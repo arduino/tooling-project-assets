@@ -1,5 +1,5 @@
 /*
-  CTC GO! CORE MODULE
+  CTC GO! CORE MODULE 
   PROJECT 2 - PERSONAL TRAINER
 
   This sketch is written to accompany Stage 4 in PERSONAL TRAINER  of the CTC GO! core module
@@ -32,7 +32,6 @@ void setup() {
   pinMode(incrementButton, INPUT);
   pinMode(piezo, OUTPUT);
   Serial.begin(9600);
-
 }
 
 void loop() {
@@ -49,7 +48,7 @@ void loop() {
     digitalWrite(ledCounter_2, LOW);
     digitalWrite(ledCounter_3, HIGH);
     delay(100);
-  */
+    */
 
   distanceSensorValue = analogRead(distanceSensor);
   currentDistanceMM = map(distanceSensorValue, 0, 1023, 0, 3000);
@@ -97,8 +96,7 @@ void loop() {
   digitalWrite(ledCounter_1, _____);
   digitalWrite(ledCounter_2, _____);
   digitalWrite(ledCounter_3, _____);
-  if (stepCounter > 0)
-  {
+  if (stepCounter > 0) {
     digitalWrite(ledCounter_1, _____);
   }
   if (stepCounter > 10) {

@@ -1,8 +1,7 @@
 #include "TimeHelpers.h"
 
 // Convert compile time to system time
-time_t buildDateTimeToSystemTime(const String date, const String time, bool local_time = true, int tz = 0)
-{
+time_t buildDateTimeToSystemTime(const String date, const String time, bool local_time = true, int tz = 0) {
   char s_month[5];
   int year;
 
@@ -18,15 +17,11 @@ time_t buildDateTimeToSystemTime(const String date, const String time, bool loca
   t.tm_year = year - 1900;
   _rtc_maketime(&t, &seconds, RTC_FULL_LEAP_YEAR_SUPPORT);
 
-  if (!local_time)
-  {
-    if (tz > 200)
-    {
-      tz = 0x100 - tz; // Handle negative values
+  if (!local_time) {
+    if (tz > 200) {
+      tz = 0x100 - tz;  // Handle negative values
       seconds += (3600UL) * tz;
-    }
-    else
-    {
+    } else {
       seconds -= (3600UL) * tz;
     }
   }
@@ -34,8 +29,7 @@ time_t buildDateTimeToSystemTime(const String date, const String time, bool loca
   return seconds;
 }
 
-String getLocaltime()
-{
+String getLocaltime() {
   char buffer[32];
   tm t;
   _rtc_localtime(time(NULL), &t, RTC_FULL_LEAP_YEAR_SUPPORT);
@@ -43,8 +37,7 @@ String getLocaltime()
   return String(buffer);
 }
 
-String getLocaltime(const time_t &build_time)
-{
+String getLocaltime(const time_t &build_time) {
   char buffer[32];
   tm t;
   _rtc_localtime(build_time, &t, RTC_FULL_LEAP_YEAR_SUPPORT);
@@ -52,21 +45,16 @@ String getLocaltime(const time_t &build_time)
   return String(buffer);
 }
 
-String getLocaltime(const char *fmt, bool local_time = true, int tz = 0)
-{
+String getLocaltime(const char *fmt, bool local_time = true, int tz = 0) {
   char buffer[64];
   time_t tmp_time = time(NULL);
   tm t;
 
-  if (!local_time)
-  {
-    if (tz > 200)
-    {
-      tz = 0x100 - tz; // Handle negative values
+  if (!local_time) {
+    if (tz > 200) {
+      tz = 0x100 - tz;  // Handle negative values
       tmp_time -= (3600UL) * tz;
-    }
-    else
-    {
+    } else {
       tmp_time += (3600UL) * tz;
     }
   }
@@ -76,21 +64,16 @@ String getLocaltime(const char *fmt, bool local_time = true, int tz = 0)
   return String(buffer);
 }
 
-String getLocaltime(const time_t build_time, const char *fmt, bool local_time = true, int tz = 0)
-{
+String getLocaltime(const time_t build_time, const char *fmt, bool local_time = true, int tz = 0) {
   char buffer[64];
   time_t tmp_time = build_time;
   tm t;
 
-  if (!local_time)
-  {
-    if (tz > 200)
-    {
-      tz = 0x100 - tz; // Handle negative values
+  if (!local_time) {
+    if (tz > 200) {
+      tz = 0x100 - tz;  // Handle negative values
       tmp_time -= (3600UL) * tz;
-    }
-    else
-    {
+    } else {
       tmp_time += (3600UL) * tz;
     }
   }

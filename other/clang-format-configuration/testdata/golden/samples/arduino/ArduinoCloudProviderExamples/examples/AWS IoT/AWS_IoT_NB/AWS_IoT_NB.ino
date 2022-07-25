@@ -26,26 +26,28 @@
 #include "arduino_secrets.h"
 
 /////// Enter your sensitive data in arduino_secrets.h
-const char pinnumber[]     = SECRET_PINNUMBER;
-const char broker[]        = SECRET_BROKER;
-const char* certificate    = SECRET_CERTIFICATE;
+const char pinnumber[] = SECRET_PINNUMBER;
+const char broker[] = SECRET_BROKER;
+const char* certificate = SECRET_CERTIFICATE;
 
 NB nbAccess;
 GPRS gprs;
 
-NBClient      nbClient;            // Used for the TCP socket connection
-BearSSLClient sslClient(nbClient); // Used for SSL/TLS connection, integrates with ECC508
-MqttClient    mqttClient(sslClient);
+NBClient nbClient;                  // Used for the TCP socket connection
+BearSSLClient sslClient(nbClient);  // Used for SSL/TLS connection, integrates with ECC508
+MqttClient mqttClient(sslClient);
 
 unsigned long lastMillis = 0;
 
 void setup() {
   Serial.begin(115200);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   if (!ECCX08.begin()) {
     Serial.println("No ECCX08 present!");
-    while (1);
+    while (1)
+      ;
   }
 
   // Set a callback to get the current time
@@ -97,8 +99,7 @@ unsigned long getTime() {
 void connectNB() {
   Serial.println("Attempting to connect to the cellular network");
 
-  while ((nbAccess.begin(pinnumber) != NB_READY) ||
-         (gprs.attachGPRS() != GPRS_READY)) {
+  while ((nbAccess.begin(pinnumber) != NB_READY) || (gprs.attachGPRS() != GPRS_READY)) {
     // failed, retry
     Serial.print(".");
     delay(1000);

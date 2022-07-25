@@ -27,29 +27,31 @@
 #include "arduino_secrets.h"
 
 /////// Enter your sensitive data in arduino_secrets.h
-const char pinnumber[]     = SECRET_PINNUMBER;
-const char gprs_apn[]      = SECRET_GPRS_APN;
-const char gprs_login[]    = SECRET_GPRS_LOGIN;
+const char pinnumber[] = SECRET_PINNUMBER;
+const char gprs_apn[] = SECRET_GPRS_APN;
+const char gprs_login[] = SECRET_GPRS_LOGIN;
 const char gprs_password[] = SECRET_GPRS_PASSWORD;
-const char broker[]        = SECRET_BROKER;
-String     deviceId        = SECRET_DEVICE_ID;
+const char broker[] = SECRET_BROKER;
+String deviceId = SECRET_DEVICE_ID;
 
 GSM gsmAccess;
 GPRS gprs;
 
-GSMClient     gsmClient;            // Used for the TCP socket connection
-BearSSLClient sslClient(gsmClient); // Used for SSL/TLS connection, integrates with ECC508
-MqttClient    mqttClient(sslClient);
+GSMClient gsmClient;                 // Used for the TCP socket connection
+BearSSLClient sslClient(gsmClient);  // Used for SSL/TLS connection, integrates with ECC508
+MqttClient mqttClient(sslClient);
 
 unsigned long lastMillis = 0;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   if (!ECCX08.begin()) {
     Serial.println("No ECCX08 present!");
-    while (1);
+    while (1)
+      ;
   }
 
   // reconstruct the self signed cert
@@ -112,8 +114,7 @@ unsigned long getTime() {
 void connectGSM() {
   Serial.println("Attempting to connect to the cellular network");
 
-  while ((gsmAccess.begin(pinnumber) != GSM_READY) ||
-         (gprs.attachGPRS(gprs_apn, gprs_login, gprs_password) != GPRS_READY)) {
+  while ((gsmAccess.begin(pinnumber) != GSM_READY) || (gprs.attachGPRS(gprs_apn, gprs_login, gprs_password) != GPRS_READY)) {
     // failed, retry
     Serial.print(".");
     delay(1000);

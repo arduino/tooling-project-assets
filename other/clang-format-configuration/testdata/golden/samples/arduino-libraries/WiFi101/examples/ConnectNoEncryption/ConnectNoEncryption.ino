@@ -1,40 +1,41 @@
 /*
 
-  This example connects to an unencrypted WiFi network.
-  Then it prints the MAC address of the WiFi 101 Shield,
-  the IP address obtained, and other network details.
+ This example connects to an unencrypted WiFi network.
+ Then it prints the MAC address of the WiFi 101 Shield,
+ the IP address obtained, and other network details.
 
-  Circuit:
-   WiFi 101 Shield attached
+ Circuit:
+ * WiFi 101 Shield attached
 
-  created 13 July 2010
-  by dlf (Metodo2 srl)
-  modified 31 May 2012
-  by Tom Igoe
-*/
+ created 13 July 2010
+ by dlf (Metodo2 srl)
+ modified 31 May 2012
+ by Tom Igoe
+ */
 #include <SPI.h>
 #include <WiFi101.h>
 #include "arduino_secrets.h"
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h
-char ssid[] = SECRET_SSID;        // your network SSID (name)
-int status = WL_IDLE_STATUS;     // the WiFi radio's status
+char ssid[] = SECRET_SSID;    // your network SSID (name)
+int status = WL_IDLE_STATUS;  // the WiFi radio's status
 
 void setup() {
   //Initialize serial and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   // check for the presence of the shield:
   if (WiFi.status() == WL_NO_SHIELD) {
     Serial.println("WiFi 101 Shield not present");
     // don't continue:
-    while (true);
+    while (true)
+      ;
   }
 
   // attempt to connect to WiFi network:
-  while ( status != WL_CONNECTED) {
+  while (status != WL_CONNECTED) {
     Serial.print("Attempting to connect to open SSID: ");
     Serial.println(ssid);
     status = WiFi.begin(ssid);

@@ -1,5 +1,5 @@
 /*
-  CTC GO! CORE MODULE
+  CTC GO! CORE MODULE 
   PROJECT 1 - REACT
 
   This sketch is written to accompany Stage 4 in REACT  of the CTC GO! core module
@@ -17,22 +17,19 @@ int game = 0;
 int level = 300;
 int gameSpeed = 0;
 
-void setup()
-{
-  pinMode (blueLED_P1, OUTPUT);
-  pinMode (blueLED_P2, OUTPUT);
-  pinMode (greenLED, OUTPUT);
-  pinMode (redLED, OUTPUT);
+void setup() {
+  pinMode(blueLED_P1, OUTPUT);
+  pinMode(blueLED_P2, OUTPUT);
+  pinMode(greenLED, OUTPUT);
+  pinMode(redLED, OUTPUT);
 
-  pinMode (button_P1, INPUT);
-  pinMode (button_P2, INPUT);
+  pinMode(button_P1, INPUT);
+  pinMode(button_P2, INPUT);
 }
 
-void loop()
-{
+void loop() {
 
-  if (game == 0)
-  {
+  if (game == 0) {
     digitalWrite(blueLED_P1, HIGH);
     digitalWrite(blueLED_P2, HIGH);
     digitalWrite(greenLED, HIGH);
@@ -45,8 +42,7 @@ void loop()
     delay(100);
 
 
-    if (digitalRead(button_P1) == HIGH || digitalRead(button_P2) == HIGH )
-    {
+    if (digitalRead(button_P1) == HIGH || digitalRead(button_P2) == HIGH) {
       game += 1;
       digitalWrite(blueLED_P1, HIGH);
       digitalWrite(blueLED_P2, HIGH);
@@ -61,15 +57,13 @@ void loop()
     }
   }
 
-  if (game == 1)
-  {
+  if (game == 1) {
 
     digitalWrite(redLED, _____);
     digitalWrite(greenLED, _____);
     delay(level);
 
-    if (digitalRead(button_P1) == HIGH )
-    {
+    if (digitalRead(button_P1) == HIGH) {
       digitalWrite(blueLED_P1, HIGH);
       delay(100);
       digitalWrite(blueLED_P1, LOW);
@@ -81,8 +75,7 @@ void loop()
       game = 0;
     }
 
-    if (digitalRead(button_P2) == HIGH )
-    {
+    if (digitalRead(button_P2) == HIGH) {
       digitalWrite(blueLED_P2, HIGH);
       delay(100);
       digitalWrite(blueLED_P2, LOW);
@@ -94,7 +87,7 @@ void loop()
       game = 0;
     }
 
-    digitalWrite (greenLED, _____);
+    digitalWrite(greenLED, _____);
     digitalWrite(redLED, _____);
     gameSpeed = random(_____, _____);
     delay(gameSpeed);

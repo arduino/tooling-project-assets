@@ -1,30 +1,28 @@
 /* This example demonstrates how multiple threads can write to
-   the same physical Serial interface without interfering with
-   one another.
-*/
+ * the same physical Serial interface without interfering with
+ * one another.
+ */
 
 /**************************************************************************************
-   INCLUDE
+ * INCLUDE
  **************************************************************************************/
 
 #include <Arduino_Threads.h>
 
 /**************************************************************************************
-   SETUP/LOOP
+ * SETUP/LOOP
  **************************************************************************************/
 
-void setup()
-{
+void setup() {
   Serial.begin(9600);
-  while (!Serial) { }
+  while (!Serial) {}
 
   Thread_1.start();
   Thread_2.start();
   Thread_3.start();
 }
 
-void loop()
-{
+void loop() {
   Serial.block();
   Serial.print("[");
   Serial.print(millis());

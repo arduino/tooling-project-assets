@@ -10,7 +10,7 @@
 #include <map>
 
 // Use a map to collect IRQ counts
-std::map<const pin_size_t, volatile unsigned int> irqCounts {
+std::map<const pin_size_t, volatile unsigned int> irqCounts{
   { IRQ_CH1, 0 },
   { IRQ_CH2, 0 },
   { IRQ_CH3, 0 },
@@ -20,7 +20,7 @@ std::map<const pin_size_t, volatile unsigned int> irqCounts {
 };
 
 // Map pin numbers to pin names for pretty printing
-std::map<pin_size_t, const char*> irqNames {
+std::map<pin_size_t, const char*> irqNames{
 #define NE(IRQ) { IRQ, #IRQ }
   NE(IRQ_CH1),
   NE(IRQ_CH2),
@@ -30,8 +30,7 @@ std::map<pin_size_t, const char*> irqNames {
   NE(IRQ_CH6),
 };
 
-void setup()
-{
+void setup() {
   EdgeControl.begin();
 
   Serial.begin(115200);
@@ -52,7 +51,7 @@ void setup()
     // Define the IRQ callback as lambda function
     // Will receive an entry from the irqCounts map:
     auto isr = [](void* arg) {
-      IrqCount * ic = (IrqCount *)arg;
+      IrqCount* ic = (IrqCount*)arg;
       (*ic).second++;
     };
 
@@ -62,8 +61,7 @@ void setup()
   }
 }
 
-void loop()
-{
+void loop() {
   // Print counters every second.
   Serial.println("--------");
   for (const auto& irq : irqCounts) {

@@ -17,14 +17,14 @@
 
 int usb_mode = UNKNOWN_MODE;
 
-void setup()
-{
+void setup() {
   // Serial1 shall be used to print messages because the programming
   // port is busy with the guest device
   Serial1.begin(9600);
   if (!PMIC.begin()) {
     Serial1.println("Failed to initialize PMIC!");
-    while (1);
+    while (1)
+      ;
   }
 
   // Enable boost mode, this mode allows using the board as host to

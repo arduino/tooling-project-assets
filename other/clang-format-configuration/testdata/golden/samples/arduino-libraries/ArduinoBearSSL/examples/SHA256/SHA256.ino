@@ -17,7 +17,8 @@ SHA256Class SHA256;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   // expect 0xE3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855
   printSHA256("");
@@ -61,8 +62,7 @@ void printHMACSHA256(const char* secret, const char* str) {
   printResult();
 }
 
-void printResult()
-{
+void printResult() {
   while (SHA256.available()) {
     byte b = SHA256.read();
 

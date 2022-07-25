@@ -30,7 +30,8 @@ void setup() {
 
   if (!IMU.begin()) {
     Serial.println("Failed to initialize IMU!");
-    while (1);
+    while (1)
+      ;
   }
 
   // initialize the LED pin as an output:

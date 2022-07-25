@@ -1,34 +1,34 @@
 /*
 
-  Esplora TFT Bitmap Logos
+ Esplora TFT Bitmap Logos
 
-  This example for the Arduino TFT screen is for use
-  with an Arduino Esplora.
+ This example for the Arduino TFT screen is for use
+ with an Arduino Esplora.
 
-  This example reads an image file from a micro-SD card
-  and draws it on the screen, at random locations.
+ This example reads an image file from a micro-SD card
+ and draws it on the screen, at random locations.
 
-  There is a .bmp file included with this sketch.
-  - open the sketch folder (Ctrl-K or Cmd-K)
-  - copy the "arduino.bmp" file to a micro-SD
-  - put the SD into the SD slot of the Arduino LCD module.
+ There is a .bmp file included with this sketch.
+ - open the sketch folder (Ctrl-K or Cmd-K)
+ - copy the "arduino.bmp" file to a micro-SD
+ - put the SD into the SD slot of the Arduino LCD module.
 
-  This example code is in the public domain.
+ This example code is in the public domain.
 
-  Created 19 April 2013 by Enrico Gueli
+ Created 19 April 2013 by Enrico Gueli
 
-  https://www.arduino.cc/en/Tutorial/LibraryExamples/EsploraTFTBitmapLogo
+ https://www.arduino.cc/en/Tutorial/LibraryExamples/EsploraTFTBitmapLogo
 
-*/
+ */
 
 // include the necessary libraries
 #include <Esplora.h>
 #include <SPI.h>
 #include <SD.h>
-#include <TFT.h>            // Arduino LCD library
+#include <TFT.h>  // Arduino LCD library
 
 // the Esplora pin connected to the chip select line for SD card
-#define SD_CS    8
+#define SD_CS 8
 
 // this variable represents the image to be drawn on screen
 PImage logo;
@@ -76,7 +76,6 @@ void setup() {
   } else {
     Esplora.writeRed(255);
   }
-
 }
 
 void loop() {

@@ -14,13 +14,10 @@
 #include "Helpers.h"
 #include <Arduino_EdgeControl.h>
 
-volatile bool alarmFlag {
-  false
-};
-byte alarmInterval { 1 };
+volatile bool alarmFlag{ false };
+byte alarmInterval{ 1 };
 
-void setup()
-{
+void setup() {
   Serial.begin(9600);
 
   for (auto timeout = millis() + 2500l; !Serial && millis() < timeout; delay(250))
@@ -64,13 +61,15 @@ void setup()
 
   // Attach an interrupt to the RTC interrupt pin
   attachInterrupt(
-    digitalPinToInterrupt(IRQ_RTC), [] { alarmFlag = true; }, FALLING);
+    digitalPinToInterrupt(IRQ_RTC), [] {
+      alarmFlag = true;
+    },
+    FALLING);
 
   Serial.println();
 }
 
-void loop()
-{
+void loop() {
   if (alarmFlag) {
     Serial.println("Alarm!");
 
@@ -96,36 +95,33 @@ void loop()
   delay(10000);
 }
 
-String getRTCDate()
-{
+String getRTCDate() {
   // APIs to get date fields.
   auto years = RealTimeClock.getYears();
   auto months = RealTimeClock.getMonths();
   auto days = RealTimeClock.getDays();
 
-  char buf[12] {};
+  char buf[12]{};
 
   snprintf(buf, 11, "20%02d-%02d-%02d", years, months, days);
 
   return String(buf);
 }
 
-String getRTCTime()
-{
+String getRTCTime() {
   // APIs to get time fields.
   auto hours = RealTimeClock.getHours();
   auto minutes = RealTimeClock.getMinutes();
   auto seconds = RealTimeClock.getSeconds();
 
-  char buf[11] {};
+  char buf[11]{};
 
   snprintf(buf, 10, "%02d:%02d:%02d", hours, minutes, seconds);
 
   return String(buf);
 }
 
-String getRTCDateTime()
-{
+String getRTCDateTime() {
   auto date = getRTCDate();
   auto time = getRTCTime();
 

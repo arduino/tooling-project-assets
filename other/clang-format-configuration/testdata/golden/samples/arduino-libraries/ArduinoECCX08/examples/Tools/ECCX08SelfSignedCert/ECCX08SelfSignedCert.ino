@@ -26,11 +26,13 @@
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   if (!ECCX08.begin()) {
     Serial.println("No ECCX08 present!");
-    while (1);
+    while (1)
+      ;
   }
 
   String serialNumber = ECCX08.serialNumber();
@@ -45,17 +47,20 @@ void setup() {
 
     if (!lock.startsWith("y")) {
       Serial.println("Unfortunately you can't proceed without locking it :(");
-      while (1);
+      while (1)
+        ;
     }
 
     if (!ECCX08.writeConfiguration(ECCX08_DEFAULT_TLS_CONFIG)) {
       Serial.println("Writing ECCX08 configuration failed!");
-      while (1);
+      while (1)
+        ;
     }
 
     if (!ECCX08.lock()) {
       Serial.println("Locking ECCX08 configuration failed!");
-      while (1);
+      while (1)
+        ;
     }
 
     Serial.println("ECCX08 locked successfully");
@@ -65,14 +70,14 @@ void setup() {
   Serial.println("Hi there, in order to generate a new self signed cert for your board, we'll need the following information ...");
   Serial.println();
 
-  String issueYear          = promptAndReadLine("Please enter the issue year of the certificate? (2000 - 2031)", "2019");
-  String issueMonth         = promptAndReadLine("Please enter the issue month of the certificate? (1 - 12)", "1");
-  String issueDay           = promptAndReadLine("Please enter the issue day of the certificate? (1 - 31)", "1");
-  String issueHour          = promptAndReadLine("Please enter the issue hour of the certificate? (0 - 23)", "0");
-  String expireYears        = promptAndReadLine("Please enter how many years the certificate is valid for? (1 - 31)", "31");
-  String privateKeySlot     = promptAndReadLine("What slot would you like to use for the private key? (0 - 4)", "0");
-  String storageSlot        = promptAndReadLine("What slot would you like to use for storage? (8 - 15)", "8");
-  String generateNewKey     = promptAndReadLine("Would you like to generate a new private key? (Y/n)", "Y");
+  String issueYear = promptAndReadLine("Please enter the issue year of the certificate? (2000 - 2031)", "2019");
+  String issueMonth = promptAndReadLine("Please enter the issue month of the certificate? (1 - 12)", "1");
+  String issueDay = promptAndReadLine("Please enter the issue day of the certificate? (1 - 31)", "1");
+  String issueHour = promptAndReadLine("Please enter the issue hour of the certificate? (0 - 23)", "0");
+  String expireYears = promptAndReadLine("Please enter how many years the certificate is valid for? (1 - 31)", "31");
+  String privateKeySlot = promptAndReadLine("What slot would you like to use for the private key? (0 - 4)", "0");
+  String storageSlot = promptAndReadLine("What slot would you like to use for storage? (8 - 15)", "8");
+  String generateNewKey = promptAndReadLine("Would you like to generate a new private key? (Y/n)", "Y");
 
   Serial.println();
 
@@ -80,7 +85,8 @@ void setup() {
 
   if (!ECCX08SelfSignedCert.beginStorage(privateKeySlot.toInt(), storageSlot.toInt(), generateNewKey.startsWith("y"))) {
     Serial.println("Error starting self signed cert generation!");
-    while (1);
+    while (1)
+      ;
   }
 
   ECCX08SelfSignedCert.setCommonName(ECCX08.serialNumber());
@@ -94,7 +100,8 @@ void setup() {
 
   if (!cert) {
     Serial.println("Error generating self signed cert!");
-    while (1);
+    while (1)
+      ;
   }
 
   Serial.println("Here's your self signed cert, enjoy!");

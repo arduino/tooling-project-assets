@@ -19,7 +19,8 @@ String appKey = SECRET_APP_KEY;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
-  while (!Serial);
+  while (!Serial)
+    ;
   // change this to your regional band (eg. US915, AS923, ...)
   if (!modem.begin(EU868)) {
     Serial.println("Failed to start module");
@@ -48,7 +49,8 @@ void loop() {
   Serial.println("Enter a message to send to network");
   Serial.println("(make sure that end-of-line 'NL' is enabled)");
 
-  while (!Serial.available());
+  while (!Serial.available())
+    ;
   String msg = Serial.readStringUntil('\n');
 
   Serial.println();

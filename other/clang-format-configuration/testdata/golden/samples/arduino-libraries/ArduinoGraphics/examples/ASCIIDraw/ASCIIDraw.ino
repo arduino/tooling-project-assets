@@ -18,40 +18,40 @@ const byte canvasWidth = 61;
 const byte canvasHeight = 27;
 
 class ASCIIDrawClass : public ArduinoGraphics {
-  public:
-    // can be used with an object of any class that inherits from the Print class
-    ASCIIDrawClass(Print &printObject = (Print &)Serial) :
-      ArduinoGraphics(canvasWidth, canvasHeight),
+public:
+  // can be used with an object of any class that inherits from the Print class
+  ASCIIDrawClass(Print &printObject = (Print &)Serial)
+    : ArduinoGraphics(canvasWidth, canvasHeight),
       _printObject(&printObject) {}
 
-    // this function is called by the ArduinoGraphics library's functions
-    virtual void set(int x, int y, uint8_t r, uint8_t g, uint8_t b) {
-      // the r parameter is (mis)used to set the character to draw with
-      _canvasBuffer[x][y] = r;
-      // cast unused parameters to void to fix "unused parameter" warning
-      (void)g;
-      (void)b;
-    }
+  // this function is called by the ArduinoGraphics library's functions
+  virtual void set(int x, int y, uint8_t r, uint8_t g, uint8_t b) {
+    // the r parameter is (mis)used to set the character to draw with
+    _canvasBuffer[x][y] = r;
+    // cast unused parameters to void to fix "unused parameter" warning
+    (void)g;
+    (void)b;
+  }
 
-    // display the drawing
-    void endDraw() {
-      ArduinoGraphics::endDraw();
+  // display the drawing
+  void endDraw() {
+    ArduinoGraphics::endDraw();
 
-      for (byte row = 0; row < canvasHeight; row++) {
-        for (byte column = 0; column < canvasWidth; column++) {
-          // handle unset parts of buffer
-          if (_canvasBuffer[column][row] == 0) {
-            _canvasBuffer[column][row] = ' ';
-          }
-          _printObject->print(_canvasBuffer[column][row]);
+    for (byte row = 0; row < canvasHeight; row++) {
+      for (byte column = 0; column < canvasWidth; column++) {
+        // handle unset parts of buffer
+        if (_canvasBuffer[column][row] == 0) {
+          _canvasBuffer[column][row] = ' ';
         }
-        _printObject->println();
+        _printObject->print(_canvasBuffer[column][row]);
       }
+      _printObject->println();
     }
+  }
 
-  private:
-    Print *_printObject;
-    char _canvasBuffer[canvasWidth][canvasHeight] = {{0}};
+private:
+  Print *_printObject;
+  char _canvasBuffer[canvasWidth][canvasHeight] = { { 0 } };
 };
 
 ASCIIDrawClass ASCIIDraw;
@@ -59,7 +59,7 @@ ASCIIDrawClass ASCIIDraw;
 void setup() {
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   ASCIIDraw.beginDraw();

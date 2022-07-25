@@ -1,22 +1,16 @@
 #pragma once
 #include <Arduino.h>
 
-String readLine()
-{
+String readLine() {
   String line;
 
-  while (1)
-  {
-    if (Serial.available())
-    {
+  while (1) {
+    if (Serial.available()) {
       char c = Serial.read();
 
-      if (c == '\r')
-      {
+      if (c == '\r') {
         // ignore
-      }
-      else if (c == '\n')
-      {
+      } else if (c == '\n') {
         break;
       }
 
@@ -66,8 +60,7 @@ int promptAndReadInt(const char* prompt, const int defaultValue) {
   return r;
 }
 
-String promptAndReadLine(const char *prompt)
-{
+String promptAndReadLine(const char* prompt) {
   Serial.print(prompt);
   String s = readLine();
   Serial.println(s);
@@ -75,8 +68,7 @@ String promptAndReadLine(const char *prompt)
   return s;
 }
 
-int promptAndReadInt(const char *prompt)
-{
+int promptAndReadInt(const char* prompt) {
   Serial.print(prompt);
   String s = readLine();
   Serial.println(s);
@@ -85,8 +77,7 @@ int promptAndReadInt(const char *prompt)
 }
 
 
-String toHex(char c)
-{
+String toHex(char c) {
   String hex;
 
   hex = "0x";
@@ -97,8 +88,7 @@ String toHex(char c)
   return hex;
 }
 
-void printHex(const String& buf, const unsigned int cols)
-{
+void printHex(const String& buf, const unsigned int cols) {
   for (size_t i = 0; i < buf.length(); i++) {
     String hex = toHex(buf[i]);
     hex += " ";
@@ -109,8 +99,7 @@ void printHex(const String& buf, const unsigned int cols)
   Serial.println();
 }
 
-void printHex(const uint8_t* buf, const size_t len, const unsigned int cols)
-{
+void printHex(const uint8_t* buf, const size_t len, const unsigned int cols) {
   for (size_t i = 0; i < len; i++) {
     //    Serial.print("0x");
     if (buf[i] < 16)

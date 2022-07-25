@@ -8,11 +8,13 @@ CryptoUtil Crypto;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   if (!Crypto.begin()) {
     Serial.println("No crypto present!");
-    while (1);
+    while (1)
+      ;
   }
 
   if (!Crypto.locked()) {
@@ -21,17 +23,20 @@ void setup() {
 
     if (lockConfirm != "y") {
       Serial.println("That's all folks");
-      while (1);
+      while (1)
+        ;
     }
 
     if (!Crypto.writeConfiguration(DEFAULT_ECCX08_TLS_CONFIG)) {
       Serial.println("Writing crypto configuration failed!");
-      while (1);
+      while (1)
+        ;
     }
 
     if (!Crypto.lock()) {
       Serial.println("Locking crypto configuration failed!");
-      while (1);
+      while (1)
+        ;
     }
 
     Serial.println("crypto locked successfully");
@@ -43,12 +48,14 @@ void setup() {
 
   if (csrConfirm != "y") {
     Serial.println("That's all folks");
-    while (1);
+    while (1)
+      ;
   }
 
   if (!Certificate.begin()) {
     Serial.println("Error starting CSR generation!");
-    while (1);
+    while (1)
+      ;
   }
 
   String deviceId = promptAndReadLine("Please enter the device id: ");
@@ -56,28 +63,30 @@ void setup() {
 
   if (!Crypto.buildCSR(Certificate, CryptoSlot::Key, true)) {
     Serial.println("Error generating CSR!");
-    while (1);
+    while (1)
+      ;
   }
 
   String csr = Certificate.getCSRPEM();
 
   if (!csr) {
     Serial.println("Error generating CSR!");
-    while (1);
+    while (1)
+      ;
   }
 
   Serial.println("Generated CSR is:");
   Serial.println();
   Serial.println(csr);
 
-  String issueYear              = promptAndReadLine("Please enter the issue year of the certificate (2000 - 2031): ");
-  String issueMonth             = promptAndReadLine("Please enter the issue month of the certificate (1 - 12): ");
-  String issueDay               = promptAndReadLine("Please enter the issue day of the certificate (1 - 31): ");
-  String issueHour              = promptAndReadLine("Please enter the issue hour of the certificate (0 - 23): ");
-  String expireYears            = promptAndReadLine("Please enter how many years the certificate is valid for (0 - 31): ");
-  String serialNumber           = promptAndReadLine("Please enter the certificates serial number: ");
+  String issueYear = promptAndReadLine("Please enter the issue year of the certificate (2000 - 2031): ");
+  String issueMonth = promptAndReadLine("Please enter the issue month of the certificate (1 - 12): ");
+  String issueDay = promptAndReadLine("Please enter the issue day of the certificate (1 - 31): ");
+  String issueHour = promptAndReadLine("Please enter the issue hour of the certificate (0 - 23): ");
+  String expireYears = promptAndReadLine("Please enter how many years the certificate is valid for (0 - 31): ");
+  String serialNumber = promptAndReadLine("Please enter the certificates serial number: ");
   String authorityKeyIdentifier = promptAndReadLine("Please enter the certificates authority key identifier: ");
-  String signature              = promptAndReadLine("Please enter the certificates signature: ");
+  String signature = promptAndReadLine("Please enter the certificates signature: ");
 
   byte serialNumberBytes[CERT_SERIAL_NUMBER_LENGTH];
   byte authorityKeyIdentifierBytes[CERT_AUTHORITY_KEY_ID_LENGTH];
@@ -89,12 +98,14 @@ void setup() {
 
   if (!Crypto.writeDeviceId(deviceId, CryptoSlot::DeviceId)) {
     Serial.println("Error storing device id!");
-    while (1);
+    while (1)
+      ;
   }
 
   if (!Certificate.begin()) {
     Serial.println("Error starting crypto storage!");
-    while (1);
+    while (1)
+      ;
   }
 
   Certificate.setSubjectCommonName(deviceId);
@@ -113,12 +124,14 @@ void setup() {
 
   if (!Crypto.buildCert(Certificate, CryptoSlot::Key)) {
     Serial.println("Error building cert!");
-    while (1);
+    while (1)
+      ;
   }
 
   if (!Crypto.writeCert(Certificate, CryptoSlot::CompressedCertificate)) {
     Serial.println("Error storing cert!");
-    while (1);
+    while (1)
+      ;
   }
 
   if (!DEBUG) {

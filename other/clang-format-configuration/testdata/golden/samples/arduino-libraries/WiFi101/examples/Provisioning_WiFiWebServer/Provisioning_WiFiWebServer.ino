@@ -23,10 +23,10 @@
 #include <WiFi101.h>
 #include <WiFiMDNSResponder.h>
 
-const int ledPin = 6; // LED pin for connectivity status indicator
+const int ledPin = 6;  // LED pin for connectivity status indicator
 
-char mdnsName[] = "wifi101"; // the MDNS name that the board will respond to
-// after WiFi settings have been provisioned
+char mdnsName[] = "wifi101";  // the MDNS name that the board will respond to
+                              // after WiFi settings have been provisioned
 // Note that the actual MDNS name will have '.local' after
 // the name above, so "wifi101" will be accessible on
 // the MDNS name "wifi101.local".
@@ -44,7 +44,8 @@ void setup() {
   if (WiFi.status() == WL_NO_SHIELD) {
     Serial.println("WiFi 101 Shield not present");
     // don't continue:
-    while (true);
+    while (true)
+      ;
   }
 
   // configure the LED pin for output mode
@@ -77,7 +78,8 @@ void setup() {
   // being assigned an IP address.
   if (!mdnsResponder.begin(mdnsName)) {
     Serial.println("Failed to start MDNS responder!");
-    while (1);
+    while (1)
+      ;
   }
 
   Serial.print("Server listening at http://");
@@ -112,7 +114,7 @@ void loop() {
           client.println("HTTP/1.1 200 OK");
           client.println("Content-Type: text/html");
           client.println("Connection: close");  // the connection will be closed after completion of the response
-          client.println("Refresh: 5");  // refresh the page automatically every 5 sec
+          client.println("Refresh: 5");         // refresh the page automatically every 5 sec
           client.println();
           client.println("<!DOCTYPE HTML>");
           client.println("<html>");
@@ -131,8 +133,7 @@ void loop() {
         if (c == '\n') {
           // you're starting a new line
           currentLineIsBlank = true;
-        }
-        else if (c != '\r') {
+        } else if (c != '\r') {
           // you've gotten a character on the current line
           currentLineIsBlank = false;
         }

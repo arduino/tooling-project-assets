@@ -20,10 +20,10 @@ volatile unsigned long time_last_interrupt = millis();
 void setup() {
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
-  // Available only for MKRGSM1400 and MKRNB1500
+// Available only for MKRGSM1400 and MKRNB1500
 #if defined(ARDUINO_SAMD_MKRGSM1400) || defined(ARDUINO_SAMD_MKRNB1500)
   // Attach the PMIC IRQ pin
   attachInterrupt(digitalPinToInterrupt(PMIC_IRQ_PIN), batteryConnected, FALLING);
@@ -31,7 +31,8 @@ void setup() {
 
   if (!PMIC.begin()) {
     Serial.println("Failed to initialize PMIC!");
-    while (1);
+    while (1)
+      ;
   }
 
   // Set the input current limit to 2 A and the overload input voltage to 3.88 V

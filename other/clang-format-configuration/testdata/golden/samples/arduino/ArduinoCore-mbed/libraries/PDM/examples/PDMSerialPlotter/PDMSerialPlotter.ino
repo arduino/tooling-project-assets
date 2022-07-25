@@ -27,7 +27,8 @@ volatile int samplesRead;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   // Configure the data receive callback
   PDM.onReceive(onPDMdata);
@@ -42,7 +43,8 @@ void setup() {
   // - a 32 kHz or 64 kHz sample rate for the Arduino Portenta Vision Shield
   if (!PDM.begin(channels, frequency)) {
     Serial.println("Failed to start PDM!");
-    while (1);
+    while (1)
+      ;
   }
 }
 
@@ -67,9 +69,9 @@ void loop() {
 }
 
 /**
-   Callback function to process the data from the PDM microphone.
-   NOTE: This callback is executed as part of an ISR.
-   Therefore using `Serial` to print messages inside this function isn't supported.
+ * Callback function to process the data from the PDM microphone.
+ * NOTE: This callback is executed as part of an ISR.
+ * Therefore using `Serial` to print messages inside this function isn't supported.
  * */
 void onPDMdata() {
   // Query the number of available bytes

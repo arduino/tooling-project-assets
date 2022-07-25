@@ -1,5 +1,5 @@
 /*
-  CTC GO! CORE MODULE
+  CTC GO! CORE MODULE 
   PROJECT 2 - PERSONAL TRAINER
 
   This sketch is written to accompany Stage 5 in PERSONAL TRAINER  of the CTC GO! core module
@@ -34,7 +34,6 @@ void setup() {
   pinMode(piezo, OUTPUT);
 
   Serial.begin(9600);
-
 }
 
 void loop() {
@@ -83,8 +82,7 @@ void loop() {
   digitalWrite(ledCounter_2, LOW);
   digitalWrite(ledCounter_3, LOW);
 
-  if (stepCounter <= 0)
-  {
+  if (stepCounter <= 0) {
     Serial.println("Woopwoop, you succeeded");
     tone(piezo, _____);
     delay(100);
@@ -96,9 +94,7 @@ void loop() {
     digitalWrite(_____, _____);
     digitalWrite(_____, _____);
     digitalWrite(_____, _____);
-  }
-  else
-  {
+  } else {
     if (stepCounter > 0) {
       digitalWrite(ledCounter_1, HIGH);
     }

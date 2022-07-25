@@ -29,7 +29,7 @@
 
 #include "model.h"
 
-const float accelerationThreshold = 2.5; // threshold of significant in G's
+const float accelerationThreshold = 2.5;  // threshold of significant in G's
 const int numSamples = 119;
 
 int samplesRead = numSamples;
@@ -62,12 +62,14 @@ const char* GESTURES[] = {
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   // initialize the IMU
   if (!IMU.begin()) {
     Serial.println("Failed to initialize IMU!");
-    while (1);
+    while (1)
+      ;
   }
 
   // print out the samples rates of the IMUs
@@ -84,7 +86,8 @@ void setup() {
   tflModel = tflite::GetModel(model);
   if (tflModel->version() != TFLITE_SCHEMA_VERSION) {
     Serial.println("Model schema mismatch!");
-    while (1);
+    while (1)
+      ;
   }
 
   // Create an interpreter to run the model
@@ -144,7 +147,8 @@ void loop() {
         TfLiteStatus invokeStatus = tflInterpreter->Invoke();
         if (invokeStatus != kTfLiteOk) {
           Serial.println("Invoke failed!");
-          while (1);
+          while (1)
+            ;
           return;
         }
 

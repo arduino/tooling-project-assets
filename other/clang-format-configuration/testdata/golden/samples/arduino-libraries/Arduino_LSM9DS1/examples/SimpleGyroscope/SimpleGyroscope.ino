@@ -18,12 +18,14 @@
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
   Serial.println("Started");
 
   if (!IMU.begin()) {
     Serial.println("Failed to initialize IMU!");
-    while (1);
+    while (1)
+      ;
   }
   Serial.print("Gyroscope sample rate = ");
   Serial.print(IMU.gyroscopeSampleRate());

@@ -1,5 +1,5 @@
 /*
-  CTC GO! MOTION
+  CTC GO! MOTION 
   PROJECT - Spin-A-Wheel
 
   This sketch is written to accompany Stage 2 of the Spin-a-Wheel project
@@ -25,7 +25,6 @@ void setup() {
   servo_wheel.______(9);
 
   Serial.begin(9600);
-
 }
 
 void loop() {

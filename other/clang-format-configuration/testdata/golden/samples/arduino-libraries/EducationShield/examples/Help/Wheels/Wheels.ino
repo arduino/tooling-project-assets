@@ -1,10 +1,10 @@
 /*
-  Wheels
-
-  If you ever want to use two continuous rotation servos as a pair
-  of wheels we've made it easy for you.
-
-  (c) 2013-2016 Arduino LLC.
+* Wheels
+*
+* If you ever want to use two continuous rotation servos as a pair
+* of wheels we've made it easy for you. 
+*
+* (c) 2013-2016 Arduino LLC.
 */
 
 #include <EducationShield.h>

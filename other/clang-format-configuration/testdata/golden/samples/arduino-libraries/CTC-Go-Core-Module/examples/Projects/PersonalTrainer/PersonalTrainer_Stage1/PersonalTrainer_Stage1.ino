@@ -1,5 +1,5 @@
 /*
-  CTC GO! CORE MODULE
+  CTC GO! CORE MODULE 
   PROJECT 2 - PERSONAL TRAINER
 
   This sketch is written to accompany Stage 1 in PERSONAL TRAINER  of the CTC GO! core module

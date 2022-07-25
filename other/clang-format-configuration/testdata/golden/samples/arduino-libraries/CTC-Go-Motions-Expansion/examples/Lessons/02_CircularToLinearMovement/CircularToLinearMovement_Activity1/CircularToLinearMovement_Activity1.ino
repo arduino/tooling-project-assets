@@ -1,6 +1,6 @@
 /*
-  CTC GO! MOTION
-  LESSON 02 - Circular To Linear Movement
+  CTC GO! MOTION 
+  LESSON 02 - Circular To Linear Movement 
 
   This sketch is written to accompany activity 1 of Lesson 2
 */
@@ -17,15 +17,13 @@ int potValue = 0;
 int max_pos = 180;
 int min_pos = 0;
 
-void setup()
-{
+void setup() {
   servo_Standard.attach(6);
 
   Serial.begin(9600);
 }
 
-void loop()
-{
+void loop() {
   potValue = analogRead(potPin);
 
   pos = map(potValue, 0, 1023, min_pos, max_pos);

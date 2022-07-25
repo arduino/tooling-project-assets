@@ -23,16 +23,16 @@
 #include <WiFiNINA.h>
 
 // from section 10.3.3 of the SAMD datasheet
-#define SERIAL_NUMBER_WORD_0  *(volatile uint32_t*)(0x0080A00C)
-#define SERIAL_NUMBER_WORD_1  *(volatile uint32_t*)(0x0080A040)
-#define SERIAL_NUMBER_WORD_2  *(volatile uint32_t*)(0x0080A044)
-#define SERIAL_NUMBER_WORD_3  *(volatile uint32_t*)(0x0080A048)
+#define SERIAL_NUMBER_WORD_0 *(volatile uint32_t*)(0x0080A00C)
+#define SERIAL_NUMBER_WORD_1 *(volatile uint32_t*)(0x0080A040)
+#define SERIAL_NUMBER_WORD_2 *(volatile uint32_t*)(0x0080A044)
+#define SERIAL_NUMBER_WORD_3 *(volatile uint32_t*)(0x0080A048)
 
 const bool DEBUG = true;
-const int keySlot                                   = 0;
-const int compressedCertSlot                        = 10;
+const int keySlot = 0;
+const int compressedCertSlot = 10;
 const int serialNumberAndAuthorityKeyIdentifierSlot = 11;
-const int deviceIdSlot                              = 12;
+const int deviceIdSlot = 12;
 
 char ssid[] = SECRET_SSID;
 char pass[] = SECRET_PASS;
@@ -40,13 +40,13 @@ char client_id[] = SECRET_CLIENT_ID;
 char secret_id[] = SECRET_SECRET_ID;
 
 #if defined(ARDUINO_SAMD_NANO_33_IOT)
-char board_type[] = "nano_33_iot"; // Nano 33 IoT
-char board_fqbn[] = "arduino:samd:nano_33_iot"; // Nano 33 IoT
+char board_type[] = "nano_33_iot";               // Nano 33 IoT
+char board_fqbn[] = "arduino:samd:nano_33_iot";  // Nano 33 IoT
 #elif defined(ARDUINO_SAMD_MKRWIFI1010)
-char board_type[] = "mkrwifi1010"; // MKR WiFi 1010
-char board_fqbn[] = "arduino:samd:mkrwifi1010"; // MKR WiFi 1010
+char board_type[] = "mkrwifi1010";               // MKR WiFi 1010
+char board_fqbn[] = "arduino:samd:mkrwifi1010";  // MKR WiFi 1010
 #else
-char board_type[] = "nonina"; // Not supported boards
+char board_type[] = "nonina";  // Not supported boards
 char board_fqbn[] = "";
 #endif
 
@@ -71,16 +71,15 @@ ECCX08CertClass ECCX08Cert;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   if (board_type == "nonina") {
     Serial.println("Sorry, this sketch only works on Nano 33 IoT and MKR 1010 WiFi");
-    while (1) {
-      ;
-    }
+    while (1) { ; }
   }
 
-  while ( status != WL_CONNECTED) {
+  while (status != WL_CONNECTED) {
     Serial.print("Attempting to connect to Network named: ");
     Serial.println(ssid);
 
@@ -106,13 +105,15 @@ void setup() {
     if (!ECCX08.writeConfiguration(DEFAULT_ECCX08_TLS_CONFIG)) {
       Serial.println("Writing ECCX08 configuration failed!");
       Serial.println("Stopping Provisioning");
-      while (1);
+      while (1)
+        ;
     }
 
     if (!ECCX08.lock()) {
       Serial.println("Locking ECCX08 configuration failed!");
       Serial.println("Stopping Provisioning");
-      while (1);
+      while (1)
+        ;
     }
 
     Serial.println("ECCX08 locked successfully");
@@ -128,8 +129,7 @@ void setup() {
   BoardUniqueID[2] = SERIAL_NUMBER_WORD_2;
   BoardUniqueID[3] = SERIAL_NUMBER_WORD_3;
   uint8_t bid[32];
-  for (int i = 0; i < 4; i++)
-  {
+  for (int i = 0; i < 4; i++) {
     bid[i * 4 + 0] = (uint8_t)(BoardUniqueID[i] >> 24);
     bid[i * 4 + 1] = (uint8_t)(BoardUniqueID[i] >> 16);
     bid[i * 4 + 2] = (uint8_t)(BoardUniqueID[i] >> 8);
@@ -178,19 +178,19 @@ void setup() {
   // Downloading Arduino cert
   ArduinoCertificate(Arduino_Token, deviceId, csr);
 
-  String issueYear              = not_before.substring(0, 4);
+  String issueYear = not_before.substring(0, 4);
   Serial.print("Year: ");
   Serial.println(issueYear);
-  String issueMonth             = not_before.substring(5, 7);
+  String issueMonth = not_before.substring(5, 7);
   Serial.print("Month: ");
   Serial.println(issueMonth);
-  String issueDay               = not_before.substring(8, 10);
+  String issueDay = not_before.substring(8, 10);
   Serial.print("Day: ");
   Serial.println(issueDay);
-  String issueHour              = not_before.substring(11, 13);
+  String issueHour = not_before.substring(11, 13);
   Serial.print("Hour: ");
   Serial.println(issueHour);
-  String expireYears            = "31";
+  String expireYears = "31";
   Serial.print("Certificate Serial: ");
   Serial.println(serialNumber);
   Serial.print("Certificate Authority Key: ");
@@ -210,12 +210,14 @@ void setup() {
 
   if (!ECCX08.writeSlot(deviceIdSlot, deviceIdBytes, sizeof(deviceIdBytes))) {
     Serial.println("Error storing device id!");
-    while (1);
+    while (1)
+      ;
   }
 
   if (!ECCX08Cert.beginStorage(compressedCertSlot, serialNumberAndAuthorityKeyIdentifierSlot)) {
     Serial.println("Error starting ECCX08 storage!");
-    while (1);
+    while (1)
+      ;
   }
 
   ECCX08Cert.setSignature(signatureBytes);
@@ -229,12 +231,14 @@ void setup() {
 
   if (!ECCX08Cert.endStorage()) {
     Serial.println("Error storing ECCX08 compressed cert!");
-    while (1);
+    while (1)
+      ;
   }
 
   if (!ECCX08Cert.beginReconstruction(keySlot, compressedCertSlot, serialNumberAndAuthorityKeyIdentifierSlot)) {
     Serial.println("Error starting ECCX08 cert reconstruction!");
-    while (1);
+    while (1)
+      ;
   }
 
   ECCX08Cert.setIssuerCountryName("US");
@@ -244,7 +248,8 @@ void setup() {
 
   if (!ECCX08Cert.endReconstruction()) {
     Serial.println("Error reconstructing ECCX08 compressed cert!");
-    while (1);
+    while (1)
+      ;
   }
 
   if (!DEBUG) {
@@ -360,7 +365,7 @@ void ArduinoToken(String client_id, String client_secret) {
   }
   JSONVar myObject = JSON.parse(tokenResponse);
   if (myObject.hasOwnProperty("access_token")) {
-    Arduino_Token += (const char*) myObject["access_token"];
+    Arduino_Token += (const char*)myObject["access_token"];
   }
 }
 
@@ -413,7 +418,7 @@ void BoardUuid(String board_name, String board_type, String board_fqbn, String b
   }
   JSONVar myObject = JSON.parse(deviceResponse);
   if (myObject.hasOwnProperty("id")) {
-    deviceId += (const char*) myObject["id"];
+    deviceId += (const char*)myObject["id"];
   }
 }
 
@@ -469,18 +474,18 @@ void ArduinoCertificate(String user_token, String DeviceUuid, String csr) {
   String certZip = JSON.stringify(myObject["compressed"]);
   JSONVar myCert = JSON.parse(certZip);
   if (myCert.hasOwnProperty("not_before")) {
-    not_before += (const char*) myCert["not_before"];
+    not_before += (const char*)myCert["not_before"];
   }
   if (myCert.hasOwnProperty("serial")) {
-    serialNumber += (const char*) myCert["serial"];
+    serialNumber += (const char*)myCert["serial"];
   }
   if (myCert.hasOwnProperty("authority_key_identifier")) {
-    authorityKeyIdentifier += (const char*) myCert["authority_key_identifier"];
+    authorityKeyIdentifier += (const char*)myCert["authority_key_identifier"];
   }
   if (myCert.hasOwnProperty("signature_asn1_x")) {
-    signature += (const char*) myCert["signature_asn1_x"];
+    signature += (const char*)myCert["signature_asn1_x"];
   }
   if (myCert.hasOwnProperty("signature_asn1_y")) {
-    signature += (const char*) myCert["signature_asn1_y"];
+    signature += (const char*)myCert["signature_asn1_y"];
   }
 }

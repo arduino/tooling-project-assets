@@ -15,11 +15,13 @@
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   if (!ENV.begin()) {
     Serial.println("Failed to initialize MKR ENV Shield!");
-    while (1);
+    while (1)
+      ;
   }
 }
 
@@ -28,12 +30,12 @@ void loop() {
   // PSI to readPressure(...) and FOOTCANDLE to readIlluminance(...)
   // allows you to read the sensor values in imperial units
   float temperature = ENV.readTemperature(FAHRENHEIT);
-  float humidity    = ENV.readHumidity();
-  float pressure    = ENV.readPressure(PSI);
+  float humidity = ENV.readHumidity();
+  float pressure = ENV.readPressure(PSI);
   float illuminance = ENV.readIlluminance(FOOTCANDLE);
-  float uva         = ENV.readUVA();
-  float uvb         = ENV.readUVB();
-  float uvIndex     = ENV.readUVIndex();
+  float uva = ENV.readUVA();
+  float uvb = ENV.readUVB();
+  float uvIndex = ENV.readUVIndex();
 
   // print each of the sensor values
   Serial.print("Temperature = ");

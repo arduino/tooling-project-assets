@@ -23,11 +23,13 @@
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   if (!ECCX08.begin()) {
     Serial.println("No ECCX08 present!");
-    while (1);
+    while (1)
+      ;
   }
 
   if (!ECCX08.locked()) {
@@ -36,17 +38,20 @@ void setup() {
 
     if (!lock.startsWith("y")) {
       Serial.println("Unfortunately you can't proceed without locking it :(");
-      while (1);
+      while (1)
+        ;
     }
 
     if (!ECCX08.writeConfiguration(ECCX08_DEFAULT_TLS_CONFIG)) {
       Serial.println("Writing ECCX08 configuration failed!");
-      while (1);
+      while (1)
+        ;
     }
 
     if (!ECCX08.lock()) {
       Serial.println("Locking ECCX08 configuration failed!");
-      while (1);
+      while (1)
+        ;
     }
 
     Serial.println("ECCX08 locked successfully");
@@ -56,8 +61,8 @@ void setup() {
   Serial.println("Hi there, in order to generate a PEM public key for your board, we'll need the following information ...");
   Serial.println();
 
-  String slot               = promptAndReadLine("What slot would you like to use? (0 - 4)", "0");
-  String generateNewKey     = promptAndReadLine("Would you like to generate a new private key? (Y/n)", "Y");
+  String slot = promptAndReadLine("What slot would you like to use? (0 - 4)", "0");
+  String generateNewKey = promptAndReadLine("Would you like to generate a new private key? (Y/n)", "Y");
 
   Serial.println();
 
@@ -67,7 +72,8 @@ void setup() {
 
   if (!publicKeyPem || publicKeyPem == "") {
     Serial.println("Error generating public key!");
-    while (1);
+    while (1)
+      ;
   }
 
   Serial.println("Here's your public key PEM, enjoy!");

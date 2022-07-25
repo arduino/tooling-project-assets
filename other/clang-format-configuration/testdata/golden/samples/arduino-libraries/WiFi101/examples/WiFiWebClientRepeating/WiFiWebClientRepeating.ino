@@ -1,30 +1,30 @@
 /*
   Repeating WiFi Web Client
 
-  This sketch connects to a a web server and makes a request
-  using an Arduino WiFi 101 Shield.
+ This sketch connects to a a web server and makes a request
+ using an Arduino WiFi 101 Shield.
 
-  Circuit:
-   WiFi 101 Shield attached to pins SPI pins and pin 7
+ Circuit:
+ * WiFi 101 Shield attached to pins SPI pins and pin 7
 
-  created 23 April 2012
-  modified 31 May 2012
-  by Tom Igoe
-  modified 13 Jan 2014
-  by Federico Vanzati
+ created 23 April 2012
+ modified 31 May 2012
+ by Tom Igoe
+ modified 13 Jan 2014
+ by Federico Vanzati
 
-  http://arduino.cc/en/Tutorial/WiFiWebClientRepeating
-  This code is in the public domain.
-*/
+ http://arduino.cc/en/Tutorial/WiFiWebClientRepeating
+ This code is in the public domain.
+ */
 
 #include <SPI.h>
 #include <WiFi101.h>
 
 #include "arduino_secrets.h"
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h
-char ssid[] = SECRET_SSID;        // your network SSID (name)
-char pass[] = SECRET_PASS;    // your network password (use for WPA, or use as key for WEP)
-int keyIndex = 0;            // your network key Index number (needed only for WEP)
+char ssid[] = SECRET_SSID;  // your network SSID (name)
+char pass[] = SECRET_PASS;  // your network password (use for WPA, or use as key for WEP)
+int keyIndex = 0;           // your network key Index number (needed only for WEP)
 
 int status = WL_IDLE_STATUS;
 
@@ -35,25 +35,26 @@ WiFiClient client;
 char server[] = "example.org";
 //IPAddress server(64,131,82,241);
 
-unsigned long lastConnectionTime = 0;            // last time you connected to the server, in milliseconds
-const unsigned long postingInterval = 10L * 1000L; // delay between updates, in milliseconds
+unsigned long lastConnectionTime = 0;               // last time you connected to the server, in milliseconds
+const unsigned long postingInterval = 10L * 1000L;  // delay between updates, in milliseconds
 
 void setup() {
   //Initialize serial and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   // check for the presence of the shield:
   if (WiFi.status() == WL_NO_SHIELD) {
     Serial.println("WiFi 101 Shield not present");
     // don't continue:
-    while (true);
+    while (true)
+      ;
   }
 
   // attempt to connect to WiFi network:
-  while ( status != WL_CONNECTED) {
+  while (status != WL_CONNECTED) {
     Serial.print("Attempting to connect to SSID: ");
     Serial.println(ssid);
     // Connect to WPA/WPA2 network. Change this line if using open or WEP network:
@@ -80,7 +81,6 @@ void loop() {
   if (millis() - lastConnectionTime > postingInterval) {
     httpRequest();
   }
-
 }
 
 // this method makes a HTTP connection to the server:
@@ -101,8 +101,7 @@ void httpRequest() {
 
     // note the time that the connection was made:
     lastConnectionTime = millis();
-  }
-  else {
+  } else {
     // if you couldn't make a connection:
     Serial.println("connection failed");
   }

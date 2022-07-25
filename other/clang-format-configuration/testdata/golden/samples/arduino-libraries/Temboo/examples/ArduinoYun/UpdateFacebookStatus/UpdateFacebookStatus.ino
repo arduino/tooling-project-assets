@@ -4,9 +4,9 @@
   Demonstrates sending a Facebook status update using Temboo from an Arduino Yún.
 
   Check out the latest Arduino & Temboo examples and support docs at http://www.temboo.com/arduino
-
-  A Temboo account and application key are necessary to run all Temboo examples.
-  If you don't already have one, you can register for a free Temboo account at
+  
+  A Temboo account and application key are necessary to run all Temboo examples. 
+  If you don't already have one, you can register for a free Temboo account at 
   http://www.temboo.com
 
   In order to run this sketch, you'll need to register an application using
@@ -17,17 +17,17 @@
 
   This example assumes basic familiarity with Arduino sketches, and that your Yún
   is connected to the Internet.
-
+  
   Want to use another social API with your Arduino Yún? We've got Twitter,
   Instagram, Tumblr and more in our Library!
 
-  This example code is in the public domain.
+  This example code is in the public domain. 
 */
 
 #include <Bridge.h>
 #include <Temboo.h>
-#include "TembooAccount.h" // contains Temboo account information, 
-// as described in the footer comment below
+#include "TembooAccount.h"  // contains Temboo account information,
+                            // as described in the footer comment below
 
 /*** SUBSTITUTE YOUR VALUES BELOW: ***/
 
@@ -46,7 +46,8 @@ void setup() {
 
   // For debugging, wait until a serial console is connected.
   delay(4000);
-  while (!Serial);
+  while (!Serial)
+    ;
   Bridge.begin();
 }
 
@@ -107,7 +108,7 @@ void loop() {
   Serial.println("Waiting...");
   Serial.println("");
 
-  delay(30000); // wait 30 seconds between SetStatus calls
+  delay(30000);  // wait 30 seconds between SetStatus calls
 }
 
 /*
@@ -118,15 +119,15 @@ void loop() {
   by inserting your own Temboo account name and app key information. The contents of the file should
   look like:
 
-  #define TEMBOO_ACCOUNT "myTembooAccountName"  // your Temboo account name
+  #define TEMBOO_ACCOUNT "myTembooAccountName"  // your Temboo account name 
   #define TEMBOO_APP_KEY_NAME "myFirstApp"  // your Temboo app key name
   #define TEMBOO_APP_KEY  "xxx-xxx-xxx-xx-xxx"  // your Temboo app key
 
-  You can find your Temboo App Key information on the Temboo website,
+  You can find your Temboo App Key information on the Temboo website, 
   under My Account > Application Keys
 
   The same TembooAccount.h file settings can be used for all Temboo SDK sketches.
 
-  Keeping your account information in a separate file means you can share the main .ino file without worrying
+  Keeping your account information in a separate file means you can share the main .ino file without worrying 
   that you forgot to delete your credentials.
 */

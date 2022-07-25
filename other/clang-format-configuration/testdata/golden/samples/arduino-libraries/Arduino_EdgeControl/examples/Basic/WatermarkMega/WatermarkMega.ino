@@ -12,26 +12,26 @@
     - Arduino Edge Control
     - Watermark Sensor
     - External 12V power supply
-
+    
     Circuit:
     - Connect PS 12V and GND to BATT+ and GND pins
     - Connect the two sensor's cables to WATERMARK COMM and INPUT 1 pins
-
+    
 */
 
 #include <Arduino_EdgeControl.h>
 
-constexpr auto adcResolution { 12 };
+constexpr auto adcResolution{ 12 };
 
 // You will need a proper temperature value to get correct results
-auto refTemperature { 24.5f };
+auto refTemperature{ 24.5f };
 
-void setup()
-{
+void setup() {
   Serial.begin(115200);
 
   // Wait for Serial or start after 2.5s
-  for (const auto startNow = millis() + 2500; !Serial && millis() < startNow; delay(250));
+  for (const auto startNow = millis() + 2500; !Serial && millis() < startNow; delay(250))
+    ;
 
   EdgeControl.begin();
   delay(2000);
@@ -55,8 +55,7 @@ void setup()
   Serial.println("Watermark OK");
 }
 
-void loop()
-{
+void loop() {
   auto wm = getWatermark(WATERMARK_CH01);
   Serial.print("Watermark = ");
   Serial.print(wm);
@@ -66,10 +65,9 @@ void loop()
 }
 
 
-int getAverageWatermarkRead(pin_size_t pin)
-{
-  constexpr size_t count { 20 };
-  int sum { 0 };
+int getAverageWatermarkRead(pin_size_t pin) {
+  constexpr size_t count{ 20 };
+  int sum{ 0 };
 
   Watermark.calibrationMode(OUTPUT);
   Watermark.calibrationWrite(LOW);
@@ -90,16 +88,15 @@ int getAverageWatermarkRead(pin_size_t pin)
   return sum / count;
 }
 
-float getWatermark(pin_size_t pin)
-{
-  constexpr unsigned int calibResistor { 7870 };
-  constexpr long openResistance { 35000 };
-  constexpr long shortResistance { 200 };
-  constexpr long shortkPa { 240 };
-  constexpr long openkPa { 255 };
+float getWatermark(pin_size_t pin) {
+  constexpr unsigned int calibResistor{ 7870 };
+  constexpr long openResistance{ 35000 };
+  constexpr long shortResistance{ 200 };
+  constexpr long shortkPa{ 240 };
+  constexpr long openkPa{ 255 };
 
-  constexpr auto maxValue { 1 << adcResolution };
-  constexpr float toV { 3.3f / float { maxValue } };
+  constexpr auto maxValue{ 1 << adcResolution };
+  constexpr float toV{ 3.3f / float{ maxValue } };
 
   float kPa;
 
@@ -108,7 +105,7 @@ float getWatermark(pin_size_t pin)
   if (val == 0)
     return openkPa;
 
-  auto resistor = calibResistor * float { maxValue - val } / float { val };
+  auto resistor = calibResistor * float{ maxValue - val } / float{ val };
 
   if (resistor > 550.f) {
     if (resistor > 8000.f) {
@@ -122,11 +119,11 @@ float getWatermark(pin_size_t pin)
     if (resistor > 300.f)
       kPa = 0.f;
     if (resistor < 300.f && resistor >= shortResistance)
-      kPa = shortkPa; // 240 is a fault code for sensor terminal short
+      kPa = shortkPa;  // 240 is a fault code for sensor terminal short
   }
 
   if (resistor >= openResistance) {
-    kPa = openkPa; // 255 is a fault code for open circuit or sensor not present
+    kPa = openkPa;  // 255 is a fault code for open circuit or sensor not present
   }
 
   Serial.print("Watermark average analogRead value: ");

@@ -4,9 +4,9 @@
 
 // Alternatively, any raw RGB565 image can be included on demand using this macro
 /*
-  #define INCBIN_PREFIX
-  #include "incbin.h"
-  INCBIN(test, "/home/user/Downloads/test.bin");
+#define INCBIN_PREFIX
+#include "incbin.h"
+INCBIN(test, "/home/user/Downloads/test.bin");
 */
 
 int offset;
@@ -23,5 +23,5 @@ void setup() {
 void loop() {
   // Replace texture_raw with testData if using the INCBIN method
   // Also, replace 300x300 resolution with the actual one
-  stm32_LCD_DrawImage((void*)texture_raw, (void *)(getNextFrameBuffer() + offset), 300, 300, DMA2D_INPUT_RGB565);
+  stm32_LCD_DrawImage((void *)texture_raw, (void *)(getNextFrameBuffer() + offset), 300, 300, DMA2D_INPUT_RGB565);
 }

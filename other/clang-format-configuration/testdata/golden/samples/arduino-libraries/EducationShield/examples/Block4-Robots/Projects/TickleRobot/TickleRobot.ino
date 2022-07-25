@@ -1,11 +1,11 @@
 /*
-    TickleRobot
-
-    This is just a regular ticklish robot in a rocking chair.
-    Come to think of it, that doesn't sound very regular at all.
-    Tickle the robot on its heart and it will start to wiggle like crazy.
-
-    (c) 2013-2016 Arduino LLC.
+*   TickleRobot
+*
+*   This is just a regular ticklish robot in a rocking chair. 
+*   Come to think of it, that doesn't sound very regular at all. 
+*   Tickle the robot on its heart and it will start to wiggle like crazy. 
+*   
+*   (c) 2013-2016 Arduino LLC.
 */
 
 #include <EducationShield.h>
@@ -34,5 +34,4 @@ void loop() {
     pull.write(90);
   }
   delay(30);
-
 }

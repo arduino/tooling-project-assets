@@ -18,8 +18,8 @@ using namespace mbed;
 // SPIFBlockDevice root(SPI_MOSI, SPI_MISO, SPI_SCK, SPI_SS, 40000000);
 SPIFBlockDevice root(SPI_MOSI, SPI_MISO, SPI_SCK, SPI_SS, SPIF_FREQ);
 
-constexpr int USER_DATA_PARTITION { 1 };
-constexpr int TDBS_DATA_PARTITION { 2 };
+constexpr int USER_DATA_PARTITION{ 1 };
+constexpr int TDBS_DATA_PARTITION{ 2 };
 
 // Define block devices for serial flash partitions
 // https://os.mbed.com/docs/mbed-os/v6.4/apis/mbrblockdevice.html
@@ -30,13 +30,13 @@ MBRBlockDevice tdbs_data(&root, TDBS_DATA_PARTITION);
 
 // Define the start and stop addresses of the partitions
 // Start from the first user-available block...
-constexpr bd_addr_t USER_DATA_PARTITION_START { USER_BLOCKS_START };
+constexpr bd_addr_t USER_DATA_PARTITION_START{ USER_BLOCKS_START };
 // ... reserve 4MB for user filesystem...
-constexpr bd_addr_t USER_DATA_PARTITION_STOP { SPIF_SIZE / 2 };
+constexpr bd_addr_t USER_DATA_PARTITION_STOP{ SPIF_SIZE / 2 };
 // ... start keyvalue store space from there...
-constexpr bd_addr_t TDBS_DATA_PARTITION_START { USER_DATA_PARTITION_STOP };
+constexpr bd_addr_t TDBS_DATA_PARTITION_START{ USER_DATA_PARTITION_STOP };
 // ... and reserve all the ramaining space until last user-available block.
-constexpr bd_addr_t TDBS_DATA_PARTITION_STOP { USER_BLOCKS_STOP };
+constexpr bd_addr_t TDBS_DATA_PARTITION_STOP{ USER_BLOCKS_STOP };
 
 // Filesystem for user data
 // https://os.mbed.com/docs/mbed-os/v6.4/apis/littlefilesystem.html
@@ -56,13 +56,12 @@ TDBStore tdb_store(&tdbs_data);
 // https://os.mbed.com/docs/mbed-os/v6.4/apis/ticker.html
 Ticker lister;
 Ticker writer;
-volatile bool doList { false };
-volatile bool doWrite { false };
+volatile bool doList{ false };
+volatile bool doWrite{ false };
 
 Timer t;
 
-void setup()
-{
+void setup() {
   int err;
 
   Serial.begin(115200);
@@ -98,17 +97,22 @@ void setup()
   Serial.println("TDB Init " + String(err == 0 ? "OK" : "KO") + " (" + String(err) + ")");
 
   // Store data every 1 second
-  writer.attach([] { doWrite = true; }, 1s);
+  writer.attach([] {
+    doWrite = true;
+  },
+                1s);
 
   // Display data every 5 seconds
-  lister.attach([] { doList = true; }, 5s);
+  lister.attach([] {
+    doList = true;
+  },
+                5s);
 
   // Init the RNG
   srand(t.elapsed_time().count());
 }
 
-void loop()
-{
+void loop() {
   if (doList) {
     doList = false;
     listDirs();
@@ -120,10 +124,9 @@ void loop()
   }
 }
 
-void storeData()
-{
-  constexpr char data_key[] { "data_key" };
-  uint8_t data_value { 0 };
+void storeData() {
+  constexpr char data_key[]{ "data_key" };
+  uint8_t data_value{ 0 };
   size_t _actual;
 
   int res;
@@ -163,8 +166,7 @@ void storeData()
   }
 }
 
-void listDirs()
-{
+void listDirs() {
   DIR* dir;
   struct dirent* ent;
 
@@ -178,7 +180,7 @@ void listDirs()
 
     FILE* f = fopen("/user/numbers.csv", "r+");
     if (f != nullptr) {
-      char buf[64] { 0 };
+      char buf[64]{ 0 };
       while (std::fgets(buf, sizeof buf, f) != nullptr)
         Serial.print(buf);
       fclose(f);
@@ -193,7 +195,7 @@ void listDirs()
 
   // Iterate over all the keys starting with name "key_"
   tdb_store.iterator_open(&it, "key_");
-  char key[128] { 0 };
+  char key[128]{ 0 };
   while (tdb_store.iterator_next(it, key, sizeof(key)) != MBED_ERROR_ITEM_NOT_FOUND) {
     // Get info about the key and its contents
     tdb_store.get_info(key, &info);

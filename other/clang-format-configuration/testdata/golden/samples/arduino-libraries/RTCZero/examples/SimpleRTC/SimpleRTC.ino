@@ -9,7 +9,7 @@
 
   created by Arturo Guadalupi <a.guadalupi@arduino.cc>
   15 Jun 2015
-  modified
+  modified 
   18 Feb 2016
   modified by Andrea Richetta <a.richetta@arduino.cc>
   24 Aug 2016
@@ -30,11 +30,10 @@ const byte day = 15;
 const byte month = 6;
 const byte year = 15;
 
-void setup()
-{
+void setup() {
   Serial.begin(9600);
 
-  rtc.begin(); // initialize RTC
+  rtc.begin();  // initialize RTC
 
   // Set the time
   rtc.setHours(hours);
@@ -51,8 +50,7 @@ void setup()
   //rtc.setDate(day, month, year);
 }
 
-void loop()
-{
+void loop() {
   // Print date...
   print2digits(rtc.getDay());
   Serial.print("/");
@@ -77,7 +75,7 @@ void loop()
 
 void print2digits(int number) {
   if (number < 10) {
-    Serial.print("0"); // print a 0 before if the number is < than 10
+    Serial.print("0");  // print a 0 before if the number is < than 10
   }
   Serial.print(number);
 }

@@ -34,11 +34,11 @@
 // Set oneshot to false to trigger continuous mode when you finished setting up the whole flow
 int oneshot = true;
 
-Adafruit_BMP280  bmp;
+Adafruit_BMP280 bmp;
 Adafruit_HTU21DF htu = Adafruit_HTU21DF();
 Adafruit_TSL2561_Unified tsl = Adafruit_TSL2561_Unified(TSL2561_ADDR_FLOAT, 12345);
 
-#define STATUS_OK     0
+#define STATUS_OK 0
 #define STATUS_BMP_KO 1
 #define STATUS_HTU_KO 2
 #define STATUS_TSL_KO 4
@@ -141,5 +141,6 @@ void loop() {
 
 void reboot() {
   NVIC_SystemReset();
-  while (1);
+  while (1)
+    ;
 }

@@ -1,7 +1,6 @@
 #include "CustomTasks.h"
 
-void openLatchingValve()
-{
+void openLatchingValve() {
   Serial.println("Alarm: Opening Latching Valve");
 
   LCD.home();
@@ -18,11 +17,12 @@ void openLatchingValve()
   LCD.print("Valve Open      ");
 
   // Power off the backlight after 5 seconds
-  Alarm.timerOnce(5, [] { backlightOff(false); });
+  Alarm.timerOnce(5, [] {
+    backlightOff(false);
+  });
 }
 
-void closeLatchingValve()
-{
+void closeLatchingValve() {
   Serial.println("Alarm: Closing Latching Valve");
 
   LCD.home();
@@ -40,11 +40,12 @@ void closeLatchingValve()
 
   // Power off the backlight after 5 seconds
   // and power off everything else
-  Alarm.timerOnce(5, [] { backlightOff(true); });
+  Alarm.timerOnce(5, [] {
+    backlightOff(true);
+  });
 }
 
-void openSolenoidValve()
-{
+void openSolenoidValve() {
   Serial.println("Alarm: Opening Solenoid Valve");
 
   LCD.home();
@@ -60,11 +61,12 @@ void openSolenoidValve()
   LCD.print("Valve Open      ");
 
   // Power off the backlight after 5 seconds
-  Alarm.timerOnce(5, [] { backlightOff(false); });
+  Alarm.timerOnce(5, [] {
+    backlightOff(false);
+  });
 }
 
-void closeSolenoidValve()
-{
+void closeSolenoidValve() {
   Serial.println("Alarm: Closing Solenoid Valve");
 
   LCD.home();
@@ -81,19 +83,19 @@ void closeSolenoidValve()
 
   // Power off the backlight after 5 seconds
   // and power off everything else
-  Alarm.timerOnce(5, [] { backlightOff(true); });
+  Alarm.timerOnce(5, [] {
+    backlightOff(true);
+  });
 }
 
-void displayClock()
-{
+void displayClock() {
   String date = getLocaltime("%Y-%m-%d", true, 0);
   String time = getLocaltime("%k:%M:%S", true, 0);
   displayMsg(date, 0, 0, true, false);
   displayMsg(time, 5000, 1, false, true);
 }
 
-void blinkLed()
-{
+void blinkLed() {
   Expander.pinMode(EXP_LED1, OUTPUT);
   Expander.digitalWrite(EXP_LED1, LOW);
   delay(10);
@@ -103,8 +105,7 @@ void blinkLed()
   Expander.digitalWrite(EXP_LED1, HIGH);
 }
 
-void getSensors()
-{
+void getSensors() {
   extern std::list<DataPoint> dataPoints;
 
   String msg = "Moisture: ";
@@ -113,16 +114,17 @@ void getSensors()
   auto value = getAverageInputRead(INPUT_05V_CH01);
   auto perc = getMoisturePerc(INPUT_05V_CH01);
 
-  DataPoint d{value, perc};
+  DataPoint d{ value, perc };
 
   Serial.println(d);
   dataPoints.push_back(d);
 
-  Alarm.timerOnce(5, [] { backlightOff(true); });
+  Alarm.timerOnce(5, [] {
+    backlightOff(true);
+  });
 }
 
-void saveData()
-{
+void saveData() {
   String msg = "Saving Data";
   Serial.println(msg);
   LCD.clear();
@@ -142,15 +144,15 @@ void saveData()
 
   LCD.print(ret);
 
-  Alarm.timerOnce(5, [] { backlightOff(true); });
+  Alarm.timerOnce(5, [] {
+    backlightOff(true);
+  });
 }
 
-void helloWorld()
-{
+void helloWorld() {
   displayMsg("Hello, World!");
 }
 
-void hiThere()
-{
+void hiThere() {
   displayMsg("Hi, There!");
 }

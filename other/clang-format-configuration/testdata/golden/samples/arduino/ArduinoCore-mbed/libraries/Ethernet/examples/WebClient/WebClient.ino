@@ -1,18 +1,18 @@
 /*
   Web client
 
-  This sketch connects to a website (http://www.google.com)
-  using an Arduino Wiznet Ethernet shield.
+ This sketch connects to a website (http://www.google.com)
+ using an Arduino Wiznet Ethernet shield.
 
-  Circuit:
-   Ethernet shield attached to pins 10, 11, 12, 13
+ Circuit:
+ * Ethernet shield attached to pins 10, 11, 12, 13
 
-  created 18 Dec 2009
-  by David A. Mellis
-  modified 9 Apr 2012
-  by Tom Igoe, based on work by Adrian McEwen
+ created 18 Dec 2009
+ by David A. Mellis
+ modified 9 Apr 2012
+ by Tom Igoe, based on work by Adrian McEwen
 
-*/
+ */
 
 #include <PortentaEthernet.h>
 #include <Ethernet.h>
@@ -25,7 +25,7 @@
 // if you don't want to use DNS (and reduce your sketch size)
 // use the numeric IP instead of the name for the server:
 //IPAddress server(74,125,232,128);  // numeric IP for Google (no DNS)
-char server[] = "www.google.com"; // name address for Google (using DNS)
+char server[] = "www.google.com";  // name address for Google (using DNS)
 
 // Set the static IP address to use if the DHCP fails to assign
 IPAddress ip(192, 168, 2, 177);
@@ -39,15 +39,14 @@ EthernetClient client;
 // Variables to measure the speed
 unsigned long beginMicros, endMicros;
 unsigned long byteCount = 0;
-bool printWebData = true; // set to false for better speed measurement
+bool printWebData = true;  // set to false for better speed measurement
 
-void setup()
-{
+void setup() {
 
   // Open serial communications and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   // start the Ethernet connection:
@@ -58,7 +57,7 @@ void setup()
     if (Ethernet.hardwareStatus() == EthernetNoHardware) {
       Serial.println("Ethernet shield was not found.  Sorry, can't run without hardware. :(");
       while (true) {
-        delay(1); // do nothing, no point running without Ethernet hardware
+        delay(1);  // do nothing, no point running without Ethernet hardware
       }
     }
     if (Ethernet.linkStatus() == LinkOFF) {
@@ -92,8 +91,7 @@ void setup()
   beginMicros = micros();
 }
 
-void loop()
-{
+void loop() {
   // if there are incoming bytes available
   // from the server, read them and print them:
   int len = client.available();
@@ -103,7 +101,7 @@ void loop()
       len = 80;
     client.read(buffer, len);
     if (printWebData) {
-      Serial.write(buffer, len); // show in the serial monitor (slows some boards)
+      Serial.write(buffer, len);  // show in the serial monitor (slows some boards)
     }
     byteCount = byteCount + len;
   }

@@ -1,35 +1,35 @@
 /*
-   ShipNavigator
-
-  To find your way around space safely, your ship will need a navigator. Follow your ship’s AI
-  instructions to navigate your ship without crashing it into anything.
-
-  (c) 2013-2016 Arduino LLC.
+*  ShipNavigator
+* 
+* To find your way around space safely, your ship will need a navigator. Follow your ship’s AI
+* instructions to navigate your ship without crashing it into anything.
+*
+* (c) 2013-2016 Arduino LLC.
 */
 
 #include <EducationShield.h>
 
-Player player = Player(); // for playing sounds
-IMU imu; // the IMU
+Player player = Player();  // for playing sounds
+IMU imu;                   // the IMU
 
 
-const int ledPin = 13;      // activity LED pin
-boolean blinkState = false; // state of the LED
+const int ledPin = 13;       // activity LED pin
+boolean blinkState = false;  // state of the LED
 
-bool up, down, left, right; //used for checking if the board has been moved in any direction
-int moveTask = 1; //used for picking what direction should be done
-bool newMove = false; // used for checking if a newMove is needed
+bool up, down, left, right;  //used for checking if the board has been moved in any direction
+int moveTask = 1;            //used for picking what direction should be done
+bool newMove = false;        // used for checking if a newMove is needed
 
-long lastTimer; //used for saving millis()
+long lastTimer;  //used for saving millis()
 
 void setup() {
 
   // configure Arduino LED for activity indicator
   pinMode(ledPin, OUTPUT);
-  digitalWrite(ledPin, HIGH); // turn on led to show that the board has executed
+  digitalWrite(ledPin, HIGH);  // turn on led to show that the board has executed
 
 
-  Serial.begin(9600); // initialize Serial communication
+  Serial.begin(9600);  // initialize Serial communication
 
 
   imu.begin();
@@ -38,9 +38,7 @@ void setup() {
   //Initialize the sound player
   player.begin();
 
-  randomSeed(analogRead(0));// initializes the pseudo-random number generator
-
-
+  randomSeed(analogRead(0));  // initializes the pseudo-random number generator
 }
 
 void loop() {
@@ -61,7 +59,6 @@ void loop() {
     Serial.println("New round");
 
     delay(1000);
-
   }
 
 
@@ -78,7 +75,7 @@ void loop() {
     down = true;
     left = false;
     right = false;
-  } else if (roll  < -45) {
+  } else if (roll < -45) {
     up = false;
     down = false;
     left = true;
@@ -106,7 +103,7 @@ void loop() {
       Serial.println("move up");
       player.play("up.wav");
 
-    } else if  (moveTask == 2) {
+    } else if (moveTask == 2) {
       Serial.println("move down");
       player.play("down.wav");
 
@@ -117,12 +114,10 @@ void loop() {
     } else if (moveTask == 4) {
       Serial.println("move right");
       player.play("right.wav");
-
     }
 
-    newMove = true; // a new move is created
-    lastTimer = millis(); // reset the 3 sec timer
-
+    newMove = true;        // a new move is created
+    lastTimer = millis();  // reset the 3 sec timer
   }
 
   // check if the random direction and the direction the board moved in is the same
@@ -155,7 +150,6 @@ void loop() {
     }
 
     lastTimer = millis();
-
   }
 
 

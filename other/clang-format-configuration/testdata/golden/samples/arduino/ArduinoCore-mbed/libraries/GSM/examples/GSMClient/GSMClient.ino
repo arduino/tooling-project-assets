@@ -3,12 +3,12 @@
 REDIRECT_STDOUT_TO(Serial);
 
 #include "arduino_secrets.h"
-char pin[]      = SECRET_PIN;
-char apn[]      = SECRET_APN;
+char pin[] = SECRET_PIN;
+char apn[] = SECRET_APN;
 char username[] = SECRET_USERNAME;
-char pass[]     = SECRET_PASSWORD;
+char pass[] = SECRET_PASSWORD;
 
-const char  server[] = "www.example.com";
+const char server[] = "www.example.com";
 const char* ip_address;
 int port = 80;
 
@@ -21,7 +21,8 @@ void setup() {
   if (!GSM.begin(pin, apn, username, pass, CATNB)) {
     Serial.println("The board was not able to register to the network...");
     // do nothing forevermore:
-    while (1);
+    while (1)
+      ;
   }
   Serial.println("\nStarting connection to server...");
   // if you get a connection, report back via serial:
@@ -36,7 +37,6 @@ void setup() {
   } else {
     Serial.println("unable to connect to server");
   }
-
 }
 
 void loop() {
@@ -55,7 +55,7 @@ void loop() {
     client.stop();
 
     // do nothing forevermore:
-    while (true);
+    while (true)
+      ;
   }
-
 }

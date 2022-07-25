@@ -11,7 +11,8 @@ unsigned int threshold_btn_0 = 95;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   carrier.begin();
   //carrier.noCase();

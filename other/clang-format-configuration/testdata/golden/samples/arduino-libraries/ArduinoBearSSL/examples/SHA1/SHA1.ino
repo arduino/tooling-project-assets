@@ -11,7 +11,8 @@
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   // expect 0xDA39A3EE5E6B4B0D3255BFEF95601890AFD80709
   printSHA1("");
@@ -55,8 +56,7 @@ void printHMACSHA1(const char* secret, const char* str) {
   printResult();
 }
 
-void printResult()
-{
+void printResult() {
   while (SHA1.available()) {
     byte b = SHA1.read();
 

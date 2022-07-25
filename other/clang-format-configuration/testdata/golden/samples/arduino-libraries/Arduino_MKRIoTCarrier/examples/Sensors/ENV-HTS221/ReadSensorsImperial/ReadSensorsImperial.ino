@@ -8,7 +8,8 @@ MKRIoTCarrier carrier;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   carrier.noCase();
   carrier.begin();
@@ -18,7 +19,7 @@ void loop() {
   // Passing in FAHRENHEIT as the unit parameter to ENV.readTemperature(...),
   // allows you to read the sensor values in imperial units
   float temperature = carrier.Env.readTemperature(FAHRENHEIT);
-  float humidity    = carrier.Env.readHumidity();
+  float humidity = carrier.Env.readHumidity();
 
   // print each of the sensor values
   Serial.print("Temperature = ");

@@ -1,11 +1,11 @@
 /*
-   SpaceRover
-
-  Getting around on alien planets can be difficult.
-  You are going to need a rover to investigate these new alien worlds.
-  Now you will be able to control the rover to explore alien planets.
-
-  (c) 2013-2016 Arduino LLC.
+*  SpaceRover
+* 
+* Getting around on alien planets can be difficult. 
+* You are going to need a rover to investigate these new alien worlds. 
+* Now you will be able to control the rover to explore alien planets.
+*
+* (c) 2013-2016 Arduino LLC.
 */
 
 #include <EducationShield.h>
@@ -45,25 +45,24 @@ void loop() {
       }
     }
     Serial.println(F("Disconnected from central "));
-
   }
 }
 
 void logoMove(unsigned char direction) {
   switch (direction) {
-    case 1:	//forward
+    case 1:  //forward
       wheels.goForward();
       delay(750);
       break;
-    case 2:	//backwards
+    case 2:  //backwards
       wheels.goBackwards();
       delay(750);
       break;
-    case 3:	//left
+    case 3:  //left
       wheels.turnLeft();
       delay(250);
       break;
-    case 4:	//right
+    case 4:  //right
       wheels.turnRight();
       delay(250);
       break;
@@ -71,5 +70,3 @@ void logoMove(unsigned char direction) {
   wheels.standStill();
   delay(300);
 }
-
-

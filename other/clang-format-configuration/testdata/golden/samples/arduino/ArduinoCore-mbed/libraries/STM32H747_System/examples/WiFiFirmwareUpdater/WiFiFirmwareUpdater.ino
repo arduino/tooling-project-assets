@@ -8,7 +8,7 @@
 #error Update the WiFi firmware by uploading the sketch to the M7 core instead of the M4 core.
 #endif
 
-QSPIFBlockDevice root(QSPI_SO0, QSPI_SO1, QSPI_SO2, QSPI_SO3,  QSPI_SCK, QSPI_CS, QSPIF_POLARITY_MODE_1, 40000000);
+QSPIFBlockDevice root(QSPI_SO0, QSPI_SO1, QSPI_SO2, QSPI_SO3, QSPI_SCK, QSPI_CS, QSPIF_POLARITY_MODE_1, 40000000);
 mbed::MBRBlockDevice wifi_data(&root, 1);
 mbed::FATFileSystem wifi_data_fs("wlan");
 
@@ -37,12 +37,13 @@ void printProgress(uint32_t offset, uint32_t size, uint32_t threshold, bool rese
 void setup() {
 
   Serial.begin(115200);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   mbed::MBRBlockDevice::partition(&root, 1, 0x0B, 0, 1024 * 1024);
   // use space from 15.5MB to 16 MB for another fw, memory mapped
 
-  int err =  wifi_data_fs.mount(&wifi_data);
+  int err = wifi_data_fs.mount(&wifi_data);
   if (err) {
     // Reformat if we can't mount the filesystem
     // this should only happen on the first boot
@@ -58,7 +59,7 @@ void setup() {
 
   if ((dir = opendir("/wlan")) != NULL) {
     /* print all the files and directories within directory */
-    while ((ent = readdir (dir)) != NULL) {
+    while ((ent = readdir(dir)) != NULL) {
       Serial.println("Searching for WiFi firmware file " + String(ent->d_name) + " ...");
       String fullname = "/wlan/" + String(ent->d_name);
       if (fullname == "/wlan/4343WA1.BIN") {
@@ -78,12 +79,12 @@ void setup() {
         }
       }
     }
-    closedir (dir);
+    closedir(dir);
   }
 
   extern const unsigned char wifi_firmware_image_data[];
   extern const resource_hnd_t wifi_firmware_image;
-  FILE* fp = fopen("/wlan/4343WA1.BIN", "wb");
+  FILE *fp = fopen("/wlan/4343WA1.BIN", "wb");
   const int file_size = 421098;
   int chunck_size = 1024;
   int byte_count = 0;
@@ -130,7 +131,7 @@ void setup() {
   while (byte_count < cacert_pem_len) {
     if (byte_count + chunck_size > cacert_pem_len)
       chunck_size = cacert_pem_len - byte_count;
-    int ret = fwrite(&cacert_pem[byte_count], chunck_size, 1 , fp);
+    int ret = fwrite(&cacert_pem[byte_count], chunck_size, 1, fp);
     if (ret != 1) {
       Serial.println("Error writing certificates");
       break;
@@ -155,5 +156,4 @@ void setup() {
 }
 
 void loop() {
-
 }

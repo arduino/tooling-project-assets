@@ -18,11 +18,13 @@
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial); // Wait for Serial Monitor to open
+  while (!Serial)
+    ;  // Wait for Serial Monitor to open
 
   if (!APDS.begin()) {
     Serial.println("Error initializing APDS-9960 sensor.");
-    while (true); // Stop forever
+    while (true)
+      ;  // Stop forever
   }
 }
 

@@ -11,7 +11,7 @@
   This example code is in the public domain.
 */
 
-#include <ArduinoGraphics.h> // Arduino_MKRRGB depends on ArduinoGraphics
+#include <ArduinoGraphics.h>  // Arduino_MKRRGB depends on ArduinoGraphics
 #include <Arduino_MKRRGB.h>
 
 void setup() {
@@ -25,7 +25,7 @@ void setup() {
 void loop() {
   // set one pixel RED
   MATRIX.beginDraw();
-  MATRIX.set(0, 0, 255, 0, 0); // X, Y, and R, G, B
+  MATRIX.set(0, 0, 255, 0, 0);  // X, Y, and R, G, B
   MATRIX.endDraw();
 
   delay(1000);

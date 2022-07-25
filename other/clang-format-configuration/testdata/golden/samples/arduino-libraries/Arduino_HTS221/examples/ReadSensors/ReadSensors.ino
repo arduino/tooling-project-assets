@@ -15,18 +15,20 @@
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   if (!HTS.begin()) {
     Serial.println("Failed to initialize humidity temperature sensor!");
-    while (1);
+    while (1)
+      ;
   }
 }
 
 void loop() {
   // read all the sensor values
   float temperature = HTS.readTemperature();
-  float humidity    = HTS.readHumidity();
+  float humidity = HTS.readHumidity();
 
   // print each of the sensor values
   Serial.print("Temperature = ");

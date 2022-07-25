@@ -1,21 +1,21 @@
 /*
 
-  Esplora TFT Horizon
+ Esplora TFT Horizon
 
-  This example for the Arduino TFT and Esplora draws
-  a line on the screen that stays level with the ground
-  as you tilt the Esplora side to side
+ This example for the Arduino TFT and Esplora draws
+ a line on the screen that stays level with the ground
+ as you tilt the Esplora side to side
 
-  This example code is in the public domain.
+ This example code is in the public domain.
 
-  Created 15 April 2013 by Scott Fitzgerald
+ Created 15 April 2013 by Scott Fitzgerald
 
-  https://www.arduino.cc/en/Tutorial/LibraryExamples/EsploraTFTHorizon
+ https://www.arduino.cc/en/Tutorial/LibraryExamples/EsploraTFTHorizon
 
-*/
+ */
 
 #include <Esplora.h>
-#include <TFT.h>            // Arduino LCD library
+#include <TFT.h>  // Arduino LCD library
 #include <SPI.h>
 
 // horizontal start and end positions

@@ -11,4 +11,3 @@ std::list<AlarmID_t> setTasks(std::list<AlarmTask> taskList);
 void freeTasks(std::list<AlarmID_t>& alarmIDs);
 void loadAndSetTasks(std::list<AlarmID_t>& alarmIDs, bool reload = false);
 void printTasks(const std::list<AlarmTask> taskList);
-

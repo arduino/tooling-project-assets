@@ -1,10 +1,10 @@
 /*
-  CrawlingRobot
-
-  This small robot can crawl. It’s all it can do, and it isn’t
-  very good at it. But it is super cute and great fun.
-
-   (c) 2013-2016 Arduino LLC.
+* CrawlingRobot
+* 
+* This small robot can crawl. It’s all it can do, and it isn’t 
+* very good at it. But it is super cute and great fun. 
+*
+*  (c) 2013-2016 Arduino LLC.
 */
 
 #include <EducationShield.h>

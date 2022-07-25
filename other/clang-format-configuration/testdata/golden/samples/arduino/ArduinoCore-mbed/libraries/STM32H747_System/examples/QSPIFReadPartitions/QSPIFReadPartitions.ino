@@ -16,10 +16,9 @@ struct __attribute__((packed)) mbrTable {
 
 using namespace mbed;
 
-unsigned long allocatedSpace {};
+unsigned long allocatedSpace{};
 
-void setup()
-{
+void setup() {
   Serial.begin(115200);
   for (const auto timeout = millis() + 2500; !Serial && millis() < timeout; delay(250))
     ;
@@ -71,7 +70,7 @@ void setup()
     Serial.println();
     Serial.println("Printing Partitions Table and Info...");
 
-    auto part { 1u };
+    auto part{ 1u };
     for (auto const& entry : table->entries) {
       Serial.println("================================");
       Serial.print("Partition: ");
@@ -123,7 +122,6 @@ void setup()
   Serial.println((bd->size() - allocatedSpace) >> 10);
 }
 
-void loop()
-{
+void loop() {
   delay(10000);
 }

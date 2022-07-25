@@ -1,14 +1,13 @@
 #include <Arduino_EdgeControl.h>
 
-constexpr unsigned int adcResolution { 12 };
+constexpr unsigned int adcResolution{ 12 };
 
 struct Voltages {
   float volt3V3;
   float volt19V;
 };
 
-void setup()
-{
+void setup() {
   Serial.begin(9600);
 
   auto startNow = millis() + 2500;
@@ -38,12 +37,11 @@ void setup()
   analogReadResolution(adcResolution);
 }
 
-void loop()
-{
+void loop() {
   Serial.print("19V Input Channel ");
   Serial.print(": ");
 
-  auto [ voltsMuxer, voltsReference ] = getAverageAnalogRead(INPUT_19V_REF);
+  auto [voltsMuxer, voltsReference] = getAverageAnalogRead(INPUT_19V_REF);
 
   Serial.print(voltsReference);
   Serial.print(" (");
@@ -52,13 +50,12 @@ void loop()
   delay(1000);
 }
 
-Voltages getAverageAnalogRead(int pin)
-{
-  constexpr size_t loops { 100 };
-  constexpr float toV { 3.3f / float { (1 << adcResolution) - 1 } };
-  constexpr float rDiv { 0.0616f };
+Voltages getAverageAnalogRead(int pin) {
+  constexpr size_t loops{ 100 };
+  constexpr float toV{ 3.3f / float{ (1 << adcResolution) - 1 } };
+  constexpr float rDiv{ 0.0616f };
 
-  int tot { 0 };
+  int tot{ 0 };
 
   for (auto i = 0u; i < loops; i++)
     tot += Input.analogRead(pin);

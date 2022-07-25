@@ -1,22 +1,22 @@
 /*
   WiFi Web Server
 
-  A simple web server that shows the value of the analog input pins.
-  using a WiFi 101 Shield.
+ A simple web server that shows the value of the analog input pins.
+ using a WiFi 101 Shield.
 
-  This example is written for a network using WPA encryption. For
-  WEP or WPA, change the WiFi.begin() call accordingly.
+ This example is written for a network using WPA encryption. For
+ WEP or WPA, change the WiFi.begin() call accordingly.
 
-  Circuit:
-   WiFi 101 Shield attached
-   Analog inputs attached to pins A0 through A5 (optional)
+ Circuit:
+ * WiFi 101 Shield attached
+ * Analog inputs attached to pins A0 through A5 (optional)
 
-  created 13 July 2010
-  by dlf (Metodo2 srl)
-  modified 31 May 2012
-  by Tom Igoe
+ created 13 July 2010
+ by dlf (Metodo2 srl)
+ modified 31 May 2012
+ by Tom Igoe
 
-*/
+ */
 
 #include <SPI.h>
 #include <WiFi101.h>
@@ -24,9 +24,9 @@
 
 #include "arduino_secrets.h"
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h
-char ssid[] = SECRET_SSID;        // your network SSID (name)
-char pass[] = SECRET_PASS;    // your network password (use for WPA, or use as key for WEP)
-int keyIndex = 0;                 // your network key Index number (needed only for WEP)
+char ssid[] = SECRET_SSID;  // your network SSID (name)
+char pass[] = SECRET_PASS;  // your network password (use for WPA, or use as key for WEP)
+int keyIndex = 0;           // your network key Index number (needed only for WEP)
 
 int status = WL_IDLE_STATUS;
 
@@ -36,14 +36,15 @@ void setup() {
   //Initialize serial and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   // check for the presence of the shield:
   if (WiFi.status() == WL_NO_SHIELD) {
     Serial.println("WiFi 101 Shield not present");
     // don't continue:
-    while (true);
+    while (true)
+      ;
   }
 
   // attempt to connect to WiFi network:
@@ -81,7 +82,7 @@ void loop() {
           client.println("HTTP/1.1 200 OK");
           client.println("Content-Type: text/html");
           client.println("Connection: close");  // the connection will be closed after completion of the response
-          client.println("Refresh: 5");  // refresh the page automatically every 5 sec
+          client.println("Refresh: 5");         // refresh the page automatically every 5 sec
           client.println();
           client.println("<!DOCTYPE HTML>");
           client.println("<html>");
@@ -100,8 +101,7 @@ void loop() {
         if (c == '\n') {
           // you're starting a new line
           currentLineIsBlank = true;
-        }
-        else if (c != '\r') {
+        } else if (c != '\r') {
           // you've gotten a character on the current line
           currentLineIsBlank = false;
         }

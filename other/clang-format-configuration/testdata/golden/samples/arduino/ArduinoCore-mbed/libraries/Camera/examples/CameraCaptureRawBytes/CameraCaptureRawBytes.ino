@@ -13,7 +13,7 @@ Camera cam(himax);
 #endif
 
 /*
-  Other buffer instantiation options:
+Other buffer instantiation options:
   FrameBuffer fb(0x30000000);
   FrameBuffer fb(320,240,2);
 */
@@ -22,14 +22,13 @@ FrameBuffer fb;
 unsigned long lastUpdate = 0;
 
 
-void blinkLED(uint32_t count = 0xFFFFFFFF)
-{
+void blinkLED(uint32_t count = 0xFFFFFFFF) {
   pinMode(LED_BUILTIN, OUTPUT);
   while (count--) {
-    digitalWrite(LED_BUILTIN, LOW);  // turn the LED on (HIGH is the voltage level)
-    delay(50);                       // wait for a second
-    digitalWrite(LED_BUILTIN, HIGH); // turn the LED off by making the voltage LOW
-    delay(50);                       // wait for a second
+    digitalWrite(LED_BUILTIN, LOW);   // turn the LED on (HIGH is the voltage level)
+    delay(50);                        // wait for a second
+    digitalWrite(LED_BUILTIN, HIGH);  // turn the LED off by making the voltage LOW
+    delay(50);                        // wait for a second
   }
 }
 
@@ -45,7 +44,8 @@ void setup() {
 void loop() {
   if (!Serial) {
     Serial.begin(921600);
-    while (!Serial);
+    while (!Serial)
+      ;
   }
 
   // Time out after 2 seconds and send new data

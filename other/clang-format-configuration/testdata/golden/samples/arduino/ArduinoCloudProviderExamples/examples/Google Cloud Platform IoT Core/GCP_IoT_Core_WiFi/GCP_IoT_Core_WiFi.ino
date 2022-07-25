@@ -19,33 +19,35 @@
 #include <utility/ECCX08JWS.h>
 #include <ArduinoMqttClient.h>
 #include <Arduino_JSON.h>
-#include <WiFiNINA.h> // change to #include <WiFi101.h> for MKR1000
+#include <WiFiNINA.h>  // change to #include <WiFi101.h> for MKR1000
 
 #include "arduino_secrets.h"
 
 /////// Enter your sensitive data in arduino_secrets.h
-const char ssid[]        = SECRET_SSID;
-const char pass[]        = SECRET_PASS;
+const char ssid[] = SECRET_SSID;
+const char pass[] = SECRET_PASS;
 
-const char projectId[]   = SECRET_PROJECT_ID;
+const char projectId[] = SECRET_PROJECT_ID;
 const char cloudRegion[] = SECRET_CLOUD_REGION;
-const char registryId[]  = SECRET_REGISTRY_ID;
-const String deviceId    = SECRET_DEVICE_ID;
+const char registryId[] = SECRET_REGISTRY_ID;
+const String deviceId = SECRET_DEVICE_ID;
 
-const char broker[]      = "mqtt.googleapis.com";
+const char broker[] = "mqtt.googleapis.com";
 
 WiFiSSLClient wifiSslClient;
-MqttClient    mqttClient(wifiSslClient);
+MqttClient mqttClient(wifiSslClient);
 
 unsigned long lastMillis = 0;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   if (!ECCX08.begin()) {
     Serial.println("No ECCX08 present!");
-    while (1);
+    while (1)
+      ;
   }
 
   // Calculate and set the client id used for MQTT
@@ -160,7 +162,7 @@ String calculateJWT() {
 
   jwtClaim["aud"] = projectId;
   jwtClaim["iat"] = now;
-  jwtClaim["exp"] = now + (24L * 60L * 60L); // expires in 24 hours
+  jwtClaim["exp"] = now + (24L * 60L * 60L);  // expires in 24 hours
 
   return ECCX08JWS.sign(0, JSON.stringify(jwtHeader), JSON.stringify(jwtClaim));
 }

@@ -4,24 +4,23 @@
 #include <Arduino_EdgeControl.h>
 #include <RunningMedian.h>
 
-constexpr unsigned int adcResolution { 12 };
+constexpr unsigned int adcResolution{ 12 };
 
 mbed::LowPowerTimeout TimerM;
 
-uint8_t watermarkChannel { 1 };
+uint8_t watermarkChannel{ 1 };
 
-constexpr float tauRatio { 0.63f };
-constexpr float tauRatioSamples { tauRatio * float { (1 << adcResolution) - 1 } };
-constexpr unsigned long sensorDischargeDelay { 2 };
+constexpr float tauRatio{ 0.63f };
+constexpr float tauRatioSamples{ tauRatio * float{ (1 << adcResolution) - 1 } };
+constexpr unsigned long sensorDischargeDelay{ 2 };
 
-constexpr unsigned int measuresCount { 20 };
-RunningMedian measures { measuresCount };
+constexpr unsigned int measuresCount{ 20 };
+RunningMedian measures{ measuresCount };
 
-constexpr unsigned int calibsCount { 10 };
-RunningMedian calibs { calibsCount };
+constexpr unsigned int calibsCount{ 10 };
+RunningMedian calibs{ calibsCount };
 
-void setup()
-{
+void setup() {
   Serial.begin(9600);
 
   auto startNow = millis() + 2500;
@@ -47,9 +46,8 @@ void setup()
   analogReadResolution(adcResolution);
 }
 
-void loop()
-{
-  static bool highPrec { false };
+void loop() {
+  static bool highPrec{ false };
   Watermark.setHighPrecision(highPrec);
   highPrec = !highPrec;
 

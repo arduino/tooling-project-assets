@@ -1,8 +1,8 @@
-/*
-   ButtonGroup
-  ButtonGroup is used for making a few buttons work together.
-
-  (c) 2013-2016 Arduino LLC.
+/*  
+*  ButtonGroup
+* ButtonGroup is used for making a few buttons work together.
+* 
+* (c) 2013-2016 Arduino LLC.
 */
 
 #include <EducationShield.h>
@@ -11,12 +11,13 @@
 ButtonGroup bg;
 
 //Declaring the pins to which the buttons are connected
-int buttons[] = {4, 5, 6};
+int buttons[] = { 4, 5, 6 };
 
 void setup() {
   Serial.begin(9600);
 
-  while (!Serial);
+  while (!Serial)
+    ;
 
   //initialize the button group. The first parameter is
   //number of buttons, the second is the array containing

@@ -16,10 +16,9 @@
 
 #include <Arduino_EdgeControl.h>
 
-bool led { false };
+bool led{ false };
 
-void setup()
-{
+void setup() {
   EdgeControl.begin();
   Power.on(PWR_3V3);
   Power.on(PWR_VBAT);
@@ -39,8 +38,7 @@ void setup()
   }
 }
 
-void loop()
-{
+void loop() {
   SerialMKR2.write(led);
   led = !led;
   delay(1000);

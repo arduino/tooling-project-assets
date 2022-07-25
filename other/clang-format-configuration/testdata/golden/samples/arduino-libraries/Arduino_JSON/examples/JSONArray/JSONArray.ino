@@ -13,7 +13,8 @@ const char input[] = "[true, 42, \"apple\"]";
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   demoParse();
 
@@ -36,7 +37,7 @@ void demoParse() {
   }
 
   Serial.print("JSON.typeof(myArray) = ");
-  Serial.println(JSON.typeof(myArray)); // prints: array
+  Serial.println(JSON.typeof(myArray));  // prints: array
 
   // myArray.length() can be used to get the length of the array
   Serial.print("myArray.length() = ");
@@ -51,11 +52,11 @@ void demoParse() {
   Serial.println();
 
   Serial.print("myArray[1] = ");
-  Serial.println((int) myArray[1]);
+  Serial.println((int)myArray[1]);
   Serial.println();
 
   Serial.print("myArray[2] = ");
-  Serial.println((const char*) myArray[2]);
+  Serial.println((const char*)myArray[2]);
   Serial.println();
 
   Serial.println();

@@ -135,15 +135,15 @@ void testfastlines(uint16_t color1, uint16_t color2) {
 void testdrawrects(uint16_t color) {
   carrier.display.fillScreen(ST77XX_BLACK);
   for (int16_t x = 0; x < carrier.display.width(); x += 6) {
-    carrier.display.drawRect(carrier.display.width() / 2 - x / 2, carrier.display.height() / 2 - x / 2 , x, x, color);
+    carrier.display.drawRect(carrier.display.width() / 2 - x / 2, carrier.display.height() / 2 - x / 2, x, x, color);
   }
 }
 
 void testfillrects(uint16_t color1, uint16_t color2) {
   carrier.display.fillScreen(ST77XX_BLACK);
   for (int16_t x = carrier.display.width() - 1; x > 6; x -= 6) {
-    carrier.display.fillRect(carrier.display.width() / 2 - x / 2, carrier.display.height() / 2 - x / 2 , x, x, color1);
-    carrier.display.drawRect(carrier.display.width() / 2 - x / 2, carrier.display.height() / 2 - x / 2 , x, x, color2);
+    carrier.display.fillRect(carrier.display.width() / 2 - x / 2, carrier.display.height() / 2 - x / 2, x, x, color1);
+    carrier.display.drawRect(carrier.display.width() / 2 - x / 2, carrier.display.height() / 2 - x / 2, x, x, color2);
   }
 }
 
@@ -171,7 +171,7 @@ void testtriangles() {
   int x = carrier.display.height() - 1;
   int y = 0;
   int z = carrier.display.width();
-  for (t = 0 ; t <= 15; t++) {
+  for (t = 0; t <= 15; t++) {
     carrier.display.drawTriangle(w, y, y, x, z, x, color);
     x -= 4;
     y += 4;
@@ -185,12 +185,12 @@ void testroundrects() {
   uint16_t color = 100;
   int i;
   int t;
-  for (t = 0 ; t <= 4; t += 1) {
+  for (t = 0; t <= 4; t += 1) {
     int x = 0;
     int y = 0;
     int w = carrier.display.width() - 2;
     int h = carrier.display.height() - 2;
-    for (i = 0 ; i <= 16; i += 1) {
+    for (i = 0; i <= 16; i += 1) {
       carrier.display.drawRoundRect(x, y, w, h, 5, color);
       x += 2;
       y += 3;
@@ -229,7 +229,7 @@ void tftPrintTest() {
   carrier.display.print(p, 6);
   carrier.display.println(" Want pi?");
   carrier.display.println(" ");
-  carrier.display.print(8675309, HEX); // print 8,675,309 out in HEX!
+  carrier.display.print(8675309, HEX);  // print 8,675,309 out in HEX!
   carrier.display.println(" Print HEX!");
   carrier.display.println(" ");
   carrier.display.setTextColor(ST77XX_WHITE);

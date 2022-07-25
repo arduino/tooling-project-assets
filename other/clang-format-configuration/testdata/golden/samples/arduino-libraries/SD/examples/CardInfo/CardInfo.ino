@@ -39,7 +39,7 @@ void setup() {
   // Open serial communications and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
 
@@ -53,7 +53,8 @@ void setup() {
     Serial.println("* is your wiring correct?");
     Serial.println("* did you change the chipSelect pin to match your shield or module?");
     Serial.println("Note: press reset button on the board and reopen this Serial Monitor after fixing your issue!");
-    while (1);
+    while (1)
+      ;
   } else {
     Serial.println("Wiring is correct and a card is present.");
   }
@@ -78,7 +79,8 @@ void setup() {
   // Now we will try to open the 'volume'/'partition' - it should be FAT16 or FAT32
   if (!volume.init(card)) {
     Serial.println("Could not find FAT16/FAT32 partition.\nMake sure you've formatted the card");
-    while (1);
+    while (1)
+      ;
   }
 
   Serial.print("Clusters:          ");
@@ -95,9 +97,9 @@ void setup() {
   Serial.print("Volume type is:    FAT");
   Serial.println(volume.fatType(), DEC);
 
-  volumesize = volume.blocksPerCluster();    // clusters are collections of blocks
-  volumesize *= volume.clusterCount();       // we'll have a lot of clusters
-  volumesize /= 2;                           // SD card blocks are always 512 bytes (2 blocks are 1 KB)
+  volumesize = volume.blocksPerCluster();  // clusters are collections of blocks
+  volumesize *= volume.clusterCount();     // we'll have a lot of clusters
+  volumesize /= 2;                         // SD card blocks are always 512 bytes (2 blocks are 1 KB)
   Serial.print("Volume size (KB):  ");
   Serial.println(volumesize);
   Serial.print("Volume size (MB):  ");

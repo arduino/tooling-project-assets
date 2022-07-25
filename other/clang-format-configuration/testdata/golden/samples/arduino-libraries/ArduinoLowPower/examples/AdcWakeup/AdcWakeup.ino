@@ -57,5 +57,5 @@ void repetitionsIncrease() {
   // This function will be called once on device wakeup
   // You can do some little operations here (like changing variables which will be used in the loop)
   // Remember to avoid calling delay() and long running functions since this functions executes in interrupt context
-  repetitions ++;
+  repetitions++;
 }

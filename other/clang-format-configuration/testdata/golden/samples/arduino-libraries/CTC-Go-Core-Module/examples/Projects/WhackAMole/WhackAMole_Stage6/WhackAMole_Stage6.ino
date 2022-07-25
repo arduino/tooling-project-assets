@@ -1,5 +1,5 @@
 /*
-  CTC GO! CORE MODULE
+  CTC GO! CORE MODULE 
   PROJECT 1 - WHACK A MOLE
 
   This sketch is written to accompany Stage 6 in Whack-a-mole of the CTC GO! core module
@@ -19,8 +19,7 @@ int gameStarted = 0;
 int blinkLED = 0;
 int level = 0;
 
-void setup()
-{
+void setup() {
   pinMode(loseLED, OUTPUT);
   pinMode(winLED, OUTPUT);
   pinMode(yellowLED_1, OUTPUT);
@@ -31,10 +30,8 @@ void setup()
   pinMode(button_3, INPUT);
 }
 
-void loop()
-{
-  if (gameStarted == 0)
-  {
+void loop() {
+  if (gameStarted == 0) {
     digitalWrite(loseLED, HIGH);
     digitalWrite(winLED, HIGH);
     digitalWrite(yellowLED_1, HIGH);
@@ -48,8 +45,7 @@ void loop()
     digitalWrite(yellowLED_3, LOW);
     delay(startLevel);
 
-    if (digitalRead(button_1) == HIGH || digitalRead(button_2) == HIGH || digitalRead(button_3) == HIGH )
-    {
+    if (digitalRead(button_1) == HIGH || digitalRead(button_2) == HIGH || digitalRead(button_3) == HIGH) {
       digitalWrite(loseLED, HIGH);
       digitalWrite(winLED, HIGH);
 
@@ -60,46 +56,39 @@ void loop()
     }
 
 
-  } else if (gameStarted == 1)
-  {
+  } else if (gameStarted == 1) {
 
-    blinkLED = random (1, 4);
+    blinkLED = random(1, 4);
 
-    if (blinkLED == 1)
-    {
+    if (blinkLED == 1) {
       digitalWrite(yellowLED_1, HIGH);
       delay(startLevel - level);
 
-      if (digitalRead(button_2) == _____ || digitalRead(button_3) == _____ )
-      {
+      if (digitalRead(button_2) == _____ || digitalRead(button_3) == _____) {
         digitalWrite(loseLED, HIGH);
         delay(2000);
         gameStarted = _____;
       }
 
-      else if (digitalRead(button_1) == _____)
-      {
+      else if (digitalRead(button_1) == _____) {
         digitalWrite(winLED, HIGH);
         delay(_____);
         level = level + 5;
       }
     }
 
-    if (blinkLED == 2)
-    {
+    if (blinkLED == 2) {
       digitalWrite(yellowLED_2, HIGH);
       delay(startLevel - _____);
 
 
-      if (digitalRead(button_1) == _____ || digitalRead(button_3) == _____ )
-      {
+      if (digitalRead(button_1) == _____ || digitalRead(button_3) == _____) {
         digitalWrite(loseLED, HIGH);
         delay(2000);
         gameStarted = _____;
       }
 
-      else if (digitalRead(button_2) == _____)
-      {
+      else if (digitalRead(button_2) == _____) {
         digitalWrite(winLED, HIGH);
         delay(_____);
         level = level + 5;
@@ -107,28 +96,24 @@ void loop()
     }
 
 
-    if (blinkLED == 3)
-    {
+    if (blinkLED == 3) {
       digitalWrite(yellowLED_3, HIGH);
       delay(startLevel - _____);
 
-      if (digitalRead(button_1) == _____ || digitalRead(button_2) == _____ )
-      {
+      if (digitalRead(button_1) == _____ || digitalRead(button_2) == _____) {
         digitalWrite(loseLED, HIGH);
         delay(2000);
         gameStarted = _____;
       }
 
-      else if (digitalRead(button_3) == _____)
-      {
+      else if (digitalRead(button_3) == _____) {
         digitalWrite(winLED, HIGH);
         delay(_____);
         level = level + 5;
       }
     }
   }
-  if (level >= startLevel)
-  {
+  if (level >= startLevel) {
     level = startLevel;
   }
   digitalWrite(loseLED, LOW);

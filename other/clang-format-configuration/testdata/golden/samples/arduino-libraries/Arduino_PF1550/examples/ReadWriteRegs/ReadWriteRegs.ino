@@ -7,12 +7,12 @@ uint8_t regVal;
 
 void setup() {
   Serial.begin(115200);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   PMIC.begin();
 
   PMIC.debug(Serial);
-
 }
 
 
@@ -36,5 +36,4 @@ void loop() {
   Serial.println();
 
   delay(5000);
-
 }

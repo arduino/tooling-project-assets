@@ -3,7 +3,7 @@
 
 #define LOBYTE(x) ((char*)(&(x)))[0]
 #define HIBYTE(x) ((char*)(&(x)))[1]
-#define BUFSIZE 256    //buffer size
+#define BUFSIZE 256  //buffer size
 
 
 /* Print strings in Program Memory */
@@ -49,4 +49,4 @@ const char Unk_Length_str[] PROGMEM = "\r\nLength:\t\t";
 const char Unk_Type_str[] PROGMEM = "\r\nType:\t\t";
 const char Unk_Contents_str[] PROGMEM = "\r\nContents:\t";
 
-#endif // __PGMSTRINGS_H__
+#endif  // __PGMSTRINGS_H__

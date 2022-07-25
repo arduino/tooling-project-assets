@@ -26,22 +26,21 @@
 // include the EduIntro library
 #include <EduIntro.h>
 
-Motion imu; //Create the object to access the IMU unit
+Motion imu;  //Create the object to access the IMU unit
 
-void setup()
-{
+void setup() {
   // initialize serial communications at 9600 bps
   Serial.begin(9600);
 
   // initialize the IMU, if failed, stay here
   if (!imu.begin()) {
     Serial.println("Failed to initialize IMU!");
-    while (1);
+    while (1)
+      ;
   }
 }
 
-void loop()
-{
+void loop() {
   // read all data from the IMU and store it in local variables
   if (imu.read()) {
 

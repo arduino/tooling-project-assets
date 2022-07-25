@@ -20,7 +20,7 @@ static int const LED_BUILTIN = 2;
 void setup() {
   /* Initialize the serial port and wait up to 5 seconds for a connection */
   Serial.begin(9600);
-  for (unsigned long const serialBeginTime = millis(); !Serial && (millis() - serialBeginTime > 5000); ) { }
+  for (unsigned long const serialBeginTime = millis(); !Serial && (millis() - serialBeginTime > 5000);) {}
 
   /* Configure LED pin as an output */
   pinMode(LED_BUILTIN, OUTPUT);
@@ -57,42 +57,42 @@ void setup() {
 }
 
 /* Setup a schedule with an active period of 5 minutes that doesn't repeat
-   Starting from 2021 11 01 17:00:00
-   Until         2021 11 02 17:00:00
-*/
+  * Starting from 2021 11 01 17:00:00
+  * Until         2021 11 02 17:00:00
+  */
 void setupOneShotSchedule() {
 
   ScheduleTimeType startingFrom = TimeService::getTimeFromString("2021 Nov 01 17:00:00");
-  ScheduleTimeType until = startingFrom + ( DAYS * 1 );
+  ScheduleTimeType until = startingFrom + (DAYS * 1);
   ScheduleTimeType activePeriod = MINUTES * 5;
 
   /* Warning: there is no cross check between until and activePeriod */
-  ScheduleConfigurationType scheduleConfiguration =  Schedule::createOneShotScheduleConfiguration();
+  ScheduleConfigurationType scheduleConfiguration = Schedule::createOneShotScheduleConfiguration();
 
   oneShot = Schedule(startingFrom, until, activePeriod, scheduleConfiguration);
 }
 
 /* Setup a schedule with an active period of 15 seconds that repeats each minute
-   Starting from 2021 11 01 17:00:00
-   Until         2021 11 02 17:00:00
-*/
+  * Starting from 2021 11 01 17:00:00
+  * Until         2021 11 02 17:00:00
+  */
 void setupMinuteSchedule() {
 
   ScheduleTimeType startingFrom = TimeService::getTimeFromString("2021 Nov 01 17:00:00");
-  ScheduleTimeType until = startingFrom + ( DAYS * 1 );
+  ScheduleTimeType until = startingFrom + (DAYS * 1);
   ScheduleTimeType activePeriod = SECONDS * 15;
   unsigned int repetitionPeriod = 1;
 
   /* Warning: there is no cross check between repetitionPeriod and activePeriod */
-  ScheduleConfigurationType scheduleConfiguration =  Schedule::createFixedDeltaScheduleConfiguration(ScheduleUnit::Minutes, repetitionPeriod);
+  ScheduleConfigurationType scheduleConfiguration = Schedule::createFixedDeltaScheduleConfiguration(ScheduleUnit::Minutes, repetitionPeriod);
 
   minute = Schedule(startingFrom, until, activePeriod, scheduleConfiguration);
 }
 
 /* Setup a schedule with an active period of 20 minutes that repeats each hour
-   Starting from  2021 11 01 17:00:00
-   Until          2021 11 15 13:00:00
-*/
+ * Starting from  2021 11 01 17:00:00
+ * Until          2021 11 15 13:00:00
+ */
 void setupHourlySchedule() {
 
   ScheduleTimeType startingFrom = TimeService::getTimeFromString("2021 Nov 01 17:00:00");
@@ -101,15 +101,15 @@ void setupHourlySchedule() {
   unsigned int repetitionPeriod = 1;
 
   /* Warning: there is no cross check between repetitionPeriod and activePeriod */
-  ScheduleConfigurationType scheduleConfiguration =  Schedule::createFixedDeltaScheduleConfiguration(ScheduleUnit::Hours, repetitionPeriod);
+  ScheduleConfigurationType scheduleConfiguration = Schedule::createFixedDeltaScheduleConfiguration(ScheduleUnit::Hours, repetitionPeriod);
 
   hourly = Schedule(startingFrom, until, activePeriod, scheduleConfiguration);
 }
 
 /* Setup a schedule with an active period of 2 hours that repeats each day
-   Starting from  2021 11 01 17:00:00
-   Until          2021 11 15 13:00:00
-*/
+ * Starting from  2021 11 01 17:00:00
+ * Until          2021 11 15 13:00:00
+ */
 void setupDailySchedule() {
 
   ScheduleTimeType startingFrom = TimeService::getTimeFromString("2021 Nov 01 17:00:00");
@@ -118,48 +118,48 @@ void setupDailySchedule() {
   unsigned int repetitionPeriod = 1;
 
   /* Warning: there is no cross check between repetitionPeriod and activePeriod */
-  ScheduleConfigurationType scheduleConfiguration =  Schedule::createFixedDeltaScheduleConfiguration(ScheduleUnit::Days, repetitionPeriod);
+  ScheduleConfigurationType scheduleConfiguration = Schedule::createFixedDeltaScheduleConfiguration(ScheduleUnit::Days, repetitionPeriod);
 
   daily = Schedule(startingFrom, until, activePeriod, scheduleConfiguration);
 }
 
 /* Setup a schedule with an active period of 3 minutes with a weekly configuration
-   Starting from  2021 11 01 17:00:00
-   Until          2021 11 31 17:00:00
-   Weekly configuration
-   Sunday    -> Inactive
-   Monday    -> Active
-   Tuesday   -> Inactive
-   Wednesday -> Active
-   Thursday  -> Inactive
-   Friday    -> Active
-   Saturday  -> Inactive
-*/
+ * Starting from  2021 11 01 17:00:00
+ * Until          2021 11 31 17:00:00
+ * Weekly configuration
+ * Sunday    -> Inactive
+ * Monday    -> Active
+ * Tuesday   -> Inactive
+ * Wednesday -> Active
+ * Thursday  -> Inactive
+ * Friday    -> Active
+ * Saturday  -> Inactive
+ */
 void setupWeeklySchedule() {
 
   unsigned int startingFrom = TimeService::getTimeFromString("2021 Nov 01 17:00:00");
-  unsigned int until = startingFrom + ( DAYS * 30 );
+  unsigned int until = startingFrom + (DAYS * 30);
   unsigned int executionPeriod = MINUTES * 3;
 
   ScheduleWeeklyMask WeeklyMask = {
-    ScheduleState::Inactive,   /* Sunday */
-    ScheduleState::Active,     /* Monday */
-    ScheduleState::Inactive,   /* Tuesday */
-    ScheduleState::Active,     /* Wednesday */
-    ScheduleState::Inactive,   /* Thursday */
-    ScheduleState::Active,     /* Friday */
-    ScheduleState::Inactive,   /* Saturday */
+    ScheduleState::Inactive, /* Sunday */
+    ScheduleState::Active,   /* Monday */
+    ScheduleState::Inactive, /* Tuesday */
+    ScheduleState::Active,   /* Wednesday */
+    ScheduleState::Inactive, /* Thursday */
+    ScheduleState::Active,   /* Friday */
+    ScheduleState::Inactive, /* Saturday */
   };
 
-  ScheduleConfigurationType scheduleConfiguration =  Schedule::createWeeklyScheduleConfiguration(WeeklyMask);
+  ScheduleConfigurationType scheduleConfiguration = Schedule::createWeeklyScheduleConfiguration(WeeklyMask);
 
   weekly = Schedule(startingFrom, until, executionPeriod, scheduleConfiguration);
 }
 
 /* Setup a schedule with an active period of 1 day that repeats each third day of the month
-   Starting from  2021 11 01 17:00:00
-   Until          2022 11 15 13:00:00
-*/
+ * Starting from  2021 11 01 17:00:00
+ * Until          2022 11 15 13:00:00
+ */
 void setupMonthlySchedule() {
 
   ScheduleTimeType startingFrom = TimeService::getTimeFromString("2021 Nov 01 17:00:00");
@@ -167,16 +167,16 @@ void setupMonthlySchedule() {
   ScheduleTimeType activePeriod = DAYS * 1;
   int dayOfMonth = 3;
 
-  ScheduleConfigurationType scheduleConfiguration =  Schedule::createMonthlyScheduleConfiguration(dayOfMonth);
+  ScheduleConfigurationType scheduleConfiguration = Schedule::createMonthlyScheduleConfiguration(dayOfMonth);
 
   monthly = Schedule(startingFrom, until, activePeriod, scheduleConfiguration);
 }
 
 
 /* Setup a schedule with an active period of 2 days that repeats each year on November 6th
-   Starting from  2021 11 06 17:00:00
-   Until          2041 11 15 13:00:00
-*/
+ * Starting from  2021 11 06 17:00:00
+ * Until          2041 11 15 13:00:00
+ */
 void setupYearlySchedule() {
 
   ScheduleTimeType startingFrom = TimeService::getTimeFromString("2021 Nov 06 17:00:00");
@@ -184,7 +184,7 @@ void setupYearlySchedule() {
   ScheduleTimeType activePeriod = DAYS * 2;
   int dayOfMonth = 6;
 
-  ScheduleConfigurationType scheduleConfiguration =  Schedule::createYearlyScheduleConfiguration(ScheduleMonth::Nov, dayOfMonth);
+  ScheduleConfigurationType scheduleConfiguration = Schedule::createYearlyScheduleConfiguration(ScheduleMonth::Nov, dayOfMonth);
 
   yearly = Schedule(startingFrom, until, activePeriod, scheduleConfiguration);
 }
@@ -224,6 +224,4 @@ void loop() {
   if (yearly.isActive()) {
     Serial.println("Yearly schedule is active");
   }
-
 }
-

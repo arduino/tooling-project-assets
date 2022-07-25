@@ -1,9 +1,9 @@
 /*
-  _2.4_beep
-
-  The piezo makes clicks with a 2 second interval.
-
-  (c) 2013-2016 Arduino LLC.
+* _2.4_beep
+* 
+* The piezo makes clicks with a 2 second interval.
+*
+* (c) 2013-2016 Arduino LLC.
 */
 
 int speakerPin = 8;
@@ -18,4 +18,3 @@ void loop() {
   digitalWrite(speakerPin, LOW);
   delay(1000);
 }
-

@@ -4,15 +4,17 @@ BLEService myService("fff0");
 BLEIntCharacteristic myCharacteristic("fff1", BLERead | BLEBroadcast);
 
 // Advertising parameters should have a global scope. Do NOT define them in 'setup' or in 'loop'
-const uint8_t completeRawAdvertisingData[] = {0x02, 0x01, 0x06, 0x09, 0xff, 0x01, 0x01, 0x00, 0x01, 0x02, 0x03, 0x04, 0x05};
+const uint8_t completeRawAdvertisingData[] = { 0x02, 0x01, 0x06, 0x09, 0xff, 0x01, 0x01, 0x00, 0x01, 0x02, 0x03, 0x04, 0x05 };
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   if (!BLE.begin()) {
     Serial.println("failed to initialize BLE!");
-    while (1);
+    while (1)
+      ;
   }
 
   myService.addCharacteristic(myCharacteristic);

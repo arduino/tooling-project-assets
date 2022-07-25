@@ -9,7 +9,7 @@
 
 /*
   How to use this sketch
-
+  
   1) Remove any connection cable, shield or jumper from your Arduino ZERO
   2) Connect pin A1 to the nearest GND pin using the shortest jumper possible
   3) Connect pin A2 to the 3.3V pin using the shortest jumper possible
@@ -23,23 +23,22 @@
 
 #include "SAMD_AnalogCorrection.h"
 
-#define ADC_GND_PIN          A1
-#define ADC_3V3_PIN          A2
+#define ADC_GND_PIN A1
+#define ADC_3V3_PIN A2
 
-#define ADC_READS_SHIFT      8
-#define ADC_READS_COUNT      (1 << ADC_READS_SHIFT)
+#define ADC_READS_SHIFT 8
+#define ADC_READS_COUNT (1 << ADC_READS_SHIFT)
 
-#define ADC_MIN_GAIN         0x0400
-#define ADC_UNITY_GAIN       0x0800
-#define ADC_MAX_GAIN         (0x1000 - 1)
-#define ADC_RESOLUTION_BITS  12 // do not change. This library only supports 12 bit resolution.
-#define ADC_RANGE            (1 << ADC_RESOLUTION_BITS)
-#define ADC_TOP_VALUE        (ADC_RANGE - 1)
+#define ADC_MIN_GAIN 0x0400
+#define ADC_UNITY_GAIN 0x0800
+#define ADC_MAX_GAIN (0x1000 - 1)
+#define ADC_RESOLUTION_BITS 12  // do not change. This library only supports 12 bit resolution.
+#define ADC_RANGE (1 << ADC_RESOLUTION_BITS)
+#define ADC_TOP_VALUE (ADC_RANGE - 1)
 
-#define MAX_TOP_VALUE_READS  10
+#define MAX_TOP_VALUE_READS 10
 
-void setup()
-{
+void setup() {
   Serial.begin(9600);
 
   Serial.println("\r\nCalibrating ADC with factory values");
@@ -62,16 +61,14 @@ void setup()
   // Set default correction values and enable correction
   analogReadCorrection(offsetCorrectionValue, gainCorrectionValue);
 
-  for (int offset = 0; offset < (int)(ADC_OFFSETCORR_MASK >> 1); ++offset)
-  {
+  for (int offset = 0; offset < (int)(ADC_OFFSETCORR_MASK >> 1); ++offset) {
     analogReadCorrection(offset, gainCorrectionValue);
 
     Serial.print("   Offset = ");
     Serial.print(offset);
     Serial.print(", ");
 
-    if (readGndLevel() == 0)
-    {
+    if (readGndLevel() == 0) {
       offsetCorrectionValue = offset;
       break;
     }
@@ -90,10 +87,8 @@ void setup()
   Serial.print(", ");
   uint16_t highLevelRead = read3V3Level();
 
-  if (highLevelRead < ADC_TOP_VALUE)
-  {
-    for (uint16_t gain = ADC_UNITY_GAIN + 1; gain <= ADC_MAX_GAIN; ++gain)
-    {
+  if (highLevelRead < ADC_TOP_VALUE) {
+    for (uint16_t gain = ADC_UNITY_GAIN + 1; gain <= ADC_MAX_GAIN; ++gain) {
       analogReadCorrection(offsetCorrectionValue, gain);
 
       Serial.print("   Gain = ");
@@ -101,13 +96,11 @@ void setup()
       Serial.print(", ");
       highLevelRead = read3V3Level();
 
-      if (highLevelRead == ADC_TOP_VALUE)
-      {
+      if (highLevelRead == ADC_TOP_VALUE) {
         if (minGain == 0U)
           minGain = gain;
 
-        if (++topValueReadsCount >= MAX_TOP_VALUE_READS)
-        {
+        if (++topValueReadsCount >= MAX_TOP_VALUE_READS) {
           maxGain = minGain;
           break;
         }
@@ -118,14 +111,11 @@ void setup()
       if (highLevelRead > ADC_TOP_VALUE)
         break;
     }
-  }
-  else if (highLevelRead >= ADC_TOP_VALUE)
-  {
+  } else if (highLevelRead >= ADC_TOP_VALUE) {
     if (highLevelRead == ADC_TOP_VALUE)
       maxGain = ADC_UNITY_GAIN;
 
-    for (uint16_t gain = ADC_UNITY_GAIN - 1; gain >= ADC_MIN_GAIN; --gain)
-    {
+    for (uint16_t gain = ADC_UNITY_GAIN - 1; gain >= ADC_MIN_GAIN; --gain) {
       analogReadCorrection(offsetCorrectionValue, gain);
 
       Serial.print("   Gain = ");
@@ -133,8 +123,7 @@ void setup()
       Serial.print(", ");
       highLevelRead = read3V3Level();
 
-      if (highLevelRead == ADC_TOP_VALUE)
-      {
+      if (highLevelRead == ADC_TOP_VALUE) {
         if (maxGain == 0U)
           maxGain = gain;
 
@@ -172,12 +161,10 @@ void setup()
   Serial.println("\r\n==================");
 }
 
-void loop()
-{
+void loop() {
 }
 
-uint16_t readGndLevel()
-{
+uint16_t readGndLevel() {
   uint32_t readAccumulator = 0;
 
   for (int i = 0; i < ADC_READS_COUNT; ++i)
@@ -191,8 +178,7 @@ uint16_t readGndLevel()
   return readValue;
 }
 
-uint16_t read3V3Level()
-{
+uint16_t read3V3Level() {
   uint32_t readAccumulator = 0;
 
   for (int i = 0; i < ADC_READS_COUNT; ++i)
@@ -208,4 +194,3 @@ uint16_t read3V3Level()
 
   return readValue;
 }
-

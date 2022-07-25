@@ -1,22 +1,22 @@
 /*
   Simple Audio Player for Arduino Zero
 
-  Demonstrates the use of the Audio library for the Arduino Zero
+ Demonstrates the use of the Audio library for the Arduino Zero
 
-  Hardware required :
-   Arduino shield with a SD card on CS4
-   A sound file named "test.wav" in the root directory of the SD card
-   An audio amplifier to connect to the DAC0 and ground
-   A speaker to connect to the audio amplifier
+ Hardware required :
+ * Arduino shield with a SD card on CS4
+ * A sound file named "test.wav" in the root directory of the SD card
+ * An audio amplifier to connect to the DAC0 and ground
+ * A speaker to connect to the audio amplifier
 
+ 
+ Arturo Guadalupi <a.guadalupi@arduino.cc>
+ Angelo Scialabba <a.scialabba@arduino.cc>
+ Claudio Indellicati <c.indellicati@arduino.cc>
 
-  Arturo Guadalupi <a.guadalupi@arduino.cc>
-  Angelo Scialabba <a.scialabba@arduino.cc>
-  Claudio Indellicati <c.indellicati@arduino.cc>
+ This example code is in the public domain
 
-  This example code is in the public domain
-
-  https://www.arduino.cc/en/Tutorial/SimpleAudioPlayerZero
+ https://www.arduino.cc/en/Tutorial/SimpleAudioPlayerZero
 
 */
 
@@ -24,8 +24,7 @@
 #include <SPI.h>
 #include <AudioZero.h>
 
-void setup()
-{
+void setup() {
   // debug output at 115200 baud
   Serial.begin(115200);
 
@@ -33,13 +32,13 @@ void setup()
   Serial.print("Initializing SD card...");
   if (!SD.begin(4)) {
     Serial.println(" failed!");
-    while (true);
+    while (true)
+      ;
   }
   Serial.println(" done.");
 }
 
-void loop()
-{
+void loop() {
   int count = 0;
 
   // open wave file from sdcard
@@ -49,7 +48,8 @@ void loop()
   if (!myFile) {
     // if the file didn't open, print an error and stop
     Serial.println("error opening test.wav");
-    while (true);
+    while (true)
+      ;
   }
 
   Serial.print("Playing");
@@ -58,5 +58,6 @@ void loop()
   AudioZero.play(myFile);
   AudioZero.close();
   Serial.println("End of file. Thank you for listening!");
-  while (true) ;
+  while (true)
+    ;
 }

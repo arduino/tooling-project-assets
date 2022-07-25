@@ -21,23 +21,25 @@
 BLEService batteryService("180F");
 
 // Bluetooth® Low Energy Battery Level Characteristic
-BLEUnsignedCharCharacteristic batteryLevelChar("2A19",  // standard 16-bit characteristic UUID
-    BLERead | BLENotify); // remote clients will be able to get notifications if this characteristic changes
+BLEUnsignedCharCharacteristic batteryLevelChar("2A19",                // standard 16-bit characteristic UUID
+                                               BLERead | BLENotify);  // remote clients will be able to get notifications if this characteristic changes
 
 int oldBatteryLevel = 0;  // last battery level reading from analog input
 long previousMillis = 0;  // last time the battery level was checked, in ms
 
 void setup() {
-  Serial.begin(9600);    // initialize serial communication
-  while (!Serial);
+  Serial.begin(9600);  // initialize serial communication
+  while (!Serial)
+    ;
 
-  pinMode(LED_BUILTIN, OUTPUT); // initialize the built-in LED pin to indicate when a central is connected
+  pinMode(LED_BUILTIN, OUTPUT);  // initialize the built-in LED pin to indicate when a central is connected
 
   // begin initialization
   if (!BLE.begin()) {
     Serial.println("starting BLE failed!");
 
-    while (1);
+    while (1)
+      ;
   }
 
   /* Set a local name for the Bluetooth® Low Energy device
@@ -46,10 +48,10 @@ void setup() {
      The name can be changed but maybe be truncated based on space left in advertisement packet
   */
   BLE.setLocalName("BatteryMonitor");
-  BLE.setAdvertisedService(batteryService); // add the service UUID
-  batteryService.addCharacteristic(batteryLevelChar); // add the battery level characteristic
-  BLE.addService(batteryService); // Add the battery service
-  batteryLevelChar.writeValue(oldBatteryLevel); // set initial value for this characteristic
+  BLE.setAdvertisedService(batteryService);            // add the service UUID
+  batteryService.addCharacteristic(batteryLevelChar);  // add the battery level characteristic
+  BLE.addService(batteryService);                      // Add the battery service
+  batteryLevelChar.writeValue(oldBatteryLevel);        // set initial value for this characteristic
 
   /* Start advertising Bluetooth® Low Energy.  It will start continuously transmitting Bluetooth® Low Energy
      advertising packets and will be visible to remote Bluetooth® Low Energy central devices
@@ -97,10 +99,10 @@ void updateBatteryLevel() {
   int battery = analogRead(A0);
   int batteryLevel = map(battery, 0, 1023, 0, 100);
 
-  if (batteryLevel != oldBatteryLevel) {      // if the battery level has changed
-    Serial.print("Battery Level % is now: "); // print it
+  if (batteryLevel != oldBatteryLevel) {       // if the battery level has changed
+    Serial.print("Battery Level % is now: ");  // print it
     Serial.println(batteryLevel);
     batteryLevelChar.writeValue(batteryLevel);  // and update the battery level characteristic
-    oldBatteryLevel = batteryLevel;           // save the level for next comparison
+    oldBatteryLevel = batteryLevel;             // save the level for next comparison
   }
 }

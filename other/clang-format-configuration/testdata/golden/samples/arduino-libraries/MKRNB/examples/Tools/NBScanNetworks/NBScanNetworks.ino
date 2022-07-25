@@ -1,20 +1,20 @@
 /*
 
-  NB Scan Networks
+ NB Scan Networks
 
-  This example prints out the IMEI number of the modem,
-  then checks to see if it's connected to a carrier.
-  Then it scans for nearby networks and prints out their signal strengths.
+ This example prints out the IMEI number of the modem,
+ then checks to see if it's connected to a carrier.
+ Then it scans for nearby networks and prints out their signal strengths.
 
-  Circuit:
-   MKR NB 1500 board
-   Antenna
-   SIM card
+ Circuit:
+ * MKR NB 1500 board
+ * Antenna
+ * SIM card
 
-  Created 8 Mar 2012
-  by Tom Igoe, implemented by Javier Carazo
-  Modified 4 Feb 2013
-  by Scott Fitzgerald
+ Created 8 Mar 2012
+ by Tom Igoe, implemented by Javier Carazo
+ Modified 4 Feb 2013
+ by Scott Fitzgerald
 */
 
 // libraries
@@ -26,7 +26,7 @@
 const char PINNUMBER[] = SECRET_PINNUMBER;
 
 // initialize the library instance
-NB nbAccess;     // include a 'true' parameter to enable debugging
+NB nbAccess;  // include a 'true' parameter to enable debugging
 NBScanner scannerNetworks;
 NBModem modemTest;
 
@@ -40,7 +40,7 @@ void setup() {
   // initialize serial communications and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for Leonardo only
+    ;  // wait for serial port to connect. Needed for Leonardo only
   }
 
   Serial.println("NB IoT/LTE Cat M1 networks scanner");

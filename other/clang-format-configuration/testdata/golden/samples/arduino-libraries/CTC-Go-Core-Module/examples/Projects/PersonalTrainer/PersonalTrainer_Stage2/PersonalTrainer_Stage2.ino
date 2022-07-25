@@ -1,5 +1,5 @@
 /*
-  CTC GO! CORE MODULE
+  CTC GO! CORE MODULE 
   PROJECT 2 - PERSONAL TRAINER
 
   This sketch is written to accompany Stage 2 in PERSONAL TRAINER  of the CTC GO! core module
@@ -22,8 +22,7 @@ void setup() {
   Serial.begin(_____);
 }
 
-void loop()
-{
+void loop() {
 
   digitalWrite(ledCounter_1, HIGH);
   digitalWrite(ledCounter_2, LOW);
@@ -43,5 +42,4 @@ void loop()
   Serial.println(_____);
 
   lastDistance = currentDistanceMM;
-
 }

@@ -5,46 +5,46 @@
 
   Check out the latest Arduino & Temboo examples and tutorials at http://www.temboo.com/arduino
 
-  A Temboo account and application key are necessary to run all Temboo examples.
-  If you don't already have one, you can register for a free Temboo account at
+  A Temboo account and application key are necessary to run all Temboo examples. 
+  If you don't already have one, you can register for a free Temboo account at 
   http://www.temboo.com
 
-  Instructions:
-
+ Instructions:
+ 
   1. Create a Temboo account: http://www.temboo.com
-
+  
   2. Retrieve your Temboo application details: http://www.temboo.com/account/applications
-
+  
   3. Replace the values in the TembooAccount.h tab with your Temboo application details
-
-  4. You'll also need a Gmail account. Update the placeholder Gmail address in the code
+ 
+  4. You'll also need a Gmail account. Update the placeholder Gmail address in the code 
      below with your own details.
-
+     
      https://www.gmail.com
-
-  5. Once you have a Gmail account, turn on 2-step authentication, and create an application-specific
+ 
+  5. Once you have a Gmail account, turn on 2-step authentication, and create an application-specific 
      password to allow Temboo to access your Google account: https://www.google.com/landing/2step/.
-
+     
   6. After you've enabled 2-Step authentication, you'll need to create an App Password:
      https://security.google.com/settings/security/apppasswords
-
+  
   7. In the "Select app" dropdown menu, choose "Other", and give your app a name (e.g., TembooApp).
-
+  
   8. Click "Generate". You'll be given a 16-digit passcode that can be used to access your Google Account from Temboo.
-
+ 
   9. Copy and paste this password into the code below, updating the GMAIL_APP_PASSWORD variable
-
+ 
   10. Upload the sketch to your Arduino Yún and open the Serial Monitor
-
-  NOTE: You can test this Choreo and find the latest instructions on our website:
+  
+  NOTE: You can test this Choreo and find the latest instructions on our website: 
   https://temboo.com/library/Library/Google/Gmail/SendEmail
-
+  
   You can also find an in-depth version of this example here:
   https://temboo.com/arduino/yun/send-an-email
 
   This example assumes basic familiarity with Arduino sketches, and that your Yún is connected
   to the Internet.
-
+  
   Looking for another API to use with your Arduino Yún? We've got over 100 in our Library!
 
   This example code is in the public domain.
@@ -52,8 +52,8 @@
 
 #include <Bridge.h>
 #include <Temboo.h>
-#include "TembooAccount.h" // contains Temboo account information
-// as described in the footer comment below
+#include "TembooAccount.h"  // contains Temboo account information
+                            // as described in the footer comment below
 
 /*** SUBSTITUTE YOUR VALUES BELOW: ***/
 
@@ -77,13 +77,13 @@ void setup() {
 
   // for debugging, wait until a serial console is connected
   delay(4000);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   Bridge.begin();
 }
 
-void loop()
-{
+void loop() {
   // only try to send the email if we haven't already tried
   if (!attempted) {
 
@@ -152,15 +152,15 @@ void loop()
   by inserting your own Temboo account name and app key information. The contents of the file should
   look like:
 
-  #define TEMBOO_ACCOUNT "myTembooAccountName"  // your Temboo account name
+  #define TEMBOO_ACCOUNT "myTembooAccountName"  // your Temboo account name 
   #define TEMBOO_APP_KEY_NAME "myFirstApp"  // your Temboo app key name
   #define TEMBOO_APP_KEY  "xxx-xxx-xxx-xx-xxx"  // your Temboo app key
 
-  You can find your Temboo App Key information on the Temboo website,
+  You can find your Temboo App Key information on the Temboo website, 
   under My Account > Application Keys
 
   The same TembooAccount.h file settings can be used for all Temboo SDK sketches.
 
-  Keeping your account information in a separate file means you can share the main .ino file without worrying
+  Keeping your account information in a separate file means you can share the main .ino file without worrying 
   that you forgot to delete your credentials.
 */

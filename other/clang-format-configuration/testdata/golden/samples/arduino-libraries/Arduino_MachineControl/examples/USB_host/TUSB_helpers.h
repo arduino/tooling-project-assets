@@ -90,16 +90,16 @@ static const tusbh_class_reg_t class_table[] = {
   0,
 };
 
-#define MOD_CTRL      (0x01 | 0x10)
-#define MOD_SHIFT     (0x02 | 0x20)
-#define MOD_ALT       (0x04 | 0x40)
-#define MOD_WIN       (0x08 | 0x80)
+#define MOD_CTRL (0x01 | 0x10)
+#define MOD_SHIFT (0x02 | 0x20)
+#define MOD_ALT (0x04 | 0x40)
+#define MOD_WIN (0x08 | 0x80)
 
-#define LED_NUM_LOCK    1
-#define LED_CAPS_LOCK   2
+#define LED_NUM_LOCK 1
+#define LED_CAPS_LOCK 2
 #define LED_SCROLL_LOCK 4
 
-#define stdin_recvchar  Serial1.write
+#define stdin_recvchar Serial1.write
 
 static uint8_t key_leds;
 static const char knum[] = "1234567890";
@@ -108,8 +108,7 @@ static const char tabA[] = "\t -=[]\\#;'`,./";
 static const char tabB[] = "\t _+{}|~:\"~<>?";
 
 // route the key event to stdin
-static int process_key(tusbh_ep_info_t* ep, const uint8_t* keys)
-{
+static int process_key(tusbh_ep_info_t* ep, const uint8_t* keys) {
   Serial.println();
 
   uint8_t modify = keys[0];
@@ -117,7 +116,7 @@ static int process_key(tusbh_ep_info_t* ep, const uint8_t* keys)
   uint8_t last_leds = key_leds;
   if (key >= KEY_A && key <= KEY_Z) {
     char ch = 'A' + key - KEY_A;
-    if ( (!!(modify & MOD_SHIFT)) == (!!(key_leds & LED_CAPS_LOCK)) ) {
+    if ((!!(modify & MOD_SHIFT)) == (!!(key_leds & LED_CAPS_LOCK))) {
       ch += 'a' - 'A';
     }
     stdin_recvchar(ch);

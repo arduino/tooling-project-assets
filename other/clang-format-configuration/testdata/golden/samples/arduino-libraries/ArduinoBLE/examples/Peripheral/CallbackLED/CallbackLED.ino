@@ -18,24 +18,26 @@
 
 #include <ArduinoBLE.h>
 
-BLEService ledService("19B10000-E8F2-537E-4F6C-D104768A1214"); // create service
+BLEService ledService("19B10000-E8F2-537E-4F6C-D104768A1214");  // create service
 
 // create switch characteristic and allow remote device to read and write
 BLEByteCharacteristic switchCharacteristic("19B10001-E8F2-537E-4F6C-D104768A1214", BLERead | BLEWrite);
 
-const int ledPin = LED_BUILTIN; // pin to use for the LED
+const int ledPin = LED_BUILTIN;  // pin to use for the LED
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
-  pinMode(ledPin, OUTPUT); // use the LED pin as an output
+  pinMode(ledPin, OUTPUT);  // use the LED pin as an output
 
   // begin initialization
   if (!BLE.begin()) {
     Serial.println("starting Bluetooth® Low Energy module failed!");
 
-    while (1);
+    while (1)
+      ;
   }
 
   // set the local name peripheral advertises

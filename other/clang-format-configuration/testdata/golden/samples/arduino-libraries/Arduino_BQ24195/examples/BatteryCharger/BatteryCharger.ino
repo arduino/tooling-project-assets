@@ -18,12 +18,13 @@
 void setup() {
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   if (!PMIC.begin()) {
     Serial.println("Failed to initialize PMIC!");
-    while (1);
+    while (1)
+      ;
   }
 
   // Set the input current limit to 2 A and the overload input voltage to 3.88 V
@@ -71,7 +72,8 @@ void loop() {
     if (!PMIC.disableCharge()) {
       Serial.println("Error disabling Charge mode");
     }
-    while (1);
+    while (1)
+      ;
     // if you really want to detach the battery call
     // PMIC.disableBATFET();
     //isbatteryconnected = false;

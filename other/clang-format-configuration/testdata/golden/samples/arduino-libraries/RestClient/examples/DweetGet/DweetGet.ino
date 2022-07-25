@@ -27,7 +27,7 @@
 
 char serverAddress[] = "dweet.io";  // server address
 int port = 80;
-String dweetName = "scandalous-cheese-hoarder"; // use your own thing name here
+String dweetName = "scandalous-cheese-hoarder";  // use your own thing name here
 
 WiFiClient wifi;
 RestClient client = RestClient(wifi, serverAddress, port);
@@ -37,10 +37,11 @@ int statusCode = 0;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
-  while ( status != WL_CONNECTED) {
+  while (!Serial)
+    ;
+  while (status != WL_CONNECTED) {
     Serial.print("Attempting to connect to Network named: ");
-    Serial.println(ssid);     // print the network name (SSID);
+    Serial.println(ssid);  // print the network name (SSID);
 
     // Connect to WPA/WPA2 network:
     status = WiFi.begin(ssid, pass);

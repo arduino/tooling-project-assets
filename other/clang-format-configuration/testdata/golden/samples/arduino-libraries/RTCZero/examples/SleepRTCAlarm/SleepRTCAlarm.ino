@@ -9,9 +9,9 @@
 
   created by Arturo Guadalupi
   17 Nov 2015
-  modified
+  modified 
   01 Mar 2016
-
+  
   NOTE:
   If you use this sketch with a MKR1000 you will see no output on the serial monitor.
   This happens because the USB clock is stopped so the USB connection is stopped too.
@@ -33,8 +33,7 @@ const byte day = 17;
 const byte month = 11;
 const byte year = 15;
 
-void setup()
-{
+void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);
 
@@ -51,12 +50,10 @@ void setup()
   rtc.standbyMode();
 }
 
-void loop()
-{
-  rtc.standbyMode();    // Sleep until next alarm match
+void loop() {
+  rtc.standbyMode();  // Sleep until next alarm match
 }
 
-void alarmMatch()
-{
+void alarmMatch() {
   digitalWrite(LED_BUILTIN, HIGH);
 }

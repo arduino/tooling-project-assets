@@ -1,15 +1,15 @@
 /*
-  CTC GO! - CORE MODULE
+  CTC GO! - CORE MODULE 
   PROJECT 1 - Finger Race
 
   This sketch is written to accompany Stage 4 in Finger Race of the CTC GO! Core Module
 */
 
 int greenLED_P1 = 13;
-int blueLED_P1 =  12;
+int blueLED_P1 = 12;
 
-int blueLED_P2 =  10;
-int greenLED_P2 =  9;
+int blueLED_P2 = 10;
+int greenLED_P2 = 9;
 
 int button_P1 = 6;
 int button_P2 = 7;
@@ -19,8 +19,7 @@ int gameState = 0;
 int player_1 = 0;
 int player_2 = 0;
 
-void setup()
-{
+void setup() {
   pinMode(greenLED_P1, OUTPUT);
   pinMode(blueLED_P1, OUTPUT);
   pinMode(blueLED_P2, OUTPUT);
@@ -30,11 +29,9 @@ void setup()
   pinMode(button_P2, INPUT);
 }
 
-void loop()
-{
+void loop() {
 
-  if (gameState == 0)
-  {
+  if (gameState == 0) {
     digitalWrite(greenLED_P1, HIGH);
     digitalWrite(blueLED_P1, HIGH);
     digitalWrite(blueLED_P2, HIGH);
@@ -47,30 +44,22 @@ void loop()
     delay(200);
   }
 
-  else if (gameState == 1)
-  {
+  else if (gameState == 1) {
 
   }
 
-  else if (gameState == 2)
-  {
-    if (_____ )
-    {
+  else if (gameState == 2) {
+    if (_____) {
+      digitalWrite(blueLED_P1, _____);
+      digitalWrite(blueLED_P2, _____);
+    } else if (_____) {
+      digitalWrite(blueLED_P1, _____);
+      digitalWrite(blueLED_P2, _____);
+    } else {
       digitalWrite(blueLED_P1, _____);
       digitalWrite(blueLED_P2, _____);
     }
-    else if (_____)
-    {
-      digitalWrite(blueLED_P1, _____);
-      digitalWrite(blueLED_P2, _____);
-    }
-    else
-    {
-      digitalWrite(blueLED_P1, _____);
-      digitalWrite(blueLED_P2, _____);
-    }
-    if (_____)
-    {
+    if (_____) {
       digitalWrite(greenLED_P1, _____);
       digitalWrite(blueLED_P1, _____);
       digitalWrite(blueLED_P2, _____);
@@ -81,8 +70,7 @@ void loop()
       player_1 = _____;
       player_2 = _____;
     }
-    if (_____)
-    {
+    if (_____) {
       digitalWrite(greenLED_P1, _____);
       digitalWrite(blueLED_P1, _____);
       digitalWrite(blueLED_P2, _____);
@@ -96,26 +84,21 @@ void loop()
   }
 
 
-  if ( digitalRead(button_P1) == HIGH)
-  {
+  if (digitalRead(button_P1) == HIGH) {
     gameState = 2;
     digitalWrite(greenLED_P1, HIGH);
     player_1 = _____;
   }
 
-  else
-  {
+  else {
     digitalWrite(greenLED_P1, LOW);
   }
 
-  if ( digitalRead(button_P2) == HIGH)
-  {
+  if (digitalRead(button_P2) == HIGH) {
     gameState = 2;
     digitalWrite(greenLED_P2, HIGH);
     player_2 = _____;
-  }
-  else
-  {
+  } else {
     digitalWrite(greenLED_P2, LOW);
   }
 }

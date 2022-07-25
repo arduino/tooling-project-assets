@@ -19,11 +19,13 @@ void setup() {
 
   Serial.begin(9600);
 
-  while (!Serial);
+  while (!Serial)
+    ;
 
   if (!THERM.begin()) {
     Serial.println("Failed to initialize MKR THERM Shield!");
-    while (1);
+    while (1)
+      ;
   }
 }
 

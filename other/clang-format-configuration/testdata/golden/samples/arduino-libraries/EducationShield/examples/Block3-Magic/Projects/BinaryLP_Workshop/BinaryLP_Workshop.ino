@@ -1,15 +1,15 @@
 /*
-  BinaryLP
-
-  This sort of works as an LP player. The difference is
-  that instead of using a needle on a plastic disc,
-  we use three IR sensors in a row to read a pattern from
-  a paper disc.
-
-  If you are both musically and digitally inclined,
-  you will have lots of fun creating melodies with this.
-
-  (c) 2013-2016 Arduino LLC.
+* BinaryLP
+* 
+* This sort of works as an LP player. The difference is 
+* that instead of using a needle on a plastic disc, 
+* we use three IR sensors in a row to read a pattern from 
+* a paper disc. 
+* 
+* If you are both musically and digitally inclined, 
+* you will have lots of fun creating melodies with this.
+*
+* (c) 2013-2016 Arduino LLC.
 */
 
 
@@ -19,7 +19,7 @@
 //IRArray(left, middle, right);
 IRArray ir = IRArray(A1, A2, A3);
 
-int piezo = 8; //Piezo pin
+int piezo = 8;  //Piezo pin
 int lastReading = 0;
 
 void setup() {
@@ -42,7 +42,6 @@ void loop() {
 
   //Play a note depending on the read value
   playNote(reading);
-
 }
 
 void playNote(int r) {
@@ -83,5 +82,5 @@ void playNote(int r) {
   }
 
   //If r is more than 0 we save that value to lastReading
-  if (r > 0)lastReading = r;
+  if (r > 0) lastReading = r;
 }

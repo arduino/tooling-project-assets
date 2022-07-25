@@ -1,34 +1,34 @@
 /*
-   PlanetFinder
-
-  The universe is big, really big, so if you are ever going to be able to find any planets then you'll
-  need a tool track them down for you.
-
-  (c) 2013-2016 Arduino LLC.
+*  PlanetFinder
+* 
+* The universe is big, really big, so if you are ever going to be able to find any planets then you'll
+* need a tool track them down for you.
+*
+* (c) 2013-2016 Arduino LLC.
 */
 
 #include <EducationShield.h>
 
 
-IMU imu; // the IMU
+IMU imu;  // the IMU
 
-bool blinkState = false; // state of the LED
-const int ledPin = 13;      // activity LED pin
-const int piezoPin = 8; //piezo
-const int redPin = 6; // the red LED
-int piezoState = LOW;             // piezoState used to set the piezo
+bool blinkState = false;  // state of the LED
+const int ledPin = 13;    // activity LED pin
+const int piezoPin = 8;   //piezo
+const int redPin = 6;     // the red LED
+int piezoState = LOW;     // piezoState used to set the piezo
 
 bool newGame = true;
 int x = 0;
 int y = 0;
 const int errorMargin = 10;
 
-unsigned long previousMillis = 0;   // last time the click played, in ms
+unsigned long previousMillis = 0;  // last time the click played, in ms
 
 
 // notes in the melody:
 int melody[] = {
-  196,  196, 262
+  196, 196, 262
 };
 
 // note durations: 4 = quarter note, 8 = eighth note, etc.:
@@ -38,7 +38,7 @@ int noteDurations[] = {
 
 
 void setup() {
-  Serial.begin(9600); // initialize Serial communication
+  Serial.begin(9600);  // initialize Serial communication
 
 
   imu.begin();
@@ -46,12 +46,11 @@ void setup() {
 
   // configure Arduino LED for activity indicator
   pinMode(ledPin, OUTPUT);
-  digitalWrite(ledPin, HIGH); // turn on LED to show that the board has executed
+  digitalWrite(ledPin, HIGH);  // turn on LED to show that the board has executed
 
-  pinMode(piezoPin, OUTPUT); // sets piezo
-  pinMode(redPin, OUTPUT); // sets red LED
-  randomSeed(analogRead(0)); // initializes the pseudo-random number generator
-
+  pinMode(piezoPin, OUTPUT);  // sets piezo
+  pinMode(redPin, OUTPUT);    // sets red LED
+  randomSeed(analogRead(0));  // initializes the pseudo-random number generator
 }
 
 void loop() {
@@ -100,7 +99,7 @@ void loop() {
 
   // click in shorter intervals the closer the gyro read is to the goal
   unsigned long currentMillis = millis();
-  if (currentMillis - previousMillis >= closeTogoal ) {
+  if (currentMillis - previousMillis >= closeTogoal) {
     // save the last time you clicked the piezo
     previousMillis = currentMillis;
 
@@ -136,7 +135,6 @@ void loop() {
       delay(pauseBetweenNotes);
       // stop the tone playing:
       noTone(piezoPin);
-
     }
     // a new goal and new game round is needed
     newGame = true;
@@ -146,5 +144,4 @@ void loop() {
   // blink LED to indicate activity
   blinkState = !blinkState;
   digitalWrite(ledPin, blinkState);
-
 }

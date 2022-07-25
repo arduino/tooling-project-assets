@@ -6,7 +6,7 @@
   power rail using the
 
     Power.on(PWR_3V3);
-
+  
   call.
 
   This example shows how use the utility libraries on which the'
@@ -48,12 +48,11 @@ SdFile root;
 // MKRZero SD: SDCARD_SS_PIN
 const int chipSelect = PIN_SD_CS;
 
-void setup()
-{
+void setup() {
   // Open serial communications and wait for port to open:
   Serial.begin(115200);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   EdgeControl.begin();
@@ -113,9 +112,9 @@ void setup()
   Serial.print("Volume type is:    FAT");
   Serial.println(volume.fatType(), DEC);
 
-  volumesize = volume.blocksPerCluster(); // clusters are collections of blocks
-  volumesize *= volume.clusterCount(); // we'll have a lot of clusters
-  volumesize /= 2; // SD card blocks are always 512 bytes (2 blocks are 1KB)
+  volumesize = volume.blocksPerCluster();  // clusters are collections of blocks
+  volumesize *= volume.clusterCount();     // we'll have a lot of clusters
+  volumesize /= 2;                         // SD card blocks are always 512 bytes (2 blocks are 1KB)
   Serial.print("Volume size (Kb):  ");
   Serial.println(volumesize);
   Serial.print("Volume size (Mb):  ");
@@ -131,6 +130,5 @@ void setup()
   root.ls(LS_R | LS_DATE | LS_SIZE);
 }
 
-void loop(void)
-{
+void loop(void) {
 }

@@ -1,10 +1,10 @@
 /*	Joystick
-        The joystick is one component but uses two analog sensors and
-        gives you two values. One x value and one y value. The value
-        for each direction is zero if it’s in the middle, -1 on one side
-        and 1 on the other side.
-
-        (c) 2013-2016 Arduino LLC.
+*       The joystick is one component but uses two analog sensors and 
+*       gives you two values. One x value and one y value. The value 
+*       for each direction is zero if it’s in the middle, -1 on one side 
+*       and 1 on the other side. 
+*
+*       (c) 2013-2016 Arduino LLC.
 */
 
 #include <EducationShield.h>
@@ -18,8 +18,8 @@ void setup() {
 }
 void loop() {
   Serial.print("X: ");
-  Serial.print(me.getX()); //Get the X value and print it.
+  Serial.print(me.getX());  //Get the X value and print it.
   Serial.print("  Y: ");
-  Serial.println(me.getY()); //Get the Y value and print it.
+  Serial.println(me.getY());  //Get the Y value and print it.
   delay(200);
 }

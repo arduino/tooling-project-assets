@@ -20,7 +20,7 @@
 #include "arduino_secrets.h"
 // Please enter your sensitive data in the Secret tab or arduino_secrets.h
 // PIN Number
-const char PINNUMBER[]     = SECRET_PINNUMBER;
+const char PINNUMBER[] = SECRET_PINNUMBER;
 
 // initialize the library instance
 NBClient client;
@@ -30,13 +30,13 @@ NB nbAccess;
 // URL, path and port (for example: example.org)
 char server[] = "example.org";
 char path[] = "/";
-int port = 80; // port 80 is the default for HTTP
+int port = 80;  // port 80 is the default for HTTP
 
 void setup() {
   // initialize serial communications and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   Serial.println("Starting Arduino web client.");
@@ -46,8 +46,7 @@ void setup() {
   // After starting the modem with NB.begin()
   // attach to the GPRS network with the APN, login and password
   while (!connected) {
-    if ((nbAccess.begin(PINNUMBER) == NB_READY) &&
-        (gprs.attachGPRS() == GPRS_READY)) {
+    if ((nbAccess.begin(PINNUMBER) == NB_READY) && (gprs.attachGPRS() == GPRS_READY)) {
       connected = true;
     } else {
       Serial.println("Not connected");

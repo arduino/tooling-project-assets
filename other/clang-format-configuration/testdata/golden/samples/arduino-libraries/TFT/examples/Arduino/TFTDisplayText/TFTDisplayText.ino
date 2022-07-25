@@ -13,15 +13,15 @@
 
   https://www.arduino.cc/en/Tutorial/LibraryExamples/TFTDisplayText
 
-*/
+ */
 
 #include <TFT.h>  // Arduino LCD library
 #include <SPI.h>
 
 // pin definitions for the Uno
-#define cs   10
-#define dc   9
-#define rst  8
+#define cs 10
+#define dc 9
+#define rst 8
 
 // pin definitions for the Leonardo
 // #define cs   7

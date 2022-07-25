@@ -8,13 +8,13 @@
 #endif
 
 
-QSPIFBlockDevice root(QSPI_SO0, QSPI_SO1, QSPI_SO2, QSPI_SO3,  QSPI_SCK, QSPI_CS, QSPIF_POLARITY_MODE_1, 40000000);
+QSPIFBlockDevice root(QSPI_SO0, QSPI_SO1, QSPI_SO2, QSPI_SO3, QSPI_SCK, QSPI_CS, QSPIF_POLARITY_MODE_1, 40000000);
 mbed::MBRBlockDevice wifi_data(&root, 1);
 mbed::MBRBlockDevice ota_data(&root, 2);
 mbed::MBRBlockDevice user_data(&root, 3);
 mbed::FATFileSystem wifi_data_fs("wlan");
 mbed::FATFileSystem ota_data_fs("fs");
-mbed::FileSystem * user_data_fs;
+mbed::FileSystem* user_data_fs;
 
 bool waitResponse() {
   bool confirmation = false;
@@ -42,7 +42,8 @@ bool waitResponse() {
 void setup() {
 
   Serial.begin(115200);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   Serial.println("Available partition schemes:");
   Serial.println("\nPartition scheme 1");
@@ -52,7 +53,7 @@ void setup() {
   Serial.println("Partition 1: WiFi firmware and certificates 1MB");
   Serial.println("Partition 2: OTA 5MB");
   Serial.println("Partition 3: User data 8MB"),
-                 Serial.println("\nDo you want to use partition scheme 1? Y/[n]");
+    Serial.println("\nDo you want to use partition scheme 1? Y/[n]");
   Serial.println("If No, partition scheme 2 will be used.");
   bool default_scheme = waitResponse();
 
@@ -105,5 +106,4 @@ void setup() {
 }
 
 void loop() {
-
 }

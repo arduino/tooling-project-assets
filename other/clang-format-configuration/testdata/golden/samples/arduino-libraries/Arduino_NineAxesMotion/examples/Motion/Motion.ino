@@ -45,71 +45,66 @@
   patent rights of the copyright holder.
 */
 
-#include "Arduino_NineAxesMotion.h" //Contains the bridge code between the API and the Arduino Environment
+#include "Arduino_NineAxesMotion.h"  //Contains the bridge code between the API and the Arduino Environment
 #include <Wire.h>
 
-NineAxesMotion mySensor;  //Object that for the sensor
-bool intDetected = false; //Flag to indicate if an interrupt was detected
-int threshold = 5;		  //At a Range of 4g, the threshold is set at 39.05mg or 0.3830m/s2. This Range is the default for NDOF Mode
-int duration = 1;		  //At a filter Bandwidth of 62.5Hz, the duration is 8ms. This Bandwidth is the default for NDOF Mode
-bool anyMotion = true;	  //To know which interrupt was triggered
+NineAxesMotion mySensor;   //Object that for the sensor
+bool intDetected = false;  //Flag to indicate if an interrupt was detected
+int threshold = 5;         //At a Range of 4g, the threshold is set at 39.05mg or 0.3830m/s2. This Range is the default for NDOF Mode
+int duration = 1;          //At a filter Bandwidth of 62.5Hz, the duration is 8ms. This Bandwidth is the default for NDOF Mode
+bool anyMotion = true;     //To know which interrupt was triggered
 
-int InterruptPin = 2; // Pin D2 is connected to the INT LED
+int InterruptPin = 2;  // Pin D2 is connected to the INT LED
 
-void setup() //This code is executed once
+void setup()  //This code is executed once
 {
   //Peripheral Initialization
-  Serial.begin(9600); //Initialize the Serial Port to view information on the Serial Monitor
-  Wire.begin();		//Initialize I2C communication to the let the library communicate with the sensor.
+  Serial.begin(9600);  //Initialize the Serial Port to view information on the Serial Monitor
+  Wire.begin();        //Initialize I2C communication to the let the library communicate with the sensor.
   //Sensor Initialization
   Serial.println("Please wait. Initialization in process.");
-  mySensor.initSensor();							//The I2C Address can be changed here inside this function in the library
-  mySensor.setOperationMode(OPERATION_MODE_NDOF); //Can be configured to other operation modes as desired
-  mySensor.setUpdateMode(MANUAL);					//The default is AUTO. Changing to manual requires calling the relevant update functions prior to calling the read functions
+  mySensor.initSensor();                           //The I2C Address can be changed here inside this function in the library
+  mySensor.setOperationMode(OPERATION_MODE_NDOF);  //Can be configured to other operation modes as desired
+  mySensor.setUpdateMode(MANUAL);                  //The default is AUTO. Changing to manual requires calling the relevant update functions prior to calling the read functions
   //Setting to MANUAL  requires lesser reads to the sensor
 
 
-  attachInterrupt(digitalPinToInterrupt(InterruptPin), motionISR, RISING); //Attach the interrupt to the Interrupt Service Routine for a Rising Edge. Change the interrupt pin depending on the board
+  attachInterrupt(digitalPinToInterrupt(InterruptPin), motionISR, RISING);  //Attach the interrupt to the Interrupt Service Routine for a Rising Edge. Change the interrupt pin depending on the board
 
   //Setup the initial interrupt to trigger at No Motion
   mySensor.resetInterrupt();
   mySensor.enableSlowNoMotion(threshold, duration, NO_MOTION);
   anyMotion = false;
-  mySensor.accelInterrupts(ENABLE, ENABLE, ENABLE); //Accelerometer interrupts can be triggered from all 3 axes
+  mySensor.accelInterrupts(ENABLE, ENABLE, ENABLE);  //Accelerometer interrupts can be triggered from all 3 axes
   Serial.println("This is a game to test how steady you can move an object with one hand. \nKeep the device on a table and mark 2 points.");
   Serial.println("Move the Device from one place to another without triggering the Any Motion Interrupt.\n\n");
-  delay(1000); //Delay for the player(s) to read
+  delay(1000);  //Delay for the player(s) to read
   Serial.println("Move the device around and then place it at one position.\nChange the threshold and duration to increase the difficulty level.");
   Serial.println("Have fun!\n\n");
 }
 
-void loop() //This code is looped forever
+void loop()  //This code is looped forever
 {
-  if (intDetected)
-  {
-    if (anyMotion)
-    {
+  if (intDetected) {
+    if (anyMotion) {
       Serial.println("You moved!! Try again. Keep the Device at one place.\n");
       intDetected = false;
-      mySensor.resetInterrupt();									 //Reset the interrupt line
-      mySensor.disableAnyMotion();								 //Disable the Any motion interrupt
-      mySensor.enableSlowNoMotion(threshold, duration, NO_MOTION); //Enable the No motion interrupt (can also use the Slow motion instead)
+      mySensor.resetInterrupt();                                    //Reset the interrupt line
+      mySensor.disableAnyMotion();                                  //Disable the Any motion interrupt
+      mySensor.enableSlowNoMotion(threshold, duration, NO_MOTION);  //Enable the No motion interrupt (can also use the Slow motion instead)
       anyMotion = false;
-    }
-    else
-    {
+    } else {
       Serial.println("Device is not moving. You may start again.\n\n\n");
       intDetected = false;
-      mySensor.resetInterrupt();					   //Reset the interrupt line
-      mySensor.disableSlowNoMotion();				   //Disable the Slow or No motion interrupt
-      mySensor.enableAnyMotion(threshold, duration); //Enable the Any motion interrupt
+      mySensor.resetInterrupt();                      //Reset the interrupt line
+      mySensor.disableSlowNoMotion();                 //Disable the Slow or No motion interrupt
+      mySensor.enableAnyMotion(threshold, duration);  //Enable the Any motion interrupt
       anyMotion = true;
     }
   }
 }
 
 //Interrupt Service Routine when the sensor triggers an Interrupt
-void motionISR()
-{
+void motionISR() {
   intDetected = true;
 }

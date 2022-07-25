@@ -1,9 +1,9 @@
 /*
-  _3.3_light_sensor
-
-  The board changes the light intensity of an LED depending on the readings from a light sensor.
-
-  (c) 2013-2016 Arduino LLC.
+* _3.3_light_sensor
+* 
+* The board changes the light intensity of an LED depending on the readings from a light sensor.
+*
+* (c) 2013-2016 Arduino LLC.
 */
 
 
@@ -21,4 +21,3 @@ void loop() {
   analogWrite(ledPin, ledValue);
   delay(10);
 }
-

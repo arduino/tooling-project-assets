@@ -19,29 +19,31 @@
 #include <ArduinoECCX08.h>
 #include <utility/ECCX08SelfSignedCert.h>
 #include <ArduinoMqttClient.h>
-#include <WiFiNINA.h> // change to #include <WiFi101.h> for MKR1000
+#include <WiFiNINA.h>  // change to #include <WiFi101.h> for MKR1000
 
 #include "arduino_secrets.h"
 
 /////// Enter your sensitive data in arduino_secrets.h
-const char ssid[]        = SECRET_SSID;
-const char pass[]        = SECRET_PASS;
-const char broker[]      = SECRET_BROKER;
-String     deviceId      = SECRET_DEVICE_ID;
+const char ssid[] = SECRET_SSID;
+const char pass[] = SECRET_PASS;
+const char broker[] = SECRET_BROKER;
+String deviceId = SECRET_DEVICE_ID;
 
-WiFiClient    wifiClient;            // Used for the TCP socket connection
-BearSSLClient sslClient(wifiClient); // Used for SSL/TLS connection, integrates with ECC508
-MqttClient    mqttClient(sslClient);
+WiFiClient wifiClient;                // Used for the TCP socket connection
+BearSSLClient sslClient(wifiClient);  // Used for SSL/TLS connection, integrates with ECC508
+MqttClient mqttClient(sslClient);
 
 unsigned long lastMillis = 0;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   if (!ECCX08.begin()) {
     Serial.println("No ECCX08 present!");
-    while (1);
+    while (1)
+      ;
   }
 
   // reconstruct the self signed cert

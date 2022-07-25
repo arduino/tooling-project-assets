@@ -1,23 +1,23 @@
 /*
 
-  Arduino TFT Bitmap Logo example
+ Arduino TFT Bitmap Logo example
 
-  This example reads an image file from a micro-SD card
-  and draws it on the screen, at random locations.
+ This example reads an image file from a micro-SD card
+ and draws it on the screen, at random locations.
 
-  In this sketch, the Arduino logo is read from a micro-SD card.
-  There is a .bmp file included with this sketch.
-  - open the sketch folder (Ctrl-K or Cmd-K)
-  - copy the "arduino.bmp" file to a micro-SD
-  - put the SD into the SD slot of the Arduino TFT module.
+ In this sketch, the Arduino logo is read from a micro-SD card.
+ There is a .bmp file included with this sketch.
+ - open the sketch folder (Ctrl-K or Cmd-K)
+ - copy the "arduino.bmp" file to a micro-SD
+ - put the SD into the SD slot of the Arduino TFT module.
 
-  This example code is in the public domain.
+ This example code is in the public domain.
 
-  Created 19 April 2013 by Enrico Gueli
+ Created 19 April 2013 by Enrico Gueli
 
-  https://www.arduino.cc/en/Tutorial/LibraryExamples/TFTBitmapLogo
+ https://www.arduino.cc/en/Tutorial/LibraryExamples/TFTBitmapLogo
 
-*/
+ */
 
 // include the necessary libraries
 #include <SPI.h>
@@ -25,10 +25,10 @@
 #include <TFT.h>  // Arduino LCD library
 
 // pin definitions for the Uno
-#define sd_cs  4
+#define sd_cs 4
 #define lcd_cs 10
-#define dc     9
-#define rst    8
+#define dc 9
+#define rst 8
 
 // pin definitions for the Leonardo
 //#define sd_cs  8

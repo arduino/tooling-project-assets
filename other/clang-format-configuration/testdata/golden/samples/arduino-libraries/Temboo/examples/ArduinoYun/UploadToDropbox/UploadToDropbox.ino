@@ -1,23 +1,23 @@
 /*
   UploadToDropbox
-
+  
   Demonstrates uploading a file to a Dropbox account using Temboo from an Arduino Yún.
-
+  
   Check out the latest Arduino & Temboo examples and support docs at http://www.temboo.com/arduino
 
-  A Temboo account and application key are necessary to run all Temboo examples.
-  If you don't already have one, you can register for a free Temboo account at
+  A Temboo account and application key are necessary to run all Temboo examples. 
+  If you don't already have one, you can register for a free Temboo account at 
   http://www.temboo.com
 
-  You'll also need a valid Dropbox app and accompanying OAuth credentials.
-  To create a Dropbox app, visit https://www.dropbox.com/developers/apps and
+  You'll also need a valid Dropbox app and accompanying OAuth credentials. 
+  To create a Dropbox app, visit https://www.dropbox.com/developers/apps and 
   do the following:
-
+  
   1. Create a "Dropbox API app"
   2. Select "Files and datastores"
   3. Select "Yes - my app only needs access to the files it creates."
-
-  Once you've created your app, follow the instructions at
+  
+  Once you've created your app, follow the instructions at 
   https://www.temboo.com/library/Library/Dropbox/OAuth/ to run the Initialize and Finalize
   OAuth Choreos. These Choreos complete the OAuth handshake and retrieve your Dropbox OAuth access tokens.
 
@@ -25,14 +25,14 @@
   to the Internet.
 
   Looking for another API to use with your Arduino Yún? We've got over 100 in our Library!
-
+  
   This example code is in the public domain.
 */
 
 #include <Bridge.h>
 #include <Temboo.h>
-#include "TembooAccount.h" // contains Temboo account information
-// as described in the footer comment below
+#include "TembooAccount.h"  // contains Temboo account information
+                            // as described in the footer comment below
 
 
 /*** SUBSTITUTE YOUR VALUES BELOW: ***/
@@ -53,19 +53,19 @@ const String DROPBOX_ACCESS_TOKEN = "xxxxxxxxxx";
 const String DROPBOX_ACCESS_TOKEN_SECRET = "xxxxxxxxxx";
 
 
-bool success = false; // a flag to indicate whether we've uploaded the file yet
+bool success = false;  // a flag to indicate whether we've uploaded the file yet
 
 void setup() {
   Serial.begin(9600);
 
   // For debugging, wait until a serial console is connected.
   delay(4000);
-  while (!Serial);
+  while (!Serial)
+    ;
   Bridge.begin();
 }
 
-void loop()
-{
+void loop() {
   // only try to upload the file if we haven't already done so
   if (!success) {
 
@@ -139,7 +139,7 @@ void loop()
     Serial.println("Waiting...");
   }
 
-  delay(30000); // wait 30 seconds between upload attempts
+  delay(30000);  // wait 30 seconds between upload attempts
 }
 
 
@@ -194,15 +194,15 @@ String base64Encode(String toEncode) {
   by inserting your own Temboo account name and app key information. The contents of the file should
   look like:
 
-  #define TEMBOO_ACCOUNT "myTembooAccountName"  // your Temboo account name
+  #define TEMBOO_ACCOUNT "myTembooAccountName"  // your Temboo account name 
   #define TEMBOO_APP_KEY_NAME "myFirstApp"  // your Temboo app key name
   #define TEMBOO_APP_KEY  "xxx-xxx-xxx-xx-xxx"  // your Temboo app key
 
-  You can find your Temboo App Key information on the Temboo website,
+  You can find your Temboo App Key information on the Temboo website, 
   under My Account > Application Keys
 
   The same TembooAccount.h file settings can be used for all Temboo SDK sketches.
 
-  Keeping your account information in a separate file means you can share the main .ino file without worrying
+  Keeping your account information in a separate file means you can share the main .ino file without worrying 
   that you forgot to delete your credentials.
 */

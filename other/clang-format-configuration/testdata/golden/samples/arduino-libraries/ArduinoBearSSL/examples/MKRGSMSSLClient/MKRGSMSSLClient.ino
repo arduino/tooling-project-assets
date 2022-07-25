@@ -21,7 +21,7 @@ const char password[] = "pass";
 // if you don't want to use DNS (and reduce your sketch size)
 // use the numeric IP instead of the name for the server:
 //IPAddress server(74,125,232,128);  // numeric IP for Google (no DNS)
-char server[] = "www.google.com";    // name address for Google (using DNS)
+char server[] = "www.google.com";  // name address for Google (using DNS)
 
 GPRS gprs;
 GSM gsmAccess;
@@ -40,7 +40,7 @@ void setup() {
   //Initialize serial and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   // connection state
@@ -49,8 +49,7 @@ void setup() {
   // After starting the modem with GSM.begin()
   // attach the shield to the GPRS network with the APN, login and password
   while (notConnected) {
-    if ((gsmAccess.begin(pin) == GSM_READY) &
-        (gprs.attachGPRS(apn, login, password) == GPRS_READY)) {
+    if ((gsmAccess.begin(pin) == GSM_READY) & (gprs.attachGPRS(apn, login, password) == GPRS_READY)) {
       notConnected = false;
     } else {
       Serial.println("Not connected");
@@ -89,7 +88,7 @@ void loop() {
     sslClient.stop();
 
     // do nothing forevermore:
-    while (true);
+    while (true)
+      ;
   }
 }
-

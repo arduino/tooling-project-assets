@@ -1,9 +1,9 @@
 /*
-  LCD Display (HD44780) via LiquidCrystal for TCA6224A
+ LCD Display (HD44780) via LiquidCrystal for TCA6224A 
 
   The circuit:
-   Arduino Edge Control
-   Arduino Edge Control LCD brekout board
+ * Arduino Edge Control
+ * Arduino Edge Control LCD brekout board
 
 */
 
@@ -43,8 +43,7 @@ byte frownie[8] = {
   0b10001
 };
 
-void setup()
-{
+void setup() {
   EdgeControl.begin();
 
   Serial.begin(9600);
@@ -74,19 +73,18 @@ void setup()
   // set up the LCD's number of columns and rows:
   LCD.begin(16, 2);
 
-  LCD.createChar(0, smiley); // load character to the LCD
-  LCD.createChar(1, armsUp); // load character to the LCD
-  LCD.createChar(2, frownie); // load character to the LCD
+  LCD.createChar(0, smiley);   // load character to the LCD
+  LCD.createChar(1, armsUp);   // load character to the LCD
+  LCD.createChar(2, frownie);  // load character to the LCD
 
   // Print a message to the LCD.
-  LCD.home(); // go home
+  LCD.home();  // go home
   LCD.print("Edge Control");
   LCD.setCursor(15, 0);
   LCD.print(char(1));
 }
 
-void loop()
-{
+void loop() {
   static bool backlight = true;
 
   if (backlight) {

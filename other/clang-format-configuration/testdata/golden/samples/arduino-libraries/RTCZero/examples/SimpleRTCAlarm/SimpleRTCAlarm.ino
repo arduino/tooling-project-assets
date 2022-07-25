@@ -9,7 +9,7 @@
 
   created by Arturo Guadalupi <a.guadalupi@arduino.cc>
   25 Sept 2015
-
+  
   modified
   21 Oct 2015
 */
@@ -29,11 +29,10 @@ const byte day = 25;
 const byte month = 9;
 const byte year = 15;
 
-void setup()
-{
+void setup() {
   Serial.begin(9600);
 
-  rtc.begin(); // initialize RTC 24H format
+  rtc.begin();  // initialize RTC 24H format
 
   rtc.setTime(hours, minutes, seconds);
   rtc.setDate(day, month, year);
@@ -44,12 +43,9 @@ void setup()
   rtc.attachInterrupt(alarmMatch);
 }
 
-void loop()
-{
-
+void loop() {
 }
 
-void alarmMatch()
-{
+void alarmMatch() {
   Serial.println("Alarm Match!");
 }

@@ -2,7 +2,7 @@
   MKR IMU Shield - Simple Euler Angles
 
   This example reads the Euler angle values from the IMU
-  on the MKR IMU Shield and continuously prints them to the
+  on the MKR IMU Shield and continuously prints them to the 
   Serial Monitor.
 
   The circuit:
@@ -16,12 +16,14 @@
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   if (!IMU.begin()) {
     Serial.println("Failed to initialize IMU!");
 
-    while (1);
+    while (1)
+      ;
   }
 
   Serial.print("Euler Angles sample rate = ");

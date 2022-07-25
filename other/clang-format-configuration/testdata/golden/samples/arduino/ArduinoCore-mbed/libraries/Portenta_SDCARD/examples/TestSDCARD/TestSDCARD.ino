@@ -17,10 +17,11 @@ mbed::FATFileSystem fs("fs");
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   Serial.println("Mounting SDCARD...");
-  int err =  fs.mount(&block_device);
+  int err = fs.mount(&block_device);
   if (err) {
     // Reformat if we can't mount the filesystem
     // this should only happen on the first boot
@@ -29,7 +30,8 @@ void setup() {
   }
   if (err) {
     Serial.println("Error formatting SDCARD ");
-    while (1);
+    while (1)
+      ;
   }
 
   DIR *dir;
@@ -39,15 +41,16 @@ void setup() {
   Serial.println("List SDCARD content: ");
   if ((dir = opendir("/fs")) != NULL) {
     // Print all the files and directories within directory (not recursively)
-    while ((ent = readdir (dir)) != NULL) {
+    while ((ent = readdir(dir)) != NULL) {
       Serial.println(ent->d_name);
       dirIndex++;
     }
-    closedir (dir);
+    closedir(dir);
   } else {
     // Could not open directory
     Serial.println("Error opening SDCARD\n");
-    while (1);
+    while (1)
+      ;
   }
   if (dirIndex == 0) {
     Serial.println("Empty SDCARD");

@@ -7,22 +7,20 @@ static int batteryVoltage;
 //Variable to change the motor speed and direction
 static int duty = 0;
 
-void setup()
-{
+void setup() {
   //Serial port initialization
   Serial.begin(115200);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   //Establishing the communication with the Motor Carrier
-  if (controller.begin())
-  {
+  if (controller.begin()) {
     Serial.print("MKR Motor Connected connected, firmware version ");
     Serial.println(controller.getFWVersion());
-  }
-  else
-  {
+  } else {
     Serial.println("Couldn't connect! Is the red LED blinking? You may need to update the firmware with FWUpdater sketch");
-    while (1);
+    while (1)
+      ;
   }
 
   // Reboot the motor controller; brings every value back to default
@@ -45,8 +43,7 @@ void loop() {
   float batteryVoltage = (float)battery.getConverted();
 
   //Reset to the default values if the battery level is lower than 11 V
-  if (batteryVoltage < 11)
-  {
+  if (batteryVoltage < 11) {
     Serial.println(" ");
     Serial.println("WARNING: LOW BATTERY");
     Serial.println("ALL SYSTEMS DOWN");
@@ -54,16 +51,12 @@ void loop() {
     M2.setDuty(0);
     M3.setDuty(0);
     M4.setDuty(0);
-    while (batteryVoltage < 11)
-    {
+    while (batteryVoltage < 11) {
       batteryVoltage = (float)battery.getConverted();
     }
-  }
-  else
-  {
+  } else {
     //Motor test
-    for (duty = -100; duty < 100; duty += 5)
-    {
+    for (duty = -100; duty < 100; duty += 5) {
       Serial.print("Motor Duty: ");
       Serial.println(duty);
       M1.setDuty(duty);
@@ -72,8 +65,7 @@ void loop() {
       M4.setDuty(duty);
       delay(50);
     }
-    for (duty = 100; duty > -100; duty -= 5)
-    {
+    for (duty = 100; duty > -100; duty -= 5) {
       Serial.print("Motor Duty: ");
       Serial.println(duty);
       M1.setDuty(duty);

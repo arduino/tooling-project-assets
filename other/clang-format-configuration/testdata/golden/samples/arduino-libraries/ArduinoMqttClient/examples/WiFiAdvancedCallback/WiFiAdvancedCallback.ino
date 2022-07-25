@@ -6,7 +6,7 @@
   When a message is received it prints the message to the Serial Monitor,
   it uses the callback functionality of the library.
 
-  It also demonstrates how to set the will message, get/set QoS,
+  It also demonstrates how to set the will message, get/set QoS, 
   duplicate and retain values of messages.
 
   The circuit:
@@ -28,8 +28,8 @@
 
 #include "arduino_secrets.h"
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h
-char ssid[] = SECRET_SSID;    // your network SSID (name)
-char pass[] = SECRET_PASS;    // your network password (use for WPA, or use as key for WEP)
+char ssid[] = SECRET_SSID;  // your network SSID (name)
+char pass[] = SECRET_PASS;  // your network password (use for WPA, or use as key for WEP)
 
 // To connect with SSL/TLS:
 // 1) Change WiFiClient to WiFiSSLClient.
@@ -40,11 +40,11 @@ char pass[] = SECRET_PASS;    // your network password (use for WPA, or use as k
 WiFiClient wifiClient;
 MqttClient mqttClient(wifiClient);
 
-const char broker[]    = "test.mosquitto.org";
-int        port        = 1883;
+const char broker[] = "test.mosquitto.org";
+int port = 1883;
 const char willTopic[] = "arduino/will";
-const char inTopic[]   = "arduino/in";
-const char outTopic[]  = "arduino/out";
+const char inTopic[] = "arduino/in";
+const char outTopic[] = "arduino/out";
 
 const long interval = 10000;
 unsigned long previousMillis = 0;
@@ -55,7 +55,7 @@ void setup() {
   //Initialize serial and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   // attempt to connect to WiFi network:
@@ -98,7 +98,8 @@ void setup() {
     Serial.print("MQTT connection failed! Error code = ");
     Serial.println(mqttClient.connectError());
 
-    while (1);
+    while (1)
+      ;
   }
 
   Serial.println("You're connected to the MQTT broker!");

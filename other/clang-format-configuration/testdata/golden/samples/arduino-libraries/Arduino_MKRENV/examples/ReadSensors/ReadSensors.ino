@@ -15,23 +15,25 @@
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   if (!ENV.begin()) {
     Serial.println("Failed to initialize MKR ENV Shield!");
-    while (1);
+    while (1)
+      ;
   }
 }
 
 void loop() {
   // read all the sensor values
   float temperature = ENV.readTemperature();
-  float humidity    = ENV.readHumidity();
-  float pressure    = ENV.readPressure();
+  float humidity = ENV.readHumidity();
+  float pressure = ENV.readPressure();
   float illuminance = ENV.readIlluminance();
-  float uva         = ENV.readUVA();
-  float uvb         = ENV.readUVB();
-  float uvIndex     = ENV.readUVIndex();
+  float uva = ENV.readUVA();
+  float uvb = ENV.readUVB();
+  float uvIndex = ENV.readUVIndex();
 
   // print each of the sensor values
   Serial.print("Temperature = ");

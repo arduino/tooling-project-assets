@@ -1,5 +1,5 @@
 /*
-  CTC GO! CORE MODULE
+  CTC GO! CORE MODULE 
   PROJECT 2 - MORSE ALIEN
 
   This sketch is written to accompany Stage 1 in MORSE ALIEN  of the CTC GO! core module
@@ -8,14 +8,12 @@
 int distanceSensor = A0;
 int blueLED = 13;
 
-void setup()
-{
+void setup() {
   pinMode(_____, _____);
   Serial.begin(9600);
 }
 
-void loop()
-{
+void loop() {
 
   int distanceSensorValue = _____(distanceSensor);
 
@@ -25,12 +23,10 @@ void loop()
   Serial.print(",");
   Serial.println(_____);
 
-  if (_____ < 200)
-  {
+  if (_____ < 200) {
     digitalWrite(_____, HIGH);
   }
-  _____
-  {
+  _____ {
     digitalWrite(_____, LOW);
   }
 }

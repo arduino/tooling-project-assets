@@ -1,9 +1,9 @@
 /*
-  	_3.2_writing_analog
-
-  The board will gradually change the light intensity of an LED, connected to a PWM pin.
-
-  (c) 2013-2016 Arduino LLC.
+*  	_3.2_writing_analog
+* 
+* The board will gradually change the light intensity of an LED, connected to a PWM pin.
+*
+* (c) 2013-2016 Arduino LLC.
 */
 
 int ledPin = 9;
@@ -19,4 +19,3 @@ void loop() {
   fade = fade + 10;
   if (fade > 255) fade = 0;
 }
-

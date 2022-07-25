@@ -15,7 +15,7 @@
 #include <SPI.h>
 #include <Ethernet.h>
 
-#include <ArduinoRS485.h> // ArduinoModbus depends on the ArduinoRS485 library
+#include <ArduinoRS485.h>  // ArduinoModbus depends on the ArduinoRS485 library
 #include <ArduinoModbus.h>
 
 // Enter a MAC address for your controller below.
@@ -44,7 +44,7 @@ void setup() {
   // Open serial communications and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
   Serial.println("Ethernet Modbus TCP Example");
 
@@ -55,7 +55,7 @@ void setup() {
   if (Ethernet.hardwareStatus() == EthernetNoHardware) {
     Serial.println("Ethernet shield was not found.  Sorry, can't run without hardware. :(");
     while (true) {
-      delay(1); // do nothing, no point running without Ethernet hardware
+      delay(1);  // do nothing, no point running without Ethernet hardware
     }
   }
   if (Ethernet.linkStatus() == LinkOFF) {
@@ -68,7 +68,8 @@ void setup() {
   // start the Modbus TCP server
   if (!modbusTCPServer.begin()) {
     Serial.println("Failed to start Modbus TCP Server!");
-    while (1);
+    while (1)
+      ;
   }
 
   // configure the LED

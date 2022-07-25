@@ -18,14 +18,14 @@
 #error Update the bootloader by uploading the sketch to the M7 core instead of the M4 core.
 #endif
 
-#define BOOTLOADER_ADDR   (0x8000000)
-#define SIGNING_KEY_ADDR  (0x8000300)
-#define ENCRYPT_KEY_ADDR  (0x8000400)
-#define ENCRYPT_KEY_SIZE  (0x0000100)
-#define SIGNING_KEY_SIZE  (0x0000100)
+#define BOOTLOADER_ADDR (0x8000000)
+#define SIGNING_KEY_ADDR (0x8000300)
+#define ENCRYPT_KEY_ADDR (0x8000400)
+#define ENCRYPT_KEY_SIZE (0x0000100)
+#define SIGNING_KEY_SIZE (0x0000100)
 
 mbed::FlashIAP flash;
-QSPIFBlockDevice root(QSPI_SO0, QSPI_SO1, QSPI_SO2, QSPI_SO3,  QSPI_SCK, QSPI_CS, QSPIF_POLARITY_MODE_1, 40000000);
+QSPIFBlockDevice root(QSPI_SO0, QSPI_SO1, QSPI_SO2, QSPI_SO3, QSPI_SCK, QSPI_CS, QSPIF_POLARITY_MODE_1, 40000000);
 
 bool writeLoader = false;
 bool writeKeys = false;
@@ -145,7 +145,6 @@ void setup() {
   } else {
     Serial.println("It's now safe to reboot or disconnect your board.");
   }
-
 }
 
 String getUSBSpeed(uint8_t flag) {
@@ -228,7 +227,7 @@ void setupMCUBootOTAData() {
 
   FILE* fp = fopen("/fs/scratch.bin", "wb");
   const int scratch_file_size = 128 * 1024;
-  const char buffer[128] = {0xFF};
+  const char buffer[128] = { 0xFF };
   int size = 0;
 
   Serial.println("\nCreating scratch file");
@@ -269,7 +268,7 @@ void applyUpdate(uint32_t address) {
   flash.init();
 
   const uint32_t page_size = flash.get_page_size();
-  char *page_buffer = new char[page_size];
+  char* page_buffer = new char[page_size];
   uint32_t addr = address;
   uint32_t next_sector = addr + flash.get_sector_size(addr);
   bool sector_erased = false;

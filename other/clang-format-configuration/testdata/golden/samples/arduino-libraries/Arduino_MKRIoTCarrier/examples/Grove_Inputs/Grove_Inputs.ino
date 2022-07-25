@@ -1,5 +1,5 @@
 #include <Arduino_MKRIoTCarrier.h>
-MKRIoTCarrier carrier; //Constructor of the carrier maybe we can include it on the library itself
+MKRIoTCarrier carrier;  //Constructor of the carrier maybe we can include it on the library itself
 
 //Be sure that the Pins are the same as your wiring
 int moisture = A5;
@@ -10,12 +10,12 @@ bool trigger = false;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
   carrier.noCase();
   carrier.begin();
   pinMode(moisture, INPUT);
   pinMode(pir, INPUT);
-
 }
 
 void loop() {
@@ -30,5 +30,4 @@ void loop() {
   Serial.println(digitalRead(pir));
   Serial.println();
   //delay(00);
-
 }

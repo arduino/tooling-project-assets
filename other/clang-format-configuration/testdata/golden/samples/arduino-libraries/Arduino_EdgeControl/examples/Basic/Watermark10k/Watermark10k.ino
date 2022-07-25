@@ -1,9 +1,8 @@
 #include <Arduino_EdgeControl.h>
 
-constexpr unsigned int calibResistor { 7870 };
+constexpr unsigned int calibResistor{ 7870 };
 
-void setup()
-{
+void setup() {
   Serial.begin(115200);
 
   auto startNow = millis() + 2500;
@@ -36,11 +35,9 @@ void setup()
 
   Watermark.commonMode(OUTPUT);
   Watermark.commonWrite(HIGH);
-
 }
 
-void loop()
-{
+void loop() {
   auto val = wmkAvgAnalogRead(WATERMARK_CH01);
   Serial.print("Watermark Channel 01");
   Serial.print(" - average analogRead value: ");
@@ -51,13 +48,12 @@ void loop()
   delay(1000);
 }
 
-int wmkAvgAnalogRead(pin_size_t pin)
-{
-  constexpr size_t count { 10 };
-  unsigned int sum { 0 };
+int wmkAvgAnalogRead(pin_size_t pin) {
+  constexpr size_t count{ 10 };
+  unsigned int sum{ 0 };
 
   Watermark.enable();
-  for (auto i = 0u; i < count; i ++)
+  for (auto i = 0u; i < count; i++)
     sum += Watermark.analogRead(pin);
   Watermark.disable();
 

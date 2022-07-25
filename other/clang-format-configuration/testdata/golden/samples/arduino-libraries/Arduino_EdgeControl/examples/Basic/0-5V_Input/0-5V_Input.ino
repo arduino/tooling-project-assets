@@ -4,9 +4,9 @@
 
 #include <Arduino_EdgeControl.h>
 
-constexpr unsigned int adcResolution { 12 };
+constexpr unsigned int adcResolution{ 12 };
 
-constexpr pin_size_t inputChannels [] {
+constexpr pin_size_t inputChannels[]{
   INPUT_05V_CH01,
   INPUT_05V_CH02,
   INPUT_05V_CH03,
@@ -16,16 +16,15 @@ constexpr pin_size_t inputChannels [] {
   INPUT_05V_CH07,
   INPUT_05V_CH08
 };
-constexpr size_t inputChannelsLen { sizeof(inputChannels) / sizeof(inputChannels[0]) };
-int inputChannelIndex { 0 };
+constexpr size_t inputChannelsLen{ sizeof(inputChannels) / sizeof(inputChannels[0]) };
+int inputChannelIndex{ 0 };
 
 struct Voltages {
   float volt3V3;
   float volt5V;
 };
 
-void setup()
-{
+void setup() {
   Serial.begin(9600);
 
   auto startNow = millis() + 2500;
@@ -54,8 +53,7 @@ void setup()
   analogReadResolution(adcResolution);
 }
 
-void loop()
-{
+void loop() {
   Serial.print("0-5V Input Channel ");
   switch (inputChannels[inputChannelIndex]) {
     case INPUT_05V_CH01: Serial.print("01"); break;
@@ -70,7 +68,7 @@ void loop()
   }
   Serial.print(": ");
 
-  auto [ voltsMuxer, voltsInput ] = getAverageAnalogRead(inputChannels[inputChannelIndex]);
+  auto [voltsMuxer, voltsInput] = getAverageAnalogRead(inputChannels[inputChannelIndex]);
 
   Serial.print(voltsInput);
   Serial.print(" (");
@@ -81,13 +79,12 @@ void loop()
   inputChannelIndex = ++inputChannelIndex % inputChannelsLen;
 }
 
-Voltages getAverageAnalogRead(int pin)
-{
-  constexpr size_t loops { 100 };
-  constexpr float toV { 3.3f / float { (1 << adcResolution) - 1 } };
-  constexpr float rDiv { 17.4f / ( 10.0f + 17.4f) };
+Voltages getAverageAnalogRead(int pin) {
+  constexpr size_t loops{ 100 };
+  constexpr float toV{ 3.3f / float{ (1 << adcResolution) - 1 } };
+  constexpr float rDiv{ 17.4f / (10.0f + 17.4f) };
 
-  int tot { 0 };
+  int tot{ 0 };
 
   for (auto i = 0u; i < loops; i++)
     tot += Input.analogRead(pin);

@@ -33,7 +33,8 @@ void resetModule() {
   delay(100);
   digitalWrite(LORA_RESET, HIGH);
 
-  while (!Serial);
+  while (!Serial)
+    ;
 }
 
 char rx_buf[512];
@@ -43,8 +44,8 @@ int rx = 0;
 int tx = 0;
 
 void loop() {
-  while (Serial1.available()) {      // If anything comes in Serial (USB),
-    tx_buf[tx++] = Serial1.read();   // read it and send it out Serial1 (pins 0 & 1)
+  while (Serial1.available()) {     // If anything comes in Serial (USB),
+    tx_buf[tx++] = Serial1.read();  // read it and send it out Serial1 (pins 0 & 1)
   }
 
   if (tx > 0) {
@@ -52,8 +53,8 @@ void loop() {
     tx = 0;
   }
 
-  while (Serial2.available()) {      // If anything comes in Serial (USB),
-    rx_buf[rx++] = Serial2.read();   // read it and send it out Serial1 (pins 0 & 1)
+  while (Serial2.available()) {     // If anything comes in Serial (USB),
+    rx_buf[rx++] = Serial2.read();  // read it and send it out Serial1 (pins 0 & 1)
   }
 
   if (rx > 0) {

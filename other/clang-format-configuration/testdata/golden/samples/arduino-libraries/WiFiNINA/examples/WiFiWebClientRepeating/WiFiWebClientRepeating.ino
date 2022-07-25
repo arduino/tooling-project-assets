@@ -1,27 +1,27 @@
 /*
   Repeating WiFi Web Client
 
-  This sketch connects to a a web server and makes a request
-  using a WiFi equipped Arduino board.
+ This sketch connects to a a web server and makes a request
+ using a WiFi equipped Arduino board.
 
-  created 23 April 2012
-  modified 31 May 2012
-  by Tom Igoe
-  modified 13 Jan 2014
-  by Federico Vanzati
+ created 23 April 2012
+ modified 31 May 2012
+ by Tom Igoe
+ modified 13 Jan 2014
+ by Federico Vanzati
 
-  http://www.arduino.cc/en/Tutorial/WifiWebClientRepeating
-  This code is in the public domain.
-*/
+ http://www.arduino.cc/en/Tutorial/WifiWebClientRepeating
+ This code is in the public domain.
+ */
 
 #include <SPI.h>
 #include <WiFiNINA.h>
 
 #include "arduino_secrets.h"
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h
-char ssid[] = SECRET_SSID;        // your network SSID (name)
-char pass[] = SECRET_PASS;    // your network password (use for WPA, or use as key for WEP)
-int keyIndex = 0;            // your network key index number (needed only for WEP)
+char ssid[] = SECRET_SSID;  // your network SSID (name)
+char pass[] = SECRET_PASS;  // your network password (use for WPA, or use as key for WEP)
+int keyIndex = 0;           // your network key index number (needed only for WEP)
 
 int status = WL_IDLE_STATUS;
 
@@ -32,21 +32,22 @@ WiFiClient client;
 char server[] = "example.org";
 //IPAddress server(64,131,82,241);
 
-unsigned long lastConnectionTime = 0;            // last time you connected to the server, in milliseconds
-const unsigned long postingInterval = 10L * 1000L; // delay between updates, in milliseconds
+unsigned long lastConnectionTime = 0;               // last time you connected to the server, in milliseconds
+const unsigned long postingInterval = 10L * 1000L;  // delay between updates, in milliseconds
 
 void setup() {
   //Initialize serial and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   // check for the WiFi module:
   if (WiFi.status() == WL_NO_MODULE) {
     Serial.println("Communication with WiFi module failed!");
     // don't continue
-    while (true);
+    while (true)
+      ;
   }
 
   String fv = WiFi.firmwareVersion();
@@ -82,7 +83,6 @@ void loop() {
   if (millis() - lastConnectionTime > postingInterval) {
     httpRequest();
   }
-
 }
 
 // this method makes a HTTP connection to the server:

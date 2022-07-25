@@ -32,11 +32,13 @@
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   if (!ECCX08.begin()) {
     Serial.println("No ECCX08 present!");
-    while (1);
+    while (1)
+      ;
   }
 
   String serialNumber = ECCX08.serialNumber();
@@ -51,17 +53,20 @@ void setup() {
 
     if (!lock.startsWith("y")) {
       Serial.println("Unfortunately you can't proceed without locking it :(");
-      while (1);
+      while (1)
+        ;
     }
 
     if (!ECCX08.writeConfiguration(ECCX08_DEFAULT_TLS_CONFIG)) {
       Serial.println("Writing ECCX08 configuration failed!");
-      while (1);
+      while (1)
+        ;
     }
 
     if (!ECCX08.lock()) {
       Serial.println("Locking ECCX08 configuration failed!");
-      while (1);
+      while (1)
+        ;
     }
 
     Serial.println("ECCX08 locked successfully");
@@ -71,14 +76,14 @@ void setup() {
   Serial.println("Hi there, in order to generate a new CSR for your board, we'll need the following information ...");
   Serial.println();
 
-  String country            = promptAndReadLine("Country Name (2 letter code)", "");
-  String stateOrProvince    = promptAndReadLine("State or Province Name (full name)", "");
-  String locality           = promptAndReadLine("Locality Name (eg, city)", "");
-  String organization       = promptAndReadLine("Organization Name (eg, company)", "");
+  String country = promptAndReadLine("Country Name (2 letter code)", "");
+  String stateOrProvince = promptAndReadLine("State or Province Name (full name)", "");
+  String locality = promptAndReadLine("Locality Name (eg, city)", "");
+  String organization = promptAndReadLine("Organization Name (eg, company)", "");
   String organizationalUnit = promptAndReadLine("Organizational Unit Name (eg, section)", "");
-  String common             = promptAndReadLine("Common Name (e.g. server FQDN or YOUR name)", serialNumber.c_str());
-  String slot               = promptAndReadLine("What slot would you like to use? (0 - 4)", "0");
-  String generateNewKey     = promptAndReadLine("Would you like to generate a new private key? (Y/n)", "Y");
+  String common = promptAndReadLine("Common Name (e.g. server FQDN or YOUR name)", serialNumber.c_str());
+  String slot = promptAndReadLine("What slot would you like to use? (0 - 4)", "0");
+  String generateNewKey = promptAndReadLine("Would you like to generate a new private key? (Y/n)", "Y");
 
   Serial.println();
 
@@ -86,7 +91,8 @@ void setup() {
 
   if (!ECCX08CSR.begin(slot.toInt(), generateNewKey.startsWith("y"))) {
     Serial.println("Error starting CSR generation!");
-    while (1);
+    while (1)
+      ;
   }
 
   ECCX08CSR.setCountryName(country);
@@ -100,7 +106,8 @@ void setup() {
 
   if (!csr) {
     Serial.println("Error generating CSR!");
-    while (1);
+    while (1)
+      ;
   }
 
   Serial.println("Here's your CSR, enjoy!");

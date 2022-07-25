@@ -1,8 +1,7 @@
 #include "EthernetInterface.h"
 EthernetInterface net;
 
-void setup()
-{
+void setup() {
   Serial.begin(115200);
   while (!Serial)
     ;
@@ -41,12 +40,10 @@ void setup()
   Serial.print(request);
 
   // Receive a simple HTTP response
-  const size_t rlen {
-    64
-  };
-  char rbuffer[rlen + 1] {};
+  const size_t rlen{ 64 };
+  char rbuffer[rlen + 1]{};
   size_t rcount;
-  size_t rec { 0 };
+  size_t rec{ 0 };
   String response;
 
   while ((rec = socket.recv(rbuffer, rlen)) > 0) {
@@ -81,6 +78,5 @@ void setup()
   Serial.println("Done");
 }
 
-void loop()
-{
+void loop() {
 }

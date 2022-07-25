@@ -7,22 +7,20 @@ static int batteryVoltage;
 //Variable to change the motor speed and direction
 static int duty = -20;
 
-void setup()
-{
+void setup() {
   //Serial port initialization
   Serial.begin(115200);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   //Establishing the communication with the Motor Carrier
-  if (controller.begin())
-  {
+  if (controller.begin()) {
     Serial.print("Motor Carrier connected, firmware version ");
     Serial.println(controller.getFWVersion());
-  }
-  else
-  {
+  } else {
     Serial.println("Couldn't connect! Is the red LED blinking? You may need to update the firmware with FWUpdater sketch");
-    while (1);
+    while (1)
+      ;
   }
 
   // Reboot the motor controller; brings every value back to default
@@ -50,8 +48,7 @@ void loop() {
   float batteryVoltage = (float)battery.getConverted();
 
   //Reset to the default values if the battery level is lower than 11 V
-  if (batteryVoltage < 11)
-  {
+  if (batteryVoltage < 11) {
     Serial.println(" ");
     Serial.println("WARNING: LOW BATTERY");
     Serial.println("ALL SYSTEMS DOWN");
@@ -59,13 +56,10 @@ void loop() {
     M2.setDuty(0);
     M3.setDuty(0);
     M4.setDuty(0);
-    while (batteryVoltage < 11)
-    {
+    while (batteryVoltage < 11) {
       batteryVoltage = (float)battery.getConverted();
     }
-  }
-  else
-  {
+  } else {
     //Chose the motor to use:M1(default), M2, M3 or M4
     Serial.print("M1 Duty: ");
     Serial.println(duty);

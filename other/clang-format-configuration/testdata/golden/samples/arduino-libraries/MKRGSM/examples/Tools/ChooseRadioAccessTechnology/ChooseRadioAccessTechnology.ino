@@ -26,10 +26,12 @@
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   MODEM.begin();
-  while (!MODEM.noop());
+  while (!MODEM.noop())
+    ;
 
   for (int i = 0; i < 80; i++) Serial.print("*");
   Serial.println();
@@ -61,7 +63,8 @@ void loop() {
   Serial.print("> ");
 
   Serial.setTimeout(-1);
-  while (Serial.available() == 0);
+  while (Serial.available() == 0)
+    ;
   String uratInput = Serial.readStringUntil('\n');
   uratInput.trim();
   int urat = uratInput.toInt();
@@ -91,11 +94,11 @@ void loop() {
   Serial.println();
   Serial.println("Radio Access Technology selected.");
   Serial.println("Now you can upload your 2G or 3G application sketch.");
-  while (true);
+  while (true)
+    ;
 }
 
-bool setRAT(String choice)
-{
+bool setRAT(String choice) {
   String response;
 
   Serial.print("Disconnecting from network: ");
@@ -111,8 +114,7 @@ bool setRAT(String choice)
   return true;
 }
 
-bool apply()
-{
+bool apply() {
   Serial.print("Applying changes and saving configuration: ");
   MODEM.reset();
   delay(5000);

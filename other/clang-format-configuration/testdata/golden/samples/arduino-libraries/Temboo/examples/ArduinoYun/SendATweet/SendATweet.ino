@@ -5,30 +5,30 @@
 
   Check out the latest Arduino & Temboo examples and support docs at http://www.temboo.com/arduino
 
-  A Temboo account and application key are necessary to run all Temboo examples.
-  If you don't already have one, you can register for a free Temboo account at
+  A Temboo account and application key are necessary to run all Temboo examples. 
+  If you don't already have one, you can register for a free Temboo account at 
   http://www.temboo.com
 
   In order to run this sketch, you'll need to register an application using
-  the Twitter dev console at https://dev.twitter.com. Note that since this
+  the Twitter dev console at https://dev.twitter.com. Note that since this 
   sketch creates a new tweet, your application will need to be configured with
-  read+write permissions. After creating the app, you'll find OAuth credentials
-  for that application under the "OAuth Tool" tab. Substitute these values for
-  the placeholders below.
+  read+write permissions. After creating the app, you'll find OAuth credentials 
+  for that application under the "OAuth Tool" tab. Substitute these values for 
+  the placeholders below. 
 
   This example assumes basic familiarity with Arduino sketches, and that your Yún is connected
   to the Internet.
 
   Want to use another social API with your Arduino Yún? We've got Facebook,
   Instagram, Tumblr and more in our Library!
-
+  
   This example code is in the public domain.
 */
 
 #include <Bridge.h>
 #include <Temboo.h>
-#include "TembooAccount.h" // contains Temboo account information
-// as described in the footer comment below
+#include "TembooAccount.h"  // contains Temboo account information
+                            // as described in the footer comment below
 
 
 /*** SUBSTITUTE YOUR VALUES BELOW: ***/
@@ -40,7 +40,7 @@ const String TWITTER_ACCESS_TOKEN_SECRET = "your-twitter-access-token-secret";
 const String TWITTER_CONSUMER_KEY = "your-twitter-consumer-key";
 const String TWITTER_CONSUMER_SECRET = "your-twitter-consumer-secret";
 
-int numRuns = 1;   // execution count, so this sketch doesn't run forever
+int numRuns = 1;  // execution count, so this sketch doesn't run forever
 int maxRuns = 3;  // the max number of times the Twitter Update Choreo should run
 
 void setup() {
@@ -48,13 +48,13 @@ void setup() {
 
   // for debugging, wait until a serial console is connected
   delay(4000);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   Bridge.begin();
 }
 
-void loop()
-{
+void loop() {
   // only try to send the tweet if we haven't already sent it successfully
   if (numRuns <= maxRuns) {
 
@@ -124,15 +124,15 @@ void loop()
   by inserting your own Temboo account name and app key information. The contents of the file should
   look like:
 
-  #define TEMBOO_ACCOUNT "myTembooAccountName"  // your Temboo account name
+  #define TEMBOO_ACCOUNT "myTembooAccountName"  // your Temboo account name 
   #define TEMBOO_APP_KEY_NAME "myFirstApp"  // your Temboo app key name
   #define TEMBOO_APP_KEY  "xxx-xxx-xxx-xx-xxx"  // your Temboo app key
 
-  You can find your Temboo App Key information on the Temboo website,
+  You can find your Temboo App Key information on the Temboo website, 
   under My Account > Application Keys
 
   The same TembooAccount.h file settings can be used for all Temboo SDK sketches.
 
-  Keeping your account information in a separate file means you can share the main .ino file without worrying
+  Keeping your account information in a separate file means you can share the main .ino file without worrying 
   that you forgot to delete your credentials.
 */

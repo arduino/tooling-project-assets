@@ -1,5 +1,5 @@
 /*
-  CTC GO! CORE MODULE
+  CTC GO! CORE MODULE 
   PROJECT 1 - Pinball
 
   This sketch is written to accompany Stage 1 in Pinball of the CTC GO! core module
@@ -10,16 +10,14 @@ int blueLED_2 = 12;
 int redLED = 13;
 int greenLED = 9;
 
-void setup()
-{
-  pinMode (blueLED_1, _____);
-  pinMode (blueLED_2, _____);
-  pinMode (redLED, _____);
-  pinMode (greenLED, _____);
+void setup() {
+  pinMode(blueLED_1, _____);
+  pinMode(blueLED_2, _____);
+  pinMode(redLED, _____);
+  pinMode(greenLED, _____);
 }
 
-void loop()
-{
+void loop() {
   digitalWrite(blueLED_1, _____);
   digitalWrite(blueLED_2, _____);
   digitalWrite(redLED, _____);

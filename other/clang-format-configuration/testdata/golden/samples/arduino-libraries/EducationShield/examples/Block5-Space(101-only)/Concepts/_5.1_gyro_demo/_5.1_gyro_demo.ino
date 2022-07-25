@@ -1,30 +1,31 @@
 /*
-  _5.1_gyro_demo
-
-  The Piezo will play sound based on how fast you tilt the board in the X and Y axes.
-
-  (c) 2013-2016 Arduino LLC.
+* _5.1_gyro_demo
+* 
+* The Piezo will play sound based on how fast you tilt the board in the X and Y axes.
+*
+* (c) 2013-2016 Arduino LLC.
 */
 
 #include <EducationShield.h>
 
 
-IMU imu; // the IMU
+IMU imu;  // the IMU
 
-const int piezoPin = 8; //piezo
+const int piezoPin = 8;  //piezo
 
-const int ledPin = 13;      // activity LED pin
-boolean blinkState = false; // state of the LED
+const int ledPin = 13;       // activity LED pin
+boolean blinkState = false;  // state of the LED
 
 
 void setup() {
   // configure Arduino LED for activity indicator
   pinMode(ledPin, OUTPUT);
-  digitalWrite(ledPin, HIGH); // turn on LED to show that the board has executed
+  digitalWrite(ledPin, HIGH);  // turn on LED to show that the board has executed
 
 
-  Serial.begin(9600); // initialize Serial communication
-  while (!Serial);    // wait for the serial port to open
+  Serial.begin(9600);  // initialize Serial communication
+  while (!Serial)
+    ;  // wait for the serial port to open
 
 
   imu.begin();
@@ -48,8 +49,8 @@ void loop() {
   int gy = imu.getGyroY();
 
   // map the raw value to be on a smaller scale
-  gx = map(gx, -36044 , 36043 , -360, 360);
-  gy = map(gy, -36044 , 36043 , -360, 360);
+  gx = map(gx, -36044, 36043, -360, 360);
+  gy = map(gy, -36044, 36043, -360, 360);
 
 
   // print the measurements
@@ -66,7 +67,7 @@ void loop() {
 
 
   // add together the 2 values and use them for setting the frequency for the speaker to play
-  int frequency = gx  + gy;
+  int frequency = gx + gy;
   frequency = frequency / 2;
   frequency = map(frequency, 0, 360, 0, 1000);
 
@@ -74,7 +75,7 @@ void loop() {
   if (frequency > 50) {
     tone(piezoPin, frequency);
   } else {
-    noTone(piezoPin);// stop the sound
+    noTone(piezoPin);  // stop the sound
   }
 
   // blink LED to indicate activity
@@ -82,5 +83,3 @@ void loop() {
   digitalWrite(ledPin, blinkState);
   delay(30);
 }
-
-

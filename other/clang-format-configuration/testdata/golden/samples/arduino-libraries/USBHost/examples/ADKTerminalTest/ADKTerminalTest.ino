@@ -1,16 +1,16 @@
 /*
 
-  ADK Terminal Test
+ ADK Terminal Test
 
-  This demonstrates USB Host connectivity between an
-  Android phone and an Arduino Due.
+ This demonstrates USB Host connectivity between an
+ Android phone and an Arduino Due.
 
-  The ADK for the Arduino Due is a work in progress
-  For additional information on the Arduino ADK visit
-  https://web.archive.org/web/20170503104018/http://labs.arduino.cc/ADK/Index
+ The ADK for the Arduino Due is a work in progress
+ For additional information on the Arduino ADK visit
+ https://web.archive.org/web/20170503104018/http://labs.arduino.cc/ADK/Index
 
-  created 27 June 2012
-  by Cristian Maglie
+ created 27 June 2012
+ by Cristian Maglie
 
 */
 
@@ -19,8 +19,8 @@
 #include <adk.h>
 
 // Accessory descriptor. It's how Arduino identifies itself to Android.
-char applicationName[] = "Arduino_Terminal"; // the app on your phone
-char accessoryName[] = "Arduino Due"; // your Arduino board
+char applicationName[] = "Arduino_Terminal";  // the app on your phone
+char accessoryName[] = "Arduino Due";         // your Arduino board
 char companyName[] = "Arduino SA";
 
 // Make up anything you want for these

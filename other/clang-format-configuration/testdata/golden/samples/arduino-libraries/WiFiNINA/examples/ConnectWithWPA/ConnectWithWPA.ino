@@ -1,34 +1,35 @@
 /*
-  This example connects to an unencrypted WiFi network.
-  Then it prints the MAC address of the WiFi module,
-  the IP address obtained, and other network details.
+ This example connects to an unencrypted WiFi network.
+ Then it prints the MAC address of the WiFi module,
+ the IP address obtained, and other network details.
 
-  created 13 July 2010
-  by dlf (Metodo2 srl)
-  modified 31 May 2012
-  by Tom Igoe
-*/
+ created 13 July 2010
+ by dlf (Metodo2 srl)
+ modified 31 May 2012
+ by Tom Igoe
+ */
 #include <SPI.h>
 #include <WiFiNINA.h>
 
 #include "arduino_secrets.h"
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h
-char ssid[] = SECRET_SSID;        // your network SSID (name)
+char ssid[] = SECRET_SSID;    // your network SSID (name)
 char pass[] = SECRET_PASS;    // your network password (use for WPA, or use as key for WEP)
-int status = WL_IDLE_STATUS;     // the WiFi radio's status
+int status = WL_IDLE_STATUS;  // the WiFi radio's status
 
 void setup() {
   //Initialize serial and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   // check for the WiFi module:
   if (WiFi.status() == WL_NO_MODULE) {
     Serial.println("Communication with WiFi module failed!");
     // don't continue
-    while (true);
+    while (true)
+      ;
   }
 
   String fv = WiFi.firmwareVersion();
@@ -51,7 +52,6 @@ void setup() {
   Serial.print("You're connected to the network");
   printCurrentNet();
   printWifiData();
-
 }
 
 void loop() {

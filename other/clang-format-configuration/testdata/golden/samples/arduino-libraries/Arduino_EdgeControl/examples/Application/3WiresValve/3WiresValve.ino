@@ -1,9 +1,9 @@
 #include <Arduino_EdgeControl.h>
 
-void setup()
-{
+void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   delay(1000);
 
@@ -15,8 +15,7 @@ void setup()
   Serial.println("Starting");
 }
 
-void loop()
-{
+void loop() {
   Serial.println("Closing");
   Latching.channelDirection(LATCHING_OUT_1, POSITIVE);
   Latching.strobe(4500);

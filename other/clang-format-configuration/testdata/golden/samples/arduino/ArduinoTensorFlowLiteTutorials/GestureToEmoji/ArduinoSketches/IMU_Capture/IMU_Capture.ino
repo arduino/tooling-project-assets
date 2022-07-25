@@ -18,18 +18,20 @@
 
 #include <Arduino_LSM9DS1.h>
 
-const float accelerationThreshold = 2.5; // threshold of significant in G's
+const float accelerationThreshold = 2.5;  // threshold of significant in G's
 const int numSamples = 119;
 
 int samplesRead = numSamples;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   if (!IMU.begin()) {
     Serial.println("Failed to initialize IMU!");
-    while (1);
+    while (1)
+      ;
   }
 
   // print the header

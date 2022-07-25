@@ -11,7 +11,7 @@
 #include <WiFi101.h>
 #include "config.h"
 
-int test_delay = 1000; //so we don't spam the API
+int test_delay = 1000;  //so we don't spam the API
 bool describe_tests = true;
 
 char serverAddress[] = "192.168.0.3";  // server address
@@ -23,10 +23,11 @@ int status = WL_IDLE_STATUS;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
-  while ( status != WL_CONNECTED) {
+  while (!Serial)
+    ;
+  while (status != WL_CONNECTED) {
     Serial.print("Attempting to connect to Network named: ");
-    Serial.println(ssid);                   // print the network name (SSID);
+    Serial.println(ssid);  // print the network name (SSID);
 
     // Connect to WPA/WPA2 network:
     status = WiFi.begin(ssid, pass);
@@ -183,5 +184,6 @@ void loop() {
   POST_tests();
   PUT_tests();
   DELETE_tests();
-  while (true);
+  while (true)
+    ;
 }

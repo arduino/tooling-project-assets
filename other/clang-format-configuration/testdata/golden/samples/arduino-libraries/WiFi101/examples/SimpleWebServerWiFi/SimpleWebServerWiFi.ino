@@ -1,73 +1,74 @@
 /*
   WiFi Web Server LED Blink
 
-  A simple web server that lets you blink an LED via the web.
-  This sketch will print the IP address of your WiFi 101 Shield (once connected)
-  to the Serial monitor. From there, you can open that address in a web browser
-  to turn on and off the LED on pin 9.
+ A simple web server that lets you blink an LED via the web.
+ This sketch will print the IP address of your WiFi 101 Shield (once connected)
+ to the Serial monitor. From there, you can open that address in a web browser
+ to turn on and off the LED on pin 9.
 
-  If the IP address of your shield is yourAddress:
-  http://yourAddress/H turns the LED on
-  http://yourAddress/L turns it off
+ If the IP address of your shield is yourAddress:
+ http://yourAddress/H turns the LED on
+ http://yourAddress/L turns it off
 
-  This example is written for a network using WPA encryption. For
-  WEP or WPA, change the WiFi.begin() call accordingly.
+ This example is written for a network using WPA encryption. For
+ WEP or WPA, change the WiFi.begin() call accordingly.
 
-  Circuit:
-   WiFi 101 Shield attached
-   LED attached to pin 9
+ Circuit:
+ * WiFi 101 Shield attached
+ * LED attached to pin 9
 
-  created 25 Nov 2012
-  by Tom Igoe
-*/
+ created 25 Nov 2012
+ by Tom Igoe
+ */
 #include <SPI.h>
 #include <WiFi101.h>
 
 #include "arduino_secrets.h"
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h
-char ssid[] = SECRET_SSID;        // your network SSID (name)
-char pass[] = SECRET_PASS;    // your network password (use for WPA, or use as key for WEP)
-int keyIndex = 0;                 // your network key Index number (needed only for WEP)
+char ssid[] = SECRET_SSID;  // your network SSID (name)
+char pass[] = SECRET_PASS;  // your network password (use for WPA, or use as key for WEP)
+int keyIndex = 0;           // your network key Index number (needed only for WEP)
 
 int status = WL_IDLE_STATUS;
 WiFiServer server(80);
 
 void setup() {
-  Serial.begin(9600);      // initialize serial communication
-  pinMode(9, OUTPUT);      // set the LED pin mode
+  Serial.begin(9600);  // initialize serial communication
+  pinMode(9, OUTPUT);  // set the LED pin mode
 
   // check for the presence of the shield:
   if (WiFi.status() == WL_NO_SHIELD) {
     Serial.println("WiFi 101 Shield not present");
-    while (true);       // don't continue
+    while (true)
+      ;  // don't continue
   }
 
   // attempt to connect to WiFi network:
-  while ( status != WL_CONNECTED) {
+  while (status != WL_CONNECTED) {
     Serial.print("Attempting to connect to Network named: ");
-    Serial.println(ssid);                   // print the network name (SSID);
+    Serial.println(ssid);  // print the network name (SSID);
 
     // Connect to WPA/WPA2 network. Change this line if using open or WEP network:
     status = WiFi.begin(ssid, pass);
     // wait 10 seconds for connection:
     delay(10000);
   }
-  server.begin();                           // start the web server on port 80
-  printWiFiStatus();                        // you're connected now, so print out the status
+  server.begin();     // start the web server on port 80
+  printWiFiStatus();  // you're connected now, so print out the status
 }
 
 
 void loop() {
-  WiFiClient client = server.available();   // listen for incoming clients
+  WiFiClient client = server.available();  // listen for incoming clients
 
-  if (client) {                             // if you get a client,
-    Serial.println("new client");           // print a message out the serial port
-    String currentLine = "";                // make a String to hold incoming data from the client
-    while (client.connected()) {            // loop while the client's connected
-      if (client.available()) {             // if there are bytes to read from the client,
-        char c = client.read();             // read a byte, then
-        Serial.write(c);                    // print it out the serial monitor
-        if (c == '\n') {                    // if the byte is a newline character
+  if (client) {                    // if you get a client,
+    Serial.println("new client");  // print a message out the serial port
+    String currentLine = "";       // make a String to hold incoming data from the client
+    while (client.connected()) {   // loop while the client's connected
+      if (client.available()) {    // if there are bytes to read from the client,
+        char c = client.read();    // read a byte, then
+        Serial.write(c);           // print it out the serial monitor
+        if (c == '\n') {           // if the byte is a newline character
 
           // if the current line is blank, you got two newline characters in a row.
           // that's the end of the client HTTP request, so send a response:
@@ -86,21 +87,19 @@ void loop() {
             client.println();
             // break out of the while loop:
             break;
-          }
-          else {      // if you got a newline, then clear currentLine:
+          } else {  // if you got a newline, then clear currentLine:
             currentLine = "";
           }
-        }
-        else if (c != '\r') {    // if you got anything else but a carriage return character,
+        } else if (c != '\r') {  // if you got anything else but a carriage return character,
           currentLine += c;      // add it to the end of the currentLine
         }
 
         // Check to see if the client request was "GET /H" or "GET /L":
         if (currentLine.endsWith("GET /H")) {
-          digitalWrite(9, HIGH);               // GET /H turns the LED on
+          digitalWrite(9, HIGH);  // GET /H turns the LED on
         }
         if (currentLine.endsWith("GET /L")) {
-          digitalWrite(9, LOW);                // GET /L turns the LED off
+          digitalWrite(9, LOW);  // GET /L turns the LED off
         }
       }
     }

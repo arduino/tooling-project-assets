@@ -19,12 +19,14 @@ MKRIoTCarrier carrier;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   if (!carrier.IMUmodule.begin()) {
     Serial.println("Failed to initialize IMU!");
 
-    while (1);
+    while (1)
+      ;
   }
 
   Serial.print("Accelerometer sample rate = ");

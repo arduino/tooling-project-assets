@@ -1,15 +1,15 @@
 /*
-  BoomBox
-
-  This is your first step towards these kinds of skills:
-  http://www.youtube.com/watch?v=FcJCxe1VSLA&noredirect=1
-  The boom box is a small sample player you can use to make music,
-  or just random sound. It comes with three prerecorded samples
-  but we probably don’t have the same creative cleverness when it
-  comes to recording as you do so you should definitely record your
-  own samples too!
-
-   (c) 2013-2016 Arduino LLC.
+* BoomBox
+* 
+* This is your first step towards these kinds of skills:
+* http://www.youtube.com/watch?v=FcJCxe1VSLA&noredirect=1
+* The boom box is a small sample player you can use to make music, 
+* or just random sound. It comes with three prerecorded samples 
+* but we probably don’t have the same creative cleverness when it
+* comes to recording as you do so you should definitely record your 
+* own samples too! 
+* 
+*  (c) 2013-2016 Arduino LLC.
 */
 
 #include <EducationShield.h>
@@ -18,7 +18,7 @@
 //sound player secretly takes pin 3, 4 and 11,
 //so don't use them.
 ButtonGroup bg;
-int buttons[] = {5, 6, 7};
+int buttons[] = { 5, 6, 7 };
 
 //There're 3 buttons in the button group.
 int buttonsCount = 3;
@@ -60,6 +60,4 @@ void loop() {
       player.play("2.wav");
       break;
   }
-
 }
-

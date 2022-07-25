@@ -14,7 +14,7 @@ REDIRECT_STDOUT_TO(Serial);
 
 void nonFrameBuffer() {
   // Initilize SDRAM for non-framebuffer operations
-  SDRAM.begin(); // is the same as SDRAM.begin(SDRAM_START_ADDRESS);
+  SDRAM.begin();  // is the same as SDRAM.begin(SDRAM_START_ADDRESS);
 
   // Now we can malloc() and free() in the whole RAM space
   // For example, let's create a 7MB array
@@ -48,12 +48,12 @@ void frameBuffer() {
   if (myVeryBigArray == NULL) {
     Serial.println("Oops, too big :)");
   }
-
 }
 
 void setup() {
   Serial.begin(115200);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   frameBuffer();
   // Uncomment to test the other functionality
@@ -66,5 +66,4 @@ void setup() {
 }
 
 void loop() {
-
 }

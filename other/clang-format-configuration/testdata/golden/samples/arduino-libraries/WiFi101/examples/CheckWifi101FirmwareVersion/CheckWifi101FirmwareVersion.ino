@@ -1,13 +1,13 @@
 /*
-   This example checks if the firmware loaded on the WiFi101
-   shield is updated.
-
-   Circuit:
-   - WiFi 101 Shield attached
-
-   Created 29 July 2015 by Cristian Maglie
-   This code is in the public domain.
-*/
+ * This example checks if the firmware loaded on the WiFi101
+ * shield is updated.
+ *
+ * Circuit:
+ * - WiFi 101 Shield attached
+ *
+ * Created 29 July 2015 by Cristian Maglie
+ * This code is in the public domain.
+ */
 #include <SPI.h>
 #include <WiFi101.h>
 #include <driver/source/nmasic.h>
@@ -16,7 +16,7 @@ void setup() {
   // Initialize serial
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   // Print a welcome message
@@ -27,7 +27,7 @@ void setup() {
   Serial.print("WiFi 101 Shield: ");
   if (WiFi.status() == WL_NO_SHIELD) {
     Serial.println("NOT PRESENT");
-    return; // don't continue
+    return;  // don't continue
   }
   Serial.println("DETECTED");
 

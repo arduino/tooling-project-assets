@@ -23,48 +23,48 @@
 
 #include <stdint.h>
 
-#define STM32_MAX_RX_FRAME	256	/* cmd read memory */
-#define STM32_MAX_TX_FRAME	(1 + 256 + 1)	/* cmd write memory */
+#define STM32_MAX_RX_FRAME 256           /* cmd read memory */
+#define STM32_MAX_TX_FRAME (1 + 256 + 1) /* cmd write memory */
 
-#define STM32_MAX_PAGES		0x0000ffff
-#define STM32_MASS_ERASE	0x00100000 /* > 2 x max_pages */
+#define STM32_MAX_PAGES 0x0000ffff
+#define STM32_MASS_ERASE 0x00100000 /* > 2 x max_pages */
 
 typedef enum {
   STM32_ERR_OK = 0,
-  STM32_ERR_UNKNOWN,	/* Generic error */
+  STM32_ERR_UNKNOWN, /* Generic error */
   STM32_ERR_NACK,
-  STM32_ERR_NO_CMD,	/* Command not available in bootloader */
+  STM32_ERR_NO_CMD, /* Command not available in bootloader */
 } stm32_err_t;
 
 typedef enum {
-  F_NO_ME = 1 << 0,	/* Mass-Erase not supported */
-  F_OBLL  = 1 << 1,	/* OBL_LAUNCH required */
+  F_NO_ME = 1 << 0, /* Mass-Erase not supported */
+  F_OBLL = 1 << 1,  /* OBL_LAUNCH required */
 } flags_t;
 
-typedef struct stm32		stm32_t;
-typedef struct stm32_cmd	stm32_cmd_t;
-typedef struct stm32_dev	stm32_dev_t;
+typedef struct stm32 stm32_t;
+typedef struct stm32_cmd stm32_cmd_t;
+typedef struct stm32_dev stm32_dev_t;
 
 struct stm32 {
-  struct      port_interface	*port;
-  uint8_t			bl_version;
-  uint8_t			version;
-  uint8_t			option1, option2;
-  uint16_t		pid;
-  stm32_cmd_t		*cmd;
-  const stm32_dev_t	*dev;
+  struct port_interface *port;
+  uint8_t bl_version;
+  uint8_t version;
+  uint8_t option1, option2;
+  uint16_t pid;
+  stm32_cmd_t *cmd;
+  const stm32_dev_t *dev;
 };
 
 struct stm32_dev {
-  uint16_t	id;
-  const char	*name;
-  uint32_t	ram_start, ram_end;
-  uint32_t	fl_start, fl_end;
-  uint16_t	fl_pps; // pages per sector
-  uint32_t	*fl_ps;  // page size
-  uint32_t	opt_start, opt_end;
-  uint32_t	mem_start, mem_end;
-  uint32_t	flags;
+  uint16_t id;
+  const char *name;
+  uint32_t ram_start, ram_end;
+  uint32_t fl_start, fl_end;
+  uint16_t fl_pps;  // pages per sector
+  uint32_t *fl_ps;  // page size
+  uint32_t opt_start, opt_end;
+  uint32_t mem_start, mem_end;
+  uint32_t flags;
 };
 
 stm32_t *stm32_init(struct port_interface *port, const char init);

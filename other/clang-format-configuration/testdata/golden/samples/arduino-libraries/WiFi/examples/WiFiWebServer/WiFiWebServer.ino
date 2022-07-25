@@ -1,30 +1,30 @@
 /*
   WiFi Web Server
 
-  A simple web server that shows the value of the analog input pins.
-  using a WiFi shield.
+ A simple web server that shows the value of the analog input pins.
+ using a WiFi shield.
 
-  This example is written for a network using WPA encryption. For
-  WEP or WPA, change the WiFi.begin() call accordingly.
+ This example is written for a network using WPA encryption. For
+ WEP or WPA, change the WiFi.begin() call accordingly.
 
-  Circuit:
-   WiFi shield attached
-   Analog inputs attached to pins A0 through A5 (optional)
+ Circuit:
+ * WiFi shield attached
+ * Analog inputs attached to pins A0 through A5 (optional)
 
-  created 13 July 2010
-  by dlf (Metodo2 srl)
-  modified 31 May 2012
-  by Tom Igoe
+ created 13 July 2010
+ by dlf (Metodo2 srl)
+ modified 31 May 2012
+ by Tom Igoe
 
-*/
+ */
 
 #include <SPI.h>
 #include <WiFi.h>
 
 
-char ssid[] = "yourNetwork";      // your network SSID (name)
-char pass[] = "secretPassword";   // your network password
-int keyIndex = 0;                 // your network key Index number (needed only for WEP)
+char ssid[] = "yourNetwork";     // your network SSID (name)
+char pass[] = "secretPassword";  // your network password
+int keyIndex = 0;                // your network key Index number (needed only for WEP)
 
 int status = WL_IDLE_STATUS;
 
@@ -34,14 +34,15 @@ void setup() {
   //Initialize serial and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   // check for the presence of the shield:
   if (WiFi.status() == WL_NO_SHIELD) {
     Serial.println("WiFi shield not present");
     // don't continue:
-    while (true);
+    while (true)
+      ;
   }
 
   String fv = WiFi.firmwareVersion();
@@ -84,7 +85,7 @@ void loop() {
           client.println("HTTP/1.1 200 OK");
           client.println("Content-Type: text/html");
           client.println("Connection: close");  // the connection will be closed after completion of the response
-          client.println("Refresh: 5");  // refresh the page automatically every 5 sec
+          client.println("Refresh: 5");         // refresh the page automatically every 5 sec
           client.println();
           client.println("<!DOCTYPE HTML>");
           client.println("<html>");

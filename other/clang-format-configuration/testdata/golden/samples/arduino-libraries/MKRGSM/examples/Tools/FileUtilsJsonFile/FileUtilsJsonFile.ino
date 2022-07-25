@@ -6,10 +6,10 @@
   both as JSON objects or C++ structs.
 
   Circuit:
-    MKR GSM 1400 board
+  * MKR GSM 1400 board
 
-  created 19 June 2020
-  by Giampaolo Mancini
+ created 19 June 2020
+ by Giampaolo Mancini
 */
 
 #include <Arduino_JSON.h>
@@ -19,8 +19,7 @@
 
 GSMFileUtils fileUtils;
 
-void setup()
-{
+void setup() {
   Serial.begin(9600);
 
   while (!Serial)
@@ -38,12 +37,10 @@ void setup()
     ;
 }
 
-void loop()
-{
+void loop() {
 }
 
-void simpleDemo()
-{
+void simpleDemo() {
 
   Serial.println();
   Serial.println("========================");
@@ -84,8 +81,7 @@ void simpleDemo()
   Serial.println(myConf["x"]);
 }
 
-void structDemo()
-{
+void structDemo() {
   GSMModem modem;
 
   Serial.println();

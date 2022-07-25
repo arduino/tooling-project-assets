@@ -1,23 +1,23 @@
 /*
 
-  TFT Color Picker
+ TFT Color Picker
 
-  This example for the Arduino screen reads the input of
-  potentiometers or analog sensors attached to A0, A1,
-  and A2 and uses the values to change the screen's color.
+ This example for the Arduino screen reads the input of
+ potentiometers or analog sensors attached to A0, A1,
+ and A2 and uses the values to change the screen's color.
 
-  This example code is in the public domain.
+ This example code is in the public domain.
 
-  Created 15 April 2013 by Scott Fitzgerald
+ Created 15 April 2013 by Scott Fitzgerald
 
-  https://www.arduino.cc/en/Tutorial/LibraryExamples/TFTColorPicker
+ https://www.arduino.cc/en/Tutorial/LibraryExamples/TFTColorPicker
 
-*/
+ */
 
 // pin definitions for the Uno
-#define cs   10
-#define dc   9
-#define rst  8
+#define cs 10
+#define dc 9
+#define rst 8
 
 // pin definitions for the Leonardo
 // #define cs   7
@@ -38,7 +38,6 @@ void setup() {
 
   // set the background to white
   TFTscreen.background(255, 255, 255);
-
 }
 
 void loop() {
@@ -62,5 +61,4 @@ void loop() {
 
   // wait for a moment
   delay(33);
-
 }

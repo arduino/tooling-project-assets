@@ -51,7 +51,6 @@ void loop() {
       carrier.leds.setPixelColor(0, c_green);
     }
     carrier.leds.show();
-
   }
   if (carrier.Buttons.onTouchDown(TOUCH3)) {
     newRelay1 = !newRelay1;
@@ -90,5 +89,4 @@ void loop() {
   }
 
   delay(20);
-
 }

@@ -23,14 +23,15 @@ void setup() {
   //Initialize serial and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   // check for the presence of the shield:
   if (WiFi.status() == WL_NO_SHIELD) {
     Serial.println("WiFi 101 Shield not present");
     // don't continue:
-    while (true);
+    while (true)
+      ;
   }
 
   // print your MAC address:
@@ -56,10 +57,10 @@ void listNetworks() {
   // scan for nearby networks:
   Serial.println("** Scan Networks **");
   int numSsid = WiFi.scanNetworks();
-  if (numSsid == -1)
-  {
+  if (numSsid == -1) {
     Serial.println("Couldn't get a WiFi connection");
-    while (true);
+    while (true)
+      ;
   }
 
   // print the list of networks seen:

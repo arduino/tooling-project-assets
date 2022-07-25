@@ -19,9 +19,9 @@
 
 
 #define PAIR_BUTTON 3        // button for pairing
-#define PAIR_LED 24           // LED used to signal pairing
-#define PAIR_LED_ON LOW       // Blue LED on Nano BLE has inverted logic
-#define PAIR_INTERVAL 30000   // interval for pairing after button press in ms
+#define PAIR_LED 24          // LED used to signal pairing
+#define PAIR_LED_ON LOW      // Blue LED on Nano BLE has inverted logic
+#define PAIR_INTERVAL 30000  // interval for pairing after button press in ms
 
 #define CTRL_LED LED_BUILTIN
 
@@ -30,25 +30,26 @@
 BLEService batteryService("180F");
 
 // BLE Battery Level Characteristic
-BLEUnsignedCharCharacteristic batteryLevelChar("2A19",  // standard 16-bit characteristic UUID
-    BLERead | BLENotify); // remote clients will be able to get notifications if this characteristic changes
+BLEUnsignedCharCharacteristic batteryLevelChar("2A19",                // standard 16-bit characteristic UUID
+                                               BLERead | BLENotify);  // remote clients will be able to get notifications if this characteristic changes
 BLEStringCharacteristic stringcharacteristic("183E", BLERead | BLEWrite, 31);
 
 
 // Add BLEEncryption tag to require pairing. This controls the LED.
 BLEUnsignedCharCharacteristic secretValue("2a3F", BLERead | BLEWrite | BLEEncryption);
 
-int oldBatteryLevel = 0;  // last battery level reading from analog input
+int oldBatteryLevel = 0;           // last battery level reading from analog input
 unsigned long previousMillis = 0;  // last time the battery level was checked, in ms
 unsigned long pairingStarted = 0;  // pairing start time when button is pressed
 bool wasConnected = 0;
 bool acceptOrReject = true;
 
 void setup() {
-  Serial.begin(9600);    // initialize serial communication
-  while (!Serial);
+  Serial.begin(9600);  // initialize serial communication
+  while (!Serial)
+    ;
 
-  pinMode(CTRL_LED, OUTPUT); // initialize the built-in LED pin to indicate when a central is connected
+  pinMode(CTRL_LED, OUTPUT);  // initialize the built-in LED pin to indicate when a central is connected
   pinMode(PAIR_LED, OUTPUT);
   pinMode(PAIR_BUTTON, INPUT_PULLUP);
 
@@ -83,31 +84,31 @@ void setup() {
   // Add IRKs of devices you are bonded with.
   BLE.setGetIRKs([](uint8_t* nIRKs, uint8_t** BDaddrTypes, uint8_t*** BDAddrs, uint8_t*** IRKs) {
     // Set to number of devices
-    *nIRKs       = 2;
+    *nIRKs = 2;
 
-    *BDAddrs     = new uint8_t*[*nIRKs];
-    *IRKs        = new uint8_t*[*nIRKs];
+    *BDAddrs = new uint8_t*[*nIRKs];
+    *IRKs = new uint8_t*[*nIRKs];
     *BDaddrTypes = new uint8_t[*nIRKs];
 
     // Set these to the mac and IRK for your bonded devices as printed in the serial console after bonding.
-    uint8_t device1Mac[6]    = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-    uint8_t device1IRK[16]   = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    uint8_t device1Mac[6] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+    uint8_t device1IRK[16] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
-    uint8_t device2Mac[6]    = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-    uint8_t device2IRK[16]   = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    uint8_t device2Mac[6] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+    uint8_t device2IRK[16] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
 
-    (*BDaddrTypes)[0] = 0; // Type 0 is for pubc address, type 1 is for static random
+    (*BDaddrTypes)[0] = 0;  // Type 0 is for pubc address, type 1 is for static random
     (*BDAddrs)[0] = new uint8_t[6];
-    (*IRKs)[0]    = new uint8_t[16];
-    memcpy((*IRKs)[0]   , device1IRK, 16);
+    (*IRKs)[0] = new uint8_t[16];
+    memcpy((*IRKs)[0], device1IRK, 16);
     memcpy((*BDAddrs)[0], device1Mac, 6);
 
 
     (*BDaddrTypes)[1] = 0;
     (*BDAddrs)[1] = new uint8_t[6];
-    (*IRKs)[1]    = new uint8_t[16];
-    memcpy((*IRKs)[1]   , device2IRK, 16);
+    (*IRKs)[1] = new uint8_t[16];
+    memcpy((*IRKs)[1], device2IRK, 16);
     memcpy((*BDAddrs)[1], device2Mac, 6);
 
 
@@ -120,10 +121,10 @@ void setup() {
     btct.printBytes(address, 6);
 
     // Set these to the MAC and LTK of your devices after bonding.
-    uint8_t device1Mac[6]  = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-    uint8_t device1LTK[16] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-    uint8_t device2Mac[6]  = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-    uint8_t device2LTK[16] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    uint8_t device1Mac[6] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+    uint8_t device1LTK[16] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+    uint8_t device2Mac[6] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+    uint8_t device2LTK[16] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
 
     if (memcmp(device1Mac, address, 6) == 0) {
@@ -169,13 +170,13 @@ void setup() {
     BLE.setDeviceName("Arduino");
     BLE.setLocalName("BatteryMonitor");
 
-    BLE.setAdvertisedService(batteryService); // add the service UUID
-    batteryService.addCharacteristic(batteryLevelChar); // add the battery level characteristic
+    BLE.setAdvertisedService(batteryService);            // add the service UUID
+    batteryService.addCharacteristic(batteryLevelChar);  // add the battery level characteristic
     batteryService.addCharacteristic(stringcharacteristic);
     batteryService.addCharacteristic(secretValue);
 
-    BLE.addService(batteryService);               // Add the battery service
-    batteryLevelChar.writeValue(oldBatteryLevel); // set initial value for this characteristic
+    BLE.addService(batteryService);                // Add the battery service
+    batteryLevelChar.writeValue(oldBatteryLevel);  // set initial value for this characteristic
     char* stringCharValue = new char[32];
     stringCharValue = "string";
     stringcharacteristic.writeValue(stringCharValue);
@@ -246,7 +247,6 @@ void loop() {
     Serial.print("Disconnected from central: ");
     Serial.println(central.address());
   }
-
 }
 
 void updateBatteryLevel() {
@@ -256,10 +256,10 @@ void updateBatteryLevel() {
   int battery = analogRead(A0);
   int batteryLevel = map(battery, 0, 1023, 0, 100);
 
-  if (batteryLevel != oldBatteryLevel) {      // if the battery level has changed
+  if (batteryLevel != oldBatteryLevel) {  // if the battery level has changed
     // Serial.print("Battery Level % is now: "); // print it
     // Serial.println(batteryLevel);
     batteryLevelChar.writeValue(batteryLevel);  // and update the battery level characteristic
-    oldBatteryLevel = batteryLevel;           // save the level for next comparison
+    oldBatteryLevel = batteryLevel;             // save the level for next comparison
   }
 }

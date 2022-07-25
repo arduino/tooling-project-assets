@@ -1,28 +1,28 @@
 /*
   ToxicFacilitiesSearch
-
+  
   Demonstrates making a request to the Envirofacts API using Temboo from an Arduino Yún.
-  This example retrieves the names and addresses of EPA-regulated facilities in the
+  This example retrieves the names and addresses of EPA-regulated facilities in the 
   Toxins Release Inventory (TRI) database within a given zip code.
-
+  
   Check out the latest Arduino & Temboo examples and support docs at http://www.temboo.com/arduino
 
-  A Temboo account and application key are necessary to run all Temboo examples.
-  If you don't already have one, you can register for a free Temboo account at
+  A Temboo account and application key are necessary to run all Temboo examples. 
+  If you don't already have one, you can register for a free Temboo account at 
   http://www.temboo.com
-
+  
   This example assumes basic familiarity with Arduino sketches, and that your Yún is connected
   to the Internet.
 
   Looking for another API to use with your Arduino Yún? We've got over 100 in our Library!
-
+  
   This example code is in the public domain.
 */
 
 #include <Bridge.h>
 #include <Temboo.h>
-#include "TembooAccount.h" // contains Temboo account information
-// as described in the footer comment below
+#include "TembooAccount.h"  // contains Temboo account information
+                            // as described in the footer comment below
 
 // the zip code to search for toxin-emitting facilities
 String US_ZIP_CODE = "11215";
@@ -35,12 +35,12 @@ void setup() {
 
   // for debugging, wait until a serial console is connected
   delay(4000);
-  while (!Serial);
+  while (!Serial)
+    ;
   Bridge.begin();
 }
 
-void loop()
-{
+void loop() {
   // while we haven't reached the max number of runs...
   if (numRuns <= maxRuns) {
 
@@ -139,7 +139,7 @@ void loop()
   }
   Serial.println("Waiting...");
   Serial.println("");
-  delay(30000); // wait 30 seconds between calls
+  delay(30000);  // wait 30 seconds between calls
 }
 
 // a simple utility function, to output the facility name and address in the Serial Monitor.
@@ -157,15 +157,15 @@ void printResult(String facility, String address) {
   by inserting your own Temboo account name and app key information. The contents of the file should
   look like:
 
-  #define TEMBOO_ACCOUNT "myTembooAccountName"  // your Temboo account name
+  #define TEMBOO_ACCOUNT "myTembooAccountName"  // your Temboo account name 
   #define TEMBOO_APP_KEY_NAME "myFirstApp"  // your Temboo app key name
   #define TEMBOO_APP_KEY  "xxx-xxx-xxx-xx-xxx"  // your Temboo app key
 
-  You can find your Temboo App Key information on the Temboo website,
+  You can find your Temboo App Key information on the Temboo website, 
   under My Account > Application Keys
 
   The same TembooAccount.h file settings can be used for all Temboo SDK sketches.
 
-  Keeping your account information in a separate file means you can share the main .ino file without worrying
+  Keeping your account information in a separate file means you can share the main .ino file without worrying 
   that you forgot to delete your credentials.
 */

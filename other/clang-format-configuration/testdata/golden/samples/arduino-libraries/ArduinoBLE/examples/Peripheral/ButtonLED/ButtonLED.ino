@@ -19,10 +19,10 @@
 
 #include <ArduinoBLE.h>
 
-const int ledPin = LED_BUILTIN; // set ledPin to on-board LED
-const int buttonPin = 4; // set buttonPin to digital pin 4
+const int ledPin = LED_BUILTIN;  // set ledPin to on-board LED
+const int buttonPin = 4;         // set buttonPin to digital pin 4
 
-BLEService ledService("19B10010-E8F2-537E-4F6C-D104768A1214"); // create service
+BLEService ledService("19B10010-E8F2-537E-4F6C-D104768A1214");  // create service
 
 // create switch characteristic and allow remote device to read and write
 BLEByteCharacteristic ledCharacteristic("19B10011-E8F2-537E-4F6C-D104768A1214", BLERead | BLEWrite);
@@ -31,16 +31,18 @@ BLEByteCharacteristic buttonCharacteristic("19B10012-E8F2-537E-4F6C-D104768A1214
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
-  pinMode(ledPin, OUTPUT); // use the LED as an output
-  pinMode(buttonPin, INPUT); // use button pin as an input
+  pinMode(ledPin, OUTPUT);    // use the LED as an output
+  pinMode(buttonPin, INPUT);  // use button pin as an input
 
   // begin initialization
   if (!BLE.begin()) {
     Serial.println("starting Bluetooth® Low Energy module failed!");
 
-    while (1);
+    while (1)
+      ;
   }
 
   // set the local name peripheral advertises

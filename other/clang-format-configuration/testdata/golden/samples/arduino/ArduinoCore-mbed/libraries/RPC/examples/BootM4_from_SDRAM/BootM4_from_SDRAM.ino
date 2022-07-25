@@ -10,13 +10,12 @@ QSPIFBlockDevice root;
 mbed::MBRBlockDevice ota_data(&root, 2);
 mbed::FATFileSystem ota_data_fs("fs");
 
-void USBMSD::begin()
-{
+void USBMSD::begin() {
 }
 
 USBMSD MassStorage(&root);
 
-long getFileSize(FILE *fp) {
+long getFileSize(FILE* fp) {
   fseek(fp, 0, SEEK_END);
   int size = ftell(fp);
   fseek(fp, 0, SEEK_SET);
@@ -27,7 +26,8 @@ long getFileSize(FILE *fp) {
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   SDRAM.begin(0);
 

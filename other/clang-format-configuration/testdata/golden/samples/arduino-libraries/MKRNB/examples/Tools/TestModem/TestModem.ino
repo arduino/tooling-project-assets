@@ -1,17 +1,17 @@
 /*
 
-  This example tests to see if the modem of the
-  MKR NB 1500 board is working correctly. You do not need
-  a SIM card for this example.
+ This example tests to see if the modem of the
+ MKR NB 1500 board is working correctly. You do not need
+ a SIM card for this example.
 
-  Circuit:
-   MKR NB 1500 board
-   Antenna
+ Circuit:
+ * MKR NB 1500 board
+ * Antenna
 
-  Created 12 Jun 2012
-  by David del Peral
-  modified 21 Nov 2012
-  by Tom Igoe
+ Created 12 Jun 2012
+ by David del Peral
+ modified 21 Nov 2012
+ by Tom Igoe
 */
 
 // libraries
@@ -27,7 +27,7 @@ void setup() {
   // initialize serial communications and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for Leonardo only
+    ;  // wait for serial port to connect. Needed for Leonardo only
   }
 
   // start modem test (reset and check response)
@@ -61,5 +61,6 @@ void loop() {
     Serial.println("Error: Could not get IMEI");
   }
   // do nothing:
-  while (true);
+  while (true)
+    ;
 }

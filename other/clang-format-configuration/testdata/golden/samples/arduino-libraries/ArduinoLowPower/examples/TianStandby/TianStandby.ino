@@ -2,7 +2,7 @@
   TianStandby
 
   This sketch demonstrates the usage of SAMD chip to further reduce the power usage of the Tian
-  board. This method can be applied to any board with companion chips which expose a method
+  board. This method can be applied to any board with companion chips which expose a method 
   (via direct pin interrupt or via a command) to enter and exit standby.
   Sleep modes allow a significant drop in the power usage of a board while it does nothing waiting for an event to happen. Battery powered applications can take advantage of these modes to enhance battery life significantly.
 

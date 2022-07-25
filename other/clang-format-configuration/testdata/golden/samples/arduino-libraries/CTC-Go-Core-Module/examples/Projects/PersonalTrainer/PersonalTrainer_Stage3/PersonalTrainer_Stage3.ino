@@ -1,5 +1,5 @@
 /*
-  CTC GO! CORE MODULE
+  CTC GO! CORE MODULE 
   PROJECT 2 - PERSONAL TRAINER
 
   This sketch is written to accompany Stage 3 in PERSONAL TRAINER  of the CTC GO! core module
@@ -27,7 +27,6 @@ void setup() {
   pinMode(ledCounter_3, OUTPUT);
   pinMode(incrementButton, INPUT);
   Serial.begin(9600);
-
 }
 
 void loop() {
@@ -51,14 +50,11 @@ void loop() {
 
   incrementButtonState = digitalRead(_____);
 
-  if (_____ == HIGH && lastIncrementButtonState == _____)
-  {
-    if (_____)
-    {
+  if (_____ == HIGH && lastIncrementButtonState == _____) {
+    if (_____) {
       Serial.println("increase the stepCounter by 10");
       stepCounter += _____;
-    } else
-    {
+    } else {
       stepCounter = _____;
     }
     Serial.print("stepCounter is ");

@@ -1,10 +1,8 @@
-void setup()
-{
+void setup() {
   Serial.begin(9600);
 }
 
-void loop()
-{
+void loop() {
   Serial.block();
   Serial.print("[");
   Serial.print(millis());

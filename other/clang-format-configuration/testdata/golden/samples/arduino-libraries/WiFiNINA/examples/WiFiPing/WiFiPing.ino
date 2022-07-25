@@ -5,7 +5,7 @@
   Then it continuously pings given host specified by IP Address or name.
 
   Circuit:
-    Board with NINA module (Arduino MKR WiFi 1010, MKR VIDOR 4000 and UNO WiFi Rev.2)
+  * Board with NINA module (Arduino MKR WiFi 1010, MKR VIDOR 4000 and UNO WiFi Rev.2)
 
   created 13 July 2010
   by dlf (Metodo2 srl)
@@ -17,9 +17,9 @@
 
 #include "arduino_secrets.h"
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h
-char ssid[] = SECRET_SSID;        // your network SSID (name)
+char ssid[] = SECRET_SSID;    // your network SSID (name)
 char pass[] = SECRET_PASS;    // your network password (use for WPA, or use as key for WEP)
-int status = WL_IDLE_STATUS;     // the WiFi radio's status
+int status = WL_IDLE_STATUS;  // the WiFi radio's status
 
 // Specify IP address or hostname
 String hostName = "www.google.com";
@@ -29,14 +29,15 @@ void setup() {
   // Initialize serial and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   // check for the WiFi module:
   if (WiFi.status() == WL_NO_MODULE) {
     Serial.println("Communication with WiFi module failed!");
     // don't continue
-    while (true);
+    while (true)
+      ;
   }
 
   String fv = WiFi.firmwareVersion();
@@ -45,7 +46,7 @@ void setup() {
   }
 
   // attempt to connect to WiFi network:
-  while ( status != WL_CONNECTED) {
+  while (status != WL_CONNECTED) {
     Serial.print("Attempting to connect to WPA SSID: ");
     Serial.println(ssid);
     // Connect to WPA/WPA2 network:

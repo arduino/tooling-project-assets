@@ -1,5 +1,5 @@
 /*
-  CTC GO! MOTION
+  CTC GO! MOTION 
   PROJECT - ROCK PAPER SCISSOR
 
   This sketch is written to accompany Stage 3 of the ROCK PAPER SCISSOR project
@@ -35,8 +35,7 @@ void setup() {
   Serial.begin(9600);
 }
 
-void loop()
-{
+void loop() {
 
   USvalue = analogRead(USsensor);
   distance = USvalue * 3;
@@ -77,8 +76,7 @@ void loop()
     delay(100);
     check = 0;
 
-    switch (____________)
-    {
+    switch (____________) {
       case 1:
         servo_main.______(0);
         delay(1000);

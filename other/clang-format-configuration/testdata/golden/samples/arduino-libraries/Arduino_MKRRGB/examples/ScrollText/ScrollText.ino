@@ -12,7 +12,7 @@
   This example code is in the public domain.
 */
 
-#include <ArduinoGraphics.h> // Arduino_MKRRGB depends on ArduinoGraphics
+#include <ArduinoGraphics.h>  // Arduino_MKRRGB depends on ArduinoGraphics
 #include <Arduino_MKRRGB.h>
 
 void setup() {
@@ -26,7 +26,7 @@ void setup() {
   MATRIX.textScrollSpeed(125);
 
   // display some short text without scrolling
-  MATRIX.beginText(0, 0, 127, 0, 0); // X, Y, then R, G, B
+  MATRIX.beginText(0, 0, 127, 0, 0);  // X, Y, then R, G, B
   MATRIX.print("Hi");
   MATRIX.endText();
 
@@ -34,8 +34,8 @@ void setup() {
 }
 
 void loop() {
-  MATRIX.beginText(MATRIX.width() - 1, 0); // use the same color as before, start text at the right edge
+  MATRIX.beginText(MATRIX.width() - 1, 0);  // use the same color as before, start text at the right edge
   MATRIX.print("millis=");
   MATRIX.println(millis());
-  MATRIX.endText(SCROLL_LEFT); // SCROLL_LEFT parameter here to configure scrolling left
+  MATRIX.endText(SCROLL_LEFT);  // SCROLL_LEFT parameter here to configure scrolling left
 }

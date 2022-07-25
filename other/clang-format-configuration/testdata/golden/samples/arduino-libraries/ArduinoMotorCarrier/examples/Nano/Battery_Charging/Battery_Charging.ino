@@ -9,15 +9,13 @@ void setup() {
   Serial.begin(115200);
   //while (!Serial);
 
-  if (controller.begin())
-  {
+  if (controller.begin()) {
     Serial.print("Nano Motor Shield connected, firmware version ");
     Serial.println(controller.getFWVersion());
-  }
-  else
-  {
+  } else {
     Serial.println("Couldn't connect! Is the red led blinking? You may need to update the firmware with FWUpdater sketch");
-    while (1);
+    while (1)
+      ;
   }
 }
 
@@ -30,6 +28,5 @@ void loop() {
   //Serial.println("V");
   Serial.print("V, Raw ");
   Serial.println(battery.getRaw());
-  delay(5000); //wait for a few seconds
-
+  delay(5000);  //wait for a few seconds
 }

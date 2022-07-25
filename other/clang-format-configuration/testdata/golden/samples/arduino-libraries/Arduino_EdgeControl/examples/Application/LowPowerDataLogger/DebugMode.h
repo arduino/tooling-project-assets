@@ -6,4 +6,5 @@ constexpr bool debugMode = true;
 constexpr bool debugMode = false;
 #endif
 
-#define DebugSerial if constexpr (debugMode) Serial
+#define DebugSerial \
+  if constexpr (debugMode) Serial

@@ -1,5 +1,5 @@
 /*
-  CTC GO! MOTION
+  CTC GO! MOTION 
   LESSON 03 - Continuous Rotation
 
   This sketch is written to accompany activity 2 of Lesson 3
@@ -14,14 +14,12 @@ int potPin = A0;
 int potValue = 0;
 int vel = 0;
 
-void setup()
-{
+void setup() {
   servo_Cont.attach(9);
   Serial.begin(9600);
 }
 
-void loop()
-{
+void loop() {
   potValue = analogRead(potPin);
   vel = map(potValue, 0, 1023, 0, 180);
 

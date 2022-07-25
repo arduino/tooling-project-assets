@@ -9,19 +9,17 @@ Camera cam(himax);
 
 bool motion_detected = false;
 
-void blinkLED(uint32_t count = 0xFFFFFFFF)
-{
+void blinkLED(uint32_t count = 0xFFFFFFFF) {
   pinMode(LED_BUILTIN, OUTPUT);
   while (count--) {
-    digitalWrite(LED_BUILTIN, LOW);  // turn the LED on (HIGH is the voltage level)
-    delay(50);                       // wait for a second
-    digitalWrite(LED_BUILTIN, HIGH); // turn the LED off by making the voltage LOW
-    delay(50);                       // wait for a second
+    digitalWrite(LED_BUILTIN, LOW);   // turn the LED on (HIGH is the voltage level)
+    delay(50);                        // wait for a second
+    digitalWrite(LED_BUILTIN, HIGH);  // turn the LED off by making the voltage LOW
+    delay(50);                        // wait for a second
   }
 }
 
-void on_motion()
-{
+void on_motion() {
   motion_detected = true;
 }
 

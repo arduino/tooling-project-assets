@@ -27,33 +27,35 @@
 #include "arduino_secrets.h"
 
 /////// Enter your sensitive data in arduino_secrets.h
-const char pinnumber[]     = SECRET_PINNUMBER;
-const char gprs_apn[]      = SECRET_GPRS_APN;
-const char gprs_login[]    = SECRET_GPRS_LOGIN;
+const char pinnumber[] = SECRET_PINNUMBER;
+const char gprs_apn[] = SECRET_GPRS_APN;
+const char gprs_login[] = SECRET_GPRS_LOGIN;
 const char gprs_password[] = SECRET_GPRS_PASSWORD;
 
-const char projectId[]     = SECRET_PROJECT_ID;
-const char cloudRegion[]   = SECRET_CLOUD_REGION;
-const char registryId[]    = SECRET_REGISTRY_ID;
-const String deviceId      = SECRET_DEVICE_ID;
+const char projectId[] = SECRET_PROJECT_ID;
+const char cloudRegion[] = SECRET_CLOUD_REGION;
+const char registryId[] = SECRET_REGISTRY_ID;
+const String deviceId = SECRET_DEVICE_ID;
 
-const char broker[]        = "mqtt.googleapis.com";
+const char broker[] = "mqtt.googleapis.com";
 
 GSM gsmAccess;
 GPRS gprs;
 
-GSMSSLClient  gsmSslClient;
-MqttClient    mqttClient(gsmSslClient);
+GSMSSLClient gsmSslClient;
+MqttClient mqttClient(gsmSslClient);
 
 unsigned long lastMillis = 0;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   if (!ECCX08.begin()) {
     Serial.println("No ECCX08 present!");
-    while (1);
+    while (1)
+      ;
   }
 
   // Calculate and set the client id used for MQTT
@@ -95,8 +97,7 @@ unsigned long getTime() {
 void connectGSM() {
   Serial.println("Attempting to connect to the cellular network");
 
-  while ((gsmAccess.begin(pinnumber) != GSM_READY) ||
-         (gprs.attachGPRS(gprs_apn, gprs_login, gprs_password) != GPRS_READY)) {
+  while ((gsmAccess.begin(pinnumber) != GSM_READY) || (gprs.attachGPRS(gprs_apn, gprs_login, gprs_password) != GPRS_READY)) {
     // failed, retry
     Serial.print(".");
     delay(1000);
@@ -166,7 +167,7 @@ String calculateJWT() {
 
   jwtClaim["aud"] = projectId;
   jwtClaim["iat"] = now;
-  jwtClaim["exp"] = now + (24L * 60L * 60L); // expires in 24 hours
+  jwtClaim["exp"] = now + (24L * 60L * 60L);  // expires in 24 hours
 
   return ECCX08JWS.sign(0, JSON.stringify(jwtHeader), JSON.stringify(jwtClaim));
 }

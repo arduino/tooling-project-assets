@@ -20,15 +20,14 @@ void setup() {
   Serial.begin(115200);
   Serial.println("started");
 
-  meter.setBandwidth(70.00, 1500);    // Ignore frequency out of this range
-  meter.begin(A0, 45000);             // Initialize A0 at sample rate of 45 kHz
+  meter.setBandwidth(70.00, 1500);  // Ignore frequency out of this range
+  meter.begin(A0, 45000);           // Initialize A0 at sample rate of 45 kHz
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   float frequency = meter.getFrequency();
-  if (frequency > 0)
-  {
+  if (frequency > 0) {
     Serial.print(frequency);
     Serial.println(" Hz");
   }

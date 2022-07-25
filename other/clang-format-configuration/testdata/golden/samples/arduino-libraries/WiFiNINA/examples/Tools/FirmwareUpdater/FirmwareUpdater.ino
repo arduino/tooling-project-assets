@@ -1,19 +1,19 @@
 /*
-  FirmwareUpdater - Firmware Updater for the
+  FirmwareUpdater - Firmware Updater for the 
   Arduino MKR WiFi 1010, Arduino MKR Vidor 4000, and Arduino UNO WiFi Rev.2.
-
+  
   Copyright (c) 2018 Arduino SA. All rights reserved.
-
+  
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
   License as published by the Free Software Foundation; either
   version 2.1 of the License, or (at your option) any later version.
-
+  
   This library is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
   Lesser General Public License for more details.
-
+  
   You should have received a copy of the GNU Lesser General Public
   License along with this library; if not, write to the Free Software
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -32,19 +32,20 @@ typedef struct __attribute__((__packed__)) {
 
 static const int MAX_PAYLOAD_SIZE = 1024;
 
-#define CMD_READ_FLASH        0x01
-#define CMD_WRITE_FLASH       0x02
-#define CMD_ERASE_FLASH       0x03
-#define CMD_MD5_FLASH         0x04
-#define CMD_MAX_PAYLOAD_SIZE  0x50
-#define CMD_HELLO             0x99
+#define CMD_READ_FLASH 0x01
+#define CMD_WRITE_FLASH 0x02
+#define CMD_ERASE_FLASH 0x03
+#define CMD_MD5_FLASH 0x04
+#define CMD_MAX_PAYLOAD_SIZE 0x50
+#define CMD_HELLO 0x99
 
 void setup() {
   Serial.begin(1000000);
 
   if (!ESP32BootROM.begin(921600)) {
     Serial.println("Unable to communicate with ESP32 boot ROM!");
-    while (1);
+    while (1)
+      ;
   }
 }
 

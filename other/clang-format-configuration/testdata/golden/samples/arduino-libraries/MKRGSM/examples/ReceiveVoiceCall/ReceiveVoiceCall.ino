@@ -1,16 +1,16 @@
 /*
-  Receive Voice Call
+ Receive Voice Call
 
-  This sketch, for the MKR GSM 1400 board, receives voice calls,
-  displays the calling number, waits a few seconds then hangs up.
+ This sketch, for the MKR GSM 1400 board, receives voice calls,
+ displays the calling number, waits a few seconds then hangs up.
 
-  Circuit:
-   MKR GSM 1400 board
-   Antenna
-   SIM card that can accept voice calls
+ Circuit:
+ * MKR GSM 1400 board
+ * Antenna
+ * SIM card that can accept voice calls
 
-  created Mar 2012
-  by Javier Zorzano
+ created Mar 2012
+ by Javier Zorzano
 */
 
 // Include the GSM library
@@ -32,7 +32,7 @@ void setup() {
   // initialize serial communications and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   Serial.println("Receive Voice Call");
@@ -60,11 +60,11 @@ void setup() {
 void loop() {
   // Check the status of the voice call
   switch (vcs.getvoiceCallStatus()) {
-    case IDLE_CALL: // Nothing is happening
+    case IDLE_CALL:  // Nothing is happening
 
       break;
 
-    case RECEIVINGCALL: // Yes! Someone is calling us
+    case RECEIVINGCALL:  // Yes! Someone is calling us
 
       Serial.println("RECEIVING CALL");
 

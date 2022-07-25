@@ -1,10 +1,10 @@
 // #include <Arduino_EdgeControl.h>
 #include "Helpers.h"
 
-void setup()
-{
+void setup() {
   Serial.begin(115200);
-  for (auto startNow = millis() + 2500; !Serial & millis() < startNow; delay(500));
+  for (auto startNow = millis() + 2500; !Serial & millis() < startNow; delay(500))
+    ;
 
   Serial.println("Starting RTC example");
   // EdgeControl.begin();
@@ -15,8 +15,7 @@ void setup()
   // Power.on(PWR_3V3);
 }
 
-void loop()
-{
+void loop() {
   Serial.println(getLocaltime());
   delay(1000);
 }

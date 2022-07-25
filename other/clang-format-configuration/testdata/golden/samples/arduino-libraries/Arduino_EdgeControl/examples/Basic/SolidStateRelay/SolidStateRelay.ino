@@ -10,10 +10,9 @@ unsigned long onTime;
 unsigned long pollTime;
 bool on = false;
 
-int relayChannel { RELAY_CH01 };
+int relayChannel{ RELAY_CH01 };
 
-void setup()
-{
+void setup() {
   Serial.begin(9600);
   while (!Serial)
     ;
@@ -44,8 +43,7 @@ void setup()
   Relay.begin();
 }
 
-void loop()
-{
+void loop() {
   if (millis() > onTime && !on) {
     Serial.println("RELAY ON");
 

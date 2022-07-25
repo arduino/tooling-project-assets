@@ -13,7 +13,8 @@ const char input[] = "{\"result\":true,\"count\":42,\"foo\":\"bar\"}";
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   demoParse();
 
@@ -36,31 +37,31 @@ void demoParse() {
   }
 
   Serial.print("JSON.typeof(myObject) = ");
-  Serial.println(JSON.typeof(myObject)); // prints: object
+  Serial.println(JSON.typeof(myObject));  // prints: object
 
   // myObject.hasOwnProperty(key) checks if the object contains an entry for key
   if (myObject.hasOwnProperty("result")) {
     Serial.print("myObject[\"result\"] = ");
 
-    Serial.println((bool) myObject["result"]);
+    Serial.println((bool)myObject["result"]);
   }
 
   if (myObject.hasOwnProperty("count")) {
     Serial.print("myObject[\"count\"] = ");
 
-    Serial.println((int) myObject["count"]);
+    Serial.println((int)myObject["count"]);
   }
 
   if (myObject.hasOwnProperty("count")) {
     Serial.print("myObject[\"count\"] = ");
 
-    Serial.println((double) myObject["count"]);
+    Serial.println((double)myObject["count"]);
   }
 
   if (myObject.hasOwnProperty("foo")) {
     Serial.print("myObject[\"foo\"] = ");
 
-    Serial.println((const char*) myObject["foo"]);
+    Serial.println((const char*)myObject["foo"]);
   }
 
   // JSONVars can be printed using print or println

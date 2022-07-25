@@ -1,6 +1,6 @@
 /*
     Blink LED1 and external LED via the IO Expander (TCA6424).
-
+    
     Connect an external LED to J1 connector:
     - LED anod to J1-16
     - LED cathod to J1-15 via 1K Ohm resistor
@@ -9,8 +9,7 @@
 
 #include <Arduino_EdgeControl.h>
 
-void setup()
-{
+void setup() {
   Serial.begin(9600);
 
   auto startNow = millis() + 2500;
@@ -37,11 +36,9 @@ void setup()
 
   Expander.pinMode(EXP_LED1, OUTPUT);
   Expander.pinMode(EXP_LCD_D7, OUTPUT);
-
 }
 
-void loop()
-{
+void loop() {
   Serial.println("Blink");
   Expander.digitalWrite(EXP_LED1, LOW);
   Expander.digitalWrite(EXP_LCD_D7, HIGH);

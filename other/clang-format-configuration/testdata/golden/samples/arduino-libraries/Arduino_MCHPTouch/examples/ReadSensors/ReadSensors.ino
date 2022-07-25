@@ -12,14 +12,12 @@
 */
 #include "Arduino_MCHPTouch.h"
 
-void setup()
-{
+void setup() {
   Serial.begin(9600);
   while (!Serial)
     ;
   // QTouch initialization
-  if (!TOUCH.begin())
-  {
+  if (!TOUCH.begin()) {
     Serial.println("Error in sensors initialization!");
     while (1)
       ;
@@ -27,14 +25,12 @@ void setup()
   Serial.println("Touch initialization Done!");
 }
 
-void loop()
-{
+void loop() {
   // polling the sensor for new data
   TOUCH.poll();
 
   // Checks if new data are available
-  if (TOUCH.available())
-  {
+  if (TOUCH.available()) {
     //reads senseors
     Serial.print("Sensor 1 status: ");
     Serial.println(TOUCH.read(0));

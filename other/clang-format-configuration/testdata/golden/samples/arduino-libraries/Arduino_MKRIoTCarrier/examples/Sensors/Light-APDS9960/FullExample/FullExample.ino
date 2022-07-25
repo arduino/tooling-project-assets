@@ -19,12 +19,14 @@ MKRIoTCarrier carrier;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial); // Wait for serial monitor to open
+  while (!Serial)
+    ;  // Wait for serial monitor to open
 
   carrier.noCase();
   if (!carrier.begin()) {
     Serial.println("Error");
-    while (true); // Stop forever
+    while (true)
+      ;  // Stop forever
   }
 }
 

@@ -19,7 +19,8 @@ using namespace machinecontrol;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
   Wire.begin();
   if (!digital_programmables.init()) {
     Serial.println("GPIO expander initialization fail!!");
@@ -85,4 +86,3 @@ uint8_t readAll() {
   Serial.println("CH11: " + String((inputs & (1 << IO_READ_CH_PIN_11)) >> IO_READ_CH_PIN_11));
   Serial.println();
 }
-

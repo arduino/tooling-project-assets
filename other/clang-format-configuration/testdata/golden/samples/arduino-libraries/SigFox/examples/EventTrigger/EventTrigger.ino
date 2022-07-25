@@ -51,8 +51,7 @@ void setup() {
   LowPower.attachInterruptWakeup(1, alarmEvent2, FALLING);
 }
 
-void loop()
-{
+void loop() {
   // Sleep until an event is recognized
   LowPower.sleep();
 
@@ -66,7 +65,7 @@ void loop()
   delay(100);
 
   // 3 bytes (ALM) + 8 bytes (ID as String) + 1 byte (source) < 12 bytes
-  String to_be_sent = "ALM" + SigFox.ID() +  String(alarm_source);
+  String to_be_sent = "ALM" + SigFox.ID() + String(alarm_source);
 
   SigFox.beginPacket();
   SigFox.print(to_be_sent);
@@ -100,5 +99,6 @@ void alarmEvent2() {
 
 void reboot() {
   NVIC_SystemReset();
-  while (1);
+  while (1)
+    ;
 }

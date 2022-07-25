@@ -1,13 +1,13 @@
 /*
-   This example checks if the firmware loaded on the NINA module
-   is updated.
-
-   Circuit:
-   - Board with NINA module (Arduino MKR WiFi 1010, MKR VIDOR 4000 and UNO WiFi Rev.2)
-
-   Created 17 October 2018 by Riccardo Rosario Rizzo
-   This code is in the public domain.
-*/
+ * This example checks if the firmware loaded on the NINA module
+ * is updated.
+ *
+ * Circuit:
+ * - Board with NINA module (Arduino MKR WiFi 1010, MKR VIDOR 4000 and UNO WiFi Rev.2)
+ *
+ * Created 17 October 2018 by Riccardo Rosario Rizzo
+ * This code is in the public domain.
+ */
 #include <SPI.h>
 #include <WiFiNINA.h>
 
@@ -15,7 +15,7 @@ void setup() {
   // Initialize serial
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   // Print a welcome message
@@ -26,7 +26,8 @@ void setup() {
   if (WiFi.status() == WL_NO_MODULE) {
     Serial.println("Communication with WiFi module failed!");
     // don't continue
-    while (true);
+    while (true)
+      ;
   }
 
   // Print firmware version on the module

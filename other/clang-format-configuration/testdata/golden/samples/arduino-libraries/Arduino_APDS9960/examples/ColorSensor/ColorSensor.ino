@@ -15,7 +15,8 @@
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   if (!APDS.begin()) {
     Serial.println("Error initializing APDS-9960 sensor.");
@@ -24,7 +25,7 @@ void setup() {
 
 void loop() {
   // check if a color reading is available
-  while (! APDS.colorAvailable()) {
+  while (!APDS.colorAvailable()) {
     delay(5);
   }
   int r, g, b;

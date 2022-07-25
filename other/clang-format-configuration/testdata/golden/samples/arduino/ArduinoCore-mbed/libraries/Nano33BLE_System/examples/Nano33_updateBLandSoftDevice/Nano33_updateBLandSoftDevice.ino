@@ -1,39 +1,39 @@
 /*
-    This sketch allows to support Soft Devices on the Arduino Nano 33 BLE (Sense).
-
-    To be able to support Soft Devices, the bootloader first needs to be updated.
-    The new bootloader is fully backwards compatible with standard sketches.
-    -----------------------------------------------------------------------
-
-   INSTRUCTIONS
-
-    1)  Upload this sketch on the Nano 33 BLE to download the new bootloader into the flash.
-        You can choose whether to update only the bootloader or the bootloader plus SoftDevice.
-        Make a choice through the Serial monitor.
-
-    2) After flashing the bootloader the sketch asks if you want to upload the SoftDevice.
-       This is required for the OpenMV firmware to work.
-       After completion, the board will reboot and enter the bootloader mode.
-
-    3) Now you can upload a sketch that uses the SoftDevice at 0x26000, using the following bossac command
-
-        /path/to/bossac -d --port=yourPort --offset=0x16000 -U -i -e -w /path/to/sketch.bin -R
-
-      Or you can still upload a standard sketch from the IDE at 0x10000. This will of course overwrite the SoftDevice.
-      So if you want to run a SoftDevice-related sketch, always remember to upload this sketch before and re-flash the SoftDevice.
-
-    To create a custom SoftDevice follow this procedure:
-
-    1) Convert your SoftDevice binary to a SoftDevice.h .
-      The nRF5-SDK website provides a SoftDevice.hex, so run the following commands:
-
-        objcopy --input-target=ihex --output-target=binary --gap-fill 0xff SoftDevice.hex SoftDevice.bin
-        xxd -i SoftDevice.bin > SoftDevice.h
-
-    2) Copy the content of the generated header file to SoftDevice.h
-
-    3) Run this sketch again and flash the SoftDevice.
-*/
+ *  This sketch allows to support Soft Devices on the Arduino Nano 33 BLE (Sense).
+ *  
+ *  To be able to support Soft Devices, the bootloader first needs to be updated.
+ *  The new bootloader is fully backwards compatible with standard sketches.
+ *  -----------------------------------------------------------------------
+ * 
+ * INSTRUCTIONS
+ * 
+ *  1)  Upload this sketch on the Nano 33 BLE to download the new bootloader into the flash. 
+ *      You can choose whether to update only the bootloader or the bootloader plus SoftDevice.
+ *      Make a choice through the Serial monitor.
+ * 
+ *  2) After flashing the bootloader the sketch asks if you want to upload the SoftDevice.
+ *     This is required for the OpenMV firmware to work.
+ *     After completion, the board will reboot and enter the bootloader mode.
+ *
+ *  3) Now you can upload a sketch that uses the SoftDevice at 0x26000, using the following bossac command
+ *
+ *      /path/to/bossac -d --port=yourPort --offset=0x16000 -U -i -e -w /path/to/sketch.bin -R
+ *
+ *    Or you can still upload a standard sketch from the IDE at 0x10000. This will of course overwrite the SoftDevice.
+ *    So if you want to run a SoftDevice-related sketch, always remember to upload this sketch before and re-flash the SoftDevice.
+ *
+ *  To create a custom SoftDevice follow this procedure:
+ *
+ *  1) Convert your SoftDevice binary to a SoftDevice.h .
+ *    The nRF5-SDK website provides a SoftDevice.hex, so run the following commands:
+ *
+ *      objcopy --input-target=ihex --output-target=binary --gap-fill 0xff SoftDevice.hex SoftDevice.bin
+ *      xxd -i SoftDevice.bin > SoftDevice.h
+ *
+ *  2) Copy the content of the generated header file to SoftDevice.h
+ * 
+ *  3) Run this sketch again and flash the SoftDevice.
+ */
 
 #include "FlashIAP.h"
 #include "MBR.h"
@@ -41,13 +41,13 @@
 #include "nrf_nvmc.h"
 #include "SoftDevice.h"
 
-#define SOFTDEVICE_ADDR       (0xA0000)
-#define SOFTDEVICE_INFO_ADDR  (0xFF000)
-#define MBR_ADDR              (0x0)
-#define BOOTLOADER_ADDR       (0xE0000)
-#define UICR_BOOT_ADDR        (0x10001014)
+#define SOFTDEVICE_ADDR (0xA0000)
+#define SOFTDEVICE_INFO_ADDR (0xFF000)
+#define MBR_ADDR (0x0)
+#define BOOTLOADER_ADDR (0xE0000)
+#define UICR_BOOT_ADDR (0x10001014)
 
-#define BOOTLOADER_SIZE        nano33_bootloader_hex_len
+#define BOOTLOADER_SIZE nano33_bootloader_hex_len
 const unsigned int magic = 0x5f27a93d;
 
 mbed::FlashIAP flash;

@@ -15,7 +15,7 @@ void setup() {
   //Start serial
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   //Print length of data to run CRC on.
@@ -43,7 +43,7 @@ unsigned long eeprom_crc(void) {
 
   unsigned long crc = ~0L;
 
-  for (int index = 0 ; index < EEPROM.length()  ; ++index) {
+  for (int index = 0; index < EEPROM.length(); ++index) {
     crc = crc_table[(crc ^ EEPROM[index]) & 0x0f] ^ (crc >> 4);
     crc = crc_table[(crc ^ (EEPROM[index] >> 4)) & 0x0f] ^ (crc >> 4);
     crc = ~crc;

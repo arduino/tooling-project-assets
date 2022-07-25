@@ -3,23 +3,22 @@
 #include <MicroNMEA.h>
 
 #include "arduino_secrets.h"
-constexpr auto pin { SECRET_PIN };
-constexpr auto apn { SECRET_APN };
-constexpr auto username { SECRET_USERNAME };
-constexpr auto pass { SECRET_PASSWORD };
+constexpr auto pin{ SECRET_PIN };
+constexpr auto apn{ SECRET_APN };
+constexpr auto username{ SECRET_USERNAME };
+constexpr auto pass{ SECRET_PASSWORD };
 
 char nmeaBuffer[100];
 MicroNMEA nmea(nmeaBuffer, sizeof(nmeaBuffer));
 
 // Keep track of NMEA string processing
-auto nmeaProcessStatus { false };
+auto nmeaProcessStatus{ false };
 
 // Check for valid fix every checkValidInterval ms
-constexpr unsigned long checkValidInterval { 5000 };
-unsigned long checkValidNow {};
+constexpr unsigned long checkValidInterval{ 5000 };
+unsigned long checkValidNow{};
 
-void setup()
-{
+void setup() {
   Serial.begin(115200);
   for (const auto timeout = millis() + 2500; !Serial && millis() < timeout; delay(250))
     ;
@@ -43,8 +42,7 @@ void setup()
   checkValidNow = millis();
 }
 
-void loop()
-{
+void loop() {
   while (GPS.available()) {
     char c = GPS.read();
     // process is true when a valid NMEA string has been processed

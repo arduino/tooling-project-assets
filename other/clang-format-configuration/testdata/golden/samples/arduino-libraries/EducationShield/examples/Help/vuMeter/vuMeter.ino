@@ -1,21 +1,21 @@
-/*
-  VU-Meter
-   VU-Meter is a few LEDs grouped together into a line.
-
-  This library has some features that makes it easy to control
-  several LEDs. Functions to use are:
-
-      clear() - turns all LEDs off.
-      on(LEDindex) - turns one LED on
-      off(LEDindex) - turns one LED off
-      scrollRight(speed, startIndex) - one LED lights up at a time from left to right
-      scrollLeft(speed, startIndex) - one LED lights up at a time from right to left
-      blink(LEDindex,speed, times) - one LED blinks
-      blinkAll(speed, times) - all LEDs blink
-      fillFrom(startIndex, stopIndex) - turns LEDs from startIndex to stopIndex on
-      fill(numberOfLEDs) - turns LEDs on from first to numberOfLEDs
-
-  (c) 2013-2016 Arduino LLC.
+/*	
+* VU-Meter
+*  VU-Meter is a few LEDs grouped together into a line.
+* 
+* This library has some features that makes it easy to control 
+* several LEDs. Functions to use are:
+* 
+*     clear() - turns all LEDs off.
+*     on(LEDindex) - turns one LED on
+*     off(LEDindex) - turns one LED off
+*     scrollRight(speed, startIndex) - one LED lights up at a time from left to right
+*     scrollLeft(speed, startIndex) - one LED lights up at a time from right to left
+*     blink(LEDindex,speed, times) - one LED blinks
+*     blinkAll(speed, times) - all LEDs blink
+*     fillFrom(startIndex, stopIndex) - turns LEDs from startIndex to stopIndex on
+*     fill(numberOfLEDs) - turns LEDs on from first to numberOfLEDs 
+* 
+* (c) 2013-2016 Arduino LLC.
 */
 
 #include <EducationShield.h>
@@ -26,7 +26,7 @@ VUMeter me;
 //The pins used by the VUMeter, default to 2-5 and 7. Can be
 //customized as you wish, but do change the pinCount if the
 //number of LEDs are changed.
-int pins[] = {2, 3, 4, 5, 7};
+int pins[] = { 2, 3, 4, 5, 7 };
 
 //How many pins are used. Should reflect the pins array above.
 int pinCount = 5;
@@ -37,7 +37,6 @@ void setup() {
 
   //initialize the component. Must be called.
   me.begin();
-
 }
 void loop() {
   //fill(number)
@@ -106,5 +105,4 @@ void loop() {
   //The 2nd to 4th LED will light up
   me.fillFrom(1, 3);
   delay(2000);
-
 }

@@ -1,25 +1,25 @@
 /*
 
-  Esplora TFT Temperature Display
+ Esplora TFT Temperature Display
 
-  This example for the Arduino TFT screen is for use
-  with an Arduino Esplora.
+ This example for the Arduino TFT screen is for use
+ with an Arduino Esplora.
 
-  This example reads the temperature of the Esplora's
-  on board thermisistor and displays it on an attached
-  LCD screen, updating every second.
+ This example reads the temperature of the Esplora's
+ on board thermisistor and displays it on an attached
+ LCD screen, updating every second.
 
-  This example code is in the public domain.
+ This example code is in the public domain.
 
-  Created 15 April 2013 by Scott Fitzgerald
+ Created 15 April 2013 by Scott Fitzgerald
 
-  https://www.arduino.cc/en/Tutorial/LibraryExamples/EsploraTFTTemp
+ https://www.arduino.cc/en/Tutorial/LibraryExamples/EsploraTFTTemp
 
-*/
+ */
 
 // include the necessary libraries
 #include <Esplora.h>
-#include <TFT.h>            // Arduino LCD library
+#include <TFT.h>  // Arduino LCD library
 #include <SPI.h>
 
 char tempPrintout[3];  // array to hold the temperature data

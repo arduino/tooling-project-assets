@@ -1,12 +1,12 @@
 /*
-  SimonSays
-
-  Test your memory with this game!
-
-  LEDs will blink in a pattern that you have to remember and repeat.
-  If you get it right, the game gets more and more challenging.
-
-  (c) 2013-2016 Arduino LLC.
+* SimonSays
+* 
+* Test your memory with this game!
+*
+* LEDs will blink in a pattern that you have to remember and repeat. 
+* If you get it right, the game gets more and more challenging. 
+*
+* (c) 2013-2016 Arduino LLC.
 */
 
 
@@ -14,26 +14,26 @@
 
 /*
   An array of pin numbers to which LEDs are attached
-  the defaults are 2 to 6 but you can choose any of the digital
-  pins.
+  the defaults are 2 to 6 but you can choose any of the digital 
+  pins. 
 */
-int ledPins[] = {2, 3, 4, 5, 6};
+int ledPins[] = { 2, 3, 4, 5, 6 };
 int pinCount = 5;
 VUMeter vuMeter;
 
-Knob pot = Knob(A0); //a knob is connected to A0
+Knob pot = Knob(A0);  //a knob is connected to A0
 
-Button button = Button(9); //a button is connected to port D9
+Button button = Button(9);  //a button is connected to port D9
 
-Melody piezo = Melody(8); //a piezo is connected to digital pin 8
+Melody piezo = Melody(8);  //a piezo is connected to digital pin 8
 
 //Set the game parameters
-int turns_begin = 2; //a new game starts with 2 turns
-int turns_max = 10; //the most difficult game has 10 turns
+int turns_begin = 2;  //a new game starts with 2 turns
+int turns_max = 10;   //the most difficult game has 10 turns
 
-int game[10];//array for storing the "simon says"
-int turns = 2; //for storing the number of turns in current game
-int blinkTime = 500; //how fast does "simon says" blink
+int game[10];         //array for storing the "simon says"
+int turns = 2;        //for storing the number of turns in current game
+int blinkTime = 500;  //how fast does "simon says" blink
 
 void setup() {
   //initialize the components
@@ -94,7 +94,7 @@ void getInputs() {
       //Otherwise, gameover. Stop the function from
       //continuing by an empty return.
       gameOver();
-      return ;
+      return;
     }
   }
   //When all the inputs matched simon says, you win
@@ -115,5 +115,4 @@ void levelUp() {
   }
   //And play a winning sound
   piezo.effect_win();
-
 }

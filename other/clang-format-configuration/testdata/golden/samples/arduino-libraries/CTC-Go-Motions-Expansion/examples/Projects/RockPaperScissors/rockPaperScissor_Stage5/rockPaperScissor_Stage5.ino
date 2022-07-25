@@ -1,5 +1,5 @@
 /*
-  CTC GO! MOTION
+  CTC GO! MOTION 
   PROJECT - ROCK PAPER SCISSOR
 
   This sketch is written to accompany Stage 5 of the ROCK PAPER SCISSOR project
@@ -67,8 +67,7 @@ void loop() {
     digitalWrite(redLED, LOW);
   }
 
-  else if (check == 3)
-  {
+  else if (check == 3) {
     digitalWrite(greenLED, HIGH);
     digitalWrite(yellowLED, LOW);
     tone(piezo, 500);
@@ -79,8 +78,7 @@ void loop() {
     delay(100);
     check = 0;
 
-    switch (randomNumber)
-    {
+    switch (randomNumber) {
       case 1:
         ____________(rock);
         break;
@@ -100,8 +98,7 @@ void loop() {
   delay(250);
 }
 
-void ____________(int object)
-{
+void ____________(int object) {
   servo_main.write(______);
   delay(1000);
 
@@ -111,5 +108,4 @@ void ____________(int object)
   servo_main.write(0);
   digitalWrite(greenLED, LOW);
   delay(2000);
-
 }

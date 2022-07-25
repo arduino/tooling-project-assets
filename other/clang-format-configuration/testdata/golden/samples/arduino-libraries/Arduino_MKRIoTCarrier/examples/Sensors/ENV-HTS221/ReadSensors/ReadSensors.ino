@@ -8,7 +8,8 @@ MKRIoTCarrier carrier;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   carrier.noCase();
   carrier.begin();
@@ -17,7 +18,7 @@ void setup() {
 void loop() {
   // read all the sensor values
   float temperature = carrier.Env.readTemperature();
-  float humidity    = carrier.Env.readHumidity();
+  float humidity = carrier.Env.readHumidity();
 
   // print each of the sensor values
   Serial.print("Temperature = ");

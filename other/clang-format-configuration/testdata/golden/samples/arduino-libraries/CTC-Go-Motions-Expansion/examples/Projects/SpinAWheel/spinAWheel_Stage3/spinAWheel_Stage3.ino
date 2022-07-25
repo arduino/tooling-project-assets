@@ -1,5 +1,5 @@
 /*
-  CTC GO! MOTION
+  CTC GO! MOTION 
   PROJECT - Spin-A-Wheel
 
   This sketch is written to accompany Stage 3 of the Spin-a-Wheel project
@@ -20,8 +20,7 @@ int piezo = 8;
 int buttonState_1;
 int buttonState_2;
 
-void setup()
-{
+void setup() {
   pinMode(button_1, INPUT);
   pinMode(button_2, INPUT);
   ______(yellowLED, ______);
@@ -35,8 +34,7 @@ void setup()
 }
 
 
-void loop()
-{
+void loop() {
   buttonState_1 = digitalRead(button_1);
   buttonState_2 = digitalRead(button_2);
 
@@ -50,7 +48,6 @@ void loop()
     tone(______, ______);
     delay(1000);
     noTone(______);
-
   }
 
   if (buttonState_2 == HIGH) {
@@ -67,11 +64,3 @@ void loop()
 
   delay(100);
 }
-
-
-
-
-
-
-
-

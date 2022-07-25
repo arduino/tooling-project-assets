@@ -1,6 +1,6 @@
 /*
   This sketch shows how to use the HTTP command to
-  make an HTTP request and store the result in the
+  make an HTTP request and store the result in the 
   SARA-U201 internal storage
 
   Circuit:
@@ -16,10 +16,10 @@
 #include "arduino_secrets.h"
 
 
-const char PINNUMBER[]     = SECRET_PINNUMBER;
+const char PINNUMBER[] = SECRET_PINNUMBER;
 // APN data
-const char GPRS_APN[]      = SECRET_GPRS_APN;
-const char GPRS_LOGIN[]    = SECRET_GPRS_LOGIN;
+const char GPRS_APN[] = SECRET_GPRS_APN;
+const char GPRS_LOGIN[] = SECRET_GPRS_LOGIN;
 const char GPRS_PASSWORD[] = SECRET_GPRS_PASSWORD;
 
 // initialize the library instance
@@ -32,13 +32,13 @@ GSMFileUtils fileUtils(false);
 // URL, path and port (for example: example.org)
 char server[] = "example.org";
 char path[] = "/";
-int port = 80; // port 80 is the default for HTTP
+int port = 80;  // port 80 is the default for HTTP
 
 // An existing file
-constexpr char* filename { "get.ffs" };
+constexpr char* filename{ "get.ffs" };
 
 // Read block size
-constexpr unsigned int blockSize { 512 };
+constexpr unsigned int blockSize{ 512 };
 
 
 const long interval = 1000;
@@ -50,15 +50,14 @@ void setup() {
   //Initialize serial and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   bool connected = false;
   // After starting the modem with GSM.begin()
   // attach the shield to the GPRS network with the APN, login and password
   while (!connected) {
-    if ((gsmAccess.begin(PINNUMBER) == GSM_READY) &&
-        (gprs.attachGPRS(GPRS_APN, GPRS_LOGIN, GPRS_PASSWORD) == GPRS_READY)) {
+    if ((gsmAccess.begin(PINNUMBER) == GSM_READY) && (gprs.attachGPRS(GPRS_APN, GPRS_LOGIN, GPRS_PASSWORD) == GPRS_READY)) {
       connected = true;
     } else {
       Serial.println("Not connected");
@@ -83,6 +82,7 @@ void loop() {
         Serial.println(fileList[i]);
       }
     }
-    while (1);
+    while (1)
+      ;
   }
 }

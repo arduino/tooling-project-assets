@@ -1,21 +1,21 @@
 /*
   Download a large file and store it into the GSM module filesystem.
 
-  This sketch connects to a website through a MKR GSM 1400 board and
-  downloads a large file and stores it into the filesystem of the GSM
-  module.
+ This sketch connects to a website through a MKR GSM 1400 board and
+ downloads a large file and stores it into the filesystem of the GSM
+ module.
 
-  The file is processed in blocks of 512 bytes in order to save RAM.
-  A block of data is read from the GSM module and the appended to a
-  file created by the sketch.
+ The file is processed in blocks of 512 bytes in order to save RAM.
+ A block of data is read from the GSM module and the appended to a
+ file created by the sketch.
 
-  Circuit:
-   MKR GSM 1400 board
-   Antenna
-   SIM card with a data plan
+ Circuit:
+ * MKR GSM 1400 board
+ * Antenna
+ * SIM card with a data plan
 
-  created 19 June 2020
-  by Giampaolo Mancini
+ created 19 June 2020
+ by Giampaolo Mancini
 */
 
 // libraries
@@ -41,12 +41,11 @@ GSM gsmAccess;
 
 // URL, path and port (for example: example.org)
 
-void setup()
-{
+void setup() {
   // initialize serial communications and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   Serial.println("Starting Arduino web client.");
@@ -111,11 +110,9 @@ void setup()
   Serial.println();
 
   printFiles(fileUtils);
-
 }
 
-void loop()
-{
+void loop() {
   // if there are incoming bytes available
   // from the server, read them and print them:
   if (client.available()) {
@@ -123,7 +120,6 @@ void loop()
     if (r < 16)
       Serial.print(0);
     Serial.print(r, HEX);
-
   }
 
   // if the server's disconnected, stop the client:
@@ -138,20 +134,19 @@ void loop()
   }
 }
 
-void storeFileBuffered(String filename, uint32_t totalLen)
-{
+void storeFileBuffered(String filename, uint32_t totalLen) {
   Serial.print("Ready to download \"");
   Serial.print(filename);
   Serial.print("\" - len: ");
   Serial.print(totalLen);
   Serial.println(" bytes.");
 
-  constexpr uint32_t len { 512 };
+  constexpr uint32_t len{ 512 };
 
   uint32_t cycles = totalLen / len;
   uint32_t spares = totalLen % len;
 
-  int totalRead { 0 };
+  int totalRead{ 0 };
 
   fileUtils.deleteFile(filename);
 
@@ -183,8 +178,8 @@ void storeFileBuffered(String filename, uint32_t totalLen)
 
   // Define download and save lambda
   auto downloadAndSaveTrunk = [filename](uint32_t len) {
-    char buf[len] { 0 };
-    uint32_t written { 0 };
+    char buf[len]{ 0 };
+    uint32_t written{ 0 };
 
     if (client.available())
       written = client.readBytes(buf, len);
@@ -196,7 +191,8 @@ void storeFileBuffered(String filename, uint32_t totalLen)
   // Define wrapper function
   auto saveTrunk = [&totalRead, downloadAndSaveTrunk](size_t iter, uint32_t len) {
     Serial.print("Block ");
-    if (iter < 10) Serial.print(' '); if (iter < 100) Serial.print(' ');
+    if (iter < 10) Serial.print(' ');
+    if (iter < 100) Serial.print(' ');
     Serial.print(iter);
 
     totalRead += downloadAndSaveTrunk(len);
@@ -213,5 +209,4 @@ void storeFileBuffered(String filename, uint32_t totalLen)
     saveTrunk(c, len);
 
   Serial.println();
-
 }

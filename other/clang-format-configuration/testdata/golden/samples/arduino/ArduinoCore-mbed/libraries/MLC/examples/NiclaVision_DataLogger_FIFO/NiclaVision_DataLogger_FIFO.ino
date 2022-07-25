@@ -3,7 +3,7 @@
    The user can interact with this disk as a bidirectional communication with the board
    For example, the board could save data in a file to be retrieved later with a drag and drop.
    If the user does a double tap, the firmware goes to datalogger mode (green led on).
-   Now the user can do another double tap to start a recording of the IMU data
+   Now the user can do another double tap to start a recording of the IMU data 
    (green led blinking). With another double tap the recording will be stopped (green led on).
    Now the user can start/stop other recordings of the IMU data using again the double tap.
    The log files are saved in flash with an increasing number suffix data_0.txt, data_1.txt, etc.
@@ -18,10 +18,10 @@
 #include "LSM6DSOXSensor.h"
 
 #define INT_1 LSM6DS_INT
-#define SENSOR_ODR 104.0f // In Hertz
-#define ACC_FS 2 // In g
-#define GYR_FS 2000 // In dps
-#define MEASUREMENT_TIME_INTERVAL (1000.0f/SENSOR_ODR) // In ms
+#define SENSOR_ODR 104.0f                                 // In Hertz
+#define ACC_FS 2                                          // In g
+#define GYR_FS 2000                                       // In dps
+#define MEASUREMENT_TIME_INTERVAL (1000.0f / SENSOR_ODR)  // In ms
 #define FIFO_SAMPLE_THRESHOLD 199
 #define FLASH_BUFF_LEN 8192
 
@@ -42,7 +42,7 @@ int32_t gyr_value[3];
 char buff[FLASH_BUFF_LEN];
 uint32_t pos = 0;
 
-QSPIFBlockDevice root(QSPI_SO0, QSPI_SO1, QSPI_SO2, QSPI_SO3,  QSPI_SCK, QSPI_CS, QSPIF_POLARITY_MODE_1, 40000000);
+QSPIFBlockDevice root(QSPI_SO0, QSPI_SO1, QSPI_SO2, QSPI_SO3, QSPI_SCK, QSPI_CS, QSPIF_POLARITY_MODE_1, 40000000);
 // Partition 1 is allocated to WiFi
 mbed::MBRBlockDevice lsm_data(&root, 2);
 static mbed::FATFileSystem lsm_fs("lsm");
@@ -55,13 +55,11 @@ rtos::Thread acquisition_th;
 
 FILE *f = nullptr;
 
-void INT1Event_cb()
-{
+void INT1Event_cb() {
   mems_event = 1;
 }
 
-void USBMSD::begin()
-{
+void USBMSD::begin() {
   int err = lsm_fs.mount(&lsm_data);
   if (err) {
     Serial.println("mount failed");
@@ -73,14 +71,12 @@ void USBMSD::begin()
   }
 }
 
-mbed::FATFileSystem &USBMSD::getFileSystem()
-{
+mbed::FATFileSystem &USBMSD::getFileSystem() {
   static mbed::FATFileSystem fs("lsm");
   return fs;
 }
 
-void led_green_thd()
-{
+void led_green_thd() {
   while (1) {
     if (demo_state == DATA_LOGGER_RUNNING_STATE) {
       digitalWrite(LEDG, LOW);
@@ -91,8 +87,7 @@ void led_green_thd()
   }
 }
 
-void Read_FIFO_Data(uint16_t samples_to_read)
-{
+void Read_FIFO_Data(uint16_t samples_to_read) {
   uint16_t i;
 
   for (i = 0; i < samples_to_read; i++) {
@@ -101,19 +96,22 @@ void Read_FIFO_Data(uint16_t samples_to_read)
     AccGyr.Get_FIFO_Tag(&tag);
     switch (tag) {
       // If we have a gyro tag, read the gyro data
-      case LSM6DSOX_GYRO_NC_TAG: {
+      case LSM6DSOX_GYRO_NC_TAG:
+        {
           AccGyr.Get_FIFO_G_Axes(gyr_value);
           gyr_available = true;
           break;
         }
       // If we have an acc tag, read the acc data
-      case LSM6DSOX_XL_NC_TAG: {
+      case LSM6DSOX_XL_NC_TAG:
+        {
           AccGyr.Get_FIFO_X_Axes(acc_value);
           acc_available = true;
           break;
         }
       // We can discard other tags
-      default: {
+      default:
+        {
           break;
         }
     }
@@ -132,8 +130,7 @@ void Read_FIFO_Data(uint16_t samples_to_read)
   pos = 0;
 }
 
-void setup()
-{
+void setup() {
   Serial.begin(115200);
   MassStorage.begin();
   pinMode(LEDB, OUTPUT);
@@ -165,8 +162,7 @@ void setup()
   acquisition_th.start(led_green_thd);
 }
 
-void loop()
-{
+void loop() {
 
   if (mems_event) {
     mems_event = 0;
@@ -174,14 +170,16 @@ void loop()
     AccGyr.Get_X_Event_Status(&status);
     if (status.DoubleTapStatus) {
       switch (demo_state) {
-        case DATA_STORAGE_STATE: {
+        case DATA_STORAGE_STATE:
+          {
             // Go to DATA_LOGGER_IDLE_STATE state
             demo_state = DATA_LOGGER_IDLE_STATE;
             digitalWrite(LEDG, LOW);
             Serial.println("From DATA_STORAGE_STATE To DATA_LOGGER_IDLE_STATE");
             break;
           }
-        case DATA_LOGGER_IDLE_STATE: {
+        case DATA_LOGGER_IDLE_STATE:
+          {
             char filename[32];
             // Go to DATA_LOGGER_RUNNING_STATE state
             snprintf(filename, 32, "/lsm/data_%lu.txt", file_count);
@@ -206,7 +204,8 @@ void loop()
             }
             break;
           }
-        case DATA_LOGGER_RUNNING_STATE: {
+        case DATA_LOGGER_RUNNING_STATE:
+          {
             // Empty the FIFO
             uint16_t fifo_samples;
             AccGyr.Get_FIFO_Num_Samples(&fifo_samples);

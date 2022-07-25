@@ -1,5 +1,5 @@
 /*
-  CTC GO! CORE MODULE
+  CTC GO! CORE MODULE 
   PROJECT 2 - MORSE ALIEN
 
   This sketch is written to accompany Stage 3 in MORSE ALIEN  of the CTC GO! core module
@@ -24,11 +24,10 @@ int sequencePlayed = false;
 
 int DASH = 2;
 int DOT = 1;
-int freq_DASH = 1500 ;
-int freq_DOT = 1000 ;
+int freq_DASH = 1500;
+int freq_DOT = 1000;
 
-void setup()
-{
+void setup() {
   pinMode(blueLED, OUTPUT);
   pinMode(breakButton, INPUT);
   pinMode(recordButton, INPUT);
@@ -38,26 +37,20 @@ void setup()
   Serial.begin(9600);
 }
 
-void loop()
-{
+void loop() {
   int distanceSensorValue = analogRead(distanceSensor);
   int actualDistanceMM = map(distanceSensorValue, 0, 1023, 0, 3000);
 
-  if (distanceSensorValue < 200)
-  {
+  if (distanceSensorValue < 200) {
     digitalWrite(blueLED, HIGH);
     currentSymbol = _____;
-  }
-  else
-  {
+  } else {
     digitalWrite(blueLED, LOW);
     currentSymbol = _____;
   }
 
-  if (digitalRead(recordButton) == HIGH)
-  {
-    if (prevRecordButtonState == LOW)
-    {
+  if (digitalRead(recordButton) == HIGH) {
+    if (prevRecordButtonState == LOW) {
       Serial.print("ADDING SYMBOL");
       Serial.print(_____);
       Serial.print(" ");
@@ -65,17 +58,14 @@ void loop()
       digitalWrite(blueLED, LOW);
       delay(symbolLength);
 
-      if (currentSymbol == _____)
-      {
+      if (currentSymbol == _____) {
         digitalWrite(_____, _____);
         tone(_____, freq_DOT);
         delay(symbolLength);
         digitalWrite(_____, _____);
-      }
-      else if (currentSymbol == DASH)
-      {
+      } else if (currentSymbol == DASH) {
         digitalWrite(_____, _____);
-        tone(piezo, _____ );
+        tone(piezo, _____);
         delay(symbolLength * 3);
         digitalWrite(_____, _____);
       }
@@ -85,44 +75,33 @@ void loop()
     /*
       Add the symbol to the array
     */
-    if (sequencePlayed == true)
-    {
+    if (sequencePlayed == true) {
       sequencePlayed = _____;
       symbolIndex = _____;
     }
-    mySymbols[ _____ ] = _____;
+    mySymbols[_____] = _____;
     symbolIndex = _____;
-  }
-  else
-  {
+  } else {
     prevRecordButtonState = LOW;
   }
 
-  if (digitalRead(breakButton) == HIGH)
-  {
-    if (prevBreakButtonState == LOW)
-    {
+  if (digitalRead(breakButton) == HIGH) {
+    if (prevBreakButtonState == LOW) {
       Serial.println("ADDING BREAK");
       tone(piezo, 1000);
     }
     prevBreakButtonState = HIGH;
-  }
-  else
-  {
+  } else {
     prevBreakButtonState = LOW;
   }
 
-  if (digitalRead(playButton) == HIGH)
-  {
-    if (prevPlayButtonState == LOW)
-    {
+  if (digitalRead(playButton) == HIGH) {
+    if (prevPlayButtonState == LOW) {
       Serial.println("START PLAYING SYMBOLS");
       tone(piezo, 1000);
     }
     prevPlayButtonState = HIGH;
-  }
-  else
-  {
+  } else {
     prevPlayButtonState = LOW;
   }
 }

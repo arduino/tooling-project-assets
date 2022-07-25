@@ -51,13 +51,13 @@ extern "C" {
 #include "mbed.h"
 
 #define TEENYUSB_LOGO \
-  " _______                    _    _  _____ ____  \n"           \
-  "|__   __|                  | |  | |/ ____|  _ \\ \n"          \
-  "   | | ___  ___ _ __  _   _| |  | | (___ | |_) |\n"           \
-  "   | |/ _ \\/ _ \\ '_ \\| | | | |  | |\\___ \\|  _ < \n"      \
-  "   | |  __/  __/ | | | |_| | |__| |____) | |_) |\n"           \
-  "   |_|\\___|\\___|_| |_|\\__, |\\____/|_____/|____/ \n"       \
-  "                       __/ |                    \n"           \
+  " _______                    _    _  _____ ____  \n" \
+  "|__   __|                  | |  | |/ ____|  _ \\ \n" \
+  "   | | ___  ___ _ __  _   _| |  | | (___ | |_) |\n" \
+  "   | |/ _ \\/ _ \\ '_ \\| | | | |  | |\\___ \\|  _ < \n" \
+  "   | |  __/  __/ | | | |_| | |__| |____) | |_) |\n" \
+  "   |_|\\___|\\___|_| |_|\\__, |\\____/|_____/|____/ \n" \
+  "                       __/ |                    \n" \
   "                      |___/                     \n"
 
 
@@ -124,10 +124,9 @@ static tusb_host_t* fs;
 static tusb_host_t* hs;
 
 void show_memory(char* argv[], int argc);
-void cmd_lsusb(char* argv[], int argc)
-{
-  if (fs)ls_usb(fs);
-  if (hs)ls_usb(hs);
+void cmd_lsusb(char* argv[], int argc) {
+  if (fs) ls_usb(fs);
+  if (hs) ls_usb(hs);
 }
 
 void cmd_ls(char* argv[], int argc);
@@ -138,12 +137,11 @@ void cmd_cp(char* argv[], int argc);
 void cmd_rm(char* argv[], int argc);
 void cmd_append(char* argv[], int argc);
 
-static tusbh_interface_t* find_cdc(tusbh_device_t* dev)
-{
-  if (!dev)return 0;
+static tusbh_interface_t* find_cdc(tusbh_device_t* dev) {
+  if (!dev) return 0;
   for (int i = 0; i < dev->interface_num; i++) {
     tusbh_interface_t* itf = &dev->interfaces[i];
-    if (itf->cls ==  (tusbh_class_reg_t)&cls_cdc_acm) {
+    if (itf->cls == (tusbh_class_reg_t)&cls_cdc_acm) {
       return itf;
     }
   }
@@ -157,20 +155,49 @@ static tusbh_interface_t* find_cdc(tusbh_device_t* dev)
 }
 
 __ALIGN_BEGIN static uint8_t test_cdc_data[64] __ALIGN_END = {
-  0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f,
-  0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f,
+  0x00,
+  0x01,
+  0x02,
+  0x03,
+  0x04,
+  0x05,
+  0x06,
+  0x07,
+  0x08,
+  0x09,
+  0x0a,
+  0x0b,
+  0x0c,
+  0x0d,
+  0x0e,
+  0x0f,
+  0x10,
+  0x11,
+  0x12,
+  0x13,
+  0x14,
+  0x15,
+  0x16,
+  0x17,
+  0x18,
+  0x19,
+  0x1a,
+  0x1b,
+  0x1c,
+  0x1d,
+  0x1e,
+  0x1f,
 };
 
 
-void cmd_cdc_test(char* argv[], int argc)
-{
+void cmd_cdc_test(char* argv[], int argc) {
   tusbh_interface_t* cdc = 0;
   if (fs) {
-    cdc = find_cdc(  ((tusbh_root_hub_t*)fs->user_data)->children[0]);
+    cdc = find_cdc(((tusbh_root_hub_t*)fs->user_data)->children[0]);
   }
 
   if (!cdc && hs) {
-    cdc = find_cdc(  ((tusbh_root_hub_t*)hs->user_data)->children[0]);
+    cdc = find_cdc(((tusbh_root_hub_t*)hs->user_data)->children[0]);
   }
 
   if (!cdc) {
@@ -179,7 +206,7 @@ void cmd_cdc_test(char* argv[], int argc)
 
   int r = tusbh_cdc_send_data(cdc, test_cdc_data, 32, 2000);
   printf("Send data result = %d\n", r);
-  if (r < 0)return;
+  if (r < 0) return;
   r = tusbh_cdc_recv_data(cdc, test_cdc_data + 32, 32, 2000);
   printf("Recv data result = %d\n", r);
   for (int i = 0; i < r; i++) {
@@ -189,8 +216,7 @@ void cmd_cdc_test(char* argv[], int argc)
 }
 
 
-typedef struct _cli
-{
+typedef struct _cli {
   const char* cmd;
   const char* desc;
   void (*action)(char* argv[], int argc);
@@ -199,14 +225,13 @@ typedef struct _cli
 
 
 const cli_t commands[] = {
-  {"lsusb",     "list usb devices",    cmd_lsusb    },
-  {"testcdc",   "testcdc   test cdc loopback interface", cmd_cdc_test},
+  { "lsusb", "list usb devices", cmd_lsusb },
+  { "testcdc", "testcdc   test cdc loopback interface", cmd_cdc_test },
 };
 
-static void process_command(char* cmd)
-{
+static void process_command(char* cmd) {
 #define MAX_ARGC 8
-  char * argv[MAX_ARGC];
+  char* argv[MAX_ARGC];
   for (int i = 0; i < sizeof(commands) / sizeof(commands[0]); i++) {
     const cli_t* c = &commands[i];
     if (strstr(cmd, c->cmd) == cmd && c->action) {
@@ -236,12 +261,11 @@ static void process_command(char* cmd)
   printf("Unkown command: %s\n", cmd);
 }
 
-#define PROMPT  "TeenyUSB > "
+#define PROMPT "TeenyUSB > "
 
 static char cmd_buf[256];
 static int cmd_len;
-static void command_loop(void)
-{
+static void command_loop(void) {
   if (Serial1.available()) {
     int ch = Serial1.read();
     if (ch == '\r') {
@@ -273,8 +297,7 @@ static void command_loop(void)
 
 tusbh_msg_q_t* mq;
 
-void setup()
-{
+void setup() {
   Serial1.begin(115200);
   printf("\n" TEENYUSB_LOGO PROMPT);
 
@@ -331,16 +354,16 @@ void loop() {
   tusbh_msg_loop(mq);
 }
 
-#define MOD_CTRL      (0x01 | 0x10)
-#define MOD_SHIFT     (0x02 | 0x20)
-#define MOD_ALT       (0x04 | 0x40)
-#define MOD_WIN       (0x08 | 0x80)
+#define MOD_CTRL (0x01 | 0x10)
+#define MOD_SHIFT (0x02 | 0x20)
+#define MOD_ALT (0x04 | 0x40)
+#define MOD_WIN (0x08 | 0x80)
 
-#define LED_NUM_LOCK    1
-#define LED_CAPS_LOCK   2
+#define LED_NUM_LOCK 1
+#define LED_CAPS_LOCK 2
 #define LED_SCROLL_LOCK 4
 
-#define stdin_recvchar  Serial1.write
+#define stdin_recvchar Serial1.write
 
 static uint8_t key_leds;
 static const char knum[] = "1234567890";
@@ -348,15 +371,14 @@ static const char ksign[] = "!@#$%^&*()";
 static const char tabA[] = "\t -=[]\\#;'`,./";
 static const char tabB[] = "\t _+{}|~:\"~<>?";
 // route the key event to stdin
-static int process_key(tusbh_ep_info_t* ep, const uint8_t* keys)
-{
+static int process_key(tusbh_ep_info_t* ep, const uint8_t* keys) {
   printf("\n");
   uint8_t modify = keys[0];
   uint8_t key = keys[2];
   uint8_t last_leds = key_leds;
   if (key >= KEY_A && key <= KEY_Z) {
     char ch = 'A' + key - KEY_A;
-    if ( (!!(modify & MOD_SHIFT)) == (!!(key_leds & LED_CAPS_LOCK)) ) {
+    if ((!!(modify & MOD_SHIFT)) == (!!(key_leds & LED_CAPS_LOCK))) {
       ch += 'a' - 'A';
     }
     stdin_recvchar(ch);
@@ -394,26 +416,25 @@ static int process_key(tusbh_ep_info_t* ep, const uint8_t* keys)
 
 extern "C" {
 
-#define LOG_SIZE   1024
+#define LOG_SIZE 1024
   static int hc_log_index;
   static channel_state_t hc_log_buf[LOG_SIZE];
   static USB_OTG_HostChannelTypeDef hc_info;
   static USB_OTG_HostChannelTypeDef* hc_reg;
   static tusb_hc_data_t* hc_data;
   static uint8_t hc_no;
-  void hc_log_begin(tusb_host_t* host, uint8_t hc_num)
-  {
-    USB_OTG_GlobalTypeDef *USBx = GetUSB(host);
+  void hc_log_begin(tusb_host_t* host, uint8_t hc_num) {
+    USB_OTG_GlobalTypeDef* USBx = GetUSB(host);
     USB_OTG_HostChannelTypeDef* HC = USBx_HC(hc_num);
     tusb_hc_data_t* hc = &host->hc[hc_num];
     hc_reg = HC;
     hc_data = hc;
     hc_no = hc_num;
-    hc_info.HCCHAR   = HC->HCCHAR;
-    hc_info.HCSPLT   = HC->HCSPLT;
+    hc_info.HCCHAR = HC->HCCHAR;
+    hc_info.HCSPLT = HC->HCSPLT;
     hc_info.HCINTMSK = HC->HCINTMSK;
-    hc_info.HCTSIZ   = HC->HCTSIZ;
-    hc_info.HCDMA    = HC->HCDMA;
+    hc_info.HCTSIZ = HC->HCTSIZ;
+    hc_info.HCDMA = HC->HCDMA;
     hc_log_index = 0;
     //printf("hc_no            %x\n", hc_num);
     //printf("hc_info.HCCHAR   %x\n", HC->HCCHAR);
@@ -423,17 +444,14 @@ extern "C" {
     //printf("hc_info.HCDMA    %x\n", HC->HCDMA);
   }
 
-  void hc_log_data(tusb_host_t* host, uint8_t hc_num, uint32_t data)
-  {
+  void hc_log_data(tusb_host_t* host, uint8_t hc_num, uint32_t data) {
     if (hc_log_index < LOG_SIZE) {
       hc_log_buf[hc_log_index] = (channel_state_t)data;
       hc_log_index++;
     }
   }
 
-  void hc_log_end(tusb_host_t* host, uint8_t hc_num)
-  {
+  void hc_log_end(tusb_host_t* host, uint8_t hc_num) {
   }
-
 }
 #endif

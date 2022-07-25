@@ -19,7 +19,8 @@ using namespace machinecontrol;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
   Wire.begin();
   if (!digital_inputs.init()) {
     Serial.println("GPIO expander initialization fail!!");
@@ -66,7 +67,6 @@ void loop() {
   readAll();
   Serial.println();
   delay(1000);
-
 }
 
 

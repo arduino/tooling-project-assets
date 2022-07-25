@@ -1,16 +1,16 @@
 /*
 
-  This sketch tests the MKR GSM 1400 board's ability to connect to a
-  GPRS network. It asks for APN information through the
-  Serial Monitor and tries to connect to example.org.
+ This sketch tests the MKR GSM 1400 board's ability to connect to a
+ GPRS network. It asks for APN information through the
+ Serial Monitor and tries to connect to example.org.
 
-  Circuit:
-   MKR GSM 1400 board
-   Antenna
-   SIM card with data plan
+ Circuit:
+ * MKR GSM 1400 board
+ * Antenna
+ * SIM card with data plan
 
-  Created 18 Jun 2012
-  by David del Peral
+ Created 18 Jun 2012
+ by David del Peral
 */
 
 // libraries
@@ -22,8 +22,8 @@
 const char PINNUMBER[] = SECRET_PINNUMBER;
 
 // initialize the library instance
-GSM gsmAccess;        // GSM access: include a 'true' parameter for debug enabled
-GPRS gprsAccess;  // GPRS access
+GSM gsmAccess;     // GSM access: include a 'true' parameter for debug enabled
+GPRS gprsAccess;   // GPRS access
 GSMClient client;  // Client service for TCP connection
 
 // messages for Serial Monitor response
@@ -45,7 +45,7 @@ void setup() {
   // initialize serial communications and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 }
 
@@ -57,7 +57,8 @@ void loop() {
   Serial.print("Connecting GSM network...");
   if (gsmAccess.begin(PINNUMBER) != GSM_READY) {
     Serial.println(errortext);
-    while (true);
+    while (true)
+      ;
   }
   Serial.println(oktext);
 
@@ -100,7 +101,7 @@ void loop() {
       Serial.print("Enter the proxy port: ");
       readSerial(proxyport);
       // cast proxy port introduced to integer
-      pport = (int) proxyport;
+      pport = (int)proxyport;
       use_proxy = true;
       Serial.println(proxyport);
     }
@@ -169,7 +170,7 @@ void loop() {
 
 /*
   Read input serial
-*/
+ */
 int readSerial(char result[]) {
   int i = 0;
   while (1) {

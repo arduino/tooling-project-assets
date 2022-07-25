@@ -1,5 +1,5 @@
 /*
-  CTC GO! CORE MODULE
+  CTC GO! CORE MODULE 
   PROJECT 2 - CRAZY DJ
 
   This sketch is written to accompany Stage 2 in CRAZY DJ  of the CTC GO! core module
@@ -14,15 +14,13 @@ int lightValue = 0;
 int LEDvalue = 0;
 int soundValue = 0;
 
-void setup()
-{
+void setup() {
   pinMode(ledPin, OUTPUT);
   pinMode(_____, _____);
   Serial.begin(9600);
 }
 
-void loop()
-{
+void loop() {
   lightValue = analogRead(lightSensor);
   LEDvalue = map(lightValue, 0, 1023, 0, 255);
   analogWrite(ledPin, LEDvalue);

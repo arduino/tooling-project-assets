@@ -19,13 +19,15 @@ MKRIoTCarrier carrier;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   carrier.noCase();
   if (!carrier.begin()) {
     Serial.println("Failed to initialize!");
 
-    while (1);
+    while (1)
+      ;
   }
 
   Serial.print("Gyroscope sample rate = ");

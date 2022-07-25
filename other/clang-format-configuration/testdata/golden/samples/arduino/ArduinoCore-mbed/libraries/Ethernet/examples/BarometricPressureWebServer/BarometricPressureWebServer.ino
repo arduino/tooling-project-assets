@@ -1,27 +1,27 @@
 /*
   SCP1000 Barometric Pressure Sensor Display
 
-  Serves the output of a Barometric Pressure Sensor as a web page.
-  Uses the SPI library. For details on the sensor, see:
-  http://www.sparkfun.com/commerce/product_info.php?products_id=8161
+ Serves the output of a Barometric Pressure Sensor as a web page.
+ Uses the SPI library. For details on the sensor, see:
+ http://www.sparkfun.com/commerce/product_info.php?products_id=8161
 
-  This sketch adapted from Nathan Seidle's SCP1000 example for PIC:
-  http://www.sparkfun.com/datasheets/Sensors/SCP1000-Testing.zip
+ This sketch adapted from Nathan Seidle's SCP1000 example for PIC:
+ http://www.sparkfun.com/datasheets/Sensors/SCP1000-Testing.zip
 
-  TODO: this hardware is long obsolete.  This example program should
-  be rewritten to use https://www.sparkfun.com/products/9721
+ TODO: this hardware is long obsolete.  This example program should
+ be rewritten to use https://www.sparkfun.com/products/9721
 
-  Circuit:
-  SCP1000 sensor attached to pins 6,7, and 11 - 13:
-  DRDY: pin 6
-  CSB: pin 7
-  MOSI: pin 11
-  MISO: pin 12
-  SCK: pin 13
+ Circuit:
+ SCP1000 sensor attached to pins 6,7, and 11 - 13:
+ DRDY: pin 6
+ CSB: pin 7
+ MOSI: pin 11
+ MISO: pin 12
+ SCK: pin 13
 
-  created 31 July 2010
-  by Tom Igoe
-*/
+ created 31 July 2010
+ by Tom Igoe
+ */
 
 #include <PortentaEthernet.h>
 #include <Ethernet.h>
@@ -64,14 +64,14 @@ void setup() {
   // Open serial communications and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   // Check for Ethernet hardware present
   if (Ethernet.hardwareStatus() == EthernetNoHardware) {
     Serial.println("Ethernet shield was not found.  Sorry, can't run without hardware. :(");
     while (true) {
-      delay(1); // do nothing, no point running without Ethernet hardware
+      delay(1);  // do nothing, no point running without Ethernet hardware
     }
   }
   if (Ethernet.linkStatus() == LinkOFF) {
@@ -95,7 +95,6 @@ void setup() {
 
   //Set the sensor to high resolution mode tp start readings:
   writeRegister(0x03, 0x0A);
-
 }
 
 void loop() {
@@ -124,8 +123,8 @@ void getData() {
   temperature = (float)tempData / 20.0;
 
   //Read the pressure data highest 3 bits:
-  byte  pressureDataHigh = readRegister(0x1F, 1);
-  pressureDataHigh &= 0b00000111; //you only needs bits 2 to 0
+  byte pressureDataHigh = readRegister(0x1F, 1);
+  pressureDataHigh &= 0b00000111;  //you only needs bits 2 to 0
 
   //Read the pressure data lower 16 bits:
   unsigned int pressureDataLow = readRegister(0x20, 2);
@@ -190,13 +189,13 @@ void writeRegister(byte registerName, byte registerValue) {
   // of the byte:
   registerName <<= 2;
   // command (read or write) goes in the lower two bits:
-  registerName |= 0b00000010; //Write command
+  registerName |= 0b00000010;  //Write command
 
   // take the chip select low to select the device:
   digitalWrite(chipSelectPin, LOW);
 
-  SPI.transfer(registerName); //Send register location
-  SPI.transfer(registerValue); //Send value to record into register
+  SPI.transfer(registerName);   //Send register location
+  SPI.transfer(registerValue);  //Send value to record into register
 
   // take the chip select high to de-select:
   digitalWrite(chipSelectPin, HIGH);
@@ -205,14 +204,14 @@ void writeRegister(byte registerName, byte registerValue) {
 
 //Read register from the SCP1000:
 unsigned int readRegister(byte registerName, int numBytes) {
-  byte inByte = 0;           // incoming from  the SPI read
-  unsigned int result = 0;   // result to return
+  byte inByte = 0;          // incoming from  the SPI read
+  unsigned int result = 0;  // result to return
 
   // SCP1000 expects the register name in the upper 6 bits
   // of the byte:
-  registerName <<=  2;
+  registerName <<= 2;
   // command (read or write) goes in the lower two bits:
-  registerName &= 0b11111100; //Read command
+  registerName &= 0b11111100;  //Read command
 
   // take the chip select low to select the device:
   digitalWrite(chipSelectPin, LOW);

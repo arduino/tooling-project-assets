@@ -4,7 +4,8 @@ using namespace machinecontrol;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 }
 
 void loop() {

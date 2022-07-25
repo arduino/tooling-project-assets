@@ -48,9 +48,9 @@ byte tensorArena[tensorArenaSize];
 
 // array to map gesture index to a name
 const char* CLASSES[] = {
-  "Apple", // u8"\U0001F34E", // Apple
-  "Banana", // u8"\U0001F34C", // Banana
-  "Orange" // u8"\U0001F34A"  // Orange
+  "Apple",   // u8"\U0001F34E", // Apple
+  "Banana",  // u8"\U0001F34C", // Banana
+  "Orange"   // u8"\U0001F34A"  // Orange
 };
 
 #define NUM_CLASSES (sizeof(CLASSES) / sizeof(CLASSES[0]))
@@ -72,7 +72,8 @@ void setup() {
   tflModel = tflite::GetModel(model);
   if (tflModel->version() != TFLITE_SCHEMA_VERSION) {
     Serial.println("Model schema mismatch!");
-    while (1);
+    while (1)
+      ;
   }
 
   // Create an interpreter to run the model
@@ -114,7 +115,8 @@ void loop() {
     TfLiteStatus invokeStatus = tflInterpreter->Invoke();
     if (invokeStatus != kTfLiteOk) {
       Serial.println("Invoke failed!");
-      while (1);
+      while (1)
+        ;
       return;
     }
 
@@ -130,5 +132,4 @@ void loop() {
     // Wait for the object to be moved away
     while (!APDS.proximityAvailable() || (APDS.readProximity() == 0)) {}
   }
-
 }

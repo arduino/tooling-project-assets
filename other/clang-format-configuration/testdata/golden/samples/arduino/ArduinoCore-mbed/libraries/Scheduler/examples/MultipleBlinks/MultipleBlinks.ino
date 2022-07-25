@@ -1,25 +1,25 @@
 /*
-  Multiple Blinks
+ Multiple Blinks
 
-  Demonstrates the use of the Scheduler library for the boards:
+ Demonstrates the use of the Scheduler library for the boards:
+ 
+ - Arduino Nano 33 BLE, or
+ - Arduino Portenta H7, or
+ - Arduino Nano RP2040 Connect
 
-  - Arduino Nano 33 BLE, or
-  - Arduino Portenta H7, or
-  - Arduino Nano RP2040 Connect
+ Hardware required :
+ * None (LEDs are already conencted to RGB LED)
 
-  Hardware required :
-   None (LEDs are already conencted to RGB LED)
+ ATTENTION: LEDs polarity is reversed (so loop3 will turn the LED off by writing 1)
 
-  ATTENTION: LEDs polarity is reversed (so loop3 will turn the LED off by writing 1)
+ created 8 Oct 2012
+ by Cristian Maglie
+ Modified by
+ Scott Fitzgerald 19 Oct 2012
 
-  created 8 Oct 2012
-  by Cristian Maglie
-  Modified by
-  Scott Fitzgerald 19 Oct 2012
+ This example code is in the public domain
 
-  This example code is in the public domain
-
-  http://www.arduino.cc/en/Tutorial/MultipleBlinks
+ http://www.arduino.cc/en/Tutorial/MultipleBlinks
 */
 
 // Include Scheduler since we want to manage multiple tasks.
@@ -30,18 +30,18 @@
 #if defined(ARDUINO_NANO_RP2040_CONNECT)
 
 #include "WiFiNINA.h"
-#define led1  LEDR
-#define led2  LEDG
-#define led3  LEDB
+#define led1 LEDR
+#define led2 LEDG
+#define led3 LEDB
 
 // On Nicla Sense ME, RGB leds are connected via an I2C module
 // The user APIs are the same, but we can't convert to int, so use defines
 #elif defined(ARDUINO_NICLA)
 
 #include "Nicla_System.h"
-#define led1  LEDR
-#define led2  LEDG
-#define led3  LEDB
+#define led1 LEDR
+#define led2 LEDG
+#define led3 LEDB
 
 #else
 

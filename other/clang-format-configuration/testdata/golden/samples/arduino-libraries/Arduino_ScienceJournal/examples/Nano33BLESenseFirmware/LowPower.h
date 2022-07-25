@@ -5,4 +5,4 @@ void lowPower();
 void lowPowerWait(unsigned long time);
 void lowPowerBleWait(unsigned long time);
 
-#endif //_LOWPOWER_H_
+#endif  //_LOWPOWER_H_

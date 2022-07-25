@@ -1,6 +1,6 @@
 
 /*
-  CTC GO! CORE MODULE
+  CTC GO! CORE MODULE 
   LESSON 08 - Analog Outputs
 
   This sketch is written to accompany Activity 1 in Lesson 08 of the CTC GO! core module
@@ -15,16 +15,14 @@ int val = 0;
 // to change the LED bright
 int PWM = 0;
 
-void setup()
-{
+void setup() {
   pinMode(LED, OUTPUT);
 }
 
-void loop()
-{
+void loop() {
   val = analogRead(pot);
 
   //re-ranging val values
-  PWM = map (val, 0, 1023, 0, 255);
+  PWM = map(val, 0, 1023, 0, 255);
   analogWrite(LED, PWM);
 }

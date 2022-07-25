@@ -17,7 +17,8 @@
 void setup() {
 
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   Serial.println("Welcome to the Arduino SAMD bootloader updater");
   Serial.println("----------------------------------------------");
@@ -30,7 +31,8 @@ retry:
     Serial.println();
     Serial.println("Update is not required :)");
 
-    while (1);
+    while (1)
+      ;
   }
 
   Serial.println("bootloader is NOT running the latest");
@@ -46,7 +48,8 @@ retry:
   char in = Serial.read();
   if (in != 'y' && in != 'Y') {
     Serial.println("That's all folks!");
-    while (1);
+    while (1)
+      ;
   }
 
   pinMode(LED_BUILTIN, OUTPUT);
@@ -68,8 +71,7 @@ retry:
   Serial.println("Your board will now start blinking in joy :)");
 }
 
-void onUpdateProgress(float percentage)
-{
+void onUpdateProgress(float percentage) {
   // toggle the LED
   digitalWrite(LED_BUILTIN, digitalRead(LED_BUILTIN) ? LOW : HIGH);
 
@@ -85,4 +87,3 @@ void loop() {
   digitalWrite(LED_BUILTIN, LOW);
   delay(100);
 }
-

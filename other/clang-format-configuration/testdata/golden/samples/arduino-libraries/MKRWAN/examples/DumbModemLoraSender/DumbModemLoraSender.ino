@@ -1,17 +1,17 @@
 /* This example shows how to use the SX1272 chip
-   (part of Murata module) without any external stack.
-   To achieve this, we must setup the modem in dumb mode
-   and use LORA_IRQ_DUMB pin as chip select and SPI1 as communication port.
-
-   The example is based on LoraSender by @sandeepmistry arduino-LoRa library
-   https://github.com/sandeepmistry/arduino-LoRa
-
-   Starting from https://github.com/sandeepmistry/arduino-LoRa/commit/5f62ed2ce9d1623bfc12f468b8152ba1878b5b16,
-   LoRa library knows about MKR WAN 1300/1310 and automatically restarts the module in dumb mode, uses SPI1 and the correct GPIOs.
-
-   Since there is no IRQ pin available, the host must poll for data (unfortunately)
-
-*/
+ * (part of Murata module) without any external stack.
+ * To achieve this, we must setup the modem in dumb mode
+ * and use LORA_IRQ_DUMB pin as chip select and SPI1 as communication port.
+ * 
+ * The example is based on LoraSender by @sandeepmistry arduino-LoRa library
+ * https://github.com/sandeepmistry/arduino-LoRa
+ *
+ * Starting from https://github.com/sandeepmistry/arduino-LoRa/commit/5f62ed2ce9d1623bfc12f468b8152ba1878b5b16,
+ * LoRa library knows about MKR WAN 1300/1310 and automatically restarts the module in dumb mode, uses SPI1 and the correct GPIOs.
+ * 
+ * Since there is no IRQ pin available, the host must poll for data (unfortunately)
+ * 
+ */
 
 #include <SPI.h>
 #include <LoRa.h>
@@ -23,7 +23,8 @@ int counter = 0;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   // No need to call modem.dumb() with arduino-LoRa >= 0.5.0
   //modem.dumb();
@@ -34,7 +35,8 @@ void setup() {
   // Replace 915E6 with the frequency you need (eg. 433E6 for 433 MHz)
   if (!LoRa.begin(915E6)) {
     Serial.println("Starting LoRa failed!");
-    while (1);
+    while (1)
+      ;
   }
 }
 

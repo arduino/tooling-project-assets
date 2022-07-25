@@ -1,28 +1,28 @@
 /*
 
-  TFT Pong
+ TFT Pong
 
-  This example for the Arduino screen reads the values
-  of 2 potentiometers to move a rectangular platform
-  on the x and y axes. The platform can intersect
-  with a ball causing it to bounce.
+ This example for the Arduino screen reads the values
+ of 2 potentiometers to move a rectangular platform
+ on the x and y axes. The platform can intersect
+ with a ball causing it to bounce.
 
-  This example code is in the public domain.
+ This example code is in the public domain.
 
-  Created by Tom Igoe December 2012
-  Modified 15 April 2013 by Scott Fitzgerald
+ Created by Tom Igoe December 2012
+ Modified 15 April 2013 by Scott Fitzgerald
 
-  https://www.arduino.cc/en/Tutorial/LibraryExamples/TFTPong
+ https://www.arduino.cc/en/Tutorial/LibraryExamples/TFTPong
 
-*/
+ */
 
 #include <TFT.h>  // Arduino LCD library
 #include <SPI.h>
 
 // pin definitions for the Uno
-#define cs   10
-#define dc   9
-#define rst  8
+#define cs 10
+#define dc 9
+#define rst 8
 
 // pin definitions for the Leonardo
 // #define cs   7
@@ -38,7 +38,7 @@ int oldPaddleX, oldPaddleY;
 int ballDirectionX = 1;
 int ballDirectionY = 1;
 
-int ballSpeed = 10; // lower numbers are faster
+int ballSpeed = 10;  // lower numbers are faster
 
 int ballX, ballY, oldBallX, oldBallY;
 
@@ -116,7 +116,6 @@ void moveBall() {
 
   oldBallX = ballX;
   oldBallY = ballY;
-
 }
 
 // this function checks the position of the ball
@@ -124,8 +123,7 @@ void moveBall() {
 bool inPaddle(int x, int y, int rectX, int rectY, int rectWidth, int rectHeight) {
   bool result = false;
 
-  if ((x >= rectX && x <= (rectX + rectWidth)) &&
-      (y >= rectY && y <= (rectY + rectHeight))) {
+  if ((x >= rectX && x <= (rectX + rectWidth)) && (y >= rectY && y <= (rectY + rectHeight))) {
     result = true;
   }
 

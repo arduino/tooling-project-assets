@@ -41,8 +41,8 @@
 #include "arduino_secrets.h"
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h
 /////// Wifi Settings ///////
-char ssid[] = SECRET_SSID;      // your network SSID (name)
-char pass[] = SECRET_PASS;   // your network password
+char ssid[] = SECRET_SSID;  // your network SSID (name)
+char pass[] = SECRET_PASS;  // your network password
 char url[] = SECRET_OTA_URL;
 
 int status = WL_IDLE_STATUS;
@@ -57,11 +57,12 @@ void setup() {
   if (WiFi.status() == WL_NO_SHIELD) {
     Serial.println("WiFi shield not present");
     // don't continue:
-    while (true);
+    while (true)
+      ;
   }
 
   // attempt to connect to Wifi network:
-  while ( status != WL_CONNECTED) {
+  while (status != WL_CONNECTED) {
     Serial.print("Attempting to connect to SSID: ");
     Serial.println(ssid);
     // Connect to WPA/WPA2 network. Change this line if using open or WEP network:

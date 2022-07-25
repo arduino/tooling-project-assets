@@ -16,42 +16,43 @@
   This example code is in the public domain.
 */
 
-#include <ArduinoECCX08.h>     // ArduinoBearSSL depends on ArduinoECCX08
-#include <ArduinoBearSSL.h>    // Arduino_OAuth depends on ArduinoBearSSL
-#include <ArduinoHttpClient.h> // Arduino_OAuth depends on ArduinoHttpClient
+#include <ArduinoECCX08.h>      // ArduinoBearSSL depends on ArduinoECCX08
+#include <ArduinoBearSSL.h>     // Arduino_OAuth depends on ArduinoBearSSL
+#include <ArduinoHttpClient.h>  // Arduino_OAuth depends on ArduinoHttpClient
 #include <Arduino_OAuth.h>
 #include <Arduino_JSON.h>
 #include <WiFiNINA.h>
 
 #include "arduino_secrets.h"
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h
-const char ssid[] = SECRET_SSID;    // your network SSID (name)
-const char pass[] = SECRET_PASS;    // your network password (use for WPA, or use as key for WEP)
+const char ssid[] = SECRET_SSID;  // your network SSID (name)
+const char pass[] = SECRET_PASS;  // your network password (use for WPA, or use as key for WEP)
 
-const char consumerKey[]       = SECRET_CONSUMER_KEY;
+const char consumerKey[] = SECRET_CONSUMER_KEY;
 const char consumerKeySecret[] = SECRET_CONSUMER_KEY_SECRET;
-const char accessToken[]       = SECRET_ACCESS_TOKEN;
+const char accessToken[] = SECRET_ACCESS_TOKEN;
 const char accessTokenSecret[] = SECRET_ACCESS_TOKEN_SECRET;
 
-int status = WL_IDLE_STATUS;     // the WiFi radio's status
+int status = WL_IDLE_STATUS;  // the WiFi radio's status
 
 WiFiSSLClient wifiSSLClient;
 OAuthClient oauthClient(wifiSSLClient, "api.twitter.com", 443);
 
-String twitterHandle = "arduino"; // Twitter handle to retrieve Tweets from
+String twitterHandle = "arduino";  // Twitter handle to retrieve Tweets from
 
 void setup() {
   //Initialize serial and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   // check for the WiFi module:
   if (WiFi.status() == WL_NO_MODULE) {
     Serial.println("Communication with WiFi module failed!");
     // don't continue
-    while (true);
+    while (true)
+      ;
   }
 
   // attempt to connect to WiFi network:

@@ -1,10 +1,10 @@
 /*
-   EEPROM Read
-
-   Reads the value of each byte of the EEPROM and prints it
-   to the computer.
-   This example code is in the public domain.
-*/
+ * EEPROM Read
+ *
+ * Reads the value of each byte of the EEPROM and prints it
+ * to the computer.
+ * This example code is in the public domain.
+ */
 
 #include <EEPROM.h>
 
@@ -16,7 +16,7 @@ void setup() {
   // initialize serial and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 }
 

@@ -30,13 +30,15 @@ float humidity;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   Serial.println("Modbus Temperature Humidity Sensor");
   // start the Modbus RTU client
   if (!ModbusRTUClient.begin(9600)) {
     Serial.println("Failed to start Modbus RTU Client!");
-    while (1);
+    while (1)
+      ;
   }
 }
 

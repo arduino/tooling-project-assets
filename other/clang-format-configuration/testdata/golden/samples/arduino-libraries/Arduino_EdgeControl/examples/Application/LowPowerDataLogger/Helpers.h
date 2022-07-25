@@ -7,8 +7,7 @@
 
 rtos::Mutex pwrMutex;
 
-void powerOn()
-{
+void powerOn() {
   DebugSerial.print("Powering On");
   auto locked = pwrMutex.trylock();
   if (!locked) {
@@ -25,8 +24,7 @@ void powerOn()
   Input.begin();
 }
 
-void powerOff()
-{
+void powerOff() {
   DebugSerial.print("Powering Off");
   auto owner = rtos::ThisThread::get_id() == pwrMutex.get_owner();
   if (!owner) {
@@ -43,9 +41,8 @@ void powerOff()
   pwrMutex.unlock();
 }
 
-int getAverageInputRead(int pin, const size_t loops)
-{
-  unsigned int tot { 0 };
+int getAverageInputRead(int pin, const size_t loops) {
+  unsigned int tot{ 0 };
 
   analogReadResolution(ADC_RESOLUTION);
 
@@ -58,8 +55,7 @@ int getAverageInputRead(int pin, const size_t loops)
 }
 
 // Convert compile time to system time
-time_t buildDateTimeToSystemTime(const String date, const String time, bool local_time = true, int tz = 0)
-{
+time_t buildDateTimeToSystemTime(const String date, const String time, bool local_time = true, int tz = 0) {
   char s_month[5];
   int year;
 
@@ -77,7 +73,7 @@ time_t buildDateTimeToSystemTime(const String date, const String time, bool loca
 
   if (!local_time) {
     if (tz > 200) {
-      tz = 0x100 - tz; // Handle negative values
+      tz = 0x100 - tz;  // Handle negative values
       seconds += (3600UL) * tz;
     } else {
       seconds -= (3600UL) * tz;
@@ -87,8 +83,7 @@ time_t buildDateTimeToSystemTime(const String date, const String time, bool loca
   return seconds;
 }
 
-String getLocaltime()
-{
+String getLocaltime() {
   char buffer[32];
   tm t;
   _rtc_localtime(time(NULL), &t, RTC_FULL_LEAP_YEAR_SUPPORT);
@@ -96,8 +91,7 @@ String getLocaltime()
   return String(buffer);
 }
 
-String getLocaltime(const time_t& build_time)
-{
+String getLocaltime(const time_t& build_time) {
   char buffer[32];
   tm t;
   _rtc_localtime(build_time, &t, RTC_FULL_LEAP_YEAR_SUPPORT);
@@ -106,10 +100,9 @@ String getLocaltime(const time_t& build_time)
 }
 
 /**
-   Set system clock from compile datetime or RTC
-*/
-void setSystemClock(String buildDate, String buildTime)
-{
+ * Set system clock from compile datetime or RTC
+ */
+void setSystemClock(String buildDate, String buildTime) {
   // Retrieve clock time from compile date...
   auto buildDateTime = buildDateTimeToSystemTime(buildDate, buildTime, true, 2);
   // ... ore use the one from integrated RTC.

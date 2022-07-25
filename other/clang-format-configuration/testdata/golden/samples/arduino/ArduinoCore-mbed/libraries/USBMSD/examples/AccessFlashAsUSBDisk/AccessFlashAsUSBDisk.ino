@@ -17,11 +17,11 @@ mbed::MBRBlockDevice ota_data(&root, 2);
 static mbed::FATFileSystem wifi("wifi");
 static mbed::FATFileSystem ota("ota");
 
-void USBMSD::begin()
-{
+void USBMSD::begin() {
   int err = wifi.mount(&wifi_data);
   if (err) {
-    while (!Serial);
+    while (!Serial)
+      ;
     Serial.println("Please run WiFiFirmwareUpdater before");
     return;
   }
@@ -36,7 +36,7 @@ void setup() {
   MassStorage.begin();
 }
 
-void printDirectory(char* name) {
+void printDirectory(char *name) {
   DIR *d;
   struct dirent *p;
 

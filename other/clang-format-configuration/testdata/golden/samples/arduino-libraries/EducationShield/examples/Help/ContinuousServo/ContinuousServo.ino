@@ -1,14 +1,14 @@
 /*	ContinuousServo
-
-	Continuous servo looks the same as a standard servo, but it's
-	capable of rotating continuously like a normal motor. You can not
-	control which angle it's pointing to, but you can specify how
-	fast it spins, and which direction it spins.
-
-        To control two servos as wheels on a vehicle please see the
-        example Wheels in the Help folder.
-
-        (c) 2013-2016 Arduino LLC.
+*
+*	Continuous servo looks the same as a standard servo, but it's
+*	capable of rotating continuously like a normal motor. You can not
+*	control which angle it's pointing to, but you can specify how
+*	fast it spins, and which direction it spins.
+*
+*       To control two servos as wheels on a vehicle please see the 
+*       example Wheels in the Help folder.
+*
+*       (c) 2013-2016 Arduino LLC.
 */
 
 #include <EducationShield.h>
@@ -32,5 +32,4 @@ void loop() {
   //
   //Make the servo rotate in speed 120.
   me.write(120);
-
 }

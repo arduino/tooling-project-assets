@@ -20,7 +20,8 @@ String appSKey;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
-  while (!Serial);
+  while (!Serial)
+    ;
   Serial.println("Welcome to MKR WAN 1300/1310 first configuration sketch");
   Serial.println("Register to your favourite LoRa network and we are ready to go!");
   // change this to your regional band (eg. US915, AS923, ...)
@@ -36,18 +37,21 @@ void setup() {
   int mode = 0;
   while (mode != 1 && mode != 2) {
     Serial.println("Are you connecting via OTAA (1) or ABP (2)?");
-    while (!Serial.available());
+    while (!Serial.available())
+      ;
     mode = Serial.readStringUntil('\n').toInt();
   }
 
   int connected;
   if (mode == 1) {
     Serial.println("Enter your APP EUI");
-    while (!Serial.available());
+    while (!Serial.available())
+      ;
     appEui = Serial.readStringUntil('\n');
 
     Serial.println("Enter your APP KEY");
-    while (!Serial.available());
+    while (!Serial.available())
+      ;
     appKey = Serial.readStringUntil('\n');
 
     appKey.trim();
@@ -57,15 +61,18 @@ void setup() {
   } else if (mode == 2) {
 
     Serial.println("Enter your Device Address");
-    while (!Serial.available());
+    while (!Serial.available())
+      ;
     devAddr = Serial.readStringUntil('\n');
 
     Serial.println("Enter your NWS KEY");
-    while (!Serial.available());
+    while (!Serial.available())
+      ;
     nwkSKey = Serial.readStringUntil('\n');
 
     Serial.println("Enter your APP SKEY");
-    while (!Serial.available());
+    while (!Serial.available())
+      ;
     appSKey = Serial.readStringUntil('\n');
 
     devAddr.trim();

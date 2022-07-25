@@ -1,50 +1,51 @@
 /*
-  Chat Server
+ Chat Server
 
-  A simple server that distributes any incoming messages to all
-  connected clients. To use, telnet to your device's IP address and type.
-  You can see the client's input in the Serial Monitor as well.
+ A simple server that distributes any incoming messages to all
+ connected clients. To use, telnet to your device's IP address and type.
+ You can see the client's input in the Serial Monitor as well.
 
-  This example is written for a network using WPA encryption. For
-  WEP or WPA, change the WiFi.begin() call accordingly.
+ This example is written for a network using WPA encryption. For
+ WEP or WPA, change the WiFi.begin() call accordingly.
 
 
-  Circuit:
-   WiFi shield attached
+ Circuit:
+ * WiFi shield attached
 
-  created 18 Dec 2009
-  by David A. Mellis
-  modified 31 May 2012
-  by Tom Igoe
+ created 18 Dec 2009
+ by David A. Mellis
+ modified 31 May 2012
+ by Tom Igoe
 
-*/
+ */
 
 #include <SPI.h>
 #include <WiFi.h>
 
-char ssid[] = "yourNetwork"; //  your network SSID (name)
-char pass[] = "secretPassword";    // your network password (use for WPA, or use as key for WEP)
+char ssid[] = "yourNetwork";     //  your network SSID (name)
+char pass[] = "secretPassword";  // your network password (use for WPA, or use as key for WEP)
 
-int keyIndex = 0;            // your network key Index number (needed only for WEP)
+int keyIndex = 0;  // your network key Index number (needed only for WEP)
 
 int status = WL_IDLE_STATUS;
 
 WiFiServer server(23);
 
-bool alreadyConnected = false; // whether or not the client was connected previously
+bool alreadyConnected = false;  // whether or not the client was connected previously
 
 void setup() {
   //Initialize serial and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   // check for the presence of the shield:
   if (WiFi.status() == WL_NO_SHIELD) {
     Serial.println("WiFi shield not present");
     // don't continue:
-    while (true);
+    while (true)
+      ;
   }
 
   String fv = WiFi.firmwareVersion();

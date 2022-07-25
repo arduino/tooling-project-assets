@@ -31,10 +31,10 @@ ADK adk(&usb, "Arduino SA",
         "http://labs.arduino.cc/uploads/ADK/ArduinoTerminal/ThibaultTerminal_ICS_0001.apk",
         "1");
 
-void setup(void)
-{
-  SERIAL_PORT_MONITOR.begin( 115200 );
-  while (!SERIAL_PORT_MONITOR); // Wait for serial port to connect - used on Leonardo, Teensy and other boards with built-in USB CDC serial connection
+void setup(void) {
+  SERIAL_PORT_MONITOR.begin(115200);
+  while (!SERIAL_PORT_MONITOR)
+    ;  // Wait for serial port to connect - used on Leonardo, Teensy and other boards with built-in USB CDC serial connection
   SERIAL_PORT_MONITOR.println("\r\nADK demo start");
 
   if (usb.Init() == -1)
@@ -45,15 +45,14 @@ void setup(void)
 
 #define RCVSIZE 128
 
-void loop(void)
-{
+void loop(void) {
   uint8_t buf[RCVSIZE];
   uint32_t nbread = 0;
   char helloworld[] = "Hello World!\r\n";
 
   usb.Task();
 
-  if ( adk.isReady() == false ) {
+  if (adk.isReady() == false) {
     return;
   }
   /* Write hello string to ADK */
@@ -63,11 +62,9 @@ void loop(void)
 
   /* Read data from ADK and print to UART */
   adk.RcvData((uint8_t *)&nbread, buf);
-  if (nbread > 0)
-  {
+  if (nbread > 0) {
     SERIAL_PORT_MONITOR.print("RCV: ");
-    for (uint32_t i = 0; i < nbread; ++i)
-    {
+    for (uint32_t i = 0; i < nbread; ++i) {
       SERIAL_PORT_MONITOR.print((char)buf[i]);
     }
     SERIAL_PORT_MONITOR.print("\r\n");

@@ -1,7 +1,6 @@
 #include "CustomTasks.h"
 
-void openLatchingValve()
-{
+void openLatchingValve() {
   Serial.println("Alarm: Opening Latching Valve");
 
   Serial.print("[");
@@ -15,8 +14,7 @@ void openLatchingValve()
   Serial.println("Valve Open");
 }
 
-void closeLatchingValve()
-{
+void closeLatchingValve() {
   Serial.println("Alarm: Closing Latching Valve");
 
   Serial.print("[");
@@ -30,8 +28,7 @@ void closeLatchingValve()
   Serial.println("Valve Closed");
 }
 
-void openSolenoidValve()
-{
+void openSolenoidValve() {
   Serial.println("Alarm: Opening Solenoid Valve");
 
   Serial.print("[");
@@ -44,8 +41,7 @@ void openSolenoidValve()
   Serial.println("Valve Open");
 }
 
-void closeSolenoidValve()
-{
+void closeSolenoidValve() {
   Serial.println("Alarm: Closing Solenoid Valve");
 
   Serial.print("[");
@@ -58,16 +54,14 @@ void closeSolenoidValve()
   Serial.println("Valve Closed");
 }
 
-void displayClock()
-{
+void displayClock() {
   String date = getLocaltime("%Y-%m-%d", true, 0);
   String time = getLocaltime("%k:%M:%S", true, 0);
   Serial.println(date);
   Serial.println(time);
 }
 
-void blinkLed()
-{
+void blinkLed() {
   Expander.pinMode(EXP_LED1, OUTPUT);
   Expander.digitalWrite(EXP_LED1, LOW);
   delay(10);
@@ -77,8 +71,7 @@ void blinkLed()
   Expander.digitalWrite(EXP_LED1, HIGH);
 }
 
-void getSensors()
-{
+void getSensors() {
   extern std::list<DataPoint> dataPoints;
 
   Serial.print("Moisture: ");
@@ -86,14 +79,13 @@ void getSensors()
   auto value = getAverageInputRead(INPUT_05V_CH01);
   auto perc = getMoisturePerc(INPUT_05V_CH01);
 
-  DataPoint d{value, perc};
+  DataPoint d{ value, perc };
 
   Serial.println(d);
   dataPoints.push_back(d);
 }
 
-void saveData()
-{
+void saveData() {
   Serial.println("Saving Data...");
 
   auto ret = saveSensorsData();
@@ -105,12 +97,10 @@ void saveData()
   Serial.println(ret);
 }
 
-void helloWorld()
-{
+void helloWorld() {
   Serial.println("Hello, World!");
 }
 
-void hiThere()
-{
+void hiThere() {
   Serial.println("Hi, There!");
 }

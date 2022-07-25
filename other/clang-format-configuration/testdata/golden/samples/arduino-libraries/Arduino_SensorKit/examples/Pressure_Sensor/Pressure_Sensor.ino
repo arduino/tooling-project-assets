@@ -9,7 +9,7 @@ void loop() {
   // Get and print temperatures
   Serial.print("Temp: ");
   Serial.print(Pressure.readTemperature());
-  Serial.println("C"); // The unit for Celsius because original Arduino don't support special symbols
+  Serial.println("C");  // The unit for Celsius because original Arduino don't support special symbols
 
   // Get and print atmospheric pressure data
   Serial.print("Pressure: ");
@@ -21,7 +21,7 @@ void loop() {
   Serial.print(Pressure.readAltitude());
   Serial.println("m");
 
-  Serial.println("\n");//add a line between output of different times.
+  Serial.println("\n");  //add a line between output of different times.
 
   delay(1000);
 }

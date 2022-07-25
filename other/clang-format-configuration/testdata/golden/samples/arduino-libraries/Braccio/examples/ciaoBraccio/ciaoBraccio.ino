@@ -1,27 +1,27 @@
 /*
 
-  This sketch uses the REST connector to receive command for the MCU from a REST client.
-  Each command received will fire an action for the Braccio.
-  Run the sketch with Arduino Braccio - Web Examples to move your Braccio via web page.
-  Visit the Demo section of the Braccio's page.
-  https://www.arduino.cc/en/Guide/Braccio
+ This sketch uses the REST connector to receive command for the MCU from a REST client.
+ Each command received will fire an action for the Braccio.
+ Run the sketch with Arduino Braccio - Web Examples to move your Braccio via web page.
+ Visit the Demo section of the Braccio's page.
+ https://www.arduino.cc/en/Guide/Braccio
+ 
 
 
+REST command example:
 
-  REST command example:
+ * "ledon"             -> turn on led 13
+ * "ledoff"            -> turn off led 13
 
-   "ledon"             -> turn on led 13
-   "ledoff"            -> turn off led 13
+ example: http://arduino.local/arduino/ledon
 
-  example: http://arduino.local/arduino/ledon
-
-  NOTE: be sure to activate and configure REST connector on Linino OS
+ NOTE: be sure to activate and configure REST connector on Linino OS
        https://www.arduino.cc/en/Reference/Ciao
 
-  created March 2016
-  by andrea[at]arduino[dot]org and a.ferrante[at]arduino[dot]org
+ created March 2016
+ by andrea[at]arduino[dot]org and a.ferrante[at]arduino[dot]org
 
-*/
+ */
 
 #include <Ciao.h>
 #include <Servo.h>
@@ -53,11 +53,11 @@ void setup() {
 }
 
 /**
-  Parse Command from REST
-  It parses a command like: /arduino/base/value:45
-  Giving "base" it return the value
-  @param command: The message to parse
-  @param type: the key for parsing
+Parse Command from REST
+It parses a command like: /arduino/base/value:45
+Giving "base" it return the value
+@param command: The message to parse
+@param type: the key for parsing
 */
 int parseCommand(String command, String type) {
   int typeIndex = command.indexOf(type);
@@ -86,15 +86,14 @@ void loop() {
     message.toUpperCase();
 
     /*
-      For each message do the proper command
+    For each message do the proper command
     */
     if (message == "LEDON") {
       //Turn OFF Led 13
       digitalWrite(13, HIGH);
       //Return message to the sender (Eg: the browser)
       Ciao.writeResponse("restserver", id, "Led D13 ON");
-    }
-    else if (message == "LEDOFF") {
+    } else if (message == "LEDOFF") {
       digitalWrite(13, LOW);
       Ciao.writeResponse("restserver", id, "Led D13 OFF");
     }
@@ -177,61 +176,61 @@ void loop() {
 }
 
 /**
-  The Braccio says 'Ciao' with the Tongue
+The Braccio says 'Ciao' with the Tongue
 */
 void sayCiao() {
 
-  Braccio.ServoMovement(20,           90,  0, 180, 160,  0,  15);
+  Braccio.ServoMovement(20, 90, 0, 180, 160, 0, 15);
 
   for (int i = 0; i < 5; i++) {
-    Braccio.ServoMovement(10,           90,  0, 180, 160,  0,  15);
+    Braccio.ServoMovement(10, 90, 0, 180, 160, 0, 15);
     delay(500);
 
-    Braccio.ServoMovement(10,     90,  0,   180,   160,  0,   73);
+    Braccio.ServoMovement(10, 90, 0, 180, 160, 0, 73);
     delay(500);
   }
 }
 
 /**
-  Braccio takes the Sponge
+Braccio takes the Sponge
 */
 void takesponge() {
   //starting position
   //(step delay  M1 , M2 , M3 , M4 , M5 , M6);
-  Braccio.ServoMovement(20,           0,  45, 180, 180,  90,  0);
+  Braccio.ServoMovement(20, 0, 45, 180, 180, 90, 0);
 
   //I move arm towards the sponge
-  Braccio.ServoMovement(20,           0,  90, 180, 180,  90,   0);
+  Braccio.ServoMovement(20, 0, 90, 180, 180, 90, 0);
 
   //the gripper takes the sponge
-  Braccio.ServoMovement(20,           0,  90, 180, 180,  90,  60 );
+  Braccio.ServoMovement(20, 0, 90, 180, 180, 90, 60);
 
   //raise the sponge
-  Braccio.ServoMovement(20,         0,   45, 180,  45,  0, 60);
+  Braccio.ServoMovement(20, 0, 45, 180, 45, 0, 60);
 }
 
 
 /**
-  Braccio shows the sponge to the user
+Braccio shows the sponge to the user
 */
 void showsponge() {
   for (int i = 0; i < 2; i++) {
 
     //(step delay  M1 , M2 , M3 , M4 , M5 , M6 );
-    Braccio.ServoMovement(10,         0,   45, 180,  45,  180, 60);
+    Braccio.ServoMovement(10, 0, 45, 180, 45, 180, 60);
 
-    Braccio.ServoMovement(10,         0,   45, 180,  45,  0, 60);
+    Braccio.ServoMovement(10, 0, 45, 180, 45, 0, 60);
   }
 }
 
 /**
-  Braccio throws away the sponge
+Braccio throws away the sponge
 */
 void throwsponge() {
   //(step delay  M1 , M2 , M3 , M4 , M5 , M6 );
-  Braccio.ServoMovement(20,         0,   45, 90,  45,  90, 60);
+  Braccio.ServoMovement(20, 0, 45, 90, 45, 90, 60);
 
-  Braccio.ServoMovement(5,         0,   45, 135,  90,  90, 60);
+  Braccio.ServoMovement(5, 0, 45, 135, 90, 90, 60);
 
-  Braccio.ServoMovement(5,         0,   90, 150,  90,  90, 0);
+  Braccio.ServoMovement(5, 0, 90, 150, 90, 90, 0);
 }

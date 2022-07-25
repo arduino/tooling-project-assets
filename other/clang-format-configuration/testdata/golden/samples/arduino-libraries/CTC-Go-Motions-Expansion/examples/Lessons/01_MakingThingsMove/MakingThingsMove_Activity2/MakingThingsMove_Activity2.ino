@@ -1,6 +1,6 @@
 /*
-  CTC GO! MOTION
-  LESSON 01 - Making Things Move
+  CTC GO! MOTION 
+  LESSON 01 - Making Things Move 
 
   This sketch is written to accompany activity 2 of Lesson 1
 */
@@ -15,15 +15,13 @@ int potPin = A0;
 int potValue = 0;
 int pos = 0;
 
-void setup()
-{
+void setup() {
   servo_Standard.attach(9);
 
   Serial.begin(9600);
 }
 
-void loop()
-{
+void loop() {
   potValue = analogRead(potPin);
   pos = map(potValue, 0, 1023, 0, 180);
 

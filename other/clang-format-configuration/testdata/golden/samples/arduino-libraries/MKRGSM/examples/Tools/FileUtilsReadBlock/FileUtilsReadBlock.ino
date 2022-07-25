@@ -6,7 +6,7 @@
 
   The contents of the file are printed to the Serial port as an
   hexadecimal string which can be later converted to the original
-  content using an external tool, such as 'xxd', eg.
+  content using an external tool, such as 'xxd', eg. 
 
     'xxd -p -r sketch_output.txt data.bin'
 
@@ -23,13 +23,12 @@
 GSMFileUtils fileUtils(false);
 
 // An existing file
-constexpr char* filename { "update.bin" };
+constexpr char* filename{ "update.bin" };
 
 // Read block size
-constexpr unsigned int blockSize { 512 };
+constexpr unsigned int blockSize{ 512 };
 
-void setup()
-{
+void setup() {
   Serial.begin(115200);
   while (!Serial)
     ;
@@ -39,10 +38,10 @@ void setup()
   auto size = fileUtils.listFile(filename);
   auto cycles = (size / blockSize) + 1;
 
-  uint32_t totalRead { 0 };
+  uint32_t totalRead{ 0 };
 
   for (auto i = 0; i < cycles; i++) {
-    uint8_t block[blockSize] { 0 };
+    uint8_t block[blockSize]{ 0 };
     auto read = fileUtils.readBlock(filename, i * blockSize, blockSize, block);
     totalRead += read;
     for (auto j = 0; j < read; j++) {
@@ -61,6 +60,5 @@ void setup()
   }
 }
 
-void loop()
-{
+void loop() {
 }

@@ -1,35 +1,33 @@
 /*
-    Show usage of POWER_ON pin (J1-2).
-
-    Board goes to low power mode as soon as started.
-    Pressing a momentary button connected to POWER_ON pin
-    will wake up the board for 5 seconds.
-
-    Requirements:
-    - Connect a momentary button between POWER_ON (J1-2) and GND (J1-9)
-    - Connect the PC/Mac to USB and open the Arduino Serial Monitor
-      or any serial communication application.
-
+*   Show usage of POWER_ON pin (J1-2).
+*
+*   Board goes to low power mode as soon as started.
+*   Pressing a momentary button connected to POWER_ON pin
+*   will wake up the board for 5 seconds.
+*
+*   Requirements:
+*   - Connect a momentary button between POWER_ON (J1-2) and GND (J1-9)
+*   - Connect the PC/Mac to USB and open the Arduino Serial Monitor
+*     or any serial communication application.
+*
 */
 
 #include <Arduino_EdgeControl.h>
 #include <USB/PluggableUSBDevice.h>
 
-constexpr unsigned long printInterval { 250 };
-unsigned long printNow { 0 };
-constexpr unsigned long wakeUpInterval { printInterval * 20 };
-unsigned long sleepNow { 0 };
-volatile bool sleeping { true };
-volatile bool poweredOn { false };
+constexpr unsigned long printInterval{ 250 };
+unsigned long printNow{ 0 };
+constexpr unsigned long wakeUpInterval{ printInterval * 20 };
+unsigned long sleepNow{ 0 };
+volatile bool sleeping{ true };
+volatile bool poweredOn{ false };
 
-void wakeUp()
-{
+void wakeUp() {
   sleeping = false;
   poweredOn = true;
 }
 
-void setup()
-{
+void setup() {
   EdgeControl.begin();
   Power.on(PWR_3V3);
 
@@ -50,17 +48,15 @@ void setup()
   printNow = millis() + printInterval;
 
   powerDown();
-
 }
 
-void loop()
-{
+void loop() {
   if (poweredOn) {
     poweredOn = false;
 
     powerOn();
 
-    delay(1000); // Wait for Serial Monitor/Serial Communication Application
+    delay(1000);  // Wait for Serial Monitor/Serial Communication Application
     Serial.println("");
     Serial.println("Woke Up!");
     sleepNow = millis() + wakeUpInterval;
@@ -73,15 +69,14 @@ void loop()
   }
 
   if (sleeping)
-    delay(10000); // delay() puts the board in low power mode.
+    delay(10000);  // delay() puts the board in low power mode.
   else if (millis() > printNow) {
     Serial.print('.');
     printNow = millis() + printInterval;
   }
 }
 
-void powerOn()
-{
+void powerOn() {
   // Enable Gated 3V3 to devices and peripherals
   Power.on(PWR_3V3);
 
@@ -99,11 +94,11 @@ void powerOn()
 
   // Open Serial and wait for connection
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 }
 
-void powerDown()
-{
+void powerDown() {
   Serial.println();
   Serial.println("Powering down");
 
@@ -127,8 +122,7 @@ void powerDown()
   powerDownPins();
 }
 
-void powerDownPins()
-{
+void powerDownPins() {
   pinMode(I2C_SDA, INPUT_PULLDOWN);
   pinMode(I2C_SCL, INPUT_PULLDOWN);
   pinMode(I2C_SDA1, INPUT_PULLDOWN);

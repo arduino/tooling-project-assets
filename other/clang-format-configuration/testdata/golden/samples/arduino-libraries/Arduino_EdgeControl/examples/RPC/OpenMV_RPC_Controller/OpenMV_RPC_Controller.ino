@@ -8,7 +8,7 @@
 #include <Arduino_EdgeControl.h>
 #include <openmvrpc.h>
 
-openmv::rpc_scratch_buffer<256> scratch_buffer; // All RPC objects share this buffer.
+openmv::rpc_scratch_buffer<256> scratch_buffer;  // All RPC objects share this buffer.
 
 #define RPC_OVER_SERIAL 1
 
@@ -18,15 +18,14 @@ openmv::rpc_hardware_serial1_uart_master rpc(115200);
 openmv::rpc_i2c1_master rpc(0x12, 10000);
 #endif
 
-void setup()
-{
+void setup() {
   EdgeControl.begin();
 
   Power.on(PWR_3V3);
   Power.on(PWR_VBAT);
 
   Power.on(PWR_MKR2);
-  delay(5000); // Wait for MKR2 to power-on
+  delay(5000);  // Wait for MKR2 to power-on
 
   Serial.begin(115200);
   rpc.begin();
@@ -38,8 +37,7 @@ void setup()
 
 // This example shows reading a Digital I/O pin remotely.
 //
-void digital_read_example()
-{
+void digital_read_example() {
   uint8_t state;
   if (rpc.call_no_args("digital_read", &state, sizeof(state))) {
     Serial.print(F("Remote Digital I/O State: "));
@@ -49,8 +47,7 @@ void digital_read_example()
 
 // This example shows reading an Analog I/O pin remotely.
 //
-void analog_read_example()
-{
+void analog_read_example() {
   uint16_t state;
   if (rpc.call_no_args(F("analog_read"), &state, sizeof(state))) {
     Serial.print(F("Remote Analog I/O State: "));
@@ -60,8 +57,7 @@ void analog_read_example()
 
 // This example shows writing a Digital I/O pin remotely.
 //
-void digital_write_example()
-{
+void digital_write_example() {
   static uint8_t state = 0;
 
   auto ret = rpc.call("digital_write", &state, sizeof(state), nullptr, 0, false);
@@ -69,13 +65,12 @@ void digital_write_example()
     Serial.println("DigitalWrite Call Failed!");
     return;
   }
-  state = !state; // flip state for next time
+  state = !state;  // flip state for next time
 }
 
 // This example shows writing an Analog I/O pin remotely.
 //
-void analog_write_example()
-{
+void analog_write_example() {
   static uint8_t state = 0;
 
   auto ret = rpc.call("analog_write", &state, sizeof(state), nullptr, 0, false);
@@ -84,22 +79,20 @@ void analog_write_example()
     return;
   }
 
-  state = state + 1; // counts from 0 to 255 then rolls over
+  state = state + 1;  // counts from 0 to 255 then rolls over
 }
 
-void serial_print_example()
-{
+void serial_print_example() {
   String str = "Hello World @";
   str += millis();
 
-  char buffer[str.length() + 1] {};
+  char buffer[str.length() + 1]{};
   str.toCharArray(buffer, sizeof(buffer));
 
   rpc.call("serial_print", buffer, sizeof(buffer));
 }
 
-void loop()
-{
+void loop() {
   digital_read_example();
   analog_read_example();
   digital_write_example();

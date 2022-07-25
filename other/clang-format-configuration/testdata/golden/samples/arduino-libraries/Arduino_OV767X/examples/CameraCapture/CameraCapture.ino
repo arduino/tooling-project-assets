@@ -2,7 +2,7 @@
   OV767X - Camera Test Pattern
 
   This sketch waits for the letter 'c' on the Serial Monitor,
-  it then reads a frame from the OmniVision OV7670 camera and
+  it then reads a frame from the OmniVision OV7670 camera and 
   prints the data to the Serial Monitor as a hex string.
 
   The website https://rawpixels.net - can be used the visualize the data:
@@ -36,18 +36,20 @@
 
 #include <Arduino_OV767X.h>
 
-unsigned short pixels[176 * 144]; // QCIF: 176x144 X 2 bytes per pixel (RGB565)
+unsigned short pixels[176 * 144];  // QCIF: 176x144 X 2 bytes per pixel (RGB565)
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   Serial.println("OV767X Camera Capture");
   Serial.println();
 
   if (!Camera.begin(QCIF, RGB565, 1)) {
     Serial.println("Failed to initialize camera!");
-    while (1);
+    while (1)
+      ;
   }
 
   Serial.println("Camera settings:");

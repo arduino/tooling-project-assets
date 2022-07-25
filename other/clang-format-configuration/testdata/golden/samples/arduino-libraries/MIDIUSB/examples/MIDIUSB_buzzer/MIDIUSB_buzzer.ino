@@ -1,8 +1,8 @@
 /*
-   MIDIUSB_buzzer.ino
-
-   Author: Paulo Costa
-*/
+ * MIDIUSB_buzzer.ino
+ *
+ * Author: Paulo Costa
+ */
 
 #include <MIDIUSB.h>
 #include "pitchToFrequency.h"
@@ -10,7 +10,7 @@
 #define BUZZ_PIN 9
 
 const char* pitch_name(byte pitch) {
-  static const char* names[] = {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"};
+  static const char* names[] = { "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B" };
   return names[pitch % 12];
 }
 
@@ -59,7 +59,7 @@ void loop() {
   midiEventPacket_t rx = MidiUSB.read();
   switch (rx.header) {
     case 0:
-      break; //No pending events
+      break;  //No pending events
 
     case 0x9:
       noteOn(
@@ -96,4 +96,3 @@ void loop() {
       Serial.println(rx.byte3, HEX);
   }
 }
-

@@ -19,13 +19,12 @@
 
 using namespace machinecontrol;
 
-constexpr unsigned long sendInterval { 1000 };
-unsigned long sendNow { 0 };
+constexpr unsigned long sendInterval{ 1000 };
+unsigned long sendNow{ 0 };
 
-unsigned long counter { 0 };
+unsigned long counter{ 0 };
 
-void setup()
-{
+void setup() {
 
   Serial.begin(115200);
   // Wait for Serial or start after 2.5s
@@ -57,8 +56,7 @@ void setup()
   Serial.println("Initialization done!");
 }
 
-void loop()
-{
+void loop() {
   if (comm_protocols.rs485.available())
     Serial.write(comm_protocols.rs485.read());
 

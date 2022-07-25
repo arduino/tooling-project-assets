@@ -1,5 +1,5 @@
 /*
-  CTC GO! MOTION
+  CTC GO! MOTION 
   LESSON 04 - Gears and Pulleys
 
   This sketch is written to accompany activity 1 of Lesson 4
@@ -16,37 +16,27 @@ int waterLevel = 0;
 int b1_state = 0;
 int b2_state = 0;
 
-void setup()
-{
+void setup() {
   waterServo.attach(9);
 
   Serial.begin(9600);
 }
 
-void loop()
-{
+void loop() {
   b1_state = digitalRead(button1);
   b2_state = digitalRead(button2);
 
-  if (b1_state == 1 && b2_state == 1)
-  {
+  if (b1_state == 1 && b2_state == 1) {
     waterLevel = 100;
-  }
-  else if (b1_state == 1 && b2_state == 0)
-  {
+  } else if (b1_state == 1 && b2_state == 0) {
     waterLevel = 60;
-  }
-  else if (b1_state == 0 && b2_state == 1)
-  {
+  } else if (b1_state == 0 && b2_state == 1) {
     waterLevel = 30;
-  }
-  else
-  {
+  } else {
     waterLevel = 0;
   }
 
-  switch (waterLevel)
-  {
+  switch (waterLevel) {
     case 100:
       waterServo.write(180);
       Serial.println("Water level 100%");

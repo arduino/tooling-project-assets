@@ -1,37 +1,37 @@
 /*
 
-  braccioOfUnoWifi.ino
+ braccioOfUnoWifi.ino
+ 
+ Based on Arduino Uno WiFi Rest Server example
 
-  Based on Arduino Uno WiFi Rest Server example
+ This example for the Arduino Uno WiFi shows how to 
+ control a TinkerKit Braccio through REST calls. 
+ You can create your mobile app or your 
+ browser app to control the Braccio in wireless mode
+ 
+ Note that with the Braccio shield version less than V4
+ you need to disconnect the pin A4 from the shield to the board
 
-  This example for the Arduino Uno WiFi shows how to
-  control a TinkerKit Braccio through REST calls.
-  You can create your mobile app or your
-  browser app to control the Braccio in wireless mode
+ Possible commands created in this sketch:
 
-  Note that with the Braccio shield version less than V4
-  you need to disconnect the pin A4 from the shield to the board
+ * "/arduino/custom/base/value:80"	-> Moves the base of the Braccio at 80 degrees
+ * "/arduino/custom/shoulder/value:150"	-> Moves the shoulder of the Braccio at 150 degrees
+ * "/arduino/custom/elbow/value:45"	-> Moves the elbow of the Braccio at 45 degrees
+ * "/arduino/custom/wristv/value:10"	-> Moves the wristv of the Braccio at 10 degrees
+ * "/arduino/custom/wristr/value:120"	-> Moves the wristr of the Braccio at 120 degrees
+ * "/arduino/custom/gripper/value:73"	-> Close the gripper
+ * "/arduino/custom/ledon"		-> Turn ON the LED 13
+ * "/arduino/custom/ledoff"		-> Turn OFF the LED 13
+ * "/arduino/custom/servo:3/value:73"	-> Moves the servo to the pin 3 at 73 degrees
+ * "/arduino/custom/sayciao"		-> Run the function sayciao(). The Braccio says "Ciao" with the gripper
+ * "/arduino/custom/takesponge"		-> Run the function takesponge(). The Braccio takes the big sponge you can find in its box
+ * "/arduino/custom/showsponge"		-> Run the function showsponge(). The Braccio shows the sponge to the user
+ * "/arduino/custom/throwsponge"	-> Run the function throwsponge(). The Braccio throws away the sponge
 
-  Possible commands created in this sketch:
+ This example code is part of the public domain
 
-   "/arduino/custom/base/value:80"	-> Moves the base of the Braccio at 80 degrees
-   "/arduino/custom/shoulder/value:150"	-> Moves the shoulder of the Braccio at 150 degrees
-   "/arduino/custom/elbow/value:45"	-> Moves the elbow of the Braccio at 45 degrees
-   "/arduino/custom/wristv/value:10"	-> Moves the wristv of the Braccio at 10 degrees
-   "/arduino/custom/wristr/value:120"	-> Moves the wristr of the Braccio at 120 degrees
-   "/arduino/custom/gripper/value:73"	-> Close the gripper
-   "/arduino/custom/ledon"		-> Turn ON the LED 13
-   "/arduino/custom/ledoff"		-> Turn OFF the LED 13
-   "/arduino/custom/servo:3/value:73"	-> Moves the servo to the pin 3 at 73 degrees
-   "/arduino/custom/sayciao"		-> Run the function sayciao(). The Braccio says "Ciao" with the gripper
-   "/arduino/custom/takesponge"		-> Run the function takesponge(). The Braccio takes the big sponge you can find in its box
-   "/arduino/custom/showsponge"		-> Run the function showsponge(). The Braccio shows the sponge to the user
-   "/arduino/custom/throwsponge"	-> Run the function throwsponge(). The Braccio throws away the sponge
-
-  This example code is part of the public domain
-
-  https://web.archive.org/web/20160502122840/http://labs.arduino.org/RestServer+and+RestClient
-  https://store.arduino.cc/tinkerkit-braccio-robot
+ https://web.archive.org/web/20160502122840/http://labs.arduino.org/RestServer+and+RestClient
+ https://store.arduino.cc/tinkerkit-braccio-robot
 
 */
 
@@ -75,11 +75,11 @@ void loop() {
 }
 
 /**
-  Parse Command from REST
-  It parse a command like: /arduino/custom/base/value:45
-  @param command: The message to parse
-  @param type: the key for parsing
-  @return the value for the key
+Parse Command from REST
+It parse a command like: /arduino/custom/base/value:45
+@param command: The message to parse
+@param type: the key for parsing
+@return the value for the key 
 */
 int parseCommand(String command, String type) {
   int typeIndex = command.indexOf(type);
@@ -93,7 +93,7 @@ int parseCommand(String command, String type) {
 }
 
 /**
-  It process data from the HTTP protocol
+It process data from the HTTP protocol
 */
 void process(WifiData client) {
   // read the command
@@ -110,15 +110,14 @@ void process(WifiData client) {
   //client.println(message); //Debug
 
   /*
-    For each message perform the proper command
+  For each message perform the proper command
   */
   if (message == "LEDON") {
     //Turn ON Led 13
     digitalWrite(13, HIGH);
     //Return message to the sender (Eg: the browser)
     client.println("alert('Led D13 ON');");
-  }
-  else if (message == "LEDOFF") {
+  } else if (message == "LEDOFF") {
     digitalWrite(13, LOW);
     client.println("alert('Led D13 OFF');");
   }
@@ -191,8 +190,7 @@ void process(WifiData client) {
   else if (message.startsWith("THROWSPONGE")) {
     throwsponge();
     client.println("THROWSPONGE: " + String(m6));
-  }
-  else
+  } else
     client.println("command error: " + message);
 
   //if flag moveBraccio is true fire the movement
@@ -206,60 +204,60 @@ void process(WifiData client) {
 }
 
 /**
-  The Braccio Say 'Ciao' with the GRIPPER
+The Braccio Say 'Ciao' with the GRIPPER
 */
 void sayCiao() {
-  Braccio.ServoMovement(20,           90,  0, 180, 160,  0,  15);
+  Braccio.ServoMovement(20, 90, 0, 180, 160, 0, 15);
 
   for (int i = 0; i < 5; i++) {
-    Braccio.ServoMovement(10,           90,  0, 180, 160,  0,  15);
+    Braccio.ServoMovement(10, 90, 0, 180, 160, 0, 15);
     delay(500);
 
-    Braccio.ServoMovement(10,     90,  0,   180,   160,  0,   73);
+    Braccio.ServoMovement(10, 90, 0, 180, 160, 0, 73);
     delay(500);
   }
 }
 
 /**
-  Braccio take the Sponge
+Braccio take the Sponge
 */
 void takesponge() {
   //starting position
   //(step delay  M1 , M2 , M3 , M4 , M5 , M6);
-  Braccio.ServoMovement(20,           0,  45, 180, 180,  90,  0);
+  Braccio.ServoMovement(20, 0, 45, 180, 180, 90, 0);
 
   //I move arm towards the sponge
-  Braccio.ServoMovement(20,           0,  90, 180, 180,  90,   0);
+  Braccio.ServoMovement(20, 0, 90, 180, 180, 90, 0);
 
   //the GRIPPER takes the sponge
-  Braccio.ServoMovement(20,           0,  90, 180, 180,  90,  60 );
+  Braccio.ServoMovement(20, 0, 90, 180, 180, 90, 60);
 
   //up the sponge
-  Braccio.ServoMovement(20,         0,   45, 180,  45,  0, 60);
+  Braccio.ServoMovement(20, 0, 45, 180, 45, 0, 60);
 }
 
 
 /**
-  Braccio show the sponge to the user
+Braccio show the sponge to the user
 */
 void showsponge() {
   for (int i = 0; i < 2; i++) {
 
     //(step delay  M1 , M2 , M3 , M4 , M5 , M6 );
-    Braccio.ServoMovement(10,         0,   45, 180,  45,  180, 60);
+    Braccio.ServoMovement(10, 0, 45, 180, 45, 180, 60);
 
-    Braccio.ServoMovement(10,         0,   45, 180,  45,  0, 60);
+    Braccio.ServoMovement(10, 0, 45, 180, 45, 0, 60);
   }
 }
 
 /**
-  Braccio throw away the sponge
+Braccio throw away the sponge
 */
 void throwsponge() {
   //(step delay  M1 , M2 , M3 , M4 , M5 , M6 );
-  Braccio.ServoMovement(20,         0,   45, 90,  45,  90, 60);
+  Braccio.ServoMovement(20, 0, 45, 90, 45, 90, 60);
 
-  Braccio.ServoMovement(5,         0,   45, 135,  90,  90, 60);
+  Braccio.ServoMovement(5, 0, 45, 135, 90, 90, 60);
 
-  Braccio.ServoMovement(5,         0,   90, 150,  90,  90, 0);
+  Braccio.ServoMovement(5, 0, 90, 150, 90, 90, 0);
 }

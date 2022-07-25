@@ -1,13 +1,12 @@
 #include <Arduino_EdgeControl.h>
 
-constexpr uint32_t printInterval { 5000 };
-uint32_t printNow { 0 };
+constexpr uint32_t printInterval{ 5000 };
+uint32_t printNow{ 0 };
 
-void setup()
-{
+void setup() {
   Serial.begin(115200);
 
-  const uint32_t startNow { millis() + 2500 };
+  const uint32_t startNow{ millis() + 2500 };
   while (!Serial && millis() < startNow)
     ;
 
@@ -36,8 +35,7 @@ void setup()
   printNow = millis();
 }
 
-void loop()
-{
+void loop() {
   if (millis() > printNow) {
     auto vbat = Power.getVBat();
     Serial.print("Battery Voltage: ");

@@ -12,9 +12,9 @@
     or an hash (eg. MD5 or SHA256) comparison.
 
     Circuit:
-      MKR GSM 1400 board
-      Antenna
-      SIM card with a data plan
+    * MKR GSM 1400 board
+    * Antenna
+    * SIM card with a data plan
 
     Steps to update a sketch:
 
@@ -77,8 +77,7 @@ constexpr int port = 443;
 constexpr char filename[] = "update.bin";
 
 
-void setup()
-{
+void setup() {
   unsigned long timeout = millis();
 
   Serial.begin(9600);
@@ -130,8 +129,7 @@ void setup()
   }
 }
 
-void loop()
-{
+void loop() {
   while (client.available()) {
     // Skip the HTTP header
     if (!isHeaderComplete) {
@@ -157,8 +155,8 @@ void loop()
       }
     } else {
       // Read the OTA file in len-bytes blocks to preserve RAM.
-      constexpr size_t len { 512 };
-      char buf[len] { 0 };
+      constexpr size_t len{ 512 };
+      char buf[len]{ 0 };
 
       // Read len bytes from HTTP client...
       uint32_t read = client.readBytes(buf, len);
@@ -205,8 +203,7 @@ void loop()
   }
 }
 
-int getContentLength()
-{
+int getContentLength() {
   const String contentLengthHeader = "Content-Length:";
   const auto contentLengthHeaderLen = contentLengthHeader.length();
 

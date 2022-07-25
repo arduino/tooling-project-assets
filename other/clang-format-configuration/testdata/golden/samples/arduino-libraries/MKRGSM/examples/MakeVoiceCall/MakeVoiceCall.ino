@@ -1,20 +1,20 @@
 /*
-  Make Voice Call
+ Make Voice Call
 
-  This sketch, for the MKR GSM 1400 board, puts a voice call to
-  a remote phone number that you enter through the Serial Monitor.
-  To make it work, open the Serial Monitor, and when you see the
-  READY message, type a phone number. Make sure the Serial Monitor
-  is set to send a just newline when you press return.
+ This sketch, for the MKR GSM 1400 board, puts a voice call to
+ a remote phone number that you enter through the Serial Monitor.
+ To make it work, open the Serial Monitor, and when you see the
+ READY message, type a phone number. Make sure the Serial Monitor
+ is set to send a just newline when you press return.
 
-  Circuit:
-   MKR GSM 1400 board
-   Antenna
-   SIM card that can send voice calls
+ Circuit:
+ * MKR GSM 1400 board
+ * Antenna
+ * SIM card that can send voice calls
 
 
-  created Mar 2012
-  by Javier Zorzano
+ created Mar 2012
+ by Javier Zorzano
 */
 
 // libraries
@@ -26,7 +26,7 @@
 const char PINNUMBER[] = SECRET_PINNUMBER;
 
 // initialize the library instance
-GSM gsmAccess; // include a 'true' parameter for debug enabled
+GSM gsmAccess;  // include a 'true' parameter for debug enabled
 GSMVoiceCall vcs;
 
 String remoteNumber = "";  // the number you will call
@@ -37,7 +37,7 @@ void setup() {
   // initialize serial communications and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   Serial.println("Make Voice Call");
@@ -58,7 +58,6 @@ void setup() {
 
   Serial.println("GSM initialized.");
   Serial.println("Enter phone number to call.");
-
 }
 
 void loop() {
@@ -83,7 +82,8 @@ void loop() {
         if (vcs.voiceCall(charbuffer)) {
           Serial.println("Call Established. Enter line to end");
           // Wait for some input from the line
-          while (Serial.read() != '\n' && (vcs.getvoiceCallStatus() == TALKING));
+          while (Serial.read() != '\n' && (vcs.getvoiceCallStatus() == TALKING))
+            ;
           // And hang up
           vcs.hangCall();
         }

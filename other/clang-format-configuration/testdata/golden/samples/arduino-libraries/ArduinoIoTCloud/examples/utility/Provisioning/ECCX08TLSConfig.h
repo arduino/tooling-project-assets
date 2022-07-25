@@ -42,11 +42,11 @@ const byte DEFAULT_ECCX08_TLS_CONFIG[128] = {
   // ChipMode
   0x00,
   // SlotConfig
-  0x83, 0x20, // External Signatures | Internal Signatures | IsSecret | Write Configure Never, Default: 0x83, 0x20,
-  0x87, 0x20, // External Signatures | Internal Signatures | ECDH | IsSecret | Write Configure Never, Default: 0x87, 0x20,
-  0x87, 0x20, // External Signatures | Internal Signatures | ECDH | IsSecret | Write Configure Never, Default: 0x8F, 0x20,
-  0x87, 0x2F, // External Signatures | Internal Signatures | ECDH | IsSecret | WriteKey all slots | Write Configure Never, Default: 0xC4, 0x8F,
-  0x87, 0x2F, // External Signatures | Internal Signatures | ECDH | IsSecret | WriteKey all slots | Write Configure Never, Default: 0x8F, 0x8F,
+  0x83, 0x20,  // External Signatures | Internal Signatures | IsSecret | Write Configure Never, Default: 0x83, 0x20,
+  0x87, 0x20,  // External Signatures | Internal Signatures | ECDH | IsSecret | Write Configure Never, Default: 0x87, 0x20,
+  0x87, 0x20,  // External Signatures | Internal Signatures | ECDH | IsSecret | Write Configure Never, Default: 0x8F, 0x20,
+  0x87, 0x2F,  // External Signatures | Internal Signatures | ECDH | IsSecret | WriteKey all slots | Write Configure Never, Default: 0xC4, 0x8F,
+  0x87, 0x2F,  // External Signatures | Internal Signatures | ECDH | IsSecret | WriteKey all slots | Write Configure Never, Default: 0x8F, 0x8F,
   0x8F, 0x8F,
   0x9F, 0x8F,
   0xAF, 0x8F,
@@ -84,11 +84,11 @@ const byte DEFAULT_ECCX08_TLS_CONFIG[128] = {
   // X509format
   0x00, 0x00, 0x00, 0x00,
   // KeyConfig
-  0x33, 0x00, // Private | Public | P256 NIST ECC key, Default: 0x33, 0x00,
-  0x33, 0x00, // Private | Public | P256 NIST ECC key, Default: 0x33, 0x00,
-  0x33, 0x00, // Private | Public | P256 NIST ECC key, Default: 0x33, 0x00,
-  0x33, 0x00, // Private | Public | P256 NIST ECC key, Default: 0x1C, 0x00,
-  0x33, 0x00, // Private | Public | P256 NIST ECC key, Default: 0x1C, 0x00,
+  0x33, 0x00,  // Private | Public | P256 NIST ECC key, Default: 0x33, 0x00,
+  0x33, 0x00,  // Private | Public | P256 NIST ECC key, Default: 0x33, 0x00,
+  0x33, 0x00,  // Private | Public | P256 NIST ECC key, Default: 0x33, 0x00,
+  0x33, 0x00,  // Private | Public | P256 NIST ECC key, Default: 0x1C, 0x00,
+  0x33, 0x00,  // Private | Public | P256 NIST ECC key, Default: 0x1C, 0x00,
   0x1C, 0x00,
   0x1C, 0x00,
   0x1C, 0x00,

@@ -21,7 +21,8 @@
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   RS485.begin(9600);
 
@@ -34,4 +35,3 @@ void loop() {
     Serial.write(RS485.read());
   }
 }
-

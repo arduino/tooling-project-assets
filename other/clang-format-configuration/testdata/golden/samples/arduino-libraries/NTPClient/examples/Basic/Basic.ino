@@ -5,7 +5,7 @@
 //#include <WiFi101.h> // for WiFi 101 shield or MKR1000
 #include <WiFiUdp.h>
 
-const char *ssid     = "<SSID>";
+const char *ssid = "<SSID>";
 const char *password = "<PASSWORD>";
 
 WiFiUDP ntpUDP;
@@ -16,9 +16,9 @@ void setup() {
 
   WiFi.begin(ssid, password);
 
-  while ( WiFi.status() != WL_CONNECTED ) {
-    delay ( 500 );
-    Serial.print ( "." );
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
   }
 
   timeClient.begin();

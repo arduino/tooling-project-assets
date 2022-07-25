@@ -8,15 +8,14 @@
     - Arduino Edge Control
     - CR2032 Battery
     - Optional: Arduino Edge Control LCD + Button brekout
-
+    
 */
 
 #include "Helpers.h"
 #include <Arduino_EdgeControl.h>
 #include <USB/PluggableUSBSerial.h>
 
-void setup()
-{
+void setup() {
   Serial.begin(9600);
 
   for (auto timeout = millis() + 2500l; !Serial && millis() < timeout; delay(250))
@@ -63,13 +62,11 @@ void setup()
   PluggableUSBD().deinit();
 }
 
-void loop()
-{
+void loop() {
   delay(10000);
 }
 
-void powerDown()
-{
+void powerDown() {
   pinMode(I2C_SDA, INPUT_PULLDOWN);
   pinMode(I2C_SCL, INPUT_PULLDOWN);
   pinMode(I2C_SDA1, INPUT_PULLDOWN);

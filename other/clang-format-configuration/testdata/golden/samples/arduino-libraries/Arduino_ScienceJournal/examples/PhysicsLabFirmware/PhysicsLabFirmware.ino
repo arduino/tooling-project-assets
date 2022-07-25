@@ -17,45 +17,45 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#include <ArduinoBLE.h>       // click here to install the library: http://librarymanager#ArduinoBLE
-#include <Adafruit_LSM9DS1.h> // click here to install the library: http://librarymanager#Adafruit&LSM9DS1
-#include <Adafruit_Sensor.h>  // click here to install the library: http://librarymanager#Adafruit&unified&Sensor&abstraction
+#include <ArduinoBLE.h>        // click here to install the library: http://librarymanager#ArduinoBLE
+#include <Adafruit_LSM9DS1.h>  // click here to install the library: http://librarymanager#Adafruit&LSM9DS1
+#include <Adafruit_Sensor.h>   // click here to install the library: http://librarymanager#Adafruit&unified&Sensor&abstraction
 
 #include "INA226.h"
 
 #define SCIENCE_KIT_UUID(val) ("555a0001-" val "-467a-9538-01f0652c74e8")
 
-BLEService                     service                    (SCIENCE_KIT_UUID("0000"));
-BLEUnsignedIntCharacteristic   versionCharacteristic      (SCIENCE_KIT_UUID("0001"), BLERead);
-BLEByteCharacteristic          ledCharacteristic          (SCIENCE_KIT_UUID("1001"), BLERead | BLEWrite);
-BLEUnsignedShortCharacteristic input1Characteristic       (SCIENCE_KIT_UUID("2001"), BLENotify);
-BLEUnsignedShortCharacteristic input2Characteristic       (SCIENCE_KIT_UUID("2002"), BLENotify);
-BLEUnsignedShortCharacteristic input3Characteristic       (SCIENCE_KIT_UUID("2003"), BLENotify);
-BLEByteCharacteristic          ouput1Characteristic       (SCIENCE_KIT_UUID("3001"), BLERead | BLEWrite);
-BLEByteCharacteristic          ouput2Characteristic       (SCIENCE_KIT_UUID("3002"), BLERead | BLEWrite);
-BLEFloatCharacteristic         voltageCharacteristic      (SCIENCE_KIT_UUID("4001"), BLENotify);
-BLEFloatCharacteristic         currentCharacteristic      (SCIENCE_KIT_UUID("4002"), BLENotify);
-BLEFloatCharacteristic         resistanceCharacteristic   (SCIENCE_KIT_UUID("4003"), BLENotify);
-BLECharacteristic              accelerationCharacteristic (SCIENCE_KIT_UUID("5001"), BLENotify, 3 * sizeof(float));
-BLECharacteristic              gyroscopeCharacteristic    (SCIENCE_KIT_UUID("5002"), BLENotify, 3 * sizeof(float));
-BLECharacteristic              magneticFieldCharacteristic(SCIENCE_KIT_UUID("5003"), BLENotify, 3 * sizeof(float));
+BLEService service(SCIENCE_KIT_UUID("0000"));
+BLEUnsignedIntCharacteristic versionCharacteristic(SCIENCE_KIT_UUID("0001"), BLERead);
+BLEByteCharacteristic ledCharacteristic(SCIENCE_KIT_UUID("1001"), BLERead | BLEWrite);
+BLEUnsignedShortCharacteristic input1Characteristic(SCIENCE_KIT_UUID("2001"), BLENotify);
+BLEUnsignedShortCharacteristic input2Characteristic(SCIENCE_KIT_UUID("2002"), BLENotify);
+BLEUnsignedShortCharacteristic input3Characteristic(SCIENCE_KIT_UUID("2003"), BLENotify);
+BLEByteCharacteristic ouput1Characteristic(SCIENCE_KIT_UUID("3001"), BLERead | BLEWrite);
+BLEByteCharacteristic ouput2Characteristic(SCIENCE_KIT_UUID("3002"), BLERead | BLEWrite);
+BLEFloatCharacteristic voltageCharacteristic(SCIENCE_KIT_UUID("4001"), BLENotify);
+BLEFloatCharacteristic currentCharacteristic(SCIENCE_KIT_UUID("4002"), BLENotify);
+BLEFloatCharacteristic resistanceCharacteristic(SCIENCE_KIT_UUID("4003"), BLENotify);
+BLECharacteristic accelerationCharacteristic(SCIENCE_KIT_UUID("5001"), BLENotify, 3 * sizeof(float));
+BLECharacteristic gyroscopeCharacteristic(SCIENCE_KIT_UUID("5002"), BLENotify, 3 * sizeof(float));
+BLECharacteristic magneticFieldCharacteristic(SCIENCE_KIT_UUID("5003"), BLENotify, 3 * sizeof(float));
 
-const int LED_PIN            =  0;
-const int INPUT1_PIN         = A3;
-const int INPUT2_PIN         = A1;
-const int INPUT3_PIN         = A0;
-const int OUTPUT1_PIN        =  5;
-const int OUTPUT2_PIN        =  1;
-const int RESISTANCE_PIN     = A2;
-const int RESISTANCE_AUX_PIN =  8;
+const int LED_PIN = 0;
+const int INPUT1_PIN = A3;
+const int INPUT2_PIN = A1;
+const int INPUT3_PIN = A0;
+const int OUTPUT1_PIN = 5;
+const int OUTPUT2_PIN = 1;
+const int RESISTANCE_PIN = A2;
+const int RESISTANCE_AUX_PIN = 8;
 
 String name;
 unsigned long lastNotify = 0;
 
 unsigned long imuTime;
 
-#define RESISTOR_AUX_LOW  47000.0
-#define RESISTOR_AUX_HIGH 979.16 // 47k in parallel with 1k = 979.16 Ohm
+#define RESISTOR_AUX_LOW 47000.0
+#define RESISTOR_AUX_HIGH 979.16  // 47k in parallel with 1k = 979.16 Ohm
 
 #define IMU_UPDATE_TIME 50
 
@@ -66,7 +66,8 @@ Adafruit_LSM9DS1 imu = Adafruit_LSM9DS1();
 void setup() {
   Serial.begin(9600);
 #ifdef DEBUG
-  while (!Serial);
+  while (!Serial)
+    ;
   Serial.println("Started");
 #endif
 
@@ -83,13 +84,15 @@ void setup() {
   if (!INA226.begin(0x45)) {
     Serial.println("Failed to initialized INA226!");
 
-    while (1);
+    while (1)
+      ;
   }
 
   if (!imu.begin()) {
     Serial.println("Failed to initialized IMU!");
 
-    while (1);
+    while (1)
+      ;
   }
 
   imu.setupAccel(imu.LSM9DS1_ACCELRANGE_2G);
@@ -99,7 +102,8 @@ void setup() {
   if (!BLE.begin()) {
     Serial.println("Failed to initialized BLE!");
 
-    while (1);
+    while (1)
+      ;
   }
 
   String address = BLE.address();
@@ -194,7 +198,7 @@ void updateSubscribedCharacteristics() {
     float Vout = 0;
     float resistanceAuxLow = INFINITY;
     float resistanceAuxHigh = INFINITY;
-    float resistanceAvg = INFINITY; //open circuit as default
+    float resistanceAvg = INFINITY;  //open circuit as default
 
     digitalWrite(RESISTANCE_AUX_PIN, LOW);
     Vout = getVoutAverage();

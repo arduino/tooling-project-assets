@@ -7,7 +7,8 @@ MKRIoTCarrier carrier;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   carrier.noCase();
   carrier.begin();
@@ -15,7 +16,7 @@ void setup() {
 
 void loop() {
   // check if a color reading is available
-  while (! carrier.Light.colorAvailable()) {
+  while (!carrier.Light.colorAvailable()) {
     delay(5);
   }
   int r, g, b;

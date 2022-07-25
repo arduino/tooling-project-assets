@@ -1,14 +1,14 @@
 /*
-  CookieMonster
-
-  Someone is eating our cookies, let's gather some proof
-  about that person and get him/her to confess.
-
-  (c) 2013-2016 Arduino LLC. B&D Cuartielles
-
-  This code is Free Software, licensed under GPLv3
-  Based on code by Paul Badger 2008
-
+* CookieMonster
+* 
+* Someone is eating our cookies, let's gather some proof
+* about that person and get him/her to confess.
+*
+* (c) 2013-2016 Arduino LLC. B&D Cuartielles
+*
+* This code is Free Software, licensed under GPLv3
+* Based on code by Paul Badger 2008
+*
 */
 
 
@@ -20,8 +20,7 @@ CapacitiveSwitch sensor = CapacitiveSwitch(2, 3);
 //Define the LED
 int led = 6;
 
-void setup()
-{
+void setup() {
   // configure the serial port
   Serial.begin(9600);
 
@@ -44,4 +43,3 @@ void loop() {
     digitalWrite(led, LOW);
   }
 }
-

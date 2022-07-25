@@ -14,12 +14,12 @@
   PUT request and the body of the request.
 
   note: WiFi SSID and password are stored in config.h file.
-  If it is not present, add a new tab, call it "config.h"
+  If it is not present, add a new tab, call it "config.h" 
   and add the following variables:
   char ssid[] = "ssid";     //  your network SSID (name)
   char pass[] = "password"; // your network password
 
-   modified 15 Feb 2016
+   modified 15 Feb 2016 
    by Tom Igoe (tigoe) to match new API
 */
 
@@ -28,9 +28,9 @@
 #include <RestClient.h>
 #include "config.h"
 
-int status = WL_IDLE_STATUS;      // the Wifi radio's status
-char hueHubIP[] = "192.168.0.3";  // IP address of the HUE bridge
-String hueUserName = "huebridgeusername"; // hue bridge username
+int status = WL_IDLE_STATUS;               // the Wifi radio's status
+char hueHubIP[] = "192.168.0.3";           // IP address of the HUE bridge
+String hueUserName = "huebridgeusername";  // hue bridge username
 
 // make a wifi instance and a RestClient instance:
 WiFiClient wifi;
@@ -40,10 +40,11 @@ RestClient restClient = RestClient(wifi, hueHubIP);
 void setup() {
   //Initialize serial and wait for port to open:
   Serial.begin(9600);
-  while (!Serial); // wait for serial port to connect.
+  while (!Serial)
+    ;  // wait for serial port to connect.
 
   // attempt to connect to Wifi network:
-  while ( status != WL_CONNECTED) {
+  while (status != WL_CONNECTED) {
     Serial.print("Attempting to connect to WPA SSID: ");
     Serial.println(ssid);
     // Connect to WPA/WPA2 network:
@@ -89,5 +90,3 @@ void sendRequest(int light, String cmd, String value) {
   Serial.println(restClient.readResponse());
   Serial.println();
 }
-
-

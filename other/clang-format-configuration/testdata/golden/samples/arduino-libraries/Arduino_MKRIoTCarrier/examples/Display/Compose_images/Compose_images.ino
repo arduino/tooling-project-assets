@@ -4,9 +4,9 @@
   We have used this tool to convert the .bmp to cpp
   https://javl.github.io/image2cpp/
   Thanks!
-
+  
  **************************************************************************/
-#include "Images.h"   //We save the images code there
+#include "Images.h"  //We save the images code there
 #include <Arduino_MKRIoTCarrier.h>
 MKRIoTCarrier carrier;
 
@@ -56,20 +56,19 @@ void loop() {
 //Fading Orange loop
 void fadeLoop() {
   carrier.leds.fill(orange, ledA, ledC);
-  for ( i = 0; i < 125; i++) {
+  for (i = 0; i < 125; i++) {
     carrier.leds.setBrightness(i);
     carrier.leds.show();
     delay(10);
   }
 
-  for ( i = 125; i > -1; i--) {
+  for (i = 125; i > -1; i--) {
     carrier.leds.setBrightness(i);
     carrier.leds.show();
     delay(10);
   }
   carrier.leds.clear();
   delay(500);
-
 }
 
 //Compose the differentn parts of the image

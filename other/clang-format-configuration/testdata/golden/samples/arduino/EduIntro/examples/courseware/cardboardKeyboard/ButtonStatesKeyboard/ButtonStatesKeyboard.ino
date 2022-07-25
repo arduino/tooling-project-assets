@@ -11,10 +11,10 @@
 #include <Keyboard.h>
 
 // reconfigure these pins to be the ones where you plug your wires
-byte btnPins[] = {D9, D10, D11, D12};
+byte btnPins[] = { D9, D10, D11, D12 };
 
 // which are the keys you will be using ... ?
-byte key[] = {'a', 'd', KEY_UP_ARROW, ' '};
+byte key[] = { 'a', 'd', KEY_UP_ARROW, ' ' };
 
 // array to control the buttons
 Button btn[] = {
@@ -24,8 +24,7 @@ Button btn[] = {
   Button(btnPins[3]),
 };
 
-void setup()
-{
+void setup() {
   // we are going to use the serial communication as a
   // way to see on the PC what is happening on the Arduino
   Serial.begin(9600);
@@ -34,18 +33,22 @@ void setup()
   Keyboard.begin();
 }
 
-void loop()
-{
-  for (int i; i < 4; i ++) {
+void loop() {
+  for (int i; i < 4; i++) {
     if (btn[i].pressed()) {
-      Serial.print("pressed pin: "); Serial.println(btnPins[i]);
+      Serial.print("pressed pin: ");
+      Serial.println(btnPins[i]);
       Keyboard.press(key[i]);
     }
     if (btn[i].held())
-      Serial.print("held pin: "); Serial.println(btnPins[i]);
+      Serial.print("held pin: ");
+    Serial.println(btnPins[i]);
     if (btn[i].released()) {
-      Serial.print("released pin: "); Serial.println(btnPins[i]);
-      Serial.print("switch pin "); Serial.print(btnPins[i]); Serial.print(": ");
+      Serial.print("released pin: ");
+      Serial.println(btnPins[i]);
+      Serial.print("switch pin ");
+      Serial.print(btnPins[i]);
+      Serial.print(": ");
       Serial.println(btn[i].readSwitch());
       Keyboard.release(key[i]);
     }

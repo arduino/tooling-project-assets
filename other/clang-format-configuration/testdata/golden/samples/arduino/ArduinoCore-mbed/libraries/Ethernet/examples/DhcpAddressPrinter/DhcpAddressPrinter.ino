@@ -14,19 +14,18 @@
   modified 02 Sept 2015
   by Arturo Guadalupi
 
-*/
+ */
 
 #include <Ethernet.h>
 #include <PortentaEthernet.h>
 #include <SPI.h>
 
-void setup()
-{
+void setup() {
 
   // Open serial communications and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   // start the Ethernet connection:
@@ -48,16 +47,14 @@ void setup()
   Serial.println(Ethernet.localIP());
 }
 
-void loop()
-{
+void loop() {
   if (Ethernet.status() != 0) {
     Serial.println(Ethernet.status());
     connectEth();
   }
 }
 
-void connectEth()
-{
+void connectEth() {
   // start the Ethernet connection:
   Serial.println("Initialize Ethernet with DHCP:");
   if (Ethernet.begin() == 0) {
@@ -66,7 +63,7 @@ void connectEth()
     if (Ethernet.hardwareStatus() == EthernetNoHardware) {
       Serial.println("Ethernet shield was not found.  Sorry, can't run without hardware. :(");
       while (true) {
-        delay(1); // do nothing, no point running without Ethernet hardware
+        delay(1);  // do nothing, no point running without Ethernet hardware
       }
     }
     if (Ethernet.linkStatus() == LinkOFF) {

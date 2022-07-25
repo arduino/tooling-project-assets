@@ -10,22 +10,20 @@ static int duty = 0;
 
 int target;
 
-void setup()
-{
+void setup() {
   //Serial port initialization
   Serial.begin(115200);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   //Establishing the communication with the Motor Carrier
-  if (controller.begin())
-  {
+  if (controller.begin()) {
     Serial.print("Motor Carrier connected, firmware version ");
     Serial.println(controller.getFWVersion());
-  }
-  else
-  {
+  } else {
     Serial.println("Couldn't connect! Is the red LED blinking? You may need to update the firmware with FWUpdater sketch");
-    while (1);
+    while (1)
+      ;
   }
 
   // Reboot the motor controller; brings every value back to default
@@ -40,7 +38,7 @@ void setup()
   Serial.print("V, Raw ");
   Serial.println(battery.getRaw());
 
-  int dutyInit = 0; // at 50 it works as expected, at 60 shift sides and is too small duty to move, at 70 is very big duty.
+  int dutyInit = 0;  // at 50 it works as expected, at 60 shift sides and is too small duty to move, at 70 is very big duty.
   M1.setDuty(dutyInit);
   M2.setDuty(dutyInit);
   M3.setDuty(dutyInit);
@@ -75,7 +73,7 @@ void setup()
 
   //pid1.resetGains();
   //pid1.setLimits(-100,100);
-  pid2.setGains(0.1f, 0.0f, 0.0f); //Proportional(change) Integral(change) Derivative
+  pid2.setGains(0.1f, 0.0f, 0.0f);  //Proportional(change) Integral(change) Derivative
   Serial.print("P Gain: ");
   Serial.println((float)pid2.getPgain());
   Serial.print("I Gain: ");
@@ -89,7 +87,6 @@ void setup()
   Serial.println(encoder2.getRawCount());
   target = 1000;
   pid2.setSetpoint(TARGET_POSITION, target);
-
 }
 
 void loop() {

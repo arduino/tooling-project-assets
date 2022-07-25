@@ -4,22 +4,20 @@
 //Variable to store the battery voltage
 int batteryVoltage;
 
-void setup()
-{
+void setup() {
   //Serial port initialization
   Serial.begin(115200);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   //Establishing the communication with the Motor Carrier
-  if (controller.begin())
-  {
+  if (controller.begin()) {
     Serial.print("MKR Motor Carrier connected, firmware version ");
     Serial.println(controller.getFWVersion());
-  }
-  else
-  {
+  } else {
     Serial.println("Couldn't connect! Is the red LED blinking? You may need to update the firmware with FWUpdater sketch");
-    while (1);
+    while (1)
+      ;
   }
 
   // Reboot the motor controller; brings every value back to default
@@ -42,20 +40,16 @@ void loop() {
   float batteryVoltage = (float)battery.getConverted();
 
   //Reset to the default values if the battery level is lower than 11 V
-  if (batteryVoltage < 11)
-  {
+  if (batteryVoltage < 11) {
     Serial.println(" ");
     Serial.println("WARNING: LOW BATTERY");
     Serial.println("ALL SYSTEMS DOWN");
     while (batteryVoltage < 11) {
       batteryVoltage = (float)battery.getConverted();
     }
-  }
-  else
-  {
+  } else {
     //Servo sweep from 0 position to 180
-    for (int i = 0; i < 180; i += 5)
-    {
+    for (int i = 0; i < 180; i += 5) {
       //Choose which of the servo connectors you want to use: servo1(default), servo2, servo3 or servo4
       servo1.setAngle(i);
       Serial.print("Servo position");
@@ -66,8 +60,7 @@ void loop() {
     delay(200);
 
     //Servo sweep from 180 position to 0
-    for (int i = 180; i > 0; i -= 5)
-    {
+    for (int i = 180; i > 0; i -= 5) {
       //Choose which of the servo connectors you want to use: servo1(default), servo2, servo3 or servo4
       servo1.setAngle(i);
       Serial.print("Servo position");

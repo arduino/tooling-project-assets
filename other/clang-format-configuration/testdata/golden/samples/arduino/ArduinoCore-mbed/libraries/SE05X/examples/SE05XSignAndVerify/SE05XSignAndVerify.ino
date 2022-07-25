@@ -29,11 +29,13 @@ void printBufferHex(const byte input[], size_t inputLength) {
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   if (!SE05X.begin()) {
     Serial.println("Failed to communicate with SE05X!");
-    while (1);
+    while (1)
+      ;
   }
 
   const int KeyId = 999;
@@ -78,5 +80,4 @@ void setup() {
 }
 
 void loop() {
-
 }

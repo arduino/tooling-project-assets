@@ -18,7 +18,7 @@
   by Sandeep Mistry
 */
 
-#include <ArduinoRS485.h> // ArduinoModbus depends on the ArduinoRS485 library
+#include <ArduinoRS485.h>  // ArduinoModbus depends on the ArduinoRS485 library
 #include <ArduinoModbus.h>
 
 const int ledPin = LED_BUILTIN;
@@ -31,7 +31,8 @@ void setup() {
   // start the Modbus RTU server, with (slave) id 1
   if (!ModbusRTUServer.begin(1, 9600)) {
     Serial.println("Failed to start Modbus RTU Server!");
-    while (1);
+    while (1)
+      ;
   }
 
   // configure the LED

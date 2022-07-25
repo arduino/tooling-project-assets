@@ -5,35 +5,35 @@
 
   Check out the latest Arduino & Temboo examples and support docs at http://www.temboo.com/arduino
 
-  A Temboo account and application key are necessary to run all Temboo examples.
-  If you don't already have one, you can register for a free Temboo account at
+  A Temboo account and application key are necessary to run all Temboo examples. 
+  If you don't already have one, you can register for a free Temboo account at 
   http://www.temboo.com
 
-  Since this sketch uses Twilio to send the SMS, you'll also need a valid
+  Since this sketch uses Twilio to send the SMS, you'll also need a valid 
   Twilio account. You can create one for free at https://www.twilio.com.
-
+ 
   The sketch needs your Twilio phone number, along with
   the Account SID and Auth Token you get when you register with Twilio.
-  Make sure to use the Account SID and Auth Token from your Twilio Dashboard
+  Make sure to use the Account SID and Auth Token from your Twilio Dashboard 
   (not your test credentials from the Dev Tools panel).
 
-  Also note that if you're using a free Twilio account, you'll need to verify
+  Also note that if you're using a free Twilio account, you'll need to verify 
   the phone number to which messages are being sent by going to twilio.com and following
   the instructions under the "Numbers > Verified Caller IDs" tab (this restriction
   doesn't apply if you have a paid Twilio account).
-
+  
   This example assumes basic familiarity with Arduino sketches, and that your Yún is connected
   to the Internet.
 
   Looking for another API to use with your Arduino Yún? We've got over 100 in our Library!
-
+  
   This example code is in the public domain.
 */
 
 #include <Bridge.h>
 #include <Temboo.h>
-#include "TembooAccount.h" // contains Temboo account information
-// as described in the footer comment below
+#include "TembooAccount.h"  // contains Temboo account information
+                            // as described in the footer comment below
 
 
 
@@ -62,13 +62,13 @@ void setup() {
 
   // for debugging, wait until a serial console is connected
   delay(4000);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   Bridge.begin();
 }
 
-void loop()
-{
+void loop() {
   // only try to send the SMS if we haven't already sent it successfully
   if (!attempted) {
 
@@ -140,15 +140,15 @@ void loop()
   by inserting your own Temboo account name and app key information. The contents of the file should
   look like:
 
-  #define TEMBOO_ACCOUNT "myTembooAccountName"  // your Temboo account name
+  #define TEMBOO_ACCOUNT "myTembooAccountName"  // your Temboo account name 
   #define TEMBOO_APP_KEY_NAME "myFirstApp"  // your Temboo app key name
   #define TEMBOO_APP_KEY  "xxx-xxx-xxx-xx-xxx"  // your Temboo app key
 
-  You can find your Temboo App Key information on the Temboo website,
+  You can find your Temboo App Key information on the Temboo website, 
   under My Account > Application Keys
 
   The same TembooAccount.h file settings can be used for all Temboo SDK sketches.
 
-  Keeping your account information in a separate file means you can share the main .ino file without worrying
+  Keeping your account information in a separate file means you can share the main .ino file without worrying 
   that you forgot to delete your credentials.
 */

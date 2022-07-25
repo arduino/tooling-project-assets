@@ -1,15 +1,15 @@
 /*
 
-  This example enables you to change or remove the PIN number of
-  a SIM card inserted into a MKR NB 1500 board.
+ This example enables you to change or remove the PIN number of
+ a SIM card inserted into a MKR NB 1500 board.
 
-  Circuit:
-   MKR NB 1500 board
-   Antenna
-   SIM card
+ Circuit:
+ * MKR NB 1500 board
+ * Antenna
+ * SIM card
 
-  Created 12 Jun 2012
-  by David del Peral
+ Created 12 Jun 2012
+ by David del Peral
 */
 
 // libraries
@@ -32,7 +32,7 @@ void setup() {
   // initialize serial communications and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for Leonardo only
+    ;  // wait for serial port to connect. Needed for Leonardo only
   }
 
   Serial.println("Change PIN example\n");
@@ -72,7 +72,8 @@ void setup() {
     } else if (pin_query == -2) {
       // the worst case, PIN and PUK are locked
       Serial.println("PIN and PUK locked. Use PIN2/PUK2 in a mobile phone.");
-      while (true);
+      while (true)
+        ;
     } else {
       // SIM does not requires authentication
       Serial.println("No pin necessary.");
@@ -91,7 +92,8 @@ void setup() {
   } else {
     // error connection
     Serial.println(errortext);
-    while (true);
+    while (true)
+      ;
   }
 }
 
@@ -125,7 +127,7 @@ void loop() {
 
 /*
   Read serial input
-*/
+ */
 String readSerial() {
   String text = "";
   while (1) {

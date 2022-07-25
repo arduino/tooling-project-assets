@@ -17,7 +17,7 @@
 void setup() {
   /* Initialize serial and wait up to 5 seconds for port to open */
   Serial.begin(9600);
-  for (unsigned long const serialBeginTime = millis(); !Serial && (millis() - serialBeginTime > 5000); ) { }
+  for (unsigned long const serialBeginTime = millis(); !Serial && (millis() - serialBeginTime > 5000);) {}
 
   /* This function takes care of connecting your sketch variables to the ArduinoIoTCloud object */
   initProperties();
@@ -40,15 +40,12 @@ void loop() {
 }
 
 void onSwitchButtonChange() {
-  if (switchButton)
-  {
+  if (switchButton) {
     location = Location(latMov, lonMov);
-    color    = Color(hueRed, satRed, briRed);
-  }
-  else
-  {
+    color = Color(hueRed, satRed, briRed);
+  } else {
     location = Location(latArd, lonArd);
-    color    = Color(hueGreen, satGreen, briGreen);
+    color = Color(hueGreen, satGreen, briGreen);
   }
 }
 

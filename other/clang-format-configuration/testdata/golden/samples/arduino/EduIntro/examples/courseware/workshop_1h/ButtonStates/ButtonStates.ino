@@ -14,15 +14,13 @@
 
 Button btn(D7);
 
-void setup()
-{
+void setup() {
   // we are going to use the serial communication as a
   // way to see on the PC what is happening on the Arduino
   Serial.begin(9600);
 }
 
-void loop()
-{
+void loop() {
   if (btn.pressed())
     Serial.println("pressed");
   if (btn.held())

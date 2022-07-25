@@ -4,7 +4,7 @@
 #include <SD.h>
 #include <list>
 
-struct DataPoint: Printable {
+struct DataPoint : Printable {
   time_t ts;
   uint16_t moistureA;
   uint8_t moistureP;
@@ -12,7 +12,6 @@ struct DataPoint: Printable {
   DataPoint(uint16_t moistureA, uint8_t moistureP);
 
   virtual size_t printTo(Print& p) const;
-
 };
 
 int saveSensorsData();

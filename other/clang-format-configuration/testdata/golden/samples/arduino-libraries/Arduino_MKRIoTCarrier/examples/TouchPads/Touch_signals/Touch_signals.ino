@@ -10,8 +10,6 @@ void setup() {
   //carrier.noCase();     //No need to use it, default false
   Serial.begin(9600);
   carrier.begin();
-
-
 }
 
 void loop() {
@@ -24,5 +22,4 @@ void loop() {
     Serial.print("\t");
   }
   Serial.println();
-
 }

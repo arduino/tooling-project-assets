@@ -19,7 +19,7 @@
        milliseconds the channel will automatically try
        to close itself again. In case of a persistent
        overcurrent the channel will continuously toggle.
-
+  
   The circuit:
    - Portenta H7
    - Machine Control
@@ -34,7 +34,8 @@ using namespace machinecontrol;
 void setup() {
   Serial.begin(9600);
   // The loop starts only when the Serial Monitor is opened.
-  while (!Serial);
+  while (!Serial)
+    ;
 
   //Set over current behavior of all channels to latch mode:
   digital_outputs.setLatch();

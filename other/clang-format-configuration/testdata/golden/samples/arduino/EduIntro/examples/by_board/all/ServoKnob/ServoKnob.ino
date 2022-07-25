@@ -6,25 +6,24 @@
   created in Feb 2019 by D. Cuartielles
 
   based on  https://www.arduino.cc/en/tutorial/knob
-*/
+ */
 
 // include the EduIntro library
 #include <EduIntro.h>
 
 Potentiometer pot(A0);  // creating the object 'pot' on pin A0
 
-ServoMotor servo(D10);		// creating the object 'servo' on pin D10
+ServoMotor servo(D10);  // creating the object 'servo' on pin D10
 
-int potVal = 0;   // value read from the pot
-int angleVal = 0; // value of the angle to set the servo
+int potVal = 0;    // value read from the pot
+int angleVal = 0;  // value of the angle to set the servo
 
 void setup() {
   // initialize serial communications at 9600 bps
   Serial.begin(9600);
 }
 
-void loop()
-{
+void loop() {
   // read the potentiometer's value:
   potVal = pot.read();
 
@@ -36,7 +35,7 @@ void loop()
   servo.write(angleVal);
 
   // print the results to the serial monitor:
-  Serial.print("angle = " );
+  Serial.print("angle = ");
   Serial.println(angleVal);
 
 

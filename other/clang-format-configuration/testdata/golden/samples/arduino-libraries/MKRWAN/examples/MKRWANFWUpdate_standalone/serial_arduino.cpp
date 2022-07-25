@@ -16,7 +16,7 @@ static port_err_t arduino_flush(struct port_interface *port) {
 }
 
 static port_err_t arduino_read(struct port_interface *port, void *buf, size_t nbyte) {
-  uint8_t *pos = (uint8_t*)buf;
+  uint8_t *pos = (uint8_t *)buf;
   while (nbyte) {
     if (port->dev->available()) {
       int c = port->dev->read();
@@ -32,7 +32,7 @@ static port_err_t arduino_read(struct port_interface *port, void *buf, size_t nb
 }
 
 static port_err_t arduino_write(struct port_interface *port, void *buf, size_t nbyte) {
-  port->dev->write((uint8_t*)buf, nbyte);
+  port->dev->write((uint8_t *)buf, nbyte);
   return PORT_ERR_OK;
 }
 

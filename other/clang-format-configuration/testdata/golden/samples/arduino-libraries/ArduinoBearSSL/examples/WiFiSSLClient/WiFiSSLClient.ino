@@ -14,15 +14,15 @@
 #include <WiFi101.h>
 #include <ArduinoBearSSL.h>
 
-char ssid[] = "yourNetwork"; //  your network SSID (name)
-char pass[] = "secretPassword";    // your network password (use for WPA, or use as key for WEP)
-int keyIndex = 0;            // your network key Index number (needed only for WEP)
+char ssid[] = "yourNetwork";     //  your network SSID (name)
+char pass[] = "secretPassword";  // your network password (use for WPA, or use as key for WEP)
+int keyIndex = 0;                // your network key Index number (needed only for WEP)
 
 int status = WL_IDLE_STATUS;
 // if you don't want to use DNS (and reduce your sketch size)
 // use the numeric IP instead of the name for the server:
 //IPAddress server(74,125,232,128);  // numeric IP for Google (no DNS)
-char server[] = "google.com";    // name address for Google (using DNS)
+char server[] = "google.com";  // name address for Google (using DNS)
 
 // Initialize the Ethernet client library
 // with the IP address and port of the server
@@ -38,14 +38,15 @@ void setup() {
   //Initialize serial and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   // check for the presence of the shield:
   if (WiFi.status() == WL_NO_SHIELD) {
     Serial.println("WiFi shield not present");
     // don't continue:
-    while (true);
+    while (true)
+      ;
   }
 
   // attempt to connect to WiFi network:
@@ -90,7 +91,8 @@ void loop() {
     sslClient.stop();
 
     // do nothing forevermore:
-    while (true);
+    while (true)
+      ;
   }
 }
 

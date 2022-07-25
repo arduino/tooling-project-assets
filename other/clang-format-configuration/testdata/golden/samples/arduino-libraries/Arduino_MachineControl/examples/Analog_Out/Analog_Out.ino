@@ -26,7 +26,6 @@ void setup() {
 
   Serial.begin(9600);
   Serial.println("Analog out test");
-
 }
 
 //Output values which will be changed with this variable
@@ -42,8 +41,7 @@ void loop() {
 
   counter = counter + 0.1;
   //Maximum output value is 10.4V
-  if (counter >= 10.5)
-  {
+  if (counter >= 10.5) {
     counter = 0;
     //Additional 100 ms delay introduced to manage 10.5V -> 0V fall time of 150 ms
     delay(100);

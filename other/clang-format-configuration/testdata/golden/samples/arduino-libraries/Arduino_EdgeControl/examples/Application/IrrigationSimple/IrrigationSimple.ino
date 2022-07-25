@@ -1,19 +1,19 @@
 /**
-   Simple irrigation system with Arduino EdgeControl
-
-   Circuit:
-   - Arduino EdgeControl
-   - MicroSD card
-   - CR2032 Battery and/or 12V Lead Battery
-   - Button connected to POWER_ON pin on the LCD breakout header
-
-   Usage:
-   - Define your callback functions in CustomTasks.{h,cpp}
-   - Map the callback functions to alarmatab command names in
-     CustomTasks.h::commandMap map.
-   - Add tasks to the alarmtab.txt file and copy it on the SD card;
-     See alarmtab.txt and AlarmTasks.cpp for documentation.
-*/
+ * Simple irrigation system with Arduino EdgeControl
+ * 
+ * Circuit:
+ * - Arduino EdgeControl
+ * - MicroSD card
+ * - CR2032 Battery and/or 12V Lead Battery
+ * - Button connected to POWER_ON pin on the LCD breakout header
+ * 
+ * Usage:
+ * - Define your callback functions in CustomTasks.{h,cpp}
+ * - Map the callback functions to alarmatab command names in
+ *   CustomTasks.h::commandMap map.
+ * - Add tasks to the alarmtab.txt file and copy it on the SD card;
+ *   See alarmtab.txt and AlarmTasks.cpp for documentation.
+ */
 
 #include <Arduino_EdgeControl.h>
 
@@ -34,48 +34,41 @@ enum ButtonStatus : byte {
 };
 
 // ISR: count the button taps
-volatile byte taps {
-  0
-};
+volatile byte taps{ 0 };
 // ISR: keep elapsed timings
-volatile unsigned long previousPress {
-  0
-};
+volatile unsigned long previousPress{ 0 };
 // ISR: Final button status
-volatile ButtonStatus buttonStatus {
-  ZERO_TAP
-};
+volatile ButtonStatus buttonStatus{ ZERO_TAP };
 
 /**
-   Used to keep track of the running alarms from
-   alarmtab.txt.
-
-   The loadAndSetTasks() function will fill this
-   with tasks defined in CustomTasks.{h.cpp} and
-   loaded from the alarmtab.txt on the SD.
-
-*/
+ * Used to keep track of the running alarms from
+ * alarmtab.txt.
+ *
+ * The loadAndSetTasks() function will fill this
+ * with tasks defined in CustomTasks.{h.cpp} and
+ * loaded from the alarmtab.txt on the SD.
+ *
+ */
 std::list<AlarmID_t> alarmTabIDs;
 
 /**
-   Used to keep track of the alarms defined in the
-   sketch.
-*/
+ * Used to keep track of the alarms defined in the
+ * sketch.
+ */
 std::list<AlarmID_t> alarmSketchIDs;
 
 /**
-   Used to keep track of the measurements points
-*/
+ * Used to keep track of the measurements points
+ */
 std::list<DataPoint> dataPoints;
 
-void setup()
-{
+void setup() {
   Serial.begin(9600);
-  constexpr unsigned long timeout { 2500 };
+  constexpr unsigned long timeout{ 2500 };
 
   // Wait for Serial Monitor for timeout ms
   auto startNow = millis() + timeout;
-  while (!Serial && millis() < startNow )
+  while (!Serial && millis() < startNow)
     ;
 
   delay(1000);
@@ -126,8 +119,7 @@ void setup()
   alarmSketchIDs.push_back(id);
 }
 
-void loop()
-{
+void loop() {
   // Do alarms processing
   Alarm.delay(10);
 
@@ -160,8 +152,7 @@ void loop()
   }
 }
 
-void buttonPress()
-{
+void buttonPress() {
   const auto now = millis();
   // Poor-man debouncing
   if (now - previousPress > 100)
@@ -170,10 +161,9 @@ void buttonPress()
   previousPress = now;
 }
 
-void detectTaps()
-{
+void detectTaps() {
   // Timeout to validate the button taps counter
-  constexpr unsigned int buttonTapsTimeout { 300 };
+  constexpr unsigned int buttonTapsTimeout{ 300 };
 
   // Set the button status and reset the taps counter when button has been
   // pressed at least once and button taps validation timeout has been reached.

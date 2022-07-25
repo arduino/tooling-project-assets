@@ -1,17 +1,17 @@
 /*
-  This example  prints the board's MAC address, and
-  scans for available WiFi networks using the NINA module.
-  Every ten seconds, it scans again. It doesn't actually
-  connect to any network, so no encryption scheme is specified.
+ This example  prints the board's MAC address, and
+ scans for available WiFi networks using the NINA module.
+ Every ten seconds, it scans again. It doesn't actually
+ connect to any network, so no encryption scheme is specified.
 
-  Circuit:
-   Board with NINA module (Arduino MKR WiFi 1010, MKR VIDOR 4000 and UNO WiFi Rev.2)
+ Circuit:
+ * Board with NINA module (Arduino MKR WiFi 1010, MKR VIDOR 4000 and UNO WiFi Rev.2)
 
-  created 13 July 2010
-  by dlf (Metodo2 srl)
-  modified 21 Junn 2012
-  by Tom Igoe and Jaymes Dec
-*/
+ created 13 July 2010
+ by dlf (Metodo2 srl)
+ modified 21 Junn 2012
+ by Tom Igoe and Jaymes Dec
+ */
 
 
 #include <SPI.h>
@@ -21,14 +21,15 @@ void setup() {
   //Initialize serial and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   // check for the WiFi module:
   if (WiFi.status() == WL_NO_MODULE) {
     Serial.println("Communication with WiFi module failed!");
     // don't continue
-    while (true);
+    while (true)
+      ;
   }
 
   String fv = WiFi.firmwareVersion();
@@ -56,7 +57,8 @@ void listNetworks() {
   int numSsid = WiFi.scanNetworks();
   if (numSsid == -1) {
     Serial.println("Couldn't get a WiFi connection");
-    while (true);
+    while (true)
+      ;
   }
 
   // print the list of networks seen:

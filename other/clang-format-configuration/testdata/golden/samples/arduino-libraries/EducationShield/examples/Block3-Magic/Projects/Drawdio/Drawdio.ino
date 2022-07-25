@@ -1,16 +1,16 @@
-/*
-  Drawdio
-
-  Draw audio with drawdio. You might think that this pen is magic,
-  and it might just be. Drawdio turns (almost) everything that is
-  conductive into an instrument. You can either make music by
-  drawing a picture or by touching the tip of it to different
-  conductive things around you.
-
-  (c) 2013-2016 Arduino LLC.
-  Inspiration from Jay Siver's DRAWDIO
-  http://web.media.mit.edu/~silver/drawdio/
-
+/*  
+* Drawdio
+*
+* Draw audio with drawdio. You might think that this pen is magic,
+* and it might just be. Drawdio turns (almost) everything that is
+* conductive into an instrument. You can either make music by
+* drawing a picture or by touching the tip of it to different
+* conductive things around you. 
+* 
+* (c) 2013-2016 Arduino LLC.
+* Inspiration from Jay Siver's DRAWDIO
+* http://web.media.mit.edu/~silver/drawdio/
+*
 */
 
 #include <EducationShield.h>

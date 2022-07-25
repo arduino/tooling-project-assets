@@ -1,20 +1,20 @@
 /*
-  SMS sender
+ SMS sender
 
-  This sketch, for the MKR NB 1500 board, sends an SMS message
-  you enter in the serial monitor. Connect your Arduino with the
-  SIM card, open the serial monitor, and wait for
-  the "READY" message to appear in the monitor. Next, type a
-  message to send and press "return". Make sure the serial
-  monitor is set to send a newline when you press return.
+ This sketch, for the MKR NB 1500 board, sends an SMS message
+ you enter in the serial monitor. Connect your Arduino with the
+ SIM card, open the serial monitor, and wait for
+ the "READY" message to appear in the monitor. Next, type a
+ message to send and press "return". Make sure the serial
+ monitor is set to send a newline when you press return.
 
-  Circuit:
-   MKR NB 1500 board
-   Antenna
-   SIM card that can send SMS
+ Circuit:
+ * MKR NB 1500 board
+ * Antenna
+ * SIM card that can send SMS
 
-  created 25 Feb 2012
-  by Tom Igoe
+ created 25 Feb 2012
+ by Tom Igoe
 */
 
 // Include the NB library
@@ -33,7 +33,7 @@ void setup() {
   // initialize serial communications and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   Serial.println("SMS Messages Sender");
@@ -80,7 +80,7 @@ void loop() {
 
 /*
   Read input serial
-*/
+ */
 int readSerial(char result[]) {
   int i = 0;
   while (1) {

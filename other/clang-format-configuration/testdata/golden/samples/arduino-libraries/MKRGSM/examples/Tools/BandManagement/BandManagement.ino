@@ -1,24 +1,24 @@
 /*
-  Band Management
+ Band Management
 
-  This sketch, for the MKR GSM 1400 board, checks the band
-  currently configured in the modem and allows you to change
-  it.
+ This sketch, for the MKR GSM 1400 board, checks the band
+ currently configured in the modem and allows you to change
+ it.
 
-  Please check http://www.worldtimezone.com/gsm.html
-  Usual configurations:
-  Europe, Africa, Middle East: E-GSM(900)+DCS(1800)
-  USA, Canada, South America: GSM(850)+PCS(1900)
-  Mexico: PCS(1900)
-  Brazil: GSM(850)+E-GSM(900)+DCS(1800)+PCS(1900)
+ Please check http://www.worldtimezone.com/gsm.html
+ Usual configurations:
+ Europe, Africa, Middle East: E-GSM(900)+DCS(1800)
+ USA, Canada, South America: GSM(850)+PCS(1900)
+ Mexico: PCS(1900)
+ Brazil: GSM(850)+E-GSM(900)+DCS(1800)+PCS(1900)
 
 
-  Circuit:
-   MKR GSM 1400 board
-   Antenna
+ Circuit:
+ * MKR GSM 1400 board
+ * Antenna
 
-  created 12 June 2012
-  by Javier Zorzano, Scott Fitzgerald
+ created 12 June 2012
+ by Javier Zorzano, Scott Fitzgerald
 */
 
 // libraries
@@ -31,20 +31,19 @@ void setup() {
   // initialize serial communications and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   // Beginning the band manager restarts the modem
   Serial.println("Restarting modem...");
   band.begin();
   Serial.println("Modem restarted.");
-
 };
 
 
 void loop() {
   // Get current band
-  String bandName = band.getBand(); // Get and print band name
+  String bandName = band.getBand();  // Get and print band name
   Serial.print("Current band:");
   Serial.println(bandName);
   Serial.println("Want to change the band you’re on?");
@@ -64,7 +63,8 @@ void loop() {
   }
 
   if (operationSuccess) {
-    while (true);
+    while (true)
+      ;
   }
 }
 
@@ -90,7 +90,8 @@ String askUser() {
   }
 
   // Wait for an answer, just look at the first character
-  while (!Serial.available());
+  while (!Serial.available())
+    ;
   char c = Serial.read();
   if (c == '1') {
     newBand = GSM_MODE_EGSM;

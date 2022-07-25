@@ -19,14 +19,15 @@ void setup() {
   // initialize serial communications and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   // If you are using the MKR GPS as shield, change the next line to pass
   // the GPS_MODE_SHIELD parameter to the GPS.begin(...)
   if (!GPS.begin()) {
     Serial.println("Failed to initialize GPS!");
-    while (1);
+    while (1)
+      ;
   }
 }
 
@@ -51,17 +52,18 @@ void loop() {
 
   // wait for new GPS data to become available
   unsigned long startMillis = millis();
-  while (!GPS.available());
+  while (!GPS.available())
+    ;
   unsigned long endMillis = millis();
 
   Serial.print(endMillis - startMillis);
   Serial.println(" ms");
 
   // read GPS values
-  float latitude   = GPS.latitude();
-  float longitude  = GPS.longitude();
-  float altitude   = GPS.altitude();
-  int   satellites = GPS.satellites();
+  float latitude = GPS.latitude();
+  float longitude = GPS.longitude();
+  float altitude = GPS.altitude();
+  int satellites = GPS.satellites();
 
   // print GPS values
   Serial.println();

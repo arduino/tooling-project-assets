@@ -1,17 +1,17 @@
-/*
-  Knob
-
-  The Knob class is used for working with potentiometers. It provides
-  functionalities to divide the raw value into a set amount of levels,
-  which is helpful when a set of options are picked by the level of
-  the knob.
-
-  (c) 2013-2016 Arduino LLC.
+/*  
+* Knob
+*
+* The Knob class is used for working with potentiometers. It provides
+* functionalities to divide the raw value into a set amount of levels,
+* which is helpful when a set of options are picked by the level of 
+* the knob.
+* 
+* (c) 2013-2016 Arduino LLC.
 */
 
 #include <EducationShield.h>
 
-Knob pot = Knob(A5); //a knob is connected to A5
+Knob pot = Knob(A5);  //a knob is connected to A5
 
 void setup() {
   Serial.begin(9600);
@@ -22,7 +22,6 @@ void setup() {
   //
   //Initializing the knob with total number of levels
   pot.setLevels(10);
-
 }
 
 void loop() {
@@ -43,5 +42,4 @@ void loop() {
   Serial.println(b);
 
   delay(100);
-
 }

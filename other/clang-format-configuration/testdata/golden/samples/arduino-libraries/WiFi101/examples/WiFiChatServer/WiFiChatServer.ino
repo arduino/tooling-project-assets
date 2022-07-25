@@ -1,56 +1,57 @@
 /*
-  Chat  Server
+ Chat  Server
 
-  A simple server that distributes any incoming messages to all
-  connected clients.  To use telnet to  your device's IP address and type.
-  You can see the client's input in the serial monitor as well.
+ A simple server that distributes any incoming messages to all
+ connected clients.  To use telnet to  your device's IP address and type.
+ You can see the client's input in the serial monitor as well.
 
-  This example is written for a network using WPA encryption. For
-  WEP or WPA, change the WiFi.begin() call accordingly.
+ This example is written for a network using WPA encryption. For
+ WEP or WPA, change the WiFi.begin() call accordingly.
 
 
-  Circuit:
-   WiFi 101 Shield attached
+ Circuit:
+ * WiFi 101 Shield attached
 
-  created 18 Dec 2009
-  by David A. Mellis
-  modified 31 May 2012
-  by Tom Igoe
+ created 18 Dec 2009
+ by David A. Mellis
+ modified 31 May 2012
+ by Tom Igoe
 
-*/
+ */
 
 #include <SPI.h>
 #include <WiFi101.h>
 
 #include "arduino_secrets.h"
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h
-char ssid[] = SECRET_SSID;        // your network SSID (name)
-char pass[] = SECRET_PASS;    // your network password (use for WPA, or use as key for WEP)
+char ssid[] = SECRET_SSID;  // your network SSID (name)
+char pass[] = SECRET_PASS;  // your network password (use for WPA, or use as key for WEP)
 
-int keyIndex = 0;            // your network key Index number (needed only for WEP)
+int keyIndex = 0;  // your network key Index number (needed only for WEP)
 
 int status = WL_IDLE_STATUS;
 
 WiFiServer server(23);
 
-bool alreadyConnected = false; // whether or not the client was connected previously
+bool alreadyConnected = false;  // whether or not the client was connected previously
 
 void setup() {
   //Initialize serial and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   // check for the presence of the shield:
   if (WiFi.status() == WL_NO_SHIELD) {
     Serial.println("WiFi 101 Shield not present");
     // don't continue:
-    while (true);
+    while (true)
+      ;
   }
 
   // attempt to connect to WiFi network:
-  while ( status != WL_CONNECTED) {
+  while (status != WL_CONNECTED) {
     Serial.print("Attempting to connect to SSID: ");
     Serial.println(ssid);
     // Connect to WPA/WPA2 network. Change this line if using open or WEP network:

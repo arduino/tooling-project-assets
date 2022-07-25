@@ -1,20 +1,20 @@
 /*
-  React
-
-   Test your reaction time!
-
-  In this game, one of three LEDs will randomly light up.
-  You must tap the corresponding capacitive sensor as quick
-  as possible. If you don’t react fast enough, the game is over.
-
-  (c) 2013-2016 Arduino LLC.
+* React
+* 
+*  Test your reaction time!
+*
+* In this game, one of three LEDs will randomly light up. 
+* You must tap the corresponding capacitive sensor as quick 
+* as possible. If you don’t react fast enough, the game is over. 
+*
+* (c) 2013-2016 Arduino LLC.
 */
 
 #include <EducationShield.h>
 #include "pitches.h"
 
 //Define the 3 LEDs
-int ledPins[] = {9, 10, 11};
+int ledPins[] = { 9, 10, 11 };
 int pinCount = 3;
 VUMeter LEDs;
 
@@ -54,12 +54,11 @@ void loop() {
     LEDs.off(target);
 
     //Play the winning sound
-    int melody[] = { NOTE_GS4, NOTE_C5};
-    int noteDurations[] = { 8, 8};
+    int melody[] = { NOTE_GS4, NOTE_C5 };
+    int noteDurations[] = { 8, 8 };
     int numberOfNotes = 2;
     piezo.play(numberOfNotes, melody, noteDurations, 1);
-  }
-  else {
+  } else {
     //Else if the reaction is too slow, run the function gameOver()
     gameOver();
   }
@@ -70,11 +69,11 @@ void gameOver() {
   LEDs.fill(pinCount);
 
   //Play a melody
-  int melody[] = { NOTE_E2, NOTE_C2};
-  int noteDurations[] = { 2, 1};
+  int melody[] = { NOTE_E2, NOTE_C2 };
+  int noteDurations[] = { 2, 1 };
   int numberOfNotes = 2;
   piezo.play(numberOfNotes, melody, noteDurations, 1);
 
   LEDs.blinkAll(100, 10);
-  LEDs.fill(0); //Tun all LEDs off
+  LEDs.fill(0);  //Tun all LEDs off
 }

@@ -49,7 +49,8 @@ void setup() {
   SigFox.end();
 
   Serial.println("Type the message to be sent");
-  while (!Serial.available());
+  while (!Serial.available())
+    ;
 
   String message;
   while (Serial.available()) {
@@ -78,8 +79,7 @@ void setup() {
   sendStringAndGetResponse(message);
 }
 
-void loop()
-{
+void loop() {
 }
 
 void sendString(String str) {

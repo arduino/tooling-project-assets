@@ -31,11 +31,11 @@ typedef struct __attribute__((__packed__)) {
 
 static const int MAX_PAYLOAD_SIZE = 1024;
 
-#define CMD_READ_FLASH        0x01
-#define CMD_WRITE_FLASH       0x02
-#define CMD_ERASE_FLASH       0x03
-#define CMD_MAX_PAYLOAD_SIZE  0x50
-#define CMD_HELLO             0x99
+#define CMD_READ_FLASH 0x01
+#define CMD_WRITE_FLASH 0x02
+#define CMD_ERASE_FLASH 0x03
+#define CMD_MAX_PAYLOAD_SIZE 0x50
+#define CMD_HELLO 0x99
 
 void setup() {
   Serial.begin(115200);

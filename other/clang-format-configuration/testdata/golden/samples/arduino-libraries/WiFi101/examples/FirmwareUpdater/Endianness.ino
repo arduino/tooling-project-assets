@@ -31,9 +31,12 @@ uint32_t fromNetwork32(uint32_t from) {
   } else {
     uint8_t *pFrom = reinterpret_cast<uint8_t *>(&from);
     uint32_t to;
-    to = pFrom[0]; to <<= 8;
-    to |= pFrom[1]; to <<= 8;
-    to |= pFrom[2]; to <<= 8;
+    to = pFrom[0];
+    to <<= 8;
+    to |= pFrom[1];
+    to <<= 8;
+    to |= pFrom[2];
+    to <<= 8;
     to |= pFrom[3];
     return to;
   }
@@ -46,7 +49,8 @@ uint16_t fromNetwork16(uint16_t from) {
   } else {
     uint8_t *pFrom = reinterpret_cast<uint8_t *>(&from);
     uint16_t to;
-    to = pFrom[0]; to <<= 8;
+    to = pFrom[0];
+    to <<= 8;
     to |= pFrom[1];
     return to;
   }

@@ -1,16 +1,16 @@
 /*
 
-  This sketch tests the MKR NB 1500 board's ability to connect to a
-  GPRS network. It asks for APN information through the
-  serial monitor and tries to connect to example.org.
+ This sketch tests the MKR NB 1500 board's ability to connect to a
+ GPRS network. It asks for APN information through the
+ serial monitor and tries to connect to example.org.
 
-  Circuit:
-   MKR NB 1500 board
-   Antenna
-   SIM card with data plan
+ Circuit:
+ * MKR NB 1500 board
+ * Antenna
+ * SIM card with data plan
 
-  Created 18 Jun 2012
-  by David del Peral
+ Created 18 Jun 2012
+ by David del Peral
 */
 
 // libraries
@@ -22,7 +22,7 @@
 const char PINNUMBER[] = SECRET_PINNUMBER;
 
 // initialize the library instance
-NB nbAccess;        // NB access: include a 'true' parameter for debug enabled
+NB nbAccess;      // NB access: include a 'true' parameter for debug enabled
 GPRS gprsAccess;  // GPRS access
 NBClient client;  // Client service for TCP connection
 
@@ -45,7 +45,7 @@ void setup() {
   // initialize serial communications and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for Leonardo only
+    ;  // wait for serial port to connect. Needed for Leonardo only
   }
 }
 
@@ -57,7 +57,8 @@ void loop() {
   Serial.print("Connecting NB IoT / LTE Cat M1 network...");
   if (nbAccess.begin(PINNUMBER) != NB_READY) {
     Serial.println(errortext);
-    while (true);
+    while (true)
+      ;
   }
   Serial.println(oktext);
 
@@ -83,7 +84,7 @@ void loop() {
       Serial.print("Enter the proxy port: ");
       readSerial(proxyport);
       // cast proxy port introduced to integer
-      pport = (int) proxyport;
+      pport = (int)proxyport;
       use_proxy = true;
       Serial.println(proxyport);
     }
@@ -155,7 +156,7 @@ void loop() {
 
 /*
   Read input serial
-*/
+ */
 int readSerial(char result[]) {
   int i = 0;
   while (1) {

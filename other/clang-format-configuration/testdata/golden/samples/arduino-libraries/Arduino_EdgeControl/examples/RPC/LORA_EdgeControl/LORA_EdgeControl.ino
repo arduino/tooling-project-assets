@@ -20,27 +20,26 @@
 #include <Arduino_EdgeControl.h>
 #include <openmvrpc.h>
 
-openmv::rpc_scratch_buffer<256> scratch_buffer; // All RPC objects share this buffer.
+openmv::rpc_scratch_buffer<256> scratch_buffer;  // All RPC objects share this buffer.
 openmv::rpc_hardware_serial1_uart_master rpc(115200);
 
 //LoRa message received interrupt pin
 const byte interruptPin = PIN_WIRE_SCL1;
 
 bool message_received = false;
-uint16_t msg_count {0};
+uint16_t msg_count{ 0 };
 
 
 //////////////////////////////////////////////////////////////
 // Call Back Handlers
 //////////////////////////////////////////////////////////////
 
-void rpc_retrieve_LoRa_data()
-{
+void rpc_retrieve_LoRa_data() {
   rpc.begin();
   void *message;
   size_t result_data_len;
 
-  if (rpc.call_no_copy_no_args(F("retrieve_msg"), &message, &result_data_len) ) {
+  if (rpc.call_no_copy_no_args(F("retrieve_msg"), &message, &result_data_len)) {
 
     char buff[result_data_len + 1];
     memset(buff, 0, result_data_len + 1);
@@ -65,8 +64,7 @@ void rpc_retrieve_LoRa_data()
 //*******************
 //SETUP
 //*******************
-void setup()
-{
+void setup() {
   //LoRa data available interrupt
   pinMode(interruptPin, INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(interruptPin), LoRa_ISR, FALLING);
@@ -77,10 +75,11 @@ void setup()
   Power.on(PWR_VBAT);
 
   Power.on(PWR_MKR2);
-  delay(5000); // Wait for MKR2 to power-on'
+  delay(5000);  // Wait for MKR2 to power-on'
 
   Serial.begin(115200);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   //  //LCD init
   //  LCD.begin(16, 2);   // set up the LCD's number of columns and rows:
@@ -96,8 +95,7 @@ void setup()
 //*******************
 //LOOP
 //*******************
-void loop()
-{
+void loop() {
   if (message_received) {
     Serial.print("Message ");
     Serial.print(++msg_count);

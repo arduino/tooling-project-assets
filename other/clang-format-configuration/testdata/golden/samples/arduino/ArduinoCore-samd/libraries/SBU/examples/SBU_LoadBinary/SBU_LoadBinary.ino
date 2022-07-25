@@ -1,13 +1,11 @@
 #include <MKRNB.h>
 #include <SBU.h>
 
-static char const BINARY[] =
-{
+static char const BINARY[] = {
 #include "Binary.h"
 };
 
-static char const CHECK_FILE[] =
-{
+static char const CHECK_FILE[] = {
   "OK"
 };
 
@@ -18,16 +16,15 @@ bool update_available = false;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial) { }
+  while (!Serial) {}
 
   unsigned long const start = millis();
-  for (unsigned long now = millis(); !Serial && ((now - start) < 5000); now = millis()) { };
+  for (unsigned long now = millis(); !Serial && ((now - start) < 5000); now = millis()) {};
 
   Serial.print("Accessing SARA Filesystem... ");
   if (!fileUtils.begin(false)) {
     Serial.println("failed.");
     return;
-
   }
   Serial.println("OK");
   Serial.print("Writing \"UPDATE.BIN\" ... ");
@@ -63,7 +60,7 @@ void setup() {
 
   if (index != bytes_to_write) {
     Serial.print("Written only ");
-    Serial.println(index); //bytes_written
+    Serial.println(index);  //bytes_written
     Serial.print(bytes_to_write);
     Serial.println(" should have been written. System is restarting...");
     delay(100);
@@ -83,7 +80,6 @@ void setup() {
     Serial.println("Please type \"restart\" to apply the update");
     update_available = true;
   }
-
 }
 
 void loop() {

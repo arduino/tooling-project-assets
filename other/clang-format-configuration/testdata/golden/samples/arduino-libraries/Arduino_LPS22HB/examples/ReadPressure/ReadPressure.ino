@@ -15,11 +15,13 @@
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   if (!BARO.begin()) {
     Serial.println("Failed to initialize pressure sensor!");
-    while (1);
+    while (1)
+      ;
   }
 }
 

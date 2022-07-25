@@ -1,6 +1,6 @@
 
 /*
-  CTC GO! CORE MODULE
+  CTC GO! CORE MODULE 
   LESSON 07 - Analog Inputs
 
   This sketch is written to accompany Activity 3 in Lesson 07 of the CTC GO! core module
@@ -15,8 +15,7 @@ float distance = 0;
 int value = 0;
 
 
-void setup()
-{
+void setup() {
   pinMode(redLED, OUTPUT);
   pinMode(yellowLED, OUTPUT);
   pinMode(greenLED, OUTPUT);
@@ -24,8 +23,7 @@ void setup()
   Serial.begin(9600);
 }
 
-void loop()
-{
+void loop() {
   // reading, calculating and printing the distance
   value = analogRead(USsensor);
   distance = value * 3;
@@ -34,26 +32,19 @@ void loop()
   delay(250);
 
   // visualizing the distance with the LEDs
-  if (distance < 200)
-  {
+  if (distance < 200) {
     digitalWrite(redLED, HIGH);
     digitalWrite(yellowLED, LOW);
     digitalWrite(greenLED, LOW);
-  }
-  else if (distance < 400)
-  {
+  } else if (distance < 400) {
     digitalWrite(yellowLED, HIGH);
     digitalWrite(redLED, LOW);
     digitalWrite(greenLED, LOW);
-  }
-  else if (distance < 600)
-  {
+  } else if (distance < 600) {
     digitalWrite(greenLED, HIGH);
     digitalWrite(yellowLED, LOW);
     digitalWrite(redLED, LOW);
-  }
-  else
-  {
+  } else {
     digitalWrite(greenLED, LOW);
     digitalWrite(yellowLED, LOW);
     digitalWrite(redLED, LOW);

@@ -19,13 +19,15 @@
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   // begin initialization
   if (!BLE.begin()) {
     Serial.println("starting Bluetooth® Low Energy module failed!");
 
-    while (1);
+    while (1)
+      ;
   }
 
   Serial.println("Bluetooth® Low Energy Central - SensorTag button");
@@ -81,7 +83,8 @@ void monitorSensorTagButtons(BLEDevice peripheral) {
     Serial.println("Attribute discovery failed.");
     peripheral.disconnect();
 
-    while (1);
+    while (1)
+      ;
     return;
   }
 

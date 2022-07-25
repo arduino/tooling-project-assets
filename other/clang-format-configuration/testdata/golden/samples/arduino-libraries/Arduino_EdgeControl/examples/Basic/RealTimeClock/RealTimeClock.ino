@@ -14,8 +14,7 @@
 #include "Helpers.h"
 #include <Arduino_EdgeControl.h>
 
-void setup()
-{
+void setup() {
   pinMode(POWER_ON, INPUT);
 
   Serial.begin(9600);
@@ -55,8 +54,7 @@ void setup()
   }
 }
 
-void loop()
-{
+void loop() {
   Serial.print("Date: ");
   Serial.println(getRTCDateTime());
 

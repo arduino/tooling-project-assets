@@ -14,15 +14,13 @@
 
 PIR pir(D7);
 
-void setup()
-{
+void setup() {
   // we are going to use the serial communication as a
   // way to see on the PC what is happening on the Arduino
   Serial.begin(9600);
 }
 
-void loop()
-{
+void loop() {
   if (pir.activated())
     Serial.println("activited");
   if (pir.active())

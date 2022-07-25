@@ -1,18 +1,18 @@
 /*
-  KnockKnockBox
-
-  Knock on this coffin to awake the dead. Don’t worry,
-  the skeleton won’t get out and come after you but it
-  will reply from inside.
-
-  Ok, we know that you know that there isn’t a real
-  skeleton there. It's really a piezo used as a knock
-  sensor. After you've made this project you might
-  think of a handy way to use this sensor in other ways.
-  Check out this secret knock detecting lock for some
-  inspiration: http://www.youtube.com/watch?v=zE5PGeh2K9k
-
-  (c) 2013-2016 Arduino LLC.
+* KnockKnockBox
+* 
+* Knock on this coffin to awake the dead. Don’t worry, 
+* the skeleton won’t get out and come after you but it 
+* will reply from inside.
+* 
+* Ok, we know that you know that there isn’t a real 
+* skeleton there. It's really a piezo used as a knock 
+* sensor. After you've made this project you might 
+* think of a handy way to use this sensor in other ways. 
+* Check out this secret knock detecting lock for some 
+* inspiration: http://www.youtube.com/watch?v=zE5PGeh2K9k 
+* 
+* (c) 2013-2016 Arduino LLC.
 */
 
 #include <EducationShield.h>

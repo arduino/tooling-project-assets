@@ -1,11 +1,11 @@
 /*
-  Sequencer
-
-  Play beats and change the sequence in real time. Basically
-  all you need to become a hiphop artist. That, and rapping
-  skills. But that's another course.
-
-  (c) 2013-2016 Arduino LLC.
+* Sequencer
+* 
+* Play beats and change the sequence in real time. Basically 
+* all you need to become a hiphop artist. That, and rapping 
+* skills. But that's another course. 
+*  
+* (c) 2013-2016 Arduino LLC.
 */
 #include <EducationShield.h>
 
@@ -14,7 +14,7 @@ Player player = Player();
 
 //There're 4 slots for 4 sequences. We use 4 analog pins
 //to read them.
-int analog_pins[] = {3, 2, 1, 0};
+int analog_pins[] = { 3, 2, 1, 0 };
 int pin_count = 4;
 int analog_values[4];
 
@@ -31,7 +31,6 @@ void setup() {
   // Initialize the sound player. Open the Serial Monitor to see
   //the sound files found on your micro SD card
   player.begin();
-
 }
 void loop() {
   //Loop through 4 pins and play the right sequence accordingly
@@ -85,31 +84,31 @@ int getSeq(int analogVal) {
   return 0;
 
   /*
-    if(analogVal>200 && analogVal<300){  //220 Ohm
-     return 1;
-    }else if(analogVal>360 && analogVal<460){  //470 Ohm
-     return 2;
-    }else if(analogVal>480 && analogVal<580){  //680 Ohm
-     return 3;
-    }else if(analogVal>600 && analogVal<700){  //1k2 Ohm
-     return 4;
-    }else{  //No resistor
-     return 0;
-    }
-  */
+  if(analogVal>200 && analogVal<300){  //220 Ohm
+   return 1; 
+  }else if(analogVal>360 && analogVal<460){  //470 Ohm
+   return 2;
+  }else if(analogVal>480 && analogVal<580){  //680 Ohm
+   return 3;
+  }else if(analogVal>600 && analogVal<700){  //1k2 Ohm
+   return 4;
+  }else{  //No resistor
+   return 0; 
+  }
+*/
   //If you're using Arduino 101, the same resistors give
   //different analog read values. Use the following code
   //instead.
   /*
-    if(analogVal>200 && analogVal<300){  //220 Ohm
-    return 1;
-    }else if(analogVal>400 && analogVal<500){  //470 Ohm
-    return 2;
-    }else if(analogVal>600 && analogVal<700){  //680 Ohm
-    return 3;
-    }else if(analogVal>800 && analogVal<900){  //1k2 Ohm
-    return 4;
-    }else{  //No resistor
-    return 0;
-    }*/
+  if(analogVal>200 && analogVal<300){  //220 Ohm
+   return 1; 
+  }else if(analogVal>400 && analogVal<500){  //470 Ohm
+   return 2;
+  }else if(analogVal>600 && analogVal<700){  //680 Ohm
+   return 3;
+  }else if(analogVal>800 && analogVal<900){  //1k2 Ohm
+   return 4;
+  }else{  //No resistor
+   return 0; 
+  }*/
 }

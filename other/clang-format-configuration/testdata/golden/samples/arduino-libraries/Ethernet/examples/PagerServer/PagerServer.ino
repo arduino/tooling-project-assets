@@ -1,12 +1,12 @@
 /*
-  Pager Server
+ Pager Server
 
-  A simple server that echoes any incoming messages to all
-  connected clients. Connect two or more telnet sessions
-  to see how server.available() and server.print() works.
+ A simple server that echoes any incoming messages to all
+ connected clients. Connect two or more telnet sessions
+ to see how server.available() and server.print() works.
 
-  created in September 2020 for the Ethernet library
-  by Juraj Andrassy https://github.com/jandrassy
+ created in September 2020 for the Ethernet library
+ by Juraj Andrassy https://github.com/jandrassy
 
 */
 #include <Ethernet.h>
@@ -23,7 +23,8 @@ EthernetServer server(2323);
 void setup() {
 
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   // start the Ethernet connection:
   Serial.println("Initialize Ethernet with DHCP:");
@@ -33,7 +34,7 @@ void setup() {
     if (Ethernet.hardwareStatus() == EthernetNoHardware) {
       Serial.println("Ethernet shield was not found.  Sorry, can't run without hardware. :(");
       while (true) {
-        delay(1); // do nothing, no point running without Ethernet hardware
+        delay(1);  // do nothing, no point running without Ethernet hardware
       }
     }
     if (Ethernet.linkStatus() == LinkOFF) {
@@ -57,15 +58,15 @@ void setup() {
 
 void loop() {
 
-  EthernetClient client = server.available(); // returns first client which has data to read or a 'false' client
-  if (client) { // client is true only if it is connected and has data to read
-    String s = client.readStringUntil('\n'); // read the message incoming from one of the clients
-    s.trim(); // trim eventual \r
-    Serial.println(s); // print the message to Serial Monitor
-    client.print("echo: "); // this is only for the sending client
-    server.println(s); // send the message to all connected clients
+  EthernetClient client = server.available();  // returns first client which has data to read or a 'false' client
+  if (client) {                                // client is true only if it is connected and has data to read
+    String s = client.readStringUntil('\n');   // read the message incoming from one of the clients
+    s.trim();                                  // trim eventual \r
+    Serial.println(s);                         // print the message to Serial Monitor
+    client.print("echo: ");                    // this is only for the sending client
+    server.println(s);                         // send the message to all connected clients
 #ifndef ARDUINO_ARCH_SAM
-    server.flush(); // flush the buffers
-#endif /* !defined(ARDUINO_ARCH_SAM) */
+    server.flush();  // flush the buffers
+#endif               /* !defined(ARDUINO_ARCH_SAM) */
   }
 }

@@ -17,19 +17,21 @@
   by Sandeep Mistry
 */
 
-#include <ArduinoRS485.h> // the ArduinoDMX library depends on ArduinoRS485
+#include <ArduinoRS485.h>  // the ArduinoDMX library depends on ArduinoRS485
 #include <ArduinoDMX.h>
 
 const int universeSize = 16;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   // initialize the DMX library with the universe size
   if (!DMX.begin(universeSize)) {
     Serial.println("Failed to initialize DMX!");
-    while (1); // wait for ever
+    while (1)
+      ;  // wait for ever
   }
 }
 
@@ -48,4 +50,3 @@ void loop() {
 
   delay(1000);
 }
-

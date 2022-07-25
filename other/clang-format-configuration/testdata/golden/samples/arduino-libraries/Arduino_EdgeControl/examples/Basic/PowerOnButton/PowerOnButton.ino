@@ -2,20 +2,17 @@
     Test Power On button on LCD breakout board
 
     Circuit:
-      Arduino Edge Control
-      Arduino Edge Control LCD brekout board
+    * Arduino Edge Control
+    * Arduino Edge Control LCD brekout board
 */
 
 #include <Arduino_EdgeControl.h>
 
 // Keep track of toggle-style press with an ISR
-volatile bool buttonPressed {
-  false
-};
-bool ledStatus { false };
+volatile bool buttonPressed{ false };
+bool ledStatus{ false };
 
-void setup()
-{
+void setup() {
   Serial.begin(9600);
 
   for (auto timeout = millis() + 2500l; !Serial && millis() < timeout; delay(250))
@@ -43,12 +40,13 @@ void setup()
   pinMode(POWER_ON, INPUT);
   // ISR for button press detection
   attachInterrupt(
-    digitalPinToInterrupt(POWER_ON), [] { buttonPressed = true; }, FALLING);
-
+    digitalPinToInterrupt(POWER_ON), [] {
+      buttonPressed = true;
+    },
+    FALLING);
 }
 
-void loop()
-{
+void loop() {
   if (buttonPressed == true) {
     buttonPressed = false;
     ledStatus = !ledStatus;

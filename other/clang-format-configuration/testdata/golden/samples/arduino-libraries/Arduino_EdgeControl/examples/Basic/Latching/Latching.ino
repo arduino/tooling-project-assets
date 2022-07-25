@@ -1,7 +1,6 @@
 #include <Arduino_EdgeControl.h>
 
-void setup()
-{
+void setup() {
   Serial.begin(9600);
 
   auto startNow = millis() + 2500;
@@ -14,8 +13,7 @@ void setup()
   Latching.begin();
 }
 
-void loop()
-{
+void loop() {
   Latching.channelDirection(LATCHING_CMD_1, POSITIVE);
   Latching.strobe(200);
   // Latching.channelDirection(LATCHING_CMD_1, POSITIVE);

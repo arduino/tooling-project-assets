@@ -1,12 +1,12 @@
 /*
-  LightChaser
-
-  This little vehicle is on an impossible, never ending
-  mission to catch the light. You can make it follow you
-  by pointing a flashlight at it. (The one on your mobile
-  phone eg.) It will always turn towards the light.
-
-  (c) 2013-2016 Arduino LLC.
+* LightChaser
+*
+* This little vehicle is on an impossible, never ending 
+* mission to catch the light. You can make it follow you 
+* by pointing a flashlight at it. (The one on your mobile 
+* phone eg.) It will always turn towards the light. 
+* 
+* (c) 2013-2016 Arduino LLC.
 */
 
 #include <EducationShield.h>

@@ -1,5 +1,5 @@
 /*
-  CTC GO! MOTION
+  CTC GO! MOTION 
   PROJECT - ROCK PAPER SCISSOR
 
   This sketch is written to accompany Stage 1 of the ROCK PAPER SCISSOR project

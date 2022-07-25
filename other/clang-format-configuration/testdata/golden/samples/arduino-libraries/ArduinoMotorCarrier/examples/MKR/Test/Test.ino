@@ -10,7 +10,8 @@
 void setup() {
 
   Serial.begin(115200);
-  while (!Serial);
+  while (!Serial)
+    ;
 
   // Start communication with the Motor Carrier
   if (controller.begin()) {
@@ -18,7 +19,8 @@ void setup() {
     Serial.println(controller.getFWVersion());
   } else {
     Serial.println("Couldn't connect! Is the red LED blinking? You may need to update the firmware with FWUpdater sketch");
-    while (1);
+    while (1)
+      ;
   }
 
   // Reboot the motor controller; brings every value back to default

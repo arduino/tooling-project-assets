@@ -1,5 +1,4 @@
-void setup()
-{
+void setup() {
   Serial.begin(9600);
 
   Serial.block();
@@ -7,16 +6,14 @@ void setup()
   Serial.unblock();
 }
 
-void loop()
-{
+void loop() {
   /* Read data from the serial interface into a String. */
   String serial_msg;
   while (Serial.available())
     serial_msg += (char)Serial.read();
 
   /* Print thread id and chip id value to serial. */
-  if (serial_msg.length())
-  {
+  if (serial_msg.length()) {
     Serial.block();
     Serial.print("[");
     Serial.print(millis());

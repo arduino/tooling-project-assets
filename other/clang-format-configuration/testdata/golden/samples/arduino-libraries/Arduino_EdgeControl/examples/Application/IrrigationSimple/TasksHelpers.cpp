@@ -1,10 +1,9 @@
 #include "TasksHelpers.h"
 
 /**
-   Load alarm task from parsed alarmtab.txt file on SD.
-*/
-std::list<AlarmTask> loadTasks()
-{
+ * Load alarm task from parsed alarmtab.txt file on SD.
+ */
+std::list<AlarmTask> loadTasks() {
   if (!SD.begin(PIN_SD_CS)) {
     Serial.println("SD initialization failed");
     while (true)
@@ -20,38 +19,42 @@ std::list<AlarmTask> loadTasks()
 }
 
 /**
-   Set the alarm tasks from the loaded list.
-*/
-std::list<AlarmID_t> setTasks(std::list<AlarmTask> taskList)
-{
-  AlarmID_t alarmID { dtINVALID_ALARM_ID };
+ * Set the alarm tasks from the loaded list.
+ */
+std::list<AlarmID_t> setTasks(std::list<AlarmTask> taskList) {
+  AlarmID_t alarmID{ dtINVALID_ALARM_ID };
   std::list<AlarmID_t> alarmIDs;
 
   for (auto& task : taskList) {
     switch (task.method) {
-      case ALARM_REPEAT: {
+      case ALARM_REPEAT:
+        {
           if (task.day == 0)
             alarmID = Alarm.alarmRepeat(task.hour, task.min, task.sec, task.handler);
           else
             alarmID = Alarm.alarmRepeat(task.day, task.hour, task.min, task.sec, task.handler);
           break;
         }
-      case ALARM_ONCE: {
+      case ALARM_ONCE:
+        {
           if (task.day == 0)
             alarmID = Alarm.alarmOnce(task.hour, task.min, task.sec, task.handler);
           else
             alarmID = Alarm.alarmOnce(task.day, task.hour, task.min, task.sec, task.handler);
           break;
         }
-      case TIMER_REPEAT: {
+      case TIMER_REPEAT:
+        {
           alarmID = Alarm.timerRepeat(task.sec, task.handler);
           break;
         }
-      case TIMER_ONCE: {
+      case TIMER_ONCE:
+        {
           alarmID = Alarm.timerOnce(task.sec, task.handler);
           break;
         }
-      case TRIGGER_ONCE: {
+      case TRIGGER_ONCE:
+        {
           alarmID = Alarm.triggerOnce(task.sec, task.handler);
           break;
         }
@@ -65,10 +68,9 @@ std::list<AlarmID_t> setTasks(std::list<AlarmTask> taskList)
 }
 
 /**
-   Free the current alarm tasks
-*/
-void freeTasks(std::list<AlarmID_t>& alarmIDs)
-{
+ * Free the current alarm tasks
+ */
+void freeTasks(std::list<AlarmID_t>& alarmIDs) {
   for (auto& id : alarmIDs) {
     Alarm.free(id);
     id = dtINVALID_ALARM_ID;
@@ -76,12 +78,11 @@ void freeTasks(std::list<AlarmID_t>& alarmIDs)
 }
 
 /**
-   Load and set tasks from alarmtab.txt file.
-
-   Remove previously loaded tasks if parameter is true.
-*/
-void loadAndSetTasks(std::list<AlarmID_t>& alarmIDs, bool reload)
-{
+ * Load and set tasks from alarmtab.txt file.
+ * 
+ * Remove previously loaded tasks if parameter is true.
+ */
+void loadAndSetTasks(std::list<AlarmID_t>& alarmIDs, bool reload) {
   if (reload) {
     Serial.println("Reloading Tasks: ");
     freeTasks(alarmIDs);
@@ -97,8 +98,7 @@ void loadAndSetTasks(std::list<AlarmID_t>& alarmIDs, bool reload)
   Serial.println(" loaded");
 }
 
-void printTasks(const std::list<AlarmTask> taskList)
-{
+void printTasks(const std::list<AlarmTask> taskList) {
   for (auto const task : taskList) {
     Serial.print("- ");
     switch (task.method) {
