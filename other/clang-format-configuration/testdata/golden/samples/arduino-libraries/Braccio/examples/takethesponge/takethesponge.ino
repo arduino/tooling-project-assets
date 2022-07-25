@@ -1,12 +1,12 @@
 /*
   takethesponge.ino
 
- This example commands the Braccio to take a sponge from the table and show it to the user
+  This example commands the Braccio to take a sponge from the table and show it to the user
 
- Created on 18 Nov 2015
- by Andrea Martino
+  Created on 18 Nov 2015
+  by Andrea Martino
 
- This example is in the public domain.
+  This example is in the public domain.
 */
 
 #include <Braccio.h>
@@ -21,7 +21,7 @@ Servo wrist_ver;
 Servo gripper;
 
 
-void setup() {  
+void setup() {
   //Initialization functions and set up the initial position for Braccio
   //All the servo motors will be positioned in the "safety" position:
   //Base (M1):90 degrees
@@ -35,19 +35,19 @@ void setup() {
 
 void loop() {
   /*
-  Step Delay: a milliseconds delay between the movement of each servo.  Allowed values from 10 to 30 msec.
-  M1=base degrees. Allowed values from 0 to 180 degrees
-  M2=shoulder degrees. Allowed values from 15 to 165 degrees
-  M3=elbow degrees. Allowed values from 0 to 180 degrees
-  M4=wrist vertical degrees. Allowed values from 0 to 180 degrees
-  M5=wrist rotation degrees. Allowed values from 0 to 180 degrees
-  M6=gripper degrees. Allowed values from 10 to 73 degrees. 10: the tongue is open, 73: the gripper is closed.
+    Step Delay: a milliseconds delay between the movement of each servo.  Allowed values from 10 to 30 msec.
+    M1=base degrees. Allowed values from 0 to 180 degrees
+    M2=shoulder degrees. Allowed values from 15 to 165 degrees
+    M3=elbow degrees. Allowed values from 0 to 180 degrees
+    M4=wrist vertical degrees. Allowed values from 0 to 180 degrees
+    M5=wrist rotation degrees. Allowed values from 0 to 180 degrees
+    M6=gripper degrees. Allowed values from 10 to 73 degrees. 10: the tongue is open, 73: the gripper is closed.
   */
 
   //Starting position
-                      //(step delay  M1 , M2 , M3 , M4 , M5 , M6);
+  //(step delay  M1 , M2 , M3 , M4 , M5 , M6);
   Braccio.ServoMovement(20,           0,  45, 180, 180,  90,  10);
-  
+
   //Wait 1 second
   delay(1000);
 

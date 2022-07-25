@@ -1,5 +1,5 @@
 /*
-  CTC GO! CORE MODULE 
+  CTC GO! CORE MODULE
   PROJECT 2 - AR GLASSES
 
   This sketch is written to accompany Stage 4 in AR GLASSES  of the CTC GO! core module
@@ -21,24 +21,24 @@ void setup()
   Serial.begin(9600);
 }
 
-void loop() 
+void loop()
 {
-  
+
   distanceSensorValue = analogRead(distanceSensor);
 
-  actualDistanceMM = map(distanceSensorValue,0,1023,0,3000);
+  actualDistanceMM = map(distanceSensorValue, 0, 1023, 0, 3000);
 
   Serial.print("Distance read: ");
   Serial.println(distanceSensorValue);
   Serial.print("Distance converted: ");
   Serial.println(actualDistanceMM);
 
-  actualDelay = map(actualDistanceMM,_____,_____,_____,_____);
+  actualDelay = map(actualDistanceMM, _____, _____, _____, _____);
 
-  digitalWrite(yellowLED,HIGH);
-  tone(piezo,freq_1);
+  digitalWrite(yellowLED, HIGH);
+  tone(piezo, freq_1);
   delay(_____);
-  digitalWrite(yellowLED,LOW);
+  digitalWrite(yellowLED, LOW);
   noTone(piezo);
   delay(_____);
 }

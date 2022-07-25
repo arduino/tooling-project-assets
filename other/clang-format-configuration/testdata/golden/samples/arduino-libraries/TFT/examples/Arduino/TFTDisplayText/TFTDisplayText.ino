@@ -13,7 +13,7 @@
 
   https://www.arduino.cc/en/Tutorial/LibraryExamples/TFTDisplayText
 
- */
+*/
 
 #include <TFT.h>  // Arduino LCD library
 #include <SPI.h>

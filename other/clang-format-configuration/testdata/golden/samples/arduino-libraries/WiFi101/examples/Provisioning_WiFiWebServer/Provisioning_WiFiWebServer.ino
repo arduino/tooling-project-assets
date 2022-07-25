@@ -26,7 +26,7 @@
 const int ledPin = 6; // LED pin for connectivity status indicator
 
 char mdnsName[] = "wifi101"; // the MDNS name that the board will respond to
-                             // after WiFi settings have been provisioned
+// after WiFi settings have been provisioned
 // Note that the actual MDNS name will have '.local' after
 // the name above, so "wifi101" will be accessible on
 // the MDNS name "wifi101.local".
@@ -77,7 +77,7 @@ void setup() {
   // being assigned an IP address.
   if (!mdnsResponder.begin(mdnsName)) {
     Serial.println("Failed to start MDNS responder!");
-    while(1);
+    while (1);
   }
 
   Serial.print("Server listening at http://");

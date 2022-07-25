@@ -115,7 +115,7 @@ void setup() {
     Serial.println("Error building cert!");
     while (1);
   }
-  
+
   if (!Crypto.writeCert(Certificate, CryptoSlot::CompressedCertificate)) {
     Serial.println("Error storing cert!");
     while (1);

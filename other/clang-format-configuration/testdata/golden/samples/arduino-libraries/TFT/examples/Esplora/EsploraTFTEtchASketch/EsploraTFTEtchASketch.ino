@@ -1,19 +1,19 @@
 /*
 
- Esplora TFT EtchASketch
+  Esplora TFT EtchASketch
 
- This example for the Arduino TFT and Esplora draws
- a white line on the screen, based on the position
- of the joystick. To clear the screen, shake the
- Esplora, using the values from the accelerometer.
+  This example for the Arduino TFT and Esplora draws
+  a white line on the screen, based on the position
+  of the joystick. To clear the screen, shake the
+  Esplora, using the values from the accelerometer.
 
- This example code is in the public domain.
+  This example code is in the public domain.
 
- Created 15 April 2013 by Scott Fitzgerald
+  Created 15 April 2013 by Scott Fitzgerald
 
- https://www.arduino.cc/en/Tutorial/LibraryExamples/EsploraTFTEtchASketch
+  https://www.arduino.cc/en/Tutorial/LibraryExamples/EsploraTFTEtchASketch
 
- */
+*/
 
 #include <Esplora.h>
 #include <TFT.h>  // Arduino LCD library

@@ -1,16 +1,16 @@
 /*
-*  ZazzTheAlien
-* 
-* It is a lot of responsibility, but now you will have to take care of the alien baby. This particular
-* alien baby communicates with Bluetooth. You need to make sure it has proper exercises, gets
-* enough food and sleep.
-*
-* (c) 2013-2016 Arduino LLC.
+   ZazzTheAlien
+
+  It is a lot of responsibility, but now you will have to take care of the alien baby. This particular
+  alien baby communicates with Bluetooth. You need to make sure it has proper exercises, gets
+  enough food and sleep.
+
+  (c) 2013-2016 Arduino LLC.
 */
 
 #include <EducationShield.h>
 
-BLEuart ble=BLEuart(TYPE_TAMAGOTCHI);
+BLEuart ble = BLEuart(TYPE_TAMAGOTCHI);
 IMU imu;
 
 //const int lightPin = A0; //phototransistor
@@ -21,7 +21,7 @@ Button foodButton(9);
 int exerciseLv, foodLv, sleepLv; // the saved stats that will go down over time
 
 long sleepTimer;
-long updateTimer; 
+long updateTimer;
 
 void setup() {
   Serial.begin(9600);
@@ -37,13 +37,13 @@ void setup() {
 
   foodButton.begin();
 
-  sleepSensor.config(1000,200);
+  sleepSensor.config(1000, 200);
 
   //Set initial values for the three states
   exerciseLv = 100;
   foodLv = 100;
   sleepLv = 100;
-  
+
   updateTimer = millis();
   sleepTimer = millis();
 }
@@ -53,15 +53,15 @@ void loop() {
   updateStatus(); // used to update the stats values
 
   // if a central is connected to peripheral:
-  if(ble.searchCentral()){
+  if (ble.searchCentral()) {
     Serial.println("Connected to central ");
     // while the central is still connected to peripheral:
-    while(ble.connected()){
+    while (ble.connected()) {
       updateStatus();// used to update the stats values
       Serial.println("Sending data");
       ble.addValue(exerciseLv);
       ble.addValue(foodLv);
-      ble.addValue(sleepLv);    
+      ble.addValue(sleepLv);
       ble.send();
     }
     // when the central disconnects, print it out:
@@ -73,14 +73,14 @@ void loop() {
 
 void updateStatus() {
   // if the light level is low, add 1 to the sleepLv
-  if(sleepSensor.getState() && millis()-sleepTimer>200){
+  if (sleepSensor.getState() && millis() - sleepTimer > 200) {
     sleepLv++;
-    sleepTimer=millis();
+    sleepTimer = millis();
   }
 
   //Fill the food stat when the button is being pressed
-  if(foodButton.isPressed()){
-    foodLv+=5;
+  if (foodButton.isPressed()) {
+    foodLv += 5;
   }
 
   // every 3 sec update and lower the 3 stats in different rates
@@ -93,9 +93,9 @@ void updateStatus() {
   }
 
   //Constrain the values so they don't exceed 100 or go below 0
-  exerciseLv=constrain(exerciseLv,0,100);
-  foodLv=constrain(foodLv,0,100);
-  sleepLv=constrain(sleepLv,0,100);
+  exerciseLv = constrain(exerciseLv, 0, 100);
+  foodLv = constrain(foodLv, 0, 100);
+  sleepLv = constrain(sleepLv, 0, 100);
 }
 
 // this is called when the IMU detects a shock in any direction

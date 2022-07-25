@@ -1,10 +1,10 @@
 /*
-*  ShipNavigator
-* 
-* To find your way around space safely, your ship will need a navigator. Follow your ship’s AI
-* instructions to navigate your ship without crashing it into anything.
-*
-* (c) 2013-2016 Arduino LLC.
+   ShipNavigator
+
+  To find your way around space safely, your ship will need a navigator. Follow your ship’s AI
+  instructions to navigate your ship without crashing it into anything.
+
+  (c) 2013-2016 Arduino LLC.
 */
 
 #include <EducationShield.h>

@@ -15,7 +15,7 @@
 #endif
 
 #ifndef CORE_CM7
-  #error Update the bootloader by uploading the sketch to the M7 core instead of the M4 core.
+#error Update the bootloader by uploading the sketch to the M7 core instead of the M4 core.
 #endif
 
 #define BOOTLOADER_ADDR   (0x8000000)
@@ -49,7 +49,7 @@ void setup() {
   uint8_t currentBootloaderVersion = bootloader_data[1];
   String currentBootloaderIdentifier = String(bootloader_identification, 15);
 
-  if(!currentBootloaderIdentifier.equals("MCUboot Arduino")) {
+  if (!currentBootloaderIdentifier.equals("MCUboot Arduino")) {
     currentBootloaderIdentifier = "Arduino loader";
   }
 
@@ -71,7 +71,7 @@ void setup() {
 #if defined(ARDUINO_PORTENTA_H7_M7)
   Serial.println("\nDo you want to install/update the default Arduino bootloader? Y/[n]");
   Serial.println("Choosing \"No\", will install/update the MCUboot bootloader.");
-  if(!waitResponse()) {
+  if (!waitResponse()) {
     Serial.println("\nMCUboot has been selected. Do you want to proceed? Y/[n]");
     if (waitResponse()) {
       MCUboot = true;
@@ -99,7 +99,7 @@ void setup() {
   uint8_t availableBootloaderVersion = (bootloader_ptr + bootloader_data_offset)[1];
   String availableBootloaderIdentifier = String(bootloader_ptr + bootloader_identification_offset, 15);
 
-  if(!availableBootloaderIdentifier.equals("MCUboot Arduino")) {
+  if (!availableBootloaderIdentifier.equals("MCUboot Arduino")) {
     availableBootloaderIdentifier = "Arduino loader";
   }
 
@@ -127,7 +127,7 @@ void setup() {
   writeLoader = waitResponse();
 
   if (writeLoader) {
-    if(availableBootloaderIdentifier.equals("MCUboot Arduino")) {
+    if (availableBootloaderIdentifier.equals("MCUboot Arduino")) {
       setupMCUBootOTAData();
 
       Serial.println("\nThe bootloader comes with a set of default keys to evaluate signing and encryption process");
@@ -149,26 +149,26 @@ void setup() {
 }
 
 String getUSBSpeed(uint8_t flag) {
-  switch (flag){
-  case 1:
-    return "USB 2.0/Hi-Speed (480 Mbps)";
-  case 2:
-    return "USB 1.1/Full-Speed (12 Mbps)";
-  default:
-    return "N/A";
+  switch (flag) {
+    case 1:
+      return "USB 2.0/Hi-Speed (480 Mbps)";
+    case 2:
+      return "USB 1.1/Full-Speed (12 Mbps)";
+    default:
+      return "N/A";
   }
 }
 
 String getClockSource(uint8_t flag) {
-  switch (flag){
-  case 0x8:
-    return "External oscillator";
-  case 0x4:
-    return "External crystal";
-  case 0x2: 
-    return "Internal clock"; 
-  default:
-    return "N/A";
+  switch (flag) {
+    case 0x8:
+      return "External oscillator";
+    case 0x4:
+      return "External crystal";
+    case 0x2:
+      return "Internal clock";
+    default:
+      return "N/A";
   }
 }
 
@@ -219,7 +219,7 @@ bool waitResponse() {
 void setupMCUBootOTAData() {
   mbed::MBRBlockDevice ota_data(&root, 2);
   mbed::FATFileSystem ota_data_fs("fs");
-  
+
   int err = ota_data_fs.reformat(&ota_data);
   if (err) {
     Serial.println("Error creating MCUboot files in OTA partition.");

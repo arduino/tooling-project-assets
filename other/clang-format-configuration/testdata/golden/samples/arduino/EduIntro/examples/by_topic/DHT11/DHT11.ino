@@ -1,13 +1,13 @@
 /*
-DHT11
+  DHT11
 
-This example reads a DHT11 sensor hooked up on pin D7. Reads both
-temperature and humidity and sends it to the Serial port
+  This example reads a DHT11 sensor hooked up on pin D7. Reads both
+  temperature and humidity and sends it to the Serial port
 
-created in Feb 2019 by D. Cuartielles
-based on work by F. Vanzati (2011) and M. Loglio (2013)
+  created in Feb 2019 by D. Cuartielles
+  based on work by F. Vanzati (2011) and M. Loglio (2013)
 
-This example code is in the public domain.
+  This example code is in the public domain.
 */
 
 // include the EduIntro library

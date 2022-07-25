@@ -1,26 +1,26 @@
 /*
   Repeating WiFi Web Client
 
- This sketch connects to a a web server and makes a request
- using an Arduino WiFi 101 Shield.
+  This sketch connects to a a web server and makes a request
+  using an Arduino WiFi 101 Shield.
 
- Circuit:
- * WiFi 101 Shield attached to pins SPI pins and pin 7
+  Circuit:
+   WiFi 101 Shield attached to pins SPI pins and pin 7
 
- created 23 April 2012
- modified 31 May 2012
- by Tom Igoe
- modified 13 Jan 2014
- by Federico Vanzati
+  created 23 April 2012
+  modified 31 May 2012
+  by Tom Igoe
+  modified 13 Jan 2014
+  by Federico Vanzati
 
- http://arduino.cc/en/Tutorial/WiFiWebClientRepeating
- This code is in the public domain.
- */
+  http://arduino.cc/en/Tutorial/WiFiWebClientRepeating
+  This code is in the public domain.
+*/
 
 #include <SPI.h>
 #include <WiFi101.h>
 
-#include "arduino_secrets.h" 
+#include "arduino_secrets.h"
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h
 char ssid[] = SECRET_SSID;        // your network SSID (name)
 char pass[] = SECRET_PASS;    // your network password (use for WPA, or use as key for WEP)

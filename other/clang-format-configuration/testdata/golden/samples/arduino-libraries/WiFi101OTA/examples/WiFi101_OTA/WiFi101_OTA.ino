@@ -1,28 +1,28 @@
 /*
 
- This example connects to an WPA encrypted WiFi network.
- Then it prints the MAC address of the WiFi shield,
- the IP address obtained, and other network details.
- It then polls for sketch updates over WiFi. Sketches
- can be updated by selecting a network port from within
- the Arduino IDE: Tools -> Port -> Network Ports ...
+  This example connects to an WPA encrypted WiFi network.
+  Then it prints the MAC address of the WiFi shield,
+  the IP address obtained, and other network details.
+  It then polls for sketch updates over WiFi. Sketches
+  can be updated by selecting a network port from within
+  the Arduino IDE: Tools -> Port -> Network Ports ...
 
- Circuit:
- * WiFi shield attached
+  Circuit:
+   WiFi shield attached
 
- created 13 July 2010
- by dlf (Metodo2 srl)
- modified 31 May 2012
- by Tom Igoe
- modified 16 January 2017
- by Sandeep Mistry
- */
- 
+  created 13 July 2010
+  by dlf (Metodo2 srl)
+  modified 31 May 2012
+  by Tom Igoe
+  modified 16 January 2017
+  by Sandeep Mistry
+*/
+
 #include <SPI.h>
 #include <WiFi101.h>
 #include <WiFi101OTA.h>
 
-#include "arduino_secrets.h" 
+#include "arduino_secrets.h"
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h
 /////// WiFi Settings ///////
 char ssid[] = SECRET_SSID;      // your network SSID (name)

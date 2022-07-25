@@ -1,26 +1,26 @@
 /*
   WiFi Web Server
 
- A simple web server that shows the value of the analog input pins.
+  A simple web server that shows the value of the analog input pins.
 
- This example is written for a network using WPA encryption. For
- WEP or WPA, change the WiFi.begin() call accordingly.
+  This example is written for a network using WPA encryption. For
+  WEP or WPA, change the WiFi.begin() call accordingly.
 
- Circuit:
- * Analog inputs attached to pins A0 through A5 (optional)
+  Circuit:
+   Analog inputs attached to pins A0 through A5 (optional)
 
- created 13 July 2010
- by dlf (Metodo2 srl)
- modified 31 May 2012
- by Tom Igoe
+  created 13 July 2010
+  by dlf (Metodo2 srl)
+  modified 31 May 2012
+  by Tom Igoe
 
- */
+*/
 
 #include <SPI.h>
 #include <WiFiNINA.h>
 
 
-#include "arduino_secrets.h" 
+#include "arduino_secrets.h"
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h
 char ssid[] = SECRET_SSID;        // your network SSID (name)
 char pass[] = SECRET_PASS;    // your network password (use for WPA, or use as key for WEP)

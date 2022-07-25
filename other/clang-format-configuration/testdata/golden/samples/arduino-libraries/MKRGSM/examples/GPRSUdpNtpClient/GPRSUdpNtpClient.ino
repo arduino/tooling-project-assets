@@ -14,7 +14,7 @@
 
   modified 6 Dec 2017 ported from WiFi101 to MKRGSM
   by Arturo Guadalupi
- 
+
   This code is in the public domain.
 
 */

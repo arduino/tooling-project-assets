@@ -10,11 +10,11 @@ bool trigger = false;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  while(!Serial);
+  while (!Serial);
   carrier.noCase();
   carrier.begin();
-  pinMode(moisture,INPUT);
-  pinMode(pir,INPUT);
+  pinMode(moisture, INPUT);
+  pinMode(pir, INPUT);
 
 }
 

@@ -1,18 +1,18 @@
 /*
 
- This example prints the WiFi shield's MAC address, and
- scans for available WiFi networks using the WiFi shield.
- Every ten seconds, it scans again. It doesn't actually
- connect to any network, so no encryption scheme is specified.
+  This example prints the WiFi shield's MAC address, and
+  scans for available WiFi networks using the WiFi shield.
+  Every ten seconds, it scans again. It doesn't actually
+  connect to any network, so no encryption scheme is specified.
 
- Circuit:
- * WiFi shield attached
+  Circuit:
+   WiFi shield attached
 
- created 13 July 2010
- by dlf (Metodo2 srl)
- modified 21 Junn 2012
- by Tom Igoe and Jaymes Dec
- */
+  created 13 July 2010
+  by dlf (Metodo2 srl)
+  modified 21 Junn 2012
+  by Tom Igoe and Jaymes Dec
+*/
 
 
 #include <SPI.h>

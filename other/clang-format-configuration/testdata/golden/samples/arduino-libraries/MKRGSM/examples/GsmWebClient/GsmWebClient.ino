@@ -1,23 +1,23 @@
 /*
   Web client
 
- This sketch connects to a website through a MKR GSM 1400 board. Specifically,
- this example downloads the URL "http://www.example.org/" and
- prints it to the Serial Monitor.
+  This sketch connects to a website through a MKR GSM 1400 board. Specifically,
+  this example downloads the URL "http://www.example.org/" and
+  prints it to the Serial Monitor.
 
- Circuit:
- * MKR GSM 1400 board
- * Antenna
- * SIM card with a data plan
+  Circuit:
+   MKR GSM 1400 board
+   Antenna
+   SIM card with a data plan
 
- created 8 Mar 2012
- by Tom Igoe
+  created 8 Mar 2012
+  by Tom Igoe
 */
 
 // libraries
 #include <MKRGSM.h>
 
-#include "arduino_secrets.h" 
+#include "arduino_secrets.h"
 // Please enter your sensitive data in the Secret tab or arduino_secrets.h
 // PIN Number
 const char PINNUMBER[]     = SECRET_PINNUMBER;

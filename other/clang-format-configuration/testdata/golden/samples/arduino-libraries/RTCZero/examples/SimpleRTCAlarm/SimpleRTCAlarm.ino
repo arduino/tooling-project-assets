@@ -9,7 +9,7 @@
 
   created by Arturo Guadalupi <a.guadalupi@arduino.cc>
   25 Sept 2015
-  
+
   modified
   21 Oct 2015
 */
@@ -40,7 +40,7 @@ void setup()
 
   rtc.setAlarmTime(16, 0, 10);
   rtc.enableAlarm(rtc.MATCH_HHMMSS);
-  
+
   rtc.attachInterrupt(alarmMatch);
 }
 

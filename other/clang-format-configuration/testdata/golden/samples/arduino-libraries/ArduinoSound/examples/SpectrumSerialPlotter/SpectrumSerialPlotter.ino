@@ -1,21 +1,21 @@
 /*
- This example reads audio data from an InvenSense ICS-43432 I2S microphone
- breakout board, and prints out the spectrum to the Serial Monitor. The
- Serial Plotter built into the Arduino IDE (Tools -> Serial Plotter) can be
- used to plot the audio amplitude data.
+  This example reads audio data from an InvenSense ICS-43432 I2S microphone
+  breakout board, and prints out the spectrum to the Serial Monitor. The
+  Serial Plotter built into the Arduino IDE (Tools -> Serial Plotter) can be
+  used to plot the audio amplitude data.
 
- Circuit:
- * Arduino Zero, MKR Zero or MKR1000 board
- * ICS-43432:
-   * GND connected GND
-   * 3.3V connected 3.3V (Zero) or VCC (MKR1000, MKR Zero)
-   * WS connected to pin 0 (Zero) or pin 3 (MKR1000, MKR Zero)
-   * CLK connected to pin 1 (Zero) or pin 2 (MKR1000, MKR Zero)
-   * SD connected to pin 9 (Zero) or pin A6 (MKR1000, MKR Zero)
+  Circuit:
+   Arduino Zero, MKR Zero or MKR1000 board
+   ICS-43432:
+     GND connected GND
+     3.3V connected 3.3V (Zero) or VCC (MKR1000, MKR Zero)
+     WS connected to pin 0 (Zero) or pin 3 (MKR1000, MKR Zero)
+     CLK connected to pin 1 (Zero) or pin 2 (MKR1000, MKR Zero)
+     SD connected to pin 9 (Zero) or pin A6 (MKR1000, MKR Zero)
 
- created 21 November 2016
- by Sandeep Mistry
- */
+  created 21 November 2016
+  by Sandeep Mistry
+*/
 
 #include <ArduinoSound.h>
 
@@ -35,7 +35,7 @@ int spectrum[spectrumSize];
 FFTAnalyzer fftAnalyzer(fftSize);
 
 void setup() {
-// Open serial communications and wait for port to open:
+  // Open serial communications and wait for port to open:
   // A baud rate of 115200 is used instead of 9600 for a faster data rate
   // on non-native USB ports
   Serial.begin(115200);
@@ -65,7 +65,7 @@ void loop() {
     // print out the spectrum
     for (int i = 0; i < spectrumSize; i++) {
       Serial.print((i * sampleRate) / fftSize); // the starting frequency
-      Serial.print("\t"); // 
+      Serial.print("\t"); //
       Serial.println(spectrum[i]); // the spectrum value
     }
   }

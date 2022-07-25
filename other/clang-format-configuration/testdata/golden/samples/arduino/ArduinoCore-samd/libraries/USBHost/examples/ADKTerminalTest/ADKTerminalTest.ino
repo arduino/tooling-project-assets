@@ -18,18 +18,18 @@
 
 #define ARDUINO_MAIN
 //#include "variant.h"
-#include "Arduino.h" 
+#include "Arduino.h"
 #include <stdio.h>
 #include <adk.h>
 
 
 USBHost usb;
-ADK adk(&usb,"Arduino SA",
-            "Arduino_Terminal",
-            "Arduino Terminal for Android",
-            "1.0",
-            "http://labs.arduino.cc/uploads/ADK/ArduinoTerminal/ThibaultTerminal_ICS_0001.apk",
-            "1");
+ADK adk(&usb, "Arduino SA",
+        "Arduino_Terminal",
+        "Arduino Terminal for Android",
+        "1.0",
+        "http://labs.arduino.cc/uploads/ADK/ArduinoTerminal/ThibaultTerminal_ICS_0001.apk",
+        "1");
 
 void setup(void)
 {
@@ -38,7 +38,7 @@ void setup(void)
   SERIAL_PORT_MONITOR.println("\r\nADK demo start");
 
   if (usb.Init() == -1)
-	SERIAL_PORT_MONITOR.println("OSC did not start.");
+    SERIAL_PORT_MONITOR.println("OSC did not start.");
 
   delay(20);
 }
@@ -47,29 +47,29 @@ void setup(void)
 
 void loop(void)
 {
-	uint8_t buf[RCVSIZE];
-	uint32_t nbread = 0;
-	char helloworld[] = "Hello World!\r\n";
+  uint8_t buf[RCVSIZE];
+  uint32_t nbread = 0;
+  char helloworld[] = "Hello World!\r\n";
 
-	usb.Task();
+  usb.Task();
 
-	if( adk.isReady() == false ) {
-		return;
-	}
-	/* Write hello string to ADK */
-	adk.SndData(strlen(helloworld), (uint8_t *)helloworld);
+  if ( adk.isReady() == false ) {
+    return;
+  }
+  /* Write hello string to ADK */
+  adk.SndData(strlen(helloworld), (uint8_t *)helloworld);
 
-	delay(1000);
+  delay(1000);
 
-	/* Read data from ADK and print to UART */
-	adk.RcvData((uint8_t *)&nbread, buf);
-	if (nbread > 0)
-	{
-		SERIAL_PORT_MONITOR.print("RCV: ");
-		for (uint32_t i = 0; i < nbread; ++i)
-		{
-			SERIAL_PORT_MONITOR.print((char)buf[i]);
-		}
-		SERIAL_PORT_MONITOR.print("\r\n");
-	}	
+  /* Read data from ADK and print to UART */
+  adk.RcvData((uint8_t *)&nbread, buf);
+  if (nbread > 0)
+  {
+    SERIAL_PORT_MONITOR.print("RCV: ");
+    for (uint32_t i = 0; i < nbread; ++i)
+    {
+      SERIAL_PORT_MONITOR.print((char)buf[i]);
+    }
+    SERIAL_PORT_MONITOR.print("\r\n");
+  }
 }

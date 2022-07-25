@@ -1,22 +1,22 @@
 /*
   Simple Audio Player for Arduino Zero
 
- Demonstrates the use of the Audio library for the Arduino Zero
+  Demonstrates the use of the Audio library for the Arduino Zero
 
- Hardware required :
- * Arduino shield with a SD card on CS4
- * A sound file named "test.wav" in the root directory of the SD card
- * An audio amplifier to connect to the DAC0 and ground
- * A speaker to connect to the audio amplifier
+  Hardware required :
+   Arduino shield with a SD card on CS4
+   A sound file named "test.wav" in the root directory of the SD card
+   An audio amplifier to connect to the DAC0 and ground
+   A speaker to connect to the audio amplifier
 
- 
- Arturo Guadalupi <a.guadalupi@arduino.cc>
- Angelo Scialabba <a.scialabba@arduino.cc>
- Claudio Indellicati <c.indellicati@arduino.cc>
 
- This example code is in the public domain
+  Arturo Guadalupi <a.guadalupi@arduino.cc>
+  Angelo Scialabba <a.scialabba@arduino.cc>
+  Claudio Indellicati <c.indellicati@arduino.cc>
 
- https://www.arduino.cc/en/Tutorial/SimpleAudioPlayerZero
+  This example code is in the public domain
+
+  https://www.arduino.cc/en/Tutorial/SimpleAudioPlayerZero
 
 */
 
@@ -33,7 +33,7 @@ void setup()
   Serial.print("Initializing SD card...");
   if (!SD.begin(4)) {
     Serial.println(" failed!");
-    while(true);
+    while (true);
   }
   Serial.println(" done.");
 }
@@ -45,7 +45,7 @@ void loop()
   // open wave file from sdcard
   File myFile = SD.open("test.wav");
   // 44100kHz stereo => 88200 sample rate
-  AudioZero.begin(2*44100);
+  AudioZero.begin(2 * 44100);
   if (!myFile) {
     // if the file didn't open, print an error and stop
     Serial.println("error opening test.wav");
@@ -53,8 +53,8 @@ void loop()
   }
 
   Serial.print("Playing");
-  
-  // until the file is not finished  
+
+  // until the file is not finished
   AudioZero.play(myFile);
   AudioZero.close();
   Serial.println("End of file. Thank you for listening!");

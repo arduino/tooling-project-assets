@@ -1,39 +1,39 @@
 /*
- *  This sketch allows to support Soft Devices on the Arduino Nano 33 BLE (Sense).
- *  
- *  To be able to support Soft Devices, the bootloader first needs to be updated.
- *  The new bootloader is fully backwards compatible with standard sketches.
- *  -----------------------------------------------------------------------
- * 
- * INSTRUCTIONS
- * 
- *  1)  Upload this sketch on the Nano 33 BLE to download the new bootloader into the flash. 
- *      You can choose whether to update only the bootloader or the bootloader plus SoftDevice.
- *      Make a choice through the Serial monitor.
- * 
- *  2) After flashing the bootloader the sketch asks if you want to upload the SoftDevice.
- *     This is required for the OpenMV firmware to work.
- *     After completion, the board will reboot and enter the bootloader mode.
- *
- *  3) Now you can upload a sketch that uses the SoftDevice at 0x26000, using the following bossac command
- *
- *      /path/to/bossac -d --port=yourPort --offset=0x16000 -U -i -e -w /path/to/sketch.bin -R
- *
- *    Or you can still upload a standard sketch from the IDE at 0x10000. This will of course overwrite the SoftDevice.
- *    So if you want to run a SoftDevice-related sketch, always remember to upload this sketch before and re-flash the SoftDevice.
- *
- *  To create a custom SoftDevice follow this procedure:
- *
- *  1) Convert your SoftDevice binary to a SoftDevice.h .
- *    The nRF5-SDK website provides a SoftDevice.hex, so run the following commands:
- *
- *      objcopy --input-target=ihex --output-target=binary --gap-fill 0xff SoftDevice.hex SoftDevice.bin
- *      xxd -i SoftDevice.bin > SoftDevice.h
- *
- *  2) Copy the content of the generated header file to SoftDevice.h
- * 
- *  3) Run this sketch again and flash the SoftDevice.
- */
+    This sketch allows to support Soft Devices on the Arduino Nano 33 BLE (Sense).
+
+    To be able to support Soft Devices, the bootloader first needs to be updated.
+    The new bootloader is fully backwards compatible with standard sketches.
+    -----------------------------------------------------------------------
+
+   INSTRUCTIONS
+
+    1)  Upload this sketch on the Nano 33 BLE to download the new bootloader into the flash.
+        You can choose whether to update only the bootloader or the bootloader plus SoftDevice.
+        Make a choice through the Serial monitor.
+
+    2) After flashing the bootloader the sketch asks if you want to upload the SoftDevice.
+       This is required for the OpenMV firmware to work.
+       After completion, the board will reboot and enter the bootloader mode.
+
+    3) Now you can upload a sketch that uses the SoftDevice at 0x26000, using the following bossac command
+
+        /path/to/bossac -d --port=yourPort --offset=0x16000 -U -i -e -w /path/to/sketch.bin -R
+
+      Or you can still upload a standard sketch from the IDE at 0x10000. This will of course overwrite the SoftDevice.
+      So if you want to run a SoftDevice-related sketch, always remember to upload this sketch before and re-flash the SoftDevice.
+
+    To create a custom SoftDevice follow this procedure:
+
+    1) Convert your SoftDevice binary to a SoftDevice.h .
+      The nRF5-SDK website provides a SoftDevice.hex, so run the following commands:
+
+        objcopy --input-target=ihex --output-target=binary --gap-fill 0xff SoftDevice.hex SoftDevice.bin
+        xxd -i SoftDevice.bin > SoftDevice.h
+
+    2) Copy the content of the generated header file to SoftDevice.h
+
+    3) Run this sketch again and flash the SoftDevice.
+*/
 
 #include "FlashIAP.h"
 #include "MBR.h"
@@ -52,19 +52,19 @@ const unsigned int magic = 0x5f27a93d;
 
 mbed::FlashIAP flash;
 
-bool hasLatestBootloader(){
+bool hasLatestBootloader() {
   //Check if the CRC32 of the flashed bootloader
   //matches the CRC32 of the provided bootloader binary
   return getCurrentBootloaderCrc() == getTargetBootloaderCrc();
 }
 
-bool getUserConfirmation(){
-  while (true){
-    if (Serial.available()){
+bool getUserConfirmation() {
+  while (true) {
+    if (Serial.available()) {
       char choice = Serial.read();
-      switch (choice){
+      switch (choice) {
         case 'y':
-        case 'Y':        
+        case 'Y':
           return true;
         case 'n':
         case 'N':
@@ -89,7 +89,7 @@ void applyUpdate(uint32_t address, const unsigned char payload[], long len, uint
   uint32_t percent_done = 0;
 
   while (true) {
-    
+
     if (flash_pointer >= len) {
       break;
     }
@@ -104,7 +104,7 @@ void applyUpdate(uint32_t address, const unsigned char payload[], long len, uint
     flash.program(&payload[bin_pointer], addr + flash_pointer, sector_size);
     Serial.print("Flash Address = ");
     Serial.println(addr + flash_pointer, HEX);
-    
+
     bin_pointer = bin_pointer + sector_size;
     flash_pointer = flash_pointer + sector_size;
 
@@ -116,12 +116,12 @@ void applyUpdate(uint32_t address, const unsigned char payload[], long len, uint
   delete[] page_buffer;
 }
 
-void updateBootloader(){
+void updateBootloader() {
   Serial.println("This sketch modifies the Nano33 bootloader to support Soft Devices.");
   Serial.println();
-  
+
   flash.init();
-  
+
   Serial.println("Flashing MBR...");
   applyUpdate(MBR_ADDR, MBR_bin, MBR_bin_len);
 
@@ -131,22 +131,22 @@ void updateBootloader(){
   Serial.print("Bootloader 32bit CRC is: ");
   uint32_t crc32 = getTargetBootloaderCrc();
   Serial.println(crc32, HEX);
-  
+
   Serial.println("Writing in UICR memory the address of the new bootloader...");
   nrf_nvmc_write_word(UICR_BOOT_ADDR, BOOTLOADER_ADDR);
-  
+
   flash.deinit();
 
   Serial.println();
   Serial.println("Bootloader update successfully completed!\n");
 }
 
-void updateSoftDevice(){
+void updateSoftDevice() {
   flash.init();
 
   Serial.println("Storing SoftDevice length info at 0xFF000...");
   writeSoftDeviceLen(SOFTDEVICE_INFO_ADDR);
-  
+
   Serial.println("Flashing SoftDevice...");
   applyUpdate(SOFTDEVICE_ADDR, Softdevice_bin, Softdevice_bin_len - 4096, 4096);
 
@@ -157,22 +157,22 @@ void updateSoftDevice(){
   NVIC_SystemReset();
 }
 
-void setup() {  
+void setup() {
   Serial.begin(115200);
   while (!Serial) {}
 
-  if(!hasLatestBootloader()){
+  if (!hasLatestBootloader()) {
     Serial.println("Your bootloader version is outdated (update required for Soft Device support).");
     Serial.println("Would you like to update it? Y/N");
-    
-    if(getUserConfirmation()){
+
+    if (getUserConfirmation()) {
       updateBootloader();
     }
   }
-  
-  if(hasLatestBootloader()){
+
+  if (hasLatestBootloader()) {
     Serial.println("Would you like to install the Soft Device (required for OpenMV)? Y/N");
-    if(getUserConfirmation()){
+    if (getUserConfirmation()) {
       updateSoftDevice();
     }
   }
@@ -188,13 +188,13 @@ uint32_t getTargetBootloaderCrc() {
 
   int iterations = BOOTLOADER_SIZE;
 
-  for (int i=0; i<iterations; i=i+4) {
+  for (int i = 0; i < iterations; i = i + 4) {
     b = 0;
-    for (int j=0; j<4; j++) {
+    for (int j = 0; j < 4; j++) {
       mask = 0;
-      bootByte = nano33_bootloader_hex[i+j];
+      bootByte = nano33_bootloader_hex[i + j];
       mask = mask + (uint32_t)bootByte;
-      mask = mask << 8*j;
+      mask = mask << 8 * j;
       b = b | mask;
     }
     crc = crc ^ b;
@@ -206,17 +206,17 @@ uint32_t getCurrentBootloaderCrc() {
   uint32_t b = 0;
   uint32_t crc = 0xFFFFFFFF;
 
-  int iterations = ceil(BOOTLOADER_SIZE/4);
+  int iterations = ceil(BOOTLOADER_SIZE / 4);
 
   int addr = BOOTLOADER_ADDR;
 
-  for (int i=0; i<iterations; i++) {
+  for (int i = 0; i < iterations; i++) {
     //Read 32 bit from flash
     flash.read(&b, addr, sizeof(b));
     //Serial.println(b, HEX);
     //Update crc
     crc = crc ^ b;
-    //Update pointer 
+    //Update pointer
     addr = addr + 4;
   }
   return crc;

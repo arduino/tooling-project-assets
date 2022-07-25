@@ -1,14 +1,14 @@
 /*
 
- This uses an MKR GSM 1400 to continuously ping a host specified by IP Address or name.
+  This uses an MKR GSM 1400 to continuously ping a host specified by IP Address or name.
 
-Circuit:
-* MKR GSM 1400 board
-* Antenna
-* SIM card with a data plan
+  Circuit:
+  MKR GSM 1400 board
+  Antenna
+  SIM card with a data plan
 
- created 06 Dec 2017
- by Arturo Guadalupi
+  created 06 Dec 2017
+  by Arturo Guadalupi
 */
 #include <MKRGSM.h>
 
@@ -31,44 +31,44 @@ String hostName = "www.google.com";
 int pingResult;
 
 void setup() {
- // Initialize serial and wait for port to open:
- Serial.begin(9600);
- while (!Serial) {
-   ; // wait for serial port to connect. Needed for native USB port only
- }
+  // Initialize serial and wait for port to open:
+  Serial.begin(9600);
+  while (!Serial) {
+    ; // wait for serial port to connect. Needed for native USB port only
+  }
 
- Serial.println("Starting Arduino GPRS ping.");
- // connection state
- bool connected = false;
+  Serial.println("Starting Arduino GPRS ping.");
+  // connection state
+  bool connected = false;
 
- // After starting the modem with GSM.begin()
- // attach the shield to the GPRS network with the APN, login and password
- while (!connected) {
-   if ((gsmAccess.begin(PINNUMBER) == GSM_READY) &&
-       (gprs.attachGPRS(GPRS_APN, GPRS_LOGIN, GPRS_PASSWORD) == GPRS_READY)) {
-     connected = true;
-   } else {
-     Serial.println("Not connected");
-     delay(1000);
-   }
- }
+  // After starting the modem with GSM.begin()
+  // attach the shield to the GPRS network with the APN, login and password
+  while (!connected) {
+    if ((gsmAccess.begin(PINNUMBER) == GSM_READY) &&
+        (gprs.attachGPRS(GPRS_APN, GPRS_LOGIN, GPRS_PASSWORD) == GPRS_READY)) {
+      connected = true;
+    } else {
+      Serial.println("Not connected");
+      delay(1000);
+    }
+  }
 }
 
 void loop() {
- Serial.print("Pinging ");
- Serial.print(hostName);
- Serial.print(": ");
+  Serial.print("Pinging ");
+  Serial.print(hostName);
+  Serial.print(": ");
 
- pingResult = gprs.ping(hostName);
+  pingResult = gprs.ping(hostName);
 
- if (pingResult >= 0) {
-   Serial.print("SUCCESS! RTT = ");
-   Serial.print(pingResult);
-   Serial.println(" ms");
- } else {
-   Serial.print("FAILED! Error code: ");
-   Serial.println(pingResult);
- }
+  if (pingResult >= 0) {
+    Serial.print("SUCCESS! RTT = ");
+    Serial.print(pingResult);
+    Serial.println(" ms");
+  } else {
+    Serial.print("FAILED! Error code: ");
+    Serial.println(pingResult);
+  }
 
- delay(5000);
+  delay(5000);
 }

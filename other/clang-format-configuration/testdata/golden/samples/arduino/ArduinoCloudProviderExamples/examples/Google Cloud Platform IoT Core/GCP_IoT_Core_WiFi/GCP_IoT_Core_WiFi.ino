@@ -149,7 +149,7 @@ String calculateClientId() {
 
 String calculateJWT() {
   unsigned long now = getTime();
-  
+
   // calculate the JWT, based on:
   //   https://cloud.google.com/iot/docs/how-tos/credentials/jwts
   JSONVar jwtHeader;
@@ -160,7 +160,7 @@ String calculateJWT() {
 
   jwtClaim["aud"] = projectId;
   jwtClaim["iat"] = now;
-  jwtClaim["exp"] = now + (24L * 60L * 60L); // expires in 24 hours 
+  jwtClaim["exp"] = now + (24L * 60L * 60L); // expires in 24 hours
 
   return ECCX08JWS.sign(0, JSON.stringify(jwtHeader), JSON.stringify(jwtClaim));
 }

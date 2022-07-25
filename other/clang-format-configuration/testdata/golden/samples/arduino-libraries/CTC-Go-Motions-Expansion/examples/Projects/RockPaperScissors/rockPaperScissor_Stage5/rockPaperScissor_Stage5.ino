@@ -1,5 +1,5 @@
 /*
-  CTC GO! MOTION 
+  CTC GO! MOTION
   PROJECT - ROCK PAPER SCISSOR
 
   This sketch is written to accompany Stage 5 of the ROCK PAPER SCISSOR project
@@ -29,10 +29,10 @@ void setup() {
   pinMode(redLED, OUTPUT);
   pinMode(yellowLED, OUTPUT);
   pinMode(greenLED, OUTPUT);
-  
+
   servo_main.attach(6);
   servo_wheel.attach(9);
-  
+
   servo_main.write(0);
   delay(10);
 
@@ -45,11 +45,11 @@ void loop() {
 
   servo_wheel.write(80);
   delay(10);
-  
-  
+
+
   if (distance < 400) {
     check++;
-    delay(400); 
+    delay(400);
   }
 
   if (check == 0) {
@@ -79,21 +79,21 @@ void loop() {
     delay(100);
     check = 0;
 
-    switch(randomNumber)
+    switch (randomNumber)
     {
       case 1:
         ____________(rock);
-      break;
-    
+        break;
+
       case 2:
         ____________(paper);
-      break;
-    
+        break;
+
       case 3:
         ____________(scissor);
-      break;
+        break;
     }
-    
+
     randomNumber = 0;
   }
 
@@ -102,14 +102,14 @@ void loop() {
 
 void ____________(int object)
 {
-      servo_main.write(______);
-      delay(1000);
-      
-      servo_wheel.write(95);
-      delay(2000);
-      
-      servo_main.write(0);
-      digitalWrite(greenLED, LOW);
-      delay(2000);
-     
+  servo_main.write(______);
+  delay(1000);
+
+  servo_wheel.write(95);
+  delay(2000);
+
+  servo_main.write(0);
+  digitalWrite(greenLED, LOW);
+  delay(2000);
+
 }

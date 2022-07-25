@@ -50,24 +50,24 @@ void setup()
 
   /************* PID 1 ***********************/
 
-//  pid1.setControlMode(CL_POSITION);
-//
-//  //pid1.resetGains();
-//  //pid1.setLimits(-100,100);
-//  pid1.setGains(0.01f, 0.017f, 0.0f); //Proportional(change) Integral(change) Derivative
-//  Serial.print("P Gain: ");
-//  Serial.println((float)pid1.getPgain());
-//  Serial.print("I Gain: ");
-//  Serial.println((float)pid1.getIgain());
-//  Serial.print("D Gain: ");
-//  Serial.println((float)pid1.getDgain(), 7);
-//  Serial.println("");
-//
-//  encoder1.resetCounter(0);
-//  Serial.print("encoder1: ");
-//  Serial.println(encoder1.getRawCount());
-//  target = 1000;
-//  pid1.setSetpoint(TARGET_POSITION, target);
+  //  pid1.setControlMode(CL_POSITION);
+  //
+  //  //pid1.resetGains();
+  //  //pid1.setLimits(-100,100);
+  //  pid1.setGains(0.01f, 0.017f, 0.0f); //Proportional(change) Integral(change) Derivative
+  //  Serial.print("P Gain: ");
+  //  Serial.println((float)pid1.getPgain());
+  //  Serial.print("I Gain: ");
+  //  Serial.println((float)pid1.getIgain());
+  //  Serial.print("D Gain: ");
+  //  Serial.println((float)pid1.getDgain(), 7);
+  //  Serial.println("");
+  //
+  //  encoder1.resetCounter(0);
+  //  Serial.print("encoder1: ");
+  //  Serial.println(encoder1.getRawCount());
+  //  target = 1000;
+  //  pid1.setSetpoint(TARGET_POSITION, target);
 
   /************* PID 2 ***********************/
 
@@ -96,16 +96,16 @@ void loop() {
 
   /************* PID 1 ***********************/
 
-//  Serial.print("encoder1: ");
-//  Serial.print(encoder1.getRawCount());
-//  Serial.print(" target: ");
-//  Serial.println(target);
-//  if (encoder1.getRawCount() == target) {
-//    target += 1000;
-//    Serial.print("Target reached: Setting new target..");
-//    pid1.setSetpoint(TARGET_POSITION, target);
-//    //delay(5000);
-//  }
+  //  Serial.print("encoder1: ");
+  //  Serial.print(encoder1.getRawCount());
+  //  Serial.print(" target: ");
+  //  Serial.println(target);
+  //  if (encoder1.getRawCount() == target) {
+  //    target += 1000;
+  //    Serial.print("Target reached: Setting new target..");
+  //    pid1.setSetpoint(TARGET_POSITION, target);
+  //    //delay(5000);
+  //  }
 
   /************* PID 2 ***********************/
 

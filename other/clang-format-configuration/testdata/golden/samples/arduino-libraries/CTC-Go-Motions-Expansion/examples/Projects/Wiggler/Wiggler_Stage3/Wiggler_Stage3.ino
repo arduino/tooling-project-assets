@@ -16,7 +16,7 @@ int lightSensor_2 = A1;
 int lightValue_1 = 0;
 int lightValue_2 = 0;
 
-void setup() 
+void setup()
 {
   servo_steer.attach(6);
   servo_drive.attach(9);
@@ -38,14 +38,14 @@ void loop()
   servo_steer.write(90);
   delay(15);
 
-  if (______ >= 900) 
+  if (______ >= 900)
   {
     ______.write(60);
     ______.write(30);
     delay(3000);
   }
 
-  if (______ >= 900) 
+  if (______ >= 900)
   {
     ______.write(60);
     ______.write(150);

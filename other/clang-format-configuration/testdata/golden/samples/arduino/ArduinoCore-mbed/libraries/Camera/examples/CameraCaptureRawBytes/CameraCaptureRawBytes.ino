@@ -1,19 +1,19 @@
 #include "camera.h"
 
 #ifdef ARDUINO_NICLA_VISION
-  #include "gc2145.h"
-  GC2145 galaxyCore;
-  Camera cam(galaxyCore);
-  #define IMAGE_MODE CAMERA_RGB565
+#include "gc2145.h"
+GC2145 galaxyCore;
+Camera cam(galaxyCore);
+#define IMAGE_MODE CAMERA_RGB565
 #else
-  #include "himax.h"
-  HM01B0 himax;
-  Camera cam(himax);
-  #define IMAGE_MODE CAMERA_GRAYSCALE
+#include "himax.h"
+HM01B0 himax;
+Camera cam(himax);
+#define IMAGE_MODE CAMERA_GRAYSCALE
 #endif
 
 /*
-Other buffer instantiation options:
+  Other buffer instantiation options:
   FrameBuffer fb(0x30000000);
   FrameBuffer fb(320,240,2);
 */
@@ -43,19 +43,19 @@ void setup() {
 }
 
 void loop() {
-  if(!Serial) {    
+  if (!Serial) {
     Serial.begin(921600);
-    while(!Serial);
+    while (!Serial);
   }
 
   // Time out after 2 seconds and send new data
   bool timeoutDetected = millis() - lastUpdate > 2000;
-  
+
   // Wait for sync byte.
-  if(!timeoutDetected && Serial.read() != 1) return;  
+  if (!timeoutDetected && Serial.read() != 1) return;
 
   lastUpdate = millis();
-  
+
   // Grab frame and write to serial
   if (cam.grabFrame(fb, 3000) == 0) {
     Serial.write(fb.getBuffer(), cam.frameSize());

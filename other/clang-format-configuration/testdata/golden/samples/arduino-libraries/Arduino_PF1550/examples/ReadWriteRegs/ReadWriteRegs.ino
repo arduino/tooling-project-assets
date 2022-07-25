@@ -7,7 +7,7 @@ uint8_t regVal;
 
 void setup() {
   Serial.begin(115200);
-  while(!Serial);
+  while (!Serial);
 
   PMIC.begin();
 
@@ -21,20 +21,20 @@ void loop() {
   regVal = PMIC.readPMICreg(Register::CHARGER_CHG_EOC_CNFG);
 
   Serial.print("CHARGER_CHG_SNS register value: ");
-  Serial.println(regVal,HEX);
-  
+  Serial.println(regVal, HEX);
+
   regVal = PMIC.readPMICreg(Register::CHARGER_VBUS_SNS);
 
   Serial.print("CHARGER_VBUS_SNS register value: ");
-  Serial.println(regVal,HEX);
-  
+  Serial.println(regVal, HEX);
+
   regVal = PMIC.readPMICreg(Register::CHARGER_CHG_INT_OK);
 
   Serial.print("CHARGER_CHG_INT_OK register value: ");
-  Serial.println(regVal,HEX);
+  Serial.println(regVal, HEX);
   Serial.println();
   Serial.println();
 
   delay(5000);
-  
+
 }

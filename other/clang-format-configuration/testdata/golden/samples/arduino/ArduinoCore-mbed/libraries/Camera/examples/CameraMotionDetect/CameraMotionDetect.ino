@@ -4,7 +4,7 @@ HM01B0 himax;
 Camera cam(himax);
 
 #ifdef ARDUINO_NICLA_VISION
-  #error "GalaxyCore camera module does not support Motion Detection"
+#error "GalaxyCore camera module does not support Motion Detection"
 #endif
 
 bool motion_detected = false;

@@ -46,7 +46,7 @@ void loop() {
   Serial.print("Temperature CH1 [°C]: ");
   Serial.print(temp_ch1);
   Serial.println();
- 
+
   //Set CH2, has internal 150 ms delay
   temp_probes.selectChannel(2);
   //Take CH2 measurement

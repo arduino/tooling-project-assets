@@ -1,6 +1,6 @@
 /*
   This sketch shows how to use the HTTP command to
-  make an HTTP request and store the result in the 
+  make an HTTP request and store the result in the
   SARA-U201 internal storage
 
   Circuit:
@@ -77,7 +77,7 @@ void loop() {
     Serial.println("received");
     String fileList[10];
     auto size = fileUtils.listFiles(fileList);
-    for (int i = 0; i < size && i <10; i++) {
+    for (int i = 0; i < size && i < 10; i++) {
       if (fileList[i] == filename) {
         Serial.print("file found: ");
         Serial.println(fileList[i]);

@@ -1,23 +1,23 @@
 /*
   SSL Web client
 
- This sketch connects to a website using SSL through a MKR NB 1500 board. Specifically,
- this example downloads the URL "https://www.arduino.cc/asciilogo.txt" and
- prints it to the Serial monitor.
+  This sketch connects to a website using SSL through a MKR NB 1500 board. Specifically,
+  this example downloads the URL "https://www.arduino.cc/asciilogo.txt" and
+  prints it to the Serial monitor.
 
- Circuit:
- * MKR NB 1500 board
- * Antenna
- * SIM card with a data plan
+  Circuit:
+   MKR NB 1500 board
+   Antenna
+   SIM card with a data plan
 
- created 8 Mar 2012
- by Tom Igoe
+  created 8 Mar 2012
+  by Tom Igoe
 */
 
 // libraries
 #include <MKRNB.h>
 
-#include "arduino_secrets.h" 
+#include "arduino_secrets.h"
 // Please enter your sensitive data in the Secret tab or arduino_secrets.h
 // PIN Number
 const char PINNUMBER[]     = SECRET_PINNUMBER;

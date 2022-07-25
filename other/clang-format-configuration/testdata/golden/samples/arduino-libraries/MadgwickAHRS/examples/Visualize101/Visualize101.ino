@@ -70,7 +70,7 @@ float convertRawAcceleration(int aRaw) {
   // since we are using 2 g range
   // -2 g maps to a raw value of -32768
   // +2 g maps to a raw value of 32767
-  
+
   float a = (aRaw * 2.0) / 32768.0;
   return a;
 }
@@ -79,7 +79,7 @@ float convertRawGyro(int gRaw) {
   // since we are using 250 degrees/seconds range
   // -250 maps to a raw value of -32768
   // +250 maps to a raw value of 32767
-  
+
   float g = (gRaw * 250.0) / 32768.0;
   return g;
 }

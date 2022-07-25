@@ -1,5 +1,5 @@
 /*
-  CTC GO! MOTION 
+  CTC GO! MOTION
   PROJECT - ROCK PAPER SCISSOR
 
   This sketch is written to accompany Stage 3 of the ROCK PAPER SCISSOR project
@@ -28,7 +28,7 @@ void setup() {
 
   servo_main.______(6);
   servo_wheel.______(9);
-  
+
   servo_main.______(0);
   delay(10);
 
@@ -40,13 +40,13 @@ void loop()
 
   USvalue = analogRead(USsensor);
   distance = USvalue * 3;
-  
+
   servo_wheel.______(80);
   delay(10);
 
   if (distance < 400) {
     check++;
-    delay(400); 
+    delay(400);
     Serial.println(check);
   }
 
@@ -71,44 +71,44 @@ void loop()
     tone(piezo, 500);
     delay(100);
     noTone(piezo);
-    randomNumber = ______(1, 4); 
+    randomNumber = ______(1, 4);
     delay(10);
     Serial.println(randomNumber);
     delay(100);
     check = 0;
-    
-    switch(____________)
+
+    switch (____________)
     {
-    case 1:
-      servo_main.______(0);
-      delay(1000);
-      servo_wheel.______(93);
-      delay(2000);
-      servo_main.______(0);
-      delay(2000);
-    break;
-    
-    case 2:
-      servo_main.______(80);
-      delay(1000);
-      servo_wheel.______(93);
-      delay(2000);
-      servo_main.______(0);
-      delay(2000);
-    break;
-    
-    case 3:
-      servo_main.______(160);
-      delay(1000);
-      servo_wheel.______(93);
-      delay(2000);
-      servo_main.______(0);
-      delay(2000);
-    break;
+      case 1:
+        servo_main.______(0);
+        delay(1000);
+        servo_wheel.______(93);
+        delay(2000);
+        servo_main.______(0);
+        delay(2000);
+        break;
+
+      case 2:
+        servo_main.______(80);
+        delay(1000);
+        servo_wheel.______(93);
+        delay(2000);
+        servo_main.______(0);
+        delay(2000);
+        break;
+
+      case 3:
+        servo_main.______(160);
+        delay(1000);
+        servo_wheel.______(93);
+        delay(2000);
+        servo_main.______(0);
+        delay(2000);
+        break;
     }
-    
+
     ____________ = 0;
-  }  
-  
-delay(250);
+  }
+
+  delay(250);
 }

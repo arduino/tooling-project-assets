@@ -1,9 +1,9 @@
 /*
-* _5.2_acc_demo
-* 
-* The Piezo will play sound based on how fast you move the board in the X and Y axes.
-*
-* (c) 2013-2016 Arduino LLC.
+  _5.2_acc_demo
+
+  The Piezo will play sound based on how fast you move the board in the X and Y axes.
+
+  (c) 2013-2016 Arduino LLC.
 */
 
 #include <EducationShield.h>

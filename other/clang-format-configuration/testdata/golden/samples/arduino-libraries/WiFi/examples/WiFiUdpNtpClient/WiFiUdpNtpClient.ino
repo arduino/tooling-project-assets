@@ -1,20 +1,20 @@
 /*
 
- UDP NTP Client
+  UDP NTP Client
 
- Get the time from a Network Time Protocol (NTP) time server
- Demonstrates use of UDP sendPacket and ReceivePacket
- For more on NTP time servers and the messages needed to communicate with them,
- see http://en.wikipedia.org/wiki/Network_Time_Protocol
+  Get the time from a Network Time Protocol (NTP) time server
+  Demonstrates use of UDP sendPacket and ReceivePacket
+  For more on NTP time servers and the messages needed to communicate with them,
+  see http://en.wikipedia.org/wiki/Network_Time_Protocol
 
- created 4 Sep 2010
- by Michael Margolis
- modified 9 Apr 2012
- by Tom Igoe
+  created 4 Sep 2010
+  by Michael Margolis
+  modified 9 Apr 2012
+  by Tom Igoe
 
- This code is in the public domain.
+  This code is in the public domain.
 
- */
+*/
 
 #include <SPI.h>
 #include <WiFi.h>

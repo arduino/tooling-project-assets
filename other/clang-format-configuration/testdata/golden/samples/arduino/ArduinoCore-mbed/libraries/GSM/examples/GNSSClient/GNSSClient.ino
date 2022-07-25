@@ -12,10 +12,10 @@ void setup() {
   while (!Serial) {}
 
   Serial.println("Starting Carrier Network registration");
-  if(!GSM.begin(pin, apn, username, pass, CATNB)){
+  if (!GSM.begin(pin, apn, username, pass, CATNB)) {
     Serial.println("The board was not able to register to the network...");
     // do nothing forevermore:
-    while(1);
+    while (1);
   }
   Serial.println("\nEnable GNSS Engine...");
   // GPS.begin() start and eanble the GNSS engine
@@ -26,7 +26,7 @@ void setup() {
 void loop() {
   // Print out raw NMEA strings.
   // For parsed output look at the MicroNMEA_integration example.
-  if(GPS.available()){
+  if (GPS.available()) {
     Serial.print((char) GPS.read());
     delay(1);
   }

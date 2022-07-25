@@ -1,27 +1,27 @@
 /*
 
- This sketch uses the REST connector to receive command for the MCU from a REST client.
- Each command received will fire an action for the Braccio.
- Run the sketch with Arduino Braccio - Web Examples to move your Braccio via web page.
- Visit the Demo section of the Braccio's page.
- https://www.arduino.cc/en/Guide/Braccio
- 
+  This sketch uses the REST connector to receive command for the MCU from a REST client.
+  Each command received will fire an action for the Braccio.
+  Run the sketch with Arduino Braccio - Web Examples to move your Braccio via web page.
+  Visit the Demo section of the Braccio's page.
+  https://www.arduino.cc/en/Guide/Braccio
 
 
-REST command example:
 
- * "ledon"             -> turn on led 13
- * "ledoff"            -> turn off led 13
+  REST command example:
 
- example: http://arduino.local/arduino/ledon
+   "ledon"             -> turn on led 13
+   "ledoff"            -> turn off led 13
 
- NOTE: be sure to activate and configure REST connector on Linino OS
+  example: http://arduino.local/arduino/ledon
+
+  NOTE: be sure to activate and configure REST connector on Linino OS
        https://www.arduino.cc/en/Reference/Ciao
 
- created March 2016
- by andrea[at]arduino[dot]org and a.ferrante[at]arduino[dot]org
+  created March 2016
+  by andrea[at]arduino[dot]org and a.ferrante[at]arduino[dot]org
 
- */
+*/
 
 #include <Ciao.h>
 #include <Servo.h>
@@ -53,11 +53,11 @@ void setup() {
 }
 
 /**
-Parse Command from REST
-It parses a command like: /arduino/base/value:45
-Giving "base" it return the value
-@param command: The message to parse
-@param type: the key for parsing
+  Parse Command from REST
+  It parses a command like: /arduino/base/value:45
+  Giving "base" it return the value
+  @param command: The message to parse
+  @param type: the key for parsing
 */
 int parseCommand(String command, String type) {
   int typeIndex = command.indexOf(type);
@@ -86,7 +86,7 @@ void loop() {
     message.toUpperCase();
 
     /*
-    For each message do the proper command
+      For each message do the proper command
     */
     if (message == "LEDON") {
       //Turn OFF Led 13
@@ -154,7 +154,7 @@ void loop() {
       takesponge();
       Ciao.writeResponse("restserver", id, "TAKESPONGE: " + String(m6));
     }
-   //Command to show the sponge
+    //Command to show the sponge
     else if (message.startsWith("SHOWSPONGE")) {
       showsponge();
       Ciao.writeResponse("restserver", id, "SHOWSPONGE: " + String(m6));
@@ -177,7 +177,7 @@ void loop() {
 }
 
 /**
-The Braccio says 'Ciao' with the Tongue
+  The Braccio says 'Ciao' with the Tongue
 */
 void sayCiao() {
 
@@ -193,11 +193,11 @@ void sayCiao() {
 }
 
 /**
-Braccio takes the Sponge
+  Braccio takes the Sponge
 */
 void takesponge() {
   //starting position
-                      //(step delay  M1 , M2 , M3 , M4 , M5 , M6);
+  //(step delay  M1 , M2 , M3 , M4 , M5 , M6);
   Braccio.ServoMovement(20,           0,  45, 180, 180,  90,  0);
 
   //I move arm towards the sponge
@@ -212,12 +212,12 @@ void takesponge() {
 
 
 /**
-Braccio shows the sponge to the user
+  Braccio shows the sponge to the user
 */
 void showsponge() {
   for (int i = 0; i < 2; i++) {
 
-                          //(step delay  M1 , M2 , M3 , M4 , M5 , M6 );
+    //(step delay  M1 , M2 , M3 , M4 , M5 , M6 );
     Braccio.ServoMovement(10,         0,   45, 180,  45,  180, 60);
 
     Braccio.ServoMovement(10,         0,   45, 180,  45,  0, 60);
@@ -225,10 +225,10 @@ void showsponge() {
 }
 
 /**
-Braccio throws away the sponge
+  Braccio throws away the sponge
 */
 void throwsponge() {
-                      //(step delay  M1 , M2 , M3 , M4 , M5 , M6 );
+  //(step delay  M1 , M2 , M3 , M4 , M5 , M6 );
   Braccio.ServoMovement(20,         0,   45, 90,  45,  90, 60);
 
   Braccio.ServoMovement(5,         0,   45, 135,  90,  90, 60);

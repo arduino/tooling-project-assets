@@ -24,12 +24,12 @@ void setup() {
 // the loop function runs over and over again forever
 void loop() {
 
-  batteryVoltage = battery.getRaw()/236.0;
+  batteryVoltage = battery.getRaw() / 236.0;
   Serial.print("Battery voltage: ");
-  Serial.print(batteryVoltage,3);
+  Serial.print(batteryVoltage, 3);
   //Serial.println("V");
   Serial.print("V, Raw ");
   Serial.println(battery.getRaw());
   delay(5000); //wait for a few seconds
-  
+
 }

@@ -1,5 +1,5 @@
 /*
-  CTC GO! MOTION 
+  CTC GO! MOTION
   LESSON 03 - Continuous Rotation
 
   This sketch is written to accompany activity 1 of Lesson 3

@@ -1,5 +1,5 @@
 /*
-  CTC GO! CORE MODULE 
+  CTC GO! CORE MODULE
   PROJECT 1 - Pinball
 
   This sketch is written to accompany Stage 5 in Pinball of the CTC GO! core module
@@ -10,11 +10,11 @@ int blueLED_2 = 12;
 int redLED = 13;
 int greenLED = 9;
 
-int button_1 = 7; 
+int button_1 = 7;
 int button_2 = 6;
 
 int losing = 0;
-int winning = 0; 
+int winning = 0;
 
 void setup()
 {
@@ -31,33 +31,33 @@ void loop() {
 
   if ( digitalRead(button_1) ==  HIGH )
   {
-   winning = 1;
-   delay(2000);
+    winning = 1;
+    delay(2000);
   }
 
   if ( digitalRead(button_2) == HIGH )
   {
-   losing = losing + 1;
-   delay(2000);
+    losing = losing + 1;
+    delay(2000);
   }
 
-  if(losing == 0 && winning == 0)
-  {
-   digitalWrite(blueLED_1, HIGH);
-   digitalWrite(blueLED_2,HIGH);
-   digitalWrite(redLED,HIGH);
-   digitalWrite(greenLED,HIGH);
-   delay(1000);
-   ddigitalWrite(blueLED_1, LOW);
-   digitalWrite(blueLED_2,LOW);
-   digitalWrite(redLED,LOW);
-   digitalWrite(greenLED,LOW);
-   delay(1000);
-  }
-  else if (losing == 1) 
+  if (losing == 0 && winning == 0)
   {
     digitalWrite(blueLED_1, HIGH);
-    delay(1500);   
+    digitalWrite(blueLED_2, HIGH);
+    digitalWrite(redLED, HIGH);
+    digitalWrite(greenLED, HIGH);
+    delay(1000);
+    ddigitalWrite(blueLED_1, LOW);
+    digitalWrite(blueLED_2, LOW);
+    digitalWrite(redLED, LOW);
+    digitalWrite(greenLED, LOW);
+    delay(1000);
+  }
+  else if (losing == 1)
+  {
+    digitalWrite(blueLED_1, HIGH);
+    delay(1500);
   }
   else if (losing == 2)
   {
@@ -89,21 +89,21 @@ void loop() {
     losing = 0;
     winning = 0;
   }
-  
+
   if (_____)
   {
-     digitalWrite(greenLED, _____);
-     delay(_____);
-     digitalWrite(greenLED, _____);
-     delay(_____);
-     digitalWrite(greenLED, _____);
-     delay(_____);
-     digitalWrite(greenLED, _____);
-     delay(_____);
-     digitalWrite(greenLED, _____);
-     delay(_____);
-     digitalWrite(greenLED, _____);
-     delay(3000);
+    digitalWrite(greenLED, _____);
+    delay(_____);
+    digitalWrite(greenLED, _____);
+    delay(_____);
+    digitalWrite(greenLED, _____);
+    delay(_____);
+    digitalWrite(greenLED, _____);
+    delay(_____);
+    digitalWrite(greenLED, _____);
+    delay(_____);
+    digitalWrite(greenLED, _____);
+    delay(3000);
 
     winning = _____;
     losing = _____;

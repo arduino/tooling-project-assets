@@ -30,31 +30,31 @@ void printHIDdescr( uint8_t* descr_ptr );
 
 void PrintAllAddresses(UsbDeviceDefinition *pdev)
 {
-    UsbDeviceAddress adr;
-    adr.devAddress = pdev->address.devAddress;
-    SERIAL_PORT_MONITOR.print("\r\nAddr:");
-    SERIAL_PORT_MONITOR.print(adr.devAddress, HEX);
-    SERIAL_PORT_MONITOR.print("(");
-    SERIAL_PORT_MONITOR.print(adr.bmHub, HEX);
-    SERIAL_PORT_MONITOR.print(".");
-    SERIAL_PORT_MONITOR.print(adr.bmParent, HEX);
-    SERIAL_PORT_MONITOR.print(".");
-    SERIAL_PORT_MONITOR.print(adr.bmAddress, HEX);
-    SERIAL_PORT_MONITOR.println(")");
+  UsbDeviceAddress adr;
+  adr.devAddress = pdev->address.devAddress;
+  SERIAL_PORT_MONITOR.print("\r\nAddr:");
+  SERIAL_PORT_MONITOR.print(adr.devAddress, HEX);
+  SERIAL_PORT_MONITOR.print("(");
+  SERIAL_PORT_MONITOR.print(adr.bmHub, HEX);
+  SERIAL_PORT_MONITOR.print(".");
+  SERIAL_PORT_MONITOR.print(adr.bmParent, HEX);
+  SERIAL_PORT_MONITOR.print(".");
+  SERIAL_PORT_MONITOR.print(adr.bmAddress, HEX);
+  SERIAL_PORT_MONITOR.println(")");
 }
 
 void PrintAddress(uint8_t addr)
 {
-    UsbDeviceAddress adr;
-    adr.devAddress = addr;
-    SERIAL_PORT_MONITOR.print("\r\nADDR:\t");
-    SERIAL_PORT_MONITOR.println(adr.devAddress,HEX);
-    SERIAL_PORT_MONITOR.print("DEV:\t");
-    SERIAL_PORT_MONITOR.println(adr.bmAddress,HEX);
-    SERIAL_PORT_MONITOR.print("PRNT:\t");
-    SERIAL_PORT_MONITOR.println(adr.bmParent,HEX);
-    SERIAL_PORT_MONITOR.print("HUB:\t");
-    SERIAL_PORT_MONITOR.println(adr.bmHub,HEX);
+  UsbDeviceAddress adr;
+  adr.devAddress = addr;
+  SERIAL_PORT_MONITOR.print("\r\nADDR:\t");
+  SERIAL_PORT_MONITOR.println(adr.devAddress, HEX);
+  SERIAL_PORT_MONITOR.print("DEV:\t");
+  SERIAL_PORT_MONITOR.println(adr.bmAddress, HEX);
+  SERIAL_PORT_MONITOR.print("PRNT:\t");
+  SERIAL_PORT_MONITOR.println(adr.bmParent, HEX);
+  SERIAL_PORT_MONITOR.print("HUB:\t");
+  SERIAL_PORT_MONITOR.println(adr.bmHub, HEX);
 }
 
 void setup()
@@ -64,7 +64,7 @@ void setup()
   SERIAL_PORT_MONITOR.println("Start USB Desc");
 
   if (usb.Init() == -1)
-      SERIAL_PORT_MONITOR.println("OSC did not start.");
+    SERIAL_PORT_MONITOR.println("OSC did not start.");
 
   delay( 20 );
 
@@ -75,49 +75,49 @@ byte getdevdescr( byte addr, byte &num_conf );
 
 void PrintDescriptors(uint8_t addr)
 {
-    uint8_t rcode = 0;
-    byte num_conf = 0;
+  uint8_t rcode = 0;
+  byte num_conf = 0;
 
-    rcode = getdevdescr( (byte)addr, num_conf );
-    if( rcode )
+  rcode = getdevdescr( (byte)addr, num_conf );
+  if ( rcode )
+  {
+    printProgStr(Gen_Error_str);
+    print_hex( rcode, 8 );
+  }
+  SERIAL_PORT_MONITOR.print("\r\n");
+
+  for (int i = 0; i < num_conf; i++)
+  {
+    rcode = getconfdescr( addr, i );                 // get configuration descriptor
+    if ( rcode )
     {
       printProgStr(Gen_Error_str);
-      print_hex( rcode, 8 );
+      print_hex(rcode, 8);
     }
-    SERIAL_PORT_MONITOR.print("\r\n");
-
-    for (int i=0; i<num_conf; i++)
-    {
-        rcode = getconfdescr( addr, i );                 // get configuration descriptor
-        if( rcode )
-        {
-          printProgStr(Gen_Error_str);
-          print_hex(rcode, 8);
-        }
-        SERIAL_PORT_MONITOR.println("\r\n");
-    }
+    SERIAL_PORT_MONITOR.println("\r\n");
+  }
 }
 
 void PrintAllDescriptors(UsbDeviceDefinition *pdev)
 {
-    SERIAL_PORT_MONITOR.println("\r\n");
-    print_hex(pdev->address.devAddress, 8);
-    SERIAL_PORT_MONITOR.println("\r\n--");
-    PrintDescriptors( pdev->address.devAddress );
+  SERIAL_PORT_MONITOR.println("\r\n");
+  print_hex(pdev->address.devAddress, 8);
+  SERIAL_PORT_MONITOR.println("\r\n--");
+  PrintDescriptors( pdev->address.devAddress );
 }
 
 void loop()
 {
   usb.Task();
 
-  if( usb.getUsbTaskState() == USB_STATE_RUNNING )
+  if ( usb.getUsbTaskState() == USB_STATE_RUNNING )
   {
     //if (millis() >= next_time)
     {
-        usb.ForEachUsbDevice(&PrintAllDescriptors);
-        usb.ForEachUsbDevice(&PrintAllAddresses);
+      usb.ForEachUsbDevice(&PrintAllDescriptors);
+      usb.ForEachUsbDevice(&PrintAllAddresses);
 
-        while( 1 );                           //stop
+      while ( 1 );                          //stop
     }
   }
 }
@@ -127,8 +127,8 @@ byte getdevdescr( byte addr, byte &num_conf )
   USB_DEVICE_DESCRIPTOR buf;
   byte rcode;
   rcode = usb.getDevDescr( addr, 0, 0x12, ( uint8_t *)&buf );
-  if( rcode ) {
-    return( rcode );
+  if ( rcode ) {
+    return ( rcode );
   }
   printProgStr(Dev_Header_str);
   printProgStr(Dev_Length_str);
@@ -160,53 +160,53 @@ byte getdevdescr( byte addr, byte &num_conf )
   printProgStr(Dev_Nconf_str);
   print_hex( buf.bNumConfigurations, 8 );
   num_conf = buf.bNumConfigurations;
-  return( 0 );
+  return ( 0 );
 }
 
 void printhubdescr(uint8_t *descrptr, uint8_t addr)
 {
-    HubDescriptor  *pHub = (HubDescriptor*) descrptr;
-    uint8_t        len = *((uint8_t*)descrptr);
+  HubDescriptor  *pHub = (HubDescriptor*) descrptr;
+  uint8_t        len = *((uint8_t*)descrptr);
 
-    printProgStr(PSTR("\r\n\r\nHub Descriptor:\r\n"));
-    printProgStr(PSTR("bDescLength:\t\t"));
-    SERIAL_PORT_MONITOR.println(pHub->bDescLength, HEX);
+  printProgStr(PSTR("\r\n\r\nHub Descriptor:\r\n"));
+  printProgStr(PSTR("bDescLength:\t\t"));
+  SERIAL_PORT_MONITOR.println(pHub->bDescLength, HEX);
 
-    printProgStr(PSTR("bDescriptorType:\t"));
-    SERIAL_PORT_MONITOR.println(pHub->bDescriptorType, HEX);
+  printProgStr(PSTR("bDescriptorType:\t"));
+  SERIAL_PORT_MONITOR.println(pHub->bDescriptorType, HEX);
 
-    printProgStr(PSTR("bNbrPorts:\t\t"));
-    SERIAL_PORT_MONITOR.println(pHub->bNbrPorts, HEX);
+  printProgStr(PSTR("bNbrPorts:\t\t"));
+  SERIAL_PORT_MONITOR.println(pHub->bNbrPorts, HEX);
 
-    printProgStr(PSTR("LogPwrSwitchMode:\t"));
-    SERIAL_PORT_MONITOR.println(pHub->LogPwrSwitchMode, BIN);
+  printProgStr(PSTR("LogPwrSwitchMode:\t"));
+  SERIAL_PORT_MONITOR.println(pHub->LogPwrSwitchMode, BIN);
 
-    printProgStr(PSTR("CompoundDevice:\t\t"));
-    SERIAL_PORT_MONITOR.println(pHub->CompoundDevice, BIN);
+  printProgStr(PSTR("CompoundDevice:\t\t"));
+  SERIAL_PORT_MONITOR.println(pHub->CompoundDevice, BIN);
 
-    printProgStr(PSTR("OverCurrentProtectMode:\t"));
-    SERIAL_PORT_MONITOR.println(pHub->OverCurrentProtectMode, BIN);
+  printProgStr(PSTR("OverCurrentProtectMode:\t"));
+  SERIAL_PORT_MONITOR.println(pHub->OverCurrentProtectMode, BIN);
 
-    printProgStr(PSTR("TTThinkTime:\t\t"));
-    SERIAL_PORT_MONITOR.println(pHub->TTThinkTime, BIN);
+  printProgStr(PSTR("TTThinkTime:\t\t"));
+  SERIAL_PORT_MONITOR.println(pHub->TTThinkTime, BIN);
 
-    printProgStr(PSTR("PortIndicatorsSupported:"));
-    SERIAL_PORT_MONITOR.println(pHub->PortIndicatorsSupported, BIN);
+  printProgStr(PSTR("PortIndicatorsSupported:"));
+  SERIAL_PORT_MONITOR.println(pHub->PortIndicatorsSupported, BIN);
 
-    printProgStr(PSTR("Reserved:\t\t"));
-    SERIAL_PORT_MONITOR.println(pHub->Reserved, HEX);
+  printProgStr(PSTR("Reserved:\t\t"));
+  SERIAL_PORT_MONITOR.println(pHub->Reserved, HEX);
 
-    printProgStr(PSTR("bPwrOn2PwrGood:\t\t"));
-    SERIAL_PORT_MONITOR.println(pHub->bPwrOn2PwrGood, HEX);
+  printProgStr(PSTR("bPwrOn2PwrGood:\t\t"));
+  SERIAL_PORT_MONITOR.println(pHub->bPwrOn2PwrGood, HEX);
 
-    printProgStr(PSTR("bHubContrCurrent:\t"));
-    SERIAL_PORT_MONITOR.println(pHub->bHubContrCurrent, HEX);
+  printProgStr(PSTR("bHubContrCurrent:\t"));
+  SERIAL_PORT_MONITOR.println(pHub->bHubContrCurrent, HEX);
 
-    for (uint8_t i=7; i<len; i++)
-        print_hex(descrptr[i], 8);
+  for (uint8_t i = 7; i < len; i++)
+    print_hex(descrptr[i], 8);
 
-    //for (uint8_t i=1; i<=pHub->bNbrPorts; i++)
-    //    PrintHubPortStatus(&Usb, addr, i, 1);
+  //for (uint8_t i=1; i<=pHub->bNbrPorts; i++)
+  //    PrintHubPortStatus(&Usb, addr, i, 1);
 }
 
 byte getconfdescr( byte addr, byte conf )
@@ -220,22 +220,22 @@ byte getconfdescr( byte addr, byte conf )
   rcode = usb.getConfDescr( addr, 0, 4, conf, buf );  //get total length
   LOBYTE( total_length ) = buf[ 2 ];
   HIBYTE( total_length ) = buf[ 3 ];
-  if( total_length > sizeof(buf)) {    //check if total length is larger than buffer
+  if ( total_length > sizeof(buf)) {   //check if total length is larger than buffer
     printProgStr(Conf_Trunc_str);
     total_length = sizeof(buf);
   }
   rcode = usb.getConfDescr( addr, 0, total_length, conf, buf ); //get the whole descriptor
-  while( buf_ptr < buf + total_length ) {  //parsing descriptors
+  while ( buf_ptr < buf + total_length ) { //parsing descriptors
     descr_length = *( buf_ptr );
     descr_type = *( buf_ptr + 1 );
-    switch( descr_type ) {
-      case( USB_DESCRIPTOR_CONFIGURATION ):
+    switch ( descr_type ) {
+      case ( USB_DESCRIPTOR_CONFIGURATION ):
         printconfdescr( buf_ptr );
         break;
-      case( USB_DESCRIPTOR_INTERFACE ):
+      case ( USB_DESCRIPTOR_INTERFACE ):
         printintfdescr( buf_ptr );
         break;
-      case( USB_DESCRIPTOR_ENDPOINT ):
+      case ( USB_DESCRIPTOR_ENDPOINT ):
         printepdescr( buf_ptr );
         break;
       case 0x21:  // HID Descriptor
@@ -247,19 +247,19 @@ byte getconfdescr( byte addr, byte conf )
       default:
         printunkdescr( buf_ptr );
         break;
-        }//switch( descr_type
+    }//switch( descr_type
     buf_ptr = ( buf_ptr + descr_length );    //advance buffer pointer
   }//while( buf_ptr <=...
-  return( 0 );
+  return ( 0 );
 }
 /* prints hex numbers with leading zeroes */
 // copyright, Peter H Anderson, Baltimore, MD, Nov, '07
 // source: http://www.phanderson.com/arduino/arduino_display.html
 void print_hex(int v, int num_places)
 {
-  int mask=0, n, num_nibbles, digit;
+  int mask = 0, n, num_nibbles, digit;
 
-  for (n=1; n<=num_places; n++) {
+  for (n = 1; n <= num_places; n++) {
     mask = (mask << 1) | 0x0001;
   }
   v = v & mask; // truncate v to specified number of places
@@ -269,15 +269,15 @@ void print_hex(int v, int num_places)
     ++num_nibbles;
   }
   do {
-    digit = ((v >> (num_nibbles-1) * 4)) & 0x0f;
+    digit = ((v >> (num_nibbles - 1) * 4)) & 0x0f;
     SERIAL_PORT_MONITOR.print(digit, HEX);
   }
-  while(--num_nibbles);
+  while (--num_nibbles);
 }
 /* function to print configuration descriptor */
 void printconfdescr( uint8_t* descr_ptr )
 {
- USB_CONFIGURATION_DESCRIPTOR* conf_ptr = ( USB_CONFIGURATION_DESCRIPTOR* )descr_ptr;
+  USB_CONFIGURATION_DESCRIPTOR* conf_ptr = ( USB_CONFIGURATION_DESCRIPTOR* )descr_ptr;
   printProgStr(Conf_Header_str);
   printProgStr(Conf_Totlen_str);
   print_hex( conf_ptr->wTotalLength, 16 );
@@ -296,7 +296,7 @@ void printconfdescr( uint8_t* descr_ptr )
 /* function to print interface descriptor */
 void printintfdescr( uint8_t* descr_ptr )
 {
- USB_INTERFACE_DESCRIPTOR* intf_ptr = ( USB_INTERFACE_DESCRIPTOR* )descr_ptr;
+  USB_INTERFACE_DESCRIPTOR* intf_ptr = ( USB_INTERFACE_DESCRIPTOR* )descr_ptr;
   printProgStr(Int_Header_str);
   printProgStr(Int_Number_str);
   print_hex( intf_ptr->bInterfaceNumber, 8 );
@@ -318,22 +318,22 @@ void printintfdescr( uint8_t* descr_ptr )
 /* function to print HID descriptor */
 void printHIDdescr( uint8_t* descr_ptr )
 {
-	USB_HID_DESCRIPTOR* ep_ptr = ( USB_HID_DESCRIPTOR* )descr_ptr;
+  USB_HID_DESCRIPTOR* ep_ptr = ( USB_HID_DESCRIPTOR* )descr_ptr;
 
-    printProgStr(PSTR("\r\n\r\nHID Descriptor:\r\n"));
-    printProgStr(PSTR("HID Class Release:\t"));
-	print_hex( ep_ptr->bcdHID, 16 );
-    printProgStr(PSTR("\r\nCountry Code:\t\t"));
-	print_hex( ep_ptr->bCountryCode, 8 );
-    printProgStr(PSTR("\r\nNumb Class Descriptor:\t"));
-	print_hex( ep_ptr->bNumDescriptors, 8 );
-    printProgStr(PSTR("\r\nDescriptor Type:\t"));
-	if( ep_ptr->bDescrType == 0x22 ) 
-		printProgStr(PSTR("REPORT DESCRIPTOR"));
-	else
-		print_hex( ep_ptr->bDescrType, 8 );
-    printProgStr(PSTR("\r\nCSize Report Descr:\t"));
-	print_hex( ep_ptr->wDescriptorLength, 16 );
+  printProgStr(PSTR("\r\n\r\nHID Descriptor:\r\n"));
+  printProgStr(PSTR("HID Class Release:\t"));
+  print_hex( ep_ptr->bcdHID, 16 );
+  printProgStr(PSTR("\r\nCountry Code:\t\t"));
+  print_hex( ep_ptr->bCountryCode, 8 );
+  printProgStr(PSTR("\r\nNumb Class Descriptor:\t"));
+  print_hex( ep_ptr->bNumDescriptors, 8 );
+  printProgStr(PSTR("\r\nDescriptor Type:\t"));
+  if ( ep_ptr->bDescrType == 0x22 )
+    printProgStr(PSTR("REPORT DESCRIPTOR"));
+  else
+    print_hex( ep_ptr->bDescrType, 8 );
+  printProgStr(PSTR("\r\nCSize Report Descr:\t"));
+  print_hex( ep_ptr->wDescriptorLength, 16 );
 }
 
 /* function to print endpoint descriptor */
@@ -341,17 +341,17 @@ void printepdescr( uint8_t* descr_ptr )
 {
   uint8_t transfer_type;
 
- USB_ENDPOINT_DESCRIPTOR* ep_ptr = ( USB_ENDPOINT_DESCRIPTOR* )descr_ptr;
+  USB_ENDPOINT_DESCRIPTOR* ep_ptr = ( USB_ENDPOINT_DESCRIPTOR* )descr_ptr;
   printProgStr(End_Header_str);
   printProgStr(End_Address_str);
-  if( 0x80 & ep_ptr->bEndpointAddress ) printProgStr(PSTR("IN\t\t"));
+  if ( 0x80 & ep_ptr->bEndpointAddress ) printProgStr(PSTR("IN\t\t"));
   else printProgStr(PSTR("OUT\t\t"));
   print_hex( (ep_ptr->bEndpointAddress & 0xF), 8 );
   printProgStr(End_Attr_str);
   transfer_type = ep_ptr->bmAttributes & bmUSB_TRANSFER_TYPE;
-  if( transfer_type == USB_TRANSFER_TYPE_INTERRUPT ) printProgStr(PSTR("INTERRUPT\t"));
-  else if( transfer_type == USB_TRANSFER_TYPE_BULK ) printProgStr(PSTR("BULK\t"));
-  else if( transfer_type == USB_TRANSFER_TYPE_ISOCHRONOUS ) printProgStr(PSTR("ISO\t"));
+  if ( transfer_type == USB_TRANSFER_TYPE_INTERRUPT ) printProgStr(PSTR("INTERRUPT\t"));
+  else if ( transfer_type == USB_TRANSFER_TYPE_BULK ) printProgStr(PSTR("BULK\t"));
+  else if ( transfer_type == USB_TRANSFER_TYPE_ISOCHRONOUS ) printProgStr(PSTR("ISO\t"));
   print_hex( ep_ptr->bmAttributes, 8 );
   printProgStr(End_Pktsize_str);
   print_hex( ep_ptr->wMaxPacketSize, 16 );
@@ -372,7 +372,7 @@ void printunkdescr( uint8_t* descr_ptr )
   print_hex( *(descr_ptr + 1 ), 8 );
   printProgStr(Unk_Contents_str);
   descr_ptr += 2;
-  for( i = 0; i < length; i++ ) {
+  for ( i = 0; i < length; i++ ) {
     print_hex( *descr_ptr, 8 );
     descr_ptr++;
   }
@@ -383,7 +383,7 @@ void printunkdescr( uint8_t* descr_ptr )
 void printProgStr(const prog_char str[])
 {
   char c;
-  if(!str) return;
-  while((c = pgm_read_byte(str++)))
+  if (!str) return;
+  while ((c = pgm_read_byte(str++)))
     SERIAL_PORT_MONITOR.print(c);
 }

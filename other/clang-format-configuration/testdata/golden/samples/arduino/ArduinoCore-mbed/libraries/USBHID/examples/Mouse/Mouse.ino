@@ -11,7 +11,7 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   delay(1000);
-  Mouse.move(100,100);
+  Mouse.move(100, 100);
   delay(1000);
-  Mouse.move(-100,-100);
+  Mouse.move(-100, -100);
 }

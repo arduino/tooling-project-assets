@@ -23,11 +23,11 @@ void setup()
 
 void loop()
 {
-  if(btn.pressed())
+  if (btn.pressed())
     Serial.println("pressed");
-  if(btn.held())
+  if (btn.held())
     Serial.println("held");
-  if(btn.released()) {
+  if (btn.released()) {
     Serial.println("released");
     Serial.print("switch: ");
     Serial.println(btn.readSwitch());

@@ -1,32 +1,32 @@
 /*
- * This example demonstrates how to use to update the firmware of the Arduino Portenta H7 using
- * a firmware image stored on the SD.
- *
- * Steps:
- *   1) Create a sketch for the Portenta H7 and verifiy
- *      that it both compiles and works on a board.
- *   2) In the IDE select: Sketch -> Export compiled Binary.
- *   3) Create an OTA update file utilising the tools 'lzss.py' and 'bin2ota.py' stored in
- *      https://github.com/arduino-libraries/ArduinoIoTCloud/tree/master/extras/tools .
- *      A) ./lzss.py --encode SKETCH.bin PORTENTA_H7_M7.lzss
- *      B) ./bin2ota.py PORTENTA_H7_M7.lzss PORTENTA_H7_M7.ota
- *   4) Upload the OTA file to a network reachable location, e.g. OTA_Usage_Portenta.ino.PORTENTA_H7_M7.ota
- *      has been uploaded to: http://downloads.arduino.cc/ota/OTA_Usage_Portenta.ino.PORTENTA_H7_M7.ota
- *   5) Perform an OTA update via steps outlined below.
- */
+   This example demonstrates how to use to update the firmware of the Arduino Portenta H7 using
+   a firmware image stored on the SD.
+
+   Steps:
+     1) Create a sketch for the Portenta H7 and verifiy
+        that it both compiles and works on a board.
+     2) In the IDE select: Sketch -> Export compiled Binary.
+     3) Create an OTA update file utilising the tools 'lzss.py' and 'bin2ota.py' stored in
+        https://github.com/arduino-libraries/ArduinoIoTCloud/tree/master/extras/tools .
+        A) ./lzss.py --encode SKETCH.bin PORTENTA_H7_M7.lzss
+        B) ./bin2ota.py PORTENTA_H7_M7.lzss PORTENTA_H7_M7.ota
+     4) Upload the OTA file to a network reachable location, e.g. OTA_Usage_Portenta.ino.PORTENTA_H7_M7.ota
+        has been uploaded to: http://downloads.arduino.cc/ota/OTA_Usage_Portenta.ino.PORTENTA_H7_M7.ota
+     5) Perform an OTA update via steps outlined below.
+*/
 
 /******************************************************************************
- * INCLUDE
+   INCLUDE
  ******************************************************************************/
 
 #include <Arduino_Portenta_OTA.h>
 
 #include <WiFi.h>
 
-#include "arduino_secrets.h" 
+#include "arduino_secrets.h"
 
 /******************************************************************************
- * CONSTANT
+   CONSTANT
  ******************************************************************************/
 
 /* Please enter your sensitive data in the Secret tab/arduino_secrets.h */
@@ -36,7 +36,7 @@ static char const PASS[] = SECRET_PASS;  /* your network password (use for WPA, 
 static char const OTA_FILE_LOCATION[] = "http://downloads.arduino.cc/ota/OTA_Usage_Portenta.ino.PORTENTA_H7_M7.ota";
 
 /******************************************************************************
- * SETUP/LOOP
+   SETUP/LOOP
  ******************************************************************************/
 
 void setup()

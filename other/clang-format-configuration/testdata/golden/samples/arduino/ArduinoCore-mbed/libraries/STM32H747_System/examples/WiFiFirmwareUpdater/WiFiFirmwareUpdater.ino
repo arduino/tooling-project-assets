@@ -4,8 +4,8 @@
 #include "wiced_resource.h"
 #include "certificates.h"
 
-#ifndef CORE_CM7  
-  #error Update the WiFi firmware by uploading the sketch to the M7 core instead of the M4 core.
+#ifndef CORE_CM7
+#error Update the WiFi firmware by uploading the sketch to the M7 core instead of the M4 core.
 #endif
 
 QSPIFBlockDevice root(QSPI_SO0, QSPI_SO1, QSPI_SO2, QSPI_SO3,  QSPI_SCK, QSPI_CS, QSPIF_POLARITY_MODE_1, 40000000);
@@ -13,11 +13,11 @@ mbed::MBRBlockDevice wifi_data(&root, 1);
 mbed::FATFileSystem wifi_data_fs("wlan");
 
 long getFileSize(FILE *fp) {
-    fseek(fp, 0, SEEK_END);
-    int size = ftell(fp);
-    fseek(fp, 0, SEEK_SET);
-    
-    return size;
+  fseek(fp, 0, SEEK_END);
+  int size = ftell(fp);
+  fseek(fp, 0, SEEK_SET);
+
+  return size;
 }
 
 void printProgress(uint32_t offset, uint32_t size, uint32_t threshold, bool reset) {
@@ -48,7 +48,7 @@ void setup() {
     // this should only happen on the first boot
     Serial.println("No filesystem containing the WiFi firmware was found.");
     Serial.println("Usually that means that the WiFi firmware has not been installed yet"
-                  " or was overwritten with another firmware.\n");
+                   " or was overwritten with another firmware.\n");
     Serial.println("Formatting the filsystem to install the firmware and certificates...\n");
     err = wifi_data_fs.reformat(&wifi_data);
   }
@@ -91,7 +91,7 @@ void setup() {
   Serial.println("Flashing /wlan/4343WA1.BIN file");
   printProgress(byte_count, file_size, 10, true);
   while (byte_count < file_size) {
-    if(byte_count + chunck_size > file_size)
+    if (byte_count + chunck_size > file_size)
       chunck_size = file_size - byte_count;
     int ret = fwrite(&wifi_firmware_image_data[byte_count], chunck_size, 1, fp);
     if (ret != 1) {
@@ -110,7 +110,7 @@ void setup() {
   Serial.println("Flashing memory mapped firmware");
   printProgress(byte_count, file_size, 10, true);
   while (byte_count < file_size) {
-    if(byte_count + chunck_size > file_size)
+    if (byte_count + chunck_size > file_size)
       chunck_size = file_size - byte_count;
     int ret = root.program(wifi_firmware_image_data, offset + byte_count, chunck_size);
     if (ret != 0) {
@@ -128,9 +128,9 @@ void setup() {
   Serial.println("Flashing certificates");
   printProgress(byte_count, cacert_pem_len, 10, true);
   while (byte_count < cacert_pem_len) {
-    if(byte_count + chunck_size > cacert_pem_len)
+    if (byte_count + chunck_size > cacert_pem_len)
       chunck_size = cacert_pem_len - byte_count;
-    int ret = fwrite(&cacert_pem[byte_count], chunck_size, 1 ,fp);
+    int ret = fwrite(&cacert_pem[byte_count], chunck_size, 1 , fp);
     if (ret != 1) {
       Serial.println("Error writing certificates");
       break;

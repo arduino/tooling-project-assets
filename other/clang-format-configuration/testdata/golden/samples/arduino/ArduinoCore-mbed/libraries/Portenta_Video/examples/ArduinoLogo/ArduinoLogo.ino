@@ -4,9 +4,9 @@
 
 // Alternatively, any raw RGB565 image can be included on demand using this macro
 /*
-#define INCBIN_PREFIX
-#include "incbin.h"
-INCBIN(test, "/home/user/Downloads/test.bin");
+  #define INCBIN_PREFIX
+  #include "incbin.h"
+  INCBIN(test, "/home/user/Downloads/test.bin");
 */
 
 int offset;

@@ -14,67 +14,67 @@ int relayChannel { RELAY_CH01 };
 
 void setup()
 {
-    Serial.begin(9600);
-    while (!Serial)
-        ;
+  Serial.begin(9600);
+  while (!Serial)
+    ;
 
-    delay(2000);
+  delay(2000);
 
-    Serial.println("Hello, SolidStateRelay!");
-    
-    Power.on(PWR_3V3);
-    Power.on(PWR_VBAT);
+  Serial.println("Hello, SolidStateRelay!");
 
-    Wire.begin();
-    Serial.print("Waiting for IO Expander Initialization...");
-    while (!Expander) {
-        Serial.print(".");
-        delay(100);
-    }
-    Serial.println(" done.");
-    Expander.pinMode(EXP_LED1, OUTPUT);
+  Power.on(PWR_3V3);
+  Power.on(PWR_VBAT);
 
-    for (auto i = 0; i < 3; i++) {
-        Expander.digitalWrite(EXP_LED1, LOW);
-        delay(50);
-        Expander.digitalWrite(EXP_LED1, HIGH);
-        delay(100);
-    }
+  Wire.begin();
+  Serial.print("Waiting for IO Expander Initialization...");
+  while (!Expander) {
+    Serial.print(".");
+    delay(100);
+  }
+  Serial.println(" done.");
+  Expander.pinMode(EXP_LED1, OUTPUT);
 
-    Relay.begin();
+  for (auto i = 0; i < 3; i++) {
+    Expander.digitalWrite(EXP_LED1, LOW);
+    delay(50);
+    Expander.digitalWrite(EXP_LED1, HIGH);
+    delay(100);
+  }
+
+  Relay.begin();
 }
 
 void loop()
 {
-    if (millis() > onTime && !on) {
-        Serial.println("RELAY ON");
+  if (millis() > onTime && !on) {
+    Serial.println("RELAY ON");
 
-        Relay.on(relayChannel);
+    Relay.on(relayChannel);
 
-        Expander.digitalWrite(EXP_LED1, LOW);
+    Expander.digitalWrite(EXP_LED1, LOW);
 
-        on = true;
-        offTime = onInterval + millis();
-    }
+    on = true;
+    offTime = onInterval + millis();
+  }
 
-    if (millis() > offTime && on) {
-        Serial.println("RELAY OFF");
+  if (millis() > offTime && on) {
+    Serial.println("RELAY OFF");
 
-        Relay.off(relayChannel);
+    Relay.off(relayChannel);
 
-        Expander.digitalWrite(EXP_LED1, HIGH);
+    Expander.digitalWrite(EXP_LED1, HIGH);
 
-        on = false;
-        onTime = millis() + offInterval;
-    }
+    on = false;
+    onTime = millis() + offInterval;
+  }
 
 #if defined(SSR_POLL)
-    if (millis() > pollTime && on) {
-        Serial.println("POLLING");
+  if (millis() > pollTime && on) {
+    Serial.println("POLLING");
 
-        Relay.poll(relayChannel);
+    Relay.poll(relayChannel);
 
-        pollTime = millis() + pollInterval;
-    }
+    pollTime = millis() + pollInterval;
+  }
 #endif
 }

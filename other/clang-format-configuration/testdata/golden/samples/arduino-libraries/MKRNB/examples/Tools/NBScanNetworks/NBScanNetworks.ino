@@ -1,26 +1,26 @@
 /*
 
- NB Scan Networks
+  NB Scan Networks
 
- This example prints out the IMEI number of the modem,
- then checks to see if it's connected to a carrier.
- Then it scans for nearby networks and prints out their signal strengths.
+  This example prints out the IMEI number of the modem,
+  then checks to see if it's connected to a carrier.
+  Then it scans for nearby networks and prints out their signal strengths.
 
- Circuit:
- * MKR NB 1500 board
- * Antenna
- * SIM card
+  Circuit:
+   MKR NB 1500 board
+   Antenna
+   SIM card
 
- Created 8 Mar 2012
- by Tom Igoe, implemented by Javier Carazo
- Modified 4 Feb 2013
- by Scott Fitzgerald
+  Created 8 Mar 2012
+  by Tom Igoe, implemented by Javier Carazo
+  Modified 4 Feb 2013
+  by Scott Fitzgerald
 */
 
 // libraries
 #include <MKRNB.h>
 
-#include "arduino_secrets.h" 
+#include "arduino_secrets.h"
 // Please enter your sensitive data in the Secret tab or arduino_secrets.h
 // PIN Number
 const char PINNUMBER[] = SECRET_PINNUMBER;

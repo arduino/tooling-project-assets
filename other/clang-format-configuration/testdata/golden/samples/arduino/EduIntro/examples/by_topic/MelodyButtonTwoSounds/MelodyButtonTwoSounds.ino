@@ -8,7 +8,7 @@
   created in Apr 2019 by D. Cuartielles
 
   This example code is in the public domain.
- */
+*/
 
 // include the EduIntro library
 #include <EduIntro.h>
@@ -17,14 +17,16 @@
 // note durations: 4 = quarter note, 8 = eighth note, etc.
 // add the NULL to signify the end of the array
 int melody1[] = { NOTE_C4, 4,
-                 NOTE_G3, 8,
-                 NOTE_G3, 8,
-                 SILENCE, 4, NULL};
+                  NOTE_G3, 8,
+                  NOTE_G3, 8,
+                  SILENCE, 4, NULL
+                };
 
 int melody2[] = { NOTE_D4, 4,
-                 NOTE_C3, 8,
-                 NOTE_F3, 8,
-                 SILENCE, 4, NULL};
+                  NOTE_C3, 8,
+                  NOTE_F3, 8,
+                  SILENCE, 4, NULL
+                };
 
 Button button(D7);// creating the object 'button' on pin D7
 

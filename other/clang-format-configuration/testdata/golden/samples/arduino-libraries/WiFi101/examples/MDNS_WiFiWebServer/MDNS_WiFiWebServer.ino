@@ -1,30 +1,30 @@
 /*
- MDNS WiFi Web Server
+  MDNS WiFi Web Server
 
- A simple web server that shows the value of the analog input pins,
- and exposes itself on the MDNS name 'wifi101.local'.
+  A simple web server that shows the value of the analog input pins,
+  and exposes itself on the MDNS name 'wifi101.local'.
 
- On Linux (like Ubuntu 15.04) or OSX you can access the web page
- on the device in a browser at 'http://wifi101.local/'.
+  On Linux (like Ubuntu 15.04) or OSX you can access the web page
+  on the device in a browser at 'http://wifi101.local/'.
 
- On Windows you'll first need to install the Bonjour Printer Services
- from:
+  On Windows you'll first need to install the Bonjour Printer Services
+  from:
    https://support.apple.com/kb/dl999?locale=en_US
- Then you can access the device in a browser at 'http://wifi101.local/'.
+  Then you can access the device in a browser at 'http://wifi101.local/'.
 
- This example is written for a network using WPA encryption. For
- WEP or WPA, change the WiFi.begin() call accordingly.
+  This example is written for a network using WPA encryption. For
+  WEP or WPA, change the WiFi.begin() call accordingly.
 
- Circuit:
- * WiFi 101 Shield attached
- * Analog inputs attached to pins A0 through A5 (optional)
+  Circuit:
+   WiFi 101 Shield attached
+   Analog inputs attached to pins A0 through A5 (optional)
 
- created 13 July 2010
- by dlf (Metodo2 srl)
- modified 31 May 2012
- by Tom Igoe
- modified 27 January 2016
- by Tony DiCola
+  created 13 July 2010
+  by dlf (Metodo2 srl)
+  modified 31 May 2012
+  by Tom Igoe
+  modified 27 January 2016
+  by Tony DiCola
 
 */
 
@@ -32,7 +32,7 @@
 #include <WiFi101.h>
 #include <WiFiMDNSResponder.h>
 
-#include "arduino_secrets.h" 
+#include "arduino_secrets.h"
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h
 char ssid[] = SECRET_SSID;        // your network SSID (name)
 char pass[] = SECRET_PASS;    // your network password (use for WPA, or use as key for WEP)
@@ -84,7 +84,7 @@ void setup() {
   // being assigned an IP address.
   if (!mdnsResponder.begin(mdnsName)) {
     Serial.println("Failed to start MDNS responder!");
-    while(1);
+    while (1);
   }
 
   Serial.print("Server listening at http://");

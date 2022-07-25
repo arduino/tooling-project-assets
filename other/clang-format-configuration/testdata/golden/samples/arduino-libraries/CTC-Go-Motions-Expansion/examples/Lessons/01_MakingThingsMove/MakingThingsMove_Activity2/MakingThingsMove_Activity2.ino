@@ -1,6 +1,6 @@
 /*
-  CTC GO! MOTION 
-  LESSON 01 - Making Things Move 
+  CTC GO! MOTION
+  LESSON 01 - Making Things Move
 
   This sketch is written to accompany activity 2 of Lesson 1
 */
@@ -25,8 +25,8 @@ void setup()
 void loop()
 {
   potValue = analogRead(potPin);
-  pos = map(potValue,0,1023,0,180);
-  
+  pos = map(potValue, 0, 1023, 0, 180);
+
   servo_Standard.write(pos);
   delay(15);
   Serial.print("Shaft position: ");

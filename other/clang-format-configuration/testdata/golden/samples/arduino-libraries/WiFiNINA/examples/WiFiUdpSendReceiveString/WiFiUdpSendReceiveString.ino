@@ -1,13 +1,13 @@
 /*
   WiFi UDP Send and Receive String
 
- This sketch waits for a UDP packet on localPort using the WiFi module.
- When a packet is received an Acknowledge packet is sent to the client on port remotePort
+  This sketch waits for a UDP packet on localPort using the WiFi module.
+  When a packet is received an Acknowledge packet is sent to the client on port remotePort
 
- created 30 December 2012
- by dlf (Metodo2 srl)
+  created 30 December 2012
+  by dlf (Metodo2 srl)
 
- */
+*/
 
 
 #include <SPI.h>
@@ -15,7 +15,7 @@
 #include <WiFiUdp.h>
 
 int status = WL_IDLE_STATUS;
-#include "arduino_secrets.h" 
+#include "arduino_secrets.h"
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h
 char ssid[] = SECRET_SSID;        // your network SSID (name)
 char pass[] = SECRET_PASS;    // your network password (use for WPA, or use as key for WEP)

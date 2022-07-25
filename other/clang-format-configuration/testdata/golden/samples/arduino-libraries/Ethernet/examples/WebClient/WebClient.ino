@@ -1,18 +1,18 @@
 /*
- Web client
+  Web client
 
- This sketch connects to a website (http://www.google.com)
- using an Arduino WIZnet Ethernet shield.
+  This sketch connects to a website (http://www.google.com)
+  using an Arduino WIZnet Ethernet shield.
 
- Circuit:
- * Ethernet shield attached to pins 10, 11, 12, 13
+  Circuit:
+   Ethernet shield attached to pins 10, 11, 12, 13
 
- created 18 Dec 2009
- by David A. Mellis
- modified 9 Apr 2012
- by Tom Igoe, based on work by Adrian McEwen
+  created 18 Dec 2009
+  by David A. Mellis
+  modified 9 Apr 2012
+  by Tom Igoe, based on work by Adrian McEwen
 
- */
+*/
 
 #include <SPI.h>
 #include <Ethernet.h>

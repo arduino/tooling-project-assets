@@ -8,7 +8,7 @@
 
   created in Feb 2019 by D. Cuartielles
   based on work by F. Vanzati (2011) and M. Loglio (2013)
- */
+*/
 
 // include the EduIntro library
 #include <EduIntro.h>
@@ -19,7 +19,7 @@ Led led(D10);		// creating the object 'led' on pin D10
 
 
 void setup() {
-//nothing here
+  //nothing here
 }
 
 void loop()

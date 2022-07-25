@@ -1,5 +1,5 @@
 /*
-  CTC GO! CORE MODULE 
+  CTC GO! CORE MODULE
   PROJECT 2 - CRAZY DJ
 
   This sketch is written to accompany Stage 4 in CRAZY DJ  of the CTC GO! core module
@@ -34,7 +34,7 @@ void loop()
 
   onTime = analogRead(on_pot);
   offTime = analogRead(off_pot);
-  
+
   avPitch = _____;
   soundValue = map(_____, 0, 1023, 31, 4000);
 

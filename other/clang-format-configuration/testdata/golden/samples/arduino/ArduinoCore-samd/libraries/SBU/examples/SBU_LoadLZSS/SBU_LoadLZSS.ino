@@ -39,7 +39,7 @@ void setup() {
   Serial.println(bytes_to_write);
 
   Serial.print("Encoding \"BINARY.H\" into \"UPDATE.BIN.LZSS\" and writing it into the Sara-R410M module ... ");
-  
+
   //Encode into .lzss and write to the Sara modem
   int bytes_written = lzss_encode(BINARY, bytes_to_write);
 

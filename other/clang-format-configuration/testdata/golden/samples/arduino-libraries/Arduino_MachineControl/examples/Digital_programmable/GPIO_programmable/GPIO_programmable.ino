@@ -12,7 +12,7 @@
 
   This example code is in the public domain.
 */
- 
+
 #include <Arduino_MachineControl.h>
 #include "Wire.h"
 using namespace machinecontrol;
@@ -81,8 +81,8 @@ uint8_t readAll() {
   Serial.println("CH07: " + String((inputs & (1 << IO_READ_CH_PIN_07)) >> IO_READ_CH_PIN_07));
   Serial.println("CH08: " + String((inputs & (1 << IO_READ_CH_PIN_08)) >> IO_READ_CH_PIN_08));
   Serial.println("CH09: " + String((inputs & (1 << IO_READ_CH_PIN_09)) >> IO_READ_CH_PIN_09));
-  Serial.println("CH10: " + String((inputs & (1 << IO_READ_CH_PIN_10)) >> IO_READ_CH_PIN_10));  
-  Serial.println("CH11: " + String((inputs & (1 << IO_READ_CH_PIN_11)) >> IO_READ_CH_PIN_11)); 
+  Serial.println("CH10: " + String((inputs & (1 << IO_READ_CH_PIN_10)) >> IO_READ_CH_PIN_10));
+  Serial.println("CH11: " + String((inputs & (1 << IO_READ_CH_PIN_11)) >> IO_READ_CH_PIN_11));
   Serial.println();
 }
 

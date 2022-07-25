@@ -1,26 +1,26 @@
 /*
- Make Voice Call
+  Make Voice Call
 
- This sketch, for the MKR GSM 1400 board, puts a voice call to
- a remote phone number that you enter through the Serial Monitor.
- To make it work, open the Serial Monitor, and when you see the
- READY message, type a phone number. Make sure the Serial Monitor
- is set to send a just newline when you press return.
+  This sketch, for the MKR GSM 1400 board, puts a voice call to
+  a remote phone number that you enter through the Serial Monitor.
+  To make it work, open the Serial Monitor, and when you see the
+  READY message, type a phone number. Make sure the Serial Monitor
+  is set to send a just newline when you press return.
 
- Circuit:
- * MKR GSM 1400 board
- * Antenna
- * SIM card that can send voice calls
+  Circuit:
+   MKR GSM 1400 board
+   Antenna
+   SIM card that can send voice calls
 
 
- created Mar 2012
- by Javier Zorzano
+  created Mar 2012
+  by Javier Zorzano
 */
 
 // libraries
 #include <MKRGSM.h>
 
-#include "arduino_secrets.h" 
+#include "arduino_secrets.h"
 // Please enter your sensitive data in the Secret tab or arduino_secrets.h
 // PIN Number
 const char PINNUMBER[] = SECRET_PINNUMBER;

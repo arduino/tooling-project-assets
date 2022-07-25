@@ -1,11 +1,11 @@
 /*
-* AsteroidAttack
-* 
-* You will create a retro style space
-* shooter game, and learn about how to use classes and functions. In the end you will be able to
-* tweak values and rewrite the program to redesign the game so it suits your taste.
-*
-* (c) 2013-2016 Arduino LLC.
+  AsteroidAttack
+
+  You will create a retro style space
+  shooter game, and learn about how to use classes and functions. In the end you will be able to
+  tweak values and rewrite the program to redesign the game so it suits your taste.
+
+  (c) 2013-2016 Arduino LLC.
 */
 
 #include <EducationShield.h>
@@ -42,8 +42,8 @@ void loop() {
   int roll = imu.getRoll();
 
   //Check buttons
-  if(button.isPressed()){
-    buttonState=true;
+  if (button.isPressed()) {
+    buttonState = true;
   }
 
   // when Serial is open, send a "s" to processing
@@ -56,7 +56,7 @@ void loop() {
       Serial.print(buttonState);  Serial.print(",");
       Serial.println("");
 
-      buttonState=0;
+      buttonState = 0;
 
     }
   }

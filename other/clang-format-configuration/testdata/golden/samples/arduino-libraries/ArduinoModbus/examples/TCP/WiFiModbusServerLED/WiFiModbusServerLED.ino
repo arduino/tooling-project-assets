@@ -53,7 +53,7 @@ void setup() {
   }
 
   // you're connected now, so print out the status:
-    printWifiStatus();
+  printWifiStatus();
 
   // start the server
   wifiServer.begin();
@@ -75,12 +75,12 @@ void setup() {
 void loop() {
   // listen for incoming clients
   WiFiClient client = wifiServer.available();
-  
+
   if (client) {
     // a new client connected
     Serial.println("new client");
 
-    // let the Modbus TCP accept the connection 
+    // let the Modbus TCP accept the connection
     modbusTCPServer.accept(client);
 
     while (client.connected()) {

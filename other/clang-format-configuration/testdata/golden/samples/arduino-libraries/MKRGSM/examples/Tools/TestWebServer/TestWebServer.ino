@@ -1,21 +1,21 @@
 /*
   Basic Web Server
 
- A simple web server that replies with nothing, but prints the client's request
- and the server IP address.
+  A simple web server that replies with nothing, but prints the client's request
+  and the server IP address.
 
- Circuit:
- * MKR GSM 1400 board
- * Antenna
+  Circuit:
+   MKR GSM 1400 board
+   Antenna
 
- created
- by David Cuartielles
- modified 21 Nov 2012
- by Tom Igoe
+  created
+  by David Cuartielles
+  modified 21 Nov 2012
+  by Tom Igoe
 */
 #include <MKRGSM.h>
 
-#include "arduino_secrets.h" 
+#include "arduino_secrets.h"
 // Please enter your sensitive data in the Secret tab or arduino_secrets.h
 // PIN Number
 const char PINNUMBER[]     = SECRET_PINNUMBER;

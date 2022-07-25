@@ -1,21 +1,21 @@
 /*
 
- Esplora TFT Pong
+  Esplora TFT Pong
 
- This example for the Esplora with an Arduino TFT screen reads
- the value of the joystick to move a rectangular platform
- on the x and y axes. The platform can intersect with a ball
- causing it to bounce. The Esplora's slider adjusts the speed
- of the ball.
+  This example for the Esplora with an Arduino TFT screen reads
+  the value of the joystick to move a rectangular platform
+  on the x and y axes. The platform can intersect with a ball
+  causing it to bounce. The Esplora's slider adjusts the speed
+  of the ball.
 
- This example code is in the public domain.
+  This example code is in the public domain.
 
- Created by Tom Igoe December 2012
- Modified 15 April 2013 by Scott Fitzgerald
+  Created by Tom Igoe December 2012
+  Modified 15 April 2013 by Scott Fitzgerald
 
- https://www.arduino.cc/en/Tutorial/LibraryExamples/EsploraTFTPong
+  https://www.arduino.cc/en/Tutorial/LibraryExamples/EsploraTFTPong
 
- */
+*/
 
 #include <Esplora.h>
 #include <TFT.h>            // Arduino LCD library

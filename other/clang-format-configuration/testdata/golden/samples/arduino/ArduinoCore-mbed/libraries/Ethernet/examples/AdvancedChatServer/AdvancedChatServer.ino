@@ -1,23 +1,23 @@
 /*
- Advanced Chat Server
+  Advanced Chat Server
 
- A more advanced server that distributes any incoming messages
- to all connected clients but the client the message comes from.
- To use, telnet to your device's IP address and type.
- You can see the client's input in the serial monitor as well.
- Using an Arduino Wiznet Ethernet shield.
+  A more advanced server that distributes any incoming messages
+  to all connected clients but the client the message comes from.
+  To use, telnet to your device's IP address and type.
+  You can see the client's input in the serial monitor as well.
+  Using an Arduino Wiznet Ethernet shield.
 
- Circuit:
- * Ethernet shield attached to pins 10, 11, 12, 13
+  Circuit:
+   Ethernet shield attached to pins 10, 11, 12, 13
 
- created 18 Dec 2009
- by David A. Mellis
- modified 9 Apr 2012
- by Tom Igoe
- redesigned to make use of operator== 25 Nov 2013
- by Norbert Truchsess
+  created 18 Dec 2009
+  by David A. Mellis
+  modified 9 Apr 2012
+  by Tom Igoe
+  redesigned to make use of operator== 25 Nov 2013
+  by Norbert Truchsess
 
- */
+*/
 
 #include <SPI.h>
 #include <PortentaEthernet.h>
@@ -69,7 +69,7 @@ void loop() {
   // check for any new client connecting, and say hello (before any incoming data)
   EthernetClient newClient = server.available();
   if (newClient) {
-    for (byte i=0; i < 8; i++) {
+    for (byte i = 0; i < 8; i++) {
       if (!clients[i]) {
         Serial.print("We have a new client #");
         Serial.println(i);
@@ -84,13 +84,13 @@ void loop() {
   }
 
   // check for incoming data from all clients
-  for (byte i=0; i < 8; i++) {
+  for (byte i = 0; i < 8; i++) {
     if (clients[i] && clients[i].available() > 0) {
       // read bytes from a client
       byte buffer[80];
       int count = clients[i].read(buffer, 80);
       // write the bytes to all other connected clients
-      for (byte j=0; j < 8; j++) {
+      for (byte j = 0; j < 8; j++) {
         if (j != i && clients[j].connected()) {
           clients[j].write(buffer, count);
         }
@@ -99,7 +99,7 @@ void loop() {
   }
 
   // stop any clients which disconnect
-  for (byte i=0; i < 8; i++) {
+  for (byte i = 0; i < 8; i++) {
     if (clients[i] && !clients[i].connected()) {
       Serial.print("disconnect client #");
       Serial.println(i);

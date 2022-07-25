@@ -9,8 +9,8 @@ void setup()
 void loop()
 {
   /* Read a 'bool' value from the SINK and discard it. Since there is no delay in the loop
-   * this call will block until new data is inserted from the connected SOURCE. This means
-   * that the pace is dictated by the SOURCE that sends data every 100 ms.
-   */
+     this call will block until new data is inserted from the connected SOURCE. This means
+     that the pace is dictated by the SOURCE that sends data every 100 ms.
+  */
   digitalWrite(LED_BUILTIN, led.pop());
 }

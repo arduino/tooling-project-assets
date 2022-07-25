@@ -64,7 +64,7 @@ void setup() {
 
   // start the server
   ethServer.begin();
-  
+
   // start the Modbus TCP server
   if (!modbusTCPServer.begin()) {
     Serial.println("Failed to start Modbus TCP Server!");
@@ -82,12 +82,12 @@ void setup() {
 void loop() {
   // listen for incoming clients
   EthernetClient client = ethServer.available();
-  
+
   if (client) {
     // a new client connected
     Serial.println("new client");
 
-    // let the Modbus TCP accept the connection 
+    // let the Modbus TCP accept the connection
     modbusTCPServer.accept(client);
 
     while (client.connected()) {

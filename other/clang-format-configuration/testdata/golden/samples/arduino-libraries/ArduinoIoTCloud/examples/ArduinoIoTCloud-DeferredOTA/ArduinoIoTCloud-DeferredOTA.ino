@@ -5,9 +5,9 @@
   ./arduino-cloud-cli ota upload --device-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx --file filename.ino.bin --deferred
   The update file and the download link will be available to be used within one week.
 
-  * always_deny callback will always postpone the OTA update
-  * always_allow callback will immediately apply the OTA update
-  * ask_user_via_serial callback will read user input from serial to apply or postpone OTA update
+    always_deny callback will always postpone the OTA update
+    always_allow callback will immediately apply the OTA update
+    ask_user_via_serial callback will read user input from serial to apply or postpone OTA update
 
   This sketch is compatible with:
    - MKR WIFI 1010
@@ -40,7 +40,7 @@ bool ask_user_via_serial() {
   if (Serial.available()) {
     char c = Serial.read();
     if (c == 'y' || c == 'Y') {
-      return true;  
+      return true;
     }
   }
   return false;
@@ -57,7 +57,7 @@ bool onOTARequestCallback()
 void setup() {
   /* Initialize serial and wait up to 5 seconds for port to open */
   Serial.begin(9600);
-  for(unsigned long const serialBeginTime = millis(); !Serial && (millis() - serialBeginTime > 5000); ) { }
+  for (unsigned long const serialBeginTime = millis(); !Serial && (millis() - serialBeginTime > 5000); ) { }
 
   /* Configure LED pin as an output */
   pinMode(LED_BUILTIN, OUTPUT);
@@ -80,8 +80,8 @@ void loop() {
 }
 
 /*
- * 'onLedChange' is called when the "led" property of your Thing changes
- */
+   'onLedChange' is called when the "led" property of your Thing changes
+*/
 void onLedChange() {
   Serial.print("LED set to ");
   Serial.println(led);

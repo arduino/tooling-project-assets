@@ -1,10 +1,10 @@
 /*
-* NovaBeam
-* 
-* Ever wondered what it might be like to swing a laser beam? Then this project is for you! See
-* yourself play with the Nova Beam on screen, and listen to the awesome sounds it makes.
-*
-* (c) 2013-2016 Arduino LLC.
+  NovaBeam
+
+  Ever wondered what it might be like to swing a laser beam? Then this project is for you! See
+  yourself play with the Nova Beam on screen, and listen to the awesome sounds it makes.
+
+  (c) 2013-2016 Arduino LLC.
 */
 
 #include <EducationShield.h>
@@ -66,9 +66,9 @@ void loop() {
   }
 
   // get the total of last 10 readings
-  int total=0;
-  for(int i=0;i<numReadings;i++){
-    total+=readings[i];
+  int total = 0;
+  for (int i = 0; i < numReadings; i++) {
+    total += readings[i];
   }
   // calculate the average:
   int average = total / numReadings;
@@ -77,7 +77,7 @@ void loop() {
   int frequency = map(abs(average), 0, 360, 200, 700);
 
 
-  if(toggleButton.isPressed()){
+  if (toggleButton.isPressed()) {
     //toggle the button each time its pressed
     toggleState = !toggleState;
   }
@@ -100,11 +100,11 @@ void loop() {
     if (val == 's') { // if incoming serial is "s"
 
       // print the roll,pitch and toggleState to the Procssing
-      Serial.print(average); 
+      Serial.print(average);
       Serial.print(",");
-      Serial.print(pitch);  
+      Serial.print(pitch);
       Serial.print(",");
-      Serial.print(toggleState);  
+      Serial.print(toggleState);
       Serial.print(",");
       Serial.println("");
 

@@ -1,24 +1,24 @@
 /*
- Band Management
+  Band Management
 
- This sketch, for the MKR GSM 1400 board, checks the band
- currently configured in the modem and allows you to change
- it.
+  This sketch, for the MKR GSM 1400 board, checks the band
+  currently configured in the modem and allows you to change
+  it.
 
- Please check http://www.worldtimezone.com/gsm.html
- Usual configurations:
- Europe, Africa, Middle East: E-GSM(900)+DCS(1800)
- USA, Canada, South America: GSM(850)+PCS(1900)
- Mexico: PCS(1900)
- Brazil: GSM(850)+E-GSM(900)+DCS(1800)+PCS(1900)
+  Please check http://www.worldtimezone.com/gsm.html
+  Usual configurations:
+  Europe, Africa, Middle East: E-GSM(900)+DCS(1800)
+  USA, Canada, South America: GSM(850)+PCS(1900)
+  Mexico: PCS(1900)
+  Brazil: GSM(850)+E-GSM(900)+DCS(1800)+PCS(1900)
 
 
- Circuit:
- * MKR GSM 1400 board
- * Antenna
+  Circuit:
+   MKR GSM 1400 board
+   Antenna
 
- created 12 June 2012
- by Javier Zorzano, Scott Fitzgerald
+  created 12 June 2012
+  by Javier Zorzano, Scott Fitzgerald
 */
 
 // libraries

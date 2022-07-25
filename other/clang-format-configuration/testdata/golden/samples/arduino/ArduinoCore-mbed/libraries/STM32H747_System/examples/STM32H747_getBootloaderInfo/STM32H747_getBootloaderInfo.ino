@@ -1,14 +1,14 @@
 uint8_t* bootloader_data = (uint8_t*)(0x801F000);
 uint8_t* bootloader_identification = (uint8_t*)(0x80002F0);
 
-void setup() {  
+void setup() {
   Serial.begin(115200);
   while (!Serial) {}
 
   uint8_t currentBootloaderVersion = bootloader_data[1];
   String currentBootloaderIdentifier = String(bootloader_identification, 15);
 
-  if(!currentBootloaderIdentifier.equals("MCUboot Arduino")) {
+  if (!currentBootloaderIdentifier.equals("MCUboot Arduino")) {
     currentBootloaderIdentifier = "Arduino loader";
   }
 
@@ -26,26 +26,26 @@ void setup() {
 }
 
 String getUSBSpeed(uint8_t flag) {
-  switch (flag){
-  case 1:
-    return "USB 2.0/Hi-Speed (480 Mbps)";
-  case 2:
-    return "USB 1.1/Full-Speed (12 Mbps)";
-  default:
-    return "N/A";
+  switch (flag) {
+    case 1:
+      return "USB 2.0/Hi-Speed (480 Mbps)";
+    case 2:
+      return "USB 1.1/Full-Speed (12 Mbps)";
+    default:
+      return "N/A";
   }
 }
 
 String getClockSource(uint8_t flag) {
-  switch (flag){
-  case 0x8:
-    return "External oscillator";
-  case 0x4:
-    return "External crystal";
-  case 0x2: 
-    return "Internal clock"; 
-  default:
-    return "N/A";
+  switch (flag) {
+    case 0x8:
+      return "External oscillator";
+    case 0x4:
+      return "External crystal";
+    case 0x2:
+      return "Internal clock";
+    default:
+      return "N/A";
   }
 }
 
@@ -56,6 +56,6 @@ String getRAMSize(uint8_t flag) {
   return (String(flag) + "MB");
 }
 
-void loop() {  
+void loop() {
   delay(1000);
 }

@@ -12,9 +12,9 @@
     or an hash (eg. MD5 or SHA256) comparison.
 
     Circuit:
-    * MKR GSM 1400 board
-    * Antenna
-    * SIM card with a data plan
+      MKR GSM 1400 board
+      Antenna
+      SIM card with a data plan
 
     Steps to update a sketch:
 
@@ -79,149 +79,149 @@ constexpr char filename[] = "update.bin";
 
 void setup()
 {
-    unsigned long timeout = millis();
+  unsigned long timeout = millis();
 
-    Serial.begin(9600);
-    while (!Serial && millis() - timeout < 5000)
-        ;
+  Serial.begin(9600);
+  while (!Serial && millis() - timeout < 5000)
+    ;
 
-    Serial.println("Starting OTA Update via HTTP and Arduino SSU.");
-    Serial.println();
+  Serial.println("Starting OTA Update via HTTP and Arduino SSU.");
+  Serial.println();
 
-    bool connected = false;
+  bool connected = false;
 
-    Serial.print("Connecting to cellular network... ");
-    while (!connected) {
-        if ((gsmAccess.begin(PINNUMBER) == GSM_READY) && (gprs.attachGPRS(GPRS_APN, GPRS_LOGIN, GPRS_PASSWORD) == GPRS_READY)) {
-            connected = true;
-        } else {
-            Serial.println("Not connected");
-            delay(1000);
-        }
-    }
-
-    Serial.println("Connected.");
-    Serial.println();
-
-    // Modem has already been initialized in the sketch:
-    // begin FileUtils without MODEM initialization.
-    fileUtils.begin(false);
-
-    Serial.print("Connecting to ");
-    Serial.print(server);
-    Serial.print(":");
-    Serial.print(port);
-    Serial.print("... ");
-    if (client.connect(server, port)) {
-        Serial.println("Connected.");
-        Serial.print("Downloading ");
-        Serial.println(filename);
-        Serial.print("... ");
-        // Make the HTTP request:
-        client.print("GET /");
-        client.print(filename);
-        client.println(" HTTP/1.1");
-        client.print("Host: ");
-        client.println(server);
-        client.println("Connection: close");
-        client.println();
+  Serial.print("Connecting to cellular network... ");
+  while (!connected) {
+    if ((gsmAccess.begin(PINNUMBER) == GSM_READY) && (gprs.attachGPRS(GPRS_APN, GPRS_LOGIN, GPRS_PASSWORD) == GPRS_READY)) {
+      connected = true;
     } else {
-        Serial.println("Connection failed");
+      Serial.println("Not connected");
+      delay(1000);
     }
+  }
+
+  Serial.println("Connected.");
+  Serial.println();
+
+  // Modem has already been initialized in the sketch:
+  // begin FileUtils without MODEM initialization.
+  fileUtils.begin(false);
+
+  Serial.print("Connecting to ");
+  Serial.print(server);
+  Serial.print(":");
+  Serial.print(port);
+  Serial.print("... ");
+  if (client.connect(server, port)) {
+    Serial.println("Connected.");
+    Serial.print("Downloading ");
+    Serial.println(filename);
+    Serial.print("... ");
+    // Make the HTTP request:
+    client.print("GET /");
+    client.print(filename);
+    client.println(" HTTP/1.1");
+    client.print("Host: ");
+    client.println(server);
+    client.println("Connection: close");
+    client.println();
+  } else {
+    Serial.println("Connection failed");
+  }
 }
 
 void loop()
 {
-    while (client.available()) {
-        // Skip the HTTP header
-        if (!isHeaderComplete) {
-            const char c = client.read();
-            httpHeader += c;
-            if (httpHeader.endsWith("\r\n\r\n")) {
-                isHeaderComplete = true;
+  while (client.available()) {
+    // Skip the HTTP header
+    if (!isHeaderComplete) {
+      const char c = client.read();
+      httpHeader += c;
+      if (httpHeader.endsWith("\r\n\r\n")) {
+        isHeaderComplete = true;
 
-                // Get the size of the OTA file from the
-                // HTTP Content-Length header.
-                fileSize = getContentLength();
+        // Get the size of the OTA file from the
+        // HTTP Content-Length header.
+        fileSize = getContentLength();
 
-                Serial.println();
-                Serial.print("HTTP header complete. ");
-                Serial.print("OTA file size is ");
-                Serial.print(fileSize);
-                Serial.println(" bytes.");
-                if (fileSize == 0) {
-                    Serial.println("Unable to get OTA file size.");
-                    while (true)
-                        ;
-                }
-            }
-        } else {
-            // Read the OTA file in len-bytes blocks to preserve RAM.
-            constexpr size_t len { 512 };
-            char buf[len] { 0 };
-
-            // Read len bytes from HTTP client...
-            uint32_t read = client.readBytes(buf, len);
-            // and append them to the update file.
-            uint32_t written = fileUtils.appendFile(UPDATE_FILE_NAME, buf, read);
-
-            if (written != read) {
-                Serial.println("Error while saving data.");
-                while (true)
-                    ;
-            }
-
-            // Update the received byte counter
-            totalWritten += written;
-
-            // Check for full file received and stored
-            isDownloadComplete = totalWritten == fileSize;
-
-            Serial.print("Received: ");
-            Serial.print(totalWritten);
-            Serial.print("/");
-            Serial.println(fileSize);
+        Serial.println();
+        Serial.print("HTTP header complete. ");
+        Serial.print("OTA file size is ");
+        Serial.print(fileSize);
+        Serial.println(" bytes.");
+        if (fileSize == 0) {
+          Serial.println("Unable to get OTA file size.");
+          while (true)
+            ;
         }
-    }
-    if (isDownloadComplete) {
-        Serial.println();
-        Serial.println("Download complete.");
-        Serial.println("Enabling checkpoint.");
-        Serial.println();
+      }
+    } else {
+      // Read the OTA file in len-bytes blocks to preserve RAM.
+      constexpr size_t len { 512 };
+      char buf[len] { 0 };
 
-        // Create the checkpoint file: will be removed by SSU
-        // after successful update.
-        auto status = fileUtils.downloadFile(CHECK_FILE_NAME, { 0 }, 1);
-        if (status != 1) {
-            Serial.println("Unable to create checkpoint file.");
-            while (true)
-                ;
-        }
+      // Read len bytes from HTTP client...
+      uint32_t read = client.readBytes(buf, len);
+      // and append them to the update file.
+      uint32_t written = fileUtils.appendFile(UPDATE_FILE_NAME, buf, read);
 
-        Serial.println("Resetting MCU in order to trigger SSU...");
-        Serial.println();
-        delay(500);
-        NVIC_SystemReset();
+      if (written != read) {
+        Serial.println("Error while saving data.");
+        while (true)
+          ;
+      }
+
+      // Update the received byte counter
+      totalWritten += written;
+
+      // Check for full file received and stored
+      isDownloadComplete = totalWritten == fileSize;
+
+      Serial.print("Received: ");
+      Serial.print(totalWritten);
+      Serial.print("/");
+      Serial.println(fileSize);
     }
+  }
+  if (isDownloadComplete) {
+    Serial.println();
+    Serial.println("Download complete.");
+    Serial.println("Enabling checkpoint.");
+    Serial.println();
+
+    // Create the checkpoint file: will be removed by SSU
+    // after successful update.
+    auto status = fileUtils.downloadFile(CHECK_FILE_NAME, { 0 }, 1);
+    if (status != 1) {
+      Serial.println("Unable to create checkpoint file.");
+      while (true)
+        ;
+    }
+
+    Serial.println("Resetting MCU in order to trigger SSU...");
+    Serial.println();
+    delay(500);
+    NVIC_SystemReset();
+  }
 }
 
 int getContentLength()
 {
-    const String contentLengthHeader = "Content-Length:";
-    const auto contentLengthHeaderLen = contentLengthHeader.length();
+  const String contentLengthHeader = "Content-Length:";
+  const auto contentLengthHeaderLen = contentLengthHeader.length();
 
-    auto indexContentLengthStart = httpHeader.indexOf(contentLengthHeader);
-    if (indexContentLengthStart < 0) {
-        Serial.println("Unable to find Content-Length header (Start)");
-        return 0;
-    }
-    auto indexContentLengthStop = httpHeader.indexOf("\r\n", indexContentLengthStart);
-    if (indexContentLengthStart < 0) {
-        Serial.println("Unable to find Content-Length header (Stop)");
-        return 0;
-    }
-    auto contentLength = httpHeader.substring(indexContentLengthStart + contentLengthHeaderLen + 1, indexContentLengthStop);
+  auto indexContentLengthStart = httpHeader.indexOf(contentLengthHeader);
+  if (indexContentLengthStart < 0) {
+    Serial.println("Unable to find Content-Length header (Start)");
+    return 0;
+  }
+  auto indexContentLengthStop = httpHeader.indexOf("\r\n", indexContentLengthStart);
+  if (indexContentLengthStart < 0) {
+    Serial.println("Unable to find Content-Length header (Stop)");
+    return 0;
+  }
+  auto contentLength = httpHeader.substring(indexContentLengthStart + contentLengthHeaderLen + 1, indexContentLengthStop);
 
-    contentLength.trim();
-    return contentLength.toInt();
+  contentLength.trim();
+  return contentLength.toInt();
 }

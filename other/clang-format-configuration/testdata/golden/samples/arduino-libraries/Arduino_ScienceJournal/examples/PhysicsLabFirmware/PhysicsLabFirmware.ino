@@ -272,7 +272,7 @@ void updateSubscribedIMUCharacteristics() {
 
       acceleration[0] = a.acceleration.x;
       acceleration[1] = a.acceleration.y;
-      acceleration[2] = a.acceleration.z/10;
+      acceleration[2] = a.acceleration.z / 10;
       accelerationCharacteristic.writeValue((byte*)acceleration, sizeof(acceleration));
     }
 

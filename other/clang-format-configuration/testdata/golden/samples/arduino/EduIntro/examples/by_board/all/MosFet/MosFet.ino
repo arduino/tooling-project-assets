@@ -1,10 +1,10 @@
 /*
-Write a signal to a MosFet transistor using a Potentiometer.
+  Write a signal to a MosFet transistor using a Potentiometer.
 
-created in Aug 2018 by D. Cuartielles
-based on work by M. Loglio (2013)
+  created in Aug 2018 by D. Cuartielles
+  based on work by M. Loglio (2013)
 
-This example code is in the public domain.
+  This example code is in the public domain.
 */
 
 // include the EduIntro library
@@ -20,7 +20,7 @@ void setup() {
 void loop()
 {
   int val = pot.read(); //assign to a "val" variable
-                        //the potentiometer values
+  //the potentiometer values
 
   mos.write(val);       //assign the values to the mosfet
 

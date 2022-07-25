@@ -1,5 +1,5 @@
 /*
-  CTC GO! CORE MODULE 
+  CTC GO! CORE MODULE
   PROJECT 2 - AR GLASSES
 
   This sketch is written to accompany Stage 3 in AR GLASSES  of the CTC GO! core module
@@ -41,5 +41,5 @@ void loop()
     delay(100);
   */
 
-    delay(_____);
+  delay(_____);
 }

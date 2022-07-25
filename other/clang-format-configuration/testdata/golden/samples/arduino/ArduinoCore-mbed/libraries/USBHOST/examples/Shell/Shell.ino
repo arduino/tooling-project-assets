@@ -395,45 +395,45 @@ static int process_key(tusbh_ep_info_t* ep, const uint8_t* keys)
 extern "C" {
 
 #define LOG_SIZE   1024
-static int hc_log_index;
-static channel_state_t hc_log_buf[LOG_SIZE];
-static USB_OTG_HostChannelTypeDef hc_info;
-static USB_OTG_HostChannelTypeDef* hc_reg;
-static tusb_hc_data_t* hc_data;
-static uint8_t hc_no;
-void hc_log_begin(tusb_host_t* host, uint8_t hc_num)
-{
-  USB_OTG_GlobalTypeDef *USBx = GetUSB(host);
-  USB_OTG_HostChannelTypeDef* HC = USBx_HC(hc_num);
-  tusb_hc_data_t* hc = &host->hc[hc_num];
-  hc_reg = HC;
-  hc_data = hc;
-  hc_no = hc_num;
-  hc_info.HCCHAR   = HC->HCCHAR;
-  hc_info.HCSPLT   = HC->HCSPLT;
-  hc_info.HCINTMSK = HC->HCINTMSK;
-  hc_info.HCTSIZ   = HC->HCTSIZ;
-  hc_info.HCDMA    = HC->HCDMA;
-  hc_log_index = 0;
-  //printf("hc_no            %x\n", hc_num);
-  //printf("hc_info.HCCHAR   %x\n", HC->HCCHAR);
-  //printf("hc_info.HCSPLT   %x\n", HC->HCSPLT);
-  //printf("hc_info.HCINTMSK %x\n", HC->HCINTMSK);
-  //printf("hc_info.HCTSIZ   %x\n", HC->HCTSIZ);
-  //printf("hc_info.HCDMA    %x\n", HC->HCDMA);
-}
-
-void hc_log_data(tusb_host_t* host, uint8_t hc_num, uint32_t data)
-{
-  if (hc_log_index < LOG_SIZE) {
-    hc_log_buf[hc_log_index] = (channel_state_t)data;
-    hc_log_index++;
+  static int hc_log_index;
+  static channel_state_t hc_log_buf[LOG_SIZE];
+  static USB_OTG_HostChannelTypeDef hc_info;
+  static USB_OTG_HostChannelTypeDef* hc_reg;
+  static tusb_hc_data_t* hc_data;
+  static uint8_t hc_no;
+  void hc_log_begin(tusb_host_t* host, uint8_t hc_num)
+  {
+    USB_OTG_GlobalTypeDef *USBx = GetUSB(host);
+    USB_OTG_HostChannelTypeDef* HC = USBx_HC(hc_num);
+    tusb_hc_data_t* hc = &host->hc[hc_num];
+    hc_reg = HC;
+    hc_data = hc;
+    hc_no = hc_num;
+    hc_info.HCCHAR   = HC->HCCHAR;
+    hc_info.HCSPLT   = HC->HCSPLT;
+    hc_info.HCINTMSK = HC->HCINTMSK;
+    hc_info.HCTSIZ   = HC->HCTSIZ;
+    hc_info.HCDMA    = HC->HCDMA;
+    hc_log_index = 0;
+    //printf("hc_no            %x\n", hc_num);
+    //printf("hc_info.HCCHAR   %x\n", HC->HCCHAR);
+    //printf("hc_info.HCSPLT   %x\n", HC->HCSPLT);
+    //printf("hc_info.HCINTMSK %x\n", HC->HCINTMSK);
+    //printf("hc_info.HCTSIZ   %x\n", HC->HCTSIZ);
+    //printf("hc_info.HCDMA    %x\n", HC->HCDMA);
   }
-}
 
-void hc_log_end(tusb_host_t* host, uint8_t hc_num)
-{
-}
+  void hc_log_data(tusb_host_t* host, uint8_t hc_num, uint32_t data)
+  {
+    if (hc_log_index < LOG_SIZE) {
+      hc_log_buf[hc_log_index] = (channel_state_t)data;
+      hc_log_index++;
+    }
+  }
+
+  void hc_log_end(tusb_host_t* host, uint8_t hc_num)
+  {
+  }
 
 }
 #endif

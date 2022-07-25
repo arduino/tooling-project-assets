@@ -1,6 +1,6 @@
 /*
-  CTC GO! MOTION 
-  LESSON 02 - Circular To Linear Movement 
+  CTC GO! MOTION
+  LESSON 02 - Circular To Linear Movement
 
   This sketch is written to accompany activity 1 of Lesson 2
 */

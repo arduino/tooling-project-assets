@@ -28,7 +28,7 @@ void setup() {
   }
 
   Serial.println("Initialization");
-  if(!rtc_controller.begin()) {
+  if (!rtc_controller.begin()) {
     Serial.println("Initialization fail!");
   }
   Serial.println("Initialization Done!");

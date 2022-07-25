@@ -1,16 +1,16 @@
 /*
-  CTC GO! CORE MODULE 
+  CTC GO! CORE MODULE
   LESSON 06 - Sending Data to the Board
 
   This sketch is written to accompany Activity 2 in Lesson 06 of the CTC GO! core module
 */
 
-char incomingWord[10];  
-int counter = 0;        
-int i = 0;              
+char incomingWord[10];
+int counter = 0;
+int i = 0;
 
 // initialising the pins.
-int redLED = 13;        
+int redLED = 13;
 int greenLED = 12;
 
 void setup()
@@ -75,7 +75,7 @@ void loop()
       delay(500);
     }
 
-    i += 1; 
+    i += 1;
   }
   else
   {

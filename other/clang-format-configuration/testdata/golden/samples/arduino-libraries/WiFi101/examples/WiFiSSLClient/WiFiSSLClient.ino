@@ -1,19 +1,19 @@
 /*
-This example creates a client object that connects and transfers
-data using always SSL.
+  This example creates a client object that connects and transfers
+  data using always SSL.
 
-It is compatible with the methods normally related to plain
-connections, like client.connect(host, port).
+  It is compatible with the methods normally related to plain
+  connections, like client.connect(host, port).
 
-Written by Arturo Guadalupi
-last revision November 2015
+  Written by Arturo Guadalupi
+  last revision November 2015
 
 */
 
 #include <SPI.h>
 #include <WiFi101.h>
 
-#include "arduino_secrets.h" 
+#include "arduino_secrets.h"
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h
 char ssid[] = SECRET_SSID;        // your network SSID (name)
 char pass[] = SECRET_PASS;    // your network password (use for WPA, or use as key for WEP)

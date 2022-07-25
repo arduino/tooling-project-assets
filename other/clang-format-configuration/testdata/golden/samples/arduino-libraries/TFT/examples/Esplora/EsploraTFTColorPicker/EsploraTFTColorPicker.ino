@@ -1,18 +1,18 @@
 /*
 
- Esplora TFT Color Picker
+  Esplora TFT Color Picker
 
- This example for the Esplora with an Arduino TFT reads
- the input of the joystick and slider, using the values
- to change the screen's color.
+  This example for the Esplora with an Arduino TFT reads
+  the input of the joystick and slider, using the values
+  to change the screen's color.
 
- This example code is in the public domain.
+  This example code is in the public domain.
 
- Created 15 April 2013 by Scott Fitzgerald
+  Created 15 April 2013 by Scott Fitzgerald
 
- https://www.arduino.cc/en/Tutorial/LibraryExamples/TFTColorPicker
+  https://www.arduino.cc/en/Tutorial/LibraryExamples/TFTColorPicker
 
- */
+*/
 
 #include <Esplora.h>
 #include <TFT.h>  // Arduino LCD library

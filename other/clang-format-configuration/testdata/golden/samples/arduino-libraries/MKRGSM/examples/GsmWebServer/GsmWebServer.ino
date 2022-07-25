@@ -1,22 +1,22 @@
 /*
- GSM Web Server
+  GSM Web Server
 
- A simple web server that shows the value of the analog input pins.
- using a MKR GSM 1400 board.
+  A simple web server that shows the value of the analog input pins.
+  using a MKR GSM 1400 board.
 
- Circuit:
- * MKR GSM 1400 board
- * Antenna
- * Analog inputs attached to pins A0 through A5 (optional)
+  Circuit:
+   MKR GSM 1400 board
+   Antenna
+   Analog inputs attached to pins A0 through A5 (optional)
 
- created 8 Mar 2012
- by Tom Igoe
+  created 8 Mar 2012
+  by Tom Igoe
 */
 
 // libraries
 #include <MKRGSM.h>
 
-#include "arduino_secrets.h" 
+#include "arduino_secrets.h"
 // Please enter your sensitive data in the Secret tab or arduino_secrets.h
 // PIN Number
 const char PINNUMBER[]     = SECRET_PINNUMBER;

@@ -1,5 +1,5 @@
 /*
-  CTC GO! CORE MODULE 
+  CTC GO! CORE MODULE
   PROJECT 1 - WHACK A MOLE
 
   This sketch is written to accompany Stage 2 in Whack-a-mole of the CTC GO! core module
@@ -56,7 +56,7 @@ void loop()
   {
     digitalWrite(yellowLED_3, _____);
   }
-  else  
+  else
   {
     digitalWrite(loseLED, LOW);
     digitalWrite(winLED, LOW);

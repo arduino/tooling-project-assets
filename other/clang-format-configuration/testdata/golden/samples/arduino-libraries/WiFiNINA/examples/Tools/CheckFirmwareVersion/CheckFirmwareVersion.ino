@@ -1,13 +1,13 @@
 /*
- * This example checks if the firmware loaded on the NINA module
- * is updated.
- *
- * Circuit:
- * - Board with NINA module (Arduino MKR WiFi 1010, MKR VIDOR 4000 and UNO WiFi Rev.2)
- *
- * Created 17 October 2018 by Riccardo Rosario Rizzo
- * This code is in the public domain.
- */
+   This example checks if the firmware loaded on the NINA module
+   is updated.
+
+   Circuit:
+   - Board with NINA module (Arduino MKR WiFi 1010, MKR VIDOR 4000 and UNO WiFi Rev.2)
+
+   Created 17 October 2018 by Riccardo Rosario Rizzo
+   This code is in the public domain.
+*/
 #include <SPI.h>
 #include <WiFiNINA.h>
 

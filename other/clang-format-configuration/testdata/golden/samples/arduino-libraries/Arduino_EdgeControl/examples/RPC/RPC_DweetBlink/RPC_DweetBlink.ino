@@ -11,27 +11,27 @@
     response and sets the on-board LED accordingly.
 
     Requirements:
-    * Arduino Edge Control powered via 12V power adapter or 12V lead-acid battery
-    * Arduino MKR WiFi1010 stacked on connector MKR2 (the one next to the CR2032 battery holder)
-    * OpenMV Arduino RPC Interface Library
-    
+      Arduino Edge Control powered via 12V power adapter or 12V lead-acid battery
+      Arduino MKR WiFi1010 stacked on connector MKR2 (the one next to the CR2032 battery holder)
+      OpenMV Arduino RPC Interface Library
+
     Steps:
-    * Upload this sketch to Edge Control
-    * Upload the "extras/RPC/RPC_DweetBlink_Remote" sketch to the MKR 1010
+      Upload this sketch to Edge Control
+      Upload the "extras/RPC/RPC_DweetBlink_Remote" sketch to the MKR 1010
       (don't forget to configure your WiFi credentials)
-    * Connect your favorite serial monitor or terminal emulator to both the boards
-    * Retrieve the Serial Number (<SERIALNUMBER>) of the Edge Control by running the sketch
-    * Send a Dweet to the Serial Number of the Edge Control board setting the value
+      Connect your favorite serial monitor or terminal emulator to both the boards
+      Retrieve the Serial Number (<SERIALNUMBER>) of the Edge Control by running the sketch
+      Send a Dweet to the Serial Number of the Edge Control board setting the value
       of the "led" key to "on" or "off" to blink the on-board LED. Eg.
 
         curl -X POST http://dweet.io/dweet/for/<SERIALNUMBER> -F led=on
 
-    * Current status of the LED can be retrieved from Dweet at "SERIALNUMBER-status" path, eg.
-        
+      Current status of the LED can be retrieved from Dweet at "SERIALNUMBER-status" path, eg.
+
         curl -i http://dweet.io/get/latest/dweet/for/<SERIALNUMBER>-status
 
     created 12 Feb 2021
-    by Giampaolo Mancini  
+    by Giampaolo Mancini
 */
 
 #include <Arduino_EdgeControl.h>
@@ -51,133 +51,133 @@ String serialNumber;
 
 void setup()
 {
-    Serial.begin(115200);
-    const uint32_t startNow = millis() + 2500;
-    while (!Serial && millis() < startNow)
-        ;
+  Serial.begin(115200);
+  const uint32_t startNow = millis() + 2500;
+  while (!Serial && millis() < startNow)
+    ;
 
-    EdgeControl.begin();
+  EdgeControl.begin();
 
-    Power.on(PWR_3V3);
+  Power.on(PWR_3V3);
 
-    // Enable the 5V power rail
-    Power.on(PWR_VBAT);
+  // Enable the 5V power rail
+  Power.on(PWR_VBAT);
 
-    // Power on the MKR on connector 2
-    Power.on(PWR_MKR2);
-    // Wait for MKR2 to power-on
-    delay(5000); 
+  // Power on the MKR on connector 2
+  Power.on(PWR_MKR2);
+  // Wait for MKR2 to power-on
+  delay(5000);
 
-    serialNumber = EdgeControl.serialNumber();
-    Serial.print("Serial Number: ");
-    Serial.println(serialNumber);
+  serialNumber = EdgeControl.serialNumber();
+  Serial.print("Serial Number: ");
+  Serial.println(serialNumber);
 
-    // Init the I2C bus
-    Wire.begin();
-    delay(500);
+  // Init the I2C bus
+  Wire.begin();
+  delay(500);
 
-    // Init the I/O Expander
-    Serial.print("I/O Expander initializazion ");
-    if (!Expander.begin()) {
-        Serial.println("failed.");
-        Serial.println("Please, be sure to enable gated 3V3 and 5V power rails");
-        Serial.println("via Power.on(PWR_3V3) and Power.on(PWR_VBAT).");
-    }
-    Serial.println("succeeded.");
+  // Init the I/O Expander
+  Serial.print("I/O Expander initializazion ");
+  if (!Expander.begin()) {
+    Serial.println("failed.");
+    Serial.println("Please, be sure to enable gated 3V3 and 5V power rails");
+    Serial.println("via Power.on(PWR_3V3) and Power.on(PWR_VBAT).");
+  }
+  Serial.println("succeeded.");
 
-    // Configure the LED1 pin
-    Expander.pinMode(EXP_LED1, OUTPUT);
-    // LED1 is active low
-    Expander.digitalWrite(EXP_LED1, HIGH);
+  // Configure the LED1 pin
+  Expander.pinMode(EXP_LED1, OUTPUT);
+  // LED1 is active low
+  Expander.digitalWrite(EXP_LED1, HIGH);
 
-    // Start the RPC controller
-    rpc.begin();
+  // Start the RPC controller
+  rpc.begin();
 
-    requestNow = millis();
+  requestNow = millis();
 }
 
 void loop()
 {
-    if (millis() > requestNow) {
+  if (millis() > requestNow) {
 
-        // Post the status of the LED to Dweet using
-        // the serial number as device ID
-        rpcPostDweetFor(serialNumber);
+    // Post the status of the LED to Dweet using
+    // the serial number as device ID
+    rpcPostDweetFor(serialNumber);
 
-        delay(1000);
+    delay(1000);
 
-        // Get the next status of the LED
-        rpcGetLatestDweetFor(serialNumber);
+    // Get the next status of the LED
+    rpcGetLatestDweetFor(serialNumber);
 
-        requestNow = millis() + requestInterval;
-    }
+    requestNow = millis() + requestInterval;
+  }
 
-    Expander.digitalWrite(EXP_LED1, ledStatus);
+  Expander.digitalWrite(EXP_LED1, ledStatus);
 }
 
 void rpcPostDweetFor(String deviceID)
 {
-    Serial.print("Posting Status Dweet For ");
-    Serial.print(deviceID);
-    Serial.print(" via RPC: ");
+  Serial.print("Posting Status Dweet For ");
+  Serial.print(deviceID);
+  Serial.print(" via RPC: ");
 
-    // Pass data to remote RPC client in JSON format. YMMV.
-    JSONVar data;
-    data["deviceID"] = deviceID;
-    // Pin LED is active low
-    data["ledStatus"] = !ledStatus;
+  // Pass data to remote RPC client in JSON format. YMMV.
+  JSONVar data;
+  data["deviceID"] = deviceID;
+  // Pin LED is active low
+  data["ledStatus"] = !ledStatus;
 
-    auto dataString = JSON.stringify(data);
-    Serial.println(dataString);
+  auto dataString = JSON.stringify(data);
+  Serial.println(dataString);
 
-    // Call the "postDweetFor" callback on the MKR WiFi 1010
-    // Remember to set large RPC timeouts: the Network is SLOW!
-    //
-    // Please, refer to openmv-rpc-arduino documentation for more
-    // call() examples.
-    auto ret = rpc.call("postDweetFor",
-        (void*)dataString.c_str(), dataString.length(), // arguments
-        NULL, 0,                                        // no returns
-        false, 1000, 3000);                             // parameters
+  // Call the "postDweetFor" callback on the MKR WiFi 1010
+  // Remember to set large RPC timeouts: the Network is SLOW!
+  //
+  // Please, refer to openmv-rpc-arduino documentation for more
+  // call() examples.
+  auto ret = rpc.call("postDweetFor",
+                      (void*)dataString.c_str(), dataString.length(), // arguments
+                      NULL, 0,                                        // no returns
+                      false, 1000, 3000);                             // parameters
 
-    if (ret == 0) {
-        Serial.println("Error");
-        return;
-    }
+  if (ret == 0) {
+    Serial.println("Error");
+    return;
+  }
 }
 
 void rpcGetLatestDweetFor(String deviceID)
 {
-    Serial.print("Getting Latest Dweet For ");
-    Serial.print(deviceID);
-    Serial.print(" via RPC: ");
+  Serial.print("Getting Latest Dweet For ");
+  Serial.print(deviceID);
+  Serial.print(" via RPC: ");
 
-    // buffer for return data from RPC client
-    size_t bufferLen { scratch_buffer.buffer_size() };
-    char buffer[bufferLen] {};
+  // buffer for return data from RPC client
+  size_t bufferLen { scratch_buffer.buffer_size() };
+  char buffer[bufferLen] {};
 
-    // Call the "getLatestDweetFor" callback on the MKR WiFi 1010
-    // Remember to set large RPC timeouts: the Network is SLOW!
-    auto ret = rpc.call("getLatestDweetFor",
-        (void*)deviceID.c_str(), deviceID.length(), // arguments
-        buffer, bufferLen,                          // returns
-        true, 1000, 3000);                          // parameters
+  // Call the "getLatestDweetFor" callback on the MKR WiFi 1010
+  // Remember to set large RPC timeouts: the Network is SLOW!
+  auto ret = rpc.call("getLatestDweetFor",
+                      (void*)deviceID.c_str(), deviceID.length(), // arguments
+                      buffer, bufferLen,                          // returns
+                      true, 1000, 3000);                          // parameters
 
-    if (ret == 0) {
-        Serial.println("Error");
-        return;
-    }
+  if (ret == 0) {
+    Serial.println("Error");
+    return;
+  }
 
-    // Data from Dweet is in JSON format
-    Serial.println(buffer);
-    JSONVar dweet = JSON.parse(buffer);
+  // Data from Dweet is in JSON format
+  Serial.println(buffer);
+  JSONVar dweet = JSON.parse(buffer);
 
-    // Extract next LED status
-    JSONVar ledCommandJSON = dweet["with"][0]["content"]["led"];
-    String ledCommand = (const char*)ledCommandJSON;
+  // Extract next LED status
+  JSONVar ledCommandJSON = dweet["with"][0]["content"]["led"];
+  String ledCommand = (const char*)ledCommandJSON;
 
-    // Pin LED is active low
-    ledStatus = !(ledCommand == "on");
-    Serial.print("LED ");
-    Serial.println(ledStatus ? "Off" : "On");
+  // Pin LED is active low
+  ledStatus = !(ledCommand == "on");
+  Serial.print("LED ");
+  Serial.println(ledStatus ? "Off" : "On");
 }

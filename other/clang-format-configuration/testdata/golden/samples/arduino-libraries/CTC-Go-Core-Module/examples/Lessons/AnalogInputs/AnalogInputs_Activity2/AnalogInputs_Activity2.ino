@@ -1,15 +1,15 @@
 /*
-  CTC GO! CORE MODULE 
+  CTC GO! CORE MODULE
   LESSON 07 - Analog Inputs
 
   This sketch is written to accompany Activity 2 in Lesson 07 of the CTC GO! core module
 */
 
 
-int lightSensor = A0;  
-int LED = 13;          
-int val = 0;           
-int trigger = 250;    
+int lightSensor = A0;
+int LED = 13;
+int val = 0;
+int trigger = 250;
 
 void setup()
 {
@@ -24,13 +24,13 @@ void loop()
   Serial.print("Value read: ");
   Serial.println(val);
 
-  if (val < trigger)    
+  if (val < trigger)
   {
     digitalWrite(LED, HIGH);
   }
   else
   {
-    digitalWrite(LED, LOW); 
+    digitalWrite(LED, LOW);
   }
   delay(500);
 }

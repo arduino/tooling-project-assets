@@ -22,118 +22,118 @@ RunningMedian calibs { calibsCount };
 
 void setup()
 {
-    Serial.begin(9600);
+  Serial.begin(9600);
 
-    auto startNow = millis() + 2500;
-    while (!Serial && millis() < startNow)
-        ;
-    delay(2000);
+  auto startNow = millis() + 2500;
+  while (!Serial && millis() < startNow)
+    ;
+  delay(2000);
 
-    Power.on(PWR_3V3);
-    Power.on(PWR_VBAT);
+  Power.on(PWR_3V3);
+  Power.on(PWR_VBAT);
 
-    Wire.begin();
-    Expander.begin();
+  Wire.begin();
+  Expander.begin();
 
-    Serial.print("Waiting for IO Expander Initialization...");
-    while (!Expander) {
-        Serial.print(".");
-        delay(100);
-    }
-    Serial.println(" done.");
+  Serial.print("Waiting for IO Expander Initialization...");
+  while (!Expander) {
+    Serial.print(".");
+    delay(100);
+  }
+  Serial.println(" done.");
 
-    Watermark.begin();
+  Watermark.begin();
 
-    analogReadResolution(adcResolution);
+  analogReadResolution(adcResolution);
 }
 
 void loop()
 {
-    static bool highPrec { false };
-    Watermark.setHighPrecision(highPrec);
-    highPrec = !highPrec;
+  static bool highPrec { false };
+  Watermark.setHighPrecision(highPrec);
+  highPrec = !highPrec;
 
-    // Init commands and reset devices
-    Watermark.calibrationMode(OUTPUT);
+  // Init commands and reset devices
+  Watermark.calibrationMode(OUTPUT);
+  Watermark.calibrationWrite(LOW);
+  Watermark.commonMode(OUTPUT);
+  Watermark.commonWrite(LOW);
+
+  Watermark.fastDischarge(sensorDischargeDelay);
+
+  // Calibration cycle:
+  // disable Watermark demuxer
+  Watermark.disable();
+
+  Watermark.commonMode(INPUT);
+  Watermark.calibrationMode(OUTPUT);
+  for (auto i = 0u; i < measuresCount; i++) {
+    Watermark.calibrationWrite(HIGH);
+
+    auto start = micros();
+    while (Watermark.analogRead(watermarkChannel) < tauRatioSamples)
+      ;
+    auto stop = micros();
+
     Watermark.calibrationWrite(LOW);
-    Watermark.commonMode(OUTPUT);
+
+    Watermark.fastDischarge(sensorDischargeDelay);
+
+    calibs.add(stop - start);
+  }
+
+  Serial.print("CALIBS   - Precision: ");
+  Serial.print(highPrec ? "High" : "Low ");
+  Serial.print(" - Median: ");
+  Serial.print(calibs.getMedian());
+  Serial.print(" - Average: ");
+  Serial.print(calibs.getAverage());
+  Serial.print(" - Lowest: ");
+  Serial.print(calibs.getLowest());
+  Serial.print(" - Highest: ");
+  Serial.print(calibs.getHighest());
+  Serial.println();
+
+  calibs.clear();
+
+  Watermark.fastDischarge(sensorDischargeDelay);
+
+  // Measures cycle:
+  // enable Watermark demuxer
+  Watermark.enable();
+
+  Watermark.commonMode(OUTPUT);
+  Watermark.calibrationMode(INPUT);
+  for (auto i = 0u; i < measuresCount; i++) {
+    Watermark.commonWrite(HIGH);
+
+    auto start = micros();
+    while (Watermark.analogRead(watermarkChannel) < tauRatioSamples)
+      ;
+    auto stop = micros();
+
     Watermark.commonWrite(LOW);
 
     Watermark.fastDischarge(sensorDischargeDelay);
 
-    // Calibration cycle:
-    // disable Watermark demuxer
-    Watermark.disable();
+    measures.add(stop - start);
+  }
 
-    Watermark.commonMode(INPUT);
-    Watermark.calibrationMode(OUTPUT);
-    for (auto i = 0u; i < measuresCount; i++) {
-        Watermark.calibrationWrite(HIGH);
+  Serial.print("MEASURES - Precision: ");
+  Serial.print(highPrec ? "High" : "Low ");
+  Serial.print(" - Median: ");
+  Serial.print(measures.getMedian());
+  Serial.print(" - Average: ");
+  Serial.print(measures.getAverage());
+  Serial.print(" - Lowest: ");
+  Serial.print(measures.getLowest());
+  Serial.print(" - Highest: ");
+  Serial.print(measures.getHighest());
+  Serial.println();
 
-        auto start = micros();
-        while (Watermark.analogRead(watermarkChannel) < tauRatioSamples)
-            ;
-        auto stop = micros();
+  measures.clear();
 
-        Watermark.calibrationWrite(LOW);
+  Serial.println();
 
-        Watermark.fastDischarge(sensorDischargeDelay);
-
-        calibs.add(stop - start);
-    }
-
-    Serial.print("CALIBS   - Precision: ");
-    Serial.print(highPrec ? "High" : "Low ");
-    Serial.print(" - Median: ");
-    Serial.print(calibs.getMedian());
-    Serial.print(" - Average: ");
-    Serial.print(calibs.getAverage());
-    Serial.print(" - Lowest: ");
-    Serial.print(calibs.getLowest());
-    Serial.print(" - Highest: ");
-    Serial.print(calibs.getHighest());
-    Serial.println();
-
-    calibs.clear();
-
-    Watermark.fastDischarge(sensorDischargeDelay);
-
-    // Measures cycle:
-    // enable Watermark demuxer
-    Watermark.enable();
-
-    Watermark.commonMode(OUTPUT);
-    Watermark.calibrationMode(INPUT);
-    for (auto i = 0u; i < measuresCount; i++) {
-        Watermark.commonWrite(HIGH);
-
-        auto start = micros();
-        while (Watermark.analogRead(watermarkChannel) < tauRatioSamples)
-            ;
-        auto stop = micros();
-
-        Watermark.commonWrite(LOW);
-
-        Watermark.fastDischarge(sensorDischargeDelay);
-
-        measures.add(stop - start);
-    }
-
-    Serial.print("MEASURES - Precision: ");
-    Serial.print(highPrec ? "High" : "Low ");
-    Serial.print(" - Median: ");
-    Serial.print(measures.getMedian());
-    Serial.print(" - Average: ");
-    Serial.print(measures.getAverage());
-    Serial.print(" - Lowest: ");
-    Serial.print(measures.getLowest());
-    Serial.print(" - Highest: ");
-    Serial.print(measures.getHighest());
-    Serial.println();
-
-    measures.clear();
-
-    Serial.println();
-
-    delay(1000);
+  delay(1000);
 }

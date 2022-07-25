@@ -77,7 +77,7 @@ void setup() {
   // assign the OAuth credentials
   oauthClient.setCredentials(consumerKey, consumerKeySecret, accessToken, accessTokenSecret);
 
-  // assign the callback to get the current epoch time, the epoch time is 
+  // assign the callback to get the current epoch time, the epoch time is
   // needed for every OAuth request, as it's used in the HTTP "Authorization"
   // request header value and to calculate the request's signature
   oauthClient.onGetTime(getTime);

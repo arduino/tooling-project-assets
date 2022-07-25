@@ -1,7 +1,7 @@
 /*
   ECCX08 Random Number
 
-  This sketch uses the ECC508 or ECC608 to generate a random number 
+  This sketch uses the ECC508 or ECC608 to generate a random number
   every second and print it to the Serial monitor
 
   Circuit:

@@ -17,10 +17,10 @@
 
 #include <Arduino_LSM9DS1.h>
 
-const int buttonPin = 3; 
+const int buttonPin = 3;
 const int ledPin = LED_BUILTIN;
 
-int buttonState = LOW;  
+int buttonState = LOW;
 int previousButtonState = HIGH;
 
 void setup() {
@@ -45,18 +45,18 @@ void loop() {
 
   // HIGH and LOW are opposite because of we are using an internal pullup resistor.
   // LOW is pressed. HIGH is released.
-  
+
   if (buttonState == LOW) {
     // Button is pressed, turn the LED on
     digitalWrite(ledPin, HIGH);
     if (buttonState != previousButtonState) {
-      Serial.println("LED is ON");      
+      Serial.println("LED is ON");
     }
   } else {
     // Button is released, turn the LED off
     digitalWrite(ledPin, LOW);
     if (buttonState != previousButtonState) {
-      Serial.println("LED is OFF");      
+      Serial.println("LED is OFF");
     }
   }
 

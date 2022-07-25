@@ -40,14 +40,14 @@ char client_id[] = SECRET_CLIENT_ID;
 char secret_id[] = SECRET_SECRET_ID;
 
 #if defined(ARDUINO_SAMD_NANO_33_IOT)
-    char board_type[] = "nano_33_iot"; // Nano 33 IoT
-    char board_fqbn[] = "arduino:samd:nano_33_iot"; // Nano 33 IoT
+char board_type[] = "nano_33_iot"; // Nano 33 IoT
+char board_fqbn[] = "arduino:samd:nano_33_iot"; // Nano 33 IoT
 #elif defined(ARDUINO_SAMD_MKRWIFI1010)
-    char board_type[] = "mkrwifi1010"; // MKR WiFi 1010
-    char board_fqbn[] = "arduino:samd:mkrwifi1010"; // MKR WiFi 1010
+char board_type[] = "mkrwifi1010"; // MKR WiFi 1010
+char board_fqbn[] = "arduino:samd:mkrwifi1010"; // MKR WiFi 1010
 #else
-    char board_type[] = "nonina"; // Not supported boards
-    char board_fqbn[] = "";
+char board_type[] = "nonina"; // Not supported boards
+char board_fqbn[] = "";
 #endif
 
 /// Board Info
@@ -75,7 +75,9 @@ void setup() {
 
   if (board_type == "nonina") {
     Serial.println("Sorry, this sketch only works on Nano 33 IoT and MKR 1010 WiFi");
-    while (1) { ; }
+    while (1) {
+      ;
+    }
   }
 
   while ( status != WL_CONNECTED) {
@@ -119,7 +121,7 @@ void setup() {
 
   //Random number for device name
   board_name += String(ECCX08.random(65535));
-  
+
   uint32_t BoardUniqueID[4];
   BoardUniqueID[0] = SERIAL_NUMBER_WORD_0;
   BoardUniqueID[1] = SERIAL_NUMBER_WORD_1;
@@ -128,10 +130,10 @@ void setup() {
   uint8_t bid[32];
   for (int i = 0; i < 4; i++)
   {
-    bid[i*4+0] = (uint8_t)(BoardUniqueID[i] >> 24);
-    bid[i*4+1] = (uint8_t)(BoardUniqueID[i] >> 16);
-    bid[i*4+2] = (uint8_t)(BoardUniqueID[i] >> 8);
-    bid[i*4+3] = (uint8_t)(BoardUniqueID[i] >> 0);
+    bid[i * 4 + 0] = (uint8_t)(BoardUniqueID[i] >> 24);
+    bid[i * 4 + 1] = (uint8_t)(BoardUniqueID[i] >> 16);
+    bid[i * 4 + 2] = (uint8_t)(BoardUniqueID[i] >> 8);
+    bid[i * 4 + 3] = (uint8_t)(BoardUniqueID[i] >> 0);
   }
 
   for (size_t i = 0; i < 16; i++) {
@@ -152,7 +154,7 @@ void setup() {
   BoardUuid(board_name, board_type, board_fqbn, ArduinoID, Arduino_Token);
   Serial.print("Device UUID:");
   Serial.println(deviceId);
-  
+
   delay(2000);
 
   while (!ECCX08Cert.beginCSR(keySlot, true)) {
@@ -168,24 +170,24 @@ void setup() {
     Serial.println("Error generating CSR!");
     delay(2000);
   }
-  
+
   Serial.println("Generated CSR is:");
   Serial.println();
   Serial.println(csr);
 
   // Downloading Arduino cert
   ArduinoCertificate(Arduino_Token, deviceId, csr);
-  
-  String issueYear              = not_before.substring(0,4);
+
+  String issueYear              = not_before.substring(0, 4);
   Serial.print("Year: ");
   Serial.println(issueYear);
-  String issueMonth             = not_before.substring(5,7);
+  String issueMonth             = not_before.substring(5, 7);
   Serial.print("Month: ");
   Serial.println(issueMonth);
-  String issueDay               = not_before.substring(8,10);
+  String issueDay               = not_before.substring(8, 10);
   Serial.print("Day: ");
   Serial.println(issueDay);
-  String issueHour              = not_before.substring(11,13);
+  String issueHour              = not_before.substring(11, 13);
   Serial.print("Hour: ");
   Serial.println(issueHour);
   String expireYears            = "31";
@@ -321,7 +323,7 @@ void ArduinoToken(String client_id, String client_secret) {
   PostData += "&client_secret=";
   PostData += secret_id;
   PostData += "&audience=https://api2.arduino.cc/iot";
-  
+
   if (client.connect(server, 443)) {
     client.println("POST /iot/v1/clients/token HTTP/1.1");
     client.println("Host: api2.arduino.cc");
@@ -399,7 +401,7 @@ void BoardUuid(String board_name, String board_type, String board_fqbn, String b
       ;
     }
   }
-  
+
   char deviceResponse[512];
   int intIndex = 0;
   while (client.available()) {
@@ -453,7 +455,7 @@ void ArduinoCertificate(String user_token, String DeviceUuid, String csr) {
       ;
     }
   }
-  
+
   char certResponse[4096];
   int intIndex = 0;
   while (client.available()) {

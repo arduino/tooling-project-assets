@@ -1,26 +1,26 @@
 /*  TiltSwitch
-*
-*  Tilt Switch is a component that detects if it’s right side up
-*  or tilted.
-*
-*  (c) 2013-2016 Arduino LLC.
+
+   Tilt Switch is a component that detects if it’s right side up
+   or tilted.
+
+   (c) 2013-2016 Arduino LLC.
 */
 
 #include <EducationShield.h>
 
 //Declare the tilt switch. A tilt switch module can be
 //connected to D6 or D9 (We use D9 here).
-TiltSwitch me=TiltSwitch(9);
+TiltSwitch me = TiltSwitch(9);
 
-void setup(){
+void setup() {
   Serial.begin(9600);
 
-  while(!Serial);
-  
+  while (!Serial);
+
   //Initialize the component. Must be called.
   me.begin();
 }
-void loop(){
+void loop() {
   Serial.println("Please tilt...");
 
   //pressed(timeout)

@@ -1,21 +1,21 @@
 /*
- This example reads audio data from an InvenSense ICS-43432 I2S microphone
- breakout board, and uses the input to detect whistling sounds at a particular
- frequency. When a whistle is detected, its level is used to control the
- brightness of an LED.
+  This example reads audio data from an InvenSense ICS-43432 I2S microphone
+  breakout board, and uses the input to detect whistling sounds at a particular
+  frequency. When a whistle is detected, its level is used to control the
+  brightness of an LED.
 
- Circuit:
- * Arduino Zero, MKR Zero or MKR1000 board
- * ICS-43432:
-   * GND connected GND
-   * 3.3V connected 3.3V (Zero) or VCC (MKR1000, MKR Zero)
-   * WS connected to pin 0 (Zero) or pin 3 (MKR1000, MKR Zero)
-   * CLK connected to pin 1 (Zero) or pin 2 (MKR1000, MKR Zero)
-   * SD connected to pin 9 (Zero) or pin A6 (MKR1000, MKR Zero)
+  Circuit:
+   Arduino Zero, MKR Zero or MKR1000 board
+   ICS-43432:
+     GND connected GND
+     3.3V connected 3.3V (Zero) or VCC (MKR1000, MKR Zero)
+     WS connected to pin 0 (Zero) or pin 3 (MKR1000, MKR Zero)
+     CLK connected to pin 1 (Zero) or pin 2 (MKR1000, MKR Zero)
+     SD connected to pin 9 (Zero) or pin A6 (MKR1000, MKR Zero)
 
- created 30 November 2016
- by Sandeep Mistry
- */
+  created 30 November 2016
+  by Sandeep Mistry
+*/
 
 #include <ArduinoSound.h>
 

@@ -23,7 +23,7 @@ void setup() {
   analog_out.period_ms(1, 4);
   analog_out.period_ms(2, 4);
   analog_out.period_ms(3, 4);
-  
+
   Serial.begin(9600);
   Serial.println("Analog out test");
 
@@ -38,8 +38,8 @@ void loop() {
   analog_out.write(1, counter);
   analog_out.write(2, counter);
   analog_out.write(3, counter);
-  Serial.println("All channels set at "+String(counter)+"V");
-  
+  Serial.println("All channels set at " + String(counter) + "V");
+
   counter = counter + 0.1;
   //Maximum output value is 10.4V
   if (counter >= 10.5)

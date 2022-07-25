@@ -1,20 +1,20 @@
 /* This example demonstrates how multiple threads can communicate
- * with a single SPI client device using the BusDevice abstraction
- * for SPI. In a similar way multiple threads can interface
- * with different client devices on the same SPI bus.
- *
- * This example uses Adafruit_BusIO style read(), write(),
- * writeThenRead() APIs.
- */
+   with a single SPI client device using the BusDevice abstraction
+   for SPI. In a similar way multiple threads can interface
+   with different client devices on the same SPI bus.
+
+   This example uses Adafruit_BusIO style read(), write(),
+   writeThenRead() APIs.
+*/
 
 /**************************************************************************************
- * INCLUDE
+   INCLUDE
  **************************************************************************************/
 
 #include <Arduino_Threads.h>
 
 /**************************************************************************************
- * CONSTANTS
+   CONSTANTS
  **************************************************************************************/
 
 static int  const BMP388_CS_PIN  = 2;
@@ -24,14 +24,14 @@ static byte const BMP388_CHIP_ID_REG_ADDR = 0x00;
 static size_t constexpr NUM_THREADS = 20;
 
 /**************************************************************************************
- * FUNCTION DECLARATION
+   FUNCTION DECLARATION
  **************************************************************************************/
 
 byte bmp388_read_reg(byte const reg_addr);
 void bmp388_thread_func();
 
 /**************************************************************************************
- * GLOBAL VARIABLES
+   GLOBAL VARIABLES
  **************************************************************************************/
 
 BusDevice bmp388(SPI, BMP388_CS_PIN, 1000000, MSBFIRST, SPI_MODE0);
@@ -39,7 +39,7 @@ BusDevice bmp388(SPI, BMP388_CS_PIN, 1000000, MSBFIRST, SPI_MODE0);
 static char thread_name[NUM_THREADS][32];
 
 /**************************************************************************************
- * SETUP/LOOP
+   SETUP/LOOP
  **************************************************************************************/
 
 void setup()
@@ -47,7 +47,7 @@ void setup()
   pinMode(BMP388_CS_PIN, OUTPUT);
   digitalWrite(BMP388_CS_PIN, HIGH);
 
-  for(size_t i = 0; i < NUM_THREADS; i++)
+  for (size_t i = 0; i < NUM_THREADS; i++)
   {
     snprintf(thread_name[i], sizeof(thread_name[i]), "Thread #%02d", i);
     rtos::Thread * t = new rtos::Thread(osPriorityNormal, OS_STACK_SIZE, nullptr, thread_name[i]);
@@ -61,7 +61,7 @@ void loop()
 }
 
 /**************************************************************************************
- * FUNCTION DEFINITION
+   FUNCTION DEFINITION
  **************************************************************************************/
 
 byte bmp388_read_reg(byte const reg_addr)
@@ -77,12 +77,12 @@ byte bmp388_read_reg(byte const reg_addr)
 void bmp388_thread_func()
 {
   Serial.begin(9600);
-  while(!Serial) { }
+  while (!Serial) { }
 
-  for(;;)
+  for (;;)
   {
     /* Sleep between 5 and 500 ms */
-    rtos::ThisThread::sleep_for(rtos::Kernel::Clock::duration_u32(random(5,500)));
+    rtos::ThisThread::sleep_for(rtos::Kernel::Clock::duration_u32(random(5, 500)));
     /* Try to read some data from the BMP3888. */
     byte const chip_id = bmp388_read_reg(BMP388_CHIP_ID_REG_ADDR);
     /* Print thread id and chip id value to serial. */

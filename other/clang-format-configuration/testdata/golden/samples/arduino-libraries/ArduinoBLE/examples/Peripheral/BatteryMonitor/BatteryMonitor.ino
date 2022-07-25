@@ -17,7 +17,7 @@
 
 #include <ArduinoBLE.h>
 
- // Bluetooth® Low Energy Battery Service
+// Bluetooth® Low Energy Battery Service
 BLEService batteryService("180F");
 
 // Bluetooth® Low Energy Battery Level Characteristic

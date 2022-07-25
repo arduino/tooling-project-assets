@@ -1,22 +1,22 @@
 /*
 
- This sketch tests the MKR GSM 1400 board's ability to connect to a
- GPRS network. It asks for APN information through the
- Serial Monitor and tries to connect to example.org.
+  This sketch tests the MKR GSM 1400 board's ability to connect to a
+  GPRS network. It asks for APN information through the
+  Serial Monitor and tries to connect to example.org.
 
- Circuit:
- * MKR GSM 1400 board
- * Antenna
- * SIM card with data plan
+  Circuit:
+   MKR GSM 1400 board
+   Antenna
+   SIM card with data plan
 
- Created 18 Jun 2012
- by David del Peral
+  Created 18 Jun 2012
+  by David del Peral
 */
 
 // libraries
 #include <MKRGSM.h>
 
-#include "arduino_secrets.h" 
+#include "arduino_secrets.h"
 // Please enter your sensitive data in the Secret tab or arduino_secrets.h
 // PIN Number
 const char PINNUMBER[] = SECRET_PINNUMBER;
@@ -169,7 +169,7 @@ void loop() {
 
 /*
   Read input serial
- */
+*/
 int readSerial(char result[]) {
   int i = 0;
   while (1) {

@@ -1,20 +1,20 @@
 /*
- This example reads audio data from an InvenSense ICS-43432 I2S microphone
- breakout board, and uses the input to detect clapping sounds. An LED is
- toggled when a clap is detected.
+  This example reads audio data from an InvenSense ICS-43432 I2S microphone
+  breakout board, and uses the input to detect clapping sounds. An LED is
+  toggled when a clap is detected.
 
- Circuit:
- * Arduino Zero, MKR Zero or MKR1000 board
- * ICS-43432:
-   * GND connected GND
-   * 3.3V connected 3.3V (Zero) or VCC (MKR1000, MKR Zero)
-   * WS connected to pin 0 (Zero) or pin 3 (MKR1000, MKR Zero)
-   * CLK connected to pin 1 (Zero) or pin 2 (MKR1000, MKR Zero)
-   * SD connected to pin 9 (Zero) or pin A6 (MKR1000, MKR Zero)
+  Circuit:
+   Arduino Zero, MKR Zero or MKR1000 board
+   ICS-43432:
+     GND connected GND
+     3.3V connected 3.3V (Zero) or VCC (MKR1000, MKR Zero)
+     WS connected to pin 0 (Zero) or pin 3 (MKR1000, MKR Zero)
+     CLK connected to pin 1 (Zero) or pin 2 (MKR1000, MKR Zero)
+     SD connected to pin 9 (Zero) or pin A6 (MKR1000, MKR Zero)
 
- created 18 November 2016
- by Sandeep Mistry
- */
+  created 18 November 2016
+  by Sandeep Mistry
+*/
 
 #include <ArduinoSound.h>
 
@@ -58,19 +58,19 @@ void loop() {
 
     // find the difference between the new amplitude and the last
     int delta = amplitude - lastAmplitude;
-  
+
     // check if the difference is larger than the threshold
     if (delta > amplitudeDeltaThreshold) {
       // a clap was detected
       Serial.println("clap detected");
-  
+
       // toggle the LED
       digitalWrite(ledPin, !digitalRead(ledPin));
-  
+
       // delay a bit to debounce
       delay(100);
     }
-  
+
     // update the last amplitude with the new amplitude
     lastAmplitude = amplitude;
   }

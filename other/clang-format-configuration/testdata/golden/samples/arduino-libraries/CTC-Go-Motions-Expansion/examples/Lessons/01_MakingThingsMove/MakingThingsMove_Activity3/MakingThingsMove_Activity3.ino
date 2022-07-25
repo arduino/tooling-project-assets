@@ -1,6 +1,6 @@
 /*
-  CTC GO! MOTION 
-  LESSON 01 - Making Things Move 
+  CTC GO! MOTION
+  LESSON 01 - Making Things Move
 
   This sketch is written to accompany activity 3 of Lesson 1
 */

@@ -1,19 +1,19 @@
 /* SPIFFSDirectories.ino
- * 
- * This sketch demonstrates how to use directories (as much
- * as is supported by SPIFFS).
- * 
- * Alexander Entinger
- */
+
+   This sketch demonstrates how to use directories (as much
+   as is supported by SPIFFS).
+
+   Alexander Entinger
+*/
 
 /**************************************************************************************
- * INCLUDE
+   INCLUDE
  **************************************************************************************/
 
 #include <Arduino_MKRMEM.h>
 
 /**************************************************************************************
- * SETUP/LOOP
+   SETUP/LOOP
  **************************************************************************************/
 
 void setup()
@@ -21,13 +21,13 @@ void setup()
   Serial.begin(9600);
 
   unsigned long const start = millis();
-  for(unsigned long now = millis(); !Serial && ((now - start) < 5000); now = millis()) { };
-  
+  for (unsigned long now = millis(); !Serial && ((now - start) < 5000); now = millis()) { };
+
   flash.begin();
 
   Serial.println("Mounting ...");
   int res = filesystem.mount();
-  if(res != SPIFFS_OK && res != SPIFFS_ERR_NOT_A_FS) {
+  if (res != SPIFFS_OK && res != SPIFFS_ERR_NOT_A_FS) {
     Serial.println("mount() failed with error code "); Serial.println(res); return;
   }
 
@@ -38,11 +38,11 @@ void setup()
   Serial.println("opendir('/')");
   Directory dir = filesystem.opendir("/");
   DirEntry entry;
-  while(dir.readdir(entry)) {
+  while (dir.readdir(entry)) {
     if     (entry.isFile())      Serial.print("  F ");
-    else if(entry.isDirectory()) Serial.print("  D ");
+    else if (entry.isDirectory()) Serial.print("  D ");
     Serial.print(entry.name());
-    Serial.println();    
+    Serial.println();
   }
   dir.closedir();
 
@@ -51,6 +51,6 @@ void setup()
 }
 
 void loop()
-{ 
+{
 
 }

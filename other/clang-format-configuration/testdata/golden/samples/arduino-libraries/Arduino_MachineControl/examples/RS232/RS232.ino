@@ -27,62 +27,62 @@ unsigned long counter { 0 };
 void setup()
 {
 
-    Serial.begin(115200);
-    // Wait for Serial or start after 2.5s
-    for (auto const timeout = millis() + 2500; !Serial && timeout < millis(); delay(500))
-        ;
+  Serial.begin(115200);
+  // Wait for Serial or start after 2.5s
+  for (auto const timeout = millis() + 2500; !Serial && timeout < millis(); delay(500))
+    ;
 
-    delay(2500);
-    Serial.println("Start RS232 initialization");
+  delay(2500);
+  Serial.println("Start RS232 initialization");
 
-    // Set the PMC Communication Protocols to default config
-    comm_protocols.init();
+  // Set the PMC Communication Protocols to default config
+  comm_protocols.init();
 
-    // RS485/RS232 default config is:
-    // - RS485/RS232 system disabled
-    // - RS485 mode
-    // - Half Duplex
-    // - No A/B and Y/Z 120 Ohm termination enabled
+  // RS485/RS232 default config is:
+  // - RS485/RS232 system disabled
+  // - RS485 mode
+  // - Half Duplex
+  // - No A/B and Y/Z 120 Ohm termination enabled
 
-    // Enable the RS485/RS232 system
-    comm_protocols.rs485Enable(true);
-    // Enable the RS232 mode
-    comm_protocols.rs485ModeRS232(true);
+  // Enable the RS485/RS232 system
+  comm_protocols.rs485Enable(true);
+  // Enable the RS232 mode
+  comm_protocols.rs485ModeRS232(true);
 
-    // Specify baudrate for RS232 communication
-    comm_protocols.rs485.begin(115200);
-    // Start in receive mode
-    comm_protocols.rs485.receive();
+  // Specify baudrate for RS232 communication
+  comm_protocols.rs485.begin(115200);
+  // Start in receive mode
+  comm_protocols.rs485.receive();
 
-    Serial.println("Initialization done!");
+  Serial.println("Initialization done!");
 }
 
 void loop()
 {
-    if (comm_protocols.rs485.available())
-        Serial.write(comm_protocols.rs485.read());
+  if (comm_protocols.rs485.available())
+    Serial.write(comm_protocols.rs485.read());
 
-    if (millis() > sendNow) {
-        String log = "[";
-        log += sendNow;
-        log += "] ";
+  if (millis() > sendNow) {
+    String log = "[";
+    log += sendNow;
+    log += "] ";
 
-        String msg = "hello ";
-        msg += counter++;
+    String msg = "hello ";
+    msg += counter++;
 
-        log += msg;
-        Serial.println(log);
+    log += msg;
+    Serial.println(log);
 
-        // Disable receive mode before transmission
-        comm_protocols.rs485.noReceive();
+    // Disable receive mode before transmission
+    comm_protocols.rs485.noReceive();
 
-        comm_protocols.rs485.beginTransmission();
-        comm_protocols.rs485.println(msg);
-        comm_protocols.rs485.endTransmission();
+    comm_protocols.rs485.beginTransmission();
+    comm_protocols.rs485.println(msg);
+    comm_protocols.rs485.endTransmission();
 
-        // Re-enable receive mode after transmission
-        comm_protocols.rs485.receive();
+    // Re-enable receive mode after transmission
+    comm_protocols.rs485.receive();
 
-        sendNow = millis() + sendInterval;
-    }
+    sendNow = millis() + sendInterval;
+  }
 }

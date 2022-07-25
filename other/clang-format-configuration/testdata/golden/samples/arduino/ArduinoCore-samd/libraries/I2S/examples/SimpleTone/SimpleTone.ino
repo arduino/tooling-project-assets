@@ -1,20 +1,20 @@
 /*
- This example generates a square wave based tone at a specified frequency
- and sample rate. Then outputs the data using the I2S interface to a
- MAX08357 I2S Amp Breakout board.
+  This example generates a square wave based tone at a specified frequency
+  and sample rate. Then outputs the data using the I2S interface to a
+  MAX08357 I2S Amp Breakout board.
 
- Circuit:
- * Arduino/Genuino Zero, MKR family and Nano 33 IoT
- * MAX08357:
-   * GND connected GND
-   * VIN connected 5V
-   * LRC connected to pin 0 (Zero) or 3 (MKR) or A2 (Nano)
-   * BCLK connected to pin 1 (Zero) or 2 (MKR) or A3 (Nano)
-   * DIN connected to pin 9 (Zero) or A6 (MKR) or 4 (Nano)
+  Circuit:
+   Arduino/Genuino Zero, MKR family and Nano 33 IoT
+   MAX08357:
+     GND connected GND
+     VIN connected 5V
+     LRC connected to pin 0 (Zero) or 3 (MKR) or A2 (Nano)
+     BCLK connected to pin 1 (Zero) or 2 (MKR) or A3 (Nano)
+     DIN connected to pin 9 (Zero) or A6 (MKR) or 4 (Nano)
 
- created 17 November 2016
- by Sandeep Mistry
- */
+  created 17 November 2016
+  by Sandeep Mistry
+*/
 
 #include <I2S.h>
 

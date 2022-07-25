@@ -1,5 +1,5 @@
 /*
-  CTC GO! CORE MODULE 
+  CTC GO! CORE MODULE
   LESSON 04 - Digital Inputs & Outputs
 
   This sketch is written to accompany Activity 3 in Lesson 04 of the CTC GO! core module

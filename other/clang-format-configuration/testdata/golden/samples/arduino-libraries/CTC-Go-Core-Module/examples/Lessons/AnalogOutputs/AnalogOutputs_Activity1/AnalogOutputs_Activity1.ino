@@ -1,6 +1,6 @@
 
 /*
-  CTC GO! CORE MODULE 
+  CTC GO! CORE MODULE
   LESSON 08 - Analog Outputs
 
   This sketch is written to accompany Activity 1 in Lesson 08 of the CTC GO! core module
@@ -26,5 +26,5 @@ void loop()
 
   //re-ranging val values
   PWM = map (val, 0, 1023, 0, 255);
-  analogWrite(LED, PWM); 
+  analogWrite(LED, PWM);
 }

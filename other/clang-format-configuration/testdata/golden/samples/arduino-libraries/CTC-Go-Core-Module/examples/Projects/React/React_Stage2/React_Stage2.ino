@@ -1,5 +1,5 @@
 /*
-  CTC GO! CORE MODULE 
+  CTC GO! CORE MODULE
   PROJECT 1 - REACT
 
   This sketch is written to accompany Stage 2 in REACT  of the CTC GO! core module
@@ -24,7 +24,7 @@ void setup() {
 
 }
 
-void loop() 
+void loop()
 {
   /*
     //STEP 1; check if the LEDs are working

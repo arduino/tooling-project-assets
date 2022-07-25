@@ -1,17 +1,17 @@
 /*
- This example connects to an unencrypted WiFi network.
- Then it prints the MAC address of the board,
- the IP address obtained, and other network details.
+  This example connects to an unencrypted WiFi network.
+  Then it prints the MAC address of the board,
+  the IP address obtained, and other network details.
 
- created 13 July 2010
- by dlf (Metodo2 srl)
- modified 31 May 2012
- by Tom Igoe
- */
+  created 13 July 2010
+  by dlf (Metodo2 srl)
+  modified 31 May 2012
+  by Tom Igoe
+*/
 #include <SPI.h>
 #include <WiFiNINA.h>
 
-#include "arduino_secrets.h" 
+#include "arduino_secrets.h"
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h
 char ssid[] = SECRET_SSID;        // your network SSID (name)
 int status = WL_IDLE_STATUS;     // the WiFi radio's status

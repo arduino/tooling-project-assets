@@ -6,7 +6,7 @@
   created in Aug 2018 by D. Cuartielles
 
   based on  http://www.arduino.cc/en/Tutorial/Button
- */
+*/
 
 // include the EduIntro library
 #include <EduIntro.h>
@@ -17,7 +17,7 @@ ServoMotor servo(D10);		// creating the object 'servo' on pin D10
 
 
 void setup() {
-//nothing here
+  //nothing here
 }
 
 void loop()

@@ -23,7 +23,7 @@ int status = WL_IDLE_STATUS;
 
 void setup() {
   Serial.begin(9600);
- while(!Serial);
+  while (!Serial);
   while ( status != WL_CONNECTED) {
     Serial.print("Attempting to connect to Network named: ");
     Serial.println(ssid);                   // print the network name (SSID);
@@ -31,7 +31,7 @@ void setup() {
     // Connect to WPA/WPA2 network:
     status = WiFi.begin(ssid, pass);
   }
-   // print the SSID of the network you're attached to:
+  // print the SSID of the network you're attached to:
   Serial.print("SSID: ");
   Serial.println(WiFi.SSID());
 
@@ -79,7 +79,7 @@ void GET_tests() {
   test_status(client.get("/get"));
   test_response(client.readResponse());
 
- describe("Test GET with path and query");
+  describe("Test GET with path and query");
   test_status(client.get("/get?name=Bob&age=13"));
 
 
@@ -183,5 +183,5 @@ void loop() {
   POST_tests();
   PUT_tests();
   DELETE_tests();
-  while(true);
+  while (true);
 }

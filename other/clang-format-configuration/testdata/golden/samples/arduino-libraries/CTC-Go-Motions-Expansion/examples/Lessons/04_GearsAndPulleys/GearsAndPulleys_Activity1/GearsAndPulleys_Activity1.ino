@@ -1,5 +1,5 @@
 /*
-  CTC GO! MOTION 
+  CTC GO! MOTION
   LESSON 04 - Gears and Pulleys
 
   This sketch is written to accompany activity 1 of Lesson 4

@@ -23,16 +23,16 @@ void setup()
 
 void loop()
 {
-  if(pir.activated())
+  if (pir.activated())
     Serial.println("activited");
-  if(pir.active())
+  if (pir.active())
     Serial.println("still active");
-  if(pir.deactivated()) {
+  if (pir.deactivated()) {
     Serial.println("deactivated");
     Serial.print("switch: ");
     Serial.println(pir.readSwitch());
   }
-  if(!pir.activated() && pir.hadActivity()) {
+  if (!pir.activated() && pir.hadActivity()) {
     Serial.print("had activity: ");
     Serial.println(pir.hadActivity());
     pir.resetActivity();

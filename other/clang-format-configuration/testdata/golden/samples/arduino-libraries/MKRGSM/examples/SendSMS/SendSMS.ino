@@ -1,26 +1,26 @@
 /*
- SMS sender
+  SMS sender
 
- This sketch, for the MKR GSM 1400 board,sends an SMS message
- you enter in the Serial Monitor. Connect your Arduino with the
- GSM shield and SIM card, open the Serial Monitor, and wait for
- the "READY" message to appear in the monitor. Next, type a
- message to send and press "return". Make sure the serial
- monitor is set to send a newline when you press return.
+  This sketch, for the MKR GSM 1400 board,sends an SMS message
+  you enter in the Serial Monitor. Connect your Arduino with the
+  GSM shield and SIM card, open the Serial Monitor, and wait for
+  the "READY" message to appear in the monitor. Next, type a
+  message to send and press "return". Make sure the serial
+  monitor is set to send a newline when you press return.
 
- Circuit:
- * MKR GSM 1400 board
- * Antenna
- * SIM card that can send SMS
+  Circuit:
+   MKR GSM 1400 board
+   Antenna
+   SIM card that can send SMS
 
- created 25 Feb 2012
- by Tom Igoe
+  created 25 Feb 2012
+  by Tom Igoe
 */
 
 // Include the GSM library
 #include <MKRGSM.h>
 
-#include "arduino_secrets.h" 
+#include "arduino_secrets.h"
 // Please enter your sensitive data in the Secret tab or arduino_secrets.h
 // PIN Number
 const char PINNUMBER[] = SECRET_PINNUMBER;
@@ -80,7 +80,7 @@ void loop() {
 
 /*
   Read input serial
- */
+*/
 int readSerial(char result[]) {
   int i = 0;
   while (1) {

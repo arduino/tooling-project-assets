@@ -1,8 +1,8 @@
 /*
- * MIDIUSB_buzzer.ino
- *
- * Author: Paulo Costa
- */ 
+   MIDIUSB_buzzer.ino
+
+   Author: Paulo Costa
+*/
 
 #include <MIDIUSB.h>
 #include "pitchToFrequency.h"
@@ -60,7 +60,7 @@ void loop() {
   switch (rx.header) {
     case 0:
       break; //No pending events
-      
+
     case 0x9:
       noteOn(
         rx.byte1 & 0xF,  //channel
@@ -68,7 +68,7 @@ void loop() {
         rx.byte3         //velocity
       );
       break;
-      
+
     case 0x8:
       noteOff(
         rx.byte1 & 0xF,  //channel
@@ -76,7 +76,7 @@ void loop() {
         rx.byte3         //velocity
       );
       break;
-      
+
     case 0xB:
       controlChange(
         rx.byte1 & 0xF,  //channel
@@ -84,7 +84,7 @@ void loop() {
         rx.byte3         //value
       );
       break;
-      
+
     default:
       Serial.print("Unhandled MIDI message: ");
       Serial.print(rx.header, HEX);

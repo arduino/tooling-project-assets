@@ -11,12 +11,12 @@
 #endif
 
 #define fprintf(output, ...) {                                                \
-                              do {                                            \
-                                 char string[100];                            \
-                                 sprintf (string, __VA_ARGS__);               \
-                                 Serial.print(string);                        \
-                              } while (0);                                    \
-                             }
+    do {                                            \
+      char string[100];                            \
+      sprintf (string, __VA_ARGS__);               \
+      Serial.print(string);                        \
+    } while (0);                                    \
+  }
 
 /* flags */
 #define PORT_BYTE  (1 << 0)  /* byte (not frame) oriented */
@@ -32,12 +32,12 @@ struct port_options {
 };
 
 /*
- * Specify the length of reply for command GET
- * This is helpful for frame-oriented protocols, e.g. i2c, to avoid time
- * consuming try-fail-timeout-retry operation.
- * On byte-oriented protocols, i.e. UART, this information would be skipped
- * after read the first byte, so not needed.
- */
+   Specify the length of reply for command GET
+   This is helpful for frame-oriented protocols, e.g. i2c, to avoid time
+   consuming try-fail-timeout-retry operation.
+   On byte-oriented protocols, i.e. UART, this information would be skipped
+   after read the first byte, so not needed.
+*/
 struct varlen_cmd {
   uint8_t version;
   uint8_t length;

@@ -1,17 +1,17 @@
 /*
-LM35
+  LM35
 
-This example uses an LM35 (or equivalent) sensor hooked up on pin A0.
+  This example uses an LM35 (or equivalent) sensor hooked up on pin A0.
 
-Three values are displayed on the Serial Monitor every second:
-- the value between 0 and 1023 that represent the Analog Input reading
-- the temperature expressed in Celsius degrees
-- the temperature expressed in Fahrenheit dedegrees
+  Three values are displayed on the Serial Monitor every second:
+  - the value between 0 and 1023 that represent the Analog Input reading
+  - the temperature expressed in Celsius degrees
+  - the temperature expressed in Fahrenheit dedegrees
 
-created in Feb 2019 by D. Cuartielles
-based on work by F. Vanzati (2011) and M. Loglio (2013)
+  created in Feb 2019 by D. Cuartielles
+  based on work by F. Vanzati (2011) and M. Loglio (2013)
 
-This example code is in the public domain.
+  This example code is in the public domain.
 */
 
 // include the EduIntro library

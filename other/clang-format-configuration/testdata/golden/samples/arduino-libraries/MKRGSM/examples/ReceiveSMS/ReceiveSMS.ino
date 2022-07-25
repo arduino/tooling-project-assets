@@ -1,22 +1,22 @@
 /*
- SMS receiver
+  SMS receiver
 
- This sketch, for the MKR GSM 1400 board, waits for a SMS message
- and displays it through the Serial port.
+  This sketch, for the MKR GSM 1400 board, waits for a SMS message
+  and displays it through the Serial port.
 
- Circuit:
- * MKR GSM 1400 board
- * Antenna
- * SIM card that can receive SMS messages
+  Circuit:
+   MKR GSM 1400 board
+   Antenna
+   SIM card that can receive SMS messages
 
- created 25 Feb 2012
- by Javier Zorzano / TD
+  created 25 Feb 2012
+  by Javier Zorzano / TD
 */
 
 // include the GSM library
 #include <MKRGSM.h>
 
-#include "arduino_secrets.h" 
+#include "arduino_secrets.h"
 // Please enter your sensitive data in the Secret tab or arduino_secrets.h
 // PIN Number
 const char PINNUMBER[] = SECRET_PINNUMBER;

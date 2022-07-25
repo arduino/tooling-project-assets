@@ -46,14 +46,14 @@ void onPDMdata() {
 
 uint16_t getSoundAverage() {
   uint32_t avg = 0;
-  for (int i = 0; i < sizeof(soundSampleBuffer)/sizeof(soundSampleBuffer[0]); i++) {
-    avg += soundSampleBuffer[i]*soundSampleBuffer[i];
+  for (int i = 0; i < sizeof(soundSampleBuffer) / sizeof(soundSampleBuffer[0]); i++) {
+    avg += soundSampleBuffer[i] * soundSampleBuffer[i];
   }
   return sqrt(avg);
 }
 
 void readVoltage() {
-  voltageSampleBuffer[voltageBufferIndex] = analogRead(RESISTANCE_PIN);  
+  voltageSampleBuffer[voltageBufferIndex] = analogRead(RESISTANCE_PIN);
   if (!voltageBufferFilled && voltageBufferIndex == VOLTAGE_BUFFER_SIZE - 1) {
     voltageBufferFilled = true;
   }
@@ -74,11 +74,11 @@ String name;
 unsigned long lastNotify = 0;
 
 void printSerialMsg(const char * msg) {
-  #ifdef DEBUG
+#ifdef DEBUG
   if (Serial) {
     Serial.println(msg);
   }
-  #endif
+#endif
 }
 
 void blinkLoop() {
@@ -91,11 +91,11 @@ void blinkLoop() {
 }
 
 void setup() {
-  #ifdef DEBUG
+#ifdef DEBUG
   Serial.begin(9600);
   while (!Serial);
   Serial.println("Started");
-  #endif
+#endif
 
   delay(2000);
 
@@ -133,12 +133,12 @@ void setup() {
   }
 
   String address = BLE.address();
-  #ifdef DEBUG
+#ifdef DEBUG
   if (Serial) {
     Serial.print("address = ");
     Serial.println(address);
   }
-  #endif
+#endif
   address.toUpperCase();
 
   name = "BLE Sense - ";
@@ -147,12 +147,12 @@ void setup() {
   name += address[address.length() - 2];
   name += address[address.length() - 1];
 
-  #ifdef DEBUG
+#ifdef DEBUG
   if (Serial) {
     Serial.print("name = ");
     Serial.println(name);
   }
-  #endif
+#endif
 
   BLE.setLocalName(name.c_str());
   BLE.setDeviceName(name.c_str());
@@ -199,7 +199,7 @@ void updateSubscribedCharacteristics() {
       gyroscopeCharacteristic.writeValue((byte*)gyroscope, sizeof(gyroscope));
     }
   }
-  
+
   if (magneticFieldCharacteristic.subscribed()) {
     float magneticField[3];
     if (IMU.magneticFieldAvailable() && IMU.readMagneticField(magneticField[0], magneticField[1], magneticField[2])) {
@@ -239,7 +239,7 @@ void updateSubscribedCharacteristics() {
     pressureCharacteristic.writeValue(pressure);
   }
 
-  if(resistanceCharacteristic.subscribed()){
+  if (resistanceCharacteristic.subscribed()) {
     readVoltage();
     uint16_t measuredValue = getVoltageAverage();
     float voltageRatio = 1024.0f / measuredValue;

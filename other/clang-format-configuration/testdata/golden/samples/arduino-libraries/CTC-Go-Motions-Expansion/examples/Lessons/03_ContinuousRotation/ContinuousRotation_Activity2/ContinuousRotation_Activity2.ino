@@ -1,5 +1,5 @@
 /*
-  CTC GO! MOTION 
+  CTC GO! MOTION
   LESSON 03 - Continuous Rotation
 
   This sketch is written to accompany activity 2 of Lesson 3
@@ -23,8 +23,8 @@ void setup()
 void loop()
 {
   potValue = analogRead(potPin);
-  vel = map(potValue,0,1023,0,180);
-  
+  vel = map(potValue, 0, 1023, 0, 180);
+
   servo_Cont.write(vel);
   delay(15);
   Serial.print("Shaft spee: ");

@@ -1,23 +1,23 @@
 /*
   PrimoDeepSleep.ino
-  
+
   Written by Chiara Ruggeri (chiara@arduino.org)
-  
+
   This example for the Arduino Primo board shows how to use
   Arduino Low Power library to enter in power off mode and save power.
   This mode ensures the deepest power saving mode. If you need
   a faster response from the board use standby function instead.
-  
+
   Please note that once exited from the deepest sleep mode the
   board will reset (so setup will be run again).
-  
+
   The functions enableWakeupFrom set the peripheral that will wake up
   the board. By calling it more than once you can choose multiple
   wakeup sources.
   The board will be reset when it wakes up from power off.
   You can use wakeUpCause() function to find out what signals woke up
   the board if you use more than one wakeUpBy.. function.
-  
+
   This example code is in the public domain.
 */
 
@@ -31,13 +31,13 @@ const int digitalPin = 10;
 const int analogPin = A0;
 
 
-void StmEspPM(bool sleep){
+void StmEspPM(bool sleep) {
   // enable USER1_BUTTON to turn STM32 off and on when pressed.
   // note that when STM32 is off you cannot load any new sketch.
   pinMode(USER1_BUTTON, STM32_IT);
 
   // turn ESP8266 off or on
-  digitalWrite(GPIO_ESP_PW, sleep ? LOW: HIGH);
+  digitalWrite(GPIO_ESP_PW, sleep ? LOW : HIGH);
 }
 
 void setup() {
@@ -50,15 +50,13 @@ void setup() {
 
   //look for what peripheral woke up the board
   //reason is 0 at the first execution
-  wakeup_reason reason=LowPower.wakeupReason();
-  if(reason==GPIO_WAKEUP) //GPIO caused the wake up
+  wakeup_reason reason = LowPower.wakeupReason();
+  if (reason == GPIO_WAKEUP) //GPIO caused the wake up
     doMyStuff();
-  else
-    if(reason==NFC_WAKEUP) //NFC caused the wake up
-      doMyStuffWithNFC();
-  else
-    if(reason==ANALOG_COMPARATOR_WAKEUP) //Comparator caused the wake up
-      doOtherStuff();
+  else if (reason == NFC_WAKEUP) //NFC caused the wake up
+    doMyStuffWithNFC();
+  else if (reason == ANALOG_COMPARATOR_WAKEUP) //Comparator caused the wake up
+    doOtherStuff();
 
   Serial.println("Hi all, I return to sleep");
 
@@ -79,14 +77,14 @@ void setup() {
 
 void loop() {}
 
-void doMyStuff(){
+void doMyStuff() {
   //insert your code here
 }
 
-void doMyStuffWithNFC(){
+void doMyStuffWithNFC() {
   //insert your code here
 }
 
-void doOtherStuff(){
+void doOtherStuff() {
   //insert your code here
 }

@@ -15,7 +15,7 @@ uint32_t c_green = carrier.leds.Color(40, 0, 0);
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  
+
   carrier.noCase();
   carrier.begin();
 

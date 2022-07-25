@@ -4,7 +4,7 @@
   We have used this tool to convert the .bmp to cpp
   https://javl.github.io/image2cpp/
   Thanks!
-  
+
  **************************************************************************/
 #include "Images.h"   //We save the images code there
 #include <Arduino_MKRIoTCarrier.h>
@@ -38,11 +38,11 @@ void loop() {
   carrier.display.fillScreen(ST77XX_BLACK);
   drawEIoT();
   fadeLoop();
-  
+
   carrier.display.fillScreen(ST77XX_WHITE);
   drawArduino(0x0000);
   fadeLoop();
-  
+
   drawArduino(0xF324);
   fadeLoop();
   drawArduino(0x04B3);

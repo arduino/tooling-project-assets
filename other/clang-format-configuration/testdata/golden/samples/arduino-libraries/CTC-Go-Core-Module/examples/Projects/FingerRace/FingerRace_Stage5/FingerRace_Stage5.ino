@@ -1,5 +1,5 @@
 /*
-  CTC GO! - CORE MODULE 
+  CTC GO! - CORE MODULE
   PROJECT 1 - Finger Race
 
   This sketch is written to accompany Stage 5 in Finger Race of the CTC GO! Core Module
@@ -49,9 +49,9 @@ void loop()
     digitalWrite(greenLED_P2, LOW);
     delay(200);
   }
-  else if(gameState == 1)
+  else if (gameState == 1)
   {
-  
+
   }
   else if (gameState == 2)
   {
@@ -105,7 +105,7 @@ void loop()
   {
     gameState = 2;
     digitalWrite(greenLED_P1, HIGH);
-    
+
     if (previousButtonState_P1 == _____)
     {
       player_1 = player_1 + 1;

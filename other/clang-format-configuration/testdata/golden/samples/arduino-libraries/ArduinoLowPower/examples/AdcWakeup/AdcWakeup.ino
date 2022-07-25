@@ -39,7 +39,7 @@ void loop() {
 
   // Define a window around that value
   uint16_t lo = max(value - margin, 0);
-  uint16_t hi = min(value + margin, UINT16_MAX); 
+  uint16_t hi = min(value + margin, UINT16_MAX);
 
   // Attach an ADC interrupt on pin A0, calling repetitionsIncrease when the voltage is outside the given range.
   // This should be called immediately before LowPower.sleep() because it reconfigures the ADC internally.

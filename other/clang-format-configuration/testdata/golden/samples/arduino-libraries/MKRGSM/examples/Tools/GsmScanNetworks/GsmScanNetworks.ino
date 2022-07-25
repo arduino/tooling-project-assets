@@ -1,27 +1,27 @@
 /*
 
- GSM Scan Networks
+  GSM Scan Networks
 
- This example prints out the IMEI number of the modem,
- then checks to see if it's connected to a carrier. If so,
- it prints the phone number associated with the card.
- Then it scans for nearby networks and prints out their signal strengths.
+  This example prints out the IMEI number of the modem,
+  then checks to see if it's connected to a carrier. If so,
+  it prints the phone number associated with the card.
+  Then it scans for nearby networks and prints out their signal strengths.
 
- Circuit:
- * MKR GSM 1400 board
- * Antenna
- * SIM card
+  Circuit:
+   MKR GSM 1400 board
+   Antenna
+   SIM card
 
- Created 8 Mar 2012
- by Tom Igoe, implemented by Javier Carazo
- Modified 4 Feb 2013
- by Scott Fitzgerald
+  Created 8 Mar 2012
+  by Tom Igoe, implemented by Javier Carazo
+  Modified 4 Feb 2013
+  by Scott Fitzgerald
 */
 
 // libraries
 #include <MKRGSM.h>
 
-#include "arduino_secrets.h" 
+#include "arduino_secrets.h"
 // Please enter your sensitive data in the Secret tab or arduino_secrets.h
 // PIN Number
 const char PINNUMBER[] = SECRET_PINNUMBER;

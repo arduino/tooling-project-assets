@@ -1,12 +1,12 @@
 /*
- Pager Server
+  Pager Server
 
- A simple server that echoes any incoming messages to all
- connected clients. Connect two or more telnet sessions
- to see how server.available() and server.print() works.
+  A simple server that echoes any incoming messages to all
+  connected clients. Connect two or more telnet sessions
+  to see how server.available() and server.print() works.
 
- created in September 2020 for the Ethernet library
- by Juraj Andrassy https://github.com/jandrassy
+  created in September 2020 for the Ethernet library
+  by Juraj Andrassy https://github.com/jandrassy
 
 */
 #include <Ethernet.h>

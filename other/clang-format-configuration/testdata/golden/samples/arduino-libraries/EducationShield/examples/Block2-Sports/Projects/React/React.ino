@@ -1,13 +1,13 @@
 /*
-* React
-* 
-*  Test your reaction time!
-*
-* In this game, one of three LEDs will randomly light up. 
-* You must tap the corresponding capacitive sensor as quick 
-* as possible. If you don’t react fast enough, the game is over. 
-*
-* (c) 2013-2016 Arduino LLC.
+  React
+
+   Test your reaction time!
+
+  In this game, one of three LEDs will randomly light up.
+  You must tap the corresponding capacitive sensor as quick
+  as possible. If you don’t react fast enough, the game is over.
+
+  (c) 2013-2016 Arduino LLC.
 */
 
 #include <EducationShield.h>
@@ -27,20 +27,20 @@ int reactTime = 500;
 // the piezo connected to digital pin 8
 Melody piezo = Melody(8);
 
-void setup(){
+void setup() {
   LEDs.config(pinCount, ledPins);
   LEDs.begin();
-  
+
   //Configure the pads
-  pad[0] = CapacitiveSwitch(2,3);
-  pad[1] = CapacitiveSwitch(2,4);
-  pad[2] = CapacitiveSwitch(2,5);
+  pad[0] = CapacitiveSwitch(2, 3);
+  pad[1] = CapacitiveSwitch(2, 4);
+  pad[2] = CapacitiveSwitch(2, 5);
   pad[0].config(100);
   pad[1].config(100);
   pad[2].config(100);
 }
 
-void loop(){
+void loop() {
   //Wait for a random time before each turn begins
   delay(random(50, 2000));
 
@@ -50,22 +50,22 @@ void loop(){
   LEDs.on(target);
 
   //If the pad corresponding to the LED is pressed
-  if(pad[target].pressed(reactTime)){
+  if (pad[target].pressed(reactTime)) {
     LEDs.off(target);
 
-	//Play the winning sound
+    //Play the winning sound
     int melody[] = { NOTE_GS4, NOTE_C5};
     int noteDurations[] = { 8, 8};
     int numberOfNotes = 2;
     piezo.play(numberOfNotes, melody, noteDurations, 1);
   }
-  else{
+  else {
     //Else if the reaction is too slow, run the function gameOver()
     gameOver();
   }
 }
 
-void gameOver(){
+void gameOver() {
   //Turn all LEDs on
   LEDs.fill(pinCount);
 

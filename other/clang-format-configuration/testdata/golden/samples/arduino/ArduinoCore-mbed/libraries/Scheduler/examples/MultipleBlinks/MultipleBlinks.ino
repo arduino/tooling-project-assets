@@ -1,25 +1,25 @@
 /*
- Multiple Blinks
+  Multiple Blinks
 
- Demonstrates the use of the Scheduler library for the boards:
- 
- - Arduino Nano 33 BLE, or
- - Arduino Portenta H7, or
- - Arduino Nano RP2040 Connect
+  Demonstrates the use of the Scheduler library for the boards:
 
- Hardware required :
- * None (LEDs are already conencted to RGB LED)
+  - Arduino Nano 33 BLE, or
+  - Arduino Portenta H7, or
+  - Arduino Nano RP2040 Connect
 
- ATTENTION: LEDs polarity is reversed (so loop3 will turn the LED off by writing 1)
+  Hardware required :
+   None (LEDs are already conencted to RGB LED)
 
- created 8 Oct 2012
- by Cristian Maglie
- Modified by
- Scott Fitzgerald 19 Oct 2012
+  ATTENTION: LEDs polarity is reversed (so loop3 will turn the LED off by writing 1)
 
- This example code is in the public domain
+  created 8 Oct 2012
+  by Cristian Maglie
+  Modified by
+  Scott Fitzgerald 19 Oct 2012
 
- http://www.arduino.cc/en/Tutorial/MultipleBlinks
+  This example code is in the public domain
+
+  http://www.arduino.cc/en/Tutorial/MultipleBlinks
 */
 
 // Include Scheduler since we want to manage multiple tasks.

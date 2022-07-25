@@ -15,7 +15,7 @@ void setup()
   Serial1.begin(115200);
   usb_controller.powerEnable();
   usb.Init(USB_CORE_ID_FS, class_table);
-  
+
 }
 
 void loop() {

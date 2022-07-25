@@ -8,9 +8,9 @@ void setup() {
   Serial.begin(9600);
   Process p;
 
-  //intro message 
+  //intro message
   Serial.println("**** Temboo Cloud Controls ****\n");
-  
+
   // update the package list
   Serial.print("Updating package listings...");
   p.runShellCommand("opkg update");
@@ -19,7 +19,7 @@ void setup() {
     Serial.println("Success!");
   } else {
     Serial.println("Failed. Make sure your device is connected to the internet properly.");
-    while(p.available()) {
+    while (p.available()) {
       char c = p.read();
       Serial.print(c);
     }
@@ -34,15 +34,15 @@ void setup() {
     Serial.println("Success!");
   } else {
     Serial.println("Failed.");
-    Serial.println("Error number: " +String(returnCode));
-    while(p.available()) {
+    Serial.println("Error number: " + String(returnCode));
+    while (p.available()) {
       char c = p.read();
       Serial.print(c);
     }
     return;
   }
   Serial.println();
-  
+
   // install python openssl to allow for for SSL connections
   Serial.print("Installing python-openssl...");
   p.runShellCommand("opkg install python-openssl");
@@ -51,7 +51,7 @@ void setup() {
     Serial.println("Success!");
   } else {
     Serial.println("Failed.");
-    while(p.available()) {
+    while (p.available()) {
       char c = p.read();
       Serial.print(c);
     }
@@ -67,7 +67,7 @@ void setup() {
     Serial.println("Success!");
   } else {
     Serial.println("Failed.");
-    while(p.available()) {
+    while (p.available()) {
       char c = p.read();
       Serial.print(c);
     }
@@ -84,13 +84,13 @@ void setup() {
     Serial.println("Success!");
   } else {
     Serial.println("Failed.");
-    while(p.available()) {
+    while (p.available()) {
       char c = p.read();
       Serial.print(c);
     }
     return;
   }
-  
+
   Serial.println("Update Complete - your Yun is ready for Cloud Controls!");
 }
 

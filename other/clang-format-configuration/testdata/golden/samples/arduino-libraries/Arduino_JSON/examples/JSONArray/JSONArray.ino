@@ -66,7 +66,7 @@ void demoCreation() {
   Serial.println("========");
 
   JSONVar myArray;
-  
+
   myArray[0] = false;
   myArray[1] = 4242.5;
   myArray[2] = "orange";

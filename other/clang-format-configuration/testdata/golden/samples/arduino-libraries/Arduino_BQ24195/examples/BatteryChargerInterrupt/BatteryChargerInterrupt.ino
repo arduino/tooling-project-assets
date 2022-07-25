@@ -23,7 +23,7 @@ void setup() {
     ; // wait for serial port to connect. Needed for native USB port only
   }
 
-// Available only for MKRGSM1400 and MKRNB1500
+  // Available only for MKRGSM1400 and MKRNB1500
 #if defined(ARDUINO_SAMD_MKRGSM1400) || defined(ARDUINO_SAMD_MKRNB1500)
   // Attach the PMIC IRQ pin
   attachInterrupt(digitalPinToInterrupt(PMIC_IRQ_PIN), batteryConnected, FALLING);

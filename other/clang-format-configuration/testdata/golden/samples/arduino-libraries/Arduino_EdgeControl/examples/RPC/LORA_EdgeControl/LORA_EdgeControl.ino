@@ -6,10 +6,10 @@
 //   2 MKR1300/1310 boards (sender and receiver)
 //
 // Connect one of the MKR1300 to the MKR2 socket in the EdgeControl board
-// This script is designed to pair with "LORA_receiver-EC.ino". Also 
+// This script is designed to pair with "LORA_receiver-EC.ino". Also
 // you will need a LoRa transmitter. We have used the LoRa Sender example from the other
 // MKR1300.
-// 
+//
 // The sketch make use of the OpenMV RPC library for communicating between the EdgeControl
 // and the MKR1300 via UART
 //
@@ -49,13 +49,13 @@ void rpc_retrieve_LoRa_data()
     // Use it now.
     Serial.print(F(": "));
     Serial.println(buff);
- 
+
     //print on LCD
     //LCD.setCursor(0, 0);
     //LCD.print("LoRa MSG:");
     //LCD.setCursor(0, 1);
     //LCD.print(buff);
-    
+
   } else {
     Serial.print(F("Error:rpc_retrieve_LoRa_data() failed! "));
   }
@@ -98,7 +98,7 @@ void setup()
 //*******************
 void loop()
 {
-  if (message_received) {    
+  if (message_received) {
     Serial.print("Message ");
     Serial.print(++msg_count);
     rpc_retrieve_LoRa_data();
@@ -107,5 +107,5 @@ void loop()
 }
 
 void LoRa_ISR() {
-  message_received = true;  
+  message_received = true;
 }

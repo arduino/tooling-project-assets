@@ -1,29 +1,29 @@
 /*
   WiFi Web Server LED Blink
 
- A simple web server that lets you blink an LED via the web.
- This sketch will print the IP address of your WiFi module (once connected)
- to the Serial Monitor. From there, you can open that address in a web browser
- to turn on and off the LED on pin 9.
+  A simple web server that lets you blink an LED via the web.
+  This sketch will print the IP address of your WiFi module (once connected)
+  to the Serial Monitor. From there, you can open that address in a web browser
+  to turn on and off the LED on pin 9.
 
- If the IP address of your board is yourAddress:
- http://yourAddress/H turns the LED on
- http://yourAddress/L turns it off
+  If the IP address of your board is yourAddress:
+  http://yourAddress/H turns the LED on
+  http://yourAddress/L turns it off
 
- This example is written for a network using WPA encryption. For
- WEP or WPA, change the WiFi.begin() call accordingly.
+  This example is written for a network using WPA encryption. For
+  WEP or WPA, change the WiFi.begin() call accordingly.
 
- Circuit:
- * Board with NINA module (Arduino MKR WiFi 1010, MKR VIDOR 4000 and UNO WiFi Rev.2)
- * LED attached to pin 9
+  Circuit:
+   Board with NINA module (Arduino MKR WiFi 1010, MKR VIDOR 4000 and UNO WiFi Rev.2)
+   LED attached to pin 9
 
- created 25 Nov 2012
- by Tom Igoe
- */
+  created 25 Nov 2012
+  by Tom Igoe
+*/
 #include <SPI.h>
 #include <WiFiNINA.h>
 
-#include "arduino_secrets.h" 
+#include "arduino_secrets.h"
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h
 char ssid[] = SECRET_SSID;        // your network SSID (name)
 char pass[] = SECRET_PASS;    // your network password (use for WPA, or use as key for WEP)

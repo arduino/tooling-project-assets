@@ -2,7 +2,7 @@
   Melody
 
   Adapted for the Arduino MKR IoT Carrier
-  
+
 */
 #include <Arduino_MKRIoTCarrier.h>
 #include "pitches.h"
@@ -21,7 +21,7 @@ int noteDurations[] = {
 
 void setup() {
   carrier.begin();
-  
+
   // iterate over the notes of the melody:
   for (int thisNote = 0; thisNote < 8; thisNote++) {
 

@@ -20,28 +20,28 @@ bool led { false };
 
 void setup()
 {
-    EdgeControl.begin();
-    Power.on(PWR_3V3);
-    Power.on(PWR_VBAT);
+  EdgeControl.begin();
+  Power.on(PWR_3V3);
+  Power.on(PWR_VBAT);
 
-    // Power on the MKR on slot 2
-    Power.on(PWR_MKR2);
+  // Power on the MKR on slot 2
+  Power.on(PWR_MKR2);
 
-    // Wait for MKR to power on
-    delay(5000);
+  // Wait for MKR to power on
+  delay(5000);
 
-    // Open the serial communication with the MKR board on slot 2...
-    SerialMKR2.begin(115200);
+  // Open the serial communication with the MKR board on slot 2...
+  SerialMKR2.begin(115200);
 
-    // ... and ait for the serial communication from the MKR board
-    while (!SerialMKR2) {
-        delay(500);
-    }
+  // ... and ait for the serial communication from the MKR board
+  while (!SerialMKR2) {
+    delay(500);
+  }
 }
 
 void loop()
 {
-    SerialMKR2.write(led);
-    led = !led;
-    delay(1000);
+  SerialMKR2.write(led);
+  led = !led;
+  delay(1000);
 }

@@ -1,18 +1,18 @@
 /*
 
- TFT Graph
+  TFT Graph
 
- This example for an Arduino screen reads
- the value of an analog sensor on A0, and
- graphs the values on the screen.
+  This example for an Arduino screen reads
+  the value of an analog sensor on A0, and
+  graphs the values on the screen.
 
- This example code is in the public domain.
+  This example code is in the public domain.
 
- Created 15 April 2013 by Scott Fitzgerald
+  Created 15 April 2013 by Scott Fitzgerald
 
- https://www.arduino.cc/en/Tutorial/LibraryExamples/TFTGraph
+  https://www.arduino.cc/en/Tutorial/LibraryExamples/TFTGraph
 
- */
+*/
 
 #include <TFT.h>  // Arduino LCD library
 #include <SPI.h>

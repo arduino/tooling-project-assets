@@ -3,7 +3,7 @@
    The user can interact with this disk as a bidirectional communication with the board
    For example, the board could save data in a file to be retrieved later with a drag and drop.
    If the user does a double tap, the firmware goes to datalogger mode (green led on).
-   Now the user can do another double tap to start a recording of the IMU data 
+   Now the user can do another double tap to start a recording of the IMU data
    (green led blinking). With another double tap the recording will be stopped (green led on).
    Now the user can start/stop other recordings of the IMU data using again the double tap.
    The log files are saved in flash with an increasing number suffix data_0.txt, data_1.txt, etc.

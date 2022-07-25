@@ -4,17 +4,17 @@
   and a request body
 
   note: WiFi SSID and password are stored in config.h file.
-  If it is not present, add a new tab, call it "config.h" 
+  If it is not present, add a new tab, call it "config.h"
   and add the following variables:
   char ssid[] = "ssid";     //  your network SSID (name)
   char pass[] = "password"; // your network password
 
   created 14 Feb 2016
   by Tom Igoe
-  
+
   this example is in the public domain
- */
- #include <RestClient.h>
+*/
+#include <RestClient.h>
 #include <WiFi101.h>
 #include "config.h"
 

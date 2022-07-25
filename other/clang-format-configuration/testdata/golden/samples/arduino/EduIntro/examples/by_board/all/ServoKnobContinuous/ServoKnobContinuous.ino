@@ -7,7 +7,7 @@
   created in Feb 2019 by D. Cuartielles
 
   based on  https://www.arduino.cc/en/tutorial/knob
- */
+*/
 
 // include the EduIntro library
 #include <EduIntro.h>

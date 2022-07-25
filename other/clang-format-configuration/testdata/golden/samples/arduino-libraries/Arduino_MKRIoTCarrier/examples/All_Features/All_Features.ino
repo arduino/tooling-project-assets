@@ -1,6 +1,6 @@
-/*  
-This sketch will test the carrier board
-Unless the touch pads
+/*
+  This sketch will test the carrier board
+  Unless the touch pads
 */
 
 #include <Arduino_MKRIoTCarrier.h>
@@ -10,7 +10,7 @@ float temperature;
 float humidity;
 
 int light;
-int r,g,b;
+int r, g, b;
 
 float pressure;
 
@@ -38,18 +38,18 @@ void loop() {
   carrier.leds.setPixelColor(3,  0 , 20 , 20);
   carrier.leds.setPixelColor(4, 20 , 20 , 20);
   carrier.leds.show();
-  
+
   //Function to display
   displayTitle();
 
   //Buzzer sound sound(freq)
   /*
-   * Can be used also with tone(BUZZER , freq);
-   */
+     Can be used also with tone(BUZZER , freq);
+  */
   carrier.Buzzer.sound(8000);
   delay(100);
   carrier.Buzzer.noSound();
-  
+
   //Simple relay open and close loop
   /*  Relay function
      open()  - goes to Normally Open (NO) circuit, status LED will be ON
@@ -84,7 +84,7 @@ void loop() {
   while (! carrier.Light.colorAvailable()) {
     delay(5);
   }
-  carrier.Light.readColor(r,g, b, light);
+  carrier.Light.readColor(r, g, b, light);
   Serial.println("Ambient light sensor");
   Serial.print("\t light: ");
   Serial.println(light);

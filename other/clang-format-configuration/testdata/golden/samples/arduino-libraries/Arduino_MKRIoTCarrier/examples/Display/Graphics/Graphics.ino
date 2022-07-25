@@ -8,7 +8,7 @@ MKRIoTCarrier carrier;
 float p = 3.1415926;
 
 void setup(void) {
-  
+
   Serial.begin(9600);
   Serial.print(F("Hello! ST77xx TFT Test"));
   carrier.noCase();

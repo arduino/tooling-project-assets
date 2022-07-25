@@ -1,17 +1,17 @@
 /*
 
- This example tests to see if the modem of the
- MKR GSM 1400 board is working correctly. You do not need
- a SIM card for this example.
+  This example tests to see if the modem of the
+  MKR GSM 1400 board is working correctly. You do not need
+  a SIM card for this example.
 
- Circuit:
- * MKR GSM 1400 board
- * Antenna
+  Circuit:
+   MKR GSM 1400 board
+   Antenna
 
- Created 12 Jun 2012
- by David del Peral
- modified 21 Nov 2012
- by Tom Igoe
+  Created 12 Jun 2012
+  by David del Peral
+  modified 21 Nov 2012
+  by Tom Igoe
 */
 
 // libraries

@@ -1,5 +1,5 @@
 /*
-  CTC GO! CORE MODULE 
+  CTC GO! CORE MODULE
   PROJECT 1 - WHACK A MOLE
 
   This sketch is written to accompany Stage 3 in Whack-a-mole of the CTC GO! core module
@@ -50,7 +50,7 @@ void loop()
     {
       gameStarted = 1;
     }
-  } 
+  }
   else if (gameStarted == 1)
   {
     if (digitalRead(button_1) == _____)

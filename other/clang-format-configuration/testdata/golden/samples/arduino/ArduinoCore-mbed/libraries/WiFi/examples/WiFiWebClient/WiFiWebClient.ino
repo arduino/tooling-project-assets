@@ -1,23 +1,23 @@
 /*
   Web client
 
- This sketch connects to a website (http://example.com) using the WiFi module.
+  This sketch connects to a website (http://example.com) using the WiFi module.
 
- This example is written for a network using WPA encryption. For
- WEP or WPA, change the Wifi.begin() call accordingly.
+  This example is written for a network using WPA encryption. For
+  WEP or WPA, change the Wifi.begin() call accordingly.
 
- Circuit:
- * Arduino Portenta H7
+  Circuit:
+   Arduino Portenta H7
 
- created 13 July 2010
- by dlf (Metodo2 srl)
- modified 31 May 2012
- by Tom Igoe
- */
+  created 13 July 2010
+  by dlf (Metodo2 srl)
+  modified 31 May 2012
+  by Tom Igoe
+*/
 
 #include <WiFi.h>
 
-#include "arduino_secrets.h" 
+#include "arduino_secrets.h"
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h
 char ssid[] = SECRET_SSID;        // your network SSID (name)
 char pass[] = SECRET_PASS;        // your network password (use for WPA, or use as key for WEP)

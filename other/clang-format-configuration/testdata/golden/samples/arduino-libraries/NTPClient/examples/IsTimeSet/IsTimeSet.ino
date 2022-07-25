@@ -10,7 +10,7 @@ const char *password = "<PASSWORD>";
 
 WiFiUDP ntpUDP;
 // initialized to a time offset of 10 hours
-NTPClient timeClient(ntpUDP,"pool.ntp.org", 36000, 60000);
+NTPClient timeClient(ntpUDP, "pool.ntp.org", 36000, 60000);
 //                           HH:MM:SS
 // timeClient initializes to 10:00:00 if it does not receive an NTP packet
 // before the 100ms timeout.
@@ -22,7 +22,7 @@ const int led = 2;
 const int hour = 10;
 const int minute = 0;
 
-void setup(){
+void setup() {
   Serial.begin(115200);
 
   pinMode(led, OUTPUT);
@@ -43,7 +43,7 @@ void loop() {
   timeClient.update();
 
   Serial.println(timeClient.getFormattedTime());
-  if(timeClient.isTimeSet()) {
+  if (timeClient.isTimeSet()) {
     if (hour == timeClient.getHours() && minute == timeClient.getMinutes()) {
       digitalWrite(led, 0);
     }

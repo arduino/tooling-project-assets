@@ -3,8 +3,8 @@
 #include "LittleFileSystem.h"
 #include "FATFileSystem.h"
 
-#ifndef CORE_CM7  
-  #error Format QSPI flash by uploading the sketch to the M7 core instead of the M4 core.
+#ifndef CORE_CM7
+#error Format QSPI flash by uploading the sketch to the M7 core instead of the M4 core.
 #endif
 
 
@@ -52,7 +52,7 @@ void setup() {
   Serial.println("Partition 1: WiFi firmware and certificates 1MB");
   Serial.println("Partition 2: OTA 5MB");
   Serial.println("Partition 3: User data 8MB"),
-  Serial.println("\nDo you want to use partition scheme 1? Y/[n]");
+                 Serial.println("\nDo you want to use partition scheme 1? Y/[n]");
   Serial.println("If No, partition scheme 2 will be used.");
   bool default_scheme = waitResponse();
 
@@ -61,7 +61,7 @@ void setup() {
 
   if (true == waitResponse()) {
     mbed::MBRBlockDevice::partition(&root, 1, 0x0B, 0, 1024 * 1024);
-    if(default_scheme) {
+    if (default_scheme) {
       mbed::MBRBlockDevice::partition(&root, 3, 0x0B, 14 * 1024 * 1024, 14 * 1024 * 1024);
       mbed::MBRBlockDevice::partition(&root, 2, 0x0B, 1024 * 1024, 14 * 1024 * 1024);
       // use space from 15.5MB to 16 MB for another fw, memory mapped
@@ -75,13 +75,13 @@ void setup() {
     if (err) {
       Serial.println("Error formatting WiFi partition");
     }
-  
+
     err = ota_data_fs.reformat(&ota_data);
     if (err) {
       Serial.println("Error formatting OTA partition");
     }
 
-    if(!default_scheme) {
+    if (!default_scheme) {
       Serial.println("\nDo you want to use LittleFS to format user data partition? Y/[n]");
       Serial.println("If No, FatFS will be used to format user partition.");
 

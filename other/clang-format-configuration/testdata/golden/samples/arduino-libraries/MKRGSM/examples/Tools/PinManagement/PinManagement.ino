@@ -1,15 +1,15 @@
 /*
 
- This example enables you to change or remove the PIN number of
- a SIM card inserted into a GSM shield.
+  This example enables you to change or remove the PIN number of
+  a SIM card inserted into a GSM shield.
 
- Circuit:
- * MKR GSM 1400 board
- * Antenna
- * SIM card
+  Circuit:
+   MKR GSM 1400 board
+   Antenna
+   SIM card
 
- Created 12 Jun 2012
- by David del Peral
+  Created 12 Jun 2012
+  by David del Peral
 */
 
 // libraries
@@ -125,7 +125,7 @@ void loop() {
 
 /*
   Read input serial
- */
+*/
 String readSerial() {
   String text = "";
   while (1) {

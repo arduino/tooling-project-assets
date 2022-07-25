@@ -1,14 +1,14 @@
 /*
- Read the value of a Potentiometer connected to A0,
- then uses the results to write the brightness on
- an LED connected on D10. Also prints the values
- on the serial monitor.
+  Read the value of a Potentiometer connected to A0,
+  then uses the results to write the brightness on
+  an LED connected on D10. Also prints the values
+  on the serial monitor.
 
- created in Aug 2018 by D. Cuartielles
- based on work by T. Igoe (2008, 2010), D. Gomba (2010), F. Vanzati (2011) and M. Loglio (2013)
+  created in Aug 2018 by D. Cuartielles
+  based on work by T. Igoe (2008, 2010), D. Gomba (2010), F. Vanzati (2011) and M. Loglio (2013)
 
- This example code is in the public domain.
- */
+  This example code is in the public domain.
+*/
 
 #include <EduIntro.h>
 

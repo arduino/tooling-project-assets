@@ -59,9 +59,9 @@
 
 #if defined(ARDUINO_ARCH_AVR)
 
-  #if SPI_CLOCK > (F_CPU / 128)
-    #define USE_HARDWARE_SPI
-  #endif
+#if SPI_CLOCK > (F_CPU / 128)
+#define USE_HARDWARE_SPI
+#endif
 
 #endif
 
@@ -70,51 +70,51 @@
 // The standard pin configuration.
 #ifndef ARDUINO_HOODLOADER2
 
-  #define RESET     10 // Use pin 10 to reset the target rather than SS
-  #define LED_HB    9
-  #define LED_ERR   8
-  #define LED_PMODE 7
+#define RESET     10 // Use pin 10 to reset the target rather than SS
+#define LED_HB    9
+#define LED_ERR   8
+#define LED_PMODE 7
 
-  // Uncomment following line to use the old Uno style wiring
-  // (using pin 11, 12 and 13 instead of the SPI header) on Leonardo, Due...
+// Uncomment following line to use the old Uno style wiring
+// (using pin 11, 12 and 13 instead of the SPI header) on Leonardo, Due...
 
-  // #define USE_OLD_STYLE_WIRING
+// #define USE_OLD_STYLE_WIRING
 
-  #ifdef USE_OLD_STYLE_WIRING
+#ifdef USE_OLD_STYLE_WIRING
 
-    #define PIN_MOSI	11
-    #define PIN_MISO	12
-    #define PIN_SCK		13
+#define PIN_MOSI	11
+#define PIN_MISO	12
+#define PIN_SCK		13
 
-  #endif
+#endif
 
-  // HOODLOADER2 means running sketches on the ATmega16U2 serial converter chips
-  // on Uno or Mega boards. We must use pins that are broken out:
+// HOODLOADER2 means running sketches on the ATmega16U2 serial converter chips
+// on Uno or Mega boards. We must use pins that are broken out:
 #else
 
-  #define RESET     	4
-  #define LED_HB    	7
-  #define LED_ERR   	6
-  #define LED_PMODE 	5
+#define RESET     	4
+#define LED_HB    	7
+#define LED_ERR   	6
+#define LED_PMODE 	5
 
 #endif
 
 // By default, use hardware SPI pins:
 #ifndef PIN_MOSI
-  #define PIN_MOSI 	MOSI
+#define PIN_MOSI 	MOSI
 #endif
 
 #ifndef PIN_MISO
-  #define PIN_MISO 	MISO
+#define PIN_MISO 	MISO
 #endif
 
 #ifndef PIN_SCK
-  #define PIN_SCK 	SCK
+#define PIN_SCK 	SCK
 #endif
 
 // Force bitbanged SPI if not using the hardware SPI pins:
 #if (PIN_MISO != MISO) ||  (PIN_MOSI != MOSI) || (PIN_SCK != SCK)
-  #undef USE_HARDWARE_SPI
+#undef USE_HARDWARE_SPI
 #endif
 
 
@@ -131,9 +131,9 @@
 // To use 'Serial': #define SERIAL Serial
 
 #ifdef SERIAL_PORT_USBVIRTUAL
-  #define SERIAL SERIAL_PORT_USBVIRTUAL
+#define SERIAL SERIAL_PORT_USBVIRTUAL
 #else
-  #define SERIAL Serial
+#define SERIAL Serial
 #endif
 
 

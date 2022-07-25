@@ -1,16 +1,16 @@
 /*
- Mouse Controller Example
+  Mouse Controller Example
 
- Shows the output of a USB Mouse connected to
- the Native USB port on an Arduino Due Board.
+  Shows the output of a USB Mouse connected to
+  the Native USB port on an Arduino Due Board.
 
- created 8 Oct 2012
- by Cristian Maglie
+  created 8 Oct 2012
+  by Cristian Maglie
 
- https://www.arduino.cc/en/Tutorial/MouseController
+  https://www.arduino.cc/en/Tutorial/MouseController
 
- This sample code is part of the public domain.
- */
+  This sample code is part of the public domain.
+*/
 
 // Require mouse control library
 #include <MouseController.h>
@@ -85,7 +85,7 @@ void setup()
   SERIAL_PORT_MONITOR.println("Mouse Controller Program started");
 
   if (usb.Init() == -1)
-      SERIAL_PORT_MONITOR.println("OSC did not start.");
+    SERIAL_PORT_MONITOR.println("OSC did not start.");
 
   delay( 20 );
 }

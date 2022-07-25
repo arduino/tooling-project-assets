@@ -31,7 +31,7 @@ int statusCode = 0;
 
 void setup() {
   Serial.begin(9600);
-  while(!Serial);
+  while (!Serial);
   while ( status != WL_CONNECTED) {
     Serial.print("Attempting to connect to Network named: ");
     Serial.println(ssid);                   // print the network name (SSID);
@@ -57,7 +57,7 @@ void loop() {
 
   // assemble the body of the POST message:
   int sensorValue = analogRead(A0);
-  String postData = "{\"sensorValue\":\""; 
+  String postData = "{\"sensorValue\":\"";
   postData += sensorValue;
   postData += "\"}";
 

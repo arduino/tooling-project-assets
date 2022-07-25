@@ -2,7 +2,7 @@
   MKR IMU Shield - Simple Magnetometer
 
   This example reads the magnetic field values from the IMU
-  on the MKR IMU Shield and continuously prints them to the 
+  on the MKR IMU Shield and continuously prints them to the
   Serial Monitor.
 
   The circuit:

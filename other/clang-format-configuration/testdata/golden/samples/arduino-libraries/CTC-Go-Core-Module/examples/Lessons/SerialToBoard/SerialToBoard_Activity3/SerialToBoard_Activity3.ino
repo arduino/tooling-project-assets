@@ -1,19 +1,19 @@
 /*
-  CTC GO! CORE MODULE 
+  CTC GO! CORE MODULE
   LESSON 06 - Sending Data to the Board
 
   This sketch is written to accompany Activity 3 in Lesson 06 of the CTC GO! core module
 */
 
 // choosing the word to guess
-char selectedWord[] = {"HelloWorld"};          
-char guessingWord[sizeof(selectedWord)];  
+char selectedWord[] = {"HelloWorld"};
+char guessingWord[sizeof(selectedWord)];
 char incoming = 0;
 
-int counter = 0;      
-int mistakes = 0;     
-int success = 0;        
-int chances = 3;   
+int counter = 0;
+int mistakes = 0;
+int success = 0;
+int chances = 3;
 
 void setup()
 {
@@ -76,7 +76,7 @@ void loop()
     Serial.println("Game Over");
     mistakes = 5;
   }
-  
+
   // end of the game
   else
   {}

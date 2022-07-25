@@ -90,7 +90,7 @@ void loop() {
 }
 
 unsigned long getTime() {
-  // get the current time from the WiFi module  
+  // get the current time from the WiFi module
   return WiFi.getTime();
 }
 

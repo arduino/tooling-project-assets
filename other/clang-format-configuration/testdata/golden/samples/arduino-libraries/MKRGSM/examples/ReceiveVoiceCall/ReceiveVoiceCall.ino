@@ -1,22 +1,22 @@
 /*
- Receive Voice Call
+  Receive Voice Call
 
- This sketch, for the MKR GSM 1400 board, receives voice calls,
- displays the calling number, waits a few seconds then hangs up.
+  This sketch, for the MKR GSM 1400 board, receives voice calls,
+  displays the calling number, waits a few seconds then hangs up.
 
- Circuit:
- * MKR GSM 1400 board
- * Antenna
- * SIM card that can accept voice calls
+  Circuit:
+   MKR GSM 1400 board
+   Antenna
+   SIM card that can accept voice calls
 
- created Mar 2012
- by Javier Zorzano
+  created Mar 2012
+  by Javier Zorzano
 */
 
 // Include the GSM library
 #include <MKRGSM.h>
 
-#include "arduino_secrets.h" 
+#include "arduino_secrets.h"
 // Please enter your sensitive data in the Secret tab or arduino_secrets.h
 // PIN Number
 const char PINNUMBER[] = SECRET_PINNUMBER;

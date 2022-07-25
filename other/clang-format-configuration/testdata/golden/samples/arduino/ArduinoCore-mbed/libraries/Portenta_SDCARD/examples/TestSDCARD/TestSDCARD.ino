@@ -28,10 +28,10 @@ void setup() {
     err = fs.reformat(&block_device);
   }
   if (err) {
-     Serial.println("Error formatting SDCARD ");
-     while(1);
+    Serial.println("Error formatting SDCARD ");
+    while (1);
   }
-  
+
   DIR *dir;
   struct dirent *ent;
   int dirIndex = 0;
@@ -47,9 +47,9 @@ void setup() {
   } else {
     // Could not open directory
     Serial.println("Error opening SDCARD\n");
-    while(1);
+    while (1);
   }
-  if(dirIndex == 0) {
+  if (dirIndex == 0) {
     Serial.println("Empty SDCARD");
   }
 }

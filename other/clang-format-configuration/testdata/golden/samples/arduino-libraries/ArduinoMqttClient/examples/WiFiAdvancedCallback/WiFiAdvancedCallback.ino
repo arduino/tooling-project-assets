@@ -6,7 +6,7 @@
   When a message is received it prints the message to the Serial Monitor,
   it uses the callback functionality of the library.
 
-  It also demonstrates how to set the will message, get/set QoS, 
+  It also demonstrates how to set the will message, get/set QoS,
   duplicate and retain values of messages.
 
   The circuit:
@@ -17,13 +17,13 @@
 
 #include <ArduinoMqttClient.h>
 #if defined(ARDUINO_SAMD_MKRWIFI1010) || defined(ARDUINO_SAMD_NANO_33_IOT) || defined(ARDUINO_AVR_UNO_WIFI_REV2)
-  #include <WiFiNINA.h>
+#include <WiFiNINA.h>
 #elif defined(ARDUINO_SAMD_MKR1000)
-  #include <WiFi101.h>
+#include <WiFi101.h>
 #elif defined(ARDUINO_ARCH_ESP8266)
-  #include <ESP8266WiFi.h>
+#include <ESP8266WiFi.h>
 #elif defined(ARDUINO_ARCH_ESP32)
-  #include <WiFi.h>
+#include <WiFi.h>
 #endif
 
 #include "arduino_secrets.h"
@@ -34,7 +34,7 @@ char pass[] = SECRET_PASS;    // your network password (use for WPA, or use as k
 // To connect with SSL/TLS:
 // 1) Change WiFiClient to WiFiSSLClient.
 // 2) Change port value from 1883 to 8883.
-// 3) Change broker value to a server with a known SSL/TLS root certificate 
+// 3) Change broker value to a server with a known SSL/TLS root certificate
 //    flashed in the WiFi module.
 
 WiFiClient wifiClient;

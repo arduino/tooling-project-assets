@@ -19,21 +19,21 @@ bool value_to_send = true;
 
 void setup() {
 
-  if (DEBUG){
+  if (DEBUG) {
     Serial.begin(9600);
     while (!Serial) {};
   }
 
   // Initialize the Sigfox module
   if (!SigFox.begin()) {
-    if (DEBUG){
+    if (DEBUG) {
       Serial.println("Sigfox module unavailable !");
     }
     return;
   }
 
   // If we want to to debug the application, print the device ID to easily find it in the backend
-  if (DEBUG){
+  if (DEBUG) {
     SigFox.debug();
     Serial.println("ID  = " + SigFox.ID());
   }
@@ -46,10 +46,10 @@ void setup() {
   SigFox.write(value_to_send);
   int ret = SigFox.endPacket();
 
-  if (DEBUG){
+  if (DEBUG) {
     Serial.print("Status : ");
     Serial.println(ret);
   }
 }
 
-void loop(){}
+void loop() {}

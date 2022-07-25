@@ -9,7 +9,7 @@
 
   created by Arturo Guadalupi <a.guadalupi@arduino.cc>
   15 Jun 2015
-  modified 
+  modified
   18 Feb 2016
   modified by Andrea Richetta <a.richetta@arduino.cc>
   24 Aug 2016

@@ -1,26 +1,26 @@
 /*
- Repeating Web client
+  Repeating Web client
 
- This sketch connects to a web server and makes a request
- using a WIZnet Ethernet shield. You can use the Arduino Ethernet Shield, or
- the Adafruit Ethernet shield, either one will work, as long as it's got
- a WIZnet Ethernet module on board.
+  This sketch connects to a web server and makes a request
+  using a WIZnet Ethernet shield. You can use the Arduino Ethernet Shield, or
+  the Adafruit Ethernet shield, either one will work, as long as it's got
+  a WIZnet Ethernet module on board.
 
- This example uses DNS, by assigning the Ethernet client with a MAC address,
- IP address, and DNS address.
+  This example uses DNS, by assigning the Ethernet client with a MAC address,
+  IP address, and DNS address.
 
- Circuit:
- * Ethernet shield attached to pins 10, 11, 12, 13
+  Circuit:
+   Ethernet shield attached to pins 10, 11, 12, 13
 
- created 19 Apr 2012
- by Tom Igoe
- modified 21 Jan 2014
- by Federico Vanzati
+  created 19 Apr 2012
+  by Tom Igoe
+  modified 21 Jan 2014
+  by Federico Vanzati
 
- https://www.arduino.cc/en/Tutorial/WebClientRepeating
- This code is in the public domain.
+  https://www.arduino.cc/en/Tutorial/WebClientRepeating
+  This code is in the public domain.
 
- */
+*/
 
 #include <SPI.h>
 #include <Ethernet.h>
@@ -41,7 +41,7 @@ char server[] = "www.arduino.cc";  // also change the Host line in httpRequest()
 //IPAddress server(64,131,82,241);
 
 unsigned long lastConnectionTime = 0;           // last time you connected to the server, in milliseconds
-const unsigned long postingInterval = 10*1000;  // delay between updates, in milliseconds
+const unsigned long postingInterval = 10 * 1000; // delay between updates, in milliseconds
 
 void setup() {
   // You can use Ethernet.init(pin) to configure the CS pin

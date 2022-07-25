@@ -1,23 +1,23 @@
 /*
- Chat Server
+  Chat Server
 
- A simple server that distributes any incoming messages to all
- connected clients. To use, telnet to your device's IP address and type.
- You can see the client's input in the Serial Monitor as well.
+  A simple server that distributes any incoming messages to all
+  connected clients. To use, telnet to your device's IP address and type.
+  You can see the client's input in the Serial Monitor as well.
 
- This example is written for a network using WPA encryption. For
- WEP or WPA, change the WiFi.begin() call accordingly.
+  This example is written for a network using WPA encryption. For
+  WEP or WPA, change the WiFi.begin() call accordingly.
 
 
- Circuit:
- * WiFi shield attached
+  Circuit:
+   WiFi shield attached
 
- created 18 Dec 2009
- by David A. Mellis
- modified 31 May 2012
- by Tom Igoe
+  created 18 Dec 2009
+  by David A. Mellis
+  modified 31 May 2012
+  by Tom Igoe
 
- */
+*/
 
 #include <SPI.h>
 #include <WiFi.h>

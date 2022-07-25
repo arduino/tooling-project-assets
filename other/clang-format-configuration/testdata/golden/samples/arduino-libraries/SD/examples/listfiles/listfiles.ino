@@ -22,7 +22,7 @@
   by Scott Fitzgerald
   modified 24 July 2020
   by Tom Igoe
-  
+
   This example code is in the public domain.
 
 */
@@ -32,7 +32,7 @@ const int chipSelect = 10;
 File root;
 
 void setup() {
- // Open serial communications and wait for port to open:
+  // Open serial communications and wait for port to open:
   Serial.begin(9600);
   // wait for Serial Monitor to connect. Needed for native USB port boards only:
   while (!Serial);

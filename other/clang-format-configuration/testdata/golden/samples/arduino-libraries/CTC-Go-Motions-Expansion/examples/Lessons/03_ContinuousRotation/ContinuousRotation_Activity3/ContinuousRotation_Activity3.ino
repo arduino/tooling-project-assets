@@ -1,5 +1,5 @@
 /*
-  CTC GO! MOTION 
+  CTC GO! MOTION
   LESSON 03 - Continuous Rotation
 
   This sketch is written to accompany activity 3 of Lesson 3
@@ -55,6 +55,6 @@ void loop()
     servo_Cont.write(0);
     Serial.print("Full speed range");
   }
-  
+
   delay(250);
 }

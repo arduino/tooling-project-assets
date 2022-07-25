@@ -1,19 +1,19 @@
 /*
- Multiple Blinks
+  Multiple Blinks
 
- Demonstrates the use of the Scheduler library for the Arduino Due
+  Demonstrates the use of the Scheduler library for the Arduino Due
 
- Hardware required :
- * LEDs connected to pins 11, 12, and 13
+  Hardware required :
+   LEDs connected to pins 11, 12, and 13
 
- created 8 Oct 2012
- by Cristian Maglie
- Modified by
- Scott Fitzgerald 19 Oct 2012
+  created 8 Oct 2012
+  by Cristian Maglie
+  Modified by
+  Scott Fitzgerald 19 Oct 2012
 
- This example code is in the public domain
+  This example code is in the public domain
 
- http://www.arduino.cc/en/Tutorial/MultipleBlinks
+  http://www.arduino.cc/en/Tutorial/MultipleBlinks
 */
 
 // Include Scheduler since we want to manage multiple tasks.

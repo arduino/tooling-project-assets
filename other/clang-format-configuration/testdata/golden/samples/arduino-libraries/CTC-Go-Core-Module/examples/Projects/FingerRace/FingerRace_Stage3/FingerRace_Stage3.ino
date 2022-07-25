@@ -1,5 +1,5 @@
 /*
-  CTC GO! - CORE MODULE 
+  CTC GO! - CORE MODULE
   PROJECT 1 - Finger Race
 
   This sketch is written to accompany Stage 3 in Finger Race of the CTC GO! Core Module

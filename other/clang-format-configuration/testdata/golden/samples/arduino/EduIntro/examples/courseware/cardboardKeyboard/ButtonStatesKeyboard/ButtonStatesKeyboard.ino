@@ -22,7 +22,7 @@ Button btn[] = {
   Button(btnPins[1]),
   Button(btnPins[2]),
   Button(btnPins[3]),
-  };
+};
 
 void setup()
 {

@@ -1,5 +1,5 @@
 /*
-  CTC GO! CORE MODULE 
+  CTC GO! CORE MODULE
   PROJECT 1 - WHACK A MOLE
 
   This sketch is written to accompany Stage 5 in Whack-a-mole of the CTC GO! core module

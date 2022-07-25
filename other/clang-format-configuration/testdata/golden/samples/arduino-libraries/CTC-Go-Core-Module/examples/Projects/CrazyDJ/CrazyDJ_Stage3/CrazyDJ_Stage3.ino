@@ -1,5 +1,5 @@
 /*
-  CTC GO! CORE MODULE 
+  CTC GO! CORE MODULE
   PROJECT 2 - CRAZY DJ
 
   This sketch is written to accompany Stage 3 in CRAZY DJ  of the CTC GO! core module
@@ -49,5 +49,5 @@ void loop()
   Serial.print("   Time OFF: ");
   Serial.println(_____);
 
-  
+
 }

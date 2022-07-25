@@ -101,6 +101,6 @@ void loop() {
   }
 
   if (command.indexOf("restart") >= 0) {
-      NVIC_SystemReset();
+    NVIC_SystemReset();
   }
 }

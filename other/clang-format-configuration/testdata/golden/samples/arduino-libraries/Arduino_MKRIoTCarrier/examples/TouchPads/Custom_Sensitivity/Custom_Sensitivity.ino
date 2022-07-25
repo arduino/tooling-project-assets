@@ -25,24 +25,24 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   carrier.Buttons.update();
-  
+
   // Verify your thresholds
   if (carrier.Buttons.getTouch(TOUCH0)) {
     Serial.println("touching 0");
   }
-  
+
   if (carrier.Buttons.getTouch(TOUCH1)) {
     Serial.println("touching 1");
   }
-  
+
   if (carrier.Buttons.getTouch(TOUCH2)) {
     Serial.println("touching 2");
   }
-  
+
   if (carrier.Buttons.getTouch(TOUCH3)) {
     Serial.println("touching 3");
   }
-  
+
   if (carrier.Buttons.getTouch(TOUCH4)) {
     Serial.println("touching 4");
   }

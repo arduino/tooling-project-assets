@@ -1,5 +1,5 @@
 /*
-  CTC GO! MOTION 
+  CTC GO! MOTION
   PROJECT - ROCK PAPER SCISSOR
 
   This sketch is written to accompany Stage 2 of the ROCK PAPER SCISSOR project
@@ -17,7 +17,7 @@ int check = 0;
 
 void setup() {
   pinMode(piezo, OUTPUT);
-  
+
   ______(redLED, ______);
   ______(yellowLED, ______);
   ______(greenLED, ______);
@@ -28,14 +28,14 @@ void setup() {
 void loop() {
   USvalue = analogRead(USsensor);
   distance = USvalue * 3;
-  
+
   if (distance < 400) {
     /*tone(piezo, 500);
-    delay(100);
-    noTone(piezo);*/
-    
+      delay(100);
+      noTone(piezo);*/
+
     ______++;
-    delay(400); 
+    delay(400);
     Serial.println(______);
   }
 
@@ -60,7 +60,6 @@ void loop() {
     tone(piezo, 500);
     delay(100);
     noTone(piezo);
-    ______ = 0; 
+    ______ = 0;
   }
 }
-  

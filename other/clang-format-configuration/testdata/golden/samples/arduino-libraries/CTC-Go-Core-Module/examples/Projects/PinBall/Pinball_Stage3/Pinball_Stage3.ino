@@ -1,5 +1,5 @@
 /*
-  CTC GO! CORE MODULE 
+  CTC GO! CORE MODULE
   PROJECT 1 - Pinball
 
   This sketch is written to accompany Stage 3 in Pinball of the CTC GO! core module
@@ -13,7 +13,7 @@ int button_1 = 7;
 int button_2 = 6;
 
 int losing = 0;
-int winning  = 0; 
+int winning  = 0;
 
 void setup()
 {
@@ -27,36 +27,36 @@ void setup()
 
 void loop() {
 
-if ( digitalRead(button_1) == HIGH ) 
+  if ( digitalRead(button_1) == HIGH )
   {
-   digitalWrite(greenLED, HIGH);
-   winning = _____;
-   delay(_____);
+    digitalWrite(greenLED, HIGH);
+    winning = _____;
+    delay(_____);
   }
 
-  if ( digitalRead(button_2) == HIGH ) 
+  if ( digitalRead(button_2) == HIGH )
   {
-   digitalWrite(blueLED_1, HIGH);
-   losing = _____;
-   delay(_____);
+    digitalWrite(blueLED_1, HIGH);
+    losing = _____;
+    delay(_____);
   }
 
-   digitalWrite(blueLED_1, LOW);
-   digitalWrite(greenLED, LOW);
-
-  if(losing == _____ && winning == _____)
-  {
-  digitalWrite(blueLED_1, HIGH);
-  digitalWrite(blueLED_2,HIGH);
-  digitalWrite(redLED,HIGH);
-  digitalWrite(greenLED,HIGH);
-  delay(1000);
   digitalWrite(blueLED_1, LOW);
-  digitalWrite(blueLED_2,LOW);
-  digitalWrite(redLED,LOW);
-  digitalWrite(greenLED,LOW);
-  delay(1000);
+  digitalWrite(greenLED, LOW);
+
+  if (losing == _____ && winning == _____)
+  {
+    digitalWrite(blueLED_1, HIGH);
+    digitalWrite(blueLED_2, HIGH);
+    digitalWrite(redLED, HIGH);
+    digitalWrite(greenLED, HIGH);
+    delay(1000);
+    digitalWrite(blueLED_1, LOW);
+    digitalWrite(blueLED_2, LOW);
+    digitalWrite(redLED, LOW);
+    digitalWrite(greenLED, LOW);
+    delay(1000);
   }
 
-  
+
 }

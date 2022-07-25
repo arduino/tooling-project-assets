@@ -2,7 +2,7 @@
   OV767X - Camera Test Pattern
 
   This sketch enables the test pattern mode, then reads a frame from
-  the OmniVision OV7670 camera and prints the data to the 
+  the OmniVision OV7670 camera and prints the data to the
   Serial Monitor as a hex string.
 
   The website https://rawpixels.net - can be used the visualize the data:

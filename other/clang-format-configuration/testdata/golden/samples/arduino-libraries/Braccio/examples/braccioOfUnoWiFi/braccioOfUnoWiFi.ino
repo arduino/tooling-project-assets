@@ -1,37 +1,37 @@
 /*
 
- braccioOfUnoWifi.ino
- 
- Based on Arduino Uno WiFi Rest Server example
+  braccioOfUnoWifi.ino
 
- This example for the Arduino Uno WiFi shows how to 
- control a TinkerKit Braccio through REST calls. 
- You can create your mobile app or your 
- browser app to control the Braccio in wireless mode
- 
- Note that with the Braccio shield version less than V4
- you need to disconnect the pin A4 from the shield to the board
+  Based on Arduino Uno WiFi Rest Server example
 
- Possible commands created in this sketch:
+  This example for the Arduino Uno WiFi shows how to
+  control a TinkerKit Braccio through REST calls.
+  You can create your mobile app or your
+  browser app to control the Braccio in wireless mode
 
- * "/arduino/custom/base/value:80"	-> Moves the base of the Braccio at 80 degrees
- * "/arduino/custom/shoulder/value:150"	-> Moves the shoulder of the Braccio at 150 degrees
- * "/arduino/custom/elbow/value:45"	-> Moves the elbow of the Braccio at 45 degrees
- * "/arduino/custom/wristv/value:10"	-> Moves the wristv of the Braccio at 10 degrees
- * "/arduino/custom/wristr/value:120"	-> Moves the wristr of the Braccio at 120 degrees
- * "/arduino/custom/gripper/value:73"	-> Close the gripper
- * "/arduino/custom/ledon"		-> Turn ON the LED 13
- * "/arduino/custom/ledoff"		-> Turn OFF the LED 13
- * "/arduino/custom/servo:3/value:73"	-> Moves the servo to the pin 3 at 73 degrees
- * "/arduino/custom/sayciao"		-> Run the function sayciao(). The Braccio says "Ciao" with the gripper
- * "/arduino/custom/takesponge"		-> Run the function takesponge(). The Braccio takes the big sponge you can find in its box
- * "/arduino/custom/showsponge"		-> Run the function showsponge(). The Braccio shows the sponge to the user
- * "/arduino/custom/throwsponge"	-> Run the function throwsponge(). The Braccio throws away the sponge
+  Note that with the Braccio shield version less than V4
+  you need to disconnect the pin A4 from the shield to the board
 
- This example code is part of the public domain
+  Possible commands created in this sketch:
 
- https://web.archive.org/web/20160502122840/http://labs.arduino.org/RestServer+and+RestClient
- https://store.arduino.cc/tinkerkit-braccio-robot
+   "/arduino/custom/base/value:80"	-> Moves the base of the Braccio at 80 degrees
+   "/arduino/custom/shoulder/value:150"	-> Moves the shoulder of the Braccio at 150 degrees
+   "/arduino/custom/elbow/value:45"	-> Moves the elbow of the Braccio at 45 degrees
+   "/arduino/custom/wristv/value:10"	-> Moves the wristv of the Braccio at 10 degrees
+   "/arduino/custom/wristr/value:120"	-> Moves the wristr of the Braccio at 120 degrees
+   "/arduino/custom/gripper/value:73"	-> Close the gripper
+   "/arduino/custom/ledon"		-> Turn ON the LED 13
+   "/arduino/custom/ledoff"		-> Turn OFF the LED 13
+   "/arduino/custom/servo:3/value:73"	-> Moves the servo to the pin 3 at 73 degrees
+   "/arduino/custom/sayciao"		-> Run the function sayciao(). The Braccio says "Ciao" with the gripper
+   "/arduino/custom/takesponge"		-> Run the function takesponge(). The Braccio takes the big sponge you can find in its box
+   "/arduino/custom/showsponge"		-> Run the function showsponge(). The Braccio shows the sponge to the user
+   "/arduino/custom/throwsponge"	-> Run the function throwsponge(). The Braccio throws away the sponge
+
+  This example code is part of the public domain
+
+  https://web.archive.org/web/20160502122840/http://labs.arduino.org/RestServer+and+RestClient
+  https://store.arduino.cc/tinkerkit-braccio-robot
 
 */
 
@@ -75,11 +75,11 @@ void loop() {
 }
 
 /**
-Parse Command from REST
-It parse a command like: /arduino/custom/base/value:45
-@param command: The message to parse
-@param type: the key for parsing
-@return the value for the key 
+  Parse Command from REST
+  It parse a command like: /arduino/custom/base/value:45
+  @param command: The message to parse
+  @param type: the key for parsing
+  @return the value for the key
 */
 int parseCommand(String command, String type) {
   int typeIndex = command.indexOf(type);
@@ -93,24 +93,24 @@ int parseCommand(String command, String type) {
 }
 
 /**
-It process data from the HTTP protocol
+  It process data from the HTTP protocol
 */
 void process(WifiData client) {
   // read the command
   String command = client.readString();
   command.toUpperCase();
-  
-  if(command.indexOf("CUSTOM")==-1){
+
+  if (command.indexOf("CUSTOM") == -1) {
     client.println("Invalid command: " + command + "");
     return;
   }
-  
+
   //The message from sender
   String message = command.substring(16);
-  //client.println(message); //Debug 
-  
+  //client.println(message); //Debug
+
   /*
-  For each message perform the proper command
+    For each message perform the proper command
   */
   if (message == "LEDON") {
     //Turn ON Led 13
@@ -132,8 +132,8 @@ void process(WifiData client) {
     int value = parseCommand(message, "VALUE");
 
     client.println("Message:" + String(message) + "SERVO: " + String(servo) + " " + String(value));
-    
-    moveBraccio=true;
+
+    moveBraccio = true;
   }
   //http://192.168.240.1/arduino/custom/base:45 or http://192.168.240.1/arduino/custom/base/value:45
   //Command for the base of the Braccio (M1)
@@ -201,12 +201,12 @@ void process(WifiData client) {
     Braccio.ServoMovement(20, m1, m2, m3, m4, m5, m6);
     moveBraccio = false;
   }
-  
+
   client.flush();
 }
 
 /**
-The Braccio Say 'Ciao' with the GRIPPER
+  The Braccio Say 'Ciao' with the GRIPPER
 */
 void sayCiao() {
   Braccio.ServoMovement(20,           90,  0, 180, 160,  0,  15);
@@ -221,7 +221,7 @@ void sayCiao() {
 }
 
 /**
-Braccio take the Sponge
+  Braccio take the Sponge
 */
 void takesponge() {
   //starting position
@@ -240,7 +240,7 @@ void takesponge() {
 
 
 /**
-Braccio show the sponge to the user
+  Braccio show the sponge to the user
 */
 void showsponge() {
   for (int i = 0; i < 2; i++) {
@@ -253,7 +253,7 @@ void showsponge() {
 }
 
 /**
-Braccio throw away the sponge
+  Braccio throw away the sponge
 */
 void throwsponge() {
   //(step delay  M1 , M2 , M3 , M4 , M5 , M6 );

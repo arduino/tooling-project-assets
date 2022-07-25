@@ -46,10 +46,10 @@ void loop() {
   // poll for Modbus RTU requests
   int packetReceived = ModbusRTUServer.poll();
 
-  if(packetReceived) {
+  if (packetReceived) {
     // read the current value of the coil
     int coilValue = ModbusRTUServer.coilRead(0x00);
-  
+
     if (coilValue) {
       // coil value set, turn LED on
       digitalWrite(ledPin, HIGH);

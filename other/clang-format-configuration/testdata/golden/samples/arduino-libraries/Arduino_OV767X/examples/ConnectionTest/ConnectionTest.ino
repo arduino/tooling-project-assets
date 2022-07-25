@@ -2,7 +2,7 @@
   OV767X - ConnectionTest.ino
 
   Test that the connection between your Arduino and Camera is able to transfer data correctly at the given speed
-  
+
     Circuit:
     - Arduino Nano 33 BLE board
     - OV7670 camera module:
@@ -22,9 +22,9 @@
       - D2 connected to 0 / RX
       - D1 connected to 1 / TX
       - D0 connected to 10
-      
+
   This example code is in the public domain.
-  
+
 */
 
 #include <Arduino_OV767X.h>
@@ -63,9 +63,11 @@ void setup() {
 void loop() {
 
   // sliding delay window to try different start times wrt camera VSYNC
-  if (delayTime>0) {delayTime=delayTime-10;}
+  if (delayTime > 0) {
+    delayTime = delayTime - 10;
+  }
   delay(delayTime);
-  
+
   // benchmarking
   timer = millis();
   Camera.readFrame(data);
@@ -91,5 +93,5 @@ void loop() {
   Serial.print("ms worst:");
   Serial.print(worstTime);
   Serial.println("ms");
-  
+
 }

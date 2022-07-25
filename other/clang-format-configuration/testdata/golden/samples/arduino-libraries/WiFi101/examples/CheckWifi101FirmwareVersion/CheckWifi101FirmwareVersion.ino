@@ -1,13 +1,13 @@
 /*
- * This example checks if the firmware loaded on the WiFi101
- * shield is updated.
- *
- * Circuit:
- * - WiFi 101 Shield attached
- *
- * Created 29 July 2015 by Cristian Maglie
- * This code is in the public domain.
- */
+   This example checks if the firmware loaded on the WiFi101
+   shield is updated.
+
+   Circuit:
+   - WiFi 101 Shield attached
+
+   Created 29 July 2015 by Cristian Maglie
+   This code is in the public domain.
+*/
 #include <SPI.h>
 #include <WiFi101.h>
 #include <driver/source/nmasic.h>

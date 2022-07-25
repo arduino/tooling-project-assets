@@ -63,158 +63,158 @@ Timer t;
 
 void setup()
 {
-    int err;
+  int err;
 
-    Serial.begin(115200);
-    while (!Serial)
-        ;
+  Serial.begin(115200);
+  while (!Serial)
+    ;
 
-    delay(1000);
+  delay(1000);
 
-    Serial.println("Starting Partitions and Storage Example.");
+  Serial.println("Starting Partitions and Storage Example.");
 
-    EdgeControl.begin();
+  EdgeControl.begin();
 
-    Power.on(PWR_3V3);
+  Power.on(PWR_3V3);
 
-    // Define partition for User LittleFS filesystem
-    err = MBRBlockDevice::partition(&root, USER_DATA_PARTITION, 0x83, USER_DATA_PARTITION_START, USER_DATA_PARTITION_STOP);
-    Serial.println("Partition " + String(USER_DATA_PARTITION) + (err == 0 ? " OK" : " KO") + " (" + String(err) + ")");
+  // Define partition for User LittleFS filesystem
+  err = MBRBlockDevice::partition(&root, USER_DATA_PARTITION, 0x83, USER_DATA_PARTITION_START, USER_DATA_PARTITION_STOP);
+  Serial.println("Partition " + String(USER_DATA_PARTITION) + (err == 0 ? " OK" : " KO") + " (" + String(err) + ")");
 
-    // Define partition for User KeyValue store
-    err = MBRBlockDevice::partition(&root, TDBS_DATA_PARTITION, 0x83, TDBS_DATA_PARTITION_START, TDBS_DATA_PARTITION_STOP);
-    Serial.println("Partition " + String(TDBS_DATA_PARTITION) + (err == 0 ? " OK" : " KO") + " (" + String(err) + ")");
+  // Define partition for User KeyValue store
+  err = MBRBlockDevice::partition(&root, TDBS_DATA_PARTITION, 0x83, TDBS_DATA_PARTITION_START, TDBS_DATA_PARTITION_STOP);
+  Serial.println("Partition " + String(TDBS_DATA_PARTITION) + (err == 0 ? " OK" : " KO") + " (" + String(err) + ")");
 
-    Serial.print("Mount LittleFS filesystem on Partition " + String(USER_DATA_PARTITION) + ": ");
-    err = user_data_fs.mount(&user_data);
-    if (err) {
-        Serial.print("No LittleFS filesystem found, formatting... ");
-        err = user_data_fs.reformat(&user_data);
-    }
-    Serial.println("done");
+  Serial.print("Mount LittleFS filesystem on Partition " + String(USER_DATA_PARTITION) + ": ");
+  err = user_data_fs.mount(&user_data);
+  if (err) {
+    Serial.print("No LittleFS filesystem found, formatting... ");
+    err = user_data_fs.reformat(&user_data);
+  }
+  Serial.println("done");
 
-    Serial.println("Init TinyDB Key Value store");
-    err = tdb_store.init();
-    Serial.println("TDB Init " + String(err == 0 ? "OK" : "KO") + " (" + String(err) + ")");
+  Serial.println("Init TinyDB Key Value store");
+  err = tdb_store.init();
+  Serial.println("TDB Init " + String(err == 0 ? "OK" : "KO") + " (" + String(err) + ")");
 
-    // Store data every 1 second
-    writer.attach([] { doWrite = true; }, 1s);
+  // Store data every 1 second
+  writer.attach([] { doWrite = true; }, 1s);
 
-    // Display data every 5 seconds
-    lister.attach([] { doList = true; }, 5s);
+  // Display data every 5 seconds
+  lister.attach([] { doList = true; }, 5s);
 
-    // Init the RNG
-    srand(t.elapsed_time().count());
+  // Init the RNG
+  srand(t.elapsed_time().count());
 }
 
 void loop()
 {
-    if (doList) {
-        doList = false;
-        listDirs();
-    }
+  if (doList) {
+    doList = false;
+    listDirs();
+  }
 
-    if (doWrite) {
-        doWrite = false;
-        storeData();
-    }
+  if (doWrite) {
+    doWrite = false;
+    storeData();
+  }
 }
 
 void storeData()
 {
-    constexpr char data_key[] { "data_key" };
-    uint8_t data_value { 0 };
-    size_t _actual;
+  constexpr char data_key[] { "data_key" };
+  uint8_t data_value { 0 };
+  size_t _actual;
 
-    int res;
+  int res;
 
-    // Get stored data, if any. Increment and save on success.
-    // Please, refer to https://os.mbed.com/docs/mbed-os/v6.4/apis/kvstore.html
-    // for more API use examples.
-    res = tdb_store.get(data_key, &data_value, sizeof(data_value), &_actual);
-    if (res == MBED_SUCCESS) {
-        Serial.print(data_key);
-        Serial.print(": ");
-        Serial.println(data_value);
-        data_value++;
-    }
-    tdb_store.set(data_key, &data_value, sizeof(data_value), 0);
+  // Get stored data, if any. Increment and save on success.
+  // Please, refer to https://os.mbed.com/docs/mbed-os/v6.4/apis/kvstore.html
+  // for more API use examples.
+  res = tdb_store.get(data_key, &data_value, sizeof(data_value), &_actual);
+  if (res == MBED_SUCCESS) {
+    Serial.print(data_key);
+    Serial.print(": ");
+    Serial.println(data_value);
+    data_value++;
+  }
+  tdb_store.set(data_key, &data_value, sizeof(data_value), 0);
 
-    // Store a random key with random data
-    String random_key = "key_";
-    random_key += String(rand(), HEX);
-    auto random_data = rand();
-    res = tdb_store.set(random_key.c_str(), &random_data, sizeof(random_data), 0);
-    if (res == MBED_SUCCESS)
-        Serial.println(random_key + ": " + String(random_data));
+  // Store a random key with random data
+  String random_key = "key_";
+  random_key += String(rand(), HEX);
+  auto random_data = rand();
+  res = tdb_store.set(random_key.c_str(), &random_data, sizeof(random_data), 0);
+  if (res == MBED_SUCCESS)
+    Serial.println(random_key + ": " + String(random_data));
 
-    // Append data to file on LittleFS filesystem
-    // Any MbedOS filesystem exposes a POSIX-compliant API:
-    // use the standard <cstdio> functions here.
-    FILE* f = fopen("/user/numbers.csv", "a");
-    if (f != nullptr) {
-        String line;
-        line += static_cast<uint32_t>(time(nullptr));
-        line += ',';
-        line += data_value;
-        line += '\n';
-        fputs(line.c_str(), f);
-        fclose(f);
-    }
+  // Append data to file on LittleFS filesystem
+  // Any MbedOS filesystem exposes a POSIX-compliant API:
+  // use the standard <cstdio> functions here.
+  FILE* f = fopen("/user/numbers.csv", "a");
+  if (f != nullptr) {
+    String line;
+    line += static_cast<uint32_t>(time(nullptr));
+    line += ',';
+    line += data_value;
+    line += '\n';
+    fputs(line.c_str(), f);
+    fclose(f);
+  }
 }
 
 void listDirs()
 {
-    DIR* dir;
-    struct dirent* ent;
+  DIR* dir;
+  struct dirent* ent;
 
-    Serial.println("Listing /user on LittleFS Filesystem");
-    if ((dir = opendir("/user")) != nullptr) {
-        while ((ent = readdir(dir)) != nullptr) {
-            String fullname = "/user/" + String(ent->d_name);
-            Serial.println(fullname);
-        }
-        closedir(dir);
-
-        FILE* f = fopen("/user/numbers.csv", "r+");
-        if (f != nullptr) {
-            char buf[64] { 0 };
-            while (std::fgets(buf, sizeof buf, f) != nullptr)
-                Serial.print(buf);
-            fclose(f);
-        }
+  Serial.println("Listing /user on LittleFS Filesystem");
+  if ((dir = opendir("/user")) != nullptr) {
+    while ((ent = readdir(dir)) != nullptr) {
+      String fullname = "/user/" + String(ent->d_name);
+      Serial.println(fullname);
     }
+    closedir(dir);
 
-
-    // Use a TDBStore iterator to retrieve all the keys 
-    TDBStore::iterator_t it;
-    TDBStore::info_t info;
-    size_t actual_size;
-
-    // Iterate over all the keys starting with name "key_"
-    tdb_store.iterator_open(&it, "key_");
-    char key[128] { 0 };
-    while (tdb_store.iterator_next(it, key, sizeof(key)) != MBED_ERROR_ITEM_NOT_FOUND) {
-        // Get info about the key and its contents
-        tdb_store.get_info(key, &info);
-
-        char buf[128];
-        sprintf(buf, "Key: %-12s - Size: %d - ", key, info.size);
+    FILE* f = fopen("/user/numbers.csv", "r+");
+    if (f != nullptr) {
+      char buf[64] { 0 };
+      while (std::fgets(buf, sizeof buf, f) != nullptr)
         Serial.print(buf);
-        
-        // Get the value using parameters from the info retrieved
-        int out;
-        tdb_store.get(key, &out, info.size, &actual_size);
-
-        // Do something useful with the key-value pair...
-        sprintf(buf, "Value (%d): %10d - ", actual_size, out);
-        Serial.print(buf);
-
-        
-        // .. then (optionally) remove the key
-        tdb_store.remove(key);
-        Serial.println("Removed.");
+      fclose(f);
     }
-    // Close the iterator at the end of the cycle
-    tdb_store.iterator_close(it);
+  }
+
+
+  // Use a TDBStore iterator to retrieve all the keys
+  TDBStore::iterator_t it;
+  TDBStore::info_t info;
+  size_t actual_size;
+
+  // Iterate over all the keys starting with name "key_"
+  tdb_store.iterator_open(&it, "key_");
+  char key[128] { 0 };
+  while (tdb_store.iterator_next(it, key, sizeof(key)) != MBED_ERROR_ITEM_NOT_FOUND) {
+    // Get info about the key and its contents
+    tdb_store.get_info(key, &info);
+
+    char buf[128];
+    sprintf(buf, "Key: %-12s - Size: %d - ", key, info.size);
+    Serial.print(buf);
+
+    // Get the value using parameters from the info retrieved
+    int out;
+    tdb_store.get(key, &out, info.size, &actual_size);
+
+    // Do something useful with the key-value pair...
+    sprintf(buf, "Value (%d): %10d - ", actual_size, out);
+    Serial.print(buf);
+
+
+    // .. then (optionally) remove the key
+    tdb_store.remove(key);
+    Serial.println("Removed.");
+  }
+  // Close the iterator at the end of the cycle
+  tdb_store.iterator_close(it);
 }

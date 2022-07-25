@@ -1,5 +1,5 @@
 /*
-  CTC GO! CORE MODULE 
+  CTC GO! CORE MODULE
   PROJECT 1 - WHACK A MOLE
 
   This sketch is written to accompany Stage 4 in Whack-a-mole of the CTC GO! core module
@@ -14,8 +14,8 @@ int button_1 = 5;
 int button_2 = 6;
 int button_3 = 7;
 
-int startLevel = 500;    
-int gameStarted = 0;     
+int startLevel = 500;
+int gameStarted = 0;
 
 void setup()
 {
@@ -45,7 +45,7 @@ void loop()
     digitalWrite(yellowLED_2, LOW);
     digitalWrite(yellowLED_3, LOW);
     delay(startLevel);
-    
+
     if (digitalRead(button_1) == _____ || digitalRead(button_2) == HIGH _____ digitalRead(button_3) == _____ )
     {
       digitalWrite(loseLED, _____);

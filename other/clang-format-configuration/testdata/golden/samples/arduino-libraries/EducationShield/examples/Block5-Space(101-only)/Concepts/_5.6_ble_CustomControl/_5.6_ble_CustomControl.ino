@@ -1,16 +1,16 @@
 /*
-* _5.5_ble_valueDisplay
-* 
-* This example shows how to receive data in the Arduino 101. When you tap the buttons in the CTC app Custom
-* Control interface, the values associated with the buttons will be received by 101 in the form of a
-* one char sized array. The value is displayed to Serial Monitor afterwards.
-*
-* (c) 2013-2016 Arduino LLC.
+  _5.5_ble_valueDisplay
+
+  This example shows how to receive data in the Arduino 101. When you tap the buttons in the CTC app Custom
+  Control interface, the values associated with the buttons will be received by 101 in the form of a
+  one char sized array. The value is displayed to Serial Monitor afterwards.
+
+  (c) 2013-2016 Arduino LLC.
 */
 
 #include <EducationShield.h>
 
-BLEuart ble=BLEuart();
+BLEuart ble = BLEuart();
 
 void setup() {
   // put your setup code here, to run once:
@@ -24,17 +24,17 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  if(ble.searchCentral()){
+  if (ble.searchCentral()) {
     Serial.println("Connected to central ");
-    while(ble.connected()){
+    while (ble.connected()) {
 
       //If data is sent through BLE to 101 board
-      if(ble.dataReceived()){
+      if (ble.dataReceived()) {
         //Fetch all data from BLE
         ble.fetchData();
 
         //Read the 1 byte data received
-        unsigned char data=ble.getValueAt(0);
+        unsigned char data = ble.getValueAt(0);
         Serial.println(data);
       }
     }

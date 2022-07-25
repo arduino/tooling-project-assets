@@ -1,18 +1,18 @@
 /*
- * MIDIUSB_clock.ino
- * 
- * Simple example of beat clock based on MIDI pulse messages
- * received from software. 
- * 
- * Tested on Leonardo with Ableton.
- * 
- * In preferences go to MIDI Sync. Select device Output
- * and toggle Sync button, change clock type to Pattern.
- * Usually changing Sync Delay is required.
- * 
- * Created: 19/12/2016
- * Author: Ernest Warzocha
- */
+   MIDIUSB_clock.ino
+
+   Simple example of beat clock based on MIDI pulse messages
+   received from software.
+
+   Tested on Leonardo with Ableton.
+
+   In preferences go to MIDI Sync. Select device Output
+   and toggle Sync button, change clock type to Pattern.
+   Usually changing Sync Delay is required.
+
+   Created: 19/12/2016
+   Author: Ernest Warzocha
+*/
 
 #include "MIDIUSB.h"
 
@@ -35,35 +35,35 @@ void setup() {
 }
 
 void loop() {
-  
+
   midiEventPacket_t rx;
-  
+
   do {
     rx = MidiUSB.read();
 
-    //Count pulses and send note 
-    if(rx.byte1 == 0xF8){
-       ++ppqn;
-       
-       if(ppqn == 24){
-          noteOn(1,48,127);
-          MidiUSB.flush();      
-          ppqn = 0;
-       };
+    //Count pulses and send note
+    if (rx.byte1 == 0xF8) {
+      ++ppqn;
+
+      if (ppqn == 24) {
+        noteOn(1, 48, 127);
+        MidiUSB.flush();
+        ppqn = 0;
+      };
     }
     //Clock start byte
-    else if(rx.byte1 == 0xFA){
-      noteOn(1,48,127);
+    else if (rx.byte1 == 0xFA) {
+      noteOn(1, 48, 127);
       MidiUSB.flush();
       ppqn = 0;
     }
     //Clock stop byte
-    else if(rx.byte1 == 0xFC){
-      noteOff(1,48,0);
+    else if (rx.byte1 == 0xFC) {
+      noteOff(1, 48, 0);
       MidiUSB.flush();
       ppqn = 0;
     };
-    
+
   } while (rx.header != 0);
-  
+
 }

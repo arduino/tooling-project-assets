@@ -1,10 +1,10 @@
 /*
- * MIDIUSB_test.ino
- *
- * Created: 4/6/2015 10:47:08 AM
- * Author: gurbrinder grewal
- * Modified by Arduino LLC (2015)
- */ 
+   MIDIUSB_test.ino
+
+   Created: 4/6/2015 10:47:08 AM
+   Author: gurbrinder grewal
+   Modified by Arduino LLC (2015)
+*/
 
 #include "MIDIUSB.h"
 

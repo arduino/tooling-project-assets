@@ -9,7 +9,7 @@
 
 /*
   How to use this sketch
-  
+
   1) Remove any connection cable, shield or jumper from your Arduino ZERO
   2) Connect pin A1 to the nearest GND pin using the shortest jumper possible
   3) Connect pin A2 to the 3.3V pin using the shortest jumper possible
@@ -54,7 +54,7 @@ void setup()
 
   int offsetCorrectionValue = 0;
   uint16_t gainCorrectionValue = ADC_UNITY_GAIN;
-  
+
   Serial.print("\r\nOffset correction (@gain = ");
   Serial.print(gainCorrectionValue);
   Serial.println(" (unity gain))");
@@ -65,7 +65,7 @@ void setup()
   for (int offset = 0; offset < (int)(ADC_OFFSETCORR_MASK >> 1); ++offset)
   {
     analogReadCorrection(offset, gainCorrectionValue);
-    
+
     Serial.print("   Offset = ");
     Serial.print(offset);
     Serial.print(", ");
@@ -80,7 +80,7 @@ void setup()
   Serial.println("\r\nGain correction");
 
   uint8_t topValueReadsCount = 0U;
-  
+
   uint16_t minGain = 0U,
            maxGain = 0U;
 
@@ -89,7 +89,7 @@ void setup()
   Serial.print(gainCorrectionValue);
   Serial.print(", ");
   uint16_t highLevelRead = read3V3Level();
-  
+
   if (highLevelRead < ADC_TOP_VALUE)
   {
     for (uint16_t gain = ADC_UNITY_GAIN + 1; gain <= ADC_MAX_GAIN; ++gain)
@@ -100,7 +100,7 @@ void setup()
       Serial.print(gain);
       Serial.print(", ");
       highLevelRead = read3V3Level();
-      
+
       if (highLevelRead == ADC_TOP_VALUE)
       {
         if (minGain == 0U)
@@ -111,7 +111,7 @@ void setup()
           maxGain = minGain;
           break;
         }
-        
+
         maxGain = gain;
       }
 
@@ -132,12 +132,12 @@ void setup()
       Serial.print(gain);
       Serial.print(", ");
       highLevelRead = read3V3Level();
-      
+
       if (highLevelRead == ADC_TOP_VALUE)
       {
         if (maxGain == 0U)
           maxGain = gain;
-        
+
         minGain = gain;
       }
 
@@ -184,7 +184,7 @@ uint16_t readGndLevel()
     readAccumulator += analogRead(ADC_GND_PIN);
 
   uint16_t readValue = readAccumulator >> ADC_READS_SHIFT;
-  
+
   Serial.print("ADC(GND) = ");
   Serial.println(readValue);
 
@@ -199,7 +199,7 @@ uint16_t read3V3Level()
     readAccumulator += analogRead(ADC_3V3_PIN);
 
   uint16_t readValue = readAccumulator >> ADC_READS_SHIFT;
-  
+
   if (readValue < (ADC_RANGE >> 1))
     readValue += ADC_RANGE;
 

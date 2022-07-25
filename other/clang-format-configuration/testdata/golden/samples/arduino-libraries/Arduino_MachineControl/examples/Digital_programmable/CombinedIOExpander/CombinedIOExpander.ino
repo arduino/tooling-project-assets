@@ -21,17 +21,17 @@ void setup() {
   Serial.begin(9600);
   while (!Serial);
   Wire.begin();
-  if (!digital_inputs.init()){
+  if (!digital_inputs.init()) {
     Serial.println("GPIO expander initialization fail!!");
- }
- if (!digital_programmables.init()){
+  }
+  if (!digital_programmables.init()) {
     Serial.println("GPIO expander initialization fail!!");
- }
+  }
 
   Serial.println("GPIO expander initialization done");
   digital_programmables.setLatch();
   Serial.println("GPIO expander initialization done");
-//  digital_inputs.setLatch();
+  //  digital_inputs.setLatch();
 }
 
 void loop() {
@@ -43,7 +43,7 @@ void loop() {
   Serial.println("Read IO Pin 03: " + String(digital_programmables.read(IO_READ_CH_PIN_03)));
   delay(1000);
 
-  // Read from DIGITAL INPUT Expander Pin 3 
+  // Read from DIGITAL INPUT Expander Pin 3
   Serial.println("Read DIN Pin 03: " + String(digital_inputs.read(DIN_READ_CH_PIN_03)));
   delay(1000);
 

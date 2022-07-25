@@ -1,20 +1,20 @@
 /*
 
- TFT Pong
+  TFT Pong
 
- This example for the Arduino screen reads the values
- of 2 potentiometers to move a rectangular platform
- on the x and y axes. The platform can intersect
- with a ball causing it to bounce.
+  This example for the Arduino screen reads the values
+  of 2 potentiometers to move a rectangular platform
+  on the x and y axes. The platform can intersect
+  with a ball causing it to bounce.
 
- This example code is in the public domain.
+  This example code is in the public domain.
 
- Created by Tom Igoe December 2012
- Modified 15 April 2013 by Scott Fitzgerald
+  Created by Tom Igoe December 2012
+  Modified 15 April 2013 by Scott Fitzgerald
 
- https://www.arduino.cc/en/Tutorial/LibraryExamples/TFTPong
+  https://www.arduino.cc/en/Tutorial/LibraryExamples/TFTPong
 
- */
+*/
 
 #include <TFT.h>  // Arduino LCD library
 #include <SPI.h>

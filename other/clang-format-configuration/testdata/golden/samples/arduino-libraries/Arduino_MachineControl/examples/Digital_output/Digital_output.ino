@@ -19,7 +19,7 @@
        milliseconds the channel will automatically try
        to close itself again. In case of a persistent
        overcurrent the channel will continuously toggle.
-  
+
   The circuit:
    - Portenta H7
    - Machine Control
@@ -42,7 +42,7 @@ void setup() {
   // Uncomment this line to set over current behavior of all
   // channels to auto retry mode instead of latch mode:
   //digital_outputs.setRetry();
-  
+
   //At startup set all channels to OPEN
   digital_outputs.setAll(0);
 }
@@ -50,19 +50,19 @@ void setup() {
 
 void loop() {
   Serial.println("DIGITAL OUT:");
-  
+
   // Set all channels to CLOSED
   digital_outputs.setAll(255);
   Serial.print("All channels are CLOSED for 1 s...");
   delay(1000);
-  
+
   // Set all channels to OPEN
   digital_outputs.setAll(0);
   Serial.println("now they are OPEN.");
   delay(1000);
 
   // Toggle each channel for 1 s, one by one
-  
+
   digital_outputs.set(0, HIGH);
   Serial.print("CH0 is CLOSED for 1 s...");
   delay(1000);

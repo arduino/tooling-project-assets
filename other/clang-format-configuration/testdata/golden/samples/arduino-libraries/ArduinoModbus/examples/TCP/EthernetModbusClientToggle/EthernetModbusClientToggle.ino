@@ -57,7 +57,7 @@ void loop() {
   if (!modbusTCPClient.connected()) {
     // client not connected, start the Modbus TCP client
     Serial.println("Attempting to connect to Modbus TCP server");
-    
+
     if (!modbusTCPClient.begin(server, 502)) {
       Serial.println("Modbus TCP Client failed to connect!");
     } else {

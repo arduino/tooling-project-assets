@@ -2,7 +2,7 @@
 
 REDIRECT_STDOUT_TO(Serial);
 
-#include "arduino_secrets.h" 
+#include "arduino_secrets.h"
 char pin[]      = SECRET_PIN;
 char apn[]      = SECRET_APN;
 char username[] = SECRET_USERNAME;
@@ -16,12 +16,12 @@ GSMClient client;
 
 void setup() {
   Serial.begin(115200);
-  while(!Serial) {}
+  while (!Serial) {}
   Serial.println("Starting Carrier Network registration");
-  if(!GSM.begin(pin, apn, username, pass, CATNB)){
+  if (!GSM.begin(pin, apn, username, pass, CATNB)) {
     Serial.println("The board was not able to register to the network...");
     // do nothing forevermore:
-    while(1);
+    while (1);
   }
   Serial.println("\nStarting connection to server...");
   // if you get a connection, report back via serial:
@@ -36,7 +36,7 @@ void setup() {
   } else {
     Serial.println("unable to connect to server");
   }
-  
+
 }
 
 void loop() {

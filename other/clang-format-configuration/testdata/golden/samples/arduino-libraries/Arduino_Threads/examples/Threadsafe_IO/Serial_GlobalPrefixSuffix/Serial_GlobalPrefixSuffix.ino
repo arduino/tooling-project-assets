@@ -1,24 +1,24 @@
 /* This example demonstrates how every Serial message can be prefixed
- * as well as suffixed by a user-configurable message. In this example
- * this functionality is used for appending the current timestamp and
- * prepending a line feed. Other uses might be to prepend the thread
- * from which a given serial message is originating.
- */
+   as well as suffixed by a user-configurable message. In this example
+   this functionality is used for appending the current timestamp and
+   prepending a line feed. Other uses might be to prepend the thread
+   from which a given serial message is originating.
+*/
 
 /**************************************************************************************
- * INCLUDE
+   INCLUDE
  **************************************************************************************/
 
 #include <Arduino_Threads.h>
 /**************************************************************************************
- * FUNCTION DECLARATION
+   FUNCTION DECLARATION
  **************************************************************************************/
 
 String serial_log_message_prefix(String const & /* msg */);
 String serial_log_message_suffix(String const & prefix, String const & msg);
 
 /**************************************************************************************
- * SETUP/LOOP
+   SETUP/LOOP
  **************************************************************************************/
 
 void setup()
@@ -42,7 +42,7 @@ void loop()
 }
 
 /**************************************************************************************
- * FUNCTION DEFINITION
+   FUNCTION DEFINITION
  **************************************************************************************/
 
 String serial_log_message_prefix(String const & /* msg */)

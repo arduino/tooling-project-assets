@@ -125,6 +125,6 @@ bool apply()
   } while (MODEM.waitForResponse(1000) != 1);
 
   Serial.println("done.");
-  
+
   return true;
 }

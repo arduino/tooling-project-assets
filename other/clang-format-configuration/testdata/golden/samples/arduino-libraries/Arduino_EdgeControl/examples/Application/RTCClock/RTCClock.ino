@@ -3,20 +3,20 @@
 
 void setup()
 {
-    Serial.begin(115200);
-    for (auto startNow = millis() + 2500; !Serial & millis() < startNow; delay(500));
+  Serial.begin(115200);
+  for (auto startNow = millis() + 2500; !Serial & millis() < startNow; delay(500));
 
-    Serial.println("Starting RTC example");
-    // EdgeControl.begin();
+  Serial.println("Starting RTC example");
+  // EdgeControl.begin();
 
-    // Init system clock from compilation time or RTC
-    setSystemClock(__DATE__, __TIME__);
+  // Init system clock from compilation time or RTC
+  setSystemClock(__DATE__, __TIME__);
 
-    // Power.on(PWR_3V3);
+  // Power.on(PWR_3V3);
 }
 
 void loop()
 {
-    Serial.println(getLocaltime());
-    delay(1000);
+  Serial.println(getLocaltime());
+  delay(1000);
 }

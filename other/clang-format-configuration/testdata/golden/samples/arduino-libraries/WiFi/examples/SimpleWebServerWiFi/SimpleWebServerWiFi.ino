@@ -1,25 +1,25 @@
 /*
   WiFi Web Server LED Blink
 
- A simple web server that lets you blink an LED via the web.
- This sketch will print the IP address of your WiFi Shield (once connected)
- to the Serial monitor. From there, you can open that address in a web browser
- to turn on and off the LED on pin 9.
+  A simple web server that lets you blink an LED via the web.
+  This sketch will print the IP address of your WiFi Shield (once connected)
+  to the Serial monitor. From there, you can open that address in a web browser
+  to turn on and off the LED on pin 9.
 
- If the IP address of your shield is yourAddress:
- http://yourAddress/H turns the LED on
- http://yourAddress/L turns it off
+  If the IP address of your shield is yourAddress:
+  http://yourAddress/H turns the LED on
+  http://yourAddress/L turns it off
 
- This example is written for a network using WPA encryption. For
- WEP or WPA, change the WiFi.begin() call accordingly.
+  This example is written for a network using WPA encryption. For
+  WEP or WPA, change the WiFi.begin() call accordingly.
 
- Circuit:
- * WiFi shield attached
- * LED attached to pin 9
+  Circuit:
+   WiFi shield attached
+   LED attached to pin 9
 
- created 25 Nov 2012
- by Tom Igoe
- */
+  created 25 Nov 2012
+  by Tom Igoe
+*/
 #include <SPI.h>
 #include <WiFi.h>
 

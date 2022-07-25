@@ -1,10 +1,10 @@
 /*
-*  PlanetFinder
-* 
-* The universe is big, really big, so if you are ever going to be able to find any planets then you'll
-* need a tool track them down for you.
-*
-* (c) 2013-2016 Arduino LLC.
+   PlanetFinder
+
+  The universe is big, really big, so if you are ever going to be able to find any planets then you'll
+  need a tool track them down for you.
+
+  (c) 2013-2016 Arduino LLC.
 */
 
 #include <EducationShield.h>
@@ -21,7 +21,7 @@ int piezoState = LOW;             // piezoState used to set the piezo
 bool newGame = true;
 int x = 0;
 int y = 0;
-const int errorMargin=10;
+const int errorMargin = 10;
 
 unsigned long previousMillis = 0;   // last time the click played, in ms
 
