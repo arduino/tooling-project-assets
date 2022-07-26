@@ -1,0 +1,46 @@
+:repository-owner: arduino-libraries
+:repository-name: MIDIUSB
+
+= {repository-name} Library for Arduino =
+
+image:https://github.com/{repository-owner}/{repository-name}/actions/workflows/check-arduino.yml/badge.svg["Check Arduino status", link="https://github.com/{repository-owner}/{repository-name}/actions/workflows/check-arduino.yml"]
+image:https://github.com/{repository-owner}/{repository-name}/actions/workflows/compile-examples.yml/badge.svg["Compile Examples status", link="https://github.com/{repository-owner}/{repository-name}/actions/workflows/compile-examples.yml"]
+image:https://github.com/{repository-owner}/{repository-name}/actions/workflows/spell-check.yml/badge.svg["Spell Check status", link="https://github.com/{repository-owner}/{repository-name}/actions/workflows/spell-check.yml"]
+
+This library allows an Arduino board with USB capabilities to act as a MIDI instrument over USB. The library is based on PluggableUSB, so is only compatible with Arduino IDE 1.6.6 and newer.
+
+Furthermore, since PluggableUSB only targets boards with native USB capabilities, this library only supports these boards (eg. Leonardo, Micro, Due, Zero and so on)
+
+For more information about this library please visit us at
+http://www.arduino.cc/en/Reference/{repository-name}
+
+== Test procedure (Linux) ==
+
+Load the correct driver (`sudo modprobe snd_seq_midi`)
+
+Flash the board with `MIDIUSB_loop` example, then execute `aseqdump -l`; the output will be something similar to
+```bash
+Port    Client name                      Port name
+  0:0    System                           Timer
+  0:1    System                           Announce
+ 14:0    Midi Through                     Midi Through Port-0
+ 20:0    Arduino Micro                    Arduino Micro MIDI 1
+```
+Port `20` is the one we'll use in the following examples.
+
+Start `fluidsynth` inside a shell with a soundbank 
+```bash
+fluidsynth --server --audio-driver=alsa -o audio.alsa.device=hw:0 ~/Synth.SF2
+```
+
+In another shell, execute 
+```bash
+aconnect 20 128
+```
+to connect our MIDI device with fluidsynth
+
+Then, execute
+```bash
+aplaymidi  --port=20:0 ~/some_midi_file.mid
+```
+and the file will be played after a complete roundtrip to the board.

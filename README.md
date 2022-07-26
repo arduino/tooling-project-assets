@@ -1,7 +1,10 @@
 # Tooling Project Assets
 
+[![Check ClangFormat Configuration status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-clang-format.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-clang-format.yml)
 [![Check Dependabot Configuration status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-dependabot.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-dependabot.yml)
+[![Check ESLint Configuration status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-eslint.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-eslint.yml)
 [![Check Issue Templates status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-issue-templates.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-issue-templates.yml)
+[![Check JavaScript status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-javascript-task.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-javascript-task.yml)
 [![Check Label Configuration status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-labels.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-labels.yml)
 [![Check markdownlint Configuration status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-markdownlint.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-markdownlint.yml)
 [![Check npm status](https://github.com/arduino/tooling-project-assets/actions/workflows/check-npm-task.yml/badge.svg)](https://github.com/arduino/tooling-project-assets/actions/workflows/check-npm-task.yml)

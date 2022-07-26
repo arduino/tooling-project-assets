@@ -1,0 +1,16 @@
+/* Define a data sink named 'led' of type 'bool' with a internal queue size of 1. */
+SINK(led, bool);
+
+void setup()
+{
+  pinMode(LED_BUILTIN, OUTPUT);
+}
+
+void loop()
+{
+  /* Read a 'bool' value from the SINK and discard it. Since there is no delay in the loop
+   * this call will block until new data is inserted from the connected SOURCE. This means
+   * that the pace is dictated by the SOURCE that sends data every 100 ms.
+   */
+  digitalWrite(LED_BUILTIN, led.pop());
+}

@@ -1,0 +1,19 @@
+# See: https://taskfile.dev/#/usage
+version: "3"
+
+tasks:
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-javascript-task/Taskfile.yml
+  js:fix:
+    desc: Fix JavaScript code linting violations
+    deps:
+      - task: npm:install-deps
+    cmds:
+      - npx eslint --ext .js,.jsx --fix .
+
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-javascript-task/Taskfile.yml
+  js:lint:
+    desc: Lint JavaScript code
+    deps:
+      - task: npm:install-deps
+    cmds:
+      - npx eslint --ext .js,.jsx .

@@ -1,0 +1,23 @@
+#┌──────────── alarm type: AR == AlarmRepeat, AO == AlarmOnce,
+#|                         TR == TimerRepeat, TO == TimerOnce,
+#|                         RO == TriggerOnce
+#|                         See TimeAlarms (https://github.com/PaulStoffregen/TimeAlarms) for specs 
+#| ┌────────── day of week: 0 == None, 1 == Sun, ..., 7 == Sat
+#| |  ┌─────── hour
+#| |  |  ┌──── minute  
+#| |  |  |  ┌─ second
+#| |  |  |  |
+#| |  |  |  |  <command to execute> 
+AR 0 15 55  0  OpenLatchingValve
+AR 0 15 55 30  CloseLatchingValve
+AR 0 15 56  0  OpenLatchingValve
+AR 0 15 56 30  CloseLatchingValve
+AR 0 15 57  0  OpenSolenoidValve
+AR 0 15 57 30  CloseSolenoidValve
+AR 0 15 58  0  OpenSolenoidValve
+AR 0 15 58 30  CloseSolenoidValve
+TR 0  0  0 300  SaveData
+TR 0  0  0 60  DisplayClock
+TR 0  0  0 30  BlinkLed
+TO 0  0  0 10  HelloWorld
+RO 0  0  0 1603895279  HiThere

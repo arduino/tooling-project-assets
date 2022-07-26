@@ -1,0 +1,230 @@
+name: Check ClangFormat Configuration
+
+env:
+  # See: https://github.com/actions/setup-node/#readme
+  NODE_VERSION: 16.x
+
+# See: https://docs.github.com/actions/using-workflows/events-that-trigger-workflows
+on:
+  push:
+    paths:
+      - ".github/workflows/check-clang-format.yml"
+      - "other/clang-format-configuration/scripts/convert-clang-format-configuration.js"
+      - "other/clang-format-configuration/testdata/**"
+      - "other/clang-format-configuration/.clang-format"
+      - "package.json"
+      - "package-lock.json"
+      - "Taskfile.ya?ml"
+  pull_request:
+    paths:
+      - ".github/workflows/check-clang-format.yml"
+      - "other/clang-format-configuration/scripts/convert-clang-format-configuration.js"
+      - "other/clang-format-configuration/testdata/**"
+      - "other/clang-format-configuration/.clang-format"
+      - "package.json"
+      - "package-lock.json"
+      - "Taskfile.ya?ml"
+  schedule:
+    # Run periodically to catch breakage caused by external changes.
+    - cron: "0 17 * * WED"
+  workflow_dispatch:
+    inputs:
+      clang-format-version:
+        description: ClangFormat version (leave empty for standard version)
+        type: string
+        default: ""
+        required: false
+  repository_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install Task
+        uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          version: 3.x
+
+      - name: Validate ClangFormat configuration files
+        run: task --silent clang-format:validate
+
+  check-config:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Task
+        uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          version: 3.x
+
+      - name: Set environment variables
+        run: |
+          # See: https://docs.github.com/actions/using-workflows/workflow-commands-for-github-actions#setting-an-environment-variable
+          if [[ "${{ github.event.inputs.clang-format-version }}" == "" ]]; then
+            echo "CLANG_FORMAT_VERSION=$(task clang-format:get-version)" >> "$GITHUB_ENV"
+          else
+            echo "CLANG_FORMAT_VERSION=${{ github.event.inputs.clang-format-version }}" >> "$GITHUB_ENV"
+          fi
+          echo "CLANG_FORMAT_INSTALL_PATH=${{ runner.temp }}/clang-format" >> "$GITHUB_ENV"
+          echo "WORKING_FOLDER=${{ runner.temp }}" >> "$GITHUB_ENV"
+
+      - name: Download ClangFormat
+        id: download
+        uses: MrOctopus/download-asset-action@1.0
+        with:
+          repository: arduino/clang-static-binaries
+          tag: ${{ env.CLANG_FORMAT_VERSION }}
+          asset: clang-format_${{ env.CLANG_FORMAT_VERSION }}_Linux_64bit.tar.bz2
+          target: ${{ env.CLANG_FORMAT_INSTALL_PATH }}
+
+      - name: Install ClangFormat
+        run: |
+          cd "${{ env.CLANG_FORMAT_INSTALL_PATH }}"
+          tar --extract --file="${{ steps.download.outputs.name }}"
+          # Add installation to PATH:
+          # See: https://docs.github.com/actions/using-workflows/workflow-commands-for-github-actions#adding-a-system-path
+          echo "${{ env.CLANG_FORMAT_INSTALL_PATH }}/clang_Linux_64bit" >> "$GITHUB_PATH"
+
+      - name: Check ClangFormat configuration file
+        id: check
+        run: |
+          task \
+            --silent \
+            clang-format:check-config \
+            CLANG_FORMAT_VERSION="${{ env.CLANG_FORMAT_VERSION }}"
+
+      - name: Save effective configuration file to a workflow artifact
+        if: >
+          always() &&
+          steps.check.outcome == 'failure'
+        uses: actions/upload-artifact@v3
+        with:
+          path: ${{ env.WORKING_FOLDER }}/expected/.clang-format
+          if-no-files-found: error
+          name: config-output
+
+  check-output:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Task
+        uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          version: 3.x
+
+      - name: Set environment variables
+        run: |
+          # See: https://docs.github.com/actions/using-workflows/workflow-commands-for-github-actions#setting-an-environment-variable
+          if [[ "${{ github.event.inputs.clang-format-version }}" == "" ]]; then
+            echo "CLANG_FORMAT_VERSION=$(task clang-format:get-version)" >> "$GITHUB_ENV"
+          else
+            echo "CLANG_FORMAT_VERSION=${{ github.event.inputs.clang-format-version }}" >> "$GITHUB_ENV"
+          fi
+          echo "CLANG_FORMAT_INSTALL_PATH=${{ runner.temp }}/clang-format" >> "$GITHUB_ENV"
+          echo "WORKING_FOLDER=${{ runner.temp }}" >> "$GITHUB_ENV"
+
+      - name: Download ClangFormat
+        id: download
+        uses: MrOctopus/download-asset-action@1.0
+        with:
+          repository: arduino/clang-static-binaries
+          tag: ${{ env.CLANG_FORMAT_VERSION }}
+          asset: clang-format_${{ env.CLANG_FORMAT_VERSION }}_Linux_64bit.tar.bz2
+          target: ${{ env.CLANG_FORMAT_INSTALL_PATH }}
+
+      - name: Install ClangFormat
+        run: |
+          cd "${{ env.CLANG_FORMAT_INSTALL_PATH }}"
+          tar --extract --file="${{ steps.download.outputs.name }}"
+          # Add installation to PATH:
+          # See: https://docs.github.com/actions/using-workflows/workflow-commands-for-github-actions#adding-a-system-path
+          echo "${{ env.CLANG_FORMAT_INSTALL_PATH }}/clang_Linux_64bit" >> "$GITHUB_PATH"
+
+      - name: Check ClangFormat output
+        id: check
+        run: |
+          task \
+            clang-format:check-output \
+            CLANG_FORMAT_VERSION="${{ env.CLANG_FORMAT_VERSION }}" \
+            WORKING_FOLDER="${{ env.WORKING_FOLDER }}"
+
+      - name: Save formatted test data to a workflow artifact
+        if: >
+          always() &&
+          steps.check.outcome == 'failure'
+        uses: actions/upload-artifact@v3
+        with:
+          path: ${{ env.WORKING_FOLDER }}/output
+          if-no-files-found: error
+          name: testdata-output
+
+  check-testdata:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Task
+        uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          version: 3.x
+
+      - name: Check ClangFormat test data
+        run: task --silent clang-format:check-testdata
+
+  convert:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set environment variables
+        run: |
+          # See: https://docs.github.com/actions/using-workflows/workflow-commands-for-github-actions#setting-an-environment-variable
+          echo "CONVERSION_OUTPUT_PATH=${{ runner.temp }}/clang-format-js-object.txt" >> "$GITHUB_ENV"
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install Task
+        uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          version: 3.x
+
+      - name: Convert the ClangFormat configuration
+        run: |
+          task \
+            --silent \
+            clang-format:convert \
+            OUTPUT_PATH="${{ env.CONVERSION_OUTPUT_PATH }}"
+
+      - name: Save conversion to a workflow artifact
+        uses: actions/upload-artifact@v3
+        with:
+          path: ${{ env.CONVERSION_OUTPUT_PATH }}
+          if-no-files-found: error
+          name: javascript-configuration-object

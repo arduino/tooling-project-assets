@@ -1,0 +1,9 @@
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  Serial.block();
+  Serial.println("Thread #3: Lorem ipsum ...");
+  Serial.unblock();
+}
