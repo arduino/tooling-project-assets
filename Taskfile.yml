@@ -231,6 +231,12 @@ tasks:
       - task: clang-format:check-installed
     cmds:
       - |
+        if ! which yq &>/dev/null; then
+          echo "ec not found or not in PATH. Please install: https://github.com/mikefarah/yq/#install"
+          exit 1
+        fi
+
+      - |
         # Add source comment
         echo \
           "# Source: https://github.com/arduino/tooling-project-assets/tree/main/other/clang-format-configuration" > \
@@ -241,6 +247,10 @@ tasks:
           --dump-config \
           --style=file:"{{.CLANG_FORMAT_CONFIGURATION_PATH}}" >> \
             "{{.TARGET_PATH}}"
+
+      - |
+        # Fix the inconsistent key order
+        yq --inplace 'sort_keys(.)' "{{.TARGET_PATH}}"
 
   # Use ClangFormat to format the files under the path specified by TARGET_FOLDER recursively
   clang-format:format:
@@ -272,10 +282,14 @@ tasks:
 
   clang-format:update-config:
     desc: Update ClangFormat configuration file to match effective tool configuration
+    vars:
+      WORKING_PATH:
+        sh: task utility:mktemp-file TEMPLATE="clang-format-update-config-XXXXXXXXXX.json"
     cmds:
       - task: clang-format:dump-config
         vars:
-          TARGET_PATH: "{{.CLANG_FORMAT_CONFIGURATION_PATH}}"
+          TARGET_PATH: "{{.WORKING_PATH}}"
+      - mv --force "{{.WORKING_PATH}}" "{{.CLANG_FORMAT_CONFIGURATION_PATH}}"
 
   clang-format:update-golden:
     desc: Update golden master test data for current configuration
