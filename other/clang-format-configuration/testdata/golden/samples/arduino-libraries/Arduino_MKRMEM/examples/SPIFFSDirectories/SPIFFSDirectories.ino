@@ -41,8 +41,7 @@ void setup() {
   DirEntry entry;
   while (dir.readdir(entry)) {
     if (entry.isFile()) Serial.print("  F ");
-    else if (entry.isDirectory())
-      Serial.print("  D ");
+    else if (entry.isDirectory()) Serial.print("  D ");
     Serial.print(entry.name());
     Serial.println();
   }

@@ -6,6 +6,10 @@ This is the additional indent beyond the standard code indentation level.
 
 The Arduino IDE 1.x formatting style indented access modifiers (equivalent to `AccessModifierOffset: 0`), but also added an extra indent for the members. So non-indented access modifiers (`AccessModifierOffset: -2`) is actually closest to the previous formatting style.
 
+## `AllowShortIfStatementsOnASingleLine`
+
+It is not clear from the documentation, but this truly is an "allow" setting, rather than ClangFormat's usual approach of forcing a specific formatting style. So the value `AllIfsAndElse` allows the user to break `if` statements according to their whims, in alignment with the Arduino IDE 1.x formatter behavior, while the `Never` is completely restrictive, not allowing short `if`, `else if`, or `else` statements under any conditions.
+
 ## `BasedOnStyle`
 
 This key is irrelevant because we define all configuration keys.

@@ -328,16 +328,13 @@ void printepdescr(uint8_t* descr_ptr) {
   printProgStr(End_Header_str);
   printProgStr(End_Address_str);
   if (0x80 & ep_ptr->bEndpointAddress) printProgStr(PSTR("IN\t\t"));
-  else
-    printProgStr(PSTR("OUT\t\t"));
+  else printProgStr(PSTR("OUT\t\t"));
   print_hex((ep_ptr->bEndpointAddress & 0xF), 8);
   printProgStr(End_Attr_str);
   transfer_type = ep_ptr->bmAttributes & bmUSB_TRANSFER_TYPE;
   if (transfer_type == USB_TRANSFER_TYPE_INTERRUPT) printProgStr(PSTR("INTERRUPT\t"));
-  else if (transfer_type == USB_TRANSFER_TYPE_BULK)
-    printProgStr(PSTR("BULK\t"));
-  else if (transfer_type == USB_TRANSFER_TYPE_ISOCHRONOUS)
-    printProgStr(PSTR("ISO\t"));
+  else if (transfer_type == USB_TRANSFER_TYPE_BULK) printProgStr(PSTR("BULK\t"));
+  else if (transfer_type == USB_TRANSFER_TYPE_ISOCHRONOUS) printProgStr(PSTR("ISO\t"));
   print_hex(ep_ptr->bmAttributes, 8);
   printProgStr(End_Pktsize_str);
   print_hex(ep_ptr->wMaxPacketSize, 16);

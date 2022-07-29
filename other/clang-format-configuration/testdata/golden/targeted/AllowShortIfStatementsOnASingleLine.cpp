@@ -47,10 +47,8 @@ void foo() {
 
   if (a) return;
   if (a) return;
-  else if (a)
-    return;
-  else
-    return;
+  else if (a) return;
+  else return;
   if (a) return;
   else if (a) {
     return;
