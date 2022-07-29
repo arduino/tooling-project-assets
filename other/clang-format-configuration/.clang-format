@@ -107,6 +107,7 @@ InsertTrailingCommas: None
 JavaScriptQuotes: Leave
 JavaScriptWrapImports: true
 KeepEmptyLinesAtTheStartOfBlocks: true
+LambdaBodyIndentation: Signature
 Language: Cpp
 MacroBlockBegin: ''
 MacroBlockEnd: ''
