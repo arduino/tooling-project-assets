@@ -124,6 +124,7 @@ PenaltyBreakAssignment: 1
 PenaltyBreakBeforeFirstCallParameter: 1
 PenaltyBreakComment: 1
 PenaltyBreakFirstLessLess: 1
+PenaltyBreakOpenParenthesis: 1
 PenaltyBreakString: 1
 PenaltyBreakTemplateDeclaration: 1
 PenaltyExcessCharacter: 1
