@@ -167,6 +167,9 @@ SpacesInAngles: Leave
 SpacesInCStyleCastParentheses: false
 SpacesInConditionalStatement: false
 SpacesInContainerLiterals: false
+SpacesInLineCommentPrefix:
+  Minimum: 0
+  Maximum: -1
 SpacesInParentheses: false
 SpacesInSquareBrackets: false
 Standard: Auto
