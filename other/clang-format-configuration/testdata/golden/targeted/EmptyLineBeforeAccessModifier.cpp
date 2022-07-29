@@ -2,15 +2,14 @@ class Foo {
 public:
 private:
   int foo;
-
 protected:
 };
 
 class Bar {
 public:
+
 private:
   int foo;
-
 protected:
 };
 
@@ -24,6 +23,7 @@ protected:
 
 class Qux {
 public:
+
 private:
   int foo;
 
