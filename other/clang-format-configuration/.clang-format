@@ -134,6 +134,7 @@ PointerAlignment: Right
 QualifierAlignment: Leave
 ReferenceAlignment: Pointer
 ReflowComments: false
+RemoveBracesLLVM: false
 SortIncludes: Never
 SortUsingDeclarations: false
 SpaceAfterCStyleCast: false
