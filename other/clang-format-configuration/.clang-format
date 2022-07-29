@@ -26,7 +26,7 @@ AlwaysBreakBeforeMultilineStrings: false
 AlwaysBreakTemplateDeclarations: No
 AttributeMacros:
   - __capability
-BasedOnStyle: ''
+BasedOnStyle: LLVM
 BinPackArguments: true
 BinPackParameters: true
 BitFieldColonSpacing: Both

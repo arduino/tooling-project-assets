@@ -249,6 +249,13 @@ tasks:
             "{{.TARGET_PATH}}"
 
       - |
+        # Correct invalid `BasedOnStyle` key value
+        # The existing key is deleted before assigning it to a valid value in order to achieve consistent quoting style
+        # (updating the empty string value in place causes the assigned value to be wrapped in quotes)
+        yq --inplace 'del(.BasedOnStyle)' "{{.TARGET_PATH}}"
+        yq --inplace '.BasedOnStyle = "LLVM"' "{{.TARGET_PATH}}"
+
+      - |
         # Fix the inconsistent key order
         yq --inplace 'sort_keys(.)' "{{.TARGET_PATH}}"
 
