@@ -114,6 +114,7 @@ They should be set to **ClangFormat**'s default values.
 
 - `BreakAfterJavaFieldAnnotations`
 - `JavaImportGroups`
+- `SortJavaStaticImport`
 
 ### JavaScript
 
