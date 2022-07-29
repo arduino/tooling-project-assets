@@ -128,6 +128,7 @@ PenaltyBreakOpenParenthesis: 1
 PenaltyBreakString: 1
 PenaltyBreakTemplateDeclaration: 1
 PenaltyExcessCharacter: 1
+PenaltyIndentedWhitespace: 1
 PenaltyReturnTypeOnItsOwnLine: 1
 PointerAlignment: Right
 ReflowComments: false
