@@ -46,6 +46,10 @@ Setting this to an empty string (e.g., `""`) prevents any comments from being ma
 
 Setting this to an empty string (e.g., `""`) prevents any `#include` directives from being matched.
 
+## `IndentAccessModifiers`
+
+The Arduino IDE 1.x formatting style for classes is equivalent to `IndentAccessModifiers: true`. Unfortunately, this key also controls the indentation of `struct` members, the Arduino IDE 1.x formatting style of which is equivalent to `IndentAccessModifiers: false`. For this reason, the key must be set to `false` and the previous approach of aligning the class formatting style as closely as possible via the `AccessModifierOffset` configuration continued.
+
 ## `KeepEmptyLinesAtTheStartOfBlocks`
 
 Note that empty lines at the ends of blocks are always removed.
