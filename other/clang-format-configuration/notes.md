@@ -14,7 +14,7 @@ It is not clear from the documentation, but this truly is an "allow" setting, ra
 
 This key is irrelevant because we define all configuration keys.
 
-**ClangFormat** uses the `LLVM` style as a base by default.
+Even though it is not one of the documented possible values, `clang-format --dump-config` outputs `BasedOnStyle: ''`, so we use that.
 
 ## `BraceWrapping`
 

@@ -26,6 +26,7 @@ AlwaysBreakBeforeMultilineStrings: false
 AlwaysBreakTemplateDeclarations: No
 AttributeMacros:
   - __capability
+BasedOnStyle: ''
 BinPackArguments: true
 BinPackParameters: true
 BitFieldColonSpacing: Both
