@@ -132,6 +132,7 @@ PenaltyIndentedWhitespace: 1
 PenaltyReturnTypeOnItsOwnLine: 1
 PointerAlignment: Right
 QualifierAlignment: Leave
+ReferenceAlignment: Pointer
 ReflowComments: false
 SortIncludes: Never
 SortUsingDeclarations: false
