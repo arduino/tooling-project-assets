@@ -28,6 +28,7 @@ AttributeMacros:
   - __capability
 BinPackArguments: true
 BinPackParameters: true
+BitFieldColonSpacing: Both
 BraceWrapping:
   AfterCaseLabel: false
   AfterClass: false
