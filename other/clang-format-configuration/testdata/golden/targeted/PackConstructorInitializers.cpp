@@ -3,25 +3,38 @@ class Foo {
   Foo(int);
   Foo(int, int);
   Foo(int, int, int);
-  int aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;
-  int bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb;
-  int cccccccccccccccccccccccccccccccccccccccccccccccccc;
+  Foo(int, int, int, int);
+  int a;
+  int b;
+  int c;
+  int dddddddddddddddddddddddddddddddddddddddddddddddddd;
+  int eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee;
+  int ffffffffffffffffffffffffffffffffffffffffffffffffff;
   int d;
   int e;
   int f;
-  int ddddddddddddddddddddddddd;
   int ggggggggggggggggggggggggg;
   int hhhhhhhhhhhhhhhhhhhhhhhhh;
   int iiiiiiiiiiiiiiiiiiiiiiiii;
 };
 
 Foo::Foo()
-  : aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa(42),
-    bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb(1234),
-    cccccccccccccccccccccccccccccccccccccccccccccccccc(11) {}
+  : a(42),
+    b(1234),
+    c(11) {}
 
 Foo::Foo(int bar)
-  : aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa(bar), bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb(1234), cccccccccccccccccccccccccccccccccccccccccccccccccc(11) {}
+  : dddddddddddddddddddddddddddddddddddddddddddddddddd(bar), eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee(1234), ffffffffffffffffffffffffffffffffffffffffffffffffff(11) {}
+
+Foo::Foo(int bar, int baz)
+  : a(bar), b(baz), c(11) {}
 
 Foo::Foo(int bar, int baz, int qux)
-  : ggggggggggggggggggggggggg(bar), hhhhhhhhhhhhhhhhhhhhhhhhh(baz), iiiiiiiiiiiiiiiiiiiiiiiii(qux) {}
+  : dddddddddddddddddddddddddddddddddddddddddddddddddd(bar),
+    eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee(baz),
+    ffffffffffffffffffffffffffffffffffffffffffffffffff(qux) {}
+
+Foo::Foo(int bar, int baz, int qux, int pippo)
+  : ggggggggggggggggggggggggg(bar), hhhhhhhhhhhhhhhhhhhhhhhhh(baz), iiiiiiiiiiiiiiiiiiiiiiiii(qux) {
+  (void)pippo;
+}
