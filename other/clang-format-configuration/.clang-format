@@ -135,6 +135,7 @@ QualifierAlignment: Leave
 ReferenceAlignment: Pointer
 ReflowComments: false
 RemoveBracesLLVM: false
+SeparateDefinitionBlocks: Leave
 SortIncludes: Never
 SortUsingDeclarations: false
 SpaceAfterCStyleCast: false
