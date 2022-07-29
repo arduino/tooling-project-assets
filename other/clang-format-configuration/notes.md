@@ -6,6 +6,10 @@ This is the additional indent beyond the standard code indentation level.
 
 The Arduino IDE 1.x formatting style indented access modifiers (equivalent to `AccessModifierOffset: 0`), but also added an extra indent for the members. So non-indented access modifiers (`AccessModifierOffset: -2`) is actually closest to the previous formatting style.
 
+## `AttributeMacros`
+
+The items specified via this key are added to the base set hardcoded into **ClangFormat**, even if you set it to `AttributeMacros: []`.
+
 ## `BasedOnStyle`
 
 This key is irrelevant because we define all configuration keys.
@@ -36,6 +40,10 @@ Setting this to an empty string (e.g., `""`) prevents any comments from being ma
 
 The items specified via this key are added to the base set hardcoded into **ClangFormat**, even if you set it to `ForEachMacros: []`.
 
+## `IfMacros`
+
+The items specified via this key are added to the base set hardcoded into **ClangFormat**, even if you set it to `IfMacros: []`.
+
 ## `IncludeCategories`
 
 The items specified via this key are added to the base set hardcoded into **ClangFormat**, even if you set it to `IncludeCategories: []`.
@@ -65,6 +73,10 @@ The `DerivePointerAlignment: true` configuration causes whatever pointer alignme
 ## `RawStringFormats`
 
 This key is omitted from the `clang-format --dump-config` output when it is set to an empty array. Since Arduino's configuration does not have any need to define such formats, it is expected that this key will be absent from the configuration file even though present in the **ClangFormat** documentation.
+
+## `StatementAttributeLikeMacros`
+
+The items specified via this key are added to the base set hardcoded into **ClangFormat**, even if you set it to `StatementAttributeLikeMacros: []`.
 
 ## `StatementMacros`
 
