@@ -20,6 +20,12 @@ This key is irrelevant because we define all configuration keys.
 
 This key is ignored when `BreakBeforeBraces` is set to anything other than `Custom`.
 
+## `BreakBeforeConceptDeclarations`
+
+`true` forces the break.
+
+`false` allows the user to break or not break at their whim, in alignment with the Arduino IDE 1.x formatter behavior and Arduino's `AlwaysBreakTemplateDeclarations: No` configuration.
+
 ## `BreakBeforeInheritanceComma`
 
 Seems to be a backwards compatibility name for `BreakInheritanceList: BeforeComma`:
