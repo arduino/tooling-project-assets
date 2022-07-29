@@ -42,6 +42,12 @@ https://releases.llvm.org/3.8.0/tools/clang/docs/ClangFormatStyleOptions.html#co
 
 Setting this to an empty string (e.g., `""`) prevents any comments from being matched.
 
+## `ConstructorInitializerAllOnOneLineOrOnePerLine`
+
+`ConstructorInitializerAllOnOneLineOrOnePerLine: true` forces `PackConstructorInitializers: NextLine` in the effective configuration even if `PackConstructorInitializers` is set to the desired `BinPack` in the configuration file.
+
+Since `ConstructorInitializerAllOnOneLineOrOnePerLine` is deprecated, superseded by `PackConstructorInitializers`, `ConstructorInitializerAllOnOneLineOrOnePerLine` is set to the default `false` value that allows the desired setting for `PackConstructorInitializers` to be attained.
+
 ## `IncludeIsMainRegex`
 
 Setting this to an empty string (e.g., `""`) prevents any `#include` directives from being matched.
@@ -63,6 +69,10 @@ Note that empty lines at the ends of blocks are always removed.
 ## `NamespaceMacros`
 
 This key is omitted from the `clang-format --dump-config` output when it is set to an empty array. Since Arduino's configuration does not have any need to define such macros, it is expected that this key will be absent from the configuration file even though present in the **ClangFormat** documentation.
+
+## `PackConstructorInitializers`
+
+With Arduino's `ColumnLimit` setting of `0` (no limit), `PackConstructorInitializers: BinPack` is the most permissive setting,
 
 ## `PointerAlignment`
 

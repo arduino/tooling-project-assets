@@ -61,7 +61,7 @@ BreakStringLiterals: false
 ColumnLimit: 0
 CommentPragmas: ''
 CompactNamespaces: false
-ConstructorInitializerAllOnOneLineOrOnePerLine: true
+ConstructorInitializerAllOnOneLineOrOnePerLine: false
 ConstructorInitializerIndentWidth: 2
 ContinuationIndentWidth: 2
 Cpp11BracedListStyle: false
@@ -119,6 +119,7 @@ ObjCBreakBeforeNestedBlockParam: true
 ObjCSpaceAfterProperty: false
 ObjCSpaceBeforeProtocolList: true
 PPIndentWidth: -1
+PackConstructorInitializers: BinPack
 PenaltyBreakAssignment: 1
 PenaltyBreakBeforeFirstCallParameter: 1
 PenaltyBreakComment: 1

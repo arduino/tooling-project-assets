@@ -24,7 +24,8 @@ Foo::Foo()
     c(11) {}
 
 Foo::Foo(int bar)
-  : dddddddddddddddddddddddddddddddddddddddddddddddddd(bar), eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee(1234), ffffffffffffffffffffffffffffffffffffffffffffffffff(11) {}
+  : dddddddddddddddddddddddddddddddddddddddddddddddddd(bar), eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee(1234),
+    ffffffffffffffffffffffffffffffffffffffffffffffffff(11) {}
 
 Foo::Foo(int bar, int baz)
   : a(bar), b(baz), c(11) {}
