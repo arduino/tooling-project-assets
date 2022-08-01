@@ -108,8 +108,7 @@ void output1(int c) {
   mask = 256;
   while (mask >>= 1) {
     if (c & mask) putbit1();
-    else
-      putbit0();
+    else putbit0();
   }
 }
 
@@ -120,14 +119,12 @@ void output2(int x, int y) {
   mask = N;
   while (mask >>= 1) {
     if (x & mask) putbit1();
-    else
-      putbit0();
+    else putbit0();
   }
   mask = (1 << EJ);
   while (mask >>= 1) {
     if (y & mask) putbit1();
-    else
-      putbit0();
+    else putbit0();
   }
 }
 
@@ -164,8 +161,7 @@ int lzss_encode(const char buf_in[], uint32_t size) {
     if (y <= P) {
       y = 1;
       output1(c);
-    } else
-      output2(x & (N - 1), y - 2);
+    } else output2(x & (N - 1), y - 2);
     r += y;
     s += y;
     if (r >= N * 2 - F) {

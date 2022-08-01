@@ -8,10 +8,12 @@ public:
   int foo;
 
 private:
+
   int bar;
 };
 
 class Baz {
 public:
+
   int foo;
 };

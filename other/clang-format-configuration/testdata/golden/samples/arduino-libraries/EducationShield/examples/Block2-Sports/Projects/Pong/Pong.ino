@@ -75,7 +75,6 @@ void loop() {
 void gameOver() {
   vuMeter.blinkAll(100, 10);
 
-  if (buttonNotPressed == 1) vuMeter.scrollRight(ledTime, 1);  //if button1 was not pressed, scroll LEDs to the right to start over
-  else if (buttonNotPressed == 2)
-    vuMeter.scrollLeft(ledTime, 1);  //if button2 was not pressed, scroll LEDs to the left to start over
+  if (buttonNotPressed == 1) vuMeter.scrollRight(ledTime, 1);      //if button1 was not pressed, scroll LEDs to the right to start over
+  else if (buttonNotPressed == 2) vuMeter.scrollLeft(ledTime, 1);  //if button2 was not pressed, scroll LEDs to the left to start over
 }

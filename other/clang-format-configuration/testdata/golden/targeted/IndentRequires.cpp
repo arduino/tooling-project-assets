@@ -1,5 +1,7 @@
 template<typename T>
-requires true T foo() {}
+  requires(true)
+T foo() {}
 
 template<typename T>
-requires true T bar() {}
+  requires(true)
+T bar() {}

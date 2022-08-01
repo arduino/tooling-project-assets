@@ -41,8 +41,7 @@ void loop() {
     if (panJoystick == 1 && panAngle < 180) panAngle++;
     //If the X value from the joystick equals -1 and
     //panAngle is more than 0 degrees, decrease panAngle with 1
-    else if (panJoystick == -1 && panAngle > 0)
-      panAngle--;
+    else if (panJoystick == -1 && panAngle > 0) panAngle--;
   }
   //If the joysYicks Y value is 0 we will tilt
   if (tiltJoystick != 0) {
@@ -51,8 +50,7 @@ void loop() {
     if (tiltJoystick == 1 && tiltAngle < 180) tiltAngle++;
     //If the Y value from the joystick equals -1 and
     //tiltAngle is more than 0 degrees, decrease tiltAngle with 1
-    else if (tiltJoystick == -1 && tiltAngle > 0)
-      tiltAngle--;
+    else if (tiltJoystick == -1 && tiltAngle > 0) tiltAngle--;
   }
   pan.write(panAngle);    //Set position of the pan servo
   tilt.write(tiltAngle);  //Set position of the tilt servo

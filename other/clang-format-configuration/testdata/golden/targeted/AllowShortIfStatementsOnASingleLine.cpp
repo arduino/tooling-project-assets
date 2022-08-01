@@ -3,16 +3,56 @@ void foo() {
 
   if (a)
     return;
-  else {
+  if (a)
+    return;
+  else if (a)
+    return;
+  else
+    return;
+  if (a)
+    return;
+  else if (a) {
+    return;
+  } else {
     return;
   }
 
   if (a) return;
+  if (a)
+    return;
+  else if (a)
+    return;
   else
     return;
+  if (a)
+    return;
+  else if (a) {
+    return;
+  } else {
+    return;
+  }
 
   if (a) return;
-  else {
+  if (a) return;
+  else if (a)
+    return;
+  else
+    return;
+  if (a) return;
+  else if (a) {
+    return;
+  } else {
+    return;
+  }
+
+  if (a) return;
+  if (a) return;
+  else if (a) return;
+  else return;
+  if (a) return;
+  else if (a) {
+    return;
+  } else {
     return;
   }
 }
