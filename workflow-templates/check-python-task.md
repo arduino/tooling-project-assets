@@ -31,7 +31,7 @@ https://python-poetry.org/docs/#installation
 If your project does not already use Poetry, you can initialize the [`pyproject.toml`](https://python-poetry.org/docs/pyproject/) file using these commands:
 
 ```
-poetry init --python="^3.9" --dev-dependency="black@^22.6" --dev-dependency="flake8@^4.0.1" --dev-dependency="pep8-naming@^0.13.0"
+poetry init --python="^3.9" --dev-dependency="black@^22.6" --dev-dependency="flake8@^4.0.1" --dev-dependency="pep8-naming@^0.13.1"
 poetry install
 ```
 
