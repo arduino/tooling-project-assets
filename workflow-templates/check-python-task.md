@@ -38,7 +38,7 @@ poetry install
 If already using Poetry, add the tool using this command:
 
 ```
-poetry add --dev "black@^22.6" "flake8@^4.0.1" "pep8-naming@^0.13.0"
+poetry add --dev "black@^22.6" "flake8@^4.0.1" "pep8-naming@^0.13.1"
 ```
 
 Commit the resulting `pyproject.toml` and `poetry.lock` files.
