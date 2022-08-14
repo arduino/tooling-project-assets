@@ -1,0 +1,37 @@
+# Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/check-action-metadata-task.md
+name: Check Action Metadata
+
+# See: https://docs.github.com/en/actions/reference/events-that-trigger-workflows
+on:
+  push:
+    paths:
+      - ".github/workflows/check-action-metadata-task.ya?ml"
+      - "action.ya?ml"
+      - "Taskfile.ya?ml"
+  pull_request:
+    paths:
+      - ".github/workflows/check-action-metadata-task.ya?ml"
+      - "action.ya?ml"
+      - "Taskfile.ya?ml"
+  schedule:
+    # Run every Tuesday at 8 AM UTC to catch breakage from changes to the JSON schema.
+    - cron: "0 8 * * TUE"
+  workflow_dispatch:
+  repository_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Task
+        uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          version: 3.x
+
+      - name: Validate action.yml
+        run: task --silent action:validate
