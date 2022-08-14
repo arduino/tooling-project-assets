@@ -14,6 +14,34 @@ Install the [`check-action-metadata-task.yml`](check-action-metadata-task.yml) G
 
 - [`Taskfile.yml`](assets/check-action-metadata-task/Taskfile.yml] - task for validating `action.yml`
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
+- [`Taskfile.yml`](assets/npm-task/Taskfile.yml) - **npm** tasks.
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
+
+### Dependencies
+
+The tool dependencies of this workflow are managed by [**npm**](https://www.npmjs.com/).
+
+Add the dependencies by running this command:
+
+```text
+npm install --save-dev ajv-cli@^5.0.0
+```
+
+Commit the resulting changes to the `package.json` and `package-lock.json` files.
+
+### Configuration
+
+#### Workflow
+
+Configure the version of **Node.js** used for development of the project in the `env.NODE_VERSION` field of `check-action-metadata-task.yml`.
+
+#### `.gitignore`
+
+Add the following to [`/.gitignore`](https://git-scm.com/docs/gitignore):
+
+```
+/node_modules/
+```
 
 ### Readme badge
 
