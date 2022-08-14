@@ -118,18 +118,3 @@ Approval can be based on:
 - [Allowed license type](https://github.com/github/licensed/blob/master/docs/configuration/allowed_licenses.md)
 - [Individual dependency](https://github.com/github/licensed/blob/master/docs/configuration/reviewing_dependencies.md)
 ```
-
-## Related information
-
-### GNU
-
-- https://www.gnu.org/licenses/license-list.html#GPLCompatibleLicenses
-- https://www.gnu.org/licenses/gpl-faq.html#AllCompatibility
-- https://www.gnu.org/licenses/license-compatibility.html
-- https://www.gnu.org/licenses/quick-guide-gplv3.html#new-compatible-licenses
-- https://softwarefreedom.org/resources/2007/gpl-non-gpl-collaboration.html
-
-### Apache
-
-- http://www.apache.org/licenses/GPL-compatibility.html
-- https://www.apache.org/legal/resolved.html#category-a
