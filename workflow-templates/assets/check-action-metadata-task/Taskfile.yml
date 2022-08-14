@@ -11,5 +11,15 @@ tasks:
     deps:
       - task: npm:install-deps
     cmds:
-      - wget --quiet --output-document="{{.ACTION_METADATA_SCHEMA_PATH}}" https://json.schemastore.org/github-action
-      - npx ajv-cli validate --strict=false -s "{{.ACTION_METADATA_SCHEMA_PATH}}" -d "action.yml"
+      - |
+        wget \
+          --quiet \
+          --output-document="{{.ACTION_METADATA_SCHEMA_PATH}}" \
+          https://json.schemastore.org/github-action
+      - |
+        npx \
+          ajv-cli \
+            validate \
+            --strict=false \
+            -s "{{.ACTION_METADATA_SCHEMA_PATH}}" \
+            -d "action.yml"
