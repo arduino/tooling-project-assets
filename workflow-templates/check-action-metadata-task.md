@@ -16,6 +16,8 @@ Install the [`check-action-metadata-task.yml`](check-action-metadata-task.yml) G
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`Taskfile.yml`](assets/npm-task/Taskfile.yml) - **npm** tasks.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
+- [`Taskfile.yml`](assets/windows-task/Taskfile.yml) - utility tasks.
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
 
 ### Dependencies
 
