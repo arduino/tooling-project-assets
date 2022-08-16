@@ -1,6 +1,6 @@
-# "Check Go Dependencies" workflow (Task)
+# "Check npm Dependencies" workflow (Task)
 
-Use [**Licensed**](https://github.com/github/licensed) to check if the Go project has dependencies with incompatible licenses.
+Use [**Licensed**](https://github.com/github/licensed) to check if the project has [**npm**](https://www.npmjs.com/)-managed dependencies with incompatible licenses.
 
 **Licensed** detects all dependencies of the project, detects their license types, and then checks them against a dependency license approval configuration.
 
@@ -13,11 +13,15 @@ There are several options for configuring approvals. The most useful being:
 
 ### Workflow
 
-Install the [`check-go-dependencies-task.yml`](check-go-dependencies-task.yml) GitHub Actions workflow to `.github/workflows/`
+Install the [`check-npm-dependencies-task.yml`](check-npm-dependencies-task.yml) GitHub Actions workflow to `.github/workflows/`
 
 ### Assets
 
-- [`Taskfile.yml`](assets/check-dependencies-task/Taskfile.yml) - [tasks](https://taskfile.dev/) to cache metadata for and check compatibility of dependency licenses.
+- [`Taskfile.yml`](assets/check-dependencies-task/Taskfile.yml) - tasks to cache metadata for and check compatibility of dependency licenses.
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
+- [`Taskfile.yml`](assets/check-npm-dependencies-task/Taskfile.yml) - tasks to check **npm** dependencies.
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
+- [`Taskfile.yml`](assets/npm-task/Taskfile.yml) - **npm** tasks.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`.licensed.yml](assets/check-dependencies) - suggested allowed dependency license types list for the project's license type.
   - Install to: repository root.
@@ -41,13 +45,13 @@ A list of [allowed license types](https://github.com/github/licensed/blob/master
 
 All dependencies that are determined to use one of these licenses will be automatically allowed.
 
-[SPDX license identifiers](https://spdx.org/licenses/) are used, except converted to all lowercase letters (e.g., use `gpl-3.0-or-later` for the GPL 3.0 (or later) license).
+[SPDX license identifiers](https://spdx.org/licenses/) are used, except converted to all lowercase letters (e.g., use `gpl-3.0-or-later` for the "**GPL 3.0 (or later)**" license).
 
 #### Metadata cache
 
 Dependency license metadata is stored in the `.licenses` folder. This should be committed to the repository. Generate or update the cache by running this command:
 
-```
+```text
 task general:cache-dep-licenses
 ```
 
@@ -65,12 +69,33 @@ A dependency might use a license type that can not be allowed globally via the `
 
 In this case, the dependency's identifier must be added to the `reviewed.<source ID>[*]` key in the `.licensed.yml` configuration file.
 
+#### Configure tools to ignore metadata cache
+
+Since it contains generated files, the dependency license metadata cache folder should be excluded from formatting and linting operations and checks.
+
+##### `.prettierignore`
+
+In projects using [**Prettier**](https://prettier.io/) for formatting YAML files, this path should be added to the [`.prettierignore` file](https://prettier.io/docs/en/ignore.html#ignoring-files-prettierignore):
+
+```gitignore
+/.licenses/
+```
+
+##### `.yamllint.yml`
+
+In projects using [**yamllint**](https://prettier.io/) for linting YAML files, this path should be added to the `ignore` field in the [`.yamllint.yml` configuration file](https://yamllint.readthedocs.io/en/stable/configuration.html):
+
+```yaml
+ignore: |
+  /.licenses/
+```
+
 ### Readme badge
 
 Markdown badge:
 
 ```markdown
-[![Check Go Dependencies status](https://github.com/TODO_REPO_OWNER/TODO_REPO_NAME/actions/workflows/check-go-dependencies-task.yml/badge.svg)](https://github.com/TODO_REPO_OWNER/TODO_REPO_NAME/actions/workflows/check-go-dependencies-task.yml)
+[![Check npm Dependencies status](https://github.com/TODO_REPO_OWNER/TODO_REPO_NAME/actions/workflows/check-npm-dependencies-task.yml/badge.svg)](https://github.com/TODO_REPO_OWNER/TODO_REPO_NAME/actions/workflows/check-npm-dependencies-task.yml)
 ```
 
 Replace the `TODO_REPO_OWNER` and `TODO_REPO_NAME` placeholders in the URLs with the final repository owner and name ([example](https://raw.githubusercontent.com/arduino-libraries/ArduinoIoTCloud/master/README.md)).
@@ -80,7 +105,7 @@ Replace the `TODO_REPO_OWNER` and `TODO_REPO_NAME` placeholders in the URLs with
 Asciidoc badge:
 
 ```adoc
-image:https://github.com/{repository-owner}/{repository-name}/actions/workflows/check-go-dependencies-task.yml/badge.svg["Check Go Dependencies status", link="https://github.com/{repository-owner}/{repository-name}/actions/workflows/check-go-dependencies-task.yml"]
+image:https://github.com/{repository-owner}/{repository-name}/actions/workflows/check-npm-dependencies-task.yml/badge.svg["Check npm Dependencies status", link="https://github.com/{repository-owner}/{repository-name}/actions/workflows/check-npm-dependencies-task.yml"]
 ```
 
 Define the `{repository-owner}` and `{repository-name}` attributes and use them throughout the readme ([example](https://raw.githubusercontent.com/arduino-libraries/WiFiNINA/master/README.adoc)).
@@ -88,9 +113,9 @@ Define the `{repository-owner}` and `{repository-name}` attributes and use them 
 ## Commit message
 
 ```
-Add CI workflow to check for unapproved Go dependency licenses
+Add CI workflow to check for unapproved npm dependency licenses
 
-A task and GitHub Actions workflow are provided here for checking the license types of Go project dependencies.
+A task and GitHub Actions workflow are provided here for checking the license types of npm-managed project dependencies.
 
 On every push and pull request that affects relevant files, the CI workflow will check:
 
@@ -106,7 +131,7 @@ Approval can be based on:
 ## PR message
 
 ```markdown
-A task and GitHub Actions workflow are provided here for checking the license types of Go project dependencies.
+A task and GitHub Actions workflow are provided here for checking the license types of [**npm**](https://www.npmjs.com/)-managed project dependencies.
 
 On every push and pull request that affects relevant files, the CI workflow will use [**Licensed**](https://github.com/github/licensed) to check:
 
