@@ -1,0 +1,25 @@
+# See: https://taskfile.dev/#/usage
+version: "3"
+
+tasks:
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-action-metadata-task/Taskfile.yml
+  action:validate:
+    desc: Validate GitHub Actions metadata against JSON schema
+    vars:
+      ACTION_METADATA_SCHEMA_PATH:
+        sh: task utility:mktemp-file TEMPLATE="github-action-schema-XXXXXXXXXX.json"
+    deps:
+      - task: npm:install-deps
+    cmds:
+      - |
+        wget \
+          --quiet \
+          --output-document="{{.ACTION_METADATA_SCHEMA_PATH}}" \
+          https://json.schemastore.org/github-action
+      - |
+        npx \
+          ajv-cli \
+            validate \
+            --strict=false \
+            -s "{{.ACTION_METADATA_SCHEMA_PATH}}" \
+            -d "action.yml"
