@@ -12,7 +12,7 @@ python = "^3.9"
 
 [tool.poetry.dev-dependencies]
 yamllint = "^v1.27.1"
-codespell = "^2.1.0"
+codespell = "^2.2.1"
 black = "^22.6"
 flake8 = "^5.0.4"
 pep8-naming = "^0.13.1"
