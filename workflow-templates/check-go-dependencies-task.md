@@ -65,7 +65,9 @@ A dependency might use a license type that can not be allowed globally via the `
 
 In this case, the dependency's identifier must be added to the `reviewed.<source ID>[*]` key in the `.licensed.yml` configuration file.
 
-### Readme badge
+### Documentation
+
+#### Readme badge
 
 Markdown badge:
 
@@ -84,6 +86,26 @@ image:https://github.com/{repository-owner}/{repository-name}/actions/workflows/
 ```
 
 Define the `{repository-owner}` and `{repository-name}` attributes and use them throughout the readme ([example](https://raw.githubusercontent.com/arduino-libraries/WiFiNINA/master/README.adoc)).
+
+#### Development Guide
+
+Add the following under the "**Running Checks**" section of the project's development documentation (template available [here](../documentation-templates/contributor-guide/task/development.md)):
+
+````markdown
+### Dependency License Metadata
+
+Metadata about the license types of all dependencies is cached in the repository. To update this cache, run the following command from the repository root folder:
+
+```text
+task general:cache-dep-licenses
+```
+
+The necessary **Licensed** tool can be installed by following [these instructions](https://github.com/github/licensed#as-an-executable).
+
+Unfortunately, **Licensed** does not have Windows support.
+
+An updated cache is also generated whenever the cache is found to be outdated by the by the "**Check Go Dependencies**" CI workflow and made available for download via the `dep-licenses-cache` [workflow artifact](https://docs.github.com/actions/managing-workflow-runs/downloading-workflow-artifacts).
+````
 
 ## Commit message
 

@@ -53,7 +53,9 @@ Add entries for each website source file to the `nav` array in `mkdocs.yml`, or 
 
 Reference: https://www.mkdocs.org/user-guide/configuration/
 
-### Readme badge
+### Documentation
+
+#### Readme badge
 
 Markdown badge:
 
@@ -72,6 +74,24 @@ image:https://github.com/{repository-owner}/{repository-name}/actions/workflows/
 ```
 
 Define the `{repository-owner}` and `{repository-name}` attributes and use them throughout the readme ([example](https://raw.githubusercontent.com/arduino-libraries/WiFiNINA/master/README.adoc)).
+
+#### Development Guide
+
+Add the following to the project's development documentation (templates available [here](../documentation-templates/README.md#development-guide)):
+
+````markdown
+## Documentation
+
+The [Markdown](https://www.markdownguide.org/basic-syntax/) files under the `docs` subfolder of the repository are the source content for the project's documentation website.
+
+When working on the documentation, it may be useful to see the effect the changes will have on the generated documentation website. You can build the documentation website and serve it from your personal computer by running this command from the project root:
+
+```text
+task website:serve
+```
+
+The website will now build. If you don't see any error, open `http://127.0.0.1:8000` in your browser to load the local copy of the documentation site.
+````
 
 ## Commit message
 
