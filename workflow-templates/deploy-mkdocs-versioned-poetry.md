@@ -89,7 +89,9 @@ This will do the following:
 
 After this initial deployment, all further website updates will be handled automatically by the "Deploy Website" workflow.
 
-### Readme badge
+### Documentation
+
+#### Readme badge
 
 Markdown badge:
 
@@ -108,6 +110,10 @@ image:https://github.com/{repository-owner}/{repository-name}/actions/workflows/
 ```
 
 Define the `{repository-owner}` and `{repository-name}` attributes and use them throughout the readme ([example](https://raw.githubusercontent.com/arduino-libraries/WiFiNINA/master/README.adoc)).
+
+#### Development Guide
+
+See the ["Deploy Website" workflow (MkDocs, Poetry) documentation](deploy-mkdocs-poetry.md#development-guide)
 
 ## Website versioning
 

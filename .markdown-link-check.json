@@ -12,7 +12,19 @@
   "aliveStatusCodes": [200, 206],
   "ignorePatterns": [
     {
-      "pattern": "^CONTRIBUTING\\.md#building-the-source-code$"
+      "pattern": "^../development\\.md#development-guide$"
+    },
+    {
+      "pattern": "^contributor-guide/beta-testing\\.md#beta-testing-guide$"
+    },
+    {
+      "pattern": "^development\\.md#building-the-project$"
+    },
+    {
+      "pattern": "^development\\.md#development-guide$"
+    },
+    {
+      "pattern": "^issues\\.md#issue-report-guide$"
     },
     {
       "pattern": "/TODO_REPO_NAME/"

@@ -13,12 +13,16 @@ on:
       - ".github/workflows/check-community-health-sync.ya?ml"
       - "Taskfile.ya?ml"
       - ".github/ISSUE_TEMPLATE/**"
+      - "docs/**"
+      - "documentation-templates/**"
       - "issue-templates/**"
   pull_request:
     paths:
       - ".github/workflows/check-community-health-sync.ya?ml"
       - "Taskfile.ya?ml"
       - ".github/ISSUE_TEMPLATE/**"
+      - "docs/**"
+      - "documentation-templates/**"
       - "issue-templates/**"
   schedule:
     # Run periodically to catch breakage caused by external changes.

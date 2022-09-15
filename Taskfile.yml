@@ -453,9 +453,19 @@ tasks:
   github:sync:
     desc: Sync GitHub community health files
     vars:
+      DOCUMENTATION_INSTALLATION_PATH: "./docs"
+      DOCUMENTATION_TEMPLATES_PATH: "./documentation-templates"
       ISSUE_TEMPLATES_INSTALLATION_PATH: "./.github/ISSUE_TEMPLATE"
       ISSUE_TEMPLATES_PATH: "./issue-templates"
     cmds:
+      - |
+        cp \
+          "{{.DOCUMENTATION_TEMPLATES_PATH}}/contributor-guide/general/CONTRIBUTING.md" \
+          "{{.DOCUMENTATION_INSTALLATION_PATH}}"
+      - |
+        cp \
+          "{{.DOCUMENTATION_TEMPLATES_PATH}}/contributor-guide/general/contributor-guide/assets/"* \
+          "{{.DOCUMENTATION_INSTALLATION_PATH}}/contributor-guide/assets/"
       - |
         cp \
           "{{.ISSUE_TEMPLATES_PATH}}/minimal/bug-report.md" \
