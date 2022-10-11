@@ -19,6 +19,12 @@ Install the [`publish-go-tester-task.yml`](publish-go-tester-task.yml) GitHub Ac
 - [`DistTasks.yml`](assets/release-go-task/DistTasks.yml) - general purpose tasks for making production builds of Go projects using cgo and [elastic docker containers](https://github.com/elastic/golang-crossbuild).
   - Install to: repository root
 
+### Configuration
+
+#### Workflow
+
+`PROJECT_NAME` must be set to the project-specific name in `publish-go-tester-task.yml`.
+
 ### Readme badge
 
 Markdown badge:
