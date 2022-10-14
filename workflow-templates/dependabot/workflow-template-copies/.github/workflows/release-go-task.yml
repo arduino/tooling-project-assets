@@ -55,7 +55,7 @@ jobs:
           version: 3.x
 
       - name: Build
-        run: task dist:all
+        run: task dist:${{ matrix.os }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
