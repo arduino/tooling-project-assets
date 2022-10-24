@@ -53,7 +53,7 @@ jobs:
       - name: Identify Prerelease
         id: prerelease
         run: |
-          if [[ "$("${{ env.SEMVER_TOOL_PATH }}" get prerel "${GITHUB_REF/refs\/tags\//}")" ]]; then echo "::set-output name=IS_PRE::true"; fi
+          if [[ "$("${{ env.SEMVER_TOOL_PATH }}" get prerel "${GITHUB_REF/refs\/tags\//}")" ]]; then echo "IS_PRE=true" >> $GITHUB_OUTPUT"; fi
 
       - name: Create Github release
         uses: ncipollo/release-action@v1
