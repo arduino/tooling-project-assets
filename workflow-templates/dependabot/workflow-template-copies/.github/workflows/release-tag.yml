@@ -36,7 +36,7 @@ jobs:
 
       - name: Download semver tool
         id: download-semver-tool
-        uses: carlosperate/download-file-action@v1
+        uses: carlosperate/download-file-action@v2
         with:
           file-url: https://github.com/fsaintjacques/semver-tool/archive/${{ env.SEMVER_TOOL_VERSION }}.zip
           location: ${{ runner.temp }}/semver-tool
