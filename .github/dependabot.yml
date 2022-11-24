@@ -16,12 +16,9 @@ updates:
 
   # Configure check for outdated GitHub Actions actions in workflow templates.
   - package-ecosystem: github-actions
-    # The workflows under the .github/workflows/ subfolder of this path will be checked.
-    directory: /workflow-templates/dependabot/workflow-template-copies/
+    directory: /workflow-templates/
     schedule:
       interval: daily
-    commit-message:
-      prefix: (DO NOT MERGE)
     labels:
       - "topic: infrastructure"
     assignees:

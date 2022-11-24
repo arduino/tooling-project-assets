@@ -42,7 +42,6 @@ tasks:
     deps:
       - task: ci:sync
       - task: config:sync
-      - task: dependabot:sync
       - task: general:correct-spelling
       - task: general:format-prettier
       - task: github:sync
@@ -370,22 +369,6 @@ tasks:
           --all-errors \
           -s "{{.SCHEMA_PATH}}" \
           -d "{{.PROJECT_FOLDER}}/{{.DATA_PATH}}"
-
-  dependabot:sync:
-    desc: Sync workflow duplicates for dependabot checks
-    vars:
-      WORKFLOW_TEMPLATES_PATH: "./workflow-templates"
-      WORKFLOW_TEMPLATE_COPIES_PATH: "./workflow-templates/dependabot/workflow-template-copies/.github/workflows"
-    cmds:
-      # Sync workflow templates with the copies in the folder where Dependabot can check them for updates.
-      - mkdir --parents "{{.WORKFLOW_TEMPLATE_COPIES_PATH}}"
-      - rm --force "{{.WORKFLOW_TEMPLATE_COPIES_PATH}}"/*
-      - |
-        find "{{.WORKFLOW_TEMPLATES_PATH}}" \
-          -maxdepth 1 \
-          -type f \
-          -regex '.*\.ya?ml' \
-          -exec cp '{}' "{{.WORKFLOW_TEMPLATE_COPIES_PATH}}" \;
 
   docs:generate:
     desc: Create all generated documentation content
