@@ -23,6 +23,10 @@ Addition of, or requests for, any additional workflows that can be reusable betw
 
 ## Dependabot
 
-Dependabot is used to check for outdated action versions used in the workflow templates. Details about that are [here](dependabot/README.md).
+Dependabot is used to [check for outdated action versions](https://docs.github.com/code-security/dependabot/working-with-dependabot/keeping-your-actions-up-to-date-with-dependabot) used in the template workflows.
+
+Dependabot's PRs will occasionally try to pin to the patch version of the action (e.g., updating `uses: foo/bar@v1` to `uses: foo/bar@v2.3.4`). When the action author has [provided a major version ref](https://docs.github.com/actions/creating-actions/about-custom-actions#using-release-management-for-actions), use that instead (e.g., `uses: foo/bar@v2`). Once the major version has been updated in the workflow, Dependabot should not submit an update PR again until the next major version bump.
+
+---
 
 The same can be done for the workflows of any repository. See the instructions [here](assets/dependabot/README.md).
