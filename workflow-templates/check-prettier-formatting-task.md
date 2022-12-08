@@ -34,7 +34,7 @@ The tool dependencies of this workflow are managed by [npm](https://www.npmjs.co
 Add the dependencies by running this command:
 
 ```text
-npm install --save-dev prettier@^2.8.0
+npm install --save-dev prettier@^2.8.1
 ```
 
 Commit the resulting changes to the `package.json` and `package-lock.json` files.
