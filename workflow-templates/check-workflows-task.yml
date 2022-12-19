@@ -1,4 +1,4 @@
-# Source: https://github.com/arduino/tooling-project-assets/blob/master/workflow-templates/check-workflows-task.md
+# Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/check-workflows-task.md
 name: Check Workflows
 
 env:
