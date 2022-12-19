@@ -144,14 +144,17 @@ tasks:
     cmds:
       - |
         if ! which clang-format &>/dev/null; then
-          echo "clang-format not found or not in PATH. Please install: https://github.com/arduino/clang-static-binaries/releases"
+          echo "clang-format not found or not in PATH."
+          echo "Please install: https://github.com/arduino/clang-static-binaries/releases"
           exit 1
         fi
       - |
         INSTALLED_CLANG_FORMAT_VERSION_ARRAY=($(clang-format --version))
         INSTALLED_CLANG_FORMAT_VERSION="${INSTALLED_CLANG_FORMAT_VERSION_ARRAY[${#INSTALLED_CLANG_FORMAT_VERSION_ARRAY[@]}-1]}"
         if [[ "$INSTALLED_CLANG_FORMAT_VERSION" != "{{.EXPECTED_CLANG_FORMAT_VERSION}}" ]]; then
-          echo "Installed version of clang-format $INSTALLED_CLANG_FORMAT_VERSION (at $(which clang-format)) does not match expected {{.EXPECTED_CLANG_FORMAT_VERSION}}"
+          echo "Installed version of clang-format does not match expected:"
+          echo "Installed: $INSTALLED_CLANG_FORMAT_VERSION (at $(which clang-format))"
+          echo "Expected: {{.EXPECTED_CLANG_FORMAT_VERSION}}"
           exit 1
         fi
 
@@ -522,7 +525,8 @@ tasks:
           # npx --call uses the native shell, which makes it too difficult to use npx for this application on Windows,
           # so the Windows user is required to have markdown-link-check installed and in PATH.
           if ! which markdown-link-check &>/dev/null; then
-            echo "markdown-link-check not found or not in PATH. Please install: https://github.com/tcort/markdown-link-check#readme"
+            echo "markdown-link-check not found or not in PATH."
+            echo "Please install: https://github.com/tcort/markdown-link-check#readme"
             exit 1
           fi
           # Default behavior of the task on Windows is to exit the task when the first broken link causes a non-zero
@@ -723,7 +727,8 @@ tasks:
     cmds:
       - |
         if ! which shellcheck &>/dev/null; then
-          echo "shellcheck not installed or not in PATH. Please install: https://github.com/koalaman/shellcheck#installing"
+          echo "shellcheck not installed or not in PATH."
+          echo "Please install: https://github.com/koalaman/shellcheck#installing"
           exit 1
         fi
       - |

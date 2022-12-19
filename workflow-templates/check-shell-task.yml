@@ -101,7 +101,11 @@ jobs:
         run: |
           cd "${{ env.INSTALL_PATH }}"
           tar --extract --file="${{ steps.download.outputs.name }}"
-          EXTRACTION_FOLDER="$(basename "${{ steps.download.outputs.name }}" "${{ env.SHELLCHECK_RELEASE_ASSET_SUFFIX }}")"
+          EXTRACTION_FOLDER="$(
+            basename \
+              "${{ steps.download.outputs.name }}" \
+              "${{ env.SHELLCHECK_RELEASE_ASSET_SUFFIX }}"
+          )"
           # Add installation to PATH:
           # See: https://docs.github.com/actions/using-workflows/workflow-commands-for-github-actions#adding-a-system-path
           echo "${{ env.INSTALL_PATH }}/$EXTRACTION_FOLDER" >> "$GITHUB_PATH"
