@@ -3,7 +3,7 @@ version: "3"
 
 tasks:
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-npm-dependencies-task/Taskfile.yml
-  general:install-deps:
-    desc: Install project dependencies
+  general:prepare-deps:
+    desc: Prepare project dependencies for license check
     deps:
       - task: npm:install-deps

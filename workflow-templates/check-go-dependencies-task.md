@@ -19,6 +19,8 @@ Install the [`check-go-dependencies-task.yml`](check-go-dependencies-task.yml) G
 
 - [`Taskfile.yml`](assets/check-dependencies-task/Taskfile.yml) - [tasks](https://taskfile.dev/) to cache metadata for and check compatibility of dependency licenses.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
+- [`Taskfile.yml`](assets/check-go-dependencies-task/Taskfile.yml) - tasks to check **Go** dependencies.
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`.licensed.yml](assets/check-dependencies) - suggested allowed dependency license types list for the project's license type.
   - Install to: repository root.
 
