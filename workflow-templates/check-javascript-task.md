@@ -31,7 +31,7 @@ The tool dependencies of this workflow are managed by [npm](https://www.npmjs.co
 Add the dependencies by running this command:
 
 ```text
-npm install --save-dev eslint@^8.35.0 eslint-config-prettier@^8.7.0
+npm install --save-dev eslint@^8.36.0 eslint-config-prettier@^8.7.0
 npx install-peerdeps --dev eslint-config-airbnb-base
 ```
 
