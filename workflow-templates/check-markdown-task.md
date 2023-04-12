@@ -37,7 +37,7 @@ The tool dependencies of this workflow are managed by [npm](https://www.npmjs.co
 Add the dependencies by running this command:
 
 ```text
-npm install --save-dev markdown-link-check@^3.10.3 markdownlint-cli@^0.33.0
+npm install --save-dev markdown-link-check@^3.11.1 markdownlint-cli@^0.33.0
 ```
 
 Commit the resulting changes to the `package.json` and `package-lock.json` files.
