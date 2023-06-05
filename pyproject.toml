@@ -11,7 +11,7 @@ authors = ["Arduino <info@arduino.cc>"]
 python = "^3.9"
 
 [tool.poetry.dev-dependencies]
-yamllint = "^v1.31.0"
+yamllint = "^v1.32.0"
 codespell = "^2.2.4"
 black = "^23.3"
 flake8 = "^6.0.0"
