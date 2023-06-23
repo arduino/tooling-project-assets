@@ -3,7 +3,7 @@
 Generate a command line reference for projects using [the Cobra Go module](https://cobra.dev/) and deploy a versioned [MkDocs](https://www.mkdocs.org/)-based static website to [GitHub Pages](https://pages.github.com/).
 
 This uses Cobra's built-in Markdown documentation generation capability:<br/>
-https://github.com/spf13/cobra/blob/master/doc/md_docs.md
+https://github.com/spf13/cobra/blob/main/site/content/docgen/md.md
 
 Documentation content will sometimes apply only to a specific version of the project. For this reason, it's important for the reader to be able to access the documentation for the specific version of the project they are using.
 The system provides a easy access to a website version for the documentation content at:
@@ -51,7 +51,7 @@ If there are any additional documentation generation tasks, add them to the `doc
 - [`go.mod`](assets/cobra/docsgen/go.mod) - replace `MODULE_NAME` with the project's module name.
 - [`main.go`](assets/cobra/docsgen/main.go)
   - replace `CLI_PACKAGE_NAME` with the project's Cobra CLI package name
-  - replace `cli.NewCommand()` with the project's Cobra CLI package function for [command root](https://github.com/spf13/cobra/blob/master/user_guide.md#create-rootcmd) generation
+  - replace `cli.NewCommand()` with the project's Cobra CLI package function for [command root](https://github.com/spf13/cobra/blob/main/site/content/user_guide.md#create-rootcmd) generation
 
 Run the following command from the `docsgen/` folder:
 
