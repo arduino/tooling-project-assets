@@ -60,7 +60,7 @@ jobs:
             )" != \
             "" \
           ]]; then
-            echo "IS_PRE=true" >> $GITHUB_OUTPUT"
+            echo "IS_PRE=true" >> $GITHUB_OUTPUT
           fi
 
       - name: Create Github release
