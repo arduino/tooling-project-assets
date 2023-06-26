@@ -24,6 +24,7 @@ env:
 jobs:
   configure:
     runs-on: ubuntu-latest
+    permissions: {}
 
     env:
       # Placeholder value of the PROJECT_OWNER variable in the template script
@@ -60,6 +61,7 @@ jobs:
 
   default:
     needs: configure
+    permissions: {}
     strategy:
       fail-fast: false
 
@@ -92,6 +94,7 @@ jobs:
 
   bindir:
     needs: configure
+    permissions: {}
     strategy:
       fail-fast: false
 
@@ -131,6 +134,7 @@ jobs:
 
   version:
     needs: configure
+    permissions: {}
     strategy:
       fail-fast: false
 
@@ -166,6 +170,7 @@ jobs:
 
   nightly:
     needs: configure
+    permissions: {}
     strategy:
       fail-fast: false
 
@@ -198,6 +203,7 @@ jobs:
 
   path-suggestions:
     needs: configure
+    permissions: {}
     strategy:
       fail-fast: false
 

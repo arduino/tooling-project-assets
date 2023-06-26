@@ -39,6 +39,7 @@ on:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    permissions: {}
 
     steps:
       - name: Checkout repository
@@ -60,6 +61,7 @@ jobs:
 
   check-config:
     runs-on: ubuntu-latest
+    permissions: {}
 
     steps:
       - name: Checkout repository
@@ -136,6 +138,7 @@ jobs:
 
   check-output:
     runs-on: ubuntu-latest
+    permissions: {}
 
     steps:
       - name: Checkout repository
@@ -195,6 +198,7 @@ jobs:
 
   check-testdata:
     runs-on: ubuntu-latest
+    permissions: {}
 
     steps:
       - name: Checkout repository
@@ -211,6 +215,7 @@ jobs:
 
   convert:
     runs-on: ubuntu-latest
+    permissions: {}
 
     steps:
       - name: Set environment variables
