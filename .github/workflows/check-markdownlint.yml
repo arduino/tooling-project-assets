@@ -21,6 +21,7 @@ on:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    permissions: {}
 
     steps:
       - name: Checkout repository

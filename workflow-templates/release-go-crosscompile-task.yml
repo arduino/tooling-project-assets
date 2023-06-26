@@ -20,6 +20,8 @@ on:
 jobs:
   create-release-artifacts:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     strategy:
       matrix:
@@ -75,6 +77,8 @@ jobs:
     name: Notarize ${{ matrix.artifact.name }}
     runs-on: macos-latest
     needs: create-release-artifacts
+    permissions:
+      contents: read
 
     env:
       GON_CONFIG_PATH: gon.config.hcl
@@ -177,6 +181,8 @@ jobs:
   create-release:
     runs-on: ubuntu-latest
     needs: notarize-macos
+    permissions:
+      contents: write
 
     steps:
       - name: Download artifact
