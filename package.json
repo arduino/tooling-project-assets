@@ -9,7 +9,7 @@
     "github-label-sync": "2.3.1",
     "markdown-link-check": "^3.11.2",
     "markdownlint-cli": "^0.35.0",
-    "prettier": "^3.0.0"
+    "prettier": "^3.0.3"
   },
   "dependencies": {
     "js-yaml": "^4.1.0"
