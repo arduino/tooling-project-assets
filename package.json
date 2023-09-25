@@ -4,7 +4,7 @@
     "ajv-formats": "^2.1.1",
     "eslint": "^8.45.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^8.8.0",
+    "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-import": "^2.27.5",
     "github-label-sync": "2.3.1",
     "markdown-link-check": "^3.11.2",
