@@ -37,3 +37,10 @@ tasks:
     dir: "{{default .DEFAULT_GO_MODULE_PATH .GO_MODULE_PATH}}"
     cmds:
       - go vet {{default .DEFAULT_GO_PACKAGES .GO_PACKAGES}}
+
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-go-task/Taskfile.yml
+  go:check-license-headers:
+    desc: Check go license headers
+    cmds:
+      - go install github.com/google/addlicense@v1.1.1
+      - addlicense -c "ARDUINO SA (http://www.arduino.cc/)" -f ./license_header.tpl *.go
