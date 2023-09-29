@@ -12,6 +12,7 @@ on:
     paths:
       - ".github/workflows/check-go-task.ya?ml"
       - "Taskfile.ya?ml"
+      - ".golangci.ya?ml"
       - "**/go.mod"
       - "**/go.sum"
       - "**.go"
@@ -19,6 +20,7 @@ on:
     paths:
       - ".github/workflows/check-go-task.ya?ml"
       - "Taskfile.ya?ml"
+      - ".golangci.ya?ml"
       - "**/go.mod"
       - "**/go.sum"
       - "**.go"
