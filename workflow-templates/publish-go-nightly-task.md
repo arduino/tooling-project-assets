@@ -62,7 +62,7 @@ This will enable everyone to participate in the project's development via beta t
 On a daily schedule:
 
 - Build the project for all supported platforms.
-- Use [gon](https://github.com/mitchellh/gon) to sign and notarize the macOS builds.
+- Use [gon](https://github.com/Bearer/gon) to sign and notarize the macOS builds.
 - Upload the builds to Arduino's downloads server.
 
 This will enable everyone to participate in the project's development via beta testing.
