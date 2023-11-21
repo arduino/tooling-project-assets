@@ -66,6 +66,14 @@ jobs:
     permissions:
       contents: read
 
+    strategy:
+      fail-fast: false
+
+      matrix:
+        module:
+          #TODO Add additional paths where license files should be
+          - path: 
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -78,11 +86,17 @@ jobs:
       - name: Install licensee
         run: gem install licensee
 
-      - name: Check license file
+      - name: Check license file for ${{ matrix.module.path }}
         run: |
           EXIT_STATUS=0
+
+          # Go into folder path
+          cd ./${{ matrix.module.path }}
+
+          
           # See: https://github.com/licensee/licensee
           LICENSEE_OUTPUT="$(licensee detect --json --confidence=100)"
+
 
           DETECTED_LICENSE_FILE="$(echo "$LICENSEE_OUTPUT" | jq .matched_files[0].filename | tr --delete '\r')"
           echo "Detected license file: $DETECTED_LICENSE_FILE"

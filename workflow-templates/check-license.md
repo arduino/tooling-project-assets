@@ -14,6 +14,7 @@ Install the [`check-license.yml`](check-license.yml) GitHub Actions workflow to 
 
 - Configure the license filename in the `env.EXPECTED_LICENSE_FILENAME` field of `check-license.yml`.
 - Configure the license type in the `env.EXPECTED_LICENSE_TYPE` field of `check-license.yml`.
+- (Optional) If license files should be present outisde the root directory, configure additional `path:` locations.
 
 ### Readme badge
 
