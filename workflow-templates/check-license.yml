@@ -93,7 +93,6 @@ jobs:
           # Go into folder path
           cd ./${{ matrix.module.path }}
 
-          
           # See: https://github.com/licensee/licensee
           LICENSEE_OUTPUT="$(licensee detect --json --confidence=100)"
 
