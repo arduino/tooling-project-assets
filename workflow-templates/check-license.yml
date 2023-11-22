@@ -70,7 +70,7 @@ jobs:
       fail-fast: false
 
       matrix:
-        module:
+        licenses:
           #TODO Add additional paths where license files should be
           - path: 
 
