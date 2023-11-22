@@ -705,7 +705,7 @@ tasks:
       SCHEMA_URL: https://raw.githubusercontent.com/DavidAnson/markdownlint/main/schema/markdownlint-config-schema.json
       SCHEMA_PATH:
         sh: task utility:mktemp-file TEMPLATE="markdownlint-schema-XXXXXXXXXX.json"
-      DATA_PATH: "**/.markdownlint.{yml,yaml}"
+      DATA_PATH: "workflow-templates/assets/check-markdown/.markdownlint.yml"
     deps:
       - task: npm:install-deps
     cmds:
