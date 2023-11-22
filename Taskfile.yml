@@ -359,7 +359,10 @@ tasks:
       SCHEMA_URL: https://json.schemastore.org/dependabot-2.0
       SCHEMA_PATH:
         sh: task utility:mktemp-file TEMPLATE="dependabot-schema-XXXXXXXXXX.json"
-      DATA_PATH: "**/dependabot.yml"
+      # The Dependabot configuration file for the repository.
+      DATA_PATH: ".github/dependabot.yml"
+      # The asset Dependabot configuration files.
+      ASSETS_DATA_PATH: "workflow-templates/assets/dependabot/**/dependabot.yml"
       PROJECT_FOLDER:
         sh: pwd
       WORKING_FOLDER:
@@ -372,6 +375,12 @@ tasks:
           --all-errors \
           -s "{{.SCHEMA_PATH}}" \
           -d "{{.PROJECT_FOLDER}}/{{.DATA_PATH}}"
+      - |
+        cd "{{.WORKING_FOLDER}}"  # Workaround for https://github.com/npm/cli/issues/3210
+        npx ajv-cli@{{.SCHEMA_DRAFT_4_AJV_CLI_VERSION}} validate \
+          --all-errors \
+          -s "{{.SCHEMA_PATH}}" \
+          -d "{{.PROJECT_FOLDER}}/{{.ASSETS_DATA_PATH}}"
 
   docs:generate:
     desc: Create all generated documentation content
