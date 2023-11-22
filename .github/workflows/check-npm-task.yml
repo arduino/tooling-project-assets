@@ -52,11 +52,19 @@ jobs:
           echo "result=$RESULT" >> $GITHUB_OUTPUT
 
   validate:
+    name: validate (${{ matrix.project.path }})
     needs: run-determination
     if: needs.run-determination.outputs.result == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        project:
+          # TODO: add paths of all npm-managed projects in the repository here.
+          - path: .
 
     steps:
       - name: Checkout repository
@@ -74,7 +82,7 @@ jobs:
           version: 3.x
 
       - name: Validate package.json
-        run: task --silent npm:validate
+        run: task --silent npm:validate PROJECT_PATH="${{ matrix.project.path }}"
 
   check-sync:
     name: check-sync (${{ matrix.project.path }})
