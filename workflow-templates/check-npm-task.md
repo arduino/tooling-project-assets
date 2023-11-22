@@ -23,6 +23,11 @@ Install the [check-npm-task.yml](check-npm-task.yml) GitHub Actions workflow to 
 
 Configure the version of Node.js used for development of the project in the `env.NODE_VERSION` field of `check-npm-task.yml`.
 
+If the project contains **npm**-managed projects (i.e., a folder containing a `package.json` file) in paths other than the root of the repository, add their paths to the [job matrices](https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix) of `check-npm-task.yml` at:
+
+- `jobs.validate.strategy.matrix.project[].path`
+- `jobs.check-sync.strategy.matrix.project[].path`
+
 ## Readme badge
 
 Markdown badge:
