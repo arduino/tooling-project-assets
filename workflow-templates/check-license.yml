@@ -107,8 +107,8 @@ jobs:
 
           DETECTED_LICENSE_FILE="$(echo "$LICENSEE_OUTPUT" | jq .matched_files[0].filename | tr --delete '\r')"
           echo "Detected license file: $DETECTED_LICENSE_FILE"
-          if [ "$DETECTED_LICENSE_FILE" != "\"${matrix.check-license.EXPECTED_LICENSE_FILENAME}\"" ]; then
-            echo "::error file=${DETECTED_LICENSE_FILE}::detected license file $DETECTED_LICENSE_FILE doesn't match expected: $matrix.check-license.EXPECTED_LICENSE_FILENAME"
+          if [ "$DETECTED_LICENSE_FILE" != "\"${{ matrix.check-license.EXPECTED_LICENSE_FILENAME }}\"" ]; then
+            echo "::error file=${DETECTED_LICENSE_FILE}::detected license file $DETECTED_LICENSE_FILE doesn't match expected: ${{ matrix.check-license.EXPECTED_LICENSE_FILENAME }}"
             EXIT_STATUS=1
           fi
 
