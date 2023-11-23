@@ -59,7 +59,8 @@ jobs:
 
           echo "result=$RESULT" >> $GITHUB_OUTPUT
 
-  check-license:
+  build:
+    name: ${{ matrix.check-license.path }}
     needs: run-determination
     if: needs.run-determination.outputs.result == 'true'
     runs-on: ubuntu-latest
@@ -73,6 +74,13 @@ jobs:
         licenses:
           #TODO Add additional paths where license files should be
           - path: ./
+            EXPECTED_LICENSE_FILENAME: LICENSE.txt
+            EXPECTED_LICENSE_TYPE: AGPL-3.0
+          - path: Arduino_BHY2
+            EXPECTED_LICENSE_FILENAME: LICENSE.md
+            EXPECTED_LICENSE_TYPE: GPL-3.0
+
+
 
     steps:
       - name: Checkout repository
