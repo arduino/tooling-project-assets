@@ -23,6 +23,30 @@ Install the [`check-shell-task.yml`](check-shell-task.yml) GitHub Actions workfl
 
 The formatting style defined in `.editorconfig` is the official standardized style to be used in all Arduino tooling projects and should not be modified.
 
+### Configuration
+
+Configure the paths of the shell scripts to be checked as elements in the [job matrices](https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix) of `check-shell-task.yml` at:
+
+- `jobs.lint.strategy.matrix.script[]`
+- `jobs.formatting.strategy.matrix.script[]`
+- `jobs.executable.strategy.matrix.script[]`
+
+#### Example:
+
+```yaml
+matrix:
+  script:
+    - path/to/some-script.sh
+    - path/to/another-script.sh
+```
+
+#### Paths filters
+
+The workflow is configured to be triggered on changes to any files in the repository that have a `.sh` or `.bash` file extension. If the project contains shell scripts without a file extension, the path to those scripts must be added to the following keys in `check-shell-task.yml`:
+
+- `on.push.paths[]`
+- `on.pull_request.paths[]`
+
 ### Readme badge
 
 Markdown badge:
@@ -64,3 +88,39 @@ On every push or pull request that modifies one of the shell scripts in the repo
 - Runs [`shfmt`](https://github.com/mvdan/sh) to check formatting.
 - Checks for forgotten executable script file permissions.
 ```
+
+## Usage
+
+In addition to the automated checks provided by the GitHub Actions workflow, the tasks can be ran locally.
+
+### Prerequisites
+
+The following development tools must be available in your local environment:
+
+- [**ShellCheck**](https://github.com/koalaman/shellcheck#installing) - shell script static analysis tool.
+- [**shfmt**](https://github.com/mvdan/sh#shfmt) - shell script formatting tool.
+- [**Task**](https://taskfile.dev/installation/) task runner tool.
+
+### Run static analysis
+
+```text
+task shell:check SCRIPT_PATH="<script path>"
+```
+
+(where `<script path>` is the path to the script file)
+
+### Check file permissions
+
+```text
+task shell:check-mode SCRIPT_PATH="<script path>"
+```
+
+(where `<script path>` is the path to the script file)
+
+### Format script
+
+```text
+task shell:format SCRIPT_PATH="<script path>"
+```
+
+(where `<script path>` is the path to the script file)
