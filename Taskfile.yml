@@ -359,7 +359,10 @@ tasks:
       SCHEMA_URL: https://json.schemastore.org/dependabot-2.0
       SCHEMA_PATH:
         sh: task utility:mktemp-file TEMPLATE="dependabot-schema-XXXXXXXXXX.json"
-      DATA_PATH: "**/dependabot.yml"
+      # The Dependabot configuration file for the repository.
+      DATA_PATH: ".github/dependabot.yml"
+      # The asset Dependabot configuration files.
+      ASSETS_DATA_PATH: "workflow-templates/assets/dependabot/**/dependabot.yml"
       PROJECT_FOLDER:
         sh: pwd
       WORKING_FOLDER:
@@ -372,6 +375,12 @@ tasks:
           --all-errors \
           -s "{{.SCHEMA_PATH}}" \
           -d "{{.PROJECT_FOLDER}}/{{.DATA_PATH}}"
+      - |
+        cd "{{.WORKING_FOLDER}}"  # Workaround for https://github.com/npm/cli/issues/3210
+        npx ajv-cli@{{.SCHEMA_DRAFT_4_AJV_CLI_VERSION}} validate \
+          --all-errors \
+          -s "{{.SCHEMA_PATH}}" \
+          -d "{{.PROJECT_FOLDER}}/{{.ASSETS_DATA_PATH}}"
 
   docs:generate:
     desc: Create all generated documentation content
@@ -696,7 +705,7 @@ tasks:
       SCHEMA_URL: https://raw.githubusercontent.com/DavidAnson/markdownlint/main/schema/markdownlint-config-schema.json
       SCHEMA_PATH:
         sh: task utility:mktemp-file TEMPLATE="markdownlint-schema-XXXXXXXXXX.json"
-      DATA_PATH: "**/.markdownlint.{yml,yaml}"
+      DATA_PATH: "workflow-templates/assets/check-markdown/.markdownlint.yml"
     deps:
       - task: npm:install-deps
     cmds:
@@ -713,12 +722,18 @@ tasks:
             -s "{{.SCHEMA_PATH}}" \
             -d "{{.DATA_PATH}}"
 
+  # Parameter variables:
+  # - PROJECT_PATH: path of the npm-managed project. Default value: "./"
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/npm-task/Taskfile.yml
   npm:install-deps:
     desc: Install dependencies managed by npm
+    dir: |
+      "{{default "./" .PROJECT_PATH}}"
     cmds:
       - npm install
 
+  # Parameter variables:
+  # - PROJECT_PATH: path of the npm-managed project. Default value: "./"
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-npm-task/Taskfile.yml
   npm:validate:
     desc: Validate npm configuration files against their JSON schema
@@ -755,7 +770,8 @@ tasks:
       STYLELINTRC_SCHEMA_URL: https://json.schemastore.org/stylelintrc.json
       STYLELINTRC_SCHEMA_PATH:
         sh: task utility:mktemp-file TEMPLATE="stylelintrc-schema-XXXXXXXXXX.json"
-      INSTANCE_PATH: "**/package.json"
+      INSTANCE_PATH: >-
+        {{default "." .PROJECT_PATH}}/package.json
       PROJECT_FOLDER:
         sh: pwd
       WORKING_FOLDER:
