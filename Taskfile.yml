@@ -363,24 +363,22 @@ tasks:
       DATA_PATH: ".github/dependabot.yml"
       # The asset Dependabot configuration files.
       ASSETS_DATA_PATH: "workflow-templates/assets/dependabot/**/dependabot.yml"
-      PROJECT_FOLDER:
-        sh: pwd
       WORKING_FOLDER:
         sh: task utility:mktemp-folder TEMPLATE="dependabot-validate-XXXXXXXXXX"
     cmds:
       - wget --quiet --output-document="{{.SCHEMA_PATH}}" {{.SCHEMA_URL}}
       - |
-        cd "{{.WORKING_FOLDER}}"  # Workaround for https://github.com/npm/cli/issues/3210
-        npx ajv-cli@{{.SCHEMA_DRAFT_4_AJV_CLI_VERSION}} validate \
+        npx ajv-cli validate \
           --all-errors \
+          --strict=false \
           -s "{{.SCHEMA_PATH}}" \
-          -d "{{.PROJECT_FOLDER}}/{{.DATA_PATH}}"
+          -d "{{.DATA_PATH}}"
       - |
-        cd "{{.WORKING_FOLDER}}"  # Workaround for https://github.com/npm/cli/issues/3210
-        npx ajv-cli@{{.SCHEMA_DRAFT_4_AJV_CLI_VERSION}} validate \
+        npx ajv-cli validate \
           --all-errors \
+          --strict=false \
           -s "{{.SCHEMA_PATH}}" \
-          -d "{{.PROJECT_FOLDER}}/{{.ASSETS_DATA_PATH}}"
+          -d "{{.ASSETS_DATA_PATH}}"
 
   docs:generate:
     desc: Create all generated documentation content
