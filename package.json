@@ -5,7 +5,7 @@
     "eslint": "^8.56.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-import": "^2.29.1",
     "github-label-sync": "2.3.1",
     "markdown-link-check": "^3.11.2",
     "markdownlint-cli": "^0.37.0",
