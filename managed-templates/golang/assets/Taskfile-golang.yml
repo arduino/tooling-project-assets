@@ -1,0 +1,27 @@
+# See: https://taskfile.dev/#/usage
+version: "3"
+
+tasks:
+  fix:
+    desc: Modernize usages of outdated APIs
+    dir: "{{default .DEFAULT_GO_MODULE_PATH .GO_MODULE_PATH}}"
+    cmds:
+      - go fix {{default .DEFAULT_GO_PACKAGES .GO_PACKAGES}}
+
+  format:
+    desc: Format Go code
+    dir: "{{default .DEFAULT_GO_MODULE_PATH .GO_MODULE_PATH}}"
+    cmds:
+      - go fmt {{default .DEFAULT_GO_PACKAGES .GO_PACKAGES}}
+
+  lint:
+    desc: Lint Go code
+    dir: "{{default .DEFAULT_GO_MODULE_PATH .GO_MODULE_PATH}}"
+    cmds:
+      - |
+        if ! which golangci-lint &>/dev/null; then
+          echo "golangci-lint not installed or not in PATH."
+          echo "Please install: https://golangci-lint.run/usage/install/#local-installation"
+          exit 1
+        fi
+      - golangci-lint run

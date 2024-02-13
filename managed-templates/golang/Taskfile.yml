@@ -1,0 +1,44 @@
+version: '3'
+
+includes:
+  project:
+    taskfile: project.yml
+    internal: true
+    optional: true
+
+tasks:
+  setup:
+    preconditions:
+      - sh: test -d .git
+        msg: "Please run this task from the root of your project"
+    dir: '{{.USER_WORKING_DIR}}'
+    cmds:
+      - task: write-preamble
+      - task: project:setup
+      - task: write-footer
+
+  bootstrap:
+    preconditions:
+      - sh: test -d .git
+        msg: "Please run this task from the root of your project"
+    dir: '{{.USER_WORKING_DIR}}'
+    cmds:
+      - task: wrtie-preamble
+      - task: write-footer
+
+  write-preamble:
+    internal: true
+    dir: '{{.USER_WORKING_DIR}}'
+    cmds:
+      - "echo 'version: \"3\"'> Taskfile.yml"
+      - "echo '' >> Taskfile.yml"
+      - "echo 'includes:' >> Taskfile.yml"
+      - "echo '  project: .project/Taskfile.yml' >> Taskfile.yml"
+
+  write-footer:
+    internal: true
+    dir: '{{.USER_WORKING_DIR}}'
+    cmds:
+      - "echo '  # end of generated includes' >> Taskfile.yml"
+      - "echo '' >> Taskfile.yml"
+      - "echo '# end of generated tasks' >> Taskfile.yml"

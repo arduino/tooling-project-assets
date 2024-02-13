@@ -1,0 +1,19 @@
+version: '3'
+
+vars:
+  SOURCE_BRANCH: 'managed-templates'
+
+tasks:
+  setup:
+    internal: true
+    dir: '{{.USER_WORKING_DIR}}'
+    requires:
+      vars:
+        - GO_VERSION
+    cmds:
+      - mkdir -p .github/workflows
+      - wget https://raw.githubusercontent.com/arduino/tooling-project-assets/{{.SOURCE_BRANCH}}/managed-templates/golang/assets/check-go-task.yml -O .github/workflows/check-go-task.yml
+      - sed -i "s/%%GO_VERSION%%/{{.GO_VERSION}}/g" .github/workflows/check-go-task.yml
+      - wget https://raw.githubusercontent.com/arduino/tooling-project-assets/{{.SOURCE_BRANCH}}/managed-templates/golang/assets/Taskfile-golang.yml -O Taskfile-golang.yml
+      - wget https://raw.githubusercontent.com/arduino/tooling-project-assets/{{.SOURCE_BRANCH}}/managed-templates/golang/assets/.golangci.yml -O .golangci.yml
+      - "echo '  go: Taskfile-golang.yml' >> Taskfile.yml"
