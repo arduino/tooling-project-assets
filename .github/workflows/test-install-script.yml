@@ -53,7 +53,7 @@ jobs:
             "${{ env.SCRIPT_FOLDER }}/${{ env.SCRIPT_NAME }}"
 
       - name: Save configured script as workflow artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           if-no-files-found: error
           path: ${{ env.SCRIPT_FOLDER }}/${{ env.SCRIPT_NAME }}
