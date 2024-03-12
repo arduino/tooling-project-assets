@@ -37,6 +37,10 @@ The following project-specific variables must be set/configured in `release-go-c
 - `AWS_PLUGIN_TARGET`
 - `GO_VERSION`: version of Go used for development of the project, use at least [GO 1.16 to be able to use 64-bit ARM architecture on macOS](https://tip.golang.org/doc/go1.16#ports)
 
+#### AWS IAM Role
+
+We need a special [IAM Role](https://docs.aws.amazon.com/rolesanywhere/latest/userguide/introduction.html#access) to upload files on the S3 bucket. This IAM Role is able to generate short lived credentials with push access to specific S3 subpaths. To generate a new role for a new repository kindly ask DevOps (providing the repository link and path you need files on S3).
+
 #### Repository secrets
 
 The following [repository secrets](https://docs.github.com/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) must be defined:
@@ -47,8 +51,10 @@ The following [repository secrets](https://docs.github.com/actions/security-guid
 - `AC_PROVIDER` - the App Store Connect provider via. You can use the ID of the certificate identity (e.g., `7KT7ZWMCJT`) for this.
 - `AC_PASSWORD` - [App-specific password](https://support.apple.com/en-us/HT204397) created for the Apple ID.
 - `DOWNLOADS_BUCKET` - [AWS bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingBucket.html) on the downloads server.
-- `AWS_ACCESS_KEY_ID` - [AWS access key ID](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) for the downloads server.
-- `AWS_SECRET_ACCESS_KEY` - [AWS secret access key](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) for the downloads server.
+
+The following [environment secrets](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#environment-secrets) must be defined under `production` environment:
+
+- `AWS_ROLE_TO_ASSUME` - [AWS role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) to generate temporary security credentials.
 
 ### Readme badge
 
