@@ -17,7 +17,7 @@ black = "^24.3"
 flake8 = "^7.0.0"
 pep8-naming = "^0.14.0"
 pytest = "^8.1.1"
-GitPython = "^3.1.42"
+GitPython = "^3.1.43"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
