@@ -16,7 +16,7 @@ codespell = "^2.3.0"
 black = "^24.4"
 flake8 = "^7.0.0"
 pep8-naming = "^0.14.1"
-pytest = "^8.1.1"
+pytest = "^8.2.2"
 GitPython = "^3.1.43"
 
 [build-system]
