@@ -53,7 +53,7 @@ jobs:
             "${{ env.SCRIPT_FOLDER }}/${{ env.SCRIPT_NAME }}"
 
       - name: Save configured script as workflow artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           if-no-files-found: error
           path: ${{ env.SCRIPT_FOLDER }}/${{ env.SCRIPT_NAME }}
@@ -75,7 +75,7 @@ jobs:
 
     steps:
       - name: Download script artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{ env.SCRIPT_ARTIFACT_NAME }}
 
@@ -114,7 +114,7 @@ jobs:
           echo "BINDIR=${{ runner.temp }}/custom-installation-folder" >> "$GITHUB_ENV"
 
       - name: Download script artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{ env.SCRIPT_ARTIFACT_NAME }}
 
@@ -151,7 +151,7 @@ jobs:
 
     steps:
       - name: Download script artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{ env.SCRIPT_ARTIFACT_NAME }}
 
@@ -184,7 +184,7 @@ jobs:
 
     steps:
       - name: Download script artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{ env.SCRIPT_ARTIFACT_NAME }}
 
@@ -228,7 +228,7 @@ jobs:
           echo "SECOND_BINDIR=${{ runner.temp }}/${SECOND_INSTALLATION_FOLDER}" >> "$GITHUB_ENV"
 
       - name: Download script artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{ env.SCRIPT_ARTIFACT_NAME }}
 
