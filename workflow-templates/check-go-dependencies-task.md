@@ -21,7 +21,7 @@ Install the [`check-go-dependencies-task.yml`](check-go-dependencies-task.yml) G
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`Taskfile.yml`](assets/check-go-dependencies-task/Taskfile.yml) - tasks to check **Go** dependencies.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
-- [`.licensed.yml](assets/check-dependencies) - suggested allowed dependency license types list for the project's license type.
+- [`.licensed.yml`](assets/check-dependencies) - suggested allowed dependency license types list for the project's license type.
   - Install to: repository root.
 
 ### Configuration
@@ -106,7 +106,7 @@ The necessary **Licensed** tool can be installed by following [these instruction
 
 Unfortunately, **Licensed** does not have Windows support.
 
-An updated cache is also generated whenever the cache is found to be outdated by the by the "**Check Go Dependencies**" CI workflow and made available for download via the `dep-licenses-cache` [workflow artifact](https://docs.github.com/actions/managing-workflow-runs/downloading-workflow-artifacts).
+An updated cache is also generated whenever the cache is found to be outdated by the "**Check Go Dependencies**" CI workflow and made available for download via the `dep-licenses-cache` [workflow artifact](https://docs.github.com/actions/managing-workflow-runs/downloading-workflow-artifacts).
 ````
 
 ## Commit message

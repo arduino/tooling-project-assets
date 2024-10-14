@@ -129,7 +129,7 @@ The necessary **Licensed** tool can be installed by following [these instruction
 
 Unfortunately, **Licensed** does not have Windows support.
 
-An updated cache is also generated whenever the cache is found to be outdated by the by the "**Check Go Dependencies**" CI workflow and made available for download via the `dep-licenses-cache` [workflow artifact](https://docs.github.com/actions/managing-workflow-runs/downloading-workflow-artifacts).
+An updated cache is also generated whenever the cache is found to be outdated by the "**Check npm Dependencies**" CI workflow and made available for download via the `dep-licenses-cache` [workflow artifact](https://docs.github.com/actions/managing-workflow-runs/downloading-workflow-artifacts).
 ````
 
 ## Commit message
