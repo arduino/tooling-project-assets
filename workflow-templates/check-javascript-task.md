@@ -89,5 +89,5 @@ https://eslint.org/docs/latest/use/configure/configuration-files
 On every push and pull request that affects relevant files, and periodically, run [**ESLint**](https://eslint.org/) on the repository's JavaScript files.
 
 **ESLint** is configured via the `.eslintrc.yml` file:
-https://eslint.org/docs/latest/user-guide/configuring/configuration-files
+https://eslint.org/docs/latest/use/configure/configuration-files
 ```
