@@ -5,7 +5,7 @@ env:
   # See: https://github.com/actions/setup-python/tree/main#available-versions-of-python
   PYTHON_VERSION: "3.9"
 
-# See: https://docs.github.com/actions/using-workflows/events-that-trigger-workflows
+# See: https://docs.github.com/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows
 on:
   create:
   push:
@@ -13,7 +13,8 @@ on:
       - ".yamllint*"
       - "poetry.lock"
       - "pyproject.toml"
-      # Source: https://github.com/ikatyang/linguist-languages/blob/master/data/YAML.json (used by Prettier)
+      # Source: https://github.com/github-linguist/linguist/blob/f164d13fa618023ecf2d8f2ed9a6ce5fae731346/lib/linguist/languages.yml#L8237-L8260
+      # (used by Prettier)
       - "**/.clang-format"
       - "**/.clang-tidy"
       - "**/.gemrc"
@@ -29,7 +30,8 @@ on:
       - ".yamllint*"
       - "poetry.lock"
       - "pyproject.toml"
-      # Source: https://github.com/ikatyang/linguist-languages/blob/master/data/YAML.json (used by Prettier)
+      # Source: https://github.com/github-linguist/linguist/blob/f164d13fa618023ecf2d8f2ed9a6ce5fae731346/lib/linguist/languages.yml#L8237-L8260
+      # (used by Prettier)
       - "**/.clang-format"
       - "**/.clang-tidy"
       - "**/.gemrc"
