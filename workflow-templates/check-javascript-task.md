@@ -80,7 +80,7 @@ On every push and pull request that affects relevant files, and periodically, ru
 files.
 
 ESLint is configured via the .eslintrc.yml file:
-https://eslint.org/docs/user-guide/configuring/configuration-files
+https://eslint.org/docs/latest/use/configure/configuration-files
 ```
 
 ## PR message
