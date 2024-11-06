@@ -120,11 +120,6 @@ jobs:
           name: ${{ env.ARTIFACT_PREFIX }}${{ matrix.build.artifact-suffix }}
           path: ${{ env.DIST_DIR }}
 
-      - name: Remove non-notarized artifact
-        uses: geekyeggo/delete-artifact@v5
-        with:
-          name: ${{ env.ARTIFACT_PREFIX }}${{ matrix.build.artifact-suffix }}
-
       - name: Import Code-Signing Certificates
         env:
           KEYCHAIN: "sign.keychain"
@@ -192,11 +187,12 @@ jobs:
           -C "${{ env.BUILD_FOLDER }}/" "${{ env.PROJECT_NAME }}" \
           -C ../../ LICENSE.txt
 
-      - name: Upload notarized artifact
+      - name: Replace artifact with notarized build
         uses: actions/upload-artifact@v4
         with:
           if-no-files-found: error
           name: ${{ env.ARTIFACT_PREFIX }}${{ matrix.build.artifact-suffix }}
+          overwrite: true
           path: ${{ env.DIST_DIR }}/${{ env.PACKAGE_FILENAME }}
 
   create-release:
@@ -216,7 +212,7 @@ jobs:
           pattern: ${{ env.ARTIFACT_PREFIX }}*
 
       - name: Create checksum file
-        working-directory: ${{ env.DIST_DIR}}
+        working-directory: ${{ env.DIST_DIR }}
         run: |
           TAG="${GITHUB_REF/refs\/tags\//}"
           sha256sum ${{ env.PROJECT_NAME }}_${TAG}* > ${TAG}-checksums.txt
