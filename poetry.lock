@@ -62,13 +62,13 @@ colorama = {version = "*", markers = "platform_system == \"Windows\""}
 
 [[package]]
 name = "codespell"
-version = "2.4.0"
+version = "2.4.1"
 description = "Fix common misspellings in text files"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "codespell-2.4.0-py3-none-any.whl", hash = "sha256:b4c5b779f747dd481587aeecb5773301183f52b94b96ed51a28126d0482eec1d"},
-    {file = "codespell-2.4.0.tar.gz", hash = "sha256:587d45b14707fb8ce51339ba4cce50ae0e98ce228ef61f3c5e160e34f681be58"},
+    {file = "codespell-2.4.1-py3-none-any.whl", hash = "sha256:3dadafa67df7e4a3dbf51e0d7315061b80d265f9552ebd699b3dd6834b47e425"},
+    {file = "codespell-2.4.1.tar.gz", hash = "sha256:299fcdcb09d23e81e35a671bbe746d5ad7e8385972e65dbb833a2eaac33c01e5"},
 ]
 
 [package.extras]
@@ -385,4 +385,4 @@ dev = ["doc8", "flake8", "flake8-import-order", "rstcheck[sphinx]", "sphinx"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "16fd4af5c50ff6fd482ed3e9d2b12727ff1d135617ae8ddf5b4e5b56ae0d2d6c"
+content-hash = "f353164b1b6d4fd9823c1204b12f13b390ce76504f98535e1c8d3dbc3b665d7d"
