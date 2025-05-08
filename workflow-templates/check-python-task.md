@@ -31,14 +31,14 @@ https://python-poetry.org/docs/#installation
 If your project does not already use Poetry, you can initialize the [`pyproject.toml`](https://python-poetry.org/docs/pyproject/) file using these commands:
 
 ```
-poetry init --python="^3.9" --dev-dependency="black@^25.1.0" --dev-dependency="flake8@^7.2.0" --dev-dependency="pep8-naming@^0.15.0"
+poetry init --python="^3.9" --dev-dependency="black@^25.1.0" --dev-dependency="flake8@^7.2.0" --dev-dependency="pep8-naming@^0.15.1"
 poetry install
 ```
 
 If already using Poetry, add the tool using this command:
 
 ```
-poetry add --dev "black@^25.1.0" "flake8@^7.2.0" "pep8-naming@^0.15.0"
+poetry add --dev "black@^25.1.0" "flake8@^7.2.0" "pep8-naming@^0.15.1"
 ```
 
 Commit the resulting `pyproject.toml` and `poetry.lock` files.
