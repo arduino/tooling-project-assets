@@ -9,7 +9,8 @@ updates:
     directory: /.github/workflows/
     open-pull-requests-limit: 100
     schedule:
-      interval: daily
+      cronjob: 0 12 * * *
+      interval: cron
     labels:
       - "topic: infrastructure"
     assignees:
@@ -20,7 +21,8 @@ updates:
     directory: /workflow-templates/
     open-pull-requests-limit: 100
     schedule:
-      interval: daily
+      cronjob: 0 13 * * *
+      interval: cron
     labels:
       - "topic: infrastructure"
     assignees:
@@ -30,7 +32,8 @@ updates:
     directory: /
     open-pull-requests-limit: 100
     schedule:
-      interval: daily
+      cronjob: 0 14 * * *
+      interval: cron
     labels:
       - "topic: infrastructure"
     assignees:
@@ -40,7 +43,8 @@ updates:
     directory: /
     open-pull-requests-limit: 100
     schedule:
-      interval: daily
+      cronjob: 0 15 * * *
+      interval: cron
     labels:
       - "topic: infrastructure"
     assignees:

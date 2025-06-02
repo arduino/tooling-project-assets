@@ -8,6 +8,7 @@ updates:
   - package-ecosystem: github-actions
     directory: /.github/workflows/
     schedule:
-      interval: daily
+      cronjob: 0 12 * * *
+      interval: cron
     labels:
       - "topic: infrastructure"
