@@ -22,6 +22,14 @@ Commit the resulting changes to the `package.json` and `package-lock.json` files
 
 ### Configuration
 
+#### Node.js
+
+Configure the version of [**Node.js**](https://nodejs.org) used for development of the project by running the following command from a terminal in the project repository folder:
+
+```text
+npm pkg set engines.node=16.x
+```
+
 #### Workflow
 
 The workflow is configured to check all files named `Taskfile.yml` in the repository. If there are additional taskfiles, add them to the following fields in `check-taskfiles.yml`:
@@ -29,8 +37,6 @@ The workflow is configured to check all files named `Taskfile.yml` in the reposi
 - `on.push.paths`
 - `on.pull_request.paths`
 - `jobs.validate.strategy.matrix.file[]`
-
-Configure the version of Node.js used for development of the project in the `env.NODE_VERSION` field of `check-taskfiles.yml`.
 
 #### `.gitignore`
 

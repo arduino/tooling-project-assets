@@ -41,9 +41,13 @@ Commit the resulting changes to the `package.json` and `package-lock.json` files
 
 ### Configuration
 
-#### Workflow
+#### Node.js
 
-Configure the version of Node.js used for development of the project in the `env.NODE_VERSION` field of `check-prettier-formatting-task.yml`.
+Configure the version of [**Node.js**](https://nodejs.org) used for development of the project by running the following command from a terminal in the project repository folder:
+
+```text
+npm pkg set engines.node=16.x
+```
 
 #### Prettier
 

@@ -29,11 +29,13 @@ Commit the resulting changes to the `package.json` and `package-lock.json` files
 
 ### Configuration
 
+#### Labels
+
 Multiple labels data files can be merged to form the list of labels for the repository. The [universal labels](assets/sync-labels/universal.yml) must be used in all repositories, but some projects will benefit from the addition of other domain-specific labels.
 
 The configuration file structure is documented here: https://github.com/Financial-Times/github-label-sync#label-config-file
 
-#### Maximum string lengths
+##### Maximum string lengths
 
 Label sync will fail with a `422: Validation Failed` error if a label configuration string exceeds the maximum length.
 
@@ -41,7 +43,7 @@ Label sync will fail with a `422: Validation Failed` error if a label configurat
 - `description`: 100
   - Note: `description` is truncated at ~45 (depending on width) characters in the labeling menu, so make sure the meaning of the label is clear to the maintainer from the visible subset of the description.
 
-#### Standardized label colors
+##### Standardized label colors
 
 These colors have good contrast. When possible, follow the conventions established in the universal labels for the general meaning associated the colors.
 
@@ -60,27 +62,35 @@ These colors have good contrast. When possible, follow the conventions establish
 - `#ff00ff`
 - `#c0c0c0`
 
-##### Notes
+###### Notes
 
 - Remove the `#` from the hex color code before adding it to the `color` field of the labels definition file.
 - Black and white should not be used due to lacking contrast with the GitHub page background colors (light and dark themes).
 
-#### Shared labels
+##### Shared labels
 
 Configuration files for labels that are applicable to multiple projects are hosted [here](assets/sync-labels).
 
 Add the file name to the `jobs.download.strategy.matrix.filename[]` array in the workflow.
 
-#### Project-specific labels
+##### Project-specific labels
 
 The configuration file for labels that only apply to the specific project should be located in `.github/label-configuration-files/`
 
-#### Configure `.gitignore`
+#### `.gitignore`
 
 Add the following to `.gitignore`:
 
 ```
 /node_modules/
+```
+
+#### Node.js
+
+Configure the version of [**Node.js**](https://nodejs.org) used for development of the project by running the following command from a terminal in the project repository folder:
+
+```text
+npm pkg set engines.node=16.x
 ```
 
 ### Readme badge

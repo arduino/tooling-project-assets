@@ -7,8 +7,7 @@
 The following development tools must be available in your local environment:
 
 - [**Node.js** / **npm**](https://nodejs.org/en/download/) - Node.js dependencies management tool
-  - <!-- NODE_VERSION -->
-    This project uses Node.js 16.x
+  - The **Node.js** version in use is defined by the `engines.node` key of [`package.json`](../package.json).
 - [**Python**](https://wiki.python.org/moin/BeginnersGuide/Download)
   - <!-- PYTHON_VERSION -->
     This project uses Python 3.9.x

@@ -21,7 +21,17 @@ Install the [check-npm-task.yml](check-npm-task.yml) GitHub Actions workflow to 
 
 ### Configuration
 
-Configure the version of Node.js used for development of the project in the `env.NODE_VERSION` field of `check-npm-task.yml`.
+#### Node.js
+
+Configure the version of [**Node.js**](https://nodejs.org) used for development of the project by running the following command from a terminal in the project repository folder:
+
+```text
+npm pkg set engines.node=16.x
+```
+
+If the project contains **npm**-managed projects (i.e., a folder containing a `package.json` file) in paths other than the root of the repository, run the command again from each of those paths.
+
+#### Workflow
 
 If the project contains **npm**-managed projects (i.e., a folder containing a `package.json` file) in paths other than the root of the repository, add their paths to the [job matrices](https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix) of `check-npm-task.yml` at:
 
