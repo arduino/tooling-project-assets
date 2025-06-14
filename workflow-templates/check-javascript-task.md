@@ -19,6 +19,8 @@ Install the [`check-javascript-task.yml`](check-javascript-task.yml) GitHub Acti
 - [`.eslintrc.yml`](assets/check-javascript/.eslintrc.yml) - **ESLint** configuration file.
   ❗ The code style defined in this file is the official standardized style to be used in all Arduino projects and should not be modified.
   - Install to: repository root
+- [`.npmrc`](assets/npm/.npmrc) - **npm** configuration file.
+  - Install to: repository root.
 - [`Taskfile.yml`](assets/check-javascript-task/Taskfile.yml) - JavaScript linting tasks.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`Taskfile.yml`](assets/npm-task/Taskfile.yml) - npm tasks.

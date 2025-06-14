@@ -353,6 +353,7 @@ tasks:
           "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/general/.editorconfig" \
           "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/check-python/.flake8" \
           "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/check-markdown/.markdownlint.yml" \
+          "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/npm/.npmrc" \
           "{{.REPOSITORY_ROOT_PATH}}"
 
   dependabot:validate:

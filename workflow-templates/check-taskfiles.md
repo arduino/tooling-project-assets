@@ -8,6 +8,11 @@ Validate the repository's [Taskfiles](https://taskfile.dev/#/usage) against the 
 
 Install the [`check-taskfiles.yml`](check-taskfiles.yml) GitHub Actions workflow to `.github/workflows/`
 
+### Assets
+
+- [`.npmrc`](assets/npm/.npmrc) - **npm** configuration file.
+  - Install to: repository root.
+
 ### Dependencies
 
 The tool dependencies of this workflow are managed by [npm](https://www.npmjs.com/).

@@ -6,11 +6,13 @@ on:
   push:
     paths:
       - ".github/workflows/*.ya?ml"
+      - ".npmrc"
       - "Taskfile.ya?ml"
       - "workflow-templates/*.ya?ml"
   pull_request:
     paths:
       - ".github/workflows/*.ya?ml"
+      - ".npmrc"
       - "Taskfile.ya?ml"
       - "workflow-templates/*.ya?ml"
   schedule:

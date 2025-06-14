@@ -12,6 +12,8 @@ Install the [check-npm-task.yml](check-npm-task.yml) GitHub Actions workflow to 
 
 ### Assets
 
+- [`.npmrc`](assets/npm/.npmrc) - **npm** configuration file.
+  - Install to: repository root.
 - [`Taskfile.yml`](assets/npm-task/Taskfile.yml) - npm tasks.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`Taskfile.yml`](assets/check-npm-task/Taskfile.yml) - Validation task.
