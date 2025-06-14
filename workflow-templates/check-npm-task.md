@@ -26,7 +26,7 @@ Install the [check-npm-task.yml](check-npm-task.yml) GitHub Actions workflow to 
 Configure the version of [**Node.js**](https://nodejs.org) used for development of the project by running the following command from a terminal in the project repository folder:
 
 ```text
-npm pkg set engines.node=16.x
+npm pkg set engines.node=22.x
 ```
 
 If the project contains **npm**-managed projects (i.e., a folder containing a `package.json` file) in paths other than the root of the repository, run the command again from each of those paths.
