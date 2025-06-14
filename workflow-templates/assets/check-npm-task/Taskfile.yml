@@ -2,6 +2,21 @@
 version: "3"
 
 tasks:
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-npm-task/Taskfile.yml
+  npm:fix-config:
+    desc: |
+      Fix problems with the npm configuration file.
+      Environment variable parameters:
+      - PROJECT_PATH: Path of the npm-managed project (default: ./).
+    dir: |
+      "{{default "./" .PROJECT_PATH}}"
+    cmds:
+      - |
+        npm \
+          config \
+            --location project \
+            fix
+
   # Parameter variables:
   # - PROJECT_PATH: path of the npm-managed project. Default value: "./"
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-npm-task/Taskfile.yml
