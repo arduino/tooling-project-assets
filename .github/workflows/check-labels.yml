@@ -7,12 +7,16 @@ on:
       - ".github/workflows/check-labels.yml"
       - "workflow-templates/assets/sync-labels/arduino-tooling-gh-label-configuration-schema.json"
       - "workflow-templates/assets/sync-labels/*.ya?ml"
+      - "package.json"
+      - "package-lock.json"
       - "Taskfile.ya?ml"
   pull_request:
     paths:
       - ".github/workflows/check-labels.yml"
       - "workflow-templates/assets/sync-labels/arduino-tooling-gh-label-configuration-schema.json"
       - "workflow-templates/assets/sync-labels/*.ya?ml"
+      - "package.json"
+      - "package-lock.json"
       - "Taskfile.ya?ml"
   schedule:
     # Run periodically to catch breakage caused by external changes.
@@ -28,6 +32,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: package.json
 
       - name: Install Task
         uses: arduino/setup-task@v2
