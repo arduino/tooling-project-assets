@@ -14,6 +14,11 @@ This is the version of the workflow using [npm](https://www.npmjs.com/) for depe
 
 Install the [`sync-labels-npm.yml`](sync-labels-npm.yml) GitHub Actions workflow to `.github/workflows/`
 
+### Assets
+
+- [`.npmrc`](assets/npm/.npmrc) - **npm** configuration file.
+  - Install to: repository root.
+
 ### Dependencies
 
 The tool dependencies of this workflow are managed by [npm](https://www.npmjs.com/).

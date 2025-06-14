@@ -10,6 +10,7 @@ on:
       - ".licenses/**"
       - ".licensed.json"
       - ".licensed.ya?ml"
+      - ".npmrc"
       - "Taskfile.ya?ml"
       - "**/.gitmodules"
       - "**/package.json"
@@ -18,6 +19,7 @@ on:
     paths:
       - ".github/workflows/check-npm-dependencies-task.ya?ml"
       - ".licenses/**"
+      - ".npmrc"
       - ".licensed.json"
       - ".licensed.ya?ml"
       - "Taskfile.ya?ml"

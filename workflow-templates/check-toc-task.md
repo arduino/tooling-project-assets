@@ -14,6 +14,8 @@ Install the [`check-toc-task.yml`](check-toc-task.yml) GitHub Actions workflow t
 
 ### Assets
 
+- [`.npmrc`](assets/npm/.npmrc) - **npm** configuration file.
+  - Install to: repository root.
 - [`Taskfile.yml`](assets/check-toc-task/Taskfile.yml) - Table of contents generation task.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`Taskfile.yml`](assets/npm-task/Taskfile.yml) - npm tasks.

@@ -20,6 +20,8 @@ Install the [`check-prettier-formatting-task.yml`](check-prettier-formatting-tas
 
 ### Assets
 
+- [`.npmrc`](assets/npm/.npmrc) - **npm** configuration file.
+  - Install to: repository root.
 - [`Taskfile.yml`](assets/check-prettier-formatting-task/Taskfile.yml) - Formatting task.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`Taskfile.yml`](assets/npm-task/Taskfile.yml) - npm tasks.

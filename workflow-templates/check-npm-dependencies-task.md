@@ -17,6 +17,8 @@ Install the [`check-npm-dependencies-task.yml`](check-npm-dependencies-task.yml)
 
 ### Assets
 
+- [`.npmrc`](assets/npm/.npmrc) - **npm** configuration file.
+  - Install to: repository root.
 - [`Taskfile.yml`](assets/check-dependencies-task/Taskfile.yml) - tasks to cache metadata for and check compatibility of dependency licenses.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`Taskfile.yml`](assets/check-npm-dependencies-task/Taskfile.yml) - tasks to check **npm** dependencies.
