@@ -97,7 +97,7 @@ ignore: |
 Configure the version of [**Node.js**](https://nodejs.org) used for development of the project by running the following command from a terminal in the project repository folder:
 
 ```text
-npm pkg set engines.node=16.x
+npm pkg set engines.node=22.x
 ```
 
 ### Documentation
