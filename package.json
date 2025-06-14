@@ -13,5 +13,8 @@
   },
   "dependencies": {
     "js-yaml": "^4.1.0"
+  },
+  "engines": {
+    "node": "16.x"
   }
 }

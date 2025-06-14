@@ -33,6 +33,14 @@ Commit the resulting changes to the `package.json` and `package-lock.json` files
 
 ### Configuration
 
+#### Node.js
+
+Configure the version of [**Node.js**](https://nodejs.org) used for development of the project by running the following command from a terminal in the project repository folder:
+
+```text
+npm pkg set engines.node=16.x
+```
+
 #### Workflow
 
 The workflow is configured to check a table of contents in `README.md`. If other files have a table of contents, adjust the following fields in `check-toc-task.yml`:
@@ -40,8 +48,6 @@ The workflow is configured to check a table of contents in `README.md`. If other
 - `on.push.paths`
 - `on.pull_request.paths`
 - `jobs.check.strategy.matrix.file[]`
-
-Configure the version of Node.js used for development of the project in the `env.NODE_VERSION` field of `check-toc-task.yml`.
 
 #### `.gitignore`
 
