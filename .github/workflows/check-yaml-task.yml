@@ -13,8 +13,7 @@ on:
       - ".yamllint*"
       - "poetry.lock"
       - "pyproject.toml"
-      # Source: https://github.com/github-linguist/linguist/blob/f164d13fa618023ecf2d8f2ed9a6ce5fae731346/lib/linguist/languages.yml#L8237-L8260
-      # (used by Prettier)
+      # Source: https://github.com/ikatyang-collab/linguist-languages/blob/main/data/YAML.js (used by Prettier)
       - "**/.clang-format"
       - "**/.clang-tidy"
       - "**/.gemrc"
@@ -30,8 +29,7 @@ on:
       - ".yamllint*"
       - "poetry.lock"
       - "pyproject.toml"
-      # Source: https://github.com/github-linguist/linguist/blob/f164d13fa618023ecf2d8f2ed9a6ce5fae731346/lib/linguist/languages.yml#L8237-L8260
-      # (used by Prettier)
+      # Source: https://github.com/ikatyang-collab/linguist-languages/blob/main/data/YAML.js (used by Prettier)
       - "**/.clang-format"
       - "**/.clang-tidy"
       - "**/.gemrc"
