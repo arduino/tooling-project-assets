@@ -8,7 +8,7 @@ description = ""
 authors = ["Arduino <info@arduino.cc>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "~3.9"
 
 [tool.poetry.dev-dependencies]
 yamllint = "^v1.37.1"
