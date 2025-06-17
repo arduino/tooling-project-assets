@@ -9,8 +9,7 @@ The following development tools must be available in your local environment:
 - [**Node.js** / **npm**](https://nodejs.org/en/download/) - Node.js dependencies management tool
   - The **Node.js** version in use is defined by the `engines.node` key of [`package.json`](../package.json).
 - [**Python**](https://wiki.python.org/moin/BeginnersGuide/Download)
-  - <!-- PYTHON_VERSION -->
-    This project uses Python 3.9.x
+  - The **Python** version in use is defined by the `tool.poetry.dependencies.python` key of [`pyproject.toml`](../pyproject.toml).
 - [**Poetry**](https://python-poetry.org/docs/#installation) - Python dependencies management tool
 - [**Task**](https://taskfile.dev/installation/) - task runner tool
 

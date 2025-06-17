@@ -1,10 +1,6 @@
 # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/deploy-mkdocs-versioned-poetry.md
 name: Deploy Website
 
-env:
-  # See: https://github.com/actions/setup-python/tree/main#available-versions-of-python
-  PYTHON_VERSION: "3.9"
-
 on:
   push:
     branches:
@@ -60,7 +56,7 @@ jobs:
       - name: Install Python
         uses: actions/setup-python@v5
         with:
-          python-version: ${{ env.PYTHON_VERSION }}
+          python-version-file: pyproject.toml
 
       - name: Install Poetry
         run: |
