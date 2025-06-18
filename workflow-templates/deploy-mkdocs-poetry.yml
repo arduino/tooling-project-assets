@@ -12,6 +12,7 @@ on:
       - "mkdocs.ya?ml"
       - "poetry.lock"
       - "pyproject.toml"
+      - "Taskfile.ya?ml"
       - "docs/**"
   workflow_dispatch:
   repository_dispatch:
@@ -31,11 +32,19 @@ jobs:
         with:
           python-version-file: pyproject.toml
 
+      - name: Install Task
+        uses: arduino/setup-task@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          version: 3.x
+
       - name: Install Poetry
         run: pip install poetry
 
       - name: Install Dependencies
-        run: poetry install --no-root
+        run: |
+          task \
+            poetry:install-deps
 
       - name: Deploy website
         run: poetry run mkdocs gh-deploy
