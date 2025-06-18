@@ -35,7 +35,6 @@ The following project-specific variables must be set/configured in `release-go-c
 
 - `PROJECT_NAME`
 - `AWS_PLUGIN_TARGET`
-- `GO_VERSION`: version of Go used for development of the project, use at least [GO 1.16 to be able to use 64-bit ARM architecture on macOS](https://tip.golang.org/doc/go1.16#ports)
 
 #### AWS IAM Role
 

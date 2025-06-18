@@ -38,8 +38,6 @@ See the ["Deploy Website" workflow (versioned, MkDocs, Poetry) documentation](de
 
 #### Workflow
 
-Configure the version of Go used for development of the project in the `env.GO_VERSION` field of `deploy-cobra-mkdocs-versioned-poetry.yml`.
-
 #### Taskfile
 
 Set the `PROJECT_NAME` variable to the project name.

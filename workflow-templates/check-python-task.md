@@ -45,10 +45,6 @@ Commit the resulting `pyproject.toml` and `poetry.lock` files.
 
 ### Configuration
 
-#### Workflow
-
-Set the version of Python used by the project in the `env.PYTHON_VERSION` field of `check-python-task.yml`.
-
 #### black
 
 Add the following to `pyproject.toml`:
