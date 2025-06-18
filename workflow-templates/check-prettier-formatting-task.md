@@ -8,6 +8,7 @@ Use [Prettier](https://prettier.io/docs/en/index.html) to check formatting. Supp
 - HTML
 - JSON
 - Markdown
+- TOML ([via plugin](#toml-support-optional))
 - YAML
 
 This is the version of the workflow for projects using the [Task](https://taskfile.dev/#/) task runner tool.
@@ -71,6 +72,25 @@ Add the following to [`/.gitignore`](https://git-scm.com/docs/gitignore):
 ```
 /node_modules/
 ```
+
+### TOML Support (Optional)
+
+If the project contains manually maintained [TOML](https://toml.io/) language files, some additional configuration is needed to add support to Prettier for this language.
+
+#### Assets
+
+- [`.prettierrc.yml`](assets/check-prettier-formatting/toml/.prettierrc.yml) - Prettier configuration file
+  - Install to: repository root.
+
+#### Dependencies
+
+Add the TOML support dependencies by running this command:
+
+```text
+npm install --save-dev prettier-plugin-toml@^2.0.2
+```
+
+Commit the resulting changes to the `package.json` and `package-lock.json` files.
 
 ### Readme badge
 
