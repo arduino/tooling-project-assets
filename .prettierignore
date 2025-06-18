@@ -4,3 +4,4 @@ node_modules/
 /other/clang-format-configuration/testdata/golden/samples/
 /other/clang-format-configuration/testdata/input/samples/
 /other/clang-format-configuration/.clang-format
+poetry.lock

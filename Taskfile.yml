@@ -351,6 +351,7 @@ tasks:
       - |
         cp \
           "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/check-javascript/.eslintrc.yml" \
+          "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/check-prettier-formatting/toml/.prettierrc.yml" \
           "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/general/.editorconfig" \
           "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/check-python/.flake8" \
           "{{.WORKFLOW_TEMPLATE_ASSETS_PATH}}/check-markdown/.markdownlint.yml" \
