@@ -26,7 +26,7 @@ Install the [`deploy-mkdocs-poetry.yml`](deploy-mkdocs-poetry.yml) GitHub Action
 Add the tool dependencies using this command:
 
 ```
-poetry add --dev "mkdocs@^1.3.0" "mkdocs-material@^8.2.11" "mdx_truly_sane_lists@^1.2"
+task poetry:install && poetry add --dev "mkdocs@^1.3.0" "mkdocs-material@^8.2.11" "mdx_truly_sane_lists@^1.2"
 ```
 
 Commit the resulting changes to the `pyproject.toml` and `poetry.lock` files.

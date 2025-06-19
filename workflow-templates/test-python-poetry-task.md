@@ -30,7 +30,7 @@ Install the [`test-python-poetry-task.yml`](test-python-poetry-task.yml) GitHub 
 Add the tool dependency using this command:
 
 ```
-poetry add --dev "pytest@^8.4.1"
+task poetry:install && poetry add --dev "pytest@^8.4.1"
 ```
 
 Commit the resulting changes to the `pyproject.toml` and `poetry.lock` files.

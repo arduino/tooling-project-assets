@@ -38,9 +38,6 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           version: 3.x
 
-      - name: Install Poetry
-        run: pip install poetry
-
       - name: Install Dependencies
         run: |
           task \
