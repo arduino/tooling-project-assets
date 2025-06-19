@@ -827,15 +827,66 @@ tasks:
             -r "{{.STYLELINTRC_SCHEMA_PATH}}" \
             -d "{{.INSTANCE_PATH}}"
 
+  # Print the version constraint for the project's Poetry tool dependency.
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/poetry-task/Taskfile.yml
+  poetry:get-version:
+    cmds:
+      - |
+        if ! which yq &>/dev/null; then
+          echo "yq not found or not in PATH."
+          echo "Please install: https://github.com/mikefarah/yq/#install"
+          exit 1
+        fi
+      - |
+        yq \
+          --input-format toml \
+          --output-format yaml \
+          '.tool.poetry.group.pipx.dependencies.poetry' \
+          < pyproject.toml
+
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/poetry-task/Taskfile.yml
+  poetry:install:
+    desc: Install Poetry
+    run: once
+    vars:
+      POETRY_VERSION:
+        sh: task poetry:get-version
+    cmds:
+      - |
+        if ! which python &>/dev/null; then
+          echo "Python not found or not in PATH."
+          echo "Please install a version of Python meeting the constraint {{.POETRY_VERSION}}:"
+          echo "https://wiki.python.org/moin/BeginnersGuide/Download"
+          exit 1
+        fi
+      - |
+        if ! which pipx &>/dev/null; then
+          echo "pipx not found or not in PATH."
+          echo "Please install: https://pipx.pypa.io/stable/installation/#installing-pipx"
+          exit 1
+        fi
+      - |
+        export PIPX_DEFAULT_PYTHON="$( \
+          task utility:normalize-path \
+            RAW_PATH="$(which python)" \
+        )"
+        pipx install \
+          --force \
+          "poetry=={{.POETRY_VERSION}}"
+
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/poetry-task/Taskfile.yml
   poetry:install-deps:
     desc: Install dependencies managed by Poetry
+    deps:
+      - task: poetry:install
     cmds:
       - poetry install --no-root
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/poetry-task/Taskfile.yml
   poetry:update-deps:
     desc: Update all dependencies managed by Poetry to their newest versions
+    deps:
+      - task: poetry:install
     cmds:
       - poetry update
 

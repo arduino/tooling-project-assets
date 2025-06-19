@@ -32,7 +32,7 @@ Install the [`test-go-integration-task.yml`](test-go-integration-task.yml) GitHu
 Add the tool dependencies using this command:
 
 ```
-poetry add --dev "pytest@^8.4.1" "invoke@^1.7.0"
+task poetry:install && poetry add --dev "pytest@^8.4.1" "invoke@^1.7.0"
 ```
 
 Commit the resulting changes to the `pyproject.toml` and `poetry.lock` files.

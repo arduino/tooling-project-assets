@@ -30,7 +30,7 @@ The code style defined in this file is the official standardized style to be use
 Add the tool dependency using this command:
 
 ```
-poetry add --dev "yamllint@^1.37.1"
+task poetry:install && poetry add --dev "yamllint@^1.37.1"
 ```
 
 Commit the resulting changes to the `pyproject.toml` and `poetry.lock` files.
