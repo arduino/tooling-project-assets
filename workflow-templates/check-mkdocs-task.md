@@ -12,6 +12,8 @@ Install the [`check-mkdocs-task.yml`](check-mkdocs-task.yml) GitHub Actions work
 
 ### Assets
 
+- [`pyproject.toml`](assets/poetry/pyproject.toml) - [**Poetry**](https://python-poetry.org/) configuration.
+  - Install to: repository root (unless a `pyproject.toml` file is already present).
 - [`Taskfile.yml`](assets/check-mkdocs-task/Taskfile.yml) - Build task.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`Taskfile.yml`](assets/poetry-task/Taskfile.yml) - Installation task.
