@@ -12,6 +12,8 @@ Install the [`test-python-poetry-task.yml`](test-python-poetry-task.yml) GitHub 
 
 ### Assets
 
+- [`pyproject.toml`](assets/poetry/pyproject.toml) - [**Poetry**](https://python-poetry.org/) configuration.
+  - Install to: repository root (unless a `pyproject.toml` file is already present).
 - [`Taskfile.yml`](assets/test-python-poetry-task/Taskfile.yml) - Test runner task.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`Taskfile.yml`](assets/poetry-task/Taskfile.yml) - Installation task.
@@ -25,25 +27,13 @@ Install the [`test-python-poetry-task.yml`](test-python-poetry-task.yml) GitHub 
 
 ### Dependencies
 
-The Python dependencies are managed by [Poetry](https://python-poetry.org/).
-
-Install Poetry by following these instructions:<br />
-https://python-poetry.org/docs/#installation
-
-If your project does not already use Poetry, you can initialize the [`pyproject.toml`](https://python-poetry.org/docs/pyproject/) file using these commands:
-
-```
-poetry init --python="^3.9" --dev-dependency="pytest@^8.4.1"
-poetry install
-```
-
-If already using Poetry, add the tool using this command:
+Add the tool dependency using this command:
 
 ```
 poetry add --dev "pytest@^8.4.1"
 ```
 
-Commit the resulting `pyproject.toml` and `poetry.lock` files.
+Commit the resulting changes to the `pyproject.toml` and `poetry.lock` files.
 
 ### Readme badge
 

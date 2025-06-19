@@ -16,6 +16,8 @@ Install the [check-yaml-task.yml](check-yaml-task.yml) GitHub Actions workflow t
 
 - [`.yamllint.yml`](assets/check-yaml/.yamllint.yml) - `yamllint` configuration file.
   - Install to: repository root
+- [`pyproject.toml`](assets/poetry/pyproject.toml) - [**Poetry**](https://python-poetry.org/) configuration.
+  - Install to: repository root (unless a `pyproject.toml` file is already present).
 - [`Taskfile.yml`](assets/check-yaml-task/Taskfile.yml) - Linting task.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`Taskfile.yml`](assets/poetry-task/Taskfile.yml) - Installation task.
@@ -25,25 +27,13 @@ The code style defined in this file is the official standardized style to be use
 
 ### Dependencies
 
-The `yamllint` tool dependency is managed by [Poetry](https://python-poetry.org/).
-
-Install Poetry by following these instructions:<br />
-https://python-poetry.org/docs/#installation
-
-If your project does not already use Poetry, you can initialize the [`pyproject.toml`](https://python-poetry.org/docs/pyproject/) file using these commands:
-
-```
-poetry init --python="^3.9" --dev-dependency="yamllint@^1.37.1"
-poetry install
-```
-
-If already using Poetry, add the tool using this command:
+Add the tool dependency using this command:
 
 ```
 poetry add --dev "yamllint@^1.37.1"
 ```
 
-Commit the resulting `pyproject.toml` and `poetry.lock` files.
+Commit the resulting changes to the `pyproject.toml` and `poetry.lock` files.
 
 ### Configuration
 

@@ -39,7 +39,7 @@ If already using Poetry, add the tool using this command:
 poetry add --dev "codespell@^2.4.0"
 ```
 
-Commit the resulting `pyproject.toml` and `poetry.lock` files.
+Commit the resulting changes to the `pyproject.toml` and `poetry.lock` files.
 
 ### Configuration
 

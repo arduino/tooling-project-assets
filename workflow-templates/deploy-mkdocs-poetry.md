@@ -12,6 +12,8 @@ Install the [`deploy-mkdocs-poetry.yml`](deploy-mkdocs-poetry.yml) GitHub Action
 
 ### Assets
 
+- [`pyproject.toml`](assets/poetry/pyproject.toml) - [**Poetry**](https://python-poetry.org/) configuration.
+  - Install to: repository root (unless a `pyproject.toml` file is already present).
 - [`Taskfile.yml`](assets/poetry-task/Taskfile.yml) - Python package dependency management tasks.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`mkdocs.yml`](assets/mkdocs/mkdocs.yml) - base MkDocs configuration file.
@@ -21,25 +23,13 @@ Install the [`deploy-mkdocs-poetry.yml`](deploy-mkdocs-poetry.yml) GitHub Action
 
 ### Dependencies
 
-The website build dependencies are managed by [Poetry](https://python-poetry.org/).
-
-Install Poetry by following these instructions:<br />
-https://python-poetry.org/docs/#installation
-
-If your project does not already use Poetry, you can initialize the [`pyproject.toml`](https://python-poetry.org/docs/pyproject/) file using these commands:
-
-```
-poetry init --python="^3.9" --dev-dependency="mkdocs@^1.3.0" --dev-dependency="mkdocs-material@^8.2.11" --dev-dependency="mdx_truly_sane_lists@^1.2"
-poetry install
-```
-
-If already using Poetry, add the tool using this command:
+Add the tool dependencies using this command:
 
 ```
 poetry add --dev "mkdocs@^1.3.0" "mkdocs-material@^8.2.11" "mdx_truly_sane_lists@^1.2"
 ```
 
-Commit the resulting `pyproject.toml` and `poetry.lock` files.
+Commit the resulting changes to the `pyproject.toml` and `poetry.lock` files.
 
 ### Configuration
 

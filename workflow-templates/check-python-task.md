@@ -14,6 +14,8 @@ Install the [`check-python-task.yml`](check-python-task.yml) GitHub Actions work
 
 - [`.flake8`](assets/check-python/.flake8) - flake8 configuration file.
   - Install to: repository root
+- [`pyproject.toml`](assets/poetry/pyproject.toml) - [**Poetry**](https://python-poetry.org/) configuration.
+  - Install to: repository root (unless a `pyproject.toml` file is already present).
 - [`Taskfile.yml`](assets/check-python-task/Taskfile.yml) - Python linting and formatting tasks.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`Taskfile.yml`](assets/poetry-task/Taskfile.yml) - Installation task.
@@ -23,25 +25,13 @@ The code style defined in `pyproject.toml` and `.flake8` is the official standar
 
 ### Dependencies
 
-The tool dependencies of this workflow are managed by [Poetry](https://python-poetry.org/).
-
-Install Poetry by following these instructions:<br />
-https://python-poetry.org/docs/#installation
-
-If your project does not already use Poetry, you can initialize the [`pyproject.toml`](https://python-poetry.org/docs/pyproject/) file using these commands:
-
-```
-poetry init --python="^3.9" --dev-dependency="black@^25.1.0" --dev-dependency="flake8@^7.2.0" --dev-dependency="pep8-naming@^0.15.1"
-poetry install
-```
-
-If already using Poetry, add the tool using this command:
+Add the tool dependencies using this command:
 
 ```
 poetry add --dev "black@^25.1.0" "flake8@^7.2.0" "pep8-naming@^0.15.1"
 ```
 
-Commit the resulting `pyproject.toml` and `poetry.lock` files.
+Commit the resulting changes to the `pyproject.toml` and `poetry.lock` files.
 
 ### Configuration
 

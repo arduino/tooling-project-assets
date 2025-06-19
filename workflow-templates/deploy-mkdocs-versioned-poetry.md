@@ -35,7 +35,7 @@ See the ["Deploy Website" workflow (MkDocs, Poetry) documentation](deploy-mkdocs
    ```
    poetry add --dev "gitpython@^3.1.44" "mike@^1.1.2"
    ```
-1. Commit the resulting `pyproject.toml` and `poetry.lock` files.
+1. Commit the resulting changes to the `pyproject.toml` and `poetry.lock` files.
 
 ### Configuration
 
