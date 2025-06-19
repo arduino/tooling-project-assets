@@ -49,12 +49,6 @@ Commit the resulting `pyproject.toml` and `poetry.lock` files.
 
 ### Configuration
 
-#### Workflow
-
-Configure the version of Go used for development of the project in the `env.GO_VERSION` field of `test-go-integration-task.yml`.
-
-Configure the version of Python used for development of the project in the `env.PYTHON_VERSION` field of `test-go-integration-task.yml`.
-
 #### Test helpers
 
 Define the project's executable filename in the `executable_path` variable in `test_all.py`.

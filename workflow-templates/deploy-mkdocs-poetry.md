@@ -12,6 +12,8 @@ Install the [`deploy-mkdocs-poetry.yml`](deploy-mkdocs-poetry.yml) GitHub Action
 
 ### Assets
 
+- [`Taskfile.yml`](assets/poetry-task/Taskfile.yml) - Python package dependency management tasks.
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`mkdocs.yml`](assets/mkdocs/mkdocs.yml) - base MkDocs configuration file.
   - Install to: repository root
 - [`icon_mac_light.png`](assets/mkdocs/icon_mac_light.png) - Arduino logo for the website. **NOTE**: only for use in official Arduino projects. Community projects should use [the Community Logo](https://www.arduino.cc/en/Trademark/CommunityLogo).

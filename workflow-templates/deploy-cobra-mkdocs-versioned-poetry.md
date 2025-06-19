@@ -27,6 +27,8 @@ Install the [`deploy-cobra-mkdocs-versioned-poetry.yml`](deploy-cobra-mkdocs-ver
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`Taskfile.yml`](assets/check-prettier-formatting-task/Taskfile.yml) - documentation formatting task.
   - Merge into `Taskfile.yml`
+- [`Taskfile.yml`](assets/poetry-task/Taskfile.yml) - Python package dependency management tasks.
+  - Merge into `Taskfile.yml`
 - [`docsgen`](assets/cobra/docsgen) - command line reference generator.
   - Install to: `docsgen/`
 
@@ -37,8 +39,6 @@ See the ["Deploy Website" workflow (versioned, MkDocs, Poetry) documentation](de
 ### Configuration
 
 #### Workflow
-
-Configure the version of Go used for development of the project in the `env.GO_VERSION` field of `deploy-cobra-mkdocs-versioned-poetry.yml`.
 
 #### Taskfile
 

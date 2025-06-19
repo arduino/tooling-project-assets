@@ -45,10 +45,6 @@ poetry add --dev "pytest@^8.4.1"
 
 Commit the resulting `pyproject.toml` and `poetry.lock` files.
 
-### Configuration
-
-Configure the version of Python used for development of the project in the `env.PYTHON_VERSION` field of `test-go-integration-task.yml`.
-
 ### Readme badge
 
 Markdown badge:
