@@ -143,6 +143,7 @@ tasks:
 
   # Check if ClangFormat is installed and the expected version
   clang-format:check-installed:
+    run: when_changed
     vars:
       EXPECTED_CLANG_FORMAT_VERSION: "{{default .DEFAULT_CLANG_FORMAT_VERSION .CLANG_FORMAT_VERSION}}"
     cmds:
@@ -731,6 +732,7 @@ tasks:
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/npm-task/Taskfile.yml
   npm:install-deps:
     desc: Install dependencies managed by npm
+    run: when_changed
     dir: |
       "{{default "./" .PROJECT_PATH}}"
     cmds:
@@ -834,7 +836,7 @@ tasks:
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/poetry-task/Taskfile.yml
   poetry:install:
     desc: Install Poetry
-    run: once
+    run: when_changed
     cmds:
       - |
         if ! which yq &>/dev/null; then
@@ -883,11 +885,17 @@ tasks:
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/poetry-task/Taskfile.yml
   poetry:install-deps:
-    desc: Install dependencies managed by Poetry
+    desc: |
+      Install dependencies managed by Poetry.
+      Environment variable parameters:
+      - POETRY_GROUPS: Poetry dependency groups to install (default: install all dependencies).
+    run: when_changed
     deps:
       - task: poetry:install
     cmds:
-      - poetry install --no-root
+      - |
+        poetry install \
+          {{if .POETRY_GROUPS}} --only {{.POETRY_GROUPS}} {{end}}
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/poetry-task/Taskfile.yml
   poetry:update-deps:
