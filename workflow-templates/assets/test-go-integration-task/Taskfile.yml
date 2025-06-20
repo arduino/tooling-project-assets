@@ -8,5 +8,7 @@ tasks:
     deps:
       - task: go:build
       - task: poetry:install-deps
+        vars:
+          POETRY_GROUPS: dev
     cmds:
       - poetry run pytest tests

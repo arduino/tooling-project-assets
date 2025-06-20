@@ -520,6 +520,8 @@ tasks:
     desc: Check for commonly misspelled words
     deps:
       - task: poetry:install-deps
+        vars:
+          POETRY_GROUPS: dev
     cmds:
       - poetry run codespell
 
@@ -555,6 +557,8 @@ tasks:
     desc: Correct commonly misspelled words where possible
     deps:
       - task: poetry:install-deps
+        vars:
+          POETRY_GROUPS: dev
     cmds:
       - poetry run codespell --write-changes
 
@@ -898,6 +902,8 @@ tasks:
     desc: Format Python files
     deps:
       - task: poetry:install-deps
+        vars:
+          POETRY_GROUPS: dev
     cmds:
       - poetry run black .
 
@@ -906,6 +912,8 @@ tasks:
     desc: Lint Python code
     deps:
       - task: poetry:install-deps
+        vars:
+          POETRY_GROUPS: dev
     cmds:
       - poetry run flake8 --show-source
 
@@ -1012,5 +1020,7 @@ tasks:
     desc: Check for problems with YAML files
     deps:
       - task: poetry:install-deps
+        vars:
+          POETRY_GROUPS: dev
     cmds:
       - poetry run yamllint --format {{default "colored" .YAMLLINT_FORMAT}} .
