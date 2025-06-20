@@ -7,5 +7,7 @@ tasks:
     desc: Check for problems with YAML files
     deps:
       - task: poetry:install-deps
+        vars:
+          POETRY_GROUPS: dev
     cmds:
       - poetry run yamllint --format {{default "colored" .YAMLLINT_FORMAT}} .

@@ -7,6 +7,8 @@ tasks:
     desc: Check for commonly misspelled words
     deps:
       - task: poetry:install-deps
+        vars:
+          POETRY_GROUPS: dev
     cmds:
       - poetry run codespell
 
@@ -15,5 +17,7 @@ tasks:
     desc: Correct commonly misspelled words where possible
     deps:
       - task: poetry:install-deps
+        vars:
+          POETRY_GROUPS: dev
     cmds:
       - poetry run codespell --write-changes

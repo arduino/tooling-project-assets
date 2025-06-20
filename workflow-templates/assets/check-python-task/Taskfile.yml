@@ -7,6 +7,8 @@ tasks:
     desc: Format Python files
     deps:
       - task: poetry:install-deps
+        vars:
+          POETRY_GROUPS: dev
     cmds:
       - poetry run black .
 
@@ -15,5 +17,7 @@ tasks:
     desc: Lint Python code
     deps:
       - task: poetry:install-deps
+        vars:
+          POETRY_GROUPS: dev
     cmds:
       - poetry run flake8 --show-source

@@ -13,6 +13,8 @@ tasks:
     deps:
       - task: docs:generate
       - task: poetry:install-deps
+        vars:
+          POETRY_GROUPS: dev
     cmds:
       - poetry run mkdocs build --strict
 
@@ -22,5 +24,7 @@ tasks:
     deps:
       - task: docs:generate
       - task: poetry:install-deps
+        vars:
+          POETRY_GROUPS: dev
     cmds:
       - poetry run mkdocs serve
