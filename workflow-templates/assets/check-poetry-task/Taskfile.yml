@@ -1,0 +1,24 @@
+# See: https://taskfile.dev/#/usage
+version: "3"
+
+tasks:
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-poetry-task/Taskfile.yml
+  poetry:sync:
+    desc: Sync Poetry lockfile
+    deps:
+      - task: poetry:install
+    cmds:
+      - |
+        poetry lock \
+          --no-cache
+
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-poetry-task/Taskfile.yml
+  poetry:validate:
+    desc: Validate Poetry configuration
+    deps:
+      - task: poetry:install
+    cmds:
+      - |
+        poetry check \
+          --lock \
+          --strict

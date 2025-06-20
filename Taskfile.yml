@@ -29,6 +29,7 @@ tasks:
       - task: markdown:check-links
       - task: markdown:lint
       - task: markdownlint:validate
+      - task: poetry:validate
       - task: python:lint
       - task: python:test
       - task: shell:check
@@ -50,6 +51,7 @@ tasks:
       - task: js:fix
       - task: markdown:fix
       - task: npm:fix-config
+      - task: poetry:sync
       - task: python:format
       - task: shell:format
         vars:
@@ -67,6 +69,7 @@ tasks:
           "{{.WORKFLOW_TEMPLATES_PATH}}/check-javascript-task.yml" \
           "{{.WORKFLOW_TEMPLATES_PATH}}/check-markdown-task.yml" \
           "{{.WORKFLOW_TEMPLATES_PATH}}/check-npm-task.yml" \
+          "{{.WORKFLOW_TEMPLATES_PATH}}/check-poetry-task.yml" \
           "{{.WORKFLOW_TEMPLATES_PATH}}/check-prettier-formatting-task.yml" \
           "{{.WORKFLOW_TEMPLATES_PATH}}/check-python-task.yml" \
           "{{.WORKFLOW_TEMPLATES_PATH}}/check-taskfiles.yml" \
@@ -897,6 +900,16 @@ tasks:
         poetry install \
           {{if .POETRY_GROUPS}} --only {{.POETRY_GROUPS}} {{end}}
 
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-poetry-task/Taskfile.yml
+  poetry:sync:
+    desc: Sync Poetry lockfile
+    deps:
+      - task: poetry:install
+    cmds:
+      - |
+        poetry lock \
+          --no-cache
+
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/poetry-task/Taskfile.yml
   poetry:update-deps:
     desc: Update all dependencies managed by Poetry to their newest versions
@@ -904,6 +917,17 @@ tasks:
       - task: poetry:install
     cmds:
       - poetry update
+
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-poetry-task/Taskfile.yml
+  poetry:validate:
+    desc: Validate Poetry configuration
+    deps:
+      - task: poetry:install
+    cmds:
+      - |
+        poetry check \
+          --lock \
+          --strict
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-python-task/Taskfile.yml
   python:format:
