@@ -883,11 +883,16 @@ tasks:
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/poetry-task/Taskfile.yml
   poetry:install-deps:
-    desc: Install dependencies managed by Poetry
+    desc: |
+      Install dependencies managed by Poetry.
+      Environment variable parameters:
+      - POETRY_GROUPS: Poetry dependency groups to install (default: install all dependencies).
     deps:
       - task: poetry:install
     cmds:
-      - poetry install --no-root
+      - |
+        poetry install \
+          {{if .POETRY_GROUPS}} --only {{.POETRY_GROUPS}} {{end}}
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/poetry-task/Taskfile.yml
   poetry:update-deps:
