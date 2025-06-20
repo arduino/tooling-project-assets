@@ -7,6 +7,7 @@ tasks:
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/deploy-cobra-mkdocs-versioned-poetry/Taskfile.yml
   docs:generate:
     desc: Create all generated documentation content
+    run: when_changed
     deps:
       - task: go:cli-docs
     cmds:

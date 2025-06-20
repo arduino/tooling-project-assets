@@ -4,6 +4,7 @@ version: "3"
 tasks:
   docs:generate:
     desc: Create all generated documentation content
+    run: when_changed
     # This is an "umbrella" task used to call any documentation generation processes the project has.
     # It can be left empty if there are none.
 
