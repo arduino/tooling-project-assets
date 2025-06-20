@@ -827,9 +827,10 @@ tasks:
             -r "{{.STYLELINTRC_SCHEMA_PATH}}" \
             -d "{{.INSTANCE_PATH}}"
 
-  # Print the version constraint for the project's Poetry tool dependency.
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/poetry-task/Taskfile.yml
-  poetry:get-version:
+  poetry:install:
+    desc: Install Poetry
+    run: once
     cmds:
       - |
         if ! which yq &>/dev/null; then
@@ -838,24 +839,17 @@ tasks:
           exit 1
         fi
       - |
-        yq \
-          --input-format toml \
-          --output-format yaml \
-          '.tool.poetry.group.pipx.dependencies.poetry' \
-          < pyproject.toml
-
-  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/poetry-task/Taskfile.yml
-  poetry:install:
-    desc: Install Poetry
-    run: once
-    vars:
-      POETRY_VERSION:
-        sh: task poetry:get-version
-    cmds:
-      - |
         if ! which python &>/dev/null; then
+        python_constraint="$( \
+            yq \
+              --input-format toml \
+              --output-format yaml \
+              '.tool.poetry.dependencies.python' \
+              < pyproject.toml
+          )"
+
           echo "Python not found or not in PATH."
-          echo "Please install a version of Python meeting the constraint {{.POETRY_VERSION}}:"
+          echo "Please install a version of Python satisfying the constraint ${python_constraint}:"
           echo "https://wiki.python.org/moin/BeginnersGuide/Download"
           exit 1
         fi
@@ -870,9 +864,18 @@ tasks:
           task utility:normalize-path \
             RAW_PATH="$(which python)" \
         )"
+
+        poetry_constraint="$( \
+            yq \
+              --input-format toml \
+              --output-format yaml \
+              '.tool.poetry.group.pipx.dependencies.poetry' \
+              < pyproject.toml
+          )"
+
         pipx install \
           --force \
-          "poetry=={{.POETRY_VERSION}}"
+          "poetry==$poetry_constraint"
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/poetry-task/Taskfile.yml
   poetry:install-deps:
