@@ -2,11 +2,12 @@
 version: "3"
 
 tasks:
-  # Parameter variables:
-  # - PROJECT_PATH: path of the npm-managed project. Default value: "./"
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/npm-task/Taskfile.yml
   npm:install-deps:
-    desc: Install dependencies managed by npm
+    desc: |
+      Install dependencies managed by npm.
+      Environment variable parameters:
+      - PROJECT_PATH: Path of the npm-managed project (default: "./").
     run: when_changed
     dir: |
       "{{default "./" .PROJECT_PATH}}"

@@ -2,11 +2,12 @@
 version: "3"
 
 tasks:
-  # Parameter variables:
-  # - SCRIPT_PATH: path of the script to be checked.
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-shell-task/Taskfile.yml
   shell:check:
-    desc: Check for problems with shell scripts
+    desc: |
+      Check for problems with shell scripts.
+      Environment variable parameters:
+      - SCRIPT_PATH: path of the script to be checked.
     cmds:
       - |
         if [[ "{{.SCRIPT_PATH}}" == "" ]]; then
@@ -25,11 +26,12 @@ tasks:
           --format={{default "tty" .SHELLCHECK_FORMAT}} \
           "{{.SCRIPT_PATH}}"
 
-  # Parameter variables:
-  # - SCRIPT_PATH: path of the script to be checked.
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-shell-task/Taskfile.yml
   shell:check-mode:
-    desc: Check for non-executable shell scripts
+    desc: |
+      Check for non-executable shell scripts.
+      Environment variable parameters:
+      - SCRIPT_PATH: path of the script to be checked.
     cmds:
       - |
         if [[ "{{.SCRIPT_PATH}}" == "" ]]; then
@@ -40,11 +42,12 @@ tasks:
       - |
         test -x "{{.SCRIPT_PATH}}"
 
-  # Parameter variables:
-  # - SCRIPT_PATH: path of the script to be formatted.
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-shell-task/Taskfile.yml
   shell:format:
-    desc: Format shell script files
+    desc: |
+      Format shell script files.
+      Environment variable parameters:
+      - SCRIPT_PATH: path of the script to be formatted.
     cmds:
       - |
         if [[ "{{.SCRIPT_PATH}}" == "" ]]; then

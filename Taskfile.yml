@@ -730,11 +730,12 @@ tasks:
             -s "{{.SCHEMA_PATH}}" \
             -d "{{.DATA_PATH}}"
 
-  # Parameter variables:
-  # - PROJECT_PATH: path of the npm-managed project. Default value: "./"
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/npm-task/Taskfile.yml
   npm:install-deps:
-    desc: Install dependencies managed by npm
+    desc: |
+      Install dependencies managed by npm.
+      Environment variable parameters:
+      - PROJECT_PATH: Path of the npm-managed project (default: "./").
     run: when_changed
     dir: |
       "{{default "./" .PROJECT_PATH}}"
@@ -756,11 +757,12 @@ tasks:
             --location project \
             fix
 
-  # Parameter variables:
-  # - PROJECT_PATH: path of the npm-managed project. Default value: "./"
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-npm-task/Taskfile.yml
   npm:validate:
-    desc: Validate npm configuration files against their JSON schema
+    desc: |
+      Validate npm configuration files against their JSON schema.
+      Environment variable parameters:
+      - PROJECT_PATH: Path of the npm-managed project (default: "./").
     deps:
       - task: npm:install-deps
     vars:
@@ -956,11 +958,12 @@ tasks:
     cmds:
       - poetry run pytest workflow-templates/assets/deploy-mkdocs-versioned/siteversion/tests
 
-  # Parameter variables:
-  # - SCRIPT_PATH: path of the script to be checked.
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-shell-task/Taskfile.yml
   shell:check:
-    desc: Check for problems with shell scripts
+    desc: |
+      Check for problems with shell scripts.
+      Environment variable parameters:
+      - SCRIPT_PATH: path of the script to be checked.
     cmds:
       - |
         if [[ "{{.SCRIPT_PATH}}" == "" ]]; then
@@ -979,11 +982,12 @@ tasks:
           --format={{default "tty" .SHELLCHECK_FORMAT}} \
           "{{.SCRIPT_PATH}}"
 
-  # Parameter variables:
-  # - SCRIPT_PATH: path of the script to be checked.
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-shell-task/Taskfile.yml
   shell:check-mode:
-    desc: Check for non-executable shell scripts
+    desc: |
+      Check for non-executable shell scripts.
+      Environment variable parameters:
+      - SCRIPT_PATH: path of the script to be checked.
     cmds:
       - |
         if [[ "{{.SCRIPT_PATH}}" == "" ]]; then
@@ -994,11 +998,12 @@ tasks:
       - |
         test -x "{{.SCRIPT_PATH}}"
 
-  # Parameter variables:
-  # - SCRIPT_PATH: path of the script to be formatted.
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-shell-task/Taskfile.yml
   shell:format:
-    desc: Format shell script files
+    desc: |
+      Format shell script files.
+      Environment variable parameters:
+      - SCRIPT_PATH: path of the script to be formatted.
     cmds:
       - |
         if [[ "{{.SCRIPT_PATH}}" == "" ]]; then
