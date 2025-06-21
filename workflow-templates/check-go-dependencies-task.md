@@ -1,13 +1,13 @@
 # "Check Go Dependencies" workflow (Task)
 
-Use [**Licensed**](https://github.com/github/licensed) to check if the Go project has dependencies with incompatible licenses.
+Use [**Licensed**](https://github.com/licensee/licensed) to check if the Go project has dependencies with incompatible licenses.
 
 **Licensed** detects all dependencies of the project, detects their license types, and then checks them against a dependency license approval configuration.
 
 There are several options for configuring approvals. The most useful being:
 
-- [Allowed licenses](https://github.com/github/licensed/blob/main/docs/configuration/allowed_licenses.md) - allow any dependency that has this license type.
-- [Reviewed dependency](https://github.com/github/licensed/blob/main/docs/configuration/reviewing_dependencies.md) - allow specific dependencies that don't pass the global allowed license configuration, but have been individually reviewed and found acceptable.
+- [Allowed licenses](https://github.com/licensee/licensed/blob/main/docs/configuration/allowed_licenses.md) - allow any dependency that has this license type.
+- [Reviewed dependency](https://github.com/licensee/licensed/blob/main/docs/configuration/reviewing_dependencies.md) - allow specific dependencies that don't pass the global allowed license configuration, but have been individually reviewed and found acceptable.
 
 ## Installation
 
@@ -28,15 +28,15 @@ Install the [`check-go-dependencies-task.yml`](check-go-dependencies-task.yml) G
 
 The **Licensed** tool is configured via `.licensed.yml` configuration file, located in the repository root folder:
 
-https://github.com/github/licensed/blob/main/docs/configuration.md
+https://github.com/licensee/licensed/blob/main/docs/configuration.md
 
 #### Project paths
 
-By default, the project in the root of the repository will be checked. If the project is in a subfolder of the repository or if the repository contains multiple projects with dependencies that should be checked then the path to each project should be defined via [`apps[*].source_path` keys](https://github.com/github/licensed/blob/main/docs/configuration/application_source.md#application-source-path) in `.licensed.yml`.
+By default, the project in the root of the repository will be checked. If the project is in a subfolder of the repository or if the repository contains multiple projects with dependencies that should be checked then the path to each project should be defined via [`apps[*].source_path` keys](https://github.com/licensee/licensed/blob/main/docs/configuration/application_source.md#application-source-path) in `.licensed.yml`.
 
 #### Allowed licenses
 
-A list of [allowed license types](https://github.com/github/licensed/blob/main/docs/configuration/allowed_licenses.md) can be defined in the `.licensed.yml` configuration file under:
+A list of [allowed license types](https://github.com/licensee/licensed/blob/main/docs/configuration/allowed_licenses.md) can be defined in the `.licensed.yml` configuration file under:
 
 - The `allowed` key to apply to all projects.
 - The `apps[*].allowed` key to apply to a specific project.
@@ -102,7 +102,7 @@ Metadata about the license types of all dependencies is cached in the repository
 task general:cache-dep-licenses
 ```
 
-The necessary **Licensed** tool can be installed by following [these instructions](https://github.com/github/licensed#as-an-executable).
+The necessary **Licensed** tool can be installed by following [these instructions](https://github.com/licensee/licensed#installation).
 
 Unfortunately, **Licensed** does not have Windows support.
 
@@ -132,13 +132,13 @@ Approval can be based on:
 ```markdown
 A task and GitHub Actions workflow are provided here for checking the license types of Go project dependencies.
 
-On every push and pull request that affects relevant files, the CI workflow will use [**Licensed**](https://github.com/github/licensed) to check:
+On every push and pull request that affects relevant files, the CI workflow will use [**Licensed**](https://github.com/licensee/licensed) to check:
 
 - If the dependency licenses cache is up to date
 - If any of the project's dependencies have an unapproved license type.
 
 Approval can be based on:
 
-- [Allowed license type](https://github.com/github/licensed/blob/main/docs/configuration/allowed_licenses.md)
-- [Individual dependency](https://github.com/github/licensed/blob/main/docs/configuration/reviewing_dependencies.md)
+- [Allowed license type](https://github.com/licensee/licensed/blob/main/docs/configuration/allowed_licenses.md)
+- [Individual dependency](https://github.com/licensee/licensed/blob/main/docs/configuration/reviewing_dependencies.md)
 ```

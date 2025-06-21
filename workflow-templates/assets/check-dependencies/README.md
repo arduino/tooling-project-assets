@@ -2,7 +2,7 @@
 
 This is a collection of suggested allowed license types for dependencies of projects licensed under a each common license type.
 
-They are formatted for use in the configuration file of the [**Licensed**](https://github.com/github/licensed) dependency license checker tool.
+They are formatted for use in the configuration file of the [**Licensed**](https://github.com/licensee/licensed) dependency license checker tool.
 
 ## Related information
 
