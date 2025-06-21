@@ -11,6 +11,8 @@ tasks:
       - FILE_PATH: path to the file that contains the ToC.
     deps:
       - task: npm:install-deps
+        vars:
+          PROJECT_PATH: ./
     cmds:
       - |
         npx markdown-toc \

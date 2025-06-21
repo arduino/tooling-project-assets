@@ -10,6 +10,8 @@ tasks:
         sh: task utility:mktemp-file TEMPLATE="github-action-schema-XXXXXXXXXX.json"
     deps:
       - task: npm:install-deps
+        vars:
+          PROJECT_PATH: ./
     cmds:
       - |
         wget \
