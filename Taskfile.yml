@@ -9,6 +9,9 @@ vars:
   CLANG_FORMAT_GOLDEN_TEST_DATA_FOLDER: "{{.CLANG_FORMAT_TEST_DATA_FOLDER}}/golden"
   # See: https://github.com/arduino/arduino-ide/blob/main/arduino-ide-extension/package.json
   DEFAULT_CLANG_FORMAT_VERSION: 14.0.0
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/npm-task/Taskfile.yml
+  # Path of the project's primary npm-managed project:
+  DEFAULT_NPM_PROJECT_PATH: ./
 
 tasks:
   check:
@@ -91,6 +94,8 @@ tasks:
       TEMPLATE_WORKFLOWS_DATA_PATH: "./workflow-templates/*.{yml,yaml}"
     deps:
       - task: npm:install-deps
+        vars:
+          PROJECT_PATH: ./
     cmds:
       - |
         wget \
@@ -571,6 +576,8 @@ tasks:
     desc: Format all supported files with Prettier
     deps:
       - task: npm:install-deps
+        vars:
+          PROJECT_PATH: ./
     cmds:
       - npx prettier --write .
 
@@ -684,6 +691,8 @@ tasks:
     deps:
       - task: docs:generate
       - task: npm:install-deps
+        vars:
+          PROJECT_PATH: ./
     cmds:
       - |
         npx \
@@ -695,6 +704,8 @@ tasks:
     desc: Automatically correct linting violations in Markdown files where possible
     deps:
       - task: npm:install-deps
+        vars:
+          PROJECT_PATH: ./
     cmds:
       - npx markdownlint-cli --fix "**/*.md"
 
@@ -703,6 +714,8 @@ tasks:
     desc: Check for problems in Markdown files
     deps:
       - task: npm:install-deps
+        vars:
+          PROJECT_PATH: ./
     cmds:
       - npx markdownlint-cli "**/*.md"
 
@@ -735,10 +748,10 @@ tasks:
     desc: |
       Install dependencies managed by npm.
       Environment variable parameters:
-      - PROJECT_PATH: Path of the npm-managed project (default: "./").
+      - PROJECT_PATH: Path of the npm-managed project (default: {{.DEFAULT_NPM_PROJECT_PATH}}).
     run: when_changed
     dir: |
-      "{{default "./" .PROJECT_PATH}}"
+      "{{default .DEFAULT_NPM_PROJECT_PATH .PROJECT_PATH}}"
     cmds:
       - npm install
 
@@ -749,7 +762,7 @@ tasks:
       Environment variable parameters:
       - PROJECT_PATH: Path of the npm-managed project (default: {{.DEFAULT_NPM_PROJECT_PATH}}).
     dir: |
-      "{{default "./" .PROJECT_PATH}}"
+      "{{default .DEFAULT_NPM_PROJECT_PATH .PROJECT_PATH}}"
     cmds:
       - |
         npm \
@@ -762,7 +775,7 @@ tasks:
     desc: |
       Validate npm configuration files against their JSON schema.
       Environment variable parameters:
-      - PROJECT_PATH: Path of the npm-managed project (default: "./").
+      - PROJECT_PATH: Path of the npm-managed project (default: {{.DEFAULT_NPM_PROJECT_PATH}}).
     deps:
       - task: npm:install-deps
     vars:
@@ -807,7 +820,7 @@ tasks:
       STYLELINTRC_SCHEMA_PATH:
         sh: task utility:mktemp-file TEMPLATE="stylelintrc-schema-XXXXXXXXXX.json"
       INSTANCE_PATH: >-
-        {{default "." .PROJECT_PATH}}/package.json
+        {{default .DEFAULT_NPM_PROJECT_PATH .PROJECT_PATH}}/package.json
     cmds:
       - wget --quiet --output-document="{{.SCHEMA_PATH}}" {{.SCHEMA_URL}}
       - wget --quiet --output-document="{{.AVA_SCHEMA_PATH}}" {{.AVA_SCHEMA_URL}}

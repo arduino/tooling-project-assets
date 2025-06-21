@@ -7,5 +7,7 @@ tasks:
     desc: Format all supported files with Prettier
     deps:
       - task: npm:install-deps
+        vars:
+          PROJECT_PATH: ./
     cmds:
       - npx prettier --write .

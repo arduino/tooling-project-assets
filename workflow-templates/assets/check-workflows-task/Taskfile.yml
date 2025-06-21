@@ -13,6 +13,8 @@ tasks:
       WORKFLOWS_DATA_PATH: "./.github/workflows/*.{yml,yaml}"
     deps:
       - task: npm:install-deps
+        vars:
+          PROJECT_PATH: ./
     cmds:
       - |
         wget \
