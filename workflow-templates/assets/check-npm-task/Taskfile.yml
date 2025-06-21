@@ -17,11 +17,12 @@ tasks:
             --location project \
             fix
 
-  # Parameter variables:
-  # - PROJECT_PATH: path of the npm-managed project. Default value: "./"
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-npm-task/Taskfile.yml
   npm:validate:
-    desc: Validate npm configuration files against their JSON schema
+    desc: |
+      Validate npm configuration files against their JSON schema.
+      Environment variable parameters:
+      - PROJECT_PATH: Path of the npm-managed project (default: "./").
     deps:
       - task: npm:install-deps
     vars:
