@@ -4,7 +4,11 @@ version: "3"
 tasks:
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-toc-task/Taskfile.yml
   markdown:toc:
-    desc: Update the table of contents
+    desc: |
+      Update the table of contents.
+      Environment variable parameters:
+      - MAX_DEPTH: maximum heading depth for inclusion in ToC.
+      - FILE_PATH: path to the file that contains the ToC.
     deps:
       - task: npm:install-deps
     cmds:

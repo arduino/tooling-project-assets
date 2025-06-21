@@ -2,6 +2,8 @@
 version: "3"
 
 tasks:
+  # Environment variable parameters:
+  # - YAMLLINT_FORMAT: yamllint output format (default: colored).
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-yaml-task/Taskfile.yml
   yaml:lint:
     desc: Check for problems with YAML files

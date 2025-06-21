@@ -4,21 +4,32 @@ version: "3"
 tasks:
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-go-task/Taskfile.yml
   go:fix:
-    desc: Modernize usages of outdated APIs
+    desc: |
+      Modernize usages of outdated APIs.
+      Environment variable parameters:
+      - GO_MODULE_PATH: Path of the Go module root (default: {{.DEFAULT_GO_MODULE_PATH}}).
+      - GO_PACKAGES: List of Go packages to modernize (default: all packages of the module).
     dir: "{{default .DEFAULT_GO_MODULE_PATH .GO_MODULE_PATH}}"
     cmds:
       - go fix {{default .DEFAULT_GO_PACKAGES .GO_PACKAGES}}
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-go-task/Taskfile.yml
   go:format:
-    desc: Format Go code
+    desc: |
+      Format Go code.
+      Environment variable parameters:
+      - GO_MODULE_PATH: Path of the Go module root (default: {{.DEFAULT_GO_MODULE_PATH}}).
+      - GO_PACKAGES: List of Go packages to modernize (default: all packages of the module).
     dir: "{{default .DEFAULT_GO_MODULE_PATH .GO_MODULE_PATH}}"
     cmds:
       - go fmt {{default .DEFAULT_GO_PACKAGES .GO_PACKAGES}}
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-go-task/Taskfile.yml
   go:lint:
-    desc: Lint Go code
+    desc: |
+      Lint Go code
+      Environment variable parameters:
+      - GO_MODULE_PATH: Path of the Go module root (default: {{.DEFAULT_GO_MODULE_PATH}}).
     dir: "{{default .DEFAULT_GO_MODULE_PATH .GO_MODULE_PATH}}"
     cmds:
       - |
