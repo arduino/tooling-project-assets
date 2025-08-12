@@ -41,7 +41,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -63,7 +63,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install Task
         uses: arduino/setup-task@v2
@@ -140,7 +140,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install Task
         uses: arduino/setup-task@v2
@@ -200,7 +200,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install Task
         uses: arduino/setup-task@v2
@@ -222,7 +222,7 @@ jobs:
           echo "CONVERSION_OUTPUT_PATH=${{ runner.temp }}/clang-format-js-object.txt" >> "$GITHUB_ENV"
 
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
