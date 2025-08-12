@@ -85,7 +85,7 @@ jobs:
 
       - name: Download ClangFormat
         id: download-clang-format
-        uses: MrOctopus/download-asset-action@1.0
+        uses: MrOctopus/download-asset-action@1.1
         with:
           repository: arduino/clang-static-binaries
           tag: ${{ env.CLANG_FORMAT_VERSION }}
@@ -102,7 +102,7 @@ jobs:
 
       - name: Download yq
         id: download-yq
-        uses: MrOctopus/download-asset-action@1.0
+        uses: MrOctopus/download-asset-action@1.1
         with:
           repository: mikefarah/yq
           asset: yq_linux_amd64.tar.gz
@@ -161,7 +161,7 @@ jobs:
 
       - name: Download ClangFormat
         id: download
-        uses: MrOctopus/download-asset-action@1.0
+        uses: MrOctopus/download-asset-action@1.1
         with:
           repository: arduino/clang-static-binaries
           tag: ${{ env.CLANG_FORMAT_VERSION }}
