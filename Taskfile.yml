@@ -462,6 +462,7 @@ tasks:
 
   docs:generate:
     desc: Create all generated documentation content
+    run: when_changed
     # This is an "umbrella" task used to call any documentation generation processes the project has.
     # It can be left empty if there are none.
 
@@ -586,7 +587,8 @@ tasks:
           ! which ec \
           &>/dev/null
         then
-          echo "ec not found or not in PATH. Please install: https://github.com/editorconfig-checker/editorconfig-checker#installation"
+          echo "ec not found or not in PATH."
+          echo "Please install: https://github.com/editorconfig-checker/editorconfig-checker#installation"
           exit 1
         fi
       - ec
