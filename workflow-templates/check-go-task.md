@@ -14,7 +14,7 @@ Install the [`check-go-task.yml`](check-go-task.yml) GitHub Actions workflow to 
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`.golangci.yml`](assets/go/.golangci.yml) - Contains all the go-linting configurations.
   - Install to: repository root as `.golangci.yml`
-- [`Taskfile.yml`](assets/go-task/Taskfile.yml) - `DEFAULT_GO_MODULE_PATH` and `DEFAULT_GO_PACKAGES` variables
+- [`Taskfile.yml`](assets/go-task/Taskfile.yml) - `DEFAULT_GO_MODULE_PATH` and `DEFAULT_GO_PACKAGES` variables.
   - Merge into `Taskfile.yml`
 
 ### Configuration
