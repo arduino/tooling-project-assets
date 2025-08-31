@@ -65,7 +65,7 @@ jobs:
       matrix:
         module:
           # TODO: add paths of all Go modules here
-          - path: ./
+          - path: .
 
     steps:
       - name: Checkout repository
@@ -107,7 +107,7 @@ jobs:
       matrix:
         module:
           # TODO: add paths of all Go modules here
-          - path: ./
+          - path: .
 
     steps:
       - name: Checkout repository
@@ -151,7 +151,7 @@ jobs:
       matrix:
         module:
           # TODO: add paths of all Go modules here
-          - path: ./
+          - path: .
 
     steps:
       - name: Checkout repository
@@ -193,7 +193,7 @@ jobs:
       matrix:
         module:
           # TODO: add paths of all Go modules here
-          - path: ./
+          - path: .
 
     steps:
       - name: Checkout repository

@@ -74,7 +74,7 @@ jobs:
           - macos-latest
         module:
           # TODO: add paths of all Go modules here
-          - path: ./
+          - path: .
             codecov-flags: unit
 
     runs-on: ${{ matrix.operating-system }}

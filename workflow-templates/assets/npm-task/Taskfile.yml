@@ -4,7 +4,7 @@ version: "3"
 vars:
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/npm-task/Taskfile.yml
   # Path of the project's primary npm-managed project:
-  DEFAULT_NPM_PROJECT_PATH: ./
+  DEFAULT_NPM_PROJECT_PATH: .
 
 tasks:
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/npm-task/Taskfile.yml
