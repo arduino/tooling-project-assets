@@ -45,6 +45,8 @@ Commit the resulting changes to the `pyproject.toml` and `poetry.lock` files.
 
 If the repository contains generated or vendored files, they can be excluded from the check by adding them to the `skip` field in the `.codespellrc` configuration file.
 
+#### False positives
+
 In the event of a false positive, the problematic word should be added, in all lowercase, to the `ignore-words-list` field of `./.codespellrc`. Regardless of the case of the word in the false positive, it must be in all lowercase in the ignore list. The ignore list is comma-separated with no spaces.
 
 Reference:
