@@ -49,14 +49,23 @@ Define the `{repository-owner}` and `{repository-name}` attributes and use them 
 ## Commit message
 
 ```
-Add CI workflow to check general file formatting
+Add infrastructure for checking general file formatting
 
-On every push, pull request, and periodically, check whether the repository's files are formatted according to
-.editorconfig.
+The project's .editorconfig file defines the fundamental formatting style for use in the project files.
+
+A task is added to use the "editorconfig-checker" tool to verify the formatting of the project files is compliant.
+
+A GitHub Actions workflow is included to automatically run the tasks. The workflow is triggered on any push or pull that
+changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also
+triggered periodically, in order to catch breakage caused by external changes.
 ```
 
 ## PR message
 
 ```markdown
-On every push, pull request, and periodically, use [editorconfig-checker](https://github.com/editorconfig-checker/editorconfig-checker) check whether the repository's files are formatted according to [`.editorconfig`](https://editorconfig.org/).
+The project's [`.editorconfig`](https://editorconfig.org/) file defines the fundamental formatting style for use in the project files.
+
+A task is added to use the [**editorconfig-checker**](https://github.com/editorconfig-checker/editorconfig-checker) tool to verify the formatting of the project files is compliant.
+
+A GitHub Actions workflow is included to automatically run the task. The workflow is triggered on any push or pull that changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also triggered periodically, in order to catch breakage caused by external changes.
 ```

@@ -63,19 +63,25 @@ Define the `{repository-owner}` and `{repository-name}` attributes and use them 
 ## Commit message
 
 ```
-Add CI workflow to check for problems with npm configuration files
+Add infrastructure to check for problems with npm configuration files
 
-On every push and pull request that affects relevant files, and periodically:
+Tasks are provided to check for problems in the project's npm configuration files:
 
-- Validate package.json against its JSON schema.
-- Check for forgotten package-lock.json syncs.
+* Validate package.json against its JSON schema.
+* Check for forgotten package-lock.json syncs.
+
+A GitHub Actions workflow is included to automatically run the tasks. The workflow is triggered on any push or pull that
+changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also
+triggered periodically, in order to catch breakage caused by external changes.
 ```
 
 ## PR message
 
 ```markdown
-On every push and pull request that affects relevant files, and periodically:
+Tasks are provided to check for problems in the project's npm configuration files:
 
 - Validate [`package.json`](https://docs.npmjs.com/cli/v7/configuring-npm/package-json) against [its JSON schema](https://json.schemastore.org/package.json).
 - Check for forgotten [`package-lock.json`](https://docs.npmjs.com/cli/v7/configuring-npm/package-lock-json) syncs.
+
+A GitHub Actions workflow is included to automatically run the tasks. The workflow is triggered on any push or pull that changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also triggered periodically, in order to catch breakage caused by external changes.
 ```

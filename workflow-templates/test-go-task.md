@@ -63,13 +63,19 @@ image:https://codecov.io/gh/{repository-owner}/{repository-name}/branch/main/gra
 ## Commit message
 
 ```
-Add CI workflow to test Go code
+Add infrastructure to test Go code
 
-On every push and pull request that affects relevant files, run the project's Go code tests.
+A task is provided to run the project's Go code tests.
+
+A GitHub Actions workflow is included to automatically run the task. The workflow is triggered on any push or pull that
+changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also
+triggered periodically, in order to catch breakage caused by external changes.
 ```
 
 ## PR message
 
 ```markdown
-On every push and pull request that affects relevant files, run the project's [Go](https://golang.org/) code tests.
+A task is provided to run the project's [Go](https://golang.org/) code tests.
+
+A GitHub Actions workflow is included to automatically run the task. The workflow is triggered on any push or pull that changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also triggered periodically, in order to catch breakage caused by external changes.
 ```

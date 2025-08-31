@@ -52,8 +52,9 @@ The tasks provide the following operations:
 * Update the `poetry.lock` file as may be required following manual modifications to `pyproject.toml`, or update of the
   "Poetry" application
 
-These tasks are executed by the GitHub Actions workflow on any push or pull request that modifies relevant files, and
-periodically to check for breakage caused by external changes.
+A GitHub Actions workflow is included to automatically run the tasks. The workflow is triggered on any push or pull that
+changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also
+triggered periodically, in order to catch breakage caused by external changes.
 ```
 
 ## PR message
@@ -68,5 +69,5 @@ The tasks provide the following operations:
 - Check for problems with the data structure of the [`pyproject.toml`](https://python-poetry.org/docs/pyproject/) Python project file
 - Update the `poetry.lock` file as may be required following manual modifications to `pyproject.toml`, or update of the **Poetry** application
 
-These tasks are executed by the GitHub Actions workflow on any push or pull request that modifies relevant files, and periodically to check for breakage caused by external changes.
+A GitHub Actions workflow is included to automatically run the tasks. The workflow is triggered on any push or pull that changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also triggered periodically, in order to catch breakage caused by external changes.
 ```

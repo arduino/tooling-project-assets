@@ -70,23 +70,29 @@ Define the `{repository-owner}` and `{repository-name}` attributes and use them 
 ## Commit message
 
 ```
-Add CI workflow to check for problems with shell scripts
+Add infrastructure to check for problems with shell scripts
 
-On every push or pull request that modifies one of the shell scripts in the repository, and periodically, the workflow:
+Tasks are provided to facilitate the development of the project's shell scripts:
 
-- Runs ShellCheck to detect common problems.
-- Runs shfmt to check formatting.
-- Checks for forgotten executable script file permissions.
+- Detect common problems using ShellCheck.
+- Format using shfmt.
+- Check for forgotten executable script file permissions.
+
+A GitHub Actions workflow is included to automatically run the tasks. The workflow is triggered on any push or pull that
+changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also
+triggered periodically, in order to catch breakage caused by external changes.
 ```
 
 ## PR message
 
 ```markdown
-On every push or pull request that modifies one of the shell scripts in the repository, and periodically, the workflow:
+Tasks are provided to facilitate the development of the project's shell scripts:
 
-- Runs [ShellCheck](https://github.com/koalaman/shellcheck) to detect common problems.
-- Runs [`shfmt`](https://github.com/mvdan/sh) to check formatting.
-- Checks for forgotten executable script file permissions.
+- Detect common problems using [**ShellCheck**](https://github.com/koalaman/shellcheck).
+- Format using [**shfmt**](https://github.com/mvdan/sh).
+- Check for forgotten executable script file permissions.
+
+A GitHub Actions workflow is included to automatically run the tasks. The workflow is triggered on any push or pull that changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also triggered periodically, in order to catch breakage caused by external changes.
 ```
 
 ## Usage

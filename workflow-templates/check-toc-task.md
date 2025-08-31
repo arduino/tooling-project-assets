@@ -82,14 +82,19 @@ Define the `{repository-owner}` and `{repository-name}` attributes and use them 
 ## Commit message
 
 ```
-Add CI workflow to check for missed updates to generated ToC
+Add infrastructure to generate a ToC
 
-On every push or pull request that affects the repository's Markdown files that contain a generated table of contents,
-check whether the table of contents matches the file structure.
+A task is provided to use the "markdown-toc" tool to generate a table of contents for Markdown files in the project.
+
+A GitHub Actions workflow is included to automatically run the task. The workflow is triggered on any push or pull that
+changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also
+triggered periodically, in order to catch breakage caused by external changes.
 ```
 
 ## PR message
 
 ```markdown
-On every push or pull request that affects the repository's Markdown files that contain a generated table of contents, use [markdown-toc](https://github.com/jonschlinkert/markdown-toc) to check whether the table of contents matches the file structure.
+A task is provided to use the [**markdown-toc**](https://github.com/jonschlinkert/markdown-toc) tool to generate a table of contents for Markdown files in the project.
+
+A GitHub Actions workflow is included to automatically run the task. The workflow is triggered on any push or pull that changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also triggered periodically, in order to catch breakage caused by external changes.
 ```

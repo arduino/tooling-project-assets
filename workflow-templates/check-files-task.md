@@ -61,9 +61,9 @@ Tasks are also added to check for problems with symbolic links ("symlinks") cont
 - Broken symlinks
 - Circular symlinks
 
-A GitHub Actions workflow is included to run the tasks on any change to the project files in order to avoid the
-introduction of problems with the project filesystem, and periodically in order to catch breakage caused by external
-changes.
+A GitHub Actions workflow is included to automatically run the tasks. The workflow is triggered on any push or pull that
+changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also
+triggered periodically, in order to catch breakage caused by external changes.
 ```
 
 ## PR message
@@ -81,5 +81,5 @@ Tasks are also added to check for problems with symbolic links ("symlinks") cont
 - Broken symlinks
 - Circular symlinks
 
-A GitHub Actions workflow is included to run the tasks on any change to the project files in order to avoid the introduction of problems with the project filesystem, and periodically in order to catch breakage caused by external changes.
+A GitHub Actions workflow is included to automatically run the tasks. The workflow is triggered on any push or pull that changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also triggered periodically, in order to catch breakage caused by external changes.
 ```

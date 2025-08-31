@@ -115,14 +115,19 @@ Define the `{repository-owner}` and `{repository-name}` attributes and use them 
 ## Commit message
 
 ```
-Add CI workflow to check for Prettier formatting compliance
+Add infrastructure for code formatting via Prettier
 
-On every push and pull request that affects relevant files, check whether the formatting of supported
-files is compliant with the Prettier style.
+A task is provided to format project files using the Prettier code formatting tool.
+
+A GitHub Actions workflow is included to automatically run the task. The workflow is triggered on any push or pull that
+changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also
+triggered periodically, in order to catch breakage caused by external changes.
 ```
 
 ## PR message
 
 ```markdown
-On every push and pull request that affects relevant files, check whether the formatting of supported files is compliant with the [Prettier](https://prettier.io/docs/en/index.html) style.
+A task is provided to format project files using the [**Prettier**](https://prettier.io/docs/en/index.html) code formatting tool.
+
+A GitHub Actions workflow is included to automatically run the task. The workflow is triggered on any push or pull that changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also triggered periodically, in order to catch breakage caused by external changes.
 ```

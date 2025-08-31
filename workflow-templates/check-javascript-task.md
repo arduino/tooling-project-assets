@@ -80,20 +80,21 @@ Define the `{repository-owner}` and `{repository-name}` attributes and use them 
 ## Commit message
 
 ```
-Add CI workflow to lint JavaScript code
+Add infrastructure to lint JavaScript code
 
-On every push and pull request that affects relevant files, and periodically, run ESLint on the repository's JavaScript
-files.
+A task is provided to run ESLint on the project's JavaScript files.
 
-ESLint is configured via the .eslintrc.yml file:
-https://eslint.org/docs/latest/use/configure/configuration-files
+A GitHub Actions workflow is included to automatically run the task. The workflow is triggered on any push or pull that
+changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also
+triggered periodically, in order to catch breakage caused by external changes.
 ```
 
 ## PR message
 
 ```markdown
-On every push and pull request that affects relevant files, and periodically, run [**ESLint**](https://eslint.org/) on the repository's JavaScript files.
+A task is provided to run [**ESLint**](https://eslint.org/) on the project's JavaScript files.
 
-**ESLint** is configured via the `.eslintrc.yml` file:
-https://eslint.org/docs/latest/use/configure/configuration-files
+A GitHub Actions workflow is included to automatically run the task. The workflow is triggered on any push or pull that
+changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also
+triggered periodically, in order to catch breakage caused by external changes.
 ```

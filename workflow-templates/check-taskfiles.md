@@ -76,12 +76,18 @@ Define the `{repository-owner}` and `{repository-name}` attributes and use them 
 ```
 Add CI workflow to validate Taskfiles
 
-On every push or pull request that affects the repository's Taskfiles, and periodically, validate them
-against the JSON schema.
+A GitHub Actions workflow is provided to automatically validate the project's Taskfiles against the JSON schema.
+
+The workflow is triggered on any push or pull that changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also triggered periodically, in order to catch breakage caused by external
+changes.
 ```
 
 ## PR message
 
 ```markdown
-On every push or pull request that affects the repository's [Taskfiles](https://taskfile.dev/#/usage), and periodically, validate them against the JSON schema.
+A GitHub Actions workflow is provided to automatically validate the project's [Taskfiles](https://taskfile.dev/#/usage) against the JSON schema.
+
+The workflow is triggered on any push or pull that changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also triggered periodically, in order to catch breakage caused by external changes.
+
+On every push or pull request that affects the repository's [Taskfiles](https://taskfile.dev/#/usage), and periodically, validate them against [the JSON schema](https://taskfile.dev/schema.json).
 ```

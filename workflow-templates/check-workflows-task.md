@@ -74,14 +74,20 @@ Define the `{repository-owner}` and `{repository-name}` attributes and use them 
 ## Commit message
 
 ```
-Add CI workflow to validate GitHub Actions workflows
+Add infrastructure to validate GitHub Actions workflows
 
-On every push or pull request that affects the repository's GitHub Actions workflows, and periodically, validate them
-against the JSON schema.
+A task is provided to check for problems in the project's GitHub Actions workflows by validating them against the JSON
+schema.
+
+A GitHub Actions workflow is included to automatically run the task. The workflow is triggered on any push or pull that
+changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also
+triggered periodically, in order to catch breakage caused by external changes.
 ```
 
 ## PR message
 
 ```markdown
-On every push or pull request that affects the repository's GitHub Actions workflows, and periodically, validate them against the JSON schema.
+A task is provided to check for problems in the project's GitHub Actions workflows by validating them against [the JSON schema](https://json.schemastore.org/github-workflow).
+
+A GitHub Actions workflow is included to automatically run the tasks. The workflow is triggered on any push or pull that changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also triggered periodically, in order to catch breakage caused by external changes.
 ```

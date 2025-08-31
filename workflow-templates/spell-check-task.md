@@ -75,20 +75,21 @@ Define the `{repository-owner}` and `{repository-name}` attributes and use them 
 ## Commit message
 
 ```
-Add CI workflow to check for commonly misspelled words
+Add infrastructure to check spelling
 
-On every push, pull request, and periodically, use codespell to check for commonly
-misspelled words.
+Tasks are provided to check for commonly misspelled words in the project files, and correct those misspellings.
 
-In the event of a false positive, the problematic word should be added, in all lowercase, to the `ignore-words-list`
-field of `.codespellrc`. Regardless of the case of the word in the false positive, it must be in all lowercase in the
-ignore list. The ignore list is comma-separated with no spaces.
+A GitHub Actions workflow is included to automatically run the spell check task. The workflow is triggered on any push
+or pull that changes relevant project files, in order to avoid the introduction of problems with the project filesystem.
+It is also triggered periodically, in order to catch breakage caused by external changes.
 ```
 
 ## PR message
 
 ```markdown
-On every push, pull request, and periodically, use [codespell](https://github.com/codespell-project/codespell) to check for commonly misspelled words.
+Tasks are provided to check for commonly misspelled words in the project files, and correct those misspellings.
+
+A GitHub Actions workflow is included to automatically run the spell check task. The workflow is triggered on any push or pull that changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also triggered periodically, in order to catch breakage caused by external changes.
 
 In the event of a false positive, the problematic word should be added, in all lowercase, to the `ignore-words-list` field of `.codespellrc`. Regardless of the case of the word in the false positive, it must be in all lowercase in the ignore list. The ignore list is comma-separated with no spaces.
 ```
