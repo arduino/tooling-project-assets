@@ -712,6 +712,7 @@ tasks:
             -s "{{.SCHEMA_PATH}}" \
             -d "{{.DATA_PATH}}"
 
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-javascript-task/Taskfile.yml
   js:fix:
     desc: Fix JavaScript code linting violations
     deps:
@@ -724,6 +725,7 @@ tasks:
             --fix \
             .
 
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-javascript-task/Taskfile.yml
   js:lint:
     desc: Lint JavaScript code
     deps:
@@ -1083,6 +1085,7 @@ tasks:
           flake8 \
             --show-source
 
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/test-python-poetry-task/Taskfile.yml
   python:test:
     desc: Run Python tests
     deps:
