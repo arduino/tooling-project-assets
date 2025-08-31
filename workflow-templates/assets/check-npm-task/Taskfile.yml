@@ -8,8 +8,7 @@ tasks:
       Fix problems with the npm configuration file.
       Environment variable parameters:
       - PROJECT_PATH: Path of the npm-managed project (default: {{.DEFAULT_NPM_PROJECT_PATH}}).
-    dir: |
-      "{{default .DEFAULT_NPM_PROJECT_PATH .PROJECT_PATH}}"
+    dir: "{{default .DEFAULT_NPM_PROJECT_PATH .PROJECT_PATH}}"
     cmds:
       - |
         npm config \
