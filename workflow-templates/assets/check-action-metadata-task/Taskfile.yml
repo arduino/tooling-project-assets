@@ -7,7 +7,9 @@ tasks:
     desc: Validate GitHub Actions metadata against JSON schema
     vars:
       ACTION_METADATA_SCHEMA_PATH:
-        sh: task utility:mktemp-file TEMPLATE="github-action-schema-XXXXXXXXXX.json"
+        sh: |
+          task utility:mktemp-file \
+            TEMPLATE="github-action-schema-XXXXXXXXXX.json"
     deps:
       - task: npm:install-deps
         vars:

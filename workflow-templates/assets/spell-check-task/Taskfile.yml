@@ -20,4 +20,7 @@ tasks:
         vars:
           POETRY_GROUPS: dev
     cmds:
-      - poetry run codespell --write-changes
+      - |
+        poetry run \
+          codespell \
+            --write-changes

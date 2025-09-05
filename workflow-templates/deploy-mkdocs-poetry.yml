@@ -44,4 +44,6 @@ jobs:
             poetry:install-deps
 
       - name: Deploy website
-        run: poetry run mkdocs gh-deploy
+        run: |
+          poetry run \
+            mkdocs gh-deploy

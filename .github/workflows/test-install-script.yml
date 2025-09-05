@@ -80,7 +80,11 @@ jobs:
           name: ${{ env.SCRIPT_ARTIFACT_NAME }}
 
       - name: Make script executable
-        run: chmod u+x "${{ github.workspace }}/${{ env.SCRIPT_NAME }}"
+        shell: bash
+        run: |
+          chmod \
+            u+x \
+            "${{ github.workspace }}/${{ env.SCRIPT_NAME }}"
 
       - name: Run script with defaults
         shell: sh
@@ -90,7 +94,8 @@ jobs:
       - name: Verify installation
         shell: bash
         run: |
-          "${PWD}/bin/${{ env.TOOL_NAME }}" --version
+          "${PWD}/bin/${{ env.TOOL_NAME }}" \
+            --version
 
   bindir:
     needs: configure
@@ -119,18 +124,25 @@ jobs:
           name: ${{ env.SCRIPT_ARTIFACT_NAME }}
 
       - name: Make script executable
-        run: chmod u+x "${{ github.workspace }}/${{ env.SCRIPT_NAME }}"
+        shell: bash
+        run: |
+          chmod \
+            u+x \
+            "${{ github.workspace }}/${{ env.SCRIPT_NAME }}"
 
       - name: Run script with custom install location
         shell: sh
         run: |
-          mkdir -p "${{ env.BINDIR }}"
+          mkdir \
+            -p \
+            "${{ env.BINDIR }}"
           "${{ github.workspace }}/${{ env.SCRIPT_NAME }}"
 
       - name: Verify installation
         shell: bash
         run: |
-          "${{ env.BINDIR }}/${{ env.TOOL_NAME }}" --version
+          "${{ env.BINDIR }}/${{ env.TOOL_NAME }}" \
+            --version
 
   version:
     needs: configure
@@ -156,7 +168,11 @@ jobs:
           name: ${{ env.SCRIPT_ARTIFACT_NAME }}
 
       - name: Make script executable
-        run: chmod u+x "${{ github.workspace }}/${{ env.SCRIPT_NAME }}"
+        shell: bash
+        run: |
+          chmod \
+            u+x \
+            "${{ github.workspace }}/${{ env.SCRIPT_NAME }}"
 
       - name: Run script with version argument
         shell: sh
@@ -166,7 +182,12 @@ jobs:
       - name: Verify installation
         shell: bash
         run: |
-          "${PWD}/bin/${{ env.TOOL_NAME }}" --version | grep --fixed-strings "${{ env.VERSION }}"
+          "${PWD}/bin/${{ env.TOOL_NAME }}" \
+            --version \
+          | \
+          grep \
+            --fixed-strings \
+            "${{ env.VERSION }}"
 
   nightly:
     needs: configure
@@ -189,17 +210,26 @@ jobs:
           name: ${{ env.SCRIPT_ARTIFACT_NAME }}
 
       - name: Make script executable
-        run: chmod u+x "${{ github.workspace }}/${{ env.SCRIPT_NAME }}"
+        shell: bash
+        run: |
+          chmod \
+            u+x \
+            "${{ github.workspace }}/${{ env.SCRIPT_NAME }}"
 
       - name: Run script with nightly build version argument
         shell: sh
         run: |
-          "${{ github.workspace }}/${{ env.SCRIPT_NAME }}" "nightly-latest"
+          "${{ github.workspace }}/${{ env.SCRIPT_NAME }}" \
+            "nightly-latest"
 
       - name: Verify installation
         shell: bash
         run: |
-          "${PWD}/bin/${{ env.TOOL_NAME }}" --version | grep "^nightly-"
+          "${PWD}/bin/${{ env.TOOL_NAME }}" \
+            --version \
+          | \
+          grep \
+            "^nightly-"
 
   path-suggestions:
     needs: configure
@@ -233,14 +263,20 @@ jobs:
           name: ${{ env.SCRIPT_ARTIFACT_NAME }}
 
       - name: Make script executable
-        run: chmod u+x "${{ github.workspace }}/${{ env.SCRIPT_NAME }}"
+        shell: bash
+        run: |
+          chmod \
+            u+x \
+            "${{ github.workspace }}/${{ env.SCRIPT_NAME }}"
 
       - name: Check script output without previous installation in PATH
         shell: sh
         env:
           BINDIR: ${{ env.FIRST_BINDIR }}
         run: |
-          mkdir -p "${{ env.BINDIR }}"
+          mkdir \
+            -p \
+            "${{ env.BINDIR }}"
           "${{ github.workspace }}/${{ env.SCRIPT_NAME }}" \
           | \
           grep \
@@ -259,7 +295,9 @@ jobs:
         env:
           BINDIR: ${{ env.SECOND_BINDIR }}
         run: |
-          mkdir -p "${{ env.BINDIR }}"
+          mkdir \
+            -p \
+            "${{ env.BINDIR }}"
           "${{ github.workspace }}/${{ env.SCRIPT_NAME }}" \
           | \
           grep \
@@ -275,7 +313,9 @@ jobs:
         env:
           BINDIR: ${{ env.SECOND_BINDIR }}
         run: |
-          mkdir -p "${{ env.BINDIR }}"
+          mkdir \
+            -p \
+            "${{ env.BINDIR }}"
           "${{ github.workspace }}/${{ env.SCRIPT_NAME }}" \
           | \
           grep \

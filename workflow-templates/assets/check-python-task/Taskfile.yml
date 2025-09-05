@@ -10,7 +10,10 @@ tasks:
         vars:
           POETRY_GROUPS: dev
     cmds:
-      - poetry run black .
+      - |
+        poetry run \
+          black \
+            .
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-python-task/Taskfile.yml
   python:lint:
@@ -20,4 +23,7 @@ tasks:
         vars:
           POETRY_GROUPS: dev
     cmds:
-      - poetry run flake8 --show-source
+      - |
+        poetry run \
+          flake8 \
+            --show-source

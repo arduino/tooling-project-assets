@@ -16,7 +16,10 @@ tasks:
           exit 1
         fi
       - |
-        if ! which shellcheck &>/dev/null; then
+        if
+          ! which shellcheck \
+          &>/dev/null
+        then
           echo "shellcheck not installed or not in PATH."
           echo "Please install: https://github.com/koalaman/shellcheck#installing"
           exit 1
@@ -56,7 +59,10 @@ tasks:
           exit 1
         fi
       - |
-        if ! which shfmt &>/dev/null; then
+        if
+          ! which shfmt \
+          &>/dev/null
+        then
           echo "shfmt not installed or not in PATH. Please install: https://github.com/mvdan/sh#shfmt"
           exit 1
         fi

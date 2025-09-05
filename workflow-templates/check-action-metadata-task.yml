@@ -74,4 +74,7 @@ jobs:
           version: 3.x
 
       - name: Validate action.yml
-        run: task --silent action:validate
+        run: |
+          task \
+            --silent \
+            action:validate

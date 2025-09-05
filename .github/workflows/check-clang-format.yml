@@ -55,7 +55,10 @@ jobs:
           version: 3.x
 
       - name: Validate ClangFormat configuration files
-        run: task --silent clang-format:validate
+        run: |
+          task \
+            --silent \
+            clang-format:validate
 
   check-config:
     runs-on: ubuntu-latest
@@ -95,7 +98,9 @@ jobs:
       - name: Install ClangFormat
         run: |
           cd "${{ env.CLANG_FORMAT_INSTALL_PATH }}"
-          tar --extract --file="${{ steps.download-clang-format.outputs.name }}"
+          tar \
+            --extract \
+            --file="${{ steps.download-clang-format.outputs.name }}"
           # Add installation to PATH:
           # See: https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#adding-a-system-path
           echo "${{ env.CLANG_FORMAT_INSTALL_PATH }}/clang_Linux_64bit" >> "$GITHUB_PATH"
@@ -111,7 +116,9 @@ jobs:
       - name: Install yq
         run: |
           cd "${{ env.YQ_INSTALL_PATH }}"
-          tar --extract --file="${{ steps.download-yq.outputs.name }}"
+          tar \
+            --extract \
+            --file="${{ steps.download-yq.outputs.name }}"
           # Add installation to PATH:
           # See: https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#adding-a-system-path
           echo "${{ env.YQ_INSTALL_PATH }}/yq" >> "$GITHUB_PATH"
@@ -171,7 +178,9 @@ jobs:
       - name: Install ClangFormat
         run: |
           cd "${{ env.CLANG_FORMAT_INSTALL_PATH }}"
-          tar --extract --file="${{ steps.download.outputs.name }}"
+          tar \
+            --extract \
+            --file="${{ steps.download.outputs.name }}"
           # Add installation to PATH:
           # See: https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#adding-a-system-path
           echo "${{ env.CLANG_FORMAT_INSTALL_PATH }}/clang_Linux_64bit" >> "$GITHUB_PATH"
@@ -209,7 +218,10 @@ jobs:
           version: 3.x
 
       - name: Check ClangFormat test data
-        run: task --silent clang-format:check-testdata
+        run: |
+          task \
+            --silent \
+            clang-format:check-testdata
 
   convert:
     runs-on: ubuntu-latest

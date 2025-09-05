@@ -15,7 +15,8 @@ tasks:
           PROJECT_PATH: ./
     cmds:
       - |
-        npx markdown-toc \
+        npx \
+          markdown-toc \
             --bullets=- \
             --maxdepth={{.MAX_DEPTH}} \
             -i \

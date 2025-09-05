@@ -55,7 +55,11 @@ tasks:
         vars:
           PROJECT_PATH: ./
     cmds:
-      - npx markdownlint-cli --fix "**/*.md"
+      - |
+        npx \
+          markdownlint-cli \
+            --fix \
+            "**/*.md"
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-markdown-task/Taskfile.yml
   markdown:lint:
@@ -65,4 +69,7 @@ tasks:
         vars:
           PROJECT_PATH: ./
     cmds:
-      - npx markdownlint-cli "**/*.md"
+      - |
+        npx \
+          markdownlint-cli \
+            "**/*.md"

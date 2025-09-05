@@ -8,13 +8,19 @@ tasks:
     run: when_changed
     cmds:
       - |
-        if ! which yq &>/dev/null; then
+        if
+          ! which yq \
+          &>/dev/null
+        then
           echo "yq not found or not in PATH."
           echo "Please install: https://github.com/mikefarah/yq/#install"
           exit 1
         fi
       - |
-        if ! which python &>/dev/null; then
+        if
+          ! which python \
+          &>/dev/null
+        then
         python_constraint="$( \
             yq \
               --input-format toml \
@@ -29,7 +35,10 @@ tasks:
           exit 1
         fi
       - |
-        if ! which pipx &>/dev/null; then
+        if
+          ! which pipx \
+          &>/dev/null
+        then
           echo "pipx not found or not in PATH."
           echo "Please install: https://pipx.pypa.io/stable/installation/#installing-pipx"
           exit 1

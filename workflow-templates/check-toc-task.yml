@@ -91,4 +91,7 @@ jobs:
             MAX_DEPTH=${{ matrix.file.maxdepth }}
 
       - name: Check ToC
-        run: git diff --color --exit-code
+        run: |
+          git diff \
+            --color \
+            --exit-code
