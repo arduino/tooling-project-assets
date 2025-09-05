@@ -241,10 +241,11 @@ jobs:
           BINDIR: ${{ env.FIRST_BINDIR }}
         run: |
           mkdir -p "${{ env.BINDIR }}"
-          "${{ github.workspace }}/${{ env.SCRIPT_NAME }}" | \
-            grep \
-              -F \
-              '${{ env.TOOL_NAME }} not found. You might want to add "${{ env.FIRST_BINDIR }}" to your $PATH'
+          "${{ github.workspace }}/${{ env.SCRIPT_NAME }}" \
+          | \
+          grep \
+            -F \
+            '${{ env.TOOL_NAME }} not found. You might want to add "${{ env.FIRST_BINDIR }}" to your $PATH'
 
       - name: Add first installation to PATH
         shell: bash
@@ -259,10 +260,11 @@ jobs:
           BINDIR: ${{ env.SECOND_BINDIR }}
         run: |
           mkdir -p "${{ env.BINDIR }}"
-          "${{ github.workspace }}/${{ env.SCRIPT_NAME }}" | \
-            grep \
-              -F \
-              '${{ env.TOOL_NAME }} was found at ${{ env.FIRST_BINDIR }}/${{ env.TOOL_NAME }}. Please prepend "${{ env.BINDIR }}" to your $PATH'
+          "${{ github.workspace }}/${{ env.SCRIPT_NAME }}" \
+          | \
+          grep \
+            -F \
+            '${{ env.TOOL_NAME }} was found at ${{ env.FIRST_BINDIR }}/${{ env.TOOL_NAME }}. Please prepend "${{ env.BINDIR }}" to your $PATH'
 
       # ${{ runner.temp }} is a Windows style path on the windows runner, but the script output uses the equivalent
       # POSIX style path.
@@ -274,6 +276,7 @@ jobs:
           BINDIR: ${{ env.SECOND_BINDIR }}
         run: |
           mkdir -p "${{ env.BINDIR }}"
-          "${{ github.workspace }}/${{ env.SCRIPT_NAME }}" | \
-            grep \
-              '${{ env.TOOL_NAME }} was found at .*/${{ env.FIRST_INSTALLATION_FOLDER }}/${{ env.TOOL_NAME }}\. Please prepend ".*/${{ env.SECOND_INSTALLATION_FOLDER }}" to your \$PATH'
+          "${{ github.workspace }}/${{ env.SCRIPT_NAME }}" \
+          | \
+          grep \
+            '${{ env.TOOL_NAME }} was found at .*/${{ env.FIRST_INSTALLATION_FOLDER }}/${{ env.TOOL_NAME }}\. Please prepend ".*/${{ env.SECOND_INSTALLATION_FOLDER }}" to your \$PATH'

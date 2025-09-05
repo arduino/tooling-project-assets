@@ -254,14 +254,14 @@ tasks:
       - |
         # Add source comment
         echo \
-          "# Source: https://github.com/arduino/tooling-project-assets/tree/main/other/clang-format-configuration" > \
-            "{{.TARGET_PATH}}"
+          "# Source: https://github.com/arduino/tooling-project-assets/tree/main/other/clang-format-configuration" \
+        > "{{.TARGET_PATH}}"
 
         # Dump the effective configuration to the target file
         clang-format \
           --dump-config \
-          --style=file:"{{.CLANG_FORMAT_CONFIGURATION_PATH}}" >> \
-            "{{.TARGET_PATH}}"
+          --style=file:"{{.CLANG_FORMAT_CONFIGURATION_PATH}}" \
+        >> "{{.TARGET_PATH}}"
 
       - |
         # Correct invalid `BasedOnStyle` key value
@@ -457,11 +457,12 @@ tasks:
             sh \
               -c \
                 ' \
-                  basename "$0" | \
-                    grep \
-                      --extended-regexp \
-                      --regexp='"'"'([<>:"/\\|?*'"'"'"$(printf "\001-\037")"'"'"'])|(.+\.$)'"'"' \
-                      --silent \
+                  basename "$0" \
+                  | \
+                  grep \
+                    --extended-regexp \
+                    --regexp='"'"'([<>:"/\\|?*'"'"'"$(printf "\001-\037")"'"'"'])|(.+\.$)'"'"' \
+                    --silent \
                   && \
                   echo "$0"
                 ' \
@@ -489,12 +490,13 @@ tasks:
             sh \
               -c \
                 ' \
-                  basename "$0" | \
-                    grep \
-                      --ignore-case \
-                      --extended-regexp \
-                      --regexp='"'"'^(con|prn|aux|nul|com[0-9]+|lpt[0-9]+)$'"'"' \
-                      --silent \
+                  basename "$0" \
+                  | \
+                  grep \
+                    --ignore-case \
+                    --extended-regexp \
+                    --regexp='"'"'^(con|prn|aux|nul|com[0-9]+|lpt[0-9]+)$'"'"' \
+                    --silent \
                   && \
                   echo "$0"
                 ' \
@@ -765,10 +767,9 @@ tasks:
       "{{default .DEFAULT_NPM_PROJECT_PATH .PROJECT_PATH}}"
     cmds:
       - |
-        npm \
-          config \
-            --location project \
-            fix
+        npm config \
+          --location project \
+          fix
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-npm-task/Taskfile.yml
   npm:validate:
@@ -869,7 +870,7 @@ tasks:
               --input-format toml \
               --output-format yaml \
               '.tool.poetry.dependencies.python' \
-              < pyproject.toml
+            < pyproject.toml
           )"
 
           echo "Python not found or not in PATH."
@@ -894,7 +895,7 @@ tasks:
               --input-format toml \
               --output-format yaml \
               '.tool.poetry.group.pipx.dependencies.poetry' \
-              < pyproject.toml
+            < pyproject.toml
           )"
 
         pipx install \

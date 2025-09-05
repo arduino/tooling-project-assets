@@ -20,7 +20,7 @@ tasks:
               --input-format toml \
               --output-format yaml \
               '.tool.poetry.dependencies.python' \
-              < pyproject.toml
+            < pyproject.toml
           )"
 
           echo "Python not found or not in PATH."
@@ -45,7 +45,7 @@ tasks:
               --input-format toml \
               --output-format yaml \
               '.tool.poetry.group.pipx.dependencies.poetry' \
-              < pyproject.toml
+            < pyproject.toml
           )"
 
         pipx install \

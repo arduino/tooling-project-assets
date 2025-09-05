@@ -48,8 +48,8 @@ jobs:
           unzip \
             -p \
             "${{ steps.download-semver-tool.outputs.file-path }}" \
-            semver-tool-${{ env.SEMVER_TOOL_VERSION }}/src/semver > \
-              "${{ env.SEMVER_TOOL_PATH }}"
+            semver-tool-${{ env.SEMVER_TOOL_VERSION }}/src/semver \
+          >"${{ env.SEMVER_TOOL_PATH }}"
           chmod +x "${{ env.SEMVER_TOOL_PATH }}"
 
       - name: Identify Prerelease

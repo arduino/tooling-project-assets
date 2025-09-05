@@ -150,14 +150,12 @@ jobs:
 
       - name: Fix problems in npm configuration file
         run: |
-          task \
-            npm:fix-config \
+          task npm:fix-config \
             PROJECT_PATH="${{ matrix.project.path }}"
 
       - name: Check if fixes are needed in npm configuration file
         run: |
-          git \
-            diff \
-              --color \
-              --exit-code \
-              "${{ matrix.project.path }}/.npmrc"
+          git diff \
+            --color \
+            --exit-code \
+            "${{ matrix.project.path }}/.npmrc"

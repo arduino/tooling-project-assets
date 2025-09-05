@@ -20,8 +20,7 @@ tasks:
           https://json.schemastore.org/github-action
       - |
         npx \
-          ajv-cli \
-            validate \
+          ajv-cli validate \
             --strict=false \
             -s "{{.ACTION_METADATA_SCHEMA_PATH}}" \
             -d "action.yml"
