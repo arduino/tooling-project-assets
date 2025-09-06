@@ -20,8 +20,8 @@ jobs:
       - name: Set environment variables
         run: |
           # See: https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#setting-an-environment-variable
-          echo "CHANGELOG_PATH=${{ runner.temp }}/CHANGELOG.md" >> "$GITHUB_ENV"
-          echo "SEMVER_TOOL_PATH=${{ runner.temp }}/semver" >> "$GITHUB_ENV"
+          echo "CHANGELOG_PATH=${{ runner.temp }}/CHANGELOG.md" >>"$GITHUB_ENV"
+          echo "SEMVER_TOOL_PATH=${{ runner.temp }}/semver" >>"$GITHUB_ENV"
 
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -65,7 +65,7 @@ jobs:
             )" != \
             "" \
           ]]; then
-            echo "IS_PRE=true" >> $GITHUB_OUTPUT
+            echo "IS_PRE=true" >>$GITHUB_OUTPUT
           fi
 
       - name: Create Github release

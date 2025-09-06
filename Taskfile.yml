@@ -270,13 +270,13 @@ tasks:
         # Add source comment
         echo \
           "# Source: https://github.com/arduino/tooling-project-assets/tree/main/other/clang-format-configuration" \
-        > "{{.TARGET_PATH}}"
+        >"{{.TARGET_PATH}}"
 
         # Dump the effective configuration to the target file
         clang-format \
           --dump-config \
           --style=file:"{{.CLANG_FORMAT_CONFIGURATION_PATH}}" \
-        >> "{{.TARGET_PATH}}"
+        >>"{{.TARGET_PATH}}"
 
       - |
         # Correct invalid `BasedOnStyle` key value
@@ -518,17 +518,16 @@ tasks:
           -type d -name 'node_modules' -prune -o \
           -exec \
             sh \
-              -c \
-                ' \
-                  basename "$0" \
-                  | \
-                  grep \
-                    --extended-regexp \
-                    --regexp='"'"'([<>:"/\\|?*'"'"'"$(printf "\001-\037")"'"'"'])|(.+\.$)'"'"' \
-                    --silent \
-                  && \
-                  echo "$0"
-                ' \
+              -c ' \
+                basename "$0" \
+                | \
+                grep \
+                  --extended-regexp \
+                  --regexp='"'"'([<>:"/\\|?*'"'"'"$(printf "\001-\037")"'"'"'])|(.+\.$)'"'"' \
+                  --silent \
+                && \
+                echo "$0"
+              ' \
               '{}' \
             \; \
           -execdir \
@@ -551,18 +550,17 @@ tasks:
           -type d -name 'node_modules' -prune -o \
           -exec \
             sh \
-              -c \
-                ' \
-                  basename "$0" \
-                  | \
-                  grep \
-                    --ignore-case \
-                    --extended-regexp \
-                    --regexp='"'"'^(con|prn|aux|nul|com[0-9]+|lpt[0-9]+)$'"'"' \
-                    --silent \
-                  && \
-                  echo "$0"
-                ' \
+              -c ' \
+                basename "$0" \
+                | \
+                grep \
+                  --ignore-case \
+                  --extended-regexp \
+                  --regexp='"'"'^(con|prn|aux|nul|com[0-9]+|lpt[0-9]+)$'"'"' \
+                  --silent \
+                && \
+                echo "$0"
+              ' \
               '{}' \
             \; \
           -execdir \
@@ -978,12 +976,12 @@ tasks:
           ! which python \
           &>/dev/null
         then
-        python_constraint="$( \
+          python_constraint="$( \
             yq \
               --input-format toml \
               --output-format yaml \
               '.tool.poetry.dependencies.python' \
-            < pyproject.toml
+            <pyproject.toml
           )"
 
           echo "Python not found or not in PATH."
@@ -1007,12 +1005,12 @@ tasks:
         )"
 
         poetry_constraint="$( \
-            yq \
-              --input-format toml \
-              --output-format yaml \
-              '.tool.poetry.group.pipx.dependencies.poetry' \
-            < pyproject.toml
-          )"
+          yq \
+            --input-format toml \
+            --output-format yaml \
+            '.tool.poetry.group.pipx.dependencies.poetry' \
+          <pyproject.toml
+        )"
 
         pipx install \
           --force \

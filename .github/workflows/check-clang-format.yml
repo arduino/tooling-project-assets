@@ -78,14 +78,14 @@ jobs:
         run: |
           # See: https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#setting-an-environment-variable
           if [[ "${{ github.event.inputs.clang-format-version }}" == "" ]]; then
-            echo "CLANG_FORMAT_VERSION=$(task clang-format:get-version)" >> "$GITHUB_ENV"
+            echo "CLANG_FORMAT_VERSION=$(task clang-format:get-version)" >>"$GITHUB_ENV"
           else
-            echo "CLANG_FORMAT_VERSION=${{ github.event.inputs.clang-format-version }}" >> "$GITHUB_ENV"
+            echo "CLANG_FORMAT_VERSION=${{ github.event.inputs.clang-format-version }}" >>"$GITHUB_ENV"
           fi
 
-          echo "CLANG_FORMAT_INSTALL_PATH=${{ runner.temp }}/clang-format" >> "$GITHUB_ENV"
-          echo "YQ_INSTALL_PATH=${{ runner.temp }}/yq" >> "$GITHUB_ENV"
-          echo "WORKING_FOLDER=${{ runner.temp }}" >> "$GITHUB_ENV"
+          echo "CLANG_FORMAT_INSTALL_PATH=${{ runner.temp }}/clang-format" >>"$GITHUB_ENV"
+          echo "YQ_INSTALL_PATH=${{ runner.temp }}/yq" >>"$GITHUB_ENV"
+          echo "WORKING_FOLDER=${{ runner.temp }}" >>"$GITHUB_ENV"
 
       - name: Download ClangFormat
         id: download-clang-format
@@ -106,7 +106,7 @@ jobs:
 
           # Add installation to PATH:
           # See: https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#adding-a-system-path
-          echo "${{ env.CLANG_FORMAT_INSTALL_PATH }}/clang_Linux_64bit" >> "$GITHUB_PATH"
+          echo "${{ env.CLANG_FORMAT_INSTALL_PATH }}/clang_Linux_64bit" >>"$GITHUB_PATH"
 
       - name: Download yq
         id: download-yq
@@ -126,7 +126,7 @@ jobs:
 
           # Add installation to PATH:
           # See: https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#adding-a-system-path
-          echo "${{ env.YQ_INSTALL_PATH }}/yq" >> "$GITHUB_PATH"
+          echo "${{ env.YQ_INSTALL_PATH }}/yq" >>"$GITHUB_PATH"
 
       - name: Check ClangFormat configuration file
         id: check
@@ -164,13 +164,13 @@ jobs:
         run: |
           # See: https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#setting-an-environment-variable
           if [[ "${{ github.event.inputs.clang-format-version }}" == "" ]]; then
-            echo "CLANG_FORMAT_VERSION=$(task clang-format:get-version)" >> "$GITHUB_ENV"
+            echo "CLANG_FORMAT_VERSION=$(task clang-format:get-version)" >>"$GITHUB_ENV"
           else
-            echo "CLANG_FORMAT_VERSION=${{ github.event.inputs.clang-format-version }}" >> "$GITHUB_ENV"
+            echo "CLANG_FORMAT_VERSION=${{ github.event.inputs.clang-format-version }}" >>"$GITHUB_ENV"
           fi
 
-          echo "CLANG_FORMAT_INSTALL_PATH=${{ runner.temp }}/clang-format" >> "$GITHUB_ENV"
-          echo "WORKING_FOLDER=${{ runner.temp }}" >> "$GITHUB_ENV"
+          echo "CLANG_FORMAT_INSTALL_PATH=${{ runner.temp }}/clang-format" >>"$GITHUB_ENV"
+          echo "WORKING_FOLDER=${{ runner.temp }}" >>"$GITHUB_ENV"
 
       - name: Download ClangFormat
         id: download
@@ -191,7 +191,7 @@ jobs:
 
           # Add installation to PATH:
           # See: https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#adding-a-system-path
-          echo "${{ env.CLANG_FORMAT_INSTALL_PATH }}/clang_Linux_64bit" >> "$GITHUB_PATH"
+          echo "${{ env.CLANG_FORMAT_INSTALL_PATH }}/clang_Linux_64bit" >>"$GITHUB_PATH"
 
       - name: Check ClangFormat output
         id: check
@@ -239,7 +239,7 @@ jobs:
       - name: Set environment variables
         run: |
           # See: https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#setting-an-environment-variable
-          echo "CONVERSION_OUTPUT_PATH=${{ runner.temp }}/clang-format-js-object.txt" >> "$GITHUB_ENV"
+          echo "CONVERSION_OUTPUT_PATH=${{ runner.temp }}/clang-format-js-object.txt" >>"$GITHUB_ENV"
 
       - name: Checkout repository
         uses: actions/checkout@v5

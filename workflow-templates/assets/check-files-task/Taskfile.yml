@@ -14,17 +14,16 @@ tasks:
           -type d -name 'node_modules' -prune -o \
           -exec \
             sh \
-              -c \
-                ' \
-                  basename "$0" \
-                  | \
-                  grep \
-                    --extended-regexp \
-                    --regexp='"'"'([<>:"/\\|?*'"'"'"$(printf "\001-\037")"'"'"'])|(.+\.$)'"'"' \
-                    --silent \
-                  && \
-                  echo "$0"
-                ' \
+              -c ' \
+                basename "$0" \
+                | \
+                grep \
+                  --extended-regexp \
+                  --regexp='"'"'([<>:"/\\|?*'"'"'"$(printf "\001-\037")"'"'"'])|(.+\.$)'"'"' \
+                  --silent \
+                && \
+                echo "$0"
+              ' \
               '{}' \
             \; \
           -execdir \
@@ -47,18 +46,17 @@ tasks:
           -type d -name 'node_modules' -prune -o \
           -exec \
             sh \
-              -c \
-                ' \
-                  basename "$0" \
-                  | \
-                  grep \
-                    --ignore-case \
-                    --extended-regexp \
-                    --regexp='"'"'^(con|prn|aux|nul|com[0-9]+|lpt[0-9]+)$'"'"' \
-                    --silent \
-                  && \
-                  echo "$0"
-                ' \
+              -c ' \
+                basename "$0" \
+                | \
+                grep \
+                  --ignore-case \
+                  --extended-regexp \
+                  --regexp='"'"'^(con|prn|aux|nul|com[0-9]+|lpt[0-9]+)$'"'"' \
+                  --silent \
+                && \
+                echo "$0"
+              ' \
               '{}' \
             \; \
           -execdir \
