@@ -1,6 +1,6 @@
 # Issue template chooser configuration for GitHub Actions actions
 
-This is the issue template chooser configuration for use in [GitHub Actions action](https://docs.github.com/actions/creating-actions/about-custom-actions) repositories.
+This is the issue template chooser configuration for use in [GitHub Actions action](https://docs.github.com/actions/concepts/workflows-and-actions/custom-actions) repositories.
 
 ## Installation
 

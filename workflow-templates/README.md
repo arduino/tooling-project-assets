@@ -1,6 +1,6 @@
 # GitHub Actions workflow templates
 
-A collection of reusable [GitHub Actions workflows](https://docs.github.com/actions/quickstart#creating-your-first-workflow).
+A collection of reusable [GitHub Actions workflows](https://docs.github.com/actions/get-started/quickstart#creating-your-first-workflow).
 
 ## Documentation
 
@@ -25,7 +25,7 @@ Addition of, or requests for, any additional workflows that can be reusable betw
 
 Dependabot is used to [check for outdated action versions](https://docs.github.com/code-security/dependabot/working-with-dependabot/keeping-your-actions-up-to-date-with-dependabot) used in the template workflows.
 
-Dependabot's PRs will occasionally try to pin to the patch version of the action (e.g., updating `uses: foo/bar@v1` to `uses: foo/bar@v2.3.4`). When the action author has [provided a major version ref](https://docs.github.com/actions/creating-actions/about-custom-actions#using-release-management-for-actions), use that instead (e.g., `uses: foo/bar@v2`). Once the major version has been updated in the workflow, Dependabot should not submit an update PR again until the next major version bump.
+Dependabot's PRs will occasionally try to pin to the patch version of the action (e.g., updating `uses: foo/bar@v1` to `uses: foo/bar@v2.3.4`). When the action author has [provided a major version ref](https://docs.github.com/actions/concepts/workflows-and-actions/custom-actions#using-release-management-for-actions), use that instead (e.g., `uses: foo/bar@v2`). Once the major version has been updated in the workflow, Dependabot should not submit an update PR again until the next major version bump.
 
 ---
 

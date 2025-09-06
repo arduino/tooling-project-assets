@@ -21,7 +21,7 @@ Install the [`test-go-task.yml`](test-go-task.yml) GitHub Actions workflow to `.
 
 #### Workflow
 
-If the project contains Go modules in paths other than the root of the repository, add their paths to the [job matrix](https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix) in `check-go-task.yml` at `jobs.test.strategy.matrix.module[].path` and the [Codecov flag](https://docs.codecov.com/docs/flags) to group their data under at `jobs.test.strategy.matrix.module[].codecov-flags`
+If the project contains Go modules in paths other than the root of the repository, add their paths to the [job matrix](https://docs.github.com/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idstrategymatrixx) in `check-go-task.yml` at `jobs.test.strategy.matrix.module[].path` and the [Codecov flag](https://docs.codecov.com/docs/flags) to group their data under at `jobs.test.strategy.matrix.module[].codecov-flags`
 
 Replace `TODO_REPO_OWNER/TODO_REPO_NAME` with the repository's name (e.g., `arduino/arduino-cli`) in the `codecov/codecov-action` action's `fail_ci_if_error` input in `test-go-task.yml`.
 

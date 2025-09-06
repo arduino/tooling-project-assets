@@ -25,7 +25,7 @@ The formatting style defined in `.editorconfig` is the official standardized sty
 
 ### Configuration
 
-Configure the paths of the shell scripts to be checked as elements in the [job matrices](https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix) of `check-shell-task.yml` at:
+Configure the paths of the shell scripts to be checked as elements in the [job matrices](https://docs.github.com/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idstrategymatrix) of `check-shell-task.yml` at:
 
 - `jobs.lint.strategy.matrix.script[]`
 - `jobs.formatting.strategy.matrix.script[]`

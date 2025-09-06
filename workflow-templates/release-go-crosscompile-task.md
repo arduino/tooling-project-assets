@@ -42,7 +42,7 @@ We need a special [IAM Role](https://docs.aws.amazon.com/rolesanywhere/latest/us
 
 #### Repository secrets
 
-The following [repository secrets](https://docs.github.com/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) must be defined:
+The following [repository secrets](https://docs.github.com/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets#creating-encrypted-secrets-for-a-repository) must be defined:
 
 - `INSTALLER_CERT_MAC_P12` - the [Apple Developer ID](https://developer.apple.com/support/developer-id/) signing certificate, exported in [PKCS #12 format](https://wikipedia.org/wiki/PKCS_12) and then encoded into base64 as described [here](https://www.kencochrane.com/2020/08/01/build-and-sign-golang-binaries-for-macos-with-github-actions/#exporting-the-developer-certificate).
 - `INSTALLER_CERT_MAC_PASSWORD` - the password used to encrypt the Apple Developer ID signing certificate during the export process.
@@ -51,7 +51,7 @@ The following [repository secrets](https://docs.github.com/actions/security-guid
 - `AC_PASSWORD` - [App-specific password](https://support.apple.com/en-us/HT204397) created for the Apple ID.
 - `DOWNLOADS_BUCKET` - [AWS bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingBucket.html) on the downloads server.
 
-The following [environment secrets](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#environment-secrets) must be defined under `production` environment:
+The following [environment secrets](https://docs.github.com/actions/how-tos/deploy/configure-and-manage-deployments/manage-environments#environment-secrets) must be defined under `production` environment:
 
 - `AWS_ROLE_TO_ASSUME` - [AWS role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) to generate temporary security credentials.
 
