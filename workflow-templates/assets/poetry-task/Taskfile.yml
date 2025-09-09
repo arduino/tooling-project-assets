@@ -9,11 +9,11 @@ tasks:
     cmds:
       - |
         if
-          ! which yq \
+          ! which go \
           &>/dev/null
         then
-          echo "yq not found or not in PATH."
-          echo "Please install: https://github.com/mikefarah/yq/#install"
+          echo "Go not found or not in PATH."
+          echo "Please install: https://go.dev/doc/install"
           exit 1
         fi
       - |
@@ -22,10 +22,11 @@ tasks:
           &>/dev/null
         then
           python_constraint="$( \
-            yq \
-              --input-format toml \
-              --output-format yaml \
-              '.tool.poetry.dependencies.python' \
+            go tool \
+              github.com/mikefarah/yq/v4 \
+                --input-format toml \
+                --output-format yaml \
+                '.tool.poetry.dependencies.python' \
             <pyproject.toml
           )"
 
@@ -50,10 +51,11 @@ tasks:
         )"
 
         poetry_constraint="$( \
-          yq \
-            --input-format toml \
-            --output-format yaml \
-            '.tool.poetry.group.pipx.dependencies.poetry' \
+          go tool \
+            github.com/mikefarah/yq/v4 \
+              --input-format toml \
+              --output-format yaml \
+              '.tool.poetry.group.pipx.dependencies.poetry' \
           <pyproject.toml
         )"
 

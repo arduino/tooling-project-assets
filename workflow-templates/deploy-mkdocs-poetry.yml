@@ -9,6 +9,8 @@ on:
       - main
     paths:
       - ".github/workflows/deploy-mkdocs-poetry.ya?ml"
+      - "go.mod"
+      - "go.sum"
       - "mkdocs.ya?ml"
       - "poetry.lock"
       - "pyproject.toml"

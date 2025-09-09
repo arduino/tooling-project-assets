@@ -6,6 +6,8 @@ on:
   create:
   push:
     paths:
+      - "go.mod"
+      - "go.sum"
       - ".yamllint*"
       - "poetry.lock"
       - "pyproject.toml"
@@ -22,6 +24,8 @@ on:
       - "**.syntax"
   pull_request:
     paths:
+      - "go.mod"
+      - "go.sum"
       - ".yamllint*"
       - "poetry.lock"
       - "pyproject.toml"
@@ -93,6 +97,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
+
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
 
       - name: Install Python
         uses: actions/setup-python@v5

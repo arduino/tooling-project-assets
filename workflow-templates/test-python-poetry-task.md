@@ -27,6 +27,26 @@ Install the [`test-python-poetry-task.yml`](test-python-poetry-task.yml) GitHub 
 
 ### Dependencies
 
+#### Go Module-Managed Dependencies
+
+If the project does not already have a `go.mod` file, [install **Go**](https://go.dev/doc/install) and then run the following command:
+
+```text
+go mod init <module path>
+```
+
+(where `<module path>` is the URL of the project repository without the scheme e.g., `github.com/foo/bar`)
+
+Add the tool dependencies by running the following command:
+
+```
+go get -tool github.com/mikefarah/yq/v4@v4.47.2
+```
+
+Commit the resulting changes to the `go.mod` and `go.sum` files.
+
+#### Poetry-Managed Dependencies
+
 Add the tool dependency using this command:
 
 ```

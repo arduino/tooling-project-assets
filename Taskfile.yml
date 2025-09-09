@@ -259,10 +259,11 @@ tasks:
     cmds:
       - |
         if
-          ! which yq \
+          ! which go \
           &>/dev/null
         then
-          echo "ec not found or not in PATH. Please install: https://github.com/mikefarah/yq/#install"
+          echo "Go not found or not in PATH."
+          echo "Please install: https://go.dev/doc/install"
           exit 1
         fi
 
@@ -282,22 +283,25 @@ tasks:
         # Correct invalid `BasedOnStyle` key value
         # The existing key is deleted before assigning it to a valid value in order to achieve consistent quoting style
         # (updating the empty string value in place causes the assigned value to be wrapped in quotes)
-        yq \
-          --inplace \
-          'del(.BasedOnStyle)' \
-          "{{.TARGET_PATH}}"
+        go tool \
+          github.com/mikefarah/yq/v4 \
+            --inplace \
+            'del(.BasedOnStyle)' \
+            "{{.TARGET_PATH}}"
 
-        yq \
-          --inplace \
-          '.BasedOnStyle = "LLVM"' \
-          "{{.TARGET_PATH}}"
+        go tool \
+          github.com/mikefarah/yq/v4 \
+            --inplace \
+            '.BasedOnStyle = "LLVM"' \
+            "{{.TARGET_PATH}}"
 
       - |
         # Fix the inconsistent key order
-        yq \
-          --inplace \
-          'sort_keys(.)' \
-          "{{.TARGET_PATH}}"
+        go tool \
+          github.com/mikefarah/yq/v4 \
+            --inplace \
+            'sort_keys(.)' \
+            "{{.TARGET_PATH}}"
 
   # Use ClangFormat to format the files under the path specified by TARGET_FOLDER recursively
   clang-format:format:
@@ -964,11 +968,11 @@ tasks:
     cmds:
       - |
         if
-          ! which yq \
+          ! which go \
           &>/dev/null
         then
-          echo "yq not found or not in PATH."
-          echo "Please install: https://github.com/mikefarah/yq/#install"
+          echo "Go not found or not in PATH."
+          echo "Please install: https://go.dev/doc/install"
           exit 1
         fi
       - |
@@ -977,10 +981,11 @@ tasks:
           &>/dev/null
         then
           python_constraint="$( \
-            yq \
-              --input-format toml \
-              --output-format yaml \
-              '.tool.poetry.dependencies.python' \
+            go tool \
+              github.com/mikefarah/yq/v4 \
+                --input-format toml \
+                --output-format yaml \
+                '.tool.poetry.dependencies.python' \
             <pyproject.toml
           )"
 
@@ -1005,10 +1010,11 @@ tasks:
         )"
 
         poetry_constraint="$( \
-          yq \
-            --input-format toml \
-            --output-format yaml \
-            '.tool.poetry.group.pipx.dependencies.poetry' \
+          go tool \
+            github.com/mikefarah/yq/v4 \
+              --input-format toml \
+              --output-format yaml \
+              '.tool.poetry.group.pipx.dependencies.poetry' \
           <pyproject.toml
         )"
 

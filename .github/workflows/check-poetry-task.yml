@@ -6,12 +6,16 @@ on:
   push:
     paths:
       - ".github/workflows/check-poetry-task.ya?ml"
+      - "go.mod"
+      - "go.sum"
       - "poetry.lock"
       - "pyproject.toml"
       - "Taskfile.ya?ml"
   pull_request:
     paths:
       - ".github/workflows/check-poetry-task.ya?ml"
+      - "go.mod"
+      - "go.sum"
       - "poetry.lock"
       - "pyproject.toml"
       - "Taskfile.ya?ml"
@@ -56,6 +60,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
+
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
 
       - name: Install Python
         uses: actions/setup-python@v5
