@@ -76,11 +76,3 @@ tasks:
       - |
         poetry install \
           {{if .POETRY_GROUPS}} --only {{.POETRY_GROUPS}} {{end}}
-
-  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/poetry-task/Taskfile.yml
-  poetry:update-deps:
-    desc: Update all dependencies managed by Poetry to their newest versions
-    deps:
-      - task: poetry:install
-    cmds:
-      - poetry update
