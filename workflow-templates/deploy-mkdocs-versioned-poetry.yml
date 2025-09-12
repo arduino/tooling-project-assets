@@ -67,8 +67,8 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          task \
-            poetry:install-deps
+          task poetry:install-deps \
+            POETRY_GROUPS=dev
 
       - name: Determine versioning parameters
         id: determine-versioning
