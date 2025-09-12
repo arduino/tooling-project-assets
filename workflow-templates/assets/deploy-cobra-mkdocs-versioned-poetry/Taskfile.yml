@@ -1,6 +1,7 @@
 version: "3"
 
 vars:
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/deploy-cobra-mkdocs-versioned-poetry/Taskfile.yml
   PROJECT_NAME: TODO
 
 tasks:
