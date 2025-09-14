@@ -1,5 +1,5 @@
 # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-markdown/.markdownlintignore
-.licenses/
+/.licenses/
 __pycache__/
 node_modules/
 /other/clang-format-configuration/testdata/golden/samples/
