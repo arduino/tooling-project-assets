@@ -22,5 +22,7 @@ No configuration is needed.
    ```toml
    package-mode = false
    ```
+1. Add a `build-system` section to the `pyproject.toml` file:<br />
+   https://python-poetry.org/docs/pyproject/#poetry-and-pep-517
 1. Define the package metadata under the `tool.poetry` section of the `pyproject.toml` file:<br />
    https://python-poetry.org/docs/pyproject#the-toolpoetry-section
