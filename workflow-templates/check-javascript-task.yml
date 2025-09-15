@@ -10,6 +10,8 @@ on:
       - ".eslintignore"
       - "**/.eslintrc*"
       - ".npmrc"
+      - "go.mod"
+      - "go.sum"
       - "package.json"
       - "package-lock.json"
       - "Taskfile.ya?ml"
@@ -20,6 +22,8 @@ on:
       - ".eslintignore"
       - "**/.eslintrc*"
       - ".npmrc"
+      - "go.mod"
+      - "go.sum"
       - "package.json"
       - "package-lock.json"
       - "Taskfile.ya?ml"
@@ -63,16 +67,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version-file: package.json
 
-      - name: Install Task
-        uses: arduino/setup-task@v2
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          version: 3.x
-
       - name: Lint
-        run: task js:lint
+        run: |
+          go tool \
+            github.com/go-task/task/v3/cmd/task js:lint

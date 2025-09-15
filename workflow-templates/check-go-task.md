@@ -17,6 +17,16 @@ Install the [`check-go-task.yml`](check-go-task.yml) GitHub Actions workflow to 
 - [`Taskfile.yml`](assets/go-task/Taskfile.yml) - `DEFAULT_GO_MODULE_PATH` and `DEFAULT_GO_PACKAGES` variables.
   - Merge into `Taskfile.yml`
 
+### Dependencies
+
+Add the tool dependencies by running the following command:
+
+```text
+go get -tool github.com/go-task/task/v3/cmd/task@v3.44.1
+```
+
+Commit the resulting changes to the `go.mod` and `go.sum` files.
+
 ### Configuration
 
 If the project contains Go modules in paths other than the root of the repository, add their paths to the [job matrices](https://docs.github.com/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idstrategymatrix) of `check-go-task.yml` at:

@@ -25,17 +25,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
-      - name: Install Task
-        uses: arduino/setup-task@v2
+      - name: Install Go
+        uses: actions/setup-go@v5
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          version: 3.x
+          go-version-file: go.mod
 
       - name: Sync files
         run: |
-          task \
-            --silent \
-            config:sync
+          go tool \
+            github.com/go-task/task/v3/cmd/task \
+              --silent \
+              config:sync
 
       - name: Check file duplicates sync
         run: |

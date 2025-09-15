@@ -35,8 +35,8 @@ go mod init <module path>
 
 Add the tool dependencies by running the following command:
 
-```
-go get -tool github.com/mikefarah/yq/v4@v4.47.2
+```text
+go get -tool github.com/go-task/task/v3/cmd/task@v3.44.1 github.com/mikefarah/yq/v4@v4.47.2
 ```
 
 Commit the resulting changes to the `go.mod` and `go.sum` files.

@@ -23,6 +23,26 @@ Install the [`check-shell-task.yml`](check-shell-task.yml) GitHub Actions workfl
 
 The formatting style defined in `.editorconfig` is the official standardized style to be used in all Arduino tooling projects and should not be modified.
 
+### Dependencies
+
+The tool dependencies of this workflow are managed by [**Go**](https://go.dev/dl/).
+
+If the project does not already have a `go.mod` file, [install **Go**](https://go.dev/doc/install) and then run the following command:
+
+```text
+go mod init <module path>
+```
+
+(where `<module path>` is the URL of the project repository without the scheme e.g., `github.com/foo/bar`)
+
+Add the tool dependencies by running the following command:
+
+```text
+go get -tool github.com/go-task/task/v3/cmd/task@v3.44.1
+```
+
+Commit the resulting changes to the `go.mod` and `go.sum` files.
+
 ### Configuration
 
 Configure the paths of the shell scripts to be checked as elements in the [job matrices](https://docs.github.com/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idstrategymatrix) of `check-shell-task.yml` at:

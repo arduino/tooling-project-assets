@@ -46,8 +46,9 @@ tasks:
         fi
       - |
         export PIPX_DEFAULT_PYTHON="$( \
-          task utility:normalize-path \
-            RAW_PATH="$(which python)" \
+          go tool \
+            github.com/go-task/task/v3/cmd/task utility:normalize-path \
+              RAW_PATH="$(which python)" \
         )"
 
         poetry_constraint="$( \

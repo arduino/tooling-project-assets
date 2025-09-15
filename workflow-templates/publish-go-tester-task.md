@@ -19,6 +19,16 @@ Install the [`publish-go-tester-task.yml`](publish-go-tester-task.yml) GitHub Ac
 - [`DistTasks.yml`](assets/release-go-task/DistTasks.yml) - general purpose tasks for making production builds of Go projects using cgo and [elastic docker containers](https://github.com/elastic/golang-crossbuild).
   - Install to: repository root
 
+### Dependencies
+
+Add the tool dependencies by running the following command:
+
+```text
+go get -tool github.com/go-task/task/v3/cmd/task@v3.44.1
+```
+
+Commit the resulting changes to the `go.mod` and `go.sum` files.
+
 ### Configuration
 
 #### Workflow

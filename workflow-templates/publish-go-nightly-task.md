@@ -14,6 +14,10 @@ Install the [`publish-go-nightly-task.yml`](publish-go-nightly-task.yml) GitHub 
 
 See [the "Release" workflow (Go, Task) documentation](release-go-task.md#assets)
 
+### Dependencies
+
+See [the "Release" workflow (Go, Task) documentation](release-go-task.md#dependencies)
+
 ### Configuration
 
 See [the "Release" workflow (Go, Task) documentation](release-go-task.md#configuration)

@@ -19,6 +19,26 @@ Install the [`check-general-formatting-task.yml`](check-general-formatting-task.
 
 The formatting style defined in `.editorconfig` is the official standardized style to be used in all Arduino tooling projects and should not be modified.
 
+### Dependencies
+
+The tool dependencies of this workflow are managed by [**Go**](https://go.dev/dl/).
+
+If the project does not already have a `go.mod` file, [install **Go**](https://go.dev/doc/install) and then run the following command:
+
+```text
+go mod init <module path>
+```
+
+(where `<module path>` is the URL of the project repository without the scheme e.g., `github.com/foo/bar`)
+
+Add the tool dependencies by running the following command:
+
+```text
+go get -tool github.com/go-task/task/v3/cmd/task@v3.44.1
+```
+
+Commit the resulting changes to the `go.mod` and `go.sum` files.
+
 ### Configuration
 
 If the repository contains generated or vendored files, they can be excluded from the check by adding them to the `Exclude` array in the `.ecrc` configuration file.

@@ -11,6 +11,8 @@ on:
       - ".licensed.json"
       - ".licensed.ya?ml"
       - ".npmrc"
+      - "go.mod"
+      - "go.sum"
       - "Taskfile.ya?ml"
       - "**/.gitmodules"
       - "**/package.json"
@@ -22,6 +24,8 @@ on:
       - ".npmrc"
       - ".licensed.json"
       - ".licensed.ya?ml"
+      - "go.mod"
+      - "go.sum"
       - "Taskfile.ya?ml"
       - "**/.gitmodules"
       - "**/package.json"
@@ -82,22 +86,22 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           version: 5.x
 
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version-file: package.json
 
-      - name: Install Task
-        uses: arduino/setup-task@v2
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          version: 3.x
-
       - name: Update dependencies license metadata cache
         run: |
-          task \
-            --silent \
-            general:cache-dep-licenses
+          go tool \
+            github.com/go-task/task/v3/cmd/task \
+              --silent \
+              general:cache-dep-licenses
 
       - name: Check for outdated cache
         id: diff
@@ -149,19 +153,19 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           version: 5.x
 
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version-file: package.json
 
-      - name: Install Task
-        uses: arduino/setup-task@v2
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          version: 3.x
-
       - name: Check for dependencies with unapproved licenses
         run: |
-          task \
-            --silent \
-            general:check-dep-licenses
+          go tool \
+            github.com/go-task/task/v3/cmd/task \
+              --silent \
+              general:check-dep-licenses

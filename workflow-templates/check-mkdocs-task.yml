@@ -76,11 +76,12 @@ jobs:
         with:
           python-version-file: pyproject.toml
 
-      - name: Install Task
-        uses: arduino/setup-task@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          version: 3.x
+          node-version-file: package.json
 
       - name: Build website
-        run: task website:check
+        run: |
+          go tool \
+            github.com/go-task/task/v3/cmd/task website:check
