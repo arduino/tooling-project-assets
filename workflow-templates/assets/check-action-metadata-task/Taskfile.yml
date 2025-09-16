@@ -7,7 +7,9 @@ tasks:
     desc: Validate GitHub Actions metadata against JSON schema
     vars:
       ACTION_METADATA_SCHEMA_PATH:
-        sh: task utility:mktemp-file TEMPLATE="github-action-schema-XXXXXXXXXX.json"
+        sh: |
+          task utility:mktemp-file \
+            TEMPLATE="github-action-schema-XXXXXXXXXX.json"
     deps:
       - task: npm:install-deps
         vars:
@@ -20,8 +22,7 @@ tasks:
           https://json.schemastore.org/github-action
       - |
         npx \
-          ajv-cli \
-            validate \
+          ajv-cli validate \
             --strict=false \
             -s "{{.ACTION_METADATA_SCHEMA_PATH}}" \
             -d "action.yml"

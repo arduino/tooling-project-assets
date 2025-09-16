@@ -40,12 +40,21 @@ jobs:
           version: 3.x
 
       - name: Sync files
-        run: task --silent ci:sync
+        run: |
+          task \
+            --silent \
+            ci:sync
 
       - name: Check file duplicates sync
         run: |
           git add .
-          if ! git diff --color --exit-code HEAD; then
+
+          if
+            ! git diff \
+              --color \
+              --exit-code \
+              HEAD
+          then
             echo "::error::File duplicates are out of sync. Please run \"task fix\""
             exit 1
           fi

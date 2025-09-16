@@ -27,13 +27,18 @@ tasks:
     dir: "{{.DIST_DIR}}"
     cmds:
       - |
-        docker run -v `pwd`/..:/home/build -w /home/build \
-        -e CGO_ENABLED=1 \
-        {{.CONTAINER}}:{{.CONTAINER_TAG}} \
-        --build-cmd "{{.BUILD_COMMAND}}" \
-        -p "{{.BUILD_PLATFORM}}"
+        docker run \
+          -v `pwd`/..:/home/build \
+          -w /home/build \
+          -e CGO_ENABLED=1 \
+          {{.CONTAINER}}:{{.CONTAINER_TAG}} \
+          --build-cmd "{{.BUILD_COMMAND}}" \
+          -p "{{.BUILD_PLATFORM}}"
 
-        zip {{.PACKAGE_NAME}} {{.PLATFORM_DIR}}/{{.PROJECT_NAME}}.exe ../LICENSE.txt -j
+        zip \
+          {{.PACKAGE_NAME}} \
+          {{.PLATFORM_DIR}}/{{.PROJECT_NAME}}.exe ../LICENSE.txt \
+          -j
 
     vars:
       PLATFORM_DIR: "{{.PROJECT_NAME}}_windows_386"
@@ -48,13 +53,18 @@ tasks:
     dir: "{{.DIST_DIR}}"
     cmds:
       - |
-        docker run -v `pwd`/..:/home/build -w /home/build \
-        -e CGO_ENABLED=1 \
-        {{.CONTAINER}}:{{.CONTAINER_TAG}} \
-        --build-cmd "{{.BUILD_COMMAND}}" \
-        -p "{{.BUILD_PLATFORM}}"
+        docker run \
+          -v `pwd`/..:/home/build \
+          -w /home/build \
+          -e CGO_ENABLED=1 \
+          {{.CONTAINER}}:{{.CONTAINER_TAG}} \
+          --build-cmd "{{.BUILD_COMMAND}}" \
+          -p "{{.BUILD_PLATFORM}}"
 
-        zip {{.PACKAGE_NAME}} {{.PLATFORM_DIR}}/{{.PROJECT_NAME}}.exe ../LICENSE.txt -j
+        zip \
+          {{.PACKAGE_NAME}} \
+          {{.PLATFORM_DIR}}/{{.PROJECT_NAME}}.exe ../LICENSE.txt \
+          -j
 
     vars:
       PLATFORM_DIR: "{{.PROJECT_NAME}}_windows_amd64"
@@ -69,13 +79,20 @@ tasks:
     dir: "{{.DIST_DIR}}"
     cmds:
       - |
-        docker run -v `pwd`/..:/home/build -w /home/build \
-        -e CGO_ENABLED=1 \
-        {{.CONTAINER}}:{{.CONTAINER_TAG}} \
-        --build-cmd "{{.BUILD_COMMAND}}" \
-        -p "{{.BUILD_PLATFORM}}"
+        docker run \
+          -v `pwd`/..:/home/build \
+          -w /home/build \
+          -e CGO_ENABLED=1 \
+          {{.CONTAINER}}:{{.CONTAINER_TAG}} \
+          --build-cmd "{{.BUILD_COMMAND}}" \
+          -p "{{.BUILD_PLATFORM}}"
 
-        tar cz -C {{.PLATFORM_DIR}} {{.PROJECT_NAME}} -C ../.. LICENSE.txt  -f {{.PACKAGE_NAME}}
+        tar cz \
+          -C {{.PLATFORM_DIR}} \
+          {{.PROJECT_NAME}} \
+          -C ../.. \
+          LICENSE.txt \
+          -f {{.PACKAGE_NAME}}
 
     vars:
       PLATFORM_DIR: "{{.PROJECT_NAME}}_linux_amd32"
@@ -90,13 +107,20 @@ tasks:
     dir: "{{.DIST_DIR}}"
     cmds:
       - |
-        docker run -v `pwd`/..:/home/build -w /home/build \
-        -e CGO_ENABLED=1 \
-        {{.CONTAINER}}:{{.CONTAINER_TAG}} \
-        --build-cmd "{{.BUILD_COMMAND}}" \
-        -p "{{.BUILD_PLATFORM}}"
+        docker run \
+          -v `pwd`/..:/home/build \
+          -w /home/build \
+          -e CGO_ENABLED=1 \
+          {{.CONTAINER}}:{{.CONTAINER_TAG}} \
+          --build-cmd "{{.BUILD_COMMAND}}" \
+          -p "{{.BUILD_PLATFORM}}"
 
-        tar cz -C {{.PLATFORM_DIR}} {{.PROJECT_NAME}} -C ../.. LICENSE.txt  -f {{.PACKAGE_NAME}}
+        tar cz \
+          -C {{.PLATFORM_DIR}} \
+          {{.PROJECT_NAME}} \
+          -C ../.. \
+          LICENSE.txt \
+          -f {{.PACKAGE_NAME}}
 
     vars:
       PLATFORM_DIR: "{{.PROJECT_NAME}}_linux_amd64"
@@ -111,13 +135,20 @@ tasks:
     dir: "{{.DIST_DIR}}"
     cmds:
       - |
-        docker run -v `pwd`/..:/home/build -w /home/build \
-        -e CGO_ENABLED=1 \
-        {{.CONTAINER}}:{{.CONTAINER_TAG}} \
-        --build-cmd "{{.BUILD_COMMAND}}" \
-        -p "{{.BUILD_PLATFORM}}"
+        docker run \
+          -v `pwd`/..:/home/build \
+          -w /home/build \
+          -e CGO_ENABLED=1 \
+          {{.CONTAINER}}:{{.CONTAINER_TAG}} \
+          --build-cmd "{{.BUILD_COMMAND}}" \
+          -p "{{.BUILD_PLATFORM}}"
 
-        tar cz -C {{.PLATFORM_DIR}} {{.PROJECT_NAME}} -C ../.. LICENSE.txt  -f {{.PACKAGE_NAME}}
+        tar cz \
+          -C {{.PLATFORM_DIR}} \
+          {{.PROJECT_NAME}} \
+          -C ../.. \
+          LICENSE.txt \
+          -f {{.PACKAGE_NAME}}
 
     vars:
       PLATFORM_DIR: "{{.PROJECT_NAME}}_linux_arm_7"
@@ -132,13 +163,20 @@ tasks:
     dir: "{{.DIST_DIR}}"
     cmds:
       - |
-        docker run -v `pwd`/..:/home/build -w /home/build \
-        -e CGO_ENABLED=1 \
-        {{.CONTAINER}}:{{.CONTAINER_TAG}} \
-        --build-cmd "{{.BUILD_COMMAND}}" \
-        -p "{{.BUILD_PLATFORM}}"
+        docker run \
+          -v `pwd`/..:/home/build \
+          -w /home/build \
+          -e CGO_ENABLED=1 \
+          {{.CONTAINER}}:{{.CONTAINER_TAG}} \
+          --build-cmd "{{.BUILD_COMMAND}}" \
+          -p "{{.BUILD_PLATFORM}}"
 
-        tar cz -C {{.PLATFORM_DIR}} {{.PROJECT_NAME}} -C ../.. LICENSE.txt  -f {{.PACKAGE_NAME}}
+        tar cz \
+          -C {{.PLATFORM_DIR}} \
+          {{.PROJECT_NAME}} \
+          -C ../.. \
+          LICENSE.txt \
+          -f {{.PACKAGE_NAME}}
 
     vars:
       PLATFORM_DIR: "{{.PROJECT_NAME}}_linux_arm_6"
@@ -181,13 +219,20 @@ tasks:
     dir: "{{.DIST_DIR}}"
     cmds:
       - |
-        docker run -v `pwd`/..:/home/build -w /home/build \
-        -e CGO_ENABLED=1 \
-        {{.CONTAINER}}:{{.CONTAINER_TAG}} \
-        --build-cmd "{{.BUILD_COMMAND}}" \
-        -p "{{.BUILD_PLATFORM}}"
+        docker run \
+          -v `pwd`/..:/home/build \
+          -w /home/build \
+          -e CGO_ENABLED=1 \
+          {{.CONTAINER}}:{{.CONTAINER_TAG}} \
+          --build-cmd "{{.BUILD_COMMAND}}" \
+          -p "{{.BUILD_PLATFORM}}"
 
-        tar cz -C {{.PLATFORM_DIR}} {{.PROJECT_NAME}} -C ../.. LICENSE.txt  -f {{.PACKAGE_NAME}}
+        tar cz \
+          -C {{.PLATFORM_DIR}} \
+          {{.PROJECT_NAME}} \
+          -C ../.. \
+          LICENSE.txt \
+          -f {{.PACKAGE_NAME}}
 
     vars:
       PLATFORM_DIR: "{{.PROJECT_NAME}}_linux_arm_64"
@@ -202,13 +247,20 @@ tasks:
     dir: "{{.DIST_DIR}}"
     cmds:
       - |
-        docker run -v `pwd`/..:/home/build -w /home/build \
-        -e CGO_ENABLED=1 \
-        {{.CONTAINER}}:{{.CONTAINER_TAG}} \
-        --build-cmd "{{.BUILD_COMMAND}}" \
-        -p "{{.BUILD_PLATFORM}}"
+        docker run \
+          -v `pwd`/..:/home/build \
+          -w /home/build \
+          -e CGO_ENABLED=1 \
+          {{.CONTAINER}}:{{.CONTAINER_TAG}} \
+          --build-cmd "{{.BUILD_COMMAND}}" \
+          -p "{{.BUILD_PLATFORM}}"
 
-        tar cz -C {{.PLATFORM_DIR}} {{.PROJECT_NAME}} -C ../.. LICENSE.txt  -f {{.PACKAGE_NAME}}
+        tar cz \
+          -C {{.PLATFORM_DIR}} \
+          {{.PROJECT_NAME}} \
+          -C ../.. \
+          LICENSE.txt \
+          -f {{.PACKAGE_NAME}}
 
     vars:
       PLATFORM_DIR: "{{.PROJECT_NAME}}_osx_darwin_amd64"
@@ -236,13 +288,20 @@ tasks:
     dir: "{{.DIST_DIR}}"
     cmds:
       - |
-        docker run -v `pwd`/..:/home/build -w /home/build \
-        -e CGO_ENABLED=1 \
-        {{.CONTAINER}}:{{.CONTAINER_TAG}} \
-        --build-cmd "{{.BUILD_COMMAND}}" \
-        -p "{{.BUILD_PLATFORM}}"
+        docker run \
+          -v `pwd`/..:/home/build \
+          -w /home/build \
+          -e CGO_ENABLED=1 \
+          {{.CONTAINER}}:{{.CONTAINER_TAG}} \
+          --build-cmd "{{.BUILD_COMMAND}}" \
+          -p "{{.BUILD_PLATFORM}}"
 
-        tar cz -C {{.PLATFORM_DIR}} {{.PROJECT_NAME}} -C ../.. LICENSE.txt  -f {{.PACKAGE_NAME}}
+        tar cz \
+          -C {{.PLATFORM_DIR}} \
+          {{.PROJECT_NAME}} \
+          -C ../.. \
+          LICENSE.txt \
+          -f {{.PACKAGE_NAME}}
 
     vars:
       PLATFORM_DIR: "{{.PROJECT_NAME}}_osx_darwin_arm64"

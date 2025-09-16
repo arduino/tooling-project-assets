@@ -45,4 +45,7 @@ jobs:
           version: 3.x
 
       - name: Validate workflows
-        run: task --silent eslint:validate
+        run: |
+          task \
+            --silent \
+            eslint:validate

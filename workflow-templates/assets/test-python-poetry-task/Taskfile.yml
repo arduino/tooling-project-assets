@@ -8,4 +8,7 @@ tasks:
     deps:
       - task: poetry:install-deps
     cmds:
-      - poetry run pytest tests
+      - |
+        poetry run \
+          pytest \
+            tests

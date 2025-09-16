@@ -17,7 +17,10 @@ tasks:
         vars:
           POETRY_GROUPS: dev
     cmds:
-      - poetry run mkdocs build --strict
+      - |
+        poetry run \
+          mkdocs build \
+            --strict
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-mkdocs-task/Taskfile.yml
   website:serve:
@@ -28,4 +31,6 @@ tasks:
         vars:
           POETRY_GROUPS: dev
     cmds:
-      - poetry run mkdocs serve
+      - |
+        poetry run \
+          mkdocs serve

@@ -12,10 +12,9 @@ tasks:
       "{{default .DEFAULT_NPM_PROJECT_PATH .PROJECT_PATH}}"
     cmds:
       - |
-        npm \
-          config \
-            --location project \
-            fix
+        npm config \
+          --location project \
+          fix
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-npm-task/Taskfile.yml
   npm:validate:

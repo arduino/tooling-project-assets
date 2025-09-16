@@ -7,7 +7,10 @@ tasks:
     desc: Check basic formatting style of all files
     cmds:
       - |
-        if ! which ec &>/dev/null; then
+        if
+          ! which ec \
+          &>/dev/null
+        then
           echo "ec not found or not in PATH."
           echo "Please install: https://github.com/editorconfig-checker/editorconfig-checker#installation"
           exit 1

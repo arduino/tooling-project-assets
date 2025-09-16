@@ -26,9 +26,15 @@ tasks:
       GO386: "softfloat"
     cmds:
       - |
-        go build -o {{.DIST_DIR}}/{{.PLATFORM_DIR}}/{{.PROJECT_NAME}}.exe {{.LDFLAGS}}
+        go build \
+          -o {{.DIST_DIR}}/{{.PLATFORM_DIR}}/{{.PROJECT_NAME}}.exe \
+          {{.LDFLAGS}}
         cd {{.DIST_DIR}}
-        zip {{.PACKAGE_NAME}} {{.PLATFORM_DIR}}/{{.PROJECT_NAME}}.exe ../LICENSE.txt -j
+        zip \
+          {{.PACKAGE_NAME}} \
+          {{.PLATFORM_DIR}}/{{.PROJECT_NAME}}.exe \
+          ../LICENSE.txt \
+          -j
     vars:
       PLATFORM_DIR: "{{.PROJECT_NAME}}_windows_386"
       PACKAGE_PLATFORM: "Windows_32bit"
@@ -41,9 +47,15 @@ tasks:
       GOARCH: "amd64"
     cmds:
       - |
-        go build -o {{.DIST_DIR}}/{{.PLATFORM_DIR}}/{{.PROJECT_NAME}}.exe {{.LDFLAGS}}
+        go build \
+          -o {{.DIST_DIR}}/{{.PLATFORM_DIR}}/{{.PROJECT_NAME}}.exe \
+          {{.LDFLAGS}}
         cd {{.DIST_DIR}}
-        zip {{.PACKAGE_NAME}} {{.PLATFORM_DIR}}/{{.PROJECT_NAME}}.exe ../LICENSE.txt -j
+        zip \
+          {{.PACKAGE_NAME}} \
+          {{.PLATFORM_DIR}}/{{.PROJECT_NAME}}.exe \
+          ../LICENSE.txt \
+          -j
     vars:
       PLATFORM_DIR: "{{.PROJECT_NAME}}_windows_amd64"
       PACKAGE_PLATFORM: "Windows_64bit"
@@ -57,9 +69,16 @@ tasks:
       GO386: "softfloat"
     cmds:
       - |
-        go build -o {{.DIST_DIR}}/{{.PLATFORM_DIR}}/{{.PROJECT_NAME}} {{.LDFLAGS}}
+        go build \
+          -o {{.DIST_DIR}}/{{.PLATFORM_DIR}}/{{.PROJECT_NAME}} \
+          {{.LDFLAGS}}
         cd {{.DIST_DIR}}
-        tar cz -C {{.PLATFORM_DIR}} {{.PROJECT_NAME}} -C ../.. LICENSE.txt  -f {{.PACKAGE_NAME}}
+        tar cz \
+          -C {{.PLATFORM_DIR}} \
+          {{.PROJECT_NAME}} \
+          -C ../.. \
+          LICENSE.txt \
+          -f {{.PACKAGE_NAME}}
     vars:
       PLATFORM_DIR: "{{.PROJECT_NAME}}_linux_amd32"
       PACKAGE_PLATFORM: "Linux_32bit"
@@ -72,9 +91,15 @@ tasks:
       GOARCH: "amd64"
     cmds:
       - |
-        go build -o {{.DIST_DIR}}/{{.PLATFORM_DIR}}/{{.PROJECT_NAME}} {{.LDFLAGS}}
+        go build \
+          -o {{.DIST_DIR}}/{{.PLATFORM_DIR}}/{{.PROJECT_NAME}} \
+          {{.LDFLAGS}}
         cd {{.DIST_DIR}}
-        tar cz -C {{.PLATFORM_DIR}} {{.PROJECT_NAME}} -C ../.. LICENSE.txt  -f {{.PACKAGE_NAME}}
+        tar cz \
+          -C {{.PLATFORM_DIR}} \
+          {{.PROJECT_NAME}} \
+          -C ../.. LICENSE.txt \
+          -f {{.PACKAGE_NAME}}
     vars:
       PLATFORM_DIR: "{{.PROJECT_NAME}}_linux_amd64"
       PACKAGE_PLATFORM: "Linux_64bit"
@@ -88,9 +113,16 @@ tasks:
       GOARM: 7
     cmds:
       - |
-        go build -o {{.DIST_DIR}}/{{.PLATFORM_DIR}}/{{.PROJECT_NAME}} {{.LDFLAGS}}
+        go build \
+          -o {{.DIST_DIR}}/{{.PLATFORM_DIR}}/{{.PROJECT_NAME}} \
+          {{.LDFLAGS}}
         cd {{.DIST_DIR}}
-        tar cz -C {{.PLATFORM_DIR}} {{.PROJECT_NAME}} -C ../.. LICENSE.txt  -f {{.PACKAGE_NAME}}
+        tar cz \
+          -C {{.PLATFORM_DIR}} \
+          {{.PROJECT_NAME}} \
+          -C ../.. \
+          LICENSE.txt \
+          -f {{.PACKAGE_NAME}}
     vars:
       PLATFORM_DIR: "{{.PROJECT_NAME}}_linux_arm_7"
       PACKAGE_PLATFORM: "Linux_ARMv7"
@@ -104,9 +136,16 @@ tasks:
       GOARM: 6
     cmds:
       - |
-        go build -o {{.DIST_DIR}}/{{.PLATFORM_DIR}}/{{.PROJECT_NAME}} {{.LDFLAGS}}
+        go build \
+          -o {{.DIST_DIR}}/{{.PLATFORM_DIR}}/{{.PROJECT_NAME}} \
+          {{.LDFLAGS}}
         cd {{.DIST_DIR}}
-        tar cz -C {{.PLATFORM_DIR}} {{.PROJECT_NAME}} -C ../.. LICENSE.txt  -f {{.PACKAGE_NAME}}
+        tar cz \
+          -C {{.PLATFORM_DIR}} \
+          {{.PROJECT_NAME}} \
+          -C ../.. \
+          LICENSE.txt \
+          -f {{.PACKAGE_NAME}}
     vars:
       PLATFORM_DIR: "{{.PROJECT_NAME}}_linux_arm_6"
       PACKAGE_PLATFORM: "Linux_ARMv6"
@@ -119,9 +158,16 @@ tasks:
       GOARCH: "arm64"
     cmds:
       - |
-        go build -o {{.DIST_DIR}}/{{.PLATFORM_DIR}}/{{.PROJECT_NAME}} {{.LDFLAGS}}
+        go build \
+          -o {{.DIST_DIR}}/{{.PLATFORM_DIR}}/{{.PROJECT_NAME}} \
+          {{.LDFLAGS}}
         cd {{.DIST_DIR}}
-        tar cz -C {{.PLATFORM_DIR}} {{.PROJECT_NAME}} -C ../.. LICENSE.txt  -f {{.PACKAGE_NAME}}
+        tar cz \
+          -C {{.PLATFORM_DIR}} \
+          {{.PROJECT_NAME}} \
+          -C ../.. \
+          LICENSE.txt \
+          -f {{.PACKAGE_NAME}}
     vars:
       PLATFORM_DIR: "{{.PROJECT_NAME}}_linux_arm_64"
       PACKAGE_PLATFORM: "Linux_ARM64"
@@ -134,9 +180,16 @@ tasks:
       GOARCH: "amd64"
     cmds:
       - |
-        go build -o {{.DIST_DIR}}/{{.PLATFORM_DIR}}/{{.PROJECT_NAME}} {{.LDFLAGS}}
+        go build \
+          -o {{.DIST_DIR}}/{{.PLATFORM_DIR}}/{{.PROJECT_NAME}} \
+          {{.LDFLAGS}}
         cd {{.DIST_DIR}}
-        tar cz -C {{.PLATFORM_DIR}} {{.PROJECT_NAME}} -C ../.. LICENSE.txt  -f {{.PACKAGE_NAME}}
+        tar cz \
+          -C {{.PLATFORM_DIR}} \
+          {{.PROJECT_NAME}} \
+          -C ../.. \
+          LICENSE.txt \
+          -f {{.PACKAGE_NAME}}
     vars:
       PLATFORM_DIR: "{{.PROJECT_NAME}}_osx_darwin_amd64"
       PACKAGE_PLATFORM: "macOS_64bit"
@@ -149,9 +202,16 @@ tasks:
       GOARCH: "arm64"
     cmds:
       - |
-        go build -o {{.DIST_DIR}}/{{.PLATFORM_DIR}}/{{.PROJECT_NAME}} {{.LDFLAGS}}
+        go build \
+          -o {{.DIST_DIR}}/{{.PLATFORM_DIR}}/{{.PROJECT_NAME}} \
+          {{.LDFLAGS}}
         cd {{.DIST_DIR}}
-        tar cz -C {{.PLATFORM_DIR}} {{.PROJECT_NAME}} -C ../.. LICENSE.txt  -f {{.PACKAGE_NAME}}
+        tar cz \
+          -C {{.PLATFORM_DIR}} \
+          {{.PROJECT_NAME}} \
+          -C ../.. \
+          LICENSE.txt \
+          -f {{.PACKAGE_NAME}}
     vars:
       PLATFORM_DIR: "{{.PROJECT_NAME}}_osx_darwin_arm64"
       PACKAGE_PLATFORM: "macOS_ARM64"

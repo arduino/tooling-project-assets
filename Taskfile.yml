@@ -156,7 +156,10 @@ tasks:
       EXPECTED_CLANG_FORMAT_VERSION: "{{default .DEFAULT_CLANG_FORMAT_VERSION .CLANG_FORMAT_VERSION}}"
     cmds:
       - |
-        if ! which clang-format &>/dev/null; then
+        if
+          ! which clang-format \
+          &>/dev/null
+        then
           echo "clang-format not found or not in PATH."
           echo "Please install: https://github.com/arduino/clang-static-binaries/releases"
           exit 1
@@ -200,13 +203,22 @@ tasks:
         mv "{{.WORKING_FOLDER}}/input/" "{{.WORKING_FOLDER}}/output/"
       - |
         cd "{{.WORKING_FOLDER}}"
-        diff --color=always --recursive --unified "golden/" "output/"
+
+        diff \
+          --color=always \
+          --recursive \
+          --unified \
+          "golden/" \
+          "output/"
 
   clang-format:check-testdata:
     desc: Check whether the targeted test data C++ code for the ClangFormat configuration is valid and correct
     cmds:
       - |
-        if ! which g++ &>/dev/null; then
+        if
+          ! which g++ \
+          &>/dev/null
+        then
           echo "GCC not found or not in PATH."
           exit 1
         fi
@@ -246,7 +258,10 @@ tasks:
       - task: clang-format:check-installed
     cmds:
       - |
-        if ! which yq &>/dev/null; then
+        if
+          ! which yq \
+          &>/dev/null
+        then
           echo "ec not found or not in PATH. Please install: https://github.com/mikefarah/yq/#install"
           exit 1
         fi
@@ -254,25 +269,35 @@ tasks:
       - |
         # Add source comment
         echo \
-          "# Source: https://github.com/arduino/tooling-project-assets/tree/main/other/clang-format-configuration" > \
-            "{{.TARGET_PATH}}"
+          "# Source: https://github.com/arduino/tooling-project-assets/tree/main/other/clang-format-configuration" \
+        > "{{.TARGET_PATH}}"
 
         # Dump the effective configuration to the target file
         clang-format \
           --dump-config \
-          --style=file:"{{.CLANG_FORMAT_CONFIGURATION_PATH}}" >> \
-            "{{.TARGET_PATH}}"
+          --style=file:"{{.CLANG_FORMAT_CONFIGURATION_PATH}}" \
+        >> "{{.TARGET_PATH}}"
 
       - |
         # Correct invalid `BasedOnStyle` key value
         # The existing key is deleted before assigning it to a valid value in order to achieve consistent quoting style
         # (updating the empty string value in place causes the assigned value to be wrapped in quotes)
-        yq --inplace 'del(.BasedOnStyle)' "{{.TARGET_PATH}}"
-        yq --inplace '.BasedOnStyle = "LLVM"' "{{.TARGET_PATH}}"
+        yq \
+          --inplace \
+          'del(.BasedOnStyle)' \
+          "{{.TARGET_PATH}}"
+
+        yq \
+          --inplace \
+          '.BasedOnStyle = "LLVM"' \
+          "{{.TARGET_PATH}}"
 
       - |
         # Fix the inconsistent key order
-        yq --inplace 'sort_keys(.)' "{{.TARGET_PATH}}"
+        yq \
+          --inplace \
+          'sort_keys(.)' \
+          "{{.TARGET_PATH}}"
 
   # Use ClangFormat to format the files under the path specified by TARGET_FOLDER recursively
   clang-format:format:
@@ -311,15 +336,26 @@ tasks:
       - task: clang-format:dump-config
         vars:
           TARGET_PATH: "{{.WORKING_PATH}}"
-      - mv --force "{{.WORKING_PATH}}" "{{.CLANG_FORMAT_CONFIGURATION_PATH}}"
+      - |
+        mv \
+          --force \
+          "{{.WORKING_PATH}}" \
+          "{{.CLANG_FORMAT_CONFIGURATION_PATH}}"
 
   clang-format:update-golden:
     desc: Update golden master test data for current configuration
     deps:
       - task: clang-format:check-installed
     cmds:
-      - rm --recursive "{{.CLANG_FORMAT_GOLDEN_TEST_DATA_FOLDER}}/"
-      - cp --recursive "{{.CLANG_FORMAT_INPUT_TEST_DATA_FOLDER}}/" "{{.CLANG_FORMAT_GOLDEN_TEST_DATA_FOLDER}}/"
+      - |
+        rm \
+          --recursive \
+          "{{.CLANG_FORMAT_GOLDEN_TEST_DATA_FOLDER}}/"
+      - |
+        cp \
+          --recursive \
+          "{{.CLANG_FORMAT_INPUT_TEST_DATA_FOLDER}}/" \
+          "{{.CLANG_FORMAT_GOLDEN_TEST_DATA_FOLDER}}/"
       - task: clang-format:format
         vars:
           TARGET_FOLDER: "{{.CLANG_FORMAT_GOLDEN_TEST_DATA_FOLDER}}/"
@@ -335,11 +371,17 @@ tasks:
       # ajv-cli identifies YAML-format data files by their file extension, so renaming is required:
       # https://github.com/ajv-validator/ajv-cli/issues/117
       DATA_PATH:
-        sh: task utility:mktemp-file TEMPLATE=".clang-format-XXXXXXXXXX.yml"
+        sh: |
+          task utility:mktemp-file \
+            TEMPLATE=".clang-format-XXXXXXXXXX.yml"
     deps:
       - task: npm:install-deps
     cmds:
-      - wget --quiet --output-document="{{.SCHEMA_PATH}}" {{.SCHEMA_URL}}
+      - |
+        wget \
+          --quiet \
+          --output-document="{{.SCHEMA_PATH}}" \
+          {{.SCHEMA_URL}}
       - cp "{{.DATA_SOURCE_PATH}}" "{{.DATA_PATH}}"
       - |
         npx \
@@ -379,14 +421,24 @@ tasks:
       # Source: https://github.com/SchemaStore/schemastore/blob/master/src/schemas/json/base.json
       BASE_SCHEMA_URL: https://json.schemastore.org/base.json
       BASE_SCHEMA_PATH:
-        sh: task utility:mktemp-file TEMPLATE="base-schema-XXXXXXXXXX.json"
+        sh: |
+          task utility:mktemp-file \
+            TEMPLATE="base-schema-XXXXXXXXXX.json"
       # The Dependabot configuration file for the repository.
       DATA_PATH: ".github/dependabot.yml"
       # The asset Dependabot configuration files.
       ASSETS_DATA_PATH: "workflow-templates/assets/dependabot/**/dependabot.yml"
     cmds:
-      - wget --quiet --output-document="{{.SCHEMA_PATH}}" {{.SCHEMA_URL}}
-      - wget --quiet --output-document="{{.BASE_SCHEMA_PATH}}" {{.BASE_SCHEMA_URL}}
+      - |
+        wget \
+          --quiet \
+          --output-document="{{.SCHEMA_PATH}}" \
+          {{.SCHEMA_URL}}
+      - |
+        wget \
+          --quiet \
+          --output-document="{{.BASE_SCHEMA_PATH}}" \
+          {{.BASE_SCHEMA_URL}}
       - |
         npx \
           --package=ajv-cli \
@@ -425,13 +477,23 @@ tasks:
       # Source: https://github.com/SchemaStore/schemastore/blob/master/src/schemas/json/partial-eslint-plugins.json
       PARTIAL_ESLINT_PLUGINS_SCHEMA_URL: https://json.schemastore.org/partial-eslint-plugins.json
       PARTIAL_ESLINT_PLUGINS_PATH:
-        sh: task utility:mktemp-file TEMPLATE="partial-eslint-plugins-schema-XXXXXXXXXX.json"
+        sh: |
+          task utility:mktemp-file \
+            TEMPLATE="partial-eslint-plugins-schema-XXXXXXXXXX.json"
       DATA_PATH: workflow-templates/assets/check-javascript/.eslintrc.yml
       # ajv-cli identifies YAML-format data files by their file extension, so renaming is required:
       # https://github.com/ajv-validator/ajv-cli/issues/117
     cmds:
-      - wget --quiet --output-document="{{.SCHEMA_PATH}}" {{.SCHEMA_URL}}
-      - wget --quiet --output-document="{{.PARTIAL_ESLINT_PLUGINS_PATH}}" {{.PARTIAL_ESLINT_PLUGINS_SCHEMA_URL}}
+      - |
+        wget \
+          --quiet \
+          --output-document="{{.SCHEMA_PATH}}" \
+          {{.SCHEMA_URL}}
+      - |
+        wget \
+          --quiet \
+          --output-document="{{.PARTIAL_ESLINT_PLUGINS_PATH}}" \
+          {{.PARTIAL_ESLINT_PLUGINS_SCHEMA_URL}}
       - |
         npx \
           --package=ajv-cli \
@@ -457,11 +519,12 @@ tasks:
             sh \
               -c \
                 ' \
-                  basename "$0" | \
-                    grep \
-                      --extended-regexp \
-                      --regexp='"'"'([<>:"/\\|?*'"'"'"$(printf "\001-\037")"'"'"'])|(.+\.$)'"'"' \
-                      --silent \
+                  basename "$0" \
+                  | \
+                  grep \
+                    --extended-regexp \
+                    --regexp='"'"'([<>:"/\\|?*'"'"'"$(printf "\001-\037")"'"'"'])|(.+\.$)'"'"' \
+                    --silent \
                   && \
                   echo "$0"
                 ' \
@@ -489,12 +552,13 @@ tasks:
             sh \
               -c \
                 ' \
-                  basename "$0" | \
-                    grep \
-                      --ignore-case \
-                      --extended-regexp \
-                      --regexp='"'"'^(con|prn|aux|nul|com[0-9]+|lpt[0-9]+)$'"'"' \
-                      --silent \
+                  basename "$0" \
+                  | \
+                  grep \
+                    --ignore-case \
+                    --extended-regexp \
+                    --regexp='"'"'^(con|prn|aux|nul|com[0-9]+|lpt[0-9]+)$'"'"' \
+                    --silent \
                   && \
                   echo "$0"
                 ' \
@@ -518,7 +582,10 @@ tasks:
     desc: Check basic formatting style of all files
     cmds:
       - |
-        if ! which ec &>/dev/null; then
+        if
+          ! which ec \
+          &>/dev/null
+        then
           echo "ec not found or not in PATH. Please install: https://github.com/editorconfig-checker/editorconfig-checker#installation"
           exit 1
         fi
@@ -569,7 +636,10 @@ tasks:
         vars:
           POETRY_GROUPS: dev
     cmds:
-      - poetry run codespell --write-changes
+      - |
+        poetry run \
+          codespell \
+            --write-changes
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-prettier-formatting-task/Taskfile.yml
   general:format-prettier:
@@ -579,7 +649,11 @@ tasks:
         vars:
           PROJECT_PATH: ./
     cmds:
-      - npx prettier --write .
+      - |
+        npx \
+          prettier \
+            --write \
+            .
 
   github:sync:
     desc: Sync GitHub community health files
@@ -614,7 +688,11 @@ tasks:
     deps:
       - task: npm:install-deps
     cmds:
-      - wget --quiet --output-document="{{.SCHEMA_PATH}}" {{.SCHEMA_URL}}
+      - |
+        wget \
+          --quiet \
+          --output-document="{{.SCHEMA_PATH}}" \
+          {{.SCHEMA_URL}}
       - |
         npx \
           --package=ajv-cli \
@@ -630,14 +708,23 @@ tasks:
     deps:
       - task: npm:install-deps
     cmds:
-      - npx eslint --ext .js,.jsx --fix .
+      - |
+        npx \
+          eslint \
+            --ext .js,.jsx \
+            --fix \
+            .
 
   js:lint:
     desc: Lint JavaScript code
     deps:
       - task: npm:install-deps
     cmds:
-      - npx eslint --ext .js,.jsx .
+      - |
+        npx \
+          eslint \
+            --ext .js,.jsx \
+            .
 
   labels:validate:
     desc: Validate GitHub repository label configuration files against their JSON schema
@@ -707,7 +794,11 @@ tasks:
         vars:
           PROJECT_PATH: ./
     cmds:
-      - npx markdownlint-cli --fix "**/*.md"
+      - |
+        npx \
+          markdownlint-cli \
+            --fix \
+            "**/*.md"
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-markdown-task/Taskfile.yml
   markdown:lint:
@@ -717,7 +808,10 @@ tasks:
         vars:
           PROJECT_PATH: ./
     cmds:
-      - npx markdownlint-cli "**/*.md"
+      - |
+        npx \
+          markdownlint-cli \
+            "**/*.md"
 
   markdownlint:validate:
     desc: Validate markdownlint configuration files against their JSON schema
@@ -730,7 +824,11 @@ tasks:
     deps:
       - task: npm:install-deps
     cmds:
-      - wget --quiet --output-document="{{.SCHEMA_PATH}}" {{.SCHEMA_URL}}
+      - |
+        wget \
+          --quiet \
+          --output-document="{{.SCHEMA_PATH}}" \
+          {{.SCHEMA_URL}}
       - |
         npx \
           --package=ajv-cli \
@@ -765,10 +863,9 @@ tasks:
       "{{default .DEFAULT_NPM_PROJECT_PATH .PROJECT_PATH}}"
     cmds:
       - |
-        npm \
-          config \
-            --location project \
-            fix
+        npm config \
+          --location project \
+          fix
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-npm-task/Taskfile.yml
   npm:validate:
@@ -857,19 +954,25 @@ tasks:
     run: when_changed
     cmds:
       - |
-        if ! which yq &>/dev/null; then
+        if
+          ! which yq \
+          &>/dev/null
+        then
           echo "yq not found or not in PATH."
           echo "Please install: https://github.com/mikefarah/yq/#install"
           exit 1
         fi
       - |
-        if ! which python &>/dev/null; then
+        if
+          ! which python \
+          &>/dev/null
+        then
         python_constraint="$( \
             yq \
               --input-format toml \
               --output-format yaml \
               '.tool.poetry.dependencies.python' \
-              < pyproject.toml
+            < pyproject.toml
           )"
 
           echo "Python not found or not in PATH."
@@ -878,7 +981,10 @@ tasks:
           exit 1
         fi
       - |
-        if ! which pipx &>/dev/null; then
+        if
+          ! which pipx \
+          &>/dev/null
+        then
           echo "pipx not found or not in PATH."
           echo "Please install: https://pipx.pypa.io/stable/installation/#installing-pipx"
           exit 1
@@ -894,7 +1000,7 @@ tasks:
               --input-format toml \
               --output-format yaml \
               '.tool.poetry.group.pipx.dependencies.poetry' \
-              < pyproject.toml
+            < pyproject.toml
           )"
 
         pipx install \
@@ -952,7 +1058,10 @@ tasks:
         vars:
           POETRY_GROUPS: dev
     cmds:
-      - poetry run black .
+      - |
+        poetry run \
+          black \
+            .
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-python-task/Taskfile.yml
   python:lint:
@@ -962,14 +1071,20 @@ tasks:
         vars:
           POETRY_GROUPS: dev
     cmds:
-      - poetry run flake8 --show-source
+      - |
+        poetry run \
+          flake8 \
+            --show-source
 
   python:test:
     desc: Run Python tests
     deps:
       - task: poetry:install-deps
     cmds:
-      - poetry run pytest workflow-templates/assets/deploy-mkdocs-versioned/siteversion/tests
+      - |
+        poetry run \
+          pytest \
+            workflow-templates/assets/deploy-mkdocs-versioned/siteversion/tests
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-shell-task/Taskfile.yml
   shell:check:
@@ -985,7 +1100,10 @@ tasks:
           exit 1
         fi
       - |
-        if ! which shellcheck &>/dev/null; then
+        if
+          ! which shellcheck \
+          &>/dev/null
+        then
           echo "shellcheck not installed or not in PATH."
           echo "Please install: https://github.com/koalaman/shellcheck#installing"
           exit 1
@@ -1025,7 +1143,10 @@ tasks:
           exit 1
         fi
       - |
-        if ! which shfmt &>/dev/null; then
+        if
+          ! which shfmt \
+          &>/dev/null
+        then
           echo "shfmt not installed or not in PATH. Please install: https://github.com/mvdan/sh#shfmt"
           exit 1
         fi
@@ -1079,4 +1200,9 @@ tasks:
         vars:
           POETRY_GROUPS: dev
     cmds:
-      - poetry run yamllint --format {{default "colored" .YAMLLINT_FORMAT}} .
+      - |
+        poetry run \
+          yamllint \
+            --format \
+            {{default "colored" .YAMLLINT_FORMAT}} \
+            .

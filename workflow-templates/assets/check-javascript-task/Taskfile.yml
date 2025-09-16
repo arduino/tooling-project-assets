@@ -8,7 +8,12 @@ tasks:
     deps:
       - task: npm:install-deps
     cmds:
-      - npx eslint --ext .js,.jsx --fix .
+      - |
+        npx \
+          eslint \
+            --ext .js,.jsx \
+            --fix \
+            .
 
   # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/check-javascript-task/Taskfile.yml
   js:lint:
@@ -16,4 +21,8 @@ tasks:
     deps:
       - task: npm:install-deps
     cmds:
-      - npx eslint --ext .js,.jsx .
+      - |
+        npx \
+          eslint \
+            --ext .js,.jsx \
+            .

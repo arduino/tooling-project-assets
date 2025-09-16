@@ -10,4 +10,8 @@ tasks:
         vars:
           PROJECT_PATH: ./
     cmds:
-      - npx prettier --write .
+      - |
+        npx \
+          prettier \
+            --write \
+            .

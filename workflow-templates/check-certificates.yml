@@ -89,7 +89,11 @@ jobs:
         env:
           CERTIFICATE: ${{ secrets[matrix.certificate.certificate-secret] }}
         run: |
-          echo "${{ env.CERTIFICATE }}" | base64 --decode > "${{ env.CERTIFICATE_PATH }}"
+          echo "${{ env.CERTIFICATE }}" \
+          | \
+          base64 \
+            --decode \
+          >"${{ env.CERTIFICATE_PATH }}"
 
       - name: Verify certificate
         env:
@@ -101,7 +105,9 @@ jobs:
               -legacy \
               -noout \
               -passin env:CERTIFICATE_PASSWORD
-          ) || (
+          ) \
+          || \
+          (
             echo "::error::Verification of ${{ matrix.certificate.identifier }} failed!!!"
             exit 1
           )
@@ -125,43 +131,51 @@ jobs:
         run: |
           if [[ ${{ matrix.certificate.type }} == "pkcs12" ]]; then
             EXPIRATION_DATE="$(
-                (
+              (
                 openssl pkcs12 \
-                    -in ${{ env.CERTIFICATE_PATH }} \
-                    -clcerts \
-                    -legacy \
-                    -nodes \
-                    -passin env:CERTIFICATE_PASSWORD
-                ) | (
+                  -in ${{ env.CERTIFICATE_PATH }} \
+                  -clcerts \
+                  -legacy \
+                  -nodes \
+                  -passin env:CERTIFICATE_PASSWORD
+              ) \
+              | \
+              (
                 openssl x509 \
-                    -noout \
-                    -enddate
-                ) | (
+                  -noout \
+                  -enddate
+              ) \
+              | \
+              (
                 grep \
-                    --max-count=1 \
-                    --only-matching \
-                    --perl-regexp \
-                    'notAfter=(\K.*)'
-                )
+                  --max-count=1 \
+                  --only-matching \
+                  --perl-regexp \
+                  'notAfter=(\K.*)'
+              )
             )"
           elif [[ ${{ matrix.certificate.type }} == "x509" ]]; then
             EXPIRATION_DATE="$(
-                (
+              (
                 openssl x509 \
-                    -in ${{ env.CERTIFICATE_PATH }} \
-                    -noout \
-                    -enddate
-                ) | (
+                  -in ${{ env.CERTIFICATE_PATH }} \
+                  -noout \
+                  -enddate
+              ) \
+              | \
+              (
                 grep \
-                    --max-count=1 \
-                    --only-matching \
-                    --perl-regexp \
-                    'notAfter=(\K.*)'
-                )
+                  --max-count=1 \
+                  --only-matching \
+                  --perl-regexp \
+                  'notAfter=(\K.*)'
+              )
             )"
           fi
 
-          DAYS_BEFORE_EXPIRATION="$((($(date --utc --date="$EXPIRATION_DATE" +%s) - $(date --utc +%s)) / 60 / 60 / 24))"
+          DAYS_BEFORE_EXPIRATION="$((
+            ($(date --utc --date="$EXPIRATION_DATE" +%s) - $(date --utc +%s)) / 60 / 60 / 24
+          ))"
 
           # Display the expiration information in the log.
           echo "Certificate expiration date: $EXPIRATION_DATE"

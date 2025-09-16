@@ -47,6 +47,7 @@ jobs:
             --in-place \
             's/PROJECT_OWNER="${{ env.PROJECT_OWNER_PLACEHOLDER }}"/PROJECT_OWNER="${{ env.PROJECT_OWNER }}"/' \
             "${{ env.SCRIPT_FOLDER }}/${{ env.SCRIPT_NAME }}"
+
           sed \
             --in-place \
             's/PROJECT_NAME="${{ env.PROJECT_NAME_PLACEHOLDER }}"/PROJECT_NAME="${{ env.PROJECT_NAME }}"/' \
@@ -80,7 +81,11 @@ jobs:
           name: ${{ env.SCRIPT_ARTIFACT_NAME }}
 
       - name: Make script executable
-        run: chmod u+x "${{ github.workspace }}/${{ env.SCRIPT_NAME }}"
+        shell: bash
+        run: |
+          chmod \
+            u+x \
+            "${{ github.workspace }}/${{ env.SCRIPT_NAME }}"
 
       - name: Run script with defaults
         shell: sh
@@ -90,7 +95,8 @@ jobs:
       - name: Verify installation
         shell: bash
         run: |
-          "${PWD}/bin/${{ env.TOOL_NAME }}" --version
+          "${PWD}/bin/${{ env.TOOL_NAME }}" \
+            --version
 
   bindir:
     needs: configure
@@ -119,18 +125,26 @@ jobs:
           name: ${{ env.SCRIPT_ARTIFACT_NAME }}
 
       - name: Make script executable
-        run: chmod u+x "${{ github.workspace }}/${{ env.SCRIPT_NAME }}"
+        shell: bash
+        run: |
+          chmod \
+            u+x \
+            "${{ github.workspace }}/${{ env.SCRIPT_NAME }}"
 
       - name: Run script with custom install location
         shell: sh
         run: |
-          mkdir -p "${{ env.BINDIR }}"
+          mkdir \
+            -p \
+            "${{ env.BINDIR }}"
+
           "${{ github.workspace }}/${{ env.SCRIPT_NAME }}"
 
       - name: Verify installation
         shell: bash
         run: |
-          "${{ env.BINDIR }}/${{ env.TOOL_NAME }}" --version
+          "${{ env.BINDIR }}/${{ env.TOOL_NAME }}" \
+            --version
 
   version:
     needs: configure
@@ -156,7 +170,11 @@ jobs:
           name: ${{ env.SCRIPT_ARTIFACT_NAME }}
 
       - name: Make script executable
-        run: chmod u+x "${{ github.workspace }}/${{ env.SCRIPT_NAME }}"
+        shell: bash
+        run: |
+          chmod \
+            u+x \
+            "${{ github.workspace }}/${{ env.SCRIPT_NAME }}"
 
       - name: Run script with version argument
         shell: sh
@@ -166,7 +184,12 @@ jobs:
       - name: Verify installation
         shell: bash
         run: |
-          "${PWD}/bin/${{ env.TOOL_NAME }}" --version | grep --fixed-strings "${{ env.VERSION }}"
+          "${PWD}/bin/${{ env.TOOL_NAME }}" \
+            --version \
+          | \
+          grep \
+            --fixed-strings \
+            "${{ env.VERSION }}"
 
   nightly:
     needs: configure
@@ -189,17 +212,26 @@ jobs:
           name: ${{ env.SCRIPT_ARTIFACT_NAME }}
 
       - name: Make script executable
-        run: chmod u+x "${{ github.workspace }}/${{ env.SCRIPT_NAME }}"
+        shell: bash
+        run: |
+          chmod \
+            u+x \
+            "${{ github.workspace }}/${{ env.SCRIPT_NAME }}"
 
       - name: Run script with nightly build version argument
         shell: sh
         run: |
-          "${{ github.workspace }}/${{ env.SCRIPT_NAME }}" "nightly-latest"
+          "${{ github.workspace }}/${{ env.SCRIPT_NAME }}" \
+            "nightly-latest"
 
       - name: Verify installation
         shell: bash
         run: |
-          "${PWD}/bin/${{ env.TOOL_NAME }}" --version | grep "^nightly-"
+          "${PWD}/bin/${{ env.TOOL_NAME }}" \
+            --version \
+          | \
+          grep \
+            "^nightly-"
 
   path-suggestions:
     needs: configure
@@ -233,18 +265,26 @@ jobs:
           name: ${{ env.SCRIPT_ARTIFACT_NAME }}
 
       - name: Make script executable
-        run: chmod u+x "${{ github.workspace }}/${{ env.SCRIPT_NAME }}"
+        shell: bash
+        run: |
+          chmod \
+            u+x \
+            "${{ github.workspace }}/${{ env.SCRIPT_NAME }}"
 
       - name: Check script output without previous installation in PATH
         shell: sh
         env:
           BINDIR: ${{ env.FIRST_BINDIR }}
         run: |
-          mkdir -p "${{ env.BINDIR }}"
-          "${{ github.workspace }}/${{ env.SCRIPT_NAME }}" | \
-            grep \
-              -F \
-              '${{ env.TOOL_NAME }} not found. You might want to add "${{ env.FIRST_BINDIR }}" to your $PATH'
+          mkdir \
+            -p \
+            "${{ env.BINDIR }}"
+
+          "${{ github.workspace }}/${{ env.SCRIPT_NAME }}" \
+          | \
+          grep \
+            -F \
+            '${{ env.TOOL_NAME }} not found. You might want to add "${{ env.FIRST_BINDIR }}" to your $PATH'
 
       - name: Add first installation to PATH
         shell: bash
@@ -258,11 +298,15 @@ jobs:
         env:
           BINDIR: ${{ env.SECOND_BINDIR }}
         run: |
-          mkdir -p "${{ env.BINDIR }}"
-          "${{ github.workspace }}/${{ env.SCRIPT_NAME }}" | \
-            grep \
-              -F \
-              '${{ env.TOOL_NAME }} was found at ${{ env.FIRST_BINDIR }}/${{ env.TOOL_NAME }}. Please prepend "${{ env.BINDIR }}" to your $PATH'
+          mkdir \
+            -p \
+            "${{ env.BINDIR }}"
+
+          "${{ github.workspace }}/${{ env.SCRIPT_NAME }}" \
+          | \
+          grep \
+            -F \
+            '${{ env.TOOL_NAME }} was found at ${{ env.FIRST_BINDIR }}/${{ env.TOOL_NAME }}. Please prepend "${{ env.BINDIR }}" to your $PATH'
 
       # ${{ runner.temp }} is a Windows style path on the windows runner, but the script output uses the equivalent
       # POSIX style path.
@@ -273,7 +317,11 @@ jobs:
         env:
           BINDIR: ${{ env.SECOND_BINDIR }}
         run: |
-          mkdir -p "${{ env.BINDIR }}"
-          "${{ github.workspace }}/${{ env.SCRIPT_NAME }}" | \
-            grep \
-              '${{ env.TOOL_NAME }} was found at .*/${{ env.FIRST_INSTALLATION_FOLDER }}/${{ env.TOOL_NAME }}\. Please prepend ".*/${{ env.SECOND_INSTALLATION_FOLDER }}" to your \$PATH'
+          mkdir \
+            -p \
+            "${{ env.BINDIR }}"
+
+          "${{ github.workspace }}/${{ env.SCRIPT_NAME }}" \
+          | \
+          grep \
+            '${{ env.TOOL_NAME }} was found at .*/${{ env.FIRST_INSTALLATION_FOLDER }}/${{ env.TOOL_NAME }}\. Please prepend ".*/${{ env.SECOND_INSTALLATION_FOLDER }}" to your \$PATH'

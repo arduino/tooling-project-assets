@@ -22,10 +22,17 @@ tasks:
   utility:normalize-path:
     cmds:
       - |
-        if [[ "{{.OS}}" == "Windows_NT" ]] && which cygpath &>/dev/null; then
-            # Even though the shell handles POSIX format absolute paths as expected, external applications do not.
-            # So paths passed to such applications must first be converted to Windows format.
-            cygpath -w "{{.RAW_PATH}}"
+        if
+          [[ "{{.OS}}" == "Windows_NT" ]] \
+          && \
+          which cygpath \
+          &>/dev/null
+        then
+          # Even though the shell handles POSIX format absolute paths as expected, external applications do not.
+          # So paths passed to such applications must first be converted to Windows format.
+          cygpath \
+            -w \
+            "{{.RAW_PATH}}"
         else
           echo "{{.RAW_PATH}}"
         fi
