@@ -66,7 +66,7 @@ jobs:
       matrix:
         check-license:
           # TODO: Add additional paths where license files should be
-          - path: ./
+          - path: .
             # TODO: Define the project's license file name here:
             expected-filename: LICENSE.txt
             # SPDX identifier: https://spdx.org/licenses/

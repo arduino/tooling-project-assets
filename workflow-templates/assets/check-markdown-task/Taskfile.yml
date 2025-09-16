@@ -40,7 +40,7 @@ tasks:
       - task: docs:generate
       - task: npm:install-deps
         vars:
-          PROJECT_PATH: ./
+          PROJECT_PATH: .
     cmds:
       - |
         npx \
@@ -53,7 +53,7 @@ tasks:
     deps:
       - task: npm:install-deps
         vars:
-          PROJECT_PATH: ./
+          PROJECT_PATH: .
     cmds:
       - |
         npx \
@@ -67,7 +67,7 @@ tasks:
     deps:
       - task: npm:install-deps
         vars:
-          PROJECT_PATH: ./
+          PROJECT_PATH: .
     cmds:
       - |
         npx \
