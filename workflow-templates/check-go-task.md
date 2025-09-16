@@ -19,7 +19,7 @@ Install the [`check-go-task.yml`](check-go-task.yml) GitHub Actions workflow to 
 
 ### Configuration
 
-If the project contains Go modules in paths other than the root of the repository, add their paths to the [job matrices](https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix) of `check-go-task.yml` at:
+If the project contains Go modules in paths other than the root of the repository, add their paths to the [job matrices](https://docs.github.com/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idstrategymatrix) of `check-go-task.yml` at:
 
 - `jobs.check-errors.strategy.matrix.module[].path`
 - `jobs.check-outdated.strategy.matrix.module[].path`

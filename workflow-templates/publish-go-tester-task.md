@@ -1,6 +1,6 @@
 # "Publish Tester Build" workflow (Go, Task)
 
-Publish tester builds of a [Go](https://golang.org/) project as [GitHub Actions workflow artifacts](https://docs.github.com/actions/using-workflows/storing-workflow-data-as-artifacts) for every commit to a pull request or the repository.
+Publish tester builds of a [Go](https://golang.org/) project as [GitHub Actions workflow artifacts](https://docs.github.com/actions/tutorials/store-and-share-data) for every commit to a pull request or the repository.
 
 This makes it possible for any interested party to participate in beta testing without setting up a build system locally.
 
@@ -64,7 +64,7 @@ This makes it possible for any interested party to participate in beta testing w
 On every commit to a pull request or the repository:
 
 - Build the project for all supported platforms.
-- Upload the builds as [workflow artifacts](https://docs.github.com/actions/using-workflows/storing-workflow-data-as-artifacts).
+- Upload the builds as [workflow artifacts](https://docs.github.com/en/actions/tutorials/store-and-share-data).
 
 This makes it possible for any interested party to participate in beta testing without setting up a build system locally.
 ```

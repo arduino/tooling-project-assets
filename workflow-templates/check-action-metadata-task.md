@@ -86,7 +86,7 @@ triggered periodically, in order to catch breakage caused by external changes.
 ## PR message
 
 ```markdown
-A task and GitHub Actions workflow are provided here to check for problems in the [`action.yml`](https://docs.github.com/actions/creating-actions/metadata-syntax-for-github-actions) metadata file of [GitHub Actions actions](https://docs.github.com/actions/learn-github-actions/understanding-github-actions#actions) by validating it against [the JSON schema](https://json.schemastore.org/github-action.json).
+A task and GitHub Actions workflow are provided here to check for problems in the [`action.yml`](https://docs.github.com/actions/reference/workflows-and-actions/metadata-syntax) metadata file of [GitHub Actions actions](https://docs.github.com/actions/get-started/understand-github-actions#actions) by validating it against [the JSON schema](https://json.schemastore.org/github-action.json).
 
 A GitHub Actions workflow is included to automatically run the tasks. The workflow is triggered on any push or pull that changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also triggered periodically, in order to catch breakage caused by external changes.
 ```

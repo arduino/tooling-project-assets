@@ -35,7 +35,7 @@ If the project contains **npm**-managed projects (i.e., a folder containing a `p
 
 #### Workflow
 
-If the project contains **npm**-managed projects (i.e., a folder containing a `package.json` file) in paths other than the root of the repository, add their paths to the [job matrices](https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix) of `check-npm-task.yml` at:
+If the project contains **npm**-managed projects (i.e., a folder containing a `package.json` file) in paths other than the root of the repository, add their paths to the [job matrices](https://docs.github.com/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idstrategymatrix) of `check-npm-task.yml` at:
 
 - `jobs.validate.strategy.matrix.project[].path`
 - `jobs.check-sync.strategy.matrix.project[].path`

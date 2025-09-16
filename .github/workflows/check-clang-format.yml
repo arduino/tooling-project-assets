@@ -1,6 +1,6 @@
 name: Check ClangFormat Configuration
 
-# See: https://docs.github.com/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows
+# See: https://docs.github.com/actions/reference/workflows-and-actions/events-that-trigger-workflows
 on:
   push:
     paths:
@@ -76,7 +76,7 @@ jobs:
 
       - name: Set environment variables
         run: |
-          # See: https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#setting-an-environment-variable
+          # See: https://docs.github.com/actions/reference/workflows-and-actions/workflow-commands#setting-an-environment-variable
           if [[ "${{ github.event.inputs.clang-format-version }}" == "" ]]; then
             echo "CLANG_FORMAT_VERSION=$(task clang-format:get-version)" >>"$GITHUB_ENV"
           else
@@ -105,7 +105,7 @@ jobs:
             --file="${{ steps.download-clang-format.outputs.name }}"
 
           # Add installation to PATH:
-          # See: https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#adding-a-system-path
+          # See: https://docs.github.com/actions/reference/workflows-and-actions/workflow-commands#adding-a-system-path
           echo "${{ env.CLANG_FORMAT_INSTALL_PATH }}/clang_Linux_64bit" >>"$GITHUB_PATH"
 
       - name: Download yq
@@ -125,7 +125,7 @@ jobs:
             --file="${{ steps.download-yq.outputs.name }}"
 
           # Add installation to PATH:
-          # See: https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#adding-a-system-path
+          # See: https://docs.github.com/actions/reference/workflows-and-actions/workflow-commands#adding-a-system-path
           echo "${{ env.YQ_INSTALL_PATH }}/yq" >>"$GITHUB_PATH"
 
       - name: Check ClangFormat configuration file
@@ -162,7 +162,7 @@ jobs:
 
       - name: Set environment variables
         run: |
-          # See: https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#setting-an-environment-variable
+          # See: https://docs.github.com/actions/reference/workflows-and-actions/workflow-commands#setting-an-environment-variable
           if [[ "${{ github.event.inputs.clang-format-version }}" == "" ]]; then
             echo "CLANG_FORMAT_VERSION=$(task clang-format:get-version)" >>"$GITHUB_ENV"
           else
@@ -190,7 +190,7 @@ jobs:
             --file="${{ steps.download.outputs.name }}"
 
           # Add installation to PATH:
-          # See: https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#adding-a-system-path
+          # See: https://docs.github.com/actions/reference/workflows-and-actions/workflow-commands#adding-a-system-path
           echo "${{ env.CLANG_FORMAT_INSTALL_PATH }}/clang_Linux_64bit" >>"$GITHUB_PATH"
 
       - name: Check ClangFormat output
@@ -238,7 +238,7 @@ jobs:
     steps:
       - name: Set environment variables
         run: |
-          # See: https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#setting-an-environment-variable
+          # See: https://docs.github.com/actions/reference/workflows-and-actions/workflow-commands#setting-an-environment-variable
           echo "CONVERSION_OUTPUT_PATH=${{ runner.temp }}/clang-format-js-object.txt" >>"$GITHUB_ENV"
 
       - name: Checkout repository

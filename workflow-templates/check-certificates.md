@@ -22,7 +22,7 @@ Replace `TODO_REPO_OWNER/TODO_REPO_NAME` with the repository's name in the `jobs
 1. Enter `:warning:`
 1. Click the "Save Settings" button
 1. Copy the text in the "Webhook URL" field
-1. Save the webhook URL to a [repository secret](https://docs.github.com/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) named `SLACK_WEBHOOK`
+1. Save the webhook URL to a [repository secret](https://docs.github.com/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets#creating-encrypted-secrets-for-a-repository) named `SLACK_WEBHOOK`
    - Make sure there is no newline at the end of the secret, otherwise the Slack post process will fail.
 
 ### Readme badge
