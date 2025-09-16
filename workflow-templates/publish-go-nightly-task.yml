@@ -93,7 +93,7 @@ jobs:
       - name: Set environment variables
         run: |
           # See: https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#setting-an-environment-variable
-          echo "BUILD_FOLDER=${{ env.PROJECT_NAME }}_osx_${{ matrix.build.folder-suffix }}" >> "$GITHUB_ENV"
+          echo "BUILD_FOLDER=${{ env.PROJECT_NAME }}_osx_${{ matrix.build.folder-suffix }}" >>"$GITHUB_ENV"
 
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -225,7 +225,7 @@ jobs:
         working-directory: ${{ env.DIST_DIR }}
         run: |
           TAG="nightly-$(date -u +"%Y%m%d")"
-          sha256sum ${{ env.PROJECT_NAME }}_${TAG}* > ${TAG}-checksums.txt
+          sha256sum ${{ env.PROJECT_NAME }}_${TAG}* >${TAG}-checksums.txt
 
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v4

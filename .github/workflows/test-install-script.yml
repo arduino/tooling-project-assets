@@ -117,7 +117,7 @@ jobs:
         shell: bash
         run: |
           # See: https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#setting-an-environment-variable
-          echo "BINDIR=${{ runner.temp }}/custom-installation-folder" >> "$GITHUB_ENV"
+          echo "BINDIR=${{ runner.temp }}/custom-installation-folder" >>"$GITHUB_ENV"
 
       - name: Download script artifact
         uses: actions/download-artifact@v5
@@ -253,11 +253,11 @@ jobs:
         run: |
           # See: https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#setting-an-environment-variable
           FIRST_INSTALLATION_FOLDER="first-installation-folder"
-          echo "FIRST_INSTALLATION_FOLDER=${FIRST_INSTALLATION_FOLDER}" >> "$GITHUB_ENV"
-          echo "FIRST_BINDIR=${{ runner.temp }}/${FIRST_INSTALLATION_FOLDER}" >> "$GITHUB_ENV"
+          echo "FIRST_INSTALLATION_FOLDER=${FIRST_INSTALLATION_FOLDER}" >>"$GITHUB_ENV"
+          echo "FIRST_BINDIR=${{ runner.temp }}/${FIRST_INSTALLATION_FOLDER}" >>"$GITHUB_ENV"
           SECOND_INSTALLATION_FOLDER="second-installation-folder"
-          echo "SECOND_INSTALLATION_FOLDER=${SECOND_INSTALLATION_FOLDER}" >> "$GITHUB_ENV"
-          echo "SECOND_BINDIR=${{ runner.temp }}/${SECOND_INSTALLATION_FOLDER}" >> "$GITHUB_ENV"
+          echo "SECOND_INSTALLATION_FOLDER=${SECOND_INSTALLATION_FOLDER}" >>"$GITHUB_ENV"
+          echo "SECOND_BINDIR=${{ runner.temp }}/${SECOND_INSTALLATION_FOLDER}" >>"$GITHUB_ENV"
 
       - name: Download script artifact
         uses: actions/download-artifact@v5
@@ -290,7 +290,7 @@ jobs:
         shell: bash
         run: |
           # See: https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#adding-a-system-path
-          echo "${{ env.FIRST_BINDIR }}" >> "$GITHUB_PATH"
+          echo "${{ env.FIRST_BINDIR }}" >>"$GITHUB_PATH"
 
       - name: Check script output with previous installation in PATH (non-Windows)
         if: runner.os != 'Windows'
