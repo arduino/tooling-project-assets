@@ -2,6 +2,7 @@
 version: "3"
 
 vars:
+  # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/test-go-task/Taskfile.yml
   # `-ldflags` flag to use for `go test` command
   # TODO: define flag if required by the project, or leave empty if not needed.
   TEST_LDFLAGS:
