@@ -76,17 +76,17 @@ Define the `{repository-owner}` and `{repository-name}` attributes and use them 
 ```text
 Add CI workflow to validate action.yml
 
-A task and GitHub Actions workflow are provided here for validating the action.yml metadata file of GitHub Actions
-actions.
+A task and GitHub Actions workflow are provided here to check for problems in the `action.yml` metadata file of GitHub Actions actions by validating it against the JSON schema.
 
-On every push or pull request that affects the metadata file, and periodically, validate action.yml against its JSON
-schema.
+A GitHub Actions workflow is included to automatically run the tasks. The workflow is triggered on any push or pull that
+changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also
+triggered periodically, in order to catch breakage caused by external changes.
 ```
 
 ## PR message
 
 ```markdown
-A task and GitHub Actions workflow are provided here for validating the [`action.yml`](https://docs.github.com/actions/creating-actions/metadata-syntax-for-github-actions) metadata file of [GitHub Actions actions](https://docs.github.com/actions/learn-github-actions/understanding-github-actions#actions).
+A task and GitHub Actions workflow are provided here to check for problems in the [`action.yml`](https://docs.github.com/actions/creating-actions/metadata-syntax-for-github-actions) metadata file of [GitHub Actions actions](https://docs.github.com/actions/learn-github-actions/understanding-github-actions#actions) by validating it against [the JSON schema](https://json.schemastore.org/github-action.json).
 
-On every push or pull request that affects the metadata file, and periodically, validate `action.yml` against [its JSON schema](https://json.schemastore.org/github-action.json).
+A GitHub Actions workflow is included to automatically run the tasks. The workflow is triggered on any push or pull that changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also triggered periodically, in order to catch breakage caused by external changes.
 ```

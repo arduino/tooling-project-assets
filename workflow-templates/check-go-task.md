@@ -14,7 +14,7 @@ Install the [`check-go-task.yml`](check-go-task.yml) GitHub Actions workflow to 
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`.golangci.yml`](assets/go/.golangci.yml) - Contains all the go-linting configurations.
   - Install to: repository root as `.golangci.yml`
-- [`Taskfile.yml`](assets/go-task/Taskfile.yml) - `DEFAULT_GO_MODULE_PATH` and `DEFAULT_GO_PACKAGES` variables
+- [`Taskfile.yml`](assets/go-task/Taskfile.yml) - `DEFAULT_GO_MODULE_PATH` and `DEFAULT_GO_PACKAGES` variables.
   - Merge into `Taskfile.yml`
 
 ### Configuration
@@ -50,25 +50,19 @@ Define the `{repository-owner}` and `{repository-name}` attributes and use them 
 ## Commit message
 
 ```
-Add CI workflow to lint and check formatting of Go code
+Add infrastructure to lint and format Go code
 
-On every push and pull request that affects relevant files, check the Go module for:
+Tasks are provided to format and check for problems in the project's Go modules.
 
-- Common detectable errors in the code.
-- Use of outdated APIs
-- Code style violations
-- Code formatting inconsistency
-- Misconfiguration
+A GitHub Actions workflow is included to automatically run the tasks. The workflow is triggered on any push or pull that
+changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also
+triggered periodically, in order to catch breakage caused by external changes.
 ```
 
 ## PR message
 
 ```markdown
-On every push and pull request that affects relevant files, check the repository's [Go](https://golang.org/) module for:
+Tasks are provided to format and check for problems in the project's [Go](https://golang.org/) modules.
 
-- Common detectable errors in the code.
-- Use of outdated APIs
-- Code style violations
-- Code formatting inconsistency
-- Misconfiguration
+A GitHub Actions workflow is included to automatically run the tasks. The workflow is triggered on any push or pull that changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also triggered periodically, in order to catch breakage caused by external changes.
 ```

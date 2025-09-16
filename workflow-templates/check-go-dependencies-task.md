@@ -112,11 +112,11 @@ An updated cache is also generated whenever the cache is found to be outdated by
 ## Commit message
 
 ```
-Add CI workflow to check for unapproved Go dependency licenses
+Add infrastructure to check for unapproved Go dependency licenses
 
-A task and GitHub Actions workflow are provided here for checking the license types of Go project dependencies.
+Tasks and a GitHub Actions workflow are added for checking the license types of Go project dependencies.
 
-On every push and pull request that affects relevant files, the CI workflow will check:
+On every push and pull request that affects relevant files, the CI workflow will run the tasks to check:
 
 - If the dependency licenses cache is up to date
 - If any of the project's dependencies have an unapproved license type.

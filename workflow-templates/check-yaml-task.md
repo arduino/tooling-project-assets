@@ -65,20 +65,19 @@ Define the `{repository-owner}` and `{repository-name}` attributes and use them 
 ## Commit message
 
 ```
-Add CI workflow to lint YAML files
+Add infrastructure for linting YAML files
 
-On every push and pull request that affects relevant files, run yamllint to check the YAML files of
-the repository for issues.
+A task is provided to check for problems in the project's YAML files.
 
-The .yamllint.yml file is used to configure yamllint:
-https://yamllint.readthedocs.io/en/stable/configuration.html
+A GitHub Actions workflow is included to automatically run the task. The workflow is triggered on any push or pull that
+changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also
+triggered periodically, in order to catch breakage caused by external changes.
 ```
 
 ## PR message
 
 ```markdown
-On every push and pull request that affects relevant files, run [`yamllint`](https://github.com/adrienverge/yamllint) to check the YAML files of the repository for issues.
+A task is provided to check for problems in the project's YAML files.
 
-The `.yamllint.yml` file is used to configure `yamllint`:
-https://yamllint.readthedocs.io/en/stable/configuration.html
+A GitHub Actions workflow is included to automatically run the task. The workflow is triggered on any push or pull that changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also triggered periodically, in order to catch breakage caused by external changes.
 ```

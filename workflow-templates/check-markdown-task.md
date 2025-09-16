@@ -99,38 +99,27 @@ Define the `{repository-owner}` and `{repository-name}` attributes and use them 
 ## Commit message
 
 ```
-Add CI workflow to check Markdown files for problems
+Add infrastructure to check for problems in Markdown files
 
-On every push and pull request that affects relevant files, and periodically, check the repository's Markdown files for
-problems:
+Tasks are provided to check for problems in the project's Markdown files:
 
 - Use markdownlint to check for common problems and formatting.
 - Use markdown-link-check to check for broken links.
 
-The Arduino tooling Markdown style is defined by the `.markdownlint.yml` file.
-
-In the event the repository contains externally maintained Markdown files, markdownlint can be configured to ignore them
-via a `.markdownlintignore` file:
-https://github.com/igorshubovych/markdownlint-cli#ignoring-files
-
-markdown-link-check is configured via the `.markdown-link-check.json` file:
-https://github.com/tcort/markdown-link-check#config-file-format
+A GitHub Actions workflow is included to automatically run the tasks. The workflow is triggered on any push or pull that
+changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also
+triggered periodically, in order to catch breakage caused by external changes.
 ```
 
 ## PR message
 
 ```markdown
-On every push and pull request that affects relevant files, and periodically, check the repository's Markdown files for
-problems:
+Add infrastructure to check for problems in Markdown files
+
+Tasks are provided to check for problems in the project's Markdown files:
 
 - Use [markdownlint-cli](https://github.com/igorshubovych/markdownlint-cli) to check for common problems and formatting.
 - Use [markdown-link-check](https://github.com/tcort/markdown-link-check) to check for broken links.
 
-The Arduino tooling Markdown style is defined by the `.markdownlint.yml` file.
-
-In the event the repository contains externally maintained Markdown files, markdownlint can be configured to ignore them via a `.markdownlintignore` file:
-https://github.com/igorshubovych/markdownlint-cli#ignoring-files
-
-markdown-link-check is configured via the `.markdown-link-check.json` file:
-https://github.com/tcort/markdown-link-check#config-file-format
+A GitHub Actions workflow is included to automatically run the tasks. The workflow is triggered on any push or pull that changes relevant project files, in order to avoid the introduction of problems with the project filesystem. It is also triggered periodically, in order to catch breakage caused by external changes.
 ```
