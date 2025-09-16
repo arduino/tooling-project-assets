@@ -53,7 +53,7 @@ Commit the resulting changes to the `go.mod` and `go.sum` files.
 Add the dependencies by running this command:
 
 ```text
-npm install --save-dev eslint@^8.57.0 eslint-config-prettier@^10.1.3
+npm install --save-dev eslint@^8.57.0 eslint-config-prettier@^10.1.8
 npx install-peerdeps --dev eslint-config-airbnb-base
 ```
 
