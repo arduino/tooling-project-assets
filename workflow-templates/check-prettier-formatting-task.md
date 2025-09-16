@@ -107,7 +107,7 @@ If the project contains manually maintained [TOML](https://toml.io/) language fi
 Add the TOML support dependencies by running this command:
 
 ```text
-npm install --save-dev prettier-plugin-toml@^2.0.2
+npm install --save-dev prettier-plugin-toml@^2.0.6
 ```
 
 Commit the resulting changes to the `package.json` and `package-lock.json` files.
