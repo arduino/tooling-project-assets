@@ -7,12 +7,16 @@ on:
     paths:
       - ".github/workflows/*.ya?ml"
       - ".npmrc"
+      - "package.json"
+      - "package-lock.json"
       - "Taskfile.ya?ml"
       - "workflow-templates/*.ya?ml"
   pull_request:
     paths:
       - ".github/workflows/*.ya?ml"
       - ".npmrc"
+      - "package.json"
+      - "package-lock.json"
       - "Taskfile.ya?ml"
       - "workflow-templates/*.ya?ml"
   schedule:
