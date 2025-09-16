@@ -76,14 +76,10 @@ jobs:
         with:
           python-version-file: pyproject.toml
 
-      - name: Install Task
-        uses: arduino/setup-task@v2
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          version: 3.x
-
       - name: Run tests
         uses: liskin/gh-problem-matcher-wrap@v3
         with:
           linters: pytest
-          run: task python:test
+          # Due to a quirk of the "liskin/gh-problem-matcher-wrap" action, the entire command must be on a single line
+          # (instead of being broken into multiple lines for readability).
+          run: go tool github.com/go-task/task/v3/cmd/task python:test

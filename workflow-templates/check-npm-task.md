@@ -21,6 +21,26 @@ Install the [check-npm-task.yml](check-npm-task.yml) GitHub Actions workflow to 
 - [`Taskfile.yml`](assets/windows-task/Taskfile.yml) - Utility tasks.
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 
+### Dependencies
+
+The tool dependencies of this workflow are managed by [**Go**](https://go.dev/dl/).
+
+If the project does not already have a `go.mod` file, [install **Go**](https://go.dev/doc/install) and then run the following command:
+
+```text
+go mod init <module path>
+```
+
+(where `<module path>` is the URL of the project repository without the scheme e.g., `github.com/foo/bar`)
+
+Add the tool dependencies by running the following command:
+
+```text
+go get -tool github.com/go-task/task/v3/cmd/task@v3.44.1
+```
+
+Commit the resulting changes to the `go.mod` and `go.sum` files.
+
 ### Configuration
 
 #### Node.js

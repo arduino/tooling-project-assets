@@ -24,6 +24,16 @@ Install the [`check-go-dependencies-task.yml`](check-go-dependencies-task.yml) G
 - [`.licensed.yml`](assets/check-dependencies) - suggested allowed dependency license types list for the project's license type.
   - Install to: repository root.
 
+### Dependencies
+
+Add the tool dependencies by running the following command:
+
+```text
+go get -tool github.com/go-task/task/v3/cmd/task@v3.44.1
+```
+
+Commit the resulting changes to the `go.mod` and `go.sum` files.
+
 ### Configuration
 
 The **Licensed** tool is configured via `.licensed.yml` configuration file, located in the repository root folder:

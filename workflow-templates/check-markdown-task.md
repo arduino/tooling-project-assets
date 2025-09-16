@@ -34,7 +34,27 @@ The code style defined in `.markdownlint.yml` is the official standardized style
 
 ### Dependencies
 
-The tool dependencies of this workflow are managed by [npm](https://www.npmjs.com/).
+The tool dependencies of this workflow are managed by [**Go**](https://go.dev/dl/) and [**npm**](https://www.npmjs.com/).
+
+#### Go Module-Managed Dependencies
+
+If the project does not already have a `go.mod` file, [install **Go**](https://go.dev/doc/install) and then run the following command:
+
+```text
+go mod init <module path>
+```
+
+(where `<module path>` is the URL of the project repository without the scheme e.g., `github.com/foo/bar`)
+
+Add the tool dependencies by running the following command:
+
+```text
+go get -tool github.com/go-task/task/v3/cmd/task@v3.44.1
+```
+
+Commit the resulting changes to the `go.mod` and `go.sum` files.
+
+#### npm-Managed Dependencies
 
 Add the dependencies by running this command:
 

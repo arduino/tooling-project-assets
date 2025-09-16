@@ -8,6 +8,8 @@ on:
     paths:
       - ".github/workflows/check-toc-task.ya?ml"
       - ".npmrc"
+      - "go.mod"
+      - "go.sum"
       - "package.json"
       - "package-lock.json"
       # TODO: Update this if ToC of any other files should be checked.
@@ -16,6 +18,8 @@ on:
     paths:
       - ".github/workflows/check-toc-task.ya?ml"
       - ".npmrc"
+      - "go.mod"
+      - "go.sum"
       - "package.json"
       - "package-lock.json"
       # TODO: Update this if ToC of any other files should be checked.
@@ -73,22 +77,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version-file: package.json
 
-      - name: Install Task
-        uses: arduino/setup-task@v2
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          version: 3.x
-
       - name: Rebuild ToC
         run: |
-          task markdown:toc \
-            FILE_PATH="${{ github.workspace }}/${{ matrix.file.name }}" \
-            MAX_DEPTH=${{ matrix.file.maxdepth }}
+          go tool \
+            github.com/go-task/task/v3/cmd/task markdown:toc \
+              FILE_PATH="${{ github.workspace }}/${{ matrix.file.name }}" \
+              MAX_DEPTH=${{ matrix.file.maxdepth }}
 
       - name: Check ToC
         run: |

@@ -108,14 +108,9 @@ jobs:
         with:
           python-version-file: pyproject.toml
 
-      - name: Install Task
-        uses: arduino/setup-task@v2
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          version: 3.x
-
       - name: Check YAML
         continue-on-error: ${{ matrix.configuration.continue-on-error }}
         run: |
-          task yaml:lint \
-            YAMLLINT_FORMAT=${{ matrix.configuration.format }}
+          go tool \
+            github.com/go-task/task/v3/cmd/task yaml:lint \
+              YAMLLINT_FORMAT=${{ matrix.configuration.format }}

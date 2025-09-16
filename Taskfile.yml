@@ -89,7 +89,10 @@ tasks:
       # Source: https://github.com/SchemaStore/schemastore/blob/master/src/schemas/json/github-workflow.json
       WORKFLOW_SCHEMA_URL: https://json.schemastore.org/github-workflow
       WORKFLOW_SCHEMA_PATH:
-        sh: task utility:mktemp-file TEMPLATE="workflow-schema-XXXXXXXXXX.json"
+        sh: |
+          go tool \
+            github.com/go-task/task/v3/cmd/task utility:mktemp-file \
+              TEMPLATE="workflow-schema-XXXXXXXXXX.json"
       WORKFLOWS_DATA_PATH: "./.github/workflows/*.{yml,yaml}"
       TEMPLATE_WORKFLOWS_DATA_PATH: "./workflow-templates/*.{yml,yaml}"
     deps:
@@ -130,7 +133,9 @@ tasks:
         sh: |
           if [[ "{{.WORKING_FOLDER}}" == "" ]]; then
             # Generate a path
-            task utility:mktemp-folder TEMPLATE="clang-format-check-config-XXXXXXXXXX"
+            go tool \
+              github.com/go-task/task/v3/cmd/task utility:mktemp-folder \
+                TEMPLATE="clang-format-check-config-XXXXXXXXXX"
           else
             # A path was specified via the command line
             echo "{{.WORKING_FOLDER}}"
@@ -181,7 +186,9 @@ tasks:
         sh: |
           if [[ "{{.WORKING_FOLDER}}" == "" ]]; then
             # Generate a path
-            task utility:mktemp-folder TEMPLATE="clang-format-check-XXXXXXXXXX"
+            go tool \
+              github.com/go-task/task/v3/cmd/task utility:mktemp-folder \
+                TEMPLATE="clang-format-check-XXXXXXXXXX"
           else
             # A path was specified via the command line
             echo "{{.WORKING_FOLDER}}"
@@ -239,7 +246,9 @@ tasks:
       OUTPUT_PATH:
         sh: |
           if [[ "{{.OUTPUT_PATH}}" == "" ]]; then
-            task utility:mktemp-file TEMPLATE="clang-format-js-object-XXXXXXXXXX.txt"
+            go tool \
+              github.com/go-task/task/v3/cmd/task utility:mktemp-file \
+                TEMPLATE="clang-format-js-object-XXXXXXXXXX.txt"
           else
             echo "{{.OUTPUT_PATH}}"
           fi
@@ -335,7 +344,10 @@ tasks:
     desc: Update ClangFormat configuration file to match effective tool configuration
     vars:
       WORKING_PATH:
-        sh: task utility:mktemp-file TEMPLATE="clang-format-update-config-XXXXXXXXXX.json"
+        sh: |
+          go tool \
+            github.com/go-task/task/v3/cmd/task utility:mktemp-file \
+              TEMPLATE="clang-format-update-config-XXXXXXXXXX.json"
     cmds:
       - task: clang-format:dump-config
         vars:
@@ -370,14 +382,18 @@ tasks:
       # Source: https://github.com/SchemaStore/schemastore/blob/master/src/schemas/json/clang-format.json
       SCHEMA_URL: https://json.schemastore.org/clang-format.json
       SCHEMA_PATH:
-        sh: task utility:mktemp-file TEMPLATE="clang-format-configuration-schema-XXXXXXXXXX.json"
+        sh: |
+          go tool \
+            github.com/go-task/task/v3/cmd/task utility:mktemp-file \
+              TEMPLATE="clang-format-configuration-schema-XXXXXXXXXX.json"
       DATA_SOURCE_PATH: "{{.CLANG_FORMAT_CONFIGURATION_PATH}}"
       # ajv-cli identifies YAML-format data files by their file extension, so renaming is required:
       # https://github.com/ajv-validator/ajv-cli/issues/117
       DATA_PATH:
         sh: |
-          task utility:mktemp-file \
-            TEMPLATE=".clang-format-XXXXXXXXXX.yml"
+          go tool \
+            github.com/go-task/task/v3/cmd/task utility:mktemp-file \
+              TEMPLATE=".clang-format-XXXXXXXXXX.yml"
     deps:
       - task: npm:install-deps
     cmds:
@@ -421,13 +437,17 @@ tasks:
       # Source: https://github.com/SchemaStore/schemastore/blob/master/src/schemas/json/dependabot-2.0.json
       SCHEMA_URL: https://json.schemastore.org/dependabot-2.0
       SCHEMA_PATH:
-        sh: task utility:mktemp-file TEMPLATE="dependabot-schema-XXXXXXXXXX.json"
+        sh: |
+          go tool \
+            github.com/go-task/task/v3/cmd/task utility:mktemp-file \
+              TEMPLATE="dependabot-schema-XXXXXXXXXX.json"
       # Source: https://github.com/SchemaStore/schemastore/blob/master/src/schemas/json/base.json
       BASE_SCHEMA_URL: https://json.schemastore.org/base.json
       BASE_SCHEMA_PATH:
         sh: |
-          task utility:mktemp-file \
-            TEMPLATE="base-schema-XXXXXXXXXX.json"
+          go tool \
+            github.com/go-task/task/v3/cmd/task utility:mktemp-file \
+              TEMPLATE="base-schema-XXXXXXXXXX.json"
       # The Dependabot configuration file for the repository.
       DATA_PATH: ".github/dependabot.yml"
       # The asset Dependabot configuration files.
@@ -478,13 +498,17 @@ tasks:
       # Source: https://github.com/SchemaStore/schemastore/blob/master/src/schemas/json/eslintrc.json
       SCHEMA_URL: https://json.schemastore.org/eslintrc.json
       SCHEMA_PATH:
-        sh: task utility:mktemp-file TEMPLATE="eslintrc-schema-XXXXXXXXXX.json"
+        sh: |
+          go tool \
+            github.com/go-task/task/v3/cmd/task utility:mktemp-file \
+              TEMPLATE="eslintrc-schema-XXXXXXXXXX.json"
       # Source: https://github.com/SchemaStore/schemastore/blob/master/src/schemas/json/partial-eslint-plugins.json
       PARTIAL_ESLINT_PLUGINS_SCHEMA_URL: https://json.schemastore.org/partial-eslint-plugins.json
       PARTIAL_ESLINT_PLUGINS_PATH:
         sh: |
-          task utility:mktemp-file \
-            TEMPLATE="partial-eslint-plugins-schema-XXXXXXXXXX.json"
+          go tool \
+            github.com/go-task/task/v3/cmd/task utility:mktemp-file \
+              TEMPLATE="partial-eslint-plugins-schema-XXXXXXXXXX.json"
       DATA_PATH: workflow-templates/assets/check-javascript/.eslintrc.yml
       # ajv-cli identifies YAML-format data files by their file extension, so renaming is required:
       # https://github.com/ajv-validator/ajv-cli/issues/117
@@ -696,7 +720,10 @@ tasks:
       # Source: https://github.com/SchemaStore/schemastore/blob/master/src/schemas/json/github-issue-forms.json
       SCHEMA_URL: https://json.schemastore.org/github-issue-forms.json
       SCHEMA_PATH:
-        sh: task utility:mktemp-file TEMPLATE="github-issue-forms-schema-XXXXXXXXXX.json"
+        sh: |
+          go tool \
+            github.com/go-task/task/v3/cmd/task utility:mktemp-file \
+              TEMPLATE="github-issue-forms-schema-XXXXXXXXXX.json"
       DATA_PATH: "issue-templates/forms/**/*.{yml,yaml}"
     deps:
       - task: npm:install-deps
@@ -834,7 +861,10 @@ tasks:
       # Source: https://github.com/DavidAnson/markdownlint/blob/main/schema/markdownlint-config-schema.json
       SCHEMA_URL: https://raw.githubusercontent.com/DavidAnson/markdownlint/main/schema/markdownlint-config-schema.json
       SCHEMA_PATH:
-        sh: task utility:mktemp-file TEMPLATE="markdownlint-schema-XXXXXXXXXX.json"
+        sh: |
+          go tool \
+            github.com/go-task/task/v3/cmd/task utility:mktemp-file \
+              TEMPLATE="markdownlint-schema-XXXXXXXXXX.json"
       DATA_PATH: "workflow-templates/assets/check-markdown/.markdownlint.yml"
     deps:
       - task: npm:install-deps
@@ -892,43 +922,73 @@ tasks:
       # Source: https://github.com/SchemaStore/schemastore/blob/master/src/schemas/json/package.json
       SCHEMA_URL: https://json.schemastore.org/package.json
       SCHEMA_PATH:
-        sh: task utility:mktemp-file TEMPLATE="package-json-schema-XXXXXXXXXX.json"
+        sh: |
+          go tool \
+            github.com/go-task/task/v3/cmd/task utility:mktemp-file \
+              TEMPLATE="package-json-schema-XXXXXXXXXX.json"
       # Source: https://github.com/SchemaStore/schemastore/blob/master/src/schemas/json/ava.json
       AVA_SCHEMA_URL: https://json.schemastore.org/ava.json
       AVA_SCHEMA_PATH:
-        sh: task utility:mktemp-file TEMPLATE="ava-schema-XXXXXXXXXX.json"
+        sh: |
+          go tool \
+            github.com/go-task/task/v3/cmd/task utility:mktemp-file \
+              TEMPLATE="ava-schema-XXXXXXXXXX.json"
       # Source: https://github.com/SchemaStore/schemastore/blob/master/src/schemas/json/base.json
       BASE_SCHEMA_URL: https://json.schemastore.org/base.json
       BASE_SCHEMA_PATH:
-        sh: task utility:mktemp-file TEMPLATE="base-schema-XXXXXXXXXX.json"
+        sh: |
+          go tool \
+            github.com/go-task/task/v3/cmd/task utility:mktemp-file \
+              TEMPLATE="base-schema-XXXXXXXXXX.json"
       # Source: https://github.com/SchemaStore/schemastore/blob/master/src/schemas/json/eslintrc.json
       ESLINTRC_SCHEMA_URL: https://json.schemastore.org/eslintrc.json
       ESLINTRC_SCHEMA_PATH:
-        sh: task utility:mktemp-file TEMPLATE="eslintrc-schema-XXXXXXXXXX.json"
+        sh: |
+          go tool \
+            github.com/go-task/task/v3/cmd/task utility:mktemp-file \
+              TEMPLATE="eslintrc-schema-XXXXXXXXXX.json"
       # Source: https://github.com/SchemaStore/schemastore/blob/master/src/schemas/json/jscpd.json
       JSCPD_SCHEMA_URL: https://json.schemastore.org/jscpd.json
       JSCPD_SCHEMA_PATH:
-        sh: task utility:mktemp-file TEMPLATE="jscpd-schema-XXXXXXXXXX.json"
+        sh: |
+          go tool \
+            github.com/go-task/task/v3/cmd/task utility:mktemp-file \
+              TEMPLATE="jscpd-schema-XXXXXXXXXX.json"
       # Source: https://github.com/SchemaStore/schemastore/blob/master/src/schemas/json/npm-badges.json
       NPM_BADGES_SCHEMA_URL: https://json.schemastore.org/npm-badges.json
       NPM_BADGES_SCHEMA_PATH:
-        sh: task utility:mktemp-file TEMPLATE="npm-badges-schema-XXXXXXXXXX.json"
+        sh: |
+          go tool \
+            github.com/go-task/task/v3/cmd/task utility:mktemp-file \
+              TEMPLATE="npm-badges-schema-XXXXXXXXXX.json"
       # Source: https://github.com/SchemaStore/schemastore/blob/master/src/schemas/json/partial-eslint-plugins.json
       PARTIAL_ESLINT_PLUGINS_SCHEMA_URL: https://json.schemastore.org/partial-eslint-plugins.json
       PARTIAL_ESLINT_PLUGINS_PATH:
-        sh: task utility:mktemp-file TEMPLATE="partial-eslint-plugins-schema-XXXXXXXXXX.json"
+        sh: |
+          go tool \
+            github.com/go-task/task/v3/cmd/task utility:mktemp-file \
+              TEMPLATE="partial-eslint-plugins-schema-XXXXXXXXXX.json"
       # Source: https://github.com/SchemaStore/schemastore/blob/master/src/schemas/json/prettierrc.json
       PRETTIERRC_SCHEMA_URL: https://json.schemastore.org/prettierrc.json
       PRETTIERRC_SCHEMA_PATH:
-        sh: task utility:mktemp-file TEMPLATE="prettierrc-schema-XXXXXXXXXX.json"
+        sh: |
+          go tool \
+            github.com/go-task/task/v3/cmd/task utility:mktemp-file \
+              TEMPLATE="prettierrc-schema-XXXXXXXXXX.json"
       # Source: https://github.com/SchemaStore/schemastore/blob/master/src/schemas/json/semantic-release.json
       SEMANTIC_RELEASE_SCHEMA_URL: https://json.schemastore.org/semantic-release.json
       SEMANTIC_RELEASE_SCHEMA_PATH:
-        sh: task utility:mktemp-file TEMPLATE="semantic-release-schema-XXXXXXXXXX.json"
+        sh: |
+          go tool \
+            github.com/go-task/task/v3/cmd/task utility:mktemp-file \
+              TEMPLATE="semantic-release-schema-XXXXXXXXXX.json"
       # Source: https://github.com/SchemaStore/schemastore/blob/master/src/schemas/json/stylelintrc.json
       STYLELINTRC_SCHEMA_URL: https://json.schemastore.org/stylelintrc.json
       STYLELINTRC_SCHEMA_PATH:
-        sh: task utility:mktemp-file TEMPLATE="stylelintrc-schema-XXXXXXXXXX.json"
+        sh: |
+          go tool \
+            github.com/go-task/task/v3/cmd/task utility:mktemp-file \
+              TEMPLATE="stylelintrc-schema-XXXXXXXXXX.json"
       INSTANCE_PATH: >-
         {{default .DEFAULT_NPM_PROJECT_PATH .PROJECT_PATH}}/package.json
     cmds:
@@ -1005,8 +1065,9 @@ tasks:
         fi
       - |
         export PIPX_DEFAULT_PYTHON="$( \
-          task utility:normalize-path \
-            RAW_PATH="$(which python)" \
+          go tool \
+            github.com/go-task/task/v3/cmd/task utility:normalize-path \
+              RAW_PATH="$(which python)" \
         )"
 
         poetry_constraint="$( \

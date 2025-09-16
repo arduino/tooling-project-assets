@@ -18,6 +18,16 @@ Install the [`release-go-crosscompile-task.yml`](release-go-crosscompile-task.ym
   - Install to: repository root
 - [Installation script and documentation](../other/installation-script/README.md)
 
+### Dependencies
+
+Add the tool dependencies by running the following command:
+
+```text
+go get -tool github.com/go-task/task/v3/cmd/task@v3.44.1
+```
+
+Commit the resulting changes to the `go.mod` and `go.sum` files.
+
 ### Configuration
 
 #### Taskfile

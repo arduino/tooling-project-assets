@@ -9,6 +9,8 @@ on:
       - "other/clang-format-configuration/testdata/**"
       - "other/clang-format-configuration/.clang-format"
       - ".npmrc"
+      - "go.mod"
+      - "go.sum"
       - "package.json"
       - "package-lock.json"
       - "Taskfile.ya?ml"
@@ -19,6 +21,8 @@ on:
       - "other/clang-format-configuration/testdata/**"
       - "other/clang-format-configuration/.clang-format"
       - ".npmrc"
+      - "go.mod"
+      - "go.sum"
       - "package.json"
       - "package-lock.json"
       - "Taskfile.ya?ml"
@@ -43,22 +47,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version-file: package.json
 
-      - name: Install Task
-        uses: arduino/setup-task@v2
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          version: 3.x
-
       - name: Validate ClangFormat configuration files
         run: |
-          task \
-            --silent \
-            clang-format:validate
+          go tool \
+            github.com/go-task/task/v3/cmd/task \
+              --silent \
+              clang-format:validate
 
   check-config:
     runs-on: ubuntu-latest
@@ -68,17 +72,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
-      - name: Install Task
-        uses: arduino/setup-task@v2
+      - name: Install Go
+        uses: actions/setup-go@v5
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          version: 3.x
+          go-version-file: go.mod
 
       - name: Set environment variables
         run: |
           # See: https://docs.github.com/actions/reference/workflows-and-actions/workflow-commands#setting-an-environment-variable
           if [[ "${{ github.event.inputs.clang-format-version }}" == "" ]]; then
-            echo "CLANG_FORMAT_VERSION=$(task clang-format:get-version)" >>"$GITHUB_ENV"
+            echo "CLANG_FORMAT_VERSION=$(
+              go tool \
+                github.com/go-task/task/v3/cmd/task clang-format:get-version
+            )" >>"$GITHUB_ENV"
           else
             echo "CLANG_FORMAT_VERSION=${{ github.event.inputs.clang-format-version }}" >>"$GITHUB_ENV"
           fi
@@ -110,10 +116,11 @@ jobs:
       - name: Check ClangFormat configuration file
         id: check
         run: |
-          task \
-            --silent \
-            clang-format:check-config \
-            CLANG_FORMAT_VERSION="${{ env.CLANG_FORMAT_VERSION }}"
+          go tool \
+            github.com/go-task/task/v3/cmd/task \
+              --silent \
+              clang-format:check-config \
+                CLANG_FORMAT_VERSION="${{ env.CLANG_FORMAT_VERSION }}"
 
       - name: Save effective configuration file to a workflow artifact
         if: >
@@ -133,17 +140,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
-      - name: Install Task
-        uses: arduino/setup-task@v2
+      - name: Install Go
+        uses: actions/setup-go@v5
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          version: 3.x
+          go-version-file: go.mod
 
       - name: Set environment variables
         run: |
           # See: https://docs.github.com/actions/reference/workflows-and-actions/workflow-commands#setting-an-environment-variable
           if [[ "${{ github.event.inputs.clang-format-version }}" == "" ]]; then
-            echo "CLANG_FORMAT_VERSION=$(task clang-format:get-version)" >>"$GITHUB_ENV"
+            echo "CLANG_FORMAT_VERSION=$(
+              go tool \
+                github.com/go-task/task/v3/cmd/task clang-format:get-version
+            )" >>"$GITHUB_ENV"
           else
             echo "CLANG_FORMAT_VERSION=${{ github.event.inputs.clang-format-version }}" >>"$GITHUB_ENV"
           fi
@@ -175,10 +184,11 @@ jobs:
       - name: Check ClangFormat output
         id: check
         run: |
-          task \
-            clang-format:check-output \
-            CLANG_FORMAT_VERSION="${{ env.CLANG_FORMAT_VERSION }}" \
-            WORKING_FOLDER="${{ env.WORKING_FOLDER }}"
+          go tool \
+            github.com/go-task/task/v3/cmd/task \
+              clang-format:check-output \
+                CLANG_FORMAT_VERSION="${{ env.CLANG_FORMAT_VERSION }}" \
+                WORKING_FOLDER="${{ env.WORKING_FOLDER }}"
 
       - name: Save formatted test data to a workflow artifact
         if: >
@@ -198,17 +208,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
-      - name: Install Task
-        uses: arduino/setup-task@v2
+      - name: Install Go
+        uses: actions/setup-go@v5
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          version: 3.x
+          go-version-file: go.mod
 
       - name: Check ClangFormat test data
         run: |
-          task \
-            --silent \
-            clang-format:check-testdata
+          go tool \
+            github.com/go-task/task/v3/cmd/task \
+              --silent \
+              clang-format:check-testdata
 
   convert:
     runs-on: ubuntu-latest
@@ -228,18 +238,18 @@ jobs:
         with:
           node-version-file: package.json
 
-      - name: Install Task
-        uses: arduino/setup-task@v2
+      - name: Install Go
+        uses: actions/setup-go@v5
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          version: 3.x
+          go-version-file: go.mod
 
       - name: Convert the ClangFormat configuration
         run: |
-          task \
-            --silent \
-            clang-format:convert \
-            OUTPUT_PATH="${{ env.CONVERSION_OUTPUT_PATH }}"
+          go tool \
+            github.com/go-task/task/v3/cmd/task \
+              --silent \
+              clang-format:convert \
+                OUTPUT_PATH="${{ env.CONVERSION_OUTPUT_PATH }}"
 
       - name: Save conversion to a workflow artifact
         uses: actions/upload-artifact@v4
