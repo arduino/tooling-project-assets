@@ -52,7 +52,7 @@ Commit the resulting changes to the `go.mod` and `go.sum` files.
 Add the tool dependencies using this command:
 
 ```
-task poetry:install && poetry add --dev "pytest@^8.4.1" "invoke@^1.7.0"
+task poetry:install && poetry add --dev "pytest@^8.4.2" "invoke@^1.7.0"
 ```
 
 Commit the resulting changes to the `pyproject.toml` and `poetry.lock` files.
