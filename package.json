@@ -10,7 +10,7 @@
     "markdown-link-check": "^3.13.7",
     "markdownlint-cli": "^0.45.0",
     "prettier": "^3.6.2",
-    "prettier-plugin-toml": "^2.0.5"
+    "prettier-plugin-toml": "^2.0.6"
   },
   "dependencies": {
     "js-yaml": "^4.1.0"
