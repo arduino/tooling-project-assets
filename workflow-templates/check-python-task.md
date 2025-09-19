@@ -48,7 +48,7 @@ Commit the resulting changes to the `go.mod` and `go.sum` files.
 Add the tool dependencies using this command:
 
 ```
-task poetry:install && poetry add --dev "black@^25.1.0" "flake8@^7.3.0" "pep8-naming@^0.15.1"
+task poetry:install && poetry add --dev "black@^25.9.0" "flake8@^7.3.0" "pep8-naming@^0.15.1"
 ```
 
 Commit the resulting changes to the `pyproject.toml` and `poetry.lock` files.
