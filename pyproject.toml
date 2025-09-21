@@ -23,4 +23,4 @@ GitPython = "^3.1.45"
 optional = true
 
 [tool.poetry.group.pipx.dependencies]
-poetry = "2.2.0"
+poetry = "2.2.1"
