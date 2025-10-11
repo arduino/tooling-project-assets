@@ -59,7 +59,7 @@ Commit the resulting changes to the `go.mod` and `go.sum` files.
 Add the dependencies by running this command:
 
 ```text
-npm install --save-dev markdown-link-check@^3.13.7 markdownlint-cli@^0.45.0
+npm install --save-dev markdown-link-check@^3.14.0 markdownlint-cli@^0.45.0
 ```
 
 Commit the resulting changes to the `package.json` and `package-lock.json` files.
