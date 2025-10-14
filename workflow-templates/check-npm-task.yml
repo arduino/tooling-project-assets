@@ -78,7 +78,7 @@ jobs:
           go-version-file: go.mod
 
       - name: Setup Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version-file: package.json
 
@@ -115,7 +115,7 @@ jobs:
           go-version-file: go.mod
 
       - name: Setup Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version-file: "${{ matrix.project.path }}/package.json"
 
@@ -157,7 +157,7 @@ jobs:
           go-version-file: go.mod
 
       - name: Setup Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version-file: "${{ matrix.project.path }}/package.json"
 
