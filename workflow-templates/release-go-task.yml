@@ -68,6 +68,9 @@ jobs:
         with:
           go-version-file: go.mod
 
+      - name: Setup QEMU
+        uses: docker/setup-qemu-action@v3
+
       - name: Build
         run: |
           go tool \
