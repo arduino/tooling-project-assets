@@ -29,6 +29,12 @@ tasks:
     dir: "{{.DIST_DIR}}"
     cmds:
       - |
+        mkdir \
+          -p \
+          "{{.PLATFORM_DIR}}"
+        cp \
+          "../LICENSE.txt" \
+          "{{.PLATFORM_DIR}}"
         docker run \
           -v `pwd`/..:/home/build \
           -w /home/build \
@@ -36,11 +42,10 @@ tasks:
           {{.CONTAINER}}:{{.CONTAINER_TAG}} \
           --build-cmd "{{.BUILD_COMMAND}}" \
           -p "{{.BUILD_PLATFORM}}"
-
         zip \
-          {{.PACKAGE_NAME}} \
-          {{.PLATFORM_DIR}}/{{.PROJECT_NAME}}.exe ../LICENSE.txt \
-          -j
+          -r \
+          "{{.PACKAGE_NAME}}" \
+          "{{.PLATFORM_DIR}}"
 
     vars:
       PLATFORM_DIR: "{{.PROJECT_NAME}}_windows_386"
@@ -55,6 +60,12 @@ tasks:
     dir: "{{.DIST_DIR}}"
     cmds:
       - |
+        mkdir \
+          -p \
+          "{{.PLATFORM_DIR}}"
+        cp \
+          "../LICENSE.txt" \
+          "{{.PLATFORM_DIR}}"
         docker run \
           -v `pwd`/..:/home/build \
           -w /home/build \
@@ -62,11 +73,10 @@ tasks:
           {{.CONTAINER}}:{{.CONTAINER_TAG}} \
           --build-cmd "{{.BUILD_COMMAND}}" \
           -p "{{.BUILD_PLATFORM}}"
-
         zip \
-          {{.PACKAGE_NAME}} \
-          {{.PLATFORM_DIR}}/{{.PROJECT_NAME}}.exe ../LICENSE.txt \
-          -j
+          -r \
+          "{{.PACKAGE_NAME}}" \
+          "{{.PLATFORM_DIR}}"
 
     vars:
       PLATFORM_DIR: "{{.PROJECT_NAME}}_windows_amd64"
@@ -80,8 +90,14 @@ tasks:
     desc: Builds Windows ARM64 binaries
     dir: "{{.DIST_DIR}}"
     cmds:
-      # "git config safe.directory" is required until this is fixed https://github.com/elastic/golang-crossbuild/issues/232
       - |
+        mkdir \
+          -p \
+          "{{.PLATFORM_DIR}}"
+        cp \
+          "../LICENSE.txt" \
+          "{{.PLATFORM_DIR}}"
+        # "git config safe.directory" is required until this is fixed https://github.com/elastic/golang-crossbuild/issues/232
         docker run \
           -v `pwd`/..:/home/build \
           -w /home/build \
@@ -95,11 +111,10 @@ tasks:
             {{.BUILD_COMMAND}} \
           " \
           -p "{{.BUILD_PLATFORM}}"
-
         zip \
-          {{.PACKAGE_NAME}} \
-          {{.PLATFORM_DIR}}/{{.PROJECT_NAME}}.exe ../LICENSE.txt \
-          -j
+          -r \
+          "{{.PACKAGE_NAME}}" \
+          "{{.PLATFORM_DIR}}"
 
     vars:
       PLATFORM_DIR: "{{.PROJECT_NAME}}_windows_arm64"
@@ -114,6 +129,12 @@ tasks:
     dir: "{{.DIST_DIR}}"
     cmds:
       - |
+        mkdir \
+          -p \
+          "{{.PLATFORM_DIR}}"
+        cp \
+          "../LICENSE.txt" \
+          "{{.PLATFORM_DIR}}"
         docker run \
           -v `pwd`/..:/home/build \
           -w /home/build \
@@ -121,13 +142,11 @@ tasks:
           {{.CONTAINER}}:{{.CONTAINER_TAG}} \
           --build-cmd "{{.BUILD_COMMAND}}" \
           -p "{{.BUILD_PLATFORM}}"
-
-        tar cz \
-          -C {{.PLATFORM_DIR}} \
-          {{.PROJECT_NAME}} \
-          -C ../.. \
-          LICENSE.txt \
-          -f {{.PACKAGE_NAME}}
+        tar \
+          --create \
+          --file "{{.PACKAGE_NAME}}" \
+          --gzip \
+          "{{.PLATFORM_DIR}}"
 
     vars:
       PLATFORM_DIR: "{{.PROJECT_NAME}}_linux_amd32"
@@ -142,6 +161,12 @@ tasks:
     dir: "{{.DIST_DIR}}"
     cmds:
       - |
+        mkdir \
+          -p \
+          "{{.PLATFORM_DIR}}"
+        cp \
+          "../LICENSE.txt" \
+          "{{.PLATFORM_DIR}}"
         docker run \
           -v `pwd`/..:/home/build \
           -w /home/build \
@@ -149,13 +174,11 @@ tasks:
           {{.CONTAINER}}:{{.CONTAINER_TAG}} \
           --build-cmd "{{.BUILD_COMMAND}}" \
           -p "{{.BUILD_PLATFORM}}"
-
-        tar cz \
-          -C {{.PLATFORM_DIR}} \
-          {{.PROJECT_NAME}} \
-          -C ../.. \
-          LICENSE.txt \
-          -f {{.PACKAGE_NAME}}
+        tar \
+          --create \
+          --file "{{.PACKAGE_NAME}}" \
+          --gzip \
+          "{{.PLATFORM_DIR}}"
 
     vars:
       PLATFORM_DIR: "{{.PROJECT_NAME}}_linux_amd64"
@@ -169,8 +192,14 @@ tasks:
     desc: Builds Linux ARMv7 binaries
     dir: "{{.DIST_DIR}}"
     cmds:
-      # "git config safe.directory" is required until this is fixed https://github.com/elastic/golang-crossbuild/issues/232
       - |
+        mkdir \
+          -p \
+          "{{.PLATFORM_DIR}}"
+        cp \
+          "../LICENSE.txt" \
+          "{{.PLATFORM_DIR}}"
+        # "git config safe.directory" is required until this is fixed https://github.com/elastic/golang-crossbuild/issues/232
         docker run \
           -v `pwd`/..:/home/build \
           -w /home/build \
@@ -184,13 +213,11 @@ tasks:
             {{.BUILD_COMMAND}} \
           " \
           -p "{{.BUILD_PLATFORM}}"
-
-        tar cz \
-          -C {{.PLATFORM_DIR}} \
-          {{.PROJECT_NAME}} \
-          -C ../.. \
-          LICENSE.txt \
-          -f {{.PACKAGE_NAME}}
+        tar \
+          --create \
+          --file "{{.PACKAGE_NAME}}" \
+          --gzip \
+          "{{.PLATFORM_DIR}}"
 
     vars:
       PLATFORM_DIR: "{{.PROJECT_NAME}}_linux_arm_7"
@@ -204,8 +231,14 @@ tasks:
     desc: Builds Linux ARMv6 binaries
     dir: "{{.DIST_DIR}}"
     cmds:
-      # "git config safe.directory" is required until this is fixed https://github.com/elastic/golang-crossbuild/issues/232
       - |
+        mkdir \
+          -p \
+          "{{.PLATFORM_DIR}}"
+        cp \
+          "../LICENSE.txt" \
+          "{{.PLATFORM_DIR}}"
+        # "git config safe.directory" is required until this is fixed https://github.com/elastic/golang-crossbuild/issues/232
         docker run \
           -v `pwd`/..:/home/build \
           -w /home/build \
@@ -219,13 +252,11 @@ tasks:
             {{.BUILD_COMMAND}} \
           " \
           -p "{{.BUILD_PLATFORM}}"
-
-        tar cz \
-          -C {{.PLATFORM_DIR}} \
-          {{.PROJECT_NAME}} \
-          -C ../.. \
-          LICENSE.txt \
-          -f {{.PACKAGE_NAME}}
+        tar \
+          --create \
+          --file "{{.PACKAGE_NAME}}" \
+          --gzip \
+          "{{.PLATFORM_DIR}}"
 
     vars:
       PLATFORM_DIR: "{{.PROJECT_NAME}}_linux_arm_6"
@@ -239,8 +270,14 @@ tasks:
     desc: Builds Linux ARM64 binaries
     dir: "{{.DIST_DIR}}"
     cmds:
-      # "git config safe.directory" is required until this is fixed https://github.com/elastic/golang-crossbuild/issues/232
       - |
+        mkdir \
+          -p \
+          "{{.PLATFORM_DIR}}"
+        cp \
+          "../LICENSE.txt" \
+          "{{.PLATFORM_DIR}}"
+        # "git config safe.directory" is required until this is fixed https://github.com/elastic/golang-crossbuild/issues/232
         docker run \
           -v `pwd`/..:/home/build \
           -w /home/build \
@@ -254,13 +291,11 @@ tasks:
             {{.BUILD_COMMAND}} \
           " \
           -p "{{.BUILD_PLATFORM}}"
-
-        tar cz \
-          -C {{.PLATFORM_DIR}} \
-          {{.PROJECT_NAME}} \
-          -C ../.. \
-          LICENSE.txt \
-          -f {{.PACKAGE_NAME}}
+        tar \
+          --create \
+          --file "{{.PACKAGE_NAME}}" \
+          --gzip \
+          "{{.PLATFORM_DIR}}"
 
     vars:
       PLATFORM_DIR: "{{.PROJECT_NAME}}_linux_arm_64"
@@ -274,8 +309,14 @@ tasks:
     desc: Builds Mac OS X 64 bit binaries
     dir: "{{.DIST_DIR}}"
     cmds:
-      # "git config safe.directory" is required until this is fixed https://github.com/elastic/golang-crossbuild/issues/232
       - |
+        mkdir \
+          -p \
+          "{{.PLATFORM_DIR}}"
+        cp \
+          "../LICENSE.txt" \
+          "{{.PLATFORM_DIR}}"
+        # "git config safe.directory" is required until this is fixed https://github.com/elastic/golang-crossbuild/issues/232
         docker run \
           -v `pwd`/..:/home/build \
           -w /home/build \
@@ -289,13 +330,11 @@ tasks:
             {{.BUILD_COMMAND}} \
           " \
           -p "{{.BUILD_PLATFORM}}"
-
-        tar cz \
-          -C {{.PLATFORM_DIR}} \
-          {{.PROJECT_NAME}} \
-          -C ../.. \
-          LICENSE.txt \
-          -f {{.PACKAGE_NAME}}
+        tar \
+          --create \
+          --file "{{.PACKAGE_NAME}}" \
+          --gzip \
+          "{{.PLATFORM_DIR}}"
 
     vars:
       PLATFORM_DIR: "{{.PROJECT_NAME}}_osx_darwin_amd64"
@@ -322,8 +361,14 @@ tasks:
     desc: Builds Mac OS X ARM64 binaries
     dir: "{{.DIST_DIR}}"
     cmds:
-      # "git config safe.directory" is required until this is fixed https://github.com/elastic/golang-crossbuild/issues/232
       - |
+        mkdir \
+          -p \
+          "{{.PLATFORM_DIR}}"
+        cp \
+          "../LICENSE.txt" \
+          "{{.PLATFORM_DIR}}"
+        # "git config safe.directory" is required until this is fixed https://github.com/elastic/golang-crossbuild/issues/232
         docker run \
           -v `pwd`/..:/home/build \
           -w /home/build \
@@ -337,13 +382,11 @@ tasks:
             {{.BUILD_COMMAND}} \
           " \
           -p "{{.BUILD_PLATFORM}}"
-
-        tar cz \
-          -C {{.PLATFORM_DIR}} \
-          {{.PROJECT_NAME}} \
-          -C ../.. \
-          LICENSE.txt \
-          -f {{.PACKAGE_NAME}}
+        tar \
+          --create \
+          --file "{{.PACKAGE_NAME}}" \
+          --gzip \
+          "{{.PLATFORM_DIR}}"
 
     vars:
       PLATFORM_DIR: "{{.PROJECT_NAME}}_osx_darwin_arm64"
