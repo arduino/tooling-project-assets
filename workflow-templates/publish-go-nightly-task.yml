@@ -50,7 +50,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Install Go
         uses: actions/setup-go@v6
@@ -98,7 +98,7 @@ jobs:
           echo "BUILD_FOLDER=${{ env.PROJECT_NAME }}_osx_${{ matrix.build.folder-suffix }}" >>"$GITHUB_ENV"
 
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Download artifacts
         uses: actions/download-artifact@v6

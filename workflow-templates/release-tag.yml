@@ -24,7 +24,7 @@ jobs:
           echo "SEMVER_TOOL_PATH=${{ runner.temp }}/semver" >>"$GITHUB_ENV"
 
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
