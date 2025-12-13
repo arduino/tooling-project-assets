@@ -126,7 +126,7 @@ jobs:
         if: >
           always() &&
           steps.check.outcome == 'failure'
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           path: ${{ env.WORKING_FOLDER }}/expected/.clang-format
           if-no-files-found: error
@@ -194,7 +194,7 @@ jobs:
         if: >
           always() &&
           steps.check.outcome == 'failure'
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           path: ${{ env.WORKING_FOLDER }}/output
           if-no-files-found: error
@@ -252,7 +252,7 @@ jobs:
                 OUTPUT_PATH="${{ env.CONVERSION_OUTPUT_PATH }}"
 
       - name: Save conversion to a workflow artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           path: ${{ env.CONVERSION_OUTPUT_PATH }}
           if-no-files-found: error
