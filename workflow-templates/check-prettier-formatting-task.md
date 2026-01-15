@@ -57,7 +57,7 @@ Commit the resulting changes to the `go.mod` and `go.sum` files.
 Add the dependencies by running this command:
 
 ```text
-npm install --save-dev prettier@^3.7.4
+npm install --save-dev prettier@^3.8.0
 ```
 
 Commit the resulting changes to the `package.json` and `package-lock.json` files.
