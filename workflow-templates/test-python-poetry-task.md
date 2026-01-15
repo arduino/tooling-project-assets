@@ -18,6 +18,8 @@ Install the [`test-python-poetry-task.yml`](test-python-poetry-task.yml) GitHub 
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`Taskfile.yml`](assets/poetry-task/Taskfile.yml) - Installation task.
   - Merge into `Taskfile.yml`
+- [`Taskfile.yml`](assets/windows-task/Taskfile.yml) - Utility tasks.
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`__init__.py`](assets/test-python/__init__.py) - Python module file.
   - Install to: `tests/`
 - [`pytest.ini`](assets/test-python/pytest.ini) - [pytest](https://pytest.org) configuration file.

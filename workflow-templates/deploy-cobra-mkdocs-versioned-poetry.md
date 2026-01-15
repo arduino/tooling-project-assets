@@ -29,6 +29,8 @@ Install the [`deploy-cobra-mkdocs-versioned-poetry.yml`](deploy-cobra-mkdocs-ver
   - Merge into `Taskfile.yml`
 - [`Taskfile.yml`](assets/poetry-task/Taskfile.yml) - Python package dependency management tasks.
   - Merge into `Taskfile.yml`
+- [`Taskfile.yml`](assets/windows-task/Taskfile.yml) - Utility tasks.
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`docsgen`](assets/cobra/docsgen) - command line reference generator.
   - Install to: `docsgen/`
 
