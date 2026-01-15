@@ -18,6 +18,8 @@ Install the [spell-check-task.yml](spell-check-task.yml) GitHub Actions workflow
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`Taskfile.yml`](assets/poetry-task/Taskfile.yml) - Installation task.
   - Merge into `Taskfile.yml`
+- [`Taskfile.yml`](assets/windows-task/Taskfile.yml) - Utility tasks.
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
 
 ### Dependencies
 

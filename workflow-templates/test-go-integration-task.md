@@ -20,6 +20,8 @@ Install the [`test-go-integration-task.yml`](test-go-integration-task.yml) GitHu
   - Merge into `Taskfile.yml`.
 - [`Taskfile.yml`](assets/poetry-task/Taskfile.yml) - Dependencies installation task.
   - Merge into `Taskfile.yml`
+- [`Taskfile.yml`](assets/windows-task/Taskfile.yml) - Utility tasks.
+  - Install to: repository root (or merge into the existing `Taskfile.yml`).
 - [`__init__.py`](assets/test-python/__init__.py) - Template for Python integration tests.
   - Install to: `tests/`
 - [`test_all.py`](assets/test-integration/test_all.py) - Template for Python integration tests.
