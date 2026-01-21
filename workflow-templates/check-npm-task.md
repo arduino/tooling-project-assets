@@ -23,6 +23,8 @@ Install the [check-npm-task.yml](check-npm-task.yml) GitHub Actions workflow to 
 
 ### Dependencies
 
+#### Go Module-Managed Dependencies
+
 The tool dependencies of this workflow are managed by [**Go**](https://go.dev/dl/).
 
 If the project does not already have a `go.mod` file, [install **Go**](https://go.dev/doc/install) and then run the following command:
@@ -40,6 +42,16 @@ go get -tool github.com/go-task/task/v3/cmd/task@v3.44.1
 ```
 
 Commit the resulting changes to the `go.mod` and `go.sum` files.
+
+#### npm-Managed Dependencies
+
+Add the dependencies by running this command:
+
+```text
+npm install --save-dev ajv-cli@^5.0.0 ajv-formats@^3.0.1
+```
+
+Commit the resulting changes to the `package.json` and `package-lock.json` files.
 
 ### Configuration
 
