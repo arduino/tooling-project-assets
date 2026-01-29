@@ -104,7 +104,7 @@ jobs:
               --exit-code
           then
             echo
-            echo "::error::Dependency license metadata out of sync. See: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/check-go-dependencies-task.md#metadata-cache"
+            echo "::error::Dependency license metadata out of sync. See: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/check-npm-dependencies-task.md#metadata-cache"
             exit 1
           fi
 
