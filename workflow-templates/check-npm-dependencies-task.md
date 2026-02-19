@@ -44,6 +44,7 @@ Add the tool dependencies by running the following command:
 
 ```text
 go get -tool github.com/go-task/task/v3/cmd/task@v3.44.1
+go get -tool github.com/mikefarah/yq/v4@latest
 ```
 
 Commit the resulting changes to the `go.mod` and `go.sum` files.
