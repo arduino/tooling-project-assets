@@ -17,7 +17,7 @@ require (
 	github.com/alecthomas/chroma/v2 v2.19.0 // indirect
 	github.com/alecthomas/participle/v2 v2.1.4 // indirect
 	github.com/chainguard-dev/git-urls v1.0.2 // indirect
-	github.com/cloudflare/circl v1.6.1 // indirect
+	github.com/cloudflare/circl v1.6.3 // indirect
 	github.com/cyphar/filepath-securejoin v0.4.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dimchansky/utfbom v1.1.1 // indirect
