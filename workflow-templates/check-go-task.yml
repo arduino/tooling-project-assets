@@ -198,3 +198,30 @@ jobs:
           git diff \
             --color \
             --exit-code
+
+  check-license-headers:
+    name: check-license-headers (${{ matrix.module.path }})
+    needs: run-determination
+    if: needs.run-determination.outputs.result == 'true'
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+
+      matrix:
+        module:
+          - path: ./
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Install Go
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: ${{ matrix.module.path }}/go.mod
+
+      - name: Check license headers
+        env:
+          GO_MODULE_PATH: ${{ matrix.module.path }}
+        run: go tool task go:check-license-headers
