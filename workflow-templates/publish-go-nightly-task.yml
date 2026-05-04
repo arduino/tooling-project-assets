@@ -22,7 +22,7 @@ on:
 jobs:
   create-nightly-artifacts:
     name: Build ${{ matrix.os.artifact-suffix }}
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os.runner }}
     permissions:
       contents: read
 
@@ -31,22 +31,34 @@ jobs:
         os:
           - task: Windows_32bit
             artifact-suffix: Windows_32bit
+            runner: ubuntu-latest
           - task: Windows_64bit
             artifact-suffix: Windows_64bit
+            runner: ubuntu-latest
+          - task: Windows_ARM64
+            artifact-suffix: Windows_ARM64
+            runner: ubuntu-24.04-arm
           - task: Linux_32bit
             artifact-suffix: Linux_32bit
+            runner: ubuntu-latest
           - task: Linux_64bit
             artifact-suffix: Linux_64bit
+            runner: ubuntu-latest
           - task: Linux_ARMv6
             artifact-suffix: Linux_ARMv6
+            runner: ubuntu-latest
           - task: Linux_ARMv7
             artifact-suffix: Linux_ARMv7
+            runner: ubuntu-latest
           - task: Linux_ARM64
             artifact-suffix: Linux_ARM64
+            runner: ubuntu-24.04-arm
           - task: macOS_64bit
             artifact-suffix: macOS_64bit
+            runner: ubuntu-latest
           - task: macOS_ARM64
             artifact-suffix: macOS_ARM64
+            runner: ubuntu-24.04-arm
 
     steps:
       - name: Checkout repository
