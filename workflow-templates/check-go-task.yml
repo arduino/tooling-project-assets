@@ -114,17 +114,9 @@ jobs:
         with:
           go-version-file: ${{ matrix.module.path }}/go.mod
 
-      - name: Install golint
-        run: go install golang.org/x/lint/golint@latest
-
       - name: Check style
-        env:
-          GO_MODULE_PATH: ${{ matrix.module.path }}
         run: |
-          go tool \
-            github.com/go-task/task/v3/cmd/task  \
-              --silent \
-              go:lint
+          go vet ${{ matrix.module.path }}
 
   check-formatting:
     name: check-formatting (${{ matrix.module.path }})
