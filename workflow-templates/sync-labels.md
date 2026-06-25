@@ -1,6 +1,6 @@
 # "Sync Labels" workflow
 
-Use [github-label-sync](https://github.com/Financial-Times/github-label-sync) to configure the repository's [issue/pull request labels](https://docs.github.com/issues/using-labels-and-milestones-to-track-work/managing-labels) according to the universal, shared, and local label configuration files.
+Use [github-label-sync](https://github.com/EndBug/github-label-sync) to configure the repository's [issue/pull request labels](https://docs.github.com/issues/using-labels-and-milestones-to-track-work/managing-labels) according to the universal, shared, and local label configuration files.
 
 Use of consistent labels across repositories makes repository maintenance and searching of issue and pull request trackers easier.
 
@@ -16,7 +16,7 @@ Install the [`sync-labels.yml`](sync-labels.yml) GitHub Actions workflow to `.gi
 
 Multiple labels data files can be merged to form the list of labels for the repository. The [universal labels](assets/sync-labels/universal.yml) must be used in all repositories, but some projects will benefit from the addition of other domain-specific labels.
 
-The configuration file structure is documented here: https://github.com/Financial-Times/github-label-sync#label-config-file
+The configuration file structure is documented here: https://github.com/EndBug/github-label-sync#label-config-file
 
 #### Maximum string lengths
 
@@ -92,5 +92,5 @@ according to the universal, shared, and local label configuration files.
 ## PR message
 
 ```markdown
-On every push that changes relevant files, and periodically, use [github-label-sync](https://github.com/Financial-Times/github-label-sync) to configure the repository's issue/PR labels according to the universal, shared, and local label configuration files.
+On every push that changes relevant files, and periodically, use [github-label-sync](https://github.com/EndBug/github-label-sync) to configure the repository's issue/PR labels according to the universal, shared, and local label configuration files.
 ```
