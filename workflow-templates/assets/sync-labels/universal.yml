@@ -1,5 +1,5 @@
 # Source: https://github.com/arduino/tooling-project-assets/blob/main/workflow-templates/assets/sync-labels/universal.yml
-# See: https://github.com/Financial-Times/github-label-sync#label-config-file
+# See: https://github.com/EndBug/github-label-sync#label-config-file
 # Maximum lengths:
 # name: 50
 # description: 100
