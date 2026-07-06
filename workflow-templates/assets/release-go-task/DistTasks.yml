@@ -19,7 +19,11 @@ version: "3"
 
 vars:
   CONTAINER: "docker.elastic.co/beats-dev/golang-crossbuild"
-  GO_VERSION: "1.27.1"
+  GO_VERSION:
+    sh: |
+      go list \
+        -f {{"{{.GoVersion}}"}} \
+        -m
   # See: https://pkg.go.dev/cmd/cgo#:~:text=by%20setting%20the-,CGO_ENABLED,-environment%20variable%20when
   CGO_ENABLED: "1"
 
