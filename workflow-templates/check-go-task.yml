@@ -120,6 +120,7 @@ jobs:
       - name: Check style
         env:
           GO_MODULE_PATH: ${{ matrix.module.path }}
+          GOLANGCI_LINT_BIN: ${{ github.workspace }}/.bin/golangci-lint
         run: |
           go tool \
             github.com/go-task/task/v3/cmd/task  \
