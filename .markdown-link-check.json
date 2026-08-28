@@ -25,6 +25,9 @@
       "pattern": "^development\\.md#development-guide$"
     },
     {
+      "pattern": "^https://www\\.npmjs\\.com/"
+    },
+    {
       "pattern": "^issues\\.md#issue-report-guide$"
     },
     {

@@ -7,6 +7,11 @@
       }
     }
   ],
+  "ignorePatterns": [
+    {
+      "pattern": "^https://www\\.npmjs\\.com/"
+    }
+  ],
   "retryOn429": true,
   "timeout": "30s",
   "retryCount": 3,
