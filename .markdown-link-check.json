@@ -10,7 +10,7 @@
   "retryOn429": true,
   "timeout": "30s",
   "retryCount": 3,
-  "aliveStatusCodes": [200, 206],
+  "aliveStatusCodes": [200, 206, 429],
   "ignorePatterns": [
     {
       "pattern": "^../development\\.md#development-guide$"
@@ -23,6 +23,9 @@
     },
     {
       "pattern": "^development\\.md#development-guide$"
+    },
+    {
+      "pattern": "^https://www\\.npmjs\\.com/"
     },
     {
       "pattern": "^issues\\.md#issue-report-guide$"
