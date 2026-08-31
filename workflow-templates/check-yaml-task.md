@@ -52,7 +52,7 @@ Commit the resulting changes to the `go.mod` and `go.sum` files.
 Add the tool dependency using this command:
 
 ```
-task poetry:install && poetry add --dev "yamllint@^1.37.1"
+task poetry:install && poetry add --dev "yamllint@^1.38.0"
 ```
 
 Commit the resulting changes to the `pyproject.toml` and `poetry.lock` files.
