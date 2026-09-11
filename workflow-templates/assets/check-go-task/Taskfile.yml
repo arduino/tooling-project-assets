@@ -30,15 +30,20 @@ tasks:
       Lint Go code
       Environment variable parameters:
       - GO_MODULE_PATH: Path of the Go module root (default: {{.DEFAULT_GO_MODULE_PATH}}).
+      - GOLANGCI_LINT_BIN: Path to the golangci-lint binary (default: ${PWD}/.bin/golangci-lint).
+
     dir: "{{default .DEFAULT_GO_MODULE_PATH .GO_MODULE_PATH}}"
+    silent: true
+    vars:
+      GOLANGCI_LINT_BIN: '{{default "${PWD}/.bin/golangci-lint" .GOLANGCI_LINT_BIN}}'
     cmds:
       - |
         if
-          ! which golangci-lint \
+          ! which "{{.GOLANGCI_LINT_BIN}}" \
           &>/dev/null
         then
           echo "golangci-lint not installed or not in PATH."
           echo "Please install: https://golangci-lint.run/usage/install/#local-installation"
           exit 1
         fi
-      - golangci-lint run
+      - '{{.GOLANGCI_LINT_BIN}} run'
