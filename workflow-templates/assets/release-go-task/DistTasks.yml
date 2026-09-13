@@ -36,9 +36,11 @@ tasks:
         mkdir \
           -p \
           "{{.PLATFORM_DIR}}"
+      - |
         cp \
           "../LICENSE.txt" \
           "{{.PLATFORM_DIR}}"
+      - |
         docker run \
           -v `pwd`/..:/home/build \
           -w /home/build \
@@ -46,6 +48,7 @@ tasks:
           {{.CONTAINER}}:{{.CONTAINER_TAG}} \
           --build-cmd "{{.BUILD_COMMAND}}" \
           -p "{{.BUILD_PLATFORM}}"
+      - |
         zip \
           -r \
           "{{.PACKAGE_NAME}}" \
@@ -67,9 +70,11 @@ tasks:
         mkdir \
           -p \
           "{{.PLATFORM_DIR}}"
+      - |
         cp \
           "../LICENSE.txt" \
           "{{.PLATFORM_DIR}}"
+      - |
         docker run \
           -v `pwd`/..:/home/build \
           -w /home/build \
@@ -77,6 +82,7 @@ tasks:
           {{.CONTAINER}}:{{.CONTAINER_TAG}} \
           --build-cmd "{{.BUILD_COMMAND}}" \
           -p "{{.BUILD_PLATFORM}}"
+      - |
         zip \
           -r \
           "{{.PACKAGE_NAME}}" \
@@ -98,10 +104,12 @@ tasks:
         mkdir \
           -p \
           "{{.PLATFORM_DIR}}"
+      - |
         cp \
           "../LICENSE.txt" \
           "{{.PLATFORM_DIR}}"
-        # "git config safe.directory" is required until this is fixed https://github.com/elastic/golang-crossbuild/issues/232
+      # "git config safe.directory" is required until this is fixed https://github.com/elastic/golang-crossbuild/issues/232
+      - |
         docker run \
           -v `pwd`/..:/home/build \
           -w /home/build \
@@ -115,6 +123,7 @@ tasks:
             {{.BUILD_COMMAND}} \
           " \
           -p "{{.BUILD_PLATFORM}}"
+      - |
         zip \
           -r \
           "{{.PACKAGE_NAME}}" \
@@ -136,9 +145,11 @@ tasks:
         mkdir \
           -p \
           "{{.PLATFORM_DIR}}"
+      - |
         cp \
           "../LICENSE.txt" \
           "{{.PLATFORM_DIR}}"
+      - |
         docker run \
           -v `pwd`/..:/home/build \
           -w /home/build \
@@ -146,6 +157,7 @@ tasks:
           {{.CONTAINER}}:{{.CONTAINER_TAG}} \
           --build-cmd "{{.BUILD_COMMAND}}" \
           -p "{{.BUILD_PLATFORM}}"
+      - |
         tar \
           --create \
           --file "{{.PACKAGE_NAME}}" \
@@ -168,9 +180,11 @@ tasks:
         mkdir \
           -p \
           "{{.PLATFORM_DIR}}"
+      - |
         cp \
           "../LICENSE.txt" \
           "{{.PLATFORM_DIR}}"
+      - |
         docker run \
           -v `pwd`/..:/home/build \
           -w /home/build \
@@ -178,6 +192,7 @@ tasks:
           {{.CONTAINER}}:{{.CONTAINER_TAG}} \
           --build-cmd "{{.BUILD_COMMAND}}" \
           -p "{{.BUILD_PLATFORM}}"
+      - |
         tar \
           --create \
           --file "{{.PACKAGE_NAME}}" \
@@ -200,10 +215,12 @@ tasks:
         mkdir \
           -p \
           "{{.PLATFORM_DIR}}"
+      - |
         cp \
           "../LICENSE.txt" \
           "{{.PLATFORM_DIR}}"
-        # "git config safe.directory" is required until this is fixed https://github.com/elastic/golang-crossbuild/issues/232
+      # "git config safe.directory" is required until this is fixed https://github.com/elastic/golang-crossbuild/issues/232
+      - |
         docker run \
           -v `pwd`/..:/home/build \
           -w /home/build \
@@ -217,6 +234,7 @@ tasks:
             {{.BUILD_COMMAND}} \
           " \
           -p "{{.BUILD_PLATFORM}}"
+      - |
         tar \
           --create \
           --file "{{.PACKAGE_NAME}}" \
@@ -239,10 +257,12 @@ tasks:
         mkdir \
           -p \
           "{{.PLATFORM_DIR}}"
+      - |
         cp \
           "../LICENSE.txt" \
           "{{.PLATFORM_DIR}}"
-        # "git config safe.directory" is required until this is fixed https://github.com/elastic/golang-crossbuild/issues/232
+      # "git config safe.directory" is required until this is fixed https://github.com/elastic/golang-crossbuild/issues/232
+      - |
         docker run \
           -v `pwd`/..:/home/build \
           -w /home/build \
@@ -256,6 +276,7 @@ tasks:
             {{.BUILD_COMMAND}} \
           " \
           -p "{{.BUILD_PLATFORM}}"
+      - |
         tar \
           --create \
           --file "{{.PACKAGE_NAME}}" \
@@ -278,10 +299,12 @@ tasks:
         mkdir \
           -p \
           "{{.PLATFORM_DIR}}"
+      - |
         cp \
           "../LICENSE.txt" \
           "{{.PLATFORM_DIR}}"
-        # "git config safe.directory" is required until this is fixed https://github.com/elastic/golang-crossbuild/issues/232
+      # "git config safe.directory" is required until this is fixed https://github.com/elastic/golang-crossbuild/issues/232
+      - |
         docker run \
           -v `pwd`/..:/home/build \
           -w /home/build \
@@ -295,6 +318,7 @@ tasks:
             {{.BUILD_COMMAND}} \
           " \
           -p "{{.BUILD_PLATFORM}}"
+      - |
         tar \
           --create \
           --file "{{.PACKAGE_NAME}}" \
@@ -317,10 +341,12 @@ tasks:
         mkdir \
           -p \
           "{{.PLATFORM_DIR}}"
+      - |
         cp \
           "../LICENSE.txt" \
           "{{.PLATFORM_DIR}}"
-        # "git config safe.directory" is required until this is fixed https://github.com/elastic/golang-crossbuild/issues/232
+      # "git config safe.directory" is required until this is fixed https://github.com/elastic/golang-crossbuild/issues/232
+      - |
         docker run \
           -v `pwd`/..:/home/build \
           -w /home/build \
@@ -334,6 +360,7 @@ tasks:
             {{.BUILD_COMMAND}} \
           " \
           -p "{{.BUILD_PLATFORM}}"
+      - |
         tar \
           --create \
           --file "{{.PACKAGE_NAME}}" \
@@ -369,10 +396,12 @@ tasks:
         mkdir \
           -p \
           "{{.PLATFORM_DIR}}"
+      - |
         cp \
           "../LICENSE.txt" \
           "{{.PLATFORM_DIR}}"
-        # "git config safe.directory" is required until this is fixed https://github.com/elastic/golang-crossbuild/issues/232
+      # "git config safe.directory" is required until this is fixed https://github.com/elastic/golang-crossbuild/issues/232
+      - |
         docker run \
           -v `pwd`/..:/home/build \
           -w /home/build \
@@ -386,6 +415,7 @@ tasks:
             {{.BUILD_COMMAND}} \
           " \
           -p "{{.BUILD_PLATFORM}}"
+      - |
         tar \
           --create \
           --file "{{.PACKAGE_NAME}}" \
