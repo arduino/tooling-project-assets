@@ -2,7 +2,7 @@
 // TODO: replace TODO_MODULE_NAME with the project's module name
 module TODO_MODULE_NAME/docsgen
 
-go 1.17
+go 1.27.1
 
 replace TODO_MODULE_NAME => ../
 
