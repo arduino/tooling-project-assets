@@ -17,4 +17,4 @@ tasks:
         fi
       - |
         go tool \
-          github.com/editorconfig-checker/editorconfig-checker/v3/cmd/editorconfig-checker
+          github.com/editorconfig-checker/editorconfig-checker/v4/cmd/editorconfig-checker
