@@ -1,6 +1,6 @@
 module github.com/arduino/tooling-project-assets
 
-go 1.25.0
+go 1.27.1
 
 tool (
 	github.com/go-task/task/v3/cmd/task
