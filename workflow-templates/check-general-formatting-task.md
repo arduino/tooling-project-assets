@@ -14,7 +14,7 @@ Install the [`check-general-formatting-task.yml`](check-general-formatting-task.
   - Install to: repository root
 - [`Taskfile.yml`](assets/check-general-formatting-task/Taskfile.yml) - formatting check [task](https://taskfile.dev/).
   - Install to: repository root (or merge into the existing `Taskfile.yml`).
-- [`.ecrc`](assets/check-general-formatting/.ecrc) - editorconfig-checker configuration file.
+- [`.editorconfig-checker.json`](assets/check-general-formatting/.editorconfig-checker.json) - editorconfig-checker configuration file.
   - Install to: repository root
 
 The formatting style defined in `.editorconfig` is the official standardized style to be used in all Arduino tooling projects and should not be modified.
@@ -34,14 +34,14 @@ go mod init <module path>
 Add the tool dependencies by running the following command:
 
 ```text
-go get -tool github.com/editorconfig-checker/editorconfig-checker/v3/cmd/editorconfig-checker@v3.11.3 github.com/go-task/task/v3/cmd/task@v3.44.1
+go get -tool github.com/editorconfig-checker/editorconfig-checker/v4/cmd/editorconfig-checker@v4.0.2 github.com/go-task/task/v3/cmd/task@v3.44.1
 ```
 
 Commit the resulting changes to the `go.mod` and `go.sum` files.
 
 ### Configuration
 
-If the repository contains generated or vendored files, they can be excluded from the check by adding them to the `Exclude` array in the `.ecrc` configuration file.
+If the repository contains generated or vendored files, they can be excluded from the check by adding them to the `Exclude` array in the `.editorconfig-checker.json` configuration file.
 
 Reference:
 https://github.com/editorconfig-checker/editorconfig-checker#configuration
