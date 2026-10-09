@@ -13,7 +13,7 @@
     "prettier-plugin-toml": "^3.0.2"
   },
   "dependencies": {
-    "js-yaml": "^5.4.2"
+    "js-yaml": "^5.4.3"
   },
   "engines": {
     "node": "22.x"
