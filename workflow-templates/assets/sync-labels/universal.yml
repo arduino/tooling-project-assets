@@ -30,6 +30,9 @@
 - name: "conclusion: resolved"
   color: "00ff00"
   description: Issue was resolved
+- name: "conclusion: unknown"
+  color: "ffa200"
+  description: Item closed without explanation
 - name: "criticality: highest"
   color: "ff0000"
   description: Of highest impact
