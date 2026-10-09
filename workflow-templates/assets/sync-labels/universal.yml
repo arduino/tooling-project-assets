@@ -88,6 +88,11 @@
   description: Related to documentation for the project
   aliases:
     - documentation
+# Vulnerability disclosures are made following the procedure at:
+# https://github.com/arduino/.github/blob/master/SECURITY.md
+- name: "topic: security"
+  color: ff0000
+  description: Related to the protection of user data
 # This includes bugs, but avoids confusion for use in non-code contexts.
 - name: "type: imperfection"
   color: "ff0000"
