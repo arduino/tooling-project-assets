@@ -25,6 +25,7 @@ updates:
       cronjob: 0 13 * * *
       interval: cron
     labels:
+      - "topic: code"
       - "topic: dependencies"
     assignees:
       - per1234
