@@ -12,4 +12,5 @@ updates:
       cronjob: 0 12 * * *
       interval: cron
     labels:
+      - "topic: dependencies"
       - "topic: infrastructure"

@@ -78,11 +78,14 @@
 - name: "topic: infrastructure"
   color: "00ffff"
   description: Related to project infrastructure
-  aliases:
-    - dependencies
 - name: "topic: code"
   color: "00ffff"
   description: Related to content of the project itself
+- name: "topic: dependencies"
+  color: "00ffff"
+  description: Related to project dependencies
+  aliases:
+    - dependencies
 - name: "topic: documentation"
   color: "00ffff"
   description: Related to documentation for the project

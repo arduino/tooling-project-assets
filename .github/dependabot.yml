@@ -12,6 +12,7 @@ updates:
       cronjob: 0 12 * * *
       interval: cron
     labels:
+      - "topic: dependencies"
       - "topic: infrastructure"
     assignees:
       - per1234
@@ -24,7 +25,7 @@ updates:
       cronjob: 0 13 * * *
       interval: cron
     labels:
-      - "topic: infrastructure"
+      - "topic: dependencies"
     assignees:
       - per1234
 
@@ -35,6 +36,7 @@ updates:
       cronjob: 0 14 * * *
       interval: cron
     labels:
+      - "topic: dependencies"
       - "topic: infrastructure"
     assignees:
       - per1234
@@ -46,6 +48,7 @@ updates:
       cronjob: 0 15 * * *
       interval: cron
     labels:
+      - "topic: dependencies"
       - "topic: infrastructure"
     assignees:
       - per1234
