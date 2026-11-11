@@ -8,6 +8,7 @@ doctests = True
 exclude =
   __pycache__/
   .git/
+  /.build/
   /.licenses/
   /site/
   node_modules/

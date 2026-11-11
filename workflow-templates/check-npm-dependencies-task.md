@@ -51,6 +51,14 @@ Commit the resulting changes to the `go.mod` and `go.sum` files.
 
 ### Configuration
 
+#### `.gitignore`
+
+Add the following to [`/.gitignore`](https://git-scm.com/docs/gitignore):
+
+```
+/.build/
+```
+
 #### Licensed
 
 The **Licensed** tool is configured via `.licensed.yml` configuration file, located in the repository root folder:
