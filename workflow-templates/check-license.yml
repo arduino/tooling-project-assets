@@ -53,7 +53,7 @@ jobs:
           echo "result=$RESULT" >>$GITHUB_OUTPUT
 
   check-license:
-    name: ${{ matrix.check-license.path }}
+    name: check-license (${{ matrix.check-license.path }})
     needs: run-determination
     if: needs.run-determination.outputs.result == 'true'
     runs-on: ubuntu-latest
