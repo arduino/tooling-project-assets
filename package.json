@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "@endbug/github-label-sync": "3.0.0",
+    "@endbug/github-label-sync": "4.0.0",
     "ajv-cli": "^5.0.0",
     "ajv-formats": "^3.0.1",
     "eslint": "^8.57.0",
