@@ -27,7 +27,7 @@ Add the dependencies by running this command:
 
 ```text
 npm install --save-dev ajv-cli@^5.0.0 ajv-formats@^3.0.1
-npm install --save-dev --save-exact @endbug/github-label-sync@3.0.0
+npm install --save-dev --save-exact @endbug/github-label-sync@4.0.0
 ```
 
 Commit the resulting changes to the `package.json` and `package-lock.json` files.
